@@ -93,32 +93,32 @@
 
 
 # Spring Framework의 구조
-	- Spring Core
-		- Spring Container를 의미
-		- Container는 Spring Framework의 핵심
-		- 그 중의 핵심은 Bean Factory Container
-			- Bean Factory는 IoC pattern을 적용하여 객체 구성부터 의존성 처리까지 모든 일을 처리하는 역할을 가짐
-	- Spring Context
-		- Spring Framework의 context 정보들을 제공하는 설정 file
-		- JNDI, EJB, Validation, Scheduling, Internaliztion 등 enterprice service들을 포함
-	- Spring AOP
-		- 관점지향 programming을 가능하게 함
-	- Spring DAO
-		- Data Access Object
-		- database data에 접근하는 객체
-		- Spring JDBC는 추상 layer를 지원함으로써 예외 처리하는 부분을 간편화기켜 일관된 방법으로 코드를 짤 수 있게 도와줌
-	- Spring ORM
-		- Object Realtional mapping
-		- 객체와의 관계 설정을 하는 것
-		- Ibatis, Hibernate, JDO 등 인기있는 객체 관계형 도구(OR 도구)를 사용할 수 있도록 지원
-	- Spring Web
-		- Web context module은 Application module에 내장되어 있고, Web 기반의 응용 program에 대한 Context를 제공하여 일반적인 Web Application 개발에 필요한 기본적인 기능을 지원
-		- Jakarta Structs와의 통합을 지원
-	- Spring MVC
-		- MVC에서는 Model2 구조로 Application을 만들수 있도혹 지원
-		- MVC framework는 web 응용 program을 작성하기 위한 완전한 기능을 MVC를 구현
-			- 전략 interface를 통해 고급 구성이 가능
-			- JSP, Velocity, Tiles, iTest 및 POI를 포함한 수 많은 view 기술을 지원
+- Spring Core
+	- Spring Container를 의미
+	- Container는 Spring Framework의 핵심
+	- 그 중의 핵심은 Bean Factory Container
+		- Bean Factory는 IoC pattern을 적용하여 객체 구성부터 의존성 처리까지 모든 일을 처리하는 역할을 가짐
+- Spring Context
+	- Spring Framework의 context 정보들을 제공하는 설정 file
+	- JNDI, EJB, Validation, Scheduling, Internaliztion 등 enterprice service들을 포함
+- Spring AOP
+	- 관점지향 programming을 가능하게 함
+- Spring DAO
+	- Data Access Object
+	- database data에 접근하는 객체
+	- Spring JDBC는 추상 layer를 지원함으로써 예외 처리하는 부분을 간편화기켜 일관된 방법으로 코드를 짤 수 있게 도와줌
+- Spring ORM
+	- Object Realtional mapping
+	- 객체와의 관계 설정을 하는 것
+	- Ibatis, Hibernate, JDO 등 인기있는 객체 관계형 도구(OR 도구)를 사용할 수 있도록 지원
+- Spring Web
+	- Web context module은 Application module에 내장되어 있고, Web 기반의 응용 program에 대한 Context를 제공하여 일반적인 Web Application 개발에 필요한 기본적인 기능을 지원
+	- Jakarta Structs와의 통합을 지원
+- Spring MVC
+	- MVC에서는 Model2 구조로 Application을 만들수 있도혹 지원
+	- MVC framework는 web 응용 program을 작성하기 위한 완전한 기능을 MVC를 구현
+		- 전략 interface를 통해 고급 구성이 가능
+		- JSP, Velocity, Tiles, iTest 및 POI를 포함한 수 많은 view 기술을 지원
 ---
 
 
