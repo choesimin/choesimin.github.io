@@ -33,7 +33,7 @@
 
 # Servlet Container
 - servlet을 관리해주는 container
-- server에 servlet을 만들었다해서 스스로 작동하는 것이 아니기 때문에, __servlet을 관리해주는 역할__을 함
+- server에 servlet을 만들었다해서 스스로 작동하는 것이 아니기 때문에, servlet을 관리해주는 역할을 함
 - servlet이 어떤 역할을 수행하는 정의서라고 보면, servlet conatiner는 그 정의서를 보고 수행한다고 볼 수 있음
 - client의 요청을 받아주고 응답할 수 있게 web server와 socket으로 통신
 	- ex) tomcat (실제로 web server와 통신하여 jsp와 servlet이 작동하는 환경을 제공)

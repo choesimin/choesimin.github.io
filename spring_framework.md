@@ -72,18 +72,18 @@
 		- Service
 			- 불필요하게 HTTP 통신을 하지 말아야하고, request나 response와 같은 객체를 매개변수로 받아서는 안 됨
 			- view에 종속적인 code가 없어야 하고 view가 변경되더라도 Service는 그대로 재사용할 수 있어야 함
-		- __Model에서는 View와 Controller에 대한 어떠한 정보도 가지고 있어서는 안됨__
+		- Model에서는 View와 Controller에 대한 어떠한 정보도 가지고 있어서는 안됨
 	- View
 		- 사용자 interface를 담당하며 사용자에게 보여지는 부분
 		- Controller를 통해 Model에 data에 대한 시각화를 담당
 		- 자신이 요청을 보낼 Controller의 정보만 알고 있어야 하는 것이 핵심
-		- __Model이 가지고 있는 정보를 저장해서는 안 되며 Model, Controller의 구성 요소를 알아서는 안 됨
+		- Model이 가지고 있는 정보를 저장해서는 안 되며 Model, Controller의 구성 요소를 알아서는 안 됨
 	- Controller
 		- View에게 받은 요청을 가공하여 Model(Service 영역)에 이를 전달
 		- 또한 Model로부터 받은 결과를 View로 넘겨주는 역할
 		- 모든 요청 error와 Model error를 처리
 		- View에 대한 정보를 알고 있어야 함
-		- __Model과 View의 정보에 대해서 알고 있어야함__
+		- Model과 View의 정보에 대해서 알고 있어야함
 	- Model, View, Controller를 나누어 source를 분리함으로써 각 source의 목적이 명확해져 유지보수하기에 용이
 	- View의 정보가 달라지더라도 Controller에서 Service에 넘겨줄 매개변수 data 가공만 처리하면 되기 때문에 비용 절감의 효과 있음
 	- Service 영역의 재사용이 가능하기 때문에 확장성이 좋아짐
