@@ -1,10 +1,18 @@
 # JNDI
 - Java Naming and Directory Interface
-- java programming 언어를 사용하여 작성된 application에 이름 지정 및 directory 기증을 제공하는 API(Application Programming Interface)
+- WAS 단에 database connection 객체를 미리 naming 해두는 방식
 - database와 연결된 connection을 미리 만들어서 저장해두고 있다가 필요할 때 저장된 공간(pool)에서 가져다 쓰고 반환하는 기법
 	- connection pool을 이용하면 connection을 미리 만들어두고 사용하기 때문에 "driver load -> connection 객체 생성 -> connection 객체 종료"의 작업을 매번 할 필요 없음
 	- database의 부하 감소
 	- 자원의 효율적인 관리
+	- DBCP와 같은 기능 (JNDI는 제어를 편하게 할 수 있도록 발전된 형태)
+- DB connection을 WAS 단에서 제어하면서 server에서 하나의 connection pool을 가짐
+	- 공유 객체를 사용한다고 이해하면 됨
+- application이 DB에 직접 connection을 요청하는 것이 아니라 JNDI lookup을 통해 Datasource 객체를 획득하고 그것으로 connection 요청
+	- 이것이 일반 DBCP와 차이점
+	- DB 설정 정보를 파악하기 쉬움
+		- WAS 단에 설정 정보를 통해 DB가 몇 개 붙어있는지 정보 파악이 수월
+	- DB connection pool을 효율적으로 사용 가능
 ---
 
 
@@ -57,3 +65,4 @@
 - https://technet.tmaxsoft.com/upload/download/online/jeus/pver-20170202-000001/server/chapter_jndi.html
 - https://badstorage.tistory.com/5
 - https://itworldyo.tistory.com/16
+- https://ss-o.tistory.com/133

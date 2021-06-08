@@ -80,3 +80,5 @@ connection.close();
 # References
 - https://hzoou.tistory.com/64
 - https://itlaw.wikia.org/wiki/Database_vendor
+- https://ss-o.tistory.com/132
+	- 이 참고 자료에 대한 내용 추가 필요

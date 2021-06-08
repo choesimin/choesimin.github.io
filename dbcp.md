@@ -4,6 +4,8 @@
 	- 저장된 DB Connection 객체는 필요할 때마다 pool에서 가져다 쓰고 반환
 	- 요청이 들어올 때, DB Driver에 load하여 물리적인 Connection 객체를 생성하는 과정을 생략할 수 있음
 - database와 application을 효율적으로 연결하는 connection pool library
+- 보통 Database Connection Pool을 application source단에 설정해놓은 방식
+	- 이 점이 JNDI와 다름
 ---
 
 
@@ -50,3 +52,4 @@
 - https://d2.naver.com/helloworld/5102792
 - https://leminity.tistory.com/20
 - https://blue-mina.tistory.com/19
+- https://ss-o.tistory.com/133
