@@ -101,7 +101,7 @@ connection.close();
 	|---|---|
 	|ResultSet executeQuery(String sql) : select|ResultSet executeQuery(String sql) : select|
 	|int executeUpdate(String sql) : insert, update, delete|int executeUpdate(String sql) : insert, update, delete|
-	||void setXXX() : ?에 binding 시킬 변수를 data type에 맞게 설정|
+	||void setXXX(int index, ...) : ?에 binding 시킬 변수를 data type에 맞게 설정|
 ---
 
 
@@ -111,4 +111,3 @@ connection.close();
 - https://hzoou.tistory.com/64
 - https://itlaw.wikia.org/wiki/Database_vendor
 - https://ss-o.tistory.com/132
-	- 이 참고 자료에 대한 내용 추가 필요
