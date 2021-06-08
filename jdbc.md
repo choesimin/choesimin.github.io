@@ -97,11 +97,11 @@ connection.close();
 		- 사용자 입력값으로 query를 생성할 때
 		- query 반복 수행 작업인 경우
 - 두 class의 주요 method
-|Statement|PreparedStatement|
-|---|---|
-|ResultSet executeQuery(String sql) : select|ResultSet executeQuery(String sql) : select|
-|int executeUpdate(String sql) : insert, update, delete|int executeUpdate(String sql) : insert, update, delete|
-||void setXXX() : ?에 binding 시킬 변수를 data type에 맞게 설정|
+	|Statement|PreparedStatement|
+	|---|---|
+	|ResultSet executeQuery(String sql) : select|ResultSet executeQuery(String sql) : select|
+	|int executeUpdate(String sql) : insert, update, delete|int executeUpdate(String sql) : insert, update, delete|
+	||void setXXX() : ?에 binding 시킬 변수를 data type에 맞게 설정|
 ---
 
 
