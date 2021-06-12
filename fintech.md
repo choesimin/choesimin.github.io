@@ -23,7 +23,7 @@
 
 
 
-# WHAT IS A FINTECH COMPANY?
+# What is a Fintach company?
 - Fintech companies integrate technologies (like AI, blockchain and data science) into traditional financial sectors to make them safer, faster and more efficient
 - Fintech is one of the fastest-growing tech sectors, with companies innovating in almost every area of finance (from payments and loans to credit scoring and stock trading)
 ---
