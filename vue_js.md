@@ -116,3 +116,5 @@
 - Quick Start Vue.js - 원형섭 지음
 	- https://github.com/stepanowon/vuejs_book_2nd
 		- example code
+- https://velog.io/@leyuri/Vue.js-프로젝트-구성-방법
+	- vue 처음 시작 쉽게 설명된 곳
