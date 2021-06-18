@@ -16,6 +16,9 @@
 	- Perfomant : 성능이 좋음
 	- Maintainable : 유지보수가 좋음
 	- Testable : test 가능
+- 모두 loading하고 화면을 띄우기 때문에 한번에 완성된 화면을 보여줌
+	- 원래는 HTML, CSS, javascript file 따로따로 loading해서 완전한 화면이 한번에 나오지 않는 경우가 있음
+	- 환성된 화면을 만들고 띄워야하기 때문에 약간 느리다는 단점
 ---
 
 
@@ -101,6 +104,23 @@
 	- vue create [project-name]
 ---
 
+
+
+
+# Vue Server 실행
+- npm run dev
+- 'http://localhost:8080'으로 접속 가능
+---
+
+
+
+
+# File 구조
+- src
+	- components : 재사용성이 높은 것들
+		- layout
+	- router : routing 관련 source
+	- views : 일반적으로 바뀌는 화면
 
 
 
