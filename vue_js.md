@@ -36,7 +36,7 @@
 	- Model : domain 특화 data
 		- var model = { message: "..." }
 - logic과 UI의 분리를 위해 설계된 pattern
-- web page는 dom과 javascript로 만들어지게 되는데, dom이 view 역할을 하고, javascript가 model 역할을 함
+- web page는 DOM과 javascript로 만들어지게 되는데, DOM이 view 역할을 하고, javascript가 model 역할을 함
 - ViewModel이 없는 경우에는 직접 model과 view를 연결해야 함
 	- 그러나 ViewModel이 중간에서 연결해주는 것이 MVVM임
 ---
@@ -44,12 +44,13 @@
 
 
 
-# 가상dom (Virtual DOM)
-- dom 요소가 많아지면 javascript로 돔을 handling하는 일이 무거워짐
-- 그래서 dom과 비슷한 구조로 javascript를 만듬
-- 이것은 진짜 dom과는 달리 memory에 올라가있는 것이기 때문에 비교적 매우 빠른 성능을 보임
-- vue.js가 가상dom을 수정하면 dom을 수정하는 것보다 빠름
-- vue는 가상dom이 변경될 때마다 진짜 dom과 비교해서 차이를 찾고 차이난 부분의 dom만 수정하는 작동을 하게 됨
+# 가상 DOM (Virtual DOM)
+- DOM : Document Object Model
+- DOM 요소가 많아지면 javascript로 돔을 handling하는 일이 무거워짐
+- 그래서 DOM과 비슷한 구조로 javascript를 만듬
+- 이것은 진짜 DOM과는 달리 memory에 올라가있는 것이기 때문에 비교적 매우 빠른 성능을 보임
+- vue.js가 가상 DOM을 수정하면 DOM을 수정하는 것보다 빠름
+- vue는 가상 DOM이 변경될 때마다 진짜 DOM과 비교해서 차이를 찾고 차이난 부분의 DOM만 수정하는 작동을 하게 됨
 ---
 
 
@@ -60,26 +61,6 @@
 - vue에서 component는 미리 정의된 option을 가진 viw instance
 - 전역 등록과 지역 등록이 존재
 - component.vue = HTML + JS + CSS
----
-
-
-
-
-# 생명주기 (Lifecycle)
-1. creation : component 초기화 단계
-2. mounting : dom 작성 단계
-3. updating : 상태 변와로 인한 rendering 단계
-4. destruction : 소멸 상태
----
-
-
-
-
-# Vue Instance
-- new Vue로 선언하여 만들어진 객체를 vue instance라고 부름
-	- el : tag에 지정한 ID, class name, tag name으로 해당 tag와 vue instance를 연결하는 option
-	- data : kay와 value를 지정하는 json 형식으로 data 입력 option
-	- computed : getter/setter를 지정하는 option
 ---
 
 
@@ -171,9 +152,156 @@
 		- 이것은 Vue instance가 el option의 template을 compile할 때 발생하는 시간 때문에 일어나는 현상
 		- 복잡한 UI일수록 이런 경우가 빈번하게 발생
 		- 이 때, v-cloak 사용 가능
+		- <style> [v-cloak] {display: none;} </style>
 - v-on
 	- input event나 keyup event등의 처리를 수행할 수 있게 해줌
 ---
+
+
+
+
+# Vue Instance
+- new Vue로 선언하여 만들어진 객체를 vue instance라고 부름
+	- 때로는 ViewModel을 의미하는 vm을 삽입해서 vue vm instance라고도 함
+- option 객체 : vue instance를 생성할 때 전달하는 속성들을 담은 객체
+	- data
+		- kay와 value를 지정하는 json 형식의 data 입력 option
+		- data option에 주어진 모든 속성들은 vue instance 내부에서 직접 이용되지 않고 vue isntance와 data option에 주어진 객체 사이에 proxy를 두어 처리
+			- HTML 문서에 출력문을 입력한 것과 개발자 도구의 console에서 실행한 것이 동일함
+		- data option은 vue instance가 관찰하는 data 객체를 의미하므로 변경 사항은 즉시 감지됨
+	- el
+		- vue instance에 연결할 HTML DOM 요소를 지정
+		- tag에 지정한 ID, class name, tag name으로 해당 tag와 vue instance를 연결
+		- 주의할 점 : 여러 개 요소에 지정할 수 없음
+		- 실행 도중 동적으로 vue instance와 HTML 요소를 연결할 수 있음
+			- 그러나 가능하다면 el option은 vue instance를 생성할 때 미리 지정할 것을 권장
+				- 어차피 vue instance가 HTML 요소와 연결되면 도중에 연결된 요소를 변경할 수 없기 때문
+	- computed
+		- 지정하는 값은 함수이지만 vue instance는 proxy 처리하여 마치 속성처럼 취급
+		- getter/setter method의 기능을 가짐
+			- 읽기 전용이 아님
+			- set method를 지정하면 쓰기 작업도 가능
+	- methods
+		- vue instance에서 사용할 method를 등록하는 option
+		- 등록된 method는 vue instance를 이용해 직접 호출할 수 도 있고, directive 표현식, 콧수염(mustache) 표현식에서도 사용할 수 있음
+		- 계산형(computed property)을 사용했을 때와 결과물이 같아 보이지만 내부 작동 방식에 차이가 이씅ㅁ
+			- 계산형 속성은 종속된 값에 의해 결괏값이 caching됨
+		- 주의할 점
+			- ECMAScript6가 제공하는 화살표 함수(arrow function)는 사용해선 안 됨
+			- 화살표 함수 내부에서는 this가 vue instance를 가리키지 않고, 전역 객체(global object : browser 환경에서는 Windows 객체)를 가리킴
+			- 일반저긍로 내무에서 data 속성들을 이용하기 때문에 this가 바뀌게 되면 vue instance 내부 data에 접슨할 수 없게 됨
+		- 등록된 method는 콧수염(mustache) 표현식의 template 문자열과 event에서도 사용 가능
+	- watch
+		- 하나의 data를 기반으로 다른 data를 변경할 필요가 있을 때 계산형 속성이 있지만, 이 이외에도 관찰 속성(watched property)이란 것을 사용할 수 있음
+		- 주로 긴 처리 시간이 필요한 비동기 처리에 적합
+			- 참조하고 싶을 때만 함수 호출을 할 수 있는 계산형 속성이 있지만, 긴 시간이 필요한 비동기 처리가 필요할 때는 관찰 속성이 대단히 유용함
+			- ex) 외부 서버와의 통신 기능
+				- 속성의 변화를 감지하여 함수 호출하고 싶을 때, typing을 할 때마다 매번 API를 호출하는 것은 비효울적
+				- 일정시간이 지나도록 연속적인 호출이 일어나지 않으면 API를 요청하도록 함
+		- 값이 바뀔 때마다 매번 함수가 호출됨
+			- 따라서 계산형 속성과 적절히 비교하며 사용해야 함
+- Life Cycle
+	- vue instance는 객체로 생성되고 data에 대한 관찰 기능을 설정하는 등의 작업을 위해 초기화를 수행
+		- 이 과정에서 다양한 life cycle hook method를 적용할 수 있음
+	- life cycle hooks : vue component를 만들고 관리할 때 유용 (https://vuejs.org/v2/guide/instance.html의 LifeCycle Diagram 참고)
+		- beforeCreate : vue instance가 생성되고 data에 대한 관찰 기능 및 event 감시자 설정 전에 호출됨
+		- created : vue instance가 생성된 후에 data에 대한 관찰 기능, 계산형 속성, method, 감시자 설정이 완료된 후에 호출됨
+		- beforeMount : mount가 시작되기 전에 호출됨
+		- mounted : el에 vue instance의 data가 mount된 후에 호출됨
+		- beforeUpdate : 가상 DOM이 rendering, fetch되기 전에 data가 변경될 때 호출됨
+			- 이 hook에서 추가적인 상태 변경을 수행할 수 있음
+			- 하지만 추가로 다시 rendering하지는 않음
+		- updated : data의 변경으로 가상 DOM이 다시 rendering되고 fetch된 후에 호출됨
+			- 이 hook이 호출되었을 때는 이미 component의 DOM이 update된 상태
+			- 그래서 DOM에 종속성이 있는 연산을 이 단계에서 수행할 수 있음
+		- beforDestroy : vue instance가 제거되기 전에 호출됨
+		- destroyed : vue instance가 제거된 후에 호출됨
+			- 이 hook이 호출될 때는 vue instance의 모든 directive의 vinding이 해제되고, event 연결도 모두 제거됨
+---
+
+
+
+
+# Event
+- v-on directive를 이용하여 처리
+- 'v-on:'은 '@'로 줄여쓸 수 있음
+- vue instance에 등록한 method를 event 처리 함수로 연결할 수 있음
+- ex)
+	- v-on:click="balance != parseInt(amount)"
+	- == @click="balance != parseInt(amount)"
+- Event 객체
+	- event를 처리하는 method는 첫 번째 parameter로 Event 객체를 전달받음
+	- 이 Event 객체를 동해서 이용할 수 있는 정보가 많음
+	- vue.js의 Event 객체는 W3C 표준 HTML DOM Event model을 그대로 따르면서 추가적인 속성을 제공
+	- Event 객체의 주요 공통 속성
+		- target : event가 발생한 HTML 요소 return
+		- currentTarget : event listener가 event를 발생시키는 HTML 요소를 return
+		- path : event 발생 HTML 요소로부터 document, window 객체로까지 거슬로 올라가는 경로를 나타냄
+			- 배열값
+		- bubbles : 현재의 event가 bubbleing을 일으키는 event인지 여부를 return
+		- cancelable : 기본 event를 방지할 수 있는지 여부를 return
+		- defaultPrevented : 기본 event가 방지되었는지 여부를 나타냄
+		- eventPhase : event 흐름의 단계를 나타냄
+			- 1 : 포착 (CAPTURING_PHASE)
+			- 2 : event 발생 (AT_TARGET)
+			- 3 : bubbling (BUBBLEING_PHASE)
+		- srcElement : IE에서 사용되던 속성으로 target과 동일한 속성
+	- keyboard event 관련 속성
+		- altKey : alt key가 눌러졌는지 여부를 나타냄 (true/false)
+		- shiftKey : shift key가 눌러졌는지 여부를 나타냄 (true/false)
+		- ctrlKey : control key가 눌러졌는지 여부를 나타냄 (true/false)
+		- metaKey : meta key가 눌러졌는지 여부를 나타냄
+			- window에서는 Window key, macOS에서는 Command key임
+		- key : event에 의해 나타나는 key의 값을 return
+			- 대소문자 구별함
+		- code : event를 발생시킨 key의 code값을 return
+			- ex) a를 눌렀을 때 "KeyA"를 return
+			- ex) shift key를 눌렀을 때 "Shift"를 return
+		- keyCode : event를 발생시킨 keyboard의 고유 key code
+			- ex) a, A는 65를 return함
+				- 대소문자 구분하지 않음
+		- charCode : keypress event가 발생될 때 Unicode character code를 return함
+		- location : device에서의 key 위칫값
+			- 일반 keyboard는 이 값이 모두 0이므로 이용할 수 없음
+	- mouse event 관련 속성
+		- altKey, shiftKey, ctrlKey, metaKey : keyboard event 관련 속성 참조
+		- button : event를 발생시킨 mouse button
+			- 0 : mouse 왼쪽 button
+			- 1 : mouse wheel
+			- 2 : mouse 오른쪽 button
+		- buttons : mouse event가 발생한 후에 눌러져 있는 mouse button의 값을 return함 (아래 값의 조합으로 이루어짐)
+			- 1 : mouse 왼쪽 button
+			- 2 : mouse 오른쪽 button
+			- 4 : mouse wheel
+			- 8 : 4번째 mouse button
+			- 16 : 5번째 mouse button
+			- ex) mouse의 오른쪽 button, wheel을 누르고 있는 상태에서 왼쪽 button을 click할 경우, 이 값은 6을 return함
+		- clientX, clientY : mouse event가 일어났을 때의 ViewPort 영역 상의 좌표
+			- 이 좌표는 scroll bar를 내리더라도 좌푯값에 영향을 받지 않음
+		- layerX, layerY : mouse event가 발생한 HTML 요소 영역상에서의 좌표 (IE 이외의 browser 사용)
+		- offsetX, offsetY : mouse event가 발생한 HTML 요소 영역상에서의 좌표 (IE browser 사용)
+		- pageX, pageY : mouse event가 일어났을 때의 HTML 문서(document) 영역상의 좌표
+		- screenX, screenY : mouse event가 일어났을 때의 monitor 화면(screen) 영역상의 좌표
+	- Event 객체의 주요 method
+		- preventDefault() : 기본 event의 자동 실행을 중지시킴
+		- stopPropagation() : event의 전파를 막음
+	- 기본 event
+		- HTML 문서나 요소에 어떤 기능을 실행하도록 이미 정의되어 있는 event를 기본 이벤트(default event)라고 함
+			- ex) <a> 요소는 click event 처리를 하지 않았음에도 click하면 href 특성(attribute)에 정의된 경로로 화면을 이동시킴
+		- <a> 요소를 click했을 때 href 특성의 경로로 page를 이동시킴
+		- browser 화면을 mouse 오른쪽 click했을 때 내장 context menu가 나타남
+		- <form> 요소 내부의 submit button을 click했을 때 <form> 요소의 action 특성에 지정된 경로로 method 특성에 지정된 방식으로 전송
+		- <input type="text" ... /> 요소에 kayboard를 누르면 입력한 문자가 textbox에 나타남
+		- 실행을 막기 위해서 Event 객체가 제공하는 preventDefault() method를 사용할 수 있음
+- Event 전파와 Bubbling
+	- HTML 문서의 event 처리는 3단계를 거침
+		- 1단계 : event 포착 단계 (CAPTURING_PHASE)
+			- 문서 내의 요소에서 event가 발생했을 때 HTML 문서의 밖에서부터 event를 발생시킨 HTML 요소까지 포착해 들어가는 단계
+		- 2단계 : event 발생 단계 (RAISING_PHASE : AT_TARGET)
+			- event를 발생시킨 요소에 다다르면 요소의 event에 연결된 함수를 직접 호출시키는 단계
+		- 3단계 : bubbling 단계 (BUBBLING_PHASE)
+			- event가 발생한 요소로부터 상위 요소로 거슬러 올라가면서 동일한 event를 호출시키는 단계
+	- 일반적으로 2단계 RAISING, 3단계 BUBBLING_PHASE에서 연결된 event 함수가 호출됨
 
 
 
@@ -188,7 +316,8 @@
 - https://blog.metafor.kr/201
 	- vue create [project]와 vue init webpack [project]의 차이
 - Quick Start Vue.js - 원형섭 지음
-	- https://github.com/stepanowon/vuejs_book_2nd
-		- example code
+	- example code : https://github.com/stepanowon/vuejs_book_2nd
 - https://velog.io/@leyuri/Vue.js-프로젝트-구성-방법
 	- vue 처음 시작 쉽게 설명된 곳
+- https://developer.mozilla.org/ko/docs/Web/Reference/Events
+	- event 처리
