@@ -126,6 +126,9 @@
 
 # References
 - https://khj93.tistory.com/entry/Spring-Spring-Framework%EB%9E%80-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-%ED%95%B5%EC%8B%AC-%EC%A0%95%EB%A6%AC
+	- 기본 개념
+- https://jonny-cho.github.io/spring/2019/01/21/springbootmysql/
+	- spring + mysql + mybatis (@Mapper 방식)
 
 
 
