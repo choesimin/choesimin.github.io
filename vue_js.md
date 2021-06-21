@@ -92,7 +92,7 @@
 - v-html
 	- innerHTML 속성에 연결됨
 	- tag 문자열을 parsing하여 화면에 나타냄
-	- <script> tag도 그대로 binding함
+	- script tag도 그대로 binding함
 		- XSS(Cross Site Scripting) 공격 등에 취약
 		- 따라서 꼭 필요한 경우가 아니라면 v-text를 사용하는 것이 더 안전
 - v-bind
@@ -302,6 +302,7 @@
 		- 3단계 : bubbling 단계 (BUBBLING_PHASE)
 			- event가 발생한 요소로부터 상위 요소로 거슬러 올라가면서 동일한 event를 호출시키는 단계
 	- 일반적으로 2단계 RAISING, 3단계 BUBBLING_PHASE에서 연결된 event 함수가 호출됨
+---
 
 
 
@@ -321,3 +322,5 @@
 	- vue 처음 시작 쉽게 설명된 곳
 - https://developer.mozilla.org/ko/docs/Web/Reference/Events
 	- event 처리
+- https://goddino.tistory.com/92
+	- vue.js Post form data api 전송하기
