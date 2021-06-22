@@ -1,6 +1,7 @@
 # Axios
 - browser, Node.js를 위한 Promise API를 활용하는 HTTP 비동기 통신 javascript library
 - backend와 frontend의 통신을 쉽게 하기 위해서 AJAX와 더불이 사용
+	- AJAX보다 더 편리하며 더 많은 기능 지원
 - HTTP 요청과 응답을 JSON 형태로 자동 변경
 ---
 

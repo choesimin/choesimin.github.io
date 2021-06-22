@@ -1,5 +1,8 @@
 # IntelliJ IDEA
 ---
+- JetBrains사에서 개발한 통합 개발 환경
+---
+
 
 
 
@@ -18,7 +21,7 @@
 - command + shift + return : complete the statement
 - option + up arrow : select the word under the caret
 	- 많이 할수록 더 많은 범위가 select됨
-- option + down arrow : disselect words
+- option + down arrow : disselect 
 - command + / : comment the line
 	- press again : 주석 풀림
 	- 한번에 많은 줄을 선택하면 각 줄이 주석 처리 됨
@@ -55,3 +58,4 @@
 
 # References
 - IntelliJ IDEA 'Idea Learning Project' (Tutorial)
+- https://namu.wiki/w/IntelliJ%20IDEA
