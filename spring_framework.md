@@ -124,11 +124,21 @@
 
 
 
+# Domain vs DTO vs VO vs Entity
+- domain : Domain Objects (DO) (and the classes from which they are derived) implement business logic, as such they are only located in the Business logic layer / Domain (the essential meaning is the same even if the terms are different)
+- DTO : A Data Transfer Object (DTO) is an object intended to carry data
+
+
+
+
+
+
 # References
 - https://khj93.tistory.com/entry/Spring-Spring-Framework%EB%9E%80-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-%ED%95%B5%EC%8B%AC-%EC%A0%95%EB%A6%AC
 	- 기본 개념
 - https://jonny-cho.github.io/spring/2019/01/21/springbootmysql/
 	- spring + mysql + mybatis (@Mapper 방식)
-
+- https://m.blog.naver.com/sgs03091/222067037646
+	- Doamin, VO, DTO, Entity 비교
 
 
