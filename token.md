@@ -23,8 +23,8 @@
 - https://velopert.com/2389
 	- jwt
 - https://memostack.tistory.com/200
-	- jwt simple exsample
+  - jwt + spring boot simple exsample
 - https://goodteacher.tistory.com/99
 	- token 사용 vue example
 - https://flaviocopes.com/axios-send-authorization-header/
-	- how to send the authorization heaer using axios
+	- how to send the authorization header using axios
