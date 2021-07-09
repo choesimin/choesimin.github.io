@@ -1,4 +1,5 @@
 # WAS
+
 - Web Application Server
 - DB 조회나 다양한 logic 처리를 요구하는 동적인 contents를 제공하기 위해 만들어진 application server
 - HTTP를 통해 computer나 창치에 application을 수행해주는 middleware(software engine)
@@ -6,32 +7,23 @@
 	- Container : JSP, Servlet을 실행시킬 수 있는 software
 	- 즉, WAS는 JSP, Servlet 구동 환경을 제공
 - ex) Tomcat, JBoss, Jeus, Web Sphere 등
----
 
+### WAS의 역할
 
-
-
-# WAS의 역할
 - WAS = web server + Web Container
 - web server 기능들을 구조적으로 분리하여 처리하고자하는 목적으로 제시됨
 	- 분산 tracsaction, 보안, messaging, thread 처리 등의 기능을 처리하는 분산 환경에서 사용됨
 	- 주로 DB server와 같이 수행됨
 - WAS가 가지고 있는 web server도 정적인 contents 처리에 있어 성능상 큰 차이가 없음
----
 
+### WAS의 주요 기능
 
-
-
-# WAS의 주요 기능
 1. program 실행 환경과 DB 접속 기능 제공
 2. 여려 개의 transaction(논리적인 작업 단위) 관리 기능
 3. 업무를 처리하는 business logic 수행
----
 
+### web server와 WAS를 구분하는 이유
 
-
-
-# web server와 WAS를 구분하는 이유
 - 자원 이용의 효율성 및 장애 극복, 배포 및 유지보수의 편의성을 위해 web server와 WAS를 분리
 	- web server를 WAS 앞에 두고 필요한 WAS들을 web server에 plugin 형태로 설정하면 더욱 효율적인 분산 처리 가능
 - web server가 필요한 이유
@@ -61,12 +53,9 @@
 		- 하나의 server에서 PHP application과 java application을 함께 사용하는 경우
 	5. 기타
 		- 접근 허용 IP 관리, 2대 이상의 server에서의 session 관리 등도 web server에서 처리하면 효율적
----
 
+### Web Service Architecture
 
-
-
-# Web Service Architecture
 1. client -> web server -> DB
 2. client -> WAS -> DB
 3. client -> web server -> WAS -> DB
@@ -82,10 +71,9 @@
 	6. doGet() 또는 doPost() method는 인자에 맞게 생성된 적절한 동적 page를 Response 객체에 담아 WAS에 전달
 	7. WAS는 Response 객체를 HttpResponse 형태로 바꾸어 web server에 전달
 	8. 생성된 thread를 종료하고, HttpServletRequest와 HttpServletResponse 객체 제거
+
 ---
 
+# Reference
 
-
-
-# References
 - https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html

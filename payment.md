@@ -1,13 +1,13 @@
 # Payment
+
 - payment is the transfer of money or goods and services in exchange for a product or service
 - payments are typically made after the terms have been agreed upon by all parties involved
 - a payment can be made in the form of cash, check, wire transfer, credit card, or debit card
+
 ---
 
-
-
-
 # VAN & PG
+
 - App to App service의 등장에 따라 점점 쇠퇴해가는 카드결제 system
 - VAN(Value-Added Network)사
 	- 카드사와 가맹점 간의 network를 구축해서 소비자의 카드 사용 승인을 가맹점과 카드사 사이에서 중개해주는 역할
@@ -55,12 +55,11 @@
 - VAN vs PG
 	- offline 카드 결제 : 가맹점 <-> VAN사 <-> 카드사
 	- online 카드 결제 : 가맹점 <-> PG사 <-> VAN사 <-> 카드사
+
 ---
 
-
-
-
 # App to App 결제
+
 - 구매가와 판매자 사이의 구조를 더욱 단순화한 service
 - 기존에 있었던 PG사나 VAN사를 거치지 않고도 금융 기관과 직접적인 거래가 가능
 	- 금융 기관(카드사, 은행 등)에서 직접 판매자과 구매자를 이어주고, 전표 시스템이나 online 결제 시스템을 간편하게 다룰 수 있음
@@ -72,12 +71,11 @@
 - 원래의 방식대로라면 고객이 online에서 카드를 사용하면 PG사와 VAN사를 거쳐 카드사와 고객, 그리고 가맹점 간의 network를 구축할 수 있었음
 	- 그에 따라, 가맹점의 수수료 부담이 발생하고 PG사와 VAN사는 이 수수료를 받아서 rebate하는 형식으로 수익 구조가 만들어짐
 	- 전표에 대한 문제나 online 결제의 무결성에서부터 이렇게 번거로운 구조가 만들어짐
+
 ---
 
-
-
-
 # 인증 & 승인 & 매입
+
 - 카드 결제라는 것은 'shoppingmall 가맹점의 주문서' -> '인증' -> '승인' -> '매입' 총 4가지 단계를 거침
 - 인증
 	- 카드 번호등의 정보를 입력하고 카드가 유효한지 확인하는 과정
@@ -94,12 +92,11 @@
 	- PG 또는 VAN사를 통해 카드 발급사에 정보를 전달해서 카드 사용을 전달하고 카드 한도를 차감하는 과정
 - 매입
 	- 승인된 금액을 VAN사를 통해서 카드 매입사로 전달하는 확정 과정
+
 ---
 
-
-
-
 # 신용카드 회사의 종류 : 매입사 vs 발급사
+
 - 매입사
 	- Acquirer
 	- 사용된 매출 data 및 전표를 근거로 해당 가맹점에 수수료를 제외한 대금을 지급하고 그 금액을 회원에게 청구하는 업무를 담당
@@ -121,43 +118,33 @@
 - 외국의 경우, 발급사와 매입사가 구분되어 운영되기도 함
 	- 그러나 국내의 경우, 카드사가 매입사와 발급사를 겸하고 있음
 	- 즉, 회원 업무, 가맹점 업무가 동시에 존재
+
 ---
 
-
-
-
 # 전표란?
+
 - 일정한 거래를 유형별로 기록하고 관리하기 위하여 회계거래에 대한 계정과목, 거래내용, 금액 등을 기대할 수 있도록 만든 서식
 - 전표가 모이면 장부의 역할을 함
 	- 따라서 회사에서는 기본적으로 전표를 가장 기본적인 자료로 이용
 - 일반적으로 사용하는 전표로는 입금전표, 출금전표, 분개전표 등이 있음
----
 
+### 전표 작성의 의의
 
-
-
-# 전표 작성의 의의
 - 장부기장이나 내부결재 목적으로 작성
 	- 거래가 발생했을 경우, 전표를 작성해서 올바른 회계처리를 위한 기초자료로 사용
 	- 또한 대표자나 경영진에게도 투명한 자금 집행을 위한 가장 중요한 자료
----
 
+### 전표 작성의 효과
 
-
-
-# 전표 작성의 효과
 - 거래를 보다 신속하고 효율적으로 관리하기 위해 작성
 1. 동시에 발생하는 많은 양의 거래를 거래의 각 담당 부서별로 분담하여 처리 가능
 2. 책임 소재를 명확히 하여 장부검사의 수단으로 이용할 수 있음
 3. 발생한 거래의 내용을 다른 부서에 쉽게 전달 가능
 4. 전표를 분개장 대신에 사용할 수 있어 장부의 작성을 간소화할 수 있음
-5. 전표의 집계표(일계표 도는 월계표)를 활용하여 전기(전표에서 장부로 옮겨 적는 것)의 횟수를 줄일 수 있
----
+5. 전표의 집계표(일계표 도는 월계표)를 활용하여 전기(전표에서 장부로 옮겨 적는 것)의 횟수를 줄일 수 있음
 
+### 전표의 종류
 
-
-
-# 전표의 종류
 - 입금 전표
 	- 현금이 들어오는 거래를 기입하는 전표 (입금 거래)
 	- 입금 전표의 차변은 항상 현금이므로 입금 전표 상의 계정 과목에는 대변 계정만 작성
@@ -173,12 +160,11 @@
 	- 거래 내용을 보통 분개장과 같은 형식으로 기입할 수 있도록 고안된 전표
 	- 차변의 계정 과목과 금액란에는 거래를 분개한 내용 중 대변 차변 계정 과목과 금액을 기입
 	- 분개 전표는 일정기간 동안의 거래 내용을 요악, 정리한 표임
+
 ---
 
-
-
-
 # Fintech
+
 - Financial Technology
 - 금융(Finance) + 기술(Technology)
 - mobile, big data, SNS 등의 첨단 정보 기술을 기반으로 한 금융 service 및 산업의 변화를 통칭
@@ -187,41 +173,33 @@
 	- ex) Mobile banking, APP card
 - 혁신적 비금융기업이 보유 기술을 활용하여 지급결제과 같은 금융 service를 이용자에게 직접 제공하기도 함
 	- ex) Apple Pay, Alipay
----
 
+### Fintech 업종
 
-
-
-# Fintech 업종
 - 지불 및 송금 : ID를 확인하고 돈을 저축하는 계좌(ex. 은행 계좌), 돈 예금 및 인출 도구(ex. 수표 및 직불 card) 및 다른 당사자 간에 안전하게 돈을 교환하기 위한 system(ex. ACH)
 - 창비 및 대출 : 예금자로부터 돈을 모으로 차용인에게 신용을 제공하느 소비자 기관(ex. 신용 card, mortgage, 자동차 대출)
 - 자산 관리 : 금융 투자(ex. 주식 시장에 투자) 및 은퇴 및 부동산 계획(ex. 연금)과 관련된 거래에 조언을 제공하고 실행하는 고문, 중개인 및 투자 관리자
 - 보험 : 생명 보험뿐만 아니라 손해 보험(ex. 자동차 보험, 주택 소유자 보험, 건강 보험)
 - 통화 : 국가의 가치가 뒷받침되는 상점, 계정 단위 및 교환 매체(ex. 미국 dollar, sterling, euro)
----
 
+### What is a Fintach company?
 
-
-
-# What is a Fintach company?
 - Fintech companies integrate technologies (like AI, blockchain and data science) into traditional financial sectors to make them safer, faster and more efficient
 - Fintech is one of the fastest-growing tech sectors, with companies innovating in almost every area of finance (from payments and loans to credit scoring and stock trading)
+
 ---
 
-
-
-
 # MPM & CPM
+
 - MPM (Merchant Presented Mode)
 	- 고객이 mobile app으로 가맹점의 QR code를 인식하여 결체 처리
 - CPM (Customer Presented Mode)
 	- 고객이 mobile app에서 QR code를 생성하면 가맹점에서 QR 리더기로 읽어서 결제 처리
+
 ---
 
+# Reference
 
-
-
-# References
 - https://www.investopedia.com/terms/p/payment.asp
 	- payment의 정의
 - https://finance3.tistory.com/34?category=779493

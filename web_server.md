@@ -1,4 +1,5 @@
 # Web Server
+
 - Hardware적 의미
 	- web server의 software와 website의 component file들을 저장하는 computer
 		- component file : HTML 문서, images, CSS stylesheetes, javascript files
@@ -6,12 +7,9 @@
 - Software적 의미 (이 문서에선 이것을 다룸)
 	- web browser와 같은 client로부터 HTTP 요청을 받아들이고, HTTP 문서와 같은 web page를 반환하는 computer program
 	- 기본적으로 web 사용자가 어떻게 host file들에 접근하는지를 관리
----
 
+### 공통 기능
 
-
-
-# 공통 기능
 - 대부분의 program은 몇 가지 기본 공통 기능을 가짐
 	1. HTTP
 	2. 통신 기록
@@ -23,12 +21,11 @@
 	5. 가상 hosting
 	6. 대용량 file 지원
 	7. 대역폭 throttling
+
 ---
 
-
-
-
 # Static Contents & Dynamic Contents
+
 - Static Contents
 	- 정적 contents
 	- 변수와 상수 중 상수
@@ -51,12 +48,11 @@
 		- 단순히 해당 page(contents)를 저장
 	- dynamic web page
 		- 동적 요소를 따로 분리해서 logic으로 저장해주고, static contents만 caching해서 응답을 재구성
+
 ---
 
-
-
-
 # References
+
 - https://ko.wikipedia.org/wiki/%EC%9B%B9_%EC%84%9C%EB%B2%84
 - https://developer.mozilla.org/ko/docs/Learn/Common_questions/What_is_a_web_server
 - https://itgit.co.kr/static_dynamic_content/

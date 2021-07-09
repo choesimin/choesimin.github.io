@@ -1,19 +1,16 @@
 # Token
 - token 기반 인증은 modern web service에서 많이 사용되고 있음
 - API를 사용하는 web service를 개발한다면 token을 사용하여 사용자의 인증 작업을 처리하는 것이 가장 좋은 방법임
+
 ---
-
-
-
 
 # JWT
 - JSON Web Token
+
 ---
 
+# Reference
 
-
-
-# References
 - https://sanghaklee.tistory.com/47
 	- token
 - https://velopert.com/2350

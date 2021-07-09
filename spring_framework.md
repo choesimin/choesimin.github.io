@@ -1,16 +1,14 @@
 # Spring Framework
+
 - java platform을 위한 oepnsource application framework
 - 동적인 website를 개발하기 위한 여러가지 service를 제공
 - 전자정부 표준 framework의 기반 기술로 쓰임
 - enterprise급
 	- 대규모 data 처리
 	- 동시다발적인 transaction
----
 
+### Spring Framework의 특징 : IoC 기반
 
-
-
-# Spring Framework의 특징 : IoC 기반
 - Inversion of Control : 제어의 역전
 	- 기존에 사용자가 모든 작업을 제어하던 것을 특별한 객체에 위임
 	- 객체는 자신의 모든 권한을 다른 대상에 위임함으로써 제어권한을 위임받은 특별한 객체에 의해 결정되고 만들어짐
@@ -27,12 +25,9 @@
 		- 의존성이 있는 객체를 주입한다는 의미로 이해하면 편함
 		- 의존성 : 하나의 객체가 어떠한 다른 객체를 사용하고 있는 것
 		- IoC에서의 의존성 : 각 클래스 사이에 필요로 하는 의존 관계를 bean 설정 정보를 바탕으로 container가 자동으로 연결해주는 것
----
 
+### Spring Framework의 특징 : POJO
 
-
-
-# Spring Framework의 특징 : POJO
 - Plain Old Java Object : 평범한 java 객체
 	- POJO는 getter/setter를 가진 단순한 객체로 정의됨
 	- 의존성이 없고 추후 테스트 및 유지보수가 편리한 유연성의 장점을 가짐
@@ -41,12 +36,9 @@
 	- 이전에 EJB(Enterprise JavaBeans)가 확장과 재사용이 가능한 logic을 개발하기 위해 사용되었음
 	- 그러나, EJB는 한가지 logic을 위해 불필요한 복잡한 logic이 과도하게 들어감
 	- 그래서 POJO는 다시금 조명을 받게 됨 -> Spring이 함께 부상함
----
 
+### Spring Framework의 특징 : AOP
 
-
-
-# Spring Framework의 특징 : AOP
 - Aspect Oriented Programming : 관점 지향 programming
 	- AOP에서는 핵심 기능과 공통 기능을 분리시켜 핵심 로직에 영향을 끼치지 않게 공통 기능을 끼워넣는 개발 형태
 	- 무분별하게 중복되는 code(공통 기능)를 한 곳에 모아둠
@@ -58,12 +50,9 @@
 	- 객체지향 원칙에 따라 관심사가 같은 data를 한 곳에 모아 분리하고 낮은 결합도를 갖게하여 독립적이고 유연한 모듈로 캡슐화하는 것을 일컬음
 	- 이 과정에서 중복 code가 많아지고, 이는 가독성, 확장성, 유지보수성을 떨어뜨림
 	- 이 문제를 보완하기 위해 나온 것이 AOP
----
 
+### Spring Framework의 특징 : MVC (Model2)
 
-
-
-# Spring Framework의 특징 : MVC (Model2)
 - Model + View + Controller 구조로 사용자 interface와 businuess logic을 분리하여 개발하는 것
 	- MVC는 Model1과 Model2로 나누어져 있으며, 일반적인 MVC는 Model2를 지칭함
 	- Model
@@ -87,12 +76,9 @@
 	- Model, View, Controller를 나누어 source를 분리함으로써 각 source의 목적이 명확해져 유지보수하기에 용이
 	- View의 정보가 달라지더라도 Controller에서 Service에 넘겨줄 매개변수 data 가공만 처리하면 되기 때문에 비용 절감의 효과 있음
 	- Service 영역의 재사용이 가능하기 때문에 확장성이 좋아짐
----
-
-
-
 
 # Spring Framework의 구조
+
 - Spring Core
 	- Spring Container를 의미
 	- Container는 Spring Framework의 핵심
@@ -119,21 +105,16 @@
 	- MVC framework는 web 응용 program을 작성하기 위한 완전한 기능을 MVC를 구현
 		- 전략 interface를 통해 고급 구성이 가능
 		- JSP, Velocity, Tiles, iTest 및 POI를 포함한 수 많은 view 기술을 지원
----
-
-
-
 
 # Domain vs DTO vs VO vs Entity
+
 - domain : Domain Objects (DO) (and the classes from which they are derived) implement business logic, as such they are only located in the Business logic layer / Domain (the essential meaning is the same even if the terms are different)
 - DTO : A Data Transfer Object (DTO) is an object intended to carry data
 
+---
 
+# Reference
 
-
-
-
-# References
 - https://khj93.tistory.com/entry/Spring-Spring-Framework%EB%9E%80-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-%ED%95%B5%EC%8B%AC-%EC%A0%95%EB%A6%AC
 	- 기본 개념
 - https://jonny-cho.github.io/spring/2019/01/21/springbootmysql/

@@ -1,12 +1,9 @@
 # IntelliJ IDEA
----
+
 - JetBrains사에서 개발한 통합 개발 환경
----
 
+### Shortcuts
 
-
-
-# Shortcuts
 - option + return : show context actions
 - command + shift + a : search everywhere
 	- == shift double tab
@@ -51,11 +48,9 @@
 - command + F1 : see a short description
 	- press again : expand the description
 - control + shift + r : 
+
 ---
 
-
-
-
-# References
+# Reference
 - IntelliJ IDEA 'Idea Learning Project' (Tutorial)
 - https://namu.wiki/w/IntelliJ%20IDEA

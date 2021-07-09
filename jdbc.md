@@ -1,4 +1,5 @@
 # JDBC (Java DataBase Connectivity)
+
 - java를 이용한 database 접속과 sql 문장의 실행, 그리고 실행 결과로 얻어진 data의 handling을 제공하는 방법과 절차에 관한 규약
 - java program 내에서 sql 문을 실행하기 위한 java API
 	- java.sql package에 위치 (JDBC programming을 할 때, java.sql의 interface로 작업함)
@@ -10,12 +11,9 @@
 - 단점
 	- DB에서 정보를 가져올 때마다 DB connection, disconnection을 해야함
 	- 이로써 서버 과부하, 속도 저하 등의 문제가 있음 (그래서 JNDI를 사용)
----
-
-
-
 
 # JDBC를 이용한 programming 방법
+
 1. import java.sql.*;
 2. driver load
 	- Class.forName() : driver를 load
@@ -27,21 +25,15 @@
 5. sql문에 결과물이 잇다면 ResultSet 객체를 생성
 	- ResultSet : SQL문 실행 후 data를 받는 객체
 6. 모든 객체 닫기
----
-
-
-
 
 # JDBC class의 생성 관계
+
 1. DriverManager를 이용해서 Connection instance 얻기
 2. Connection을 통해서 Statement 얻기
 3. Statement를 이용해 ResultSet 얻기
----
-
-
-
 
 # JDBC 단계별 사용
+
 1. import
 ```
 import java.sql.*;
@@ -72,12 +64,9 @@ resultSet.close();
 statement.close();
 connection.close();
 ```
----
-
-
-
 
 # Statement & PreparedStatement
+
 - SQL Query문 전송 시 사용하는 객체
 - java는 주로 web 개발을 위해서 사용되는데, web 개발에서는 보안문제(SQL injection)때문에 PreparedStatement를 사용
 - Statement
@@ -102,12 +91,10 @@ connection.close();
 	|ResultSet executeQuery(String sql) : select|ResultSet executeQuery(String sql) : select|
 	|int executeUpdate(String sql) : insert, update, delete|int executeUpdate(String sql) : insert, update, delete|
 	||void setXXX(int index, ...) : ?에 binding 시킬 변수를 data type에 맞게 설정|
+
 ---
 
-
-
-
-# References
+# Reference
 - https://hzoou.tistory.com/64
 - https://itlaw.wikia.org/wiki/Database_vendor
 - https://ss-o.tistory.com/132

@@ -1,11 +1,9 @@
 # CORS
 - Cross-Origin Resource Sharing
+
 ---
 
-
-
-
-# References
+# Reference
 - https://evan-moon.github.io/2020/05/21/about-cors/
 - https://shinsunyoung.tistory.com/86
 - https://sowells.tistory.com/170

@@ -1,4 +1,5 @@
 #Vue.js
+
 - Evan You가 만들었으며, 2014년 release를 시작
 - controller 대신 view model을 가지는 MVVM(Model-View-ViewModel) pattern을 기반으로 design됨
 - Template과 Component를 사용하여 재사용이 가능한 사용자 interface를 묶고 view layer를 정리하여 사용
@@ -22,12 +23,9 @@
 - vue는 기본적으로 javascript 객체를 vue instance data option으로 정의할 때, 모든 속성들을 Object.defineProperty를 사용하여 Getter/Setter로 변환
 	- ES5에서 새로 등장한 기능으로 하위 호환이 불가능
 	- 따라서, IE8 이하를 지원하지 않음
----
 
+### MVVM Pattern
 
-
-
-# MVVM Pattern
 - Model - View - ViewModel
 	- View : user interface
 		- <div id="simple"> <h2> {{message}} </h2> </div>
@@ -39,34 +37,24 @@
 - web page는 DOM과 javascript로 만들어지게 되는데, DOM이 view 역할을 하고, javascript가 model 역할을 함
 - ViewModel이 없는 경우에는 직접 model과 view를 연결해야 함
 	- 그러나 ViewModel이 중간에서 연결해주는 것이 MVVM임
----
 
+### 가상 DOM (Virtual DOM)
 
-
-
-# 가상 DOM (Virtual DOM)
 - DOM : Document Object Model
 - DOM 요소가 많아지면 javascript로 돔을 handling하는 일이 무거워짐
 - 그래서 DOM과 비슷한 구조로 javascript를 만듬
 - 이것은 진짜 DOM과는 달리 memory에 올라가있는 것이기 때문에 비교적 매우 빠른 성능을 보임
 - vue.js가 가상 DOM을 수정하면 DOM을 수정하는 것보다 빠름
 - vue는 가상 DOM이 변경될 때마다 진짜 DOM과 비교해서 차이를 찾고 차이난 부분의 DOM만 수정하는 작동을 하게 됨
----
 
-
-
-
-# Component
+### Component
 - 화면에 비춰지는 view의 단위를 쪼개어 재활용이 가능한 형태로 관리하는 것
 - vue에서 component는 미리 정의된 option을 가진 viw instance
 - 전역 등록과 지역 등록이 존재
 - component.vue = HTML + JS + CSS
----
 
+### Commands
 
-
-
-# Commands
 - npm install -g vue-cli
 	- vue-cli 전역 설치, 권한 error시 sudo 추가
 	- 3.x version인 경우
@@ -80,12 +68,9 @@
 - npm run dev
 	- vue server 실행
 	- 'http://localhost:8080'으로 접속 가능
----
 
+### Directive
 
-
-
-# Directive
 - v-text, {{ }}
 	- innerText 속성에 연결됨
 	- tag 문자열을 HTML encoding하여 나타내기 대문에 tag 문자열이 그대로 나타남
@@ -155,12 +140,9 @@
 		- <style> [v-cloak] {display: none;} </style>
 - v-on
 	- input event나 keyup event등의 처리를 수행할 수 있게 해줌
----
 
+### Vue Instance
 
-
-
-# Vue Instance
 - new Vue로 선언하여 만들어진 객체를 vue instance라고 부름
 	- 때로는 ViewModel을 의미하는 vm을 삽입해서 vue vm instance라고도 함
 - option 객체 : vue instance를 생성할 때 전달하는 속성들을 담은 객체
@@ -217,12 +199,11 @@
 		- beforDestroy : vue instance가 제거되기 전에 호출됨
 		- destroyed : vue instance가 제거된 후에 호출됨
 			- 이 hook이 호출될 때는 vue instance의 모든 directive의 vinding이 해제되고, event 연결도 모두 제거됨
+
 ---
 
+# Reference
 
-
-
-# References
 - https://wikidocs.net/17653
 - https://kr.vuejs.org/v2/guide/installation.html
 - https://cli.vuejs.org/guide/

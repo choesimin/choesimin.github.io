@@ -1,4 +1,5 @@
 # JNDI
+
 - Java Naming and Directory Interface
 - WAS 단에 database connection 객체를 미리 naming 해두는 방식
 - database와 연결된 connection을 미리 만들어서 저장해두고 있다가 필요할 때 저장된 공간(pool)에서 가져다 쓰고 반환하는 기법
@@ -13,12 +14,9 @@
 	- DB 설정 정보를 파악하기 쉬움
 		- WAS 단에 설정 정보를 통해 DB가 몇 개 붙어있는지 정보 파악이 수월
 	- DB connection pool을 효율적으로 사용 가능
----
 
+### JNDI 조회 밎 관련 참조
 
-
-
-# JNDI 조회 밎 관련 참조
 |JNDI 조회 이름|관련 참조|
 |---|---|
 |java:comp/env|응용 program 환경 항목|
@@ -29,12 +27,11 @@
 |java:comp/env/url|URL 연결 factory|
 |java:comp/enb/jms|JMS 연결 factory 및 대상|
 |java:comp/ORB|응용 program 구성 요소 간에 공유되는 ORB instance|
+
 ---
 
-
-
-
 # How to
+
 - Servers -> tomcat -> context.xml -> <context></context> 하단에 추가
 ```
 <ResourceLink global="jdbc/XE"
@@ -55,12 +52,11 @@
 	maxIdle="10"
 	maxWait="-1" />
 ```
+
 ---
 
+# Reference
 
-
-
-# References
 - https://docs.oracle.com/cd/E19823-01/819-1552/jndi.html
 - https://technet.tmaxsoft.com/upload/download/online/jeus/pver-20170202-000001/server/chapter_jndi.html
 - https://badstorage.tistory.com/5
