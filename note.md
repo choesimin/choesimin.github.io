@@ -1,10 +1,11 @@
-- TTD
+- tdd
 
-- Enum
+- enum
 
-- Object class
-- @Entity
-- @Transcational
-- 생성자 주입 & @Autowired
-- HashTable
-- instruction
+- object class
+- @entity
+- @transcational
+- data structure
+- information structure
+
+
