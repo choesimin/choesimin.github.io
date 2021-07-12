@@ -47,3 +47,5 @@
 # Reference
 
 - https://m.blog.naver.com/suresofttech/221569611618
+- https://mjspring.medium.com/번역-tdd-변절자-tdd는-설계-기법이-아니다-2519b05474d0
+  - TDD는 SOLID 설계 원칙을 보장하지 않는다는 내용

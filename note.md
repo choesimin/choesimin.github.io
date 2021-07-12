@@ -1,11 +1,11 @@
-- tdd
-
-- enum
-
-- object class
-- @entity
-- @transcational
+- Enum
+- Object class
+- @Entity
+- @Transcational
 - data structure
 - information structure
 
-
+- inbound & outbound
+- ERP
+- God Object
+- protocall
