@@ -145,7 +145,7 @@
   - system이 장애로부터 학습을 하고 스스로를 장애에 적응시킨다는 개념
   - 미래의 장애를 어느 정도 예방할 수 있게 됨
 
-# MicroService의 장섬
+# MicroService의 장점
 
 ### Polyglot Architecture 지원
 
@@ -240,4 +240,52 @@
 
 ### MicroService 경계 설정
 
+- MicroService는 대체 얼마나 커야(mini 일체형) 하는지 또는 얼마나 작아야(nano service) 하는지 
+  - ex) 'MicroService 하나당 하나의 REST endpoint', '300 line 이하의 code', '하나의 책임만을 지는 component'
+  - 예시의 기준 중에서 하나를 고르기 전에 service의 경계를 이해하기 위해 분석해야 할 것들이 많음
+- MicroService의 경계를 설계하는 가장 실용적인 방법은 손으로 scenario를 돌려보는 것
+  - 가능한 여러가지 선택 사항에 대해 service litmus test를 하는 것과 비슷
+  - 주어진 scenario에 적합한 여러가지 조건이 있을 것이고, 장단점 분석을 해야함
+1. 자율적인 기능
+  - 자율적인 service는 일반적으로 외부 기능에 대한 의존도가 낮음
+    - 입력을 받아 내부의 logic과 data로 계산해서 결과를 반환
+    - ex) 암호화 engine, 알림 engine 같은 utility 기능
+2. 배포 단위의 크기
+  - 좋은 MicroService라면 배포 단위의 크기를 관리할 수 있는 수준 이내로 유지할 수 있어야 함
+    - MicroService 생태계는 통합, 제품 인도, 배포, 확장 등의 자동화에서 오는 장점을 가질 수 있어야하기 때문
+    - 배포 규모가 크면 file 복사/download 및 배포 자동화와 service 구동 시간에 있어 좋지 않은 영향을 줌
+3. 분리하기에 가장 적합한 기능 또는 subdomain
+  - 일체형 application에서 어떤 component를 떼어내 분리하는 것이 가장 효과적인지 분석
+    - 자원 소모량, 소유 비용, business 효용성, 유연성 측면이 분석 기준이 될 수 있음
+  - 예시) 예약 system
+    - 예약 system은 전체 요청의 50%~60%가 검색에 관한 것임
+    - 이런 경우 검색을 분리시키면 유연성, business 효용성, 비용 절감, 자원 절약 등의 효과를 바로 얻을 수 있음
+4. poliglot architecture
+  - 다양한 비기능/기능적 요구 사항을 충족시키려면 component마다 다른 architecture, 다른 기술, 다른 배포 topology 등 다양한 처방이 필요
+    - topology(망구성 방식) : computer network의 요소들(link, node 등)을 물리적으로 연결해 놓은 것, 또는 그 연결 방식
+  - component가 식별되면 poliglot architecture 관점에서 요구 사항을 다시 한 번 검토하는 것이 좋음
+5. 선택적 확장
+  - poliglot architecture와 관련이 있음
+  - 모든 기능 module이 모두 동일한 수준의 확장성을 필요로 하지 않음
+  - 따라서 확장에 대한 요구 사항을 기준으로 MicroService의 경계를 설정하는 것이 적절할 때가 종종 있음
+6. agile team과 협력 개발
+  - MicroService는 전체 중에서 서로 다른 일부를 개발하는 데에 집중할 수 있는 작고 집중력 있는 team 구성을 통해 agile 방식의 개발을 가능하게 해줌
+    - 또 system의 일부를 다른 조직에서 개발할 수도 있고, 지리적으로 다른 위치에서 또는 기술 set가 서로 다른 team에 의해서도 만들어질 수 있음 (제조업에서 볼 수 있는 방식)
+  - MicroService 세상에서는 각 team이 서로 다른 MicroService를 만들고 나중에 하나로 조합할 수 있음
+    - 이런 방식이 그다지 바람직한 방식은 아니라고 해도 이런 상황으로 결론 날 수도 있음
+    - 따라서, 이런 방식을 현실적으로 완전히 배제하는 것은 불가능
+  - 예시) online 제품 검색 scenario
+    - 고객에 검색했던 내용을 바탕으로 개인화된 추천 service를 제공
+    - 복잡한 machine learning algorithm 필요하므로 전문가 team이 필요함
+    - 이럴 때, 개인화 추천 service 기능을 별도로 분리된 전문가 team에서 개발할 수 있음
+7. 단일 책임
+  - 
+8. 복제 가능성과 변경 가능성
+9. 결합과 응집
+10. MicroService를 하나의 제품으로 생각하기
 
+### 통신 방식 설계
+
+1. 동기 방식 통신
+2. 비동기 방식 통신
+- 동기와 비동기, 선택의 기준
