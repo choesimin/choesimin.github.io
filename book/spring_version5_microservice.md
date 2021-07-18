@@ -279,13 +279,64 @@
     - 복잡한 machine learning algorithm 필요하므로 전문가 team이 필요함
     - 이럴 때, 개인화 추천 service 기능을 별도로 분리된 전문가 team에서 개발할 수 있음
 7. 단일 책임
-  - 
+  - 단일 책임 원칙에서 하나의 책임이 여러 MicroService와 공유될 수 없는 것처럼, 하나의 MicroService는 여러가지 책임을 담당해서는 안됨
+    - 이론적으로 단일 책임 원칙(SRP; Single Responsibility Principle)은 method, class, service 수준에 적용되는 개념
+      - 하지만 MicroService 환경에서는 하나의 책임을 반드시 단 하나의 service나 endpoint와 짝지을 필요 없음
+      - 하나의 business 범위 또는 하나의 기술 범위로 치환해서 생각하는 것이 더 현실적인 방식
 8. 복제 가능성과 변경 가능성
+  - MicroService 경계는 MicroService가 전체 system에서 최소한의 재작성 비용 투입만으로 쉽게 떼어져 나올 수 있는지를 기준으로 식별되어야 함
+    - service가 단지 실험적인 부분을 담당한다면 그 부분이 MicroService로 분리하기에 이상적
+  - 점점 많은 회사에서 몇 가지 service만을 조합해서 실행 가능한 최소 제품(MVP; Minimum Viable Projects)을 먼저 만들고 system을 점차 진화시켜나가는 방식을 선택하고 있음
+    - MVP 방식에서 MicroService는 핵심적인 역할을 담당함
 9. 결합과 응집
+  - 결합(coupling) and 응집(cohesion) == service 경계를 결정짓는 데에 가장 중요한 기준
+  - 너무 많은 정보 교환, 너무 많은 동기적(synchronous) 요청-응답 사용, 순환 의존 관계, 이렇게 세 가지 요소는 system을 망가뜨리는 주요 원인이 될 수 있음
+  - MicroService 사이의 의존 관계는 높은 결합도가 형성되지 않게 주의해야함
+    - 기능 분해도는 의존 관계 tree와 함께 MicroService의 경계를 수립하는 데에 도움이 됨
+  - MicroService 내부에서도 높은 응집도와 낮은 결합도를 유지하는 것이 성공 방정식
+  - transaction 범위가 하나의 MicroService 범위를 넘어서 여러 MicroService에 걸치지 않게 해야함
 10. MicroService를 하나의 제품으로 생각하기
+  - MicroService를 그 자체로 하나의 제품이라고 생각해보기
+    - DDD(Domain 주도 설계)는 경계지어진(bounded) context를 하나의 제품과 짝짓는 것을 권장함
+      - DDD에서는 하나의 경계 지어진 context가 하나의 제품이 될 수 있는 이상적인 후보가 됨
+    - 제품 경계는 대상 community, 배포 유연성, 시장성, 재사용성 등 다양한 변수들로 구성됨
 
 ### 통신 방식 설계
 
+- MicroService 사이의 통신은 요청-응답 형태로 진행되는 동기 방식, 발동-망각(fire and forget) 형태로 진행되는 비동기 방식으로 설계할 수 있음
 1. 동기 방식 통신
+  - 동기 방식 통신에서는 공유되는 상태나 객체가 없음
+    - 요청자는 처리에 필요한 정보와 함께 요청을 service에 날리고 응담을 기다림
+  - 장점
+    - application은 상태가 없고, 고가용성 관점에서 보면 실행 중인 instance가 traffic을 나눠 받을 수 있음
+    - 공유 message server 같은 infra structure 상에서의 의존 관계가 없으므로 관리에 드는 노력이 상대적으로 적음
+    - 어떤 단계에서 error가 발생하더라도 system은 data 통합성(integrity)을 양보하지 않고도 일관성 있는 상태를 유지하며, error는 요청자에게 즉시 반환됨
+  - 단점
+    - 요청-응답 형식의 통신이기 때문에 사용자(요청자)는 응답 처리가 완료될 때까지 기다려야 함
+      - 호출하는 thread가 응답을 기다려야하기 때문에 system의 확장성이 좋지 않음
+  - 동기 방식은 MicroService 사이에 고정적인 의존 관계를 추가하는 경향이 있음
+    - 하나의 service chain에서 문제가 생기면 전체 service chain이 제대로 동작하지 못하게 됨
+    - service가 성공적이려면 의존 관계에 있는 모든 service가 제대로 돌아야 함
+    - 실패 scenario 중 많은 부분을 timeout과 fallback을 통해 해결할 수 있음
 2. 비동기 방식 통신
+  - 장점
+    - 비동기 방식은 MicroService 사이의 결합을 해소하는 reactive한 event loop 방식에 바탕을 줌
+      - 이 방식에서는 service가 독립적이고, 요청을 처리하는 thread를 내부적으로 재생산해서 부하의 증가를 처리할 수 있음 -> 더 고수준의 확장성 제공
+        - 부하가 증가하면 message는 message queue에 보내지고 나중에 처리됨
+      - 하나의 service에 문제가 생기더라도 전체 경로에 영향을 주지 않음
+      - 이를 통해 service 사이의 결합도를 낮추고 유지 관리와 test도 수월하게 할 수 있음
+  - 단점
+    - 외부의 messaging server에 의존하게 됨
+    - messaging server가 장애를 견딜 수 있게 처리하는 것이 이려움
+    - messaging system의 지속적인 가용성을 확보하는 것이 어려움
+      - messaging은 활성/비활성 기준으로 동작하기 때문
+    - messaging은 일반적으로 영속성을 사용하게 되므로, 더 높은 수준의 I/O 처리와 tuning이 필요함
 - 동기와 비동기, 선택의 기준
+  - 두 방식을 적절히 조합해서 사용해야함
+    - 원칙적으로 비동기 방식은 확장성이 뛰어난 MicroService system을 만드는 데에 적합함
+      - 그러나 모든 것을 비동기 방식으로 modeling하면 system 설계가 매우 복잡해짐
+    - 오직 하나의 방식만 사용해서 system을 개발하는 것은 불가능함
+  - 효과적으로 개발하기 위해서 먼저 요청-응답의 동기 방식으로 시작해서 나중에 필요하다고 판단될 때 비동기 방식으로 refactoring하기도 함
+  - 일반적으로는 MicroService 세상에서 비동기 방식이 더 나은 경우가 많지만, 장단점을 잘 따져서 적합한 pattern을 선별해야함
+  
+### MicroService Orchestration
