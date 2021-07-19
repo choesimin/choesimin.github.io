@@ -340,3 +340,39 @@
   - 일반적으로는 MicroService 세상에서 비동기 방식이 더 나은 경우가 많지만, 장단점을 잘 따져서 적합한 pattern을 선별해야함
   
 ### MicroService Orchestration
+
+- 조립성(composability)은 service design 원칙 중 하나이며, service를 조립하는 쪽에 복잠함이 집중됨
+- orchestration 방식
+  - 여러 개의 service를 모아 하나의 완전한 기능을 만듬
+  - Orchestrator가 중앙의 두뇌 역할을 담당
+  - 순차 처리 또는 병렬 처리가 중심 process에서 가지를 쳐서 나올 수 있음
+  - 각 task는 일반저긍로 web service 같은 가장 작은 단위의 원자적 task service에 의해 수행됨
+  - SOA에서는 ESB; Enterpricse Service Bus가 Orchestrator 역할을 담당
+  - 조율된 service가 조립 service로서 ESB에 의해 외부로 노출됨
+- 연출(choreography) 방식
+  - 연출 방식에서는 중앙의 두뇌 같은 것이 없음
+  - event 생산자(producer) 쪽에서 예약 event가 발생되면 다수의 event 소비자(consumer)는 event를 기다리고 있다가 event 별로 독립적으로 다른 logic을 적용
+  - event는 때때로 event 소비자가 다른 service에 의해 소비될 event를 보낼 수도 있는 형식으로 중첩되기도 함
+  - SOA 세상에서는 호출자가 ESB에 message를 push하면 그 이후의 처리 흐름은 그 message를 소비하는 service에 의해 자동으로 결정됨
+- MicroService는 자율적
+  - MicroService의 기능이 실행되는 데에 필요한 component가 그 service 내에 존재해야 함
+    - database, 내부 service의 orchestration, 내부 상태 관리 등
+  - service endpoint는 조금 큰 단위로 나눠진 API를 제공
+    - 외부에서 더 이상의 접점을 필요로 하지 않으면 이 정도로도 충분
+    - 그러나 실제로는, MicroService는 자신으 임무 완수를 위해 다른 MicroService와 의사소통할 수도 있음
+  - MicroService가 다른 MicroService와 의사소통하는 경우에는 다수의 MicroService를 한데 묶어 연결할 수 있는 연출 방식이 더 적합
+  - 하지만 대규모 process와 상호작용, 작업흐름(workflow)을 다룰 때는 연출 방식은 지나친 복잡함을 유발할 수 있음
+    - Netflix는 대규모 MicroService orchestration을 관리할 수 있는 opensource 도구 Conductor를 만듬
+    - 모든 사례를 연출 방식으로 modeling하는 것은 불가능함
+
+### MicroService 하나에 얼마나 많은 endpoint를 둘 것인가
+
+- endpoint(종단점)의 수는 매우 중요하지는 않음
+  - 어떤 경우에는 하나의 MicroService에 하나의 endpoint만 있을 수도 있음
+  - 다른 경우에는 하나의 MicroService에 여러 개의 endpoint가 있을 수도 있음
+- polyglot architecture에서도 여러 개의 endpoint를 서로 다른 MicroService에 하나씩 할당할 수도 있음
+- 결론 : endpoint의 수는 중요한 결정 사항이 아님
+  - 하나의 MicroService는 하나 또는 그 이상의 endpoint를 가질 수 있음
+  - MicroService 크기에 적합하게 경계 지어진 context를 적절하게 설계하는 것이 훨신 중요함
+
+### 가상 machine 하나당 하나의 MicroService 또는 다수의 MicroService?
