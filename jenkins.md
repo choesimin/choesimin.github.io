@@ -127,6 +127,30 @@
   - terminal에 jenkins-lts 입력하면 실행됨
   - service로 실행하면 background에 떠있게 됨
 - 해당 port로 url에 입력하여 접속
+- pipeline project 생성
+- script에 code 작성 후 build now
+
+### CentOS에서 사용 시 java.nio.file.AccessDeniedException
+
+1. Open up the this script (using VIM or other editor)
+  ```shell
+  vim /etc/sysconfig/jenkins
+  ```
+2. Find this $JENKINS_USER and change to “root”
+  ```shell
+  $JENKINS_USER="root"
+  ```
+3. Then change the ownership of Jenkins home, webroot and logs
+  ```shell
+  chown -R root:root /var/lib/jenkins
+  chown -R root:root /var/cache/jenkins
+  chown -R root:root /var/log/jenkins
+  ```
+4. Restart Jenkins and check the user has been changed
+  ```shell
+  service jenkins restart
+  ps -ef | grep jenkins
+  ```
 
 ---
 
@@ -141,3 +165,10 @@
   - Jenkins documentation pipeline syntax
 - https://cwal.tistory.com/24
   - what is Jenkins pipeline
+- https://www.theserverside.com/answer/Declarative-vs-scripted-pipelines-Whats-the-difference
+  - difference of scripted and declarative
+- https://blog.wonizz.tk/2019/08/04/jenkins-pipeline/
+  - 선언적 방식 사용 심화 예제
+- https://stackoverflow.com/questions/35011699/java-nio-file-accessdeniedexception-at-jenkins-build
+  - CentOS에서 실행 시 java.nio.file.AccessDeniedException
+  - comment에 있음
