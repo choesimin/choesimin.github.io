@@ -42,7 +42,7 @@
     - ...
       - ...
 - example
-  ```
+  ```groovy
   node {
     def hello = 'Hello jojoldu'  // 변수선언
     stage ('clone') {
@@ -63,7 +63,7 @@
     echo "${message}"
   }
   ```
-  ```
+  ```groovy
   // try-catch 예시
   node {
     stage('Example') {
@@ -80,6 +80,18 @@
 ### Declarative
 
 - Scripted보다 훨씬 간단하게 작성할 수 있는 방법
+- Groovy Scrip에 친숙하지 않은 사용자를 위해 최근에 도입된 declarartive programming model
+- 상대적으로 작성이 쉽고 가독성이 높은 편
+- CI/CD pipeline이 단순한 경우에 적합하며 아직 많은 제약사항이 따름
+  - Structure만 사용할 수 있기 때문
+- derective
+  |Directive|설명|
+  |--|--|
+  |pipeline|script 방식의 'node'대신 top에 위치. Jenkinsfile이 declarative pipeline 방식으로 작성되었음을 Jenkins에게 알려줌|
+  |agent|bulid를 수행할 node 및 agent를 의미. any로 지정시 build 가능한 모든 agent 중 하나를 선택하여 build를 맡김. label을 설정하여 build할 agent를 따로 선택 가능|
+  |stages|1개 이상의 stage를 포함한 block. 단 하나만 선언 가능|
+  |stage|scripted 방식의 stage와 동일한 개념이나, task가 아닌 steps로 구성됨|
+  |steps|하나의 stage에서 수행할 작업을 명시한 block|
 - example
   ```
   pipeline {  // 최상단 element로 정의되어 있어야 한다.
@@ -106,7 +118,6 @@
       }
     }
   }
-
   ```
 
 # How
@@ -115,6 +126,7 @@
 - Jenkins 실행
   - terminal에 jenkins-lts 입력하면 실행됨
   - service로 실행하면 background에 떠있게 됨
+- 해당 port로 url에 입력하여 접속
 
 ---
 
@@ -127,3 +139,5 @@
   - declarative
 - https://www.jenkins.io/doc/book/pipeline/syntax/
   - Jenkins documentation pipeline syntax
+- https://cwal.tistory.com/24
+  - what is Jenkins pipeline
