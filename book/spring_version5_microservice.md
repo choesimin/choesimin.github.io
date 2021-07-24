@@ -376,3 +376,40 @@
   - MicroService 크기에 적합하게 경계 지어진 context를 적절하게 설계하는 것이 훨신 중요함
 
 ### 가상 machine 하나당 하나의 MicroService 또는 다수의 MicroService?
+
+- 하나의 MicroService는 확장성 및 가용성을 확봏하기 위해 여러 개의 virtual machine에 복제되어 배포될 수 있음
+- 많은 bender들은 core당 lisence 비용을 부과함
+  - 따라서 하나의 virtual machine에 transcation 규모가 작은 MicroService 하나씩만 배포해서 여러 개의 virtual machine을 운용하는 것은 비용 효율적이지 않음
+- 아래의 질문에 모두 No라고 답할 수 있다면, 나중에 배포 topology(구성 및 연결 구조)에 변화가 생기기 전까지는 여러 개의 MicroService를 하나의  virtual machine에서 실행하는 방식으로 시작할 수 있음
+  - virtual machine이 최대 사용자를 기준으로 두 개의 service를 운영하기에 용량이 부족한가?
+  - service 수준 합의서(SLA; Service Level Agreement)를 충족시키기 위해 service등리 별도로 처리되어야 하는가?
+    - ex) 확장성과 관련해 여러 MicroService가 하나의 virtual machine에서 실행된다면 해당 virtual machine을 복제해야 함
+  - 자원 요구 사항이 서로 충돌되지는 않는가?
+    - ex) 서로 다른 OS나 JDK version 등으로 충돌되는 사항이 없는지 확인 필요
+  
+### Rule Engine: 공유 또는 내장?
+
+- 결론 : 내장되어 있는 rule engine이 MicroService에는 더 적절함
+- rule은 어떤 system은 어떤 system에서든 필수적인 요소임
+  - 많은 기업에서는 rule을 rule 저장소에서 관리하면서 중앙 집중적으로 실행하기도 함
+    - 기업에서 사용되는 rule engine은 기업이 rule을 만들고 관리하는 것뿐 아니라 중앙의 저장소에 있는 rule을 재사용할 수 있게 대후는 데에 주로 사용됨
+  - rule engine은 생선성을 높이고 rule, 사실 정보, 용어의 재사용을 가능하게 하며, Rete algorithm을 통해 rule을 더 빨리 실행할 수 있게 해줌
+    - Rete algorithm : rule engine에서 규칙을 더 빠른 속도로 pattern matching하기 위한 graph 기반의 algorithm
+- MicroService의 목표는 외부에의 의존성을 줄이는 데에 있기 때문에 공유하여 사용하는 것은 좋지 않음
+  - MicroService 환경에서 중앙에 rule engine을 두게 되면 여러 MicroService가 중앙의 rule engine을 호출하게 됨
+    - service logic이 두 군데에 있음을 의미함
+      - 일부는 service에 존재하고 일부는 외부의 service에 존재하게 됨
+
+### BPM의 역할과 작업 흐름
+
+- BPM; Business Process Management과 iBPM; Intelligent Business Process Management
+  - business process의 설계, 실행, monitoring을 담당하는 도구 set
+  - 사용 사례
+    - 오래 지속되는 business process
+      - 일부 process는 기존 자산으로부터 도출되고, 일부 process는 기존 자산에서 도출되지 않으며 현재 process에 구체적인 구현체가 없음
+      - BPM은 이런 두 가지 type을 조합할 수 있게 해주며, 전 구간을 아우르는 자동화 process를 제공
+    - process 중심 조직
+      - 6σ(6 sigma)를 도입해서 지속적인 효율 개선을 위해 process를 monitoring하기 원하는 조직
+    - 조직의 business process를 재정의하는 top-down 방식의 process reengineering
+- BPM이 MicroService 세상에 잘 들어맞는 두 가지 scenario
+  1. business process reengineering이나 앞에서 언급했떤 오래 지속되는 전 구간 business process를 다루는 것
