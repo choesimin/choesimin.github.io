@@ -73,7 +73,7 @@
       - 일반적인 MicroService 환경에서 MicroService는 자신의 존재를 스스로 드러내서 알리고, 탐색에 의해서 찾아지고 사용될 수 있게 함
       - service가 중지되면 MicroService는 자기 자신이 소속되어 있던 MicroService 환경에서 스스로를 제거함
     7. service 호환성(interoperability)
-      - service는 표준 protocall과 message 교환 표준을 준수하기 때문에 호환성이 좋음
+      - service는 표준 protocol과 message 교환 표준을 준수하기 때문에 호환성이 좋음
       - 전송 mechanism으로는 messaging이나 HTTP 등과 같은 표준 방식을 사용
       - REST/JSON은 호환성이 좋은 service를 개발하는 데 가장 널리 사용되는 방법
     8. service 조립성(composability)
@@ -217,7 +217,7 @@
 ### Event 주도 architecture 지원
 
 - MicroService는 투명한 software system을 개발하는 데에 도움을 줌
-- 전통적인 system은 고유의 native protocall을 통해 의사소통하기 대문에 일종의 black box application처럼 동작함
+- 전통적인 system은 고유의 native protocol을 통해 의사소통하기 대문에 일종의 black box application처럼 동작함
   - 명시적으로 발행되지 않으면 business event와 system event는 이해하고 분석하기가 어려움
   - 그러나 현대적인 application은 business 분석과 system의 동적 거동(behavior)의 이해, 시장 trend 분석을 위해 data를 필요로 하며, 실시간 event에도 응답해야 함
   - event는 data를 추출하는 데에 적합한 mechanism
@@ -411,5 +411,99 @@
     - process 중심 조직
       - 6σ(6 sigma)를 도입해서 지속적인 효율 개선을 위해 process를 monitoring하기 원하는 조직
     - 조직의 business process를 재정의하는 top-down 방식의 process reengineering
+  - BPM은 system과 사람의 상호작용을 자동화함으로써 전 구간의 여러 기능에 걸쳐있는 business process를 modeling하는 상황에서 여러 개의 MicroService를 조합하는 상위 수준에서 사용될 수 있음
+    - 아래의 scenario 중 두번 째가 더 간단하고 나은 방식
+      - MicroService가 상태 변화 event를 공급
+      - business process dashboard를 보유
 - BPM이 MicroService 세상에 잘 들어맞는 두 가지 scenario
-  1. business process reengineering이나 앞에서 언급했떤 오래 지속되는 전 구간 business process를 다루는 것
+  1. business process reengineering이나 앞에서 언급했던 오래 지속되는 전 구간 business process를 다루는 것
+    - 이 scenario에서 BPM은 조금 큰 덩어리로 나눠진 여러 개의 MicroService와 기존 legacy 연결부, 사람과의 상호작용을 엮어서 여러 기능에 걸쳐 오래 지속되는 business process를 자동화할 수 있는 높은 수준에서 작동함
+    - 또한 MicroService는 하위 process를 구현하는 화면 없는 service 역할을 담당
+      - MicroService의 관점에서 보면 BPM은 MicroService를 이용하는 또 하나의 소비자일 뿐
+  2. process를 monitoring하고 효율을 높이기 위해 최적화하는 것
+    - 이 작업은 완전하게 자동화된 비동기 연출 방식의 MicroService 생태계와 협업하는 방식으로 처리됨
+    - 이 scenario에서 MicroService와 BPM은 독립적인 생태계로서 존재
+      - MicroService는 process의 시작, 상태의 변경, process의 종료 등과 같은 여러가지 시간 frame에 걸쳐 event를 전송
+      - BPM은 받은 event를 process 상태를 구성하고 monitoring하는 데에 사용
+
+### MicroService가 data store를 공유할 수 있는가?
+
+- MicroService는 표현 계층, business log, data store를 추상화해야 함
+- guideline에 따라 service가 분리된다면 각 MicroService는 논리적으로 독립적인 database를 사용할 수 있음
+  - 공유 data model, 공유 schema, 공유 table은 매우 좋지 않음
+    - 처음에는 좋을 수 있지만, 복잡한 MicroService를 개발하다 보면 data model 사이에 계속 관계를 추가하고, join query를 만들어내게 됨 -> 단단하게 결합된 물리 data model이 될 수도 있음
+  - ex) 고객 등록 MicroService와 고객 분류 MicroService가 있을 때
+    - 나쁜 예 : 고객 등록 MicroService과 고객 분류 MicroService 모두 고객 정보 저장소를 사용
+    - 좋은 예
+      - '고객 data 저장소 MicroService'를 따로 두기
+      - '고객 등록 MicroService'는 '등록 data'에만 접근
+      - '고객 분류 MicroService'는 '분류 data'에만 접근
+      - 고객 등록과 분류가 진행될 때, 각 MicroService는 각자의 data에만 접근하고, 갱신 정보를 따로 '고객 data 저장소 MicroService'로 보냄
+        - '고객 data 저장소 MicroService'는 공통 저장소에 접근하여 data 변경
+  - MicroSErvice가 data 호수(data lake)나 master data 관리 등 공통 data 저장소(common data repositories)같은 기업  저장소를 공유하애만 하는 scenario에서는 어쩔 수 없이 공유 data를 사용할 수 밖에 없음
+    - 이럴 때는 해당 data 저장소에 직접 붙는 대신 service interface를 둬서 MicroService와 data 저장소를 간접화하고 결합 관계를 끊는 것이 필요함
+
+### MicroService는 꼭 화면이 필요한가?
+
+- Headless MircoService : UI 없이 사용되는 경우
+- 화면 없는 MicroService는 동일한 하나의 service가 Audio UI; User Interface, ChatBot, 몸짓 기반 UI(gesture-based UI), Wearable UI 등 여러 channel을 통해 외부에 service를 제공할 때 사용됨
+
+### Transaction 경계 설정
+
+- 가동 중인 system에서 transaction은 여러 개의 작업을 하나의 원자적 block으로 group지어 처리함으로써 RDBMS에서 data의 일관성을 유지하는 데에 사용됨
+  - 'commit으로 모두 함께 확정' or 'rollback으로 모두 취소'
+- transaction의 경계는 local transaction을 이용해서 MicroService를 벗어나지 않게 정의해야함
+  - 분산된 global transaction은 피하기
+  - 적절한 의존 관계 분석을 통해 transaction 경계가 두 개의 서로 다른 MicroService로 확장되지 않게 해야함
+
+### Service endpoint 설계 고려 사항
+- service 설계의 두 가지 핵심 요소 : 계약 설계, protocol 선택
+- 계약 설계 (contract design)
+  - 가장 중요한 것은 '단순함'
+    - service는 소비자가 소비할 수 있게 설계되어야 함
+    - 복잡한 service 계약은 service의 사용성을 떨어뜨림
+  - KISS; Keep It Simple Stupid : 바보스러울 만큼 단순함 유지
+    - 더 나은 양질의 service를 더 빠르게 구축하고 유지 관리와 교체에 드는 비용을 줄여줌
+  - YAGNI; You Ain't Gonna Need It : 필요없는 기능은 만들지 않기
+    - 미래의 요구 사항을 예측하고 system을 만들어도 그것이 미래에도 실제로 경쟁력을 가진다는 보장 없음
+    - 미래 요구 사항에 너무 집중하면 초기 단계부터 많은 투자를 하게 됨
+      - 유지 관리 비용 증가
+  - 진화적 설계 (evolutionary design)
+    - 현재 필요한 만큼만 충분히 설계
+    - 새로운 기능이 필요할 때 설계를 변경하고 refactoring을 지속
+    - 그러나 강력한 통제 수단이 없다면 쉽지 않음
+  - 소비자 주도 계약 (CDC; Consumer Driven Contracts)
+    - 진화적 설계에 도움
+    - 사용자가 원하는 기대 사항을 service 제공자에게 test case의 형태로 제공하게 하는 것
+      - service 계약이 변경되면 모든 application을 test해서 검증해야함
+      - 이는 변경을 어렵게 만드는 문제가 있음
+      - 따라서, service 계약이 변경될 때마다 service 제공자가 통합 test할 수 있게 함
+  - 포스텔의 법칙 (Postel's law)
+    - service를 설계할 때 service 제공자는 사용자의 요청을 받을 경우 가능한한 유연해야 함
+    - 반면, 사용자는 service 제공자와 동의한 계약에 맞게 사용해야 함
+- protocol 선택(protocol selection)
+  - MicroService는 application은 물리적으로 독립적으로 배포 가능한 여러 service로 나눔 (느슨한 결합)
+    - 이렇게 하면 communication 비용이 높아지고 network 통신 실패에도 더 취약해질 수 있으며 service 성능이 좋지 않게 나올 수 있음
+  - message 지향 service
+    - 비동기 통신 방식은 사용자와의 연결이 끊어지므로, 응답 시간은 직접적으로 영향 받지는 않음
+      - 이 경우에는 표준 JMS나 AMQP protocol로 JSON data를 교환할 수 있음
+    - HTTP를 이용한 messaging도 복잡도를 줄여주는 장점이 있어 널리 사용됨
+      - 비동기 REST도 처리 가능하며, 처리 시간이 오래 걸리는 service에 적합
+  - HTTP와 REST endpoint
+    - HTTP는 상태를 유지하지 않으므로 밀접하게 연결되지 않으면서 상태를 유지하지 않는 service를 처리하는 데에 적합함
+      - 호환성이 좋아 protocol 처리, traffic routing, load ballancing, 보안 system 등에 적합
+    - REST + JSON == 개발자들이 기본으로 선택하는 option
+      - HTTP/REST/JSON protocol stack을 사용하면 호환성이 좋은 system을 쉽고 간단하게 만들 수 있음
+  - 최적화된 통신 protocol
+    - service 응답 시간이 매우 중요한 상황이라면, 통신 부분에 특별히 더 주의해야 함
+      - 이런 경우엔 service 사이의 통신에 Avro, Protocol Buffers, Thrift 같은 protocol을 사용할 수도 있음
+        - 그러나 호환성 떨어짐 (성능과 호환성은 trade off 관계)
+  - API 문서화
+    - 좋은 API는 단순하면서도 충분하게 문서화되어야 함
+    - REST 기반 service의 문서화 지원 도구
+      - Swagger, RAML, API Blueprint 등
+
+### 공유 library 처리
+
+- MicroService의 자율성과 자기 완비성을 준수하기 위해 code와 library를 복제해야하는 상황이 있을 수 있음
+  - 요소 기술을 다루는 library 또는 기능 component 등
