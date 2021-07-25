@@ -491,7 +491,7 @@
       - 비동기 REST도 처리 가능하며, 처리 시간이 오래 걸리는 service에 적합
   - HTTP와 REST endpoint
     - HTTP는 상태를 유지하지 않으므로 밀접하게 연결되지 않으면서 상태를 유지하지 않는 service를 처리하는 데에 적합함
-      - 호환성이 좋아 protocol 처리, traffic routing, load ballancing, 보안 system 등에 적합
+      - 호환성이 좋아 protocol 처리, traffic routing, load balancing, 보안 system 등에 적합
     - REST + JSON == 개발자들이 기본으로 선택하는 option
       - HTTP/REST/JSON protocol stack을 사용하면 호환성이 좋은 system을 쉽고 간단하게 만들 수 있음
   - 최적화된 통신 protocol
@@ -507,3 +507,322 @@
 
 - MicroService의 자율성과 자기 완비성을 준수하기 위해 code와 library를 복제해야하는 상황이 있을 수 있음
   - 요소 기술을 다루는 library 또는 기능 component 등
+- 의존 관계의 추가와 code 중복 사이에 발생하는 trade off
+  - 의존 관계를 추가하는 것보다는 code를 중복해서 따로 가지고 있는 것이 출시 관리나 성능에서 더 나음
+  - 그러나 이는 DRY 원칙에 어긋남
+    - DRY 원칙 : "모든 지식은 하나의 system 안에서 오직 하나의 모호하지 않은 (원본의 )권위를 가진 표현으로 존재해야 한다"
+- code를 중복해서 내장하는 방식
+  - 단점 : bug fix나 개선 사항이 있을 때 중복되어 있는 모든 곳에 별도로 반영해야 함
+    - 하지만 각 MicroService는 서로 다른 version의 library를 갖고 있을 수도 있으므로 크게 문제가 되지 않음
+- 공통되는 부분을 별도의 MicroService로 떼어내는 것도 가능, 그러나 신중해야 함
+  - business 범위나 분류 관점에서 봤을 때, 하나의 MicroService로 분류되지 않는 부분을 공통이라는 이유만으로 별도의 MicroService로 떼어낸다면 '효용'보다 '복잡성 증가'라는 비용이 더 클 수도 있음
+  - 여러 service에 공통 library를 복제하는 것과 통신 관점에서의 overhead도 trade off 관계
+
+### MicroService에서의 사용자 interface
+
+- MicroService 원칙은 하나의 MicroService를 database에서 표현 계층까지 모두 포함하도록 하는 것
+  - UI, business logic, database 모두를 담음
+- mobile application에 의한 시장 진입도 MicroService와 같은 접근 방식이 많아지는 원인 중 하나
+  - 화면 없는 MicroService를 만들고, 화면 표시 영역은 mobile team에서 담당
+
+### MicroService의 API gateway
+
+- client 측 javascript framework(Angular, Vue, React, ...)가 발전함에 따라 server는 화면까지 제공하기보다는 RESTful service를 노출하는 방식으로 개발되고 있음
+  - 이 방식의 두 가지 문제 : 계약에 대한 기대 사항의 불일치, 하나의 page를 rendering하기 위해 server에 여러 번의 요청을 날리게 됨
+  - 계약 불일치
+    - SOA에서는 ESB나 mobile middleware가 client를 위한 data 변환을 담당
+    - MicroService에선 모든 요소르 ㄹ읽어오고, 필요한 요소만을 filtering하는 일을 client가 담당함
+      - 불필요한 정보도 한께 전송되므로 network overhead가 발생함
+    - 해결법
+      1. HATEOAS 방식으로 최소한의 정보만을 link 정보와 함께 전달하는 것
+        - client는 기본 정보를 받고 상세한 정보는 link를 통해 얻을 수 있음
+      2. client가 REST 요청을 보낼 때, query 문자열로 필요한 field를 지정해서 요청을 보내는 것
+        - 단점 : query 문자열에 담겨있는 field를 filtering하는 server 측의 logic이 복잡해짐
+        - server는 들어오는 query에 따라 다른 요소들을 반환해야 함
+      3. 간접화 개념 사용
+        - client와 server 사이에 있는 gateway component가 data 소비자의 명세에 따라 data를 변환
+        - 장점 : backend service와의 계약을 변경할 필요가 없음
+          - UI service로 바로 이어짐
+  - API gateway는 backend의 proxy 역할을 수행하며, data 소비자에게 특화된 API를 외부에 노출시킴
+  - API gateway 배포 방법
+    1. MicroService당 하나의 API gateway를 두는 방식
+    2. 하나의 공통 API gateway가 뒤에 있는 여러 service에 접근하는 방식
+
+### ESB 및 iPaas와 MicroService의 사용
+
+- ESB; Enterprise Service Bus
+  - 핵심 기능 : protocol 중재, 변환, orchestration, application adaptor 기능
+    - SOA의 구현에서 핵심적인 역할을 담당
+      - MicroService에서는 이런 기능이 그다지 필요하지 않음
+  - enterprise ESB는 천성적으로 무거우며, 대부분의 상용 ESB는 cloud 친화적이지 않음
+  - MicroService에 적합하게 기능이 제한된 ESB 역할은 API gateway 같은 더 가벼운 도구로 대체할 수 있음
+  - MicroService에서는 중앙의 orchestration 기능이 존재하지 않음
+    - orchestration 기능은 ESB의 bus에서 MicroService로 이동됨
+  - MicroService에서 protocol 중재 기능은 사용하지 않음
+    - REST/JSON 호출과 같은 더 범용적인 message 교환 방식을 사용
+  - MicroService에서는 service 스스로가 구체적인 구현체를 제공하므로 legacy connector도 필요하지 않음
+    - ESB의 legacy system과 연결해주는 adaptor 기능이 필요하지 않음
+  - 그러나 모든 service가 MicroService로 만들어지지 않기 때문에 여전히 필요함
+    - legacy service는 MicroService와 연결하기 위해 여전히 ESB를 사용할 것임
+    - enterprise 수준에서 legacy와의 통합과 solution회사의 application을 통합하는 데에 필요
+- iPaaS; intergration Platform as a Service
+  - 차세대 application 통합 platform
+  - MicroService에 접근하기 위해 API gateway를 호출함
+  - ESB의 입지를 줄어들게 함
+
+### Service Versioning 고려 사항
+
+- 나중이 아닌 미리 고려해야할 사항
+- MicroService에 하나 이상의 service가 있는 경우, versioning이 복잡해질 수 있음
+  - service version 번호는 service 내의 단위 기능(operation) 수준에서 적용하는 것보다 service 수준에서 적용하는 것이 더 간단함
+    - 단위 기능 (operation)
+      - GreetingService 안에 sayHello()와 sayGoodBye()라는 두 개의 method가 있음
+      - '/greetings/hello'와 '/greetings/goodbye'라는 REST endpoint로 노출됨
+      - 이 때, sayHello와 sayGoodBye는 GreetingService의 단위 기능
+  - 하나의 단위 기능에 변화가 생기면 다음과 같이 service가 upgrade 되고 새로운 servion으로 배포됨
+    ```
+    /api/v3/greetings    // service 수준
+    /api/v3/greetings/v3.1/sayhello    // service 및 단위 기능 수준
+    /api/greetings/v3/sayhello    // 단위 기능 수준
+    ```
+  - REST service에서 사용할 수 있는 versioning 방식
+    1. URI versioning
+      - version 번호가 URI 자체에 포함됨
+      - service 사용자에게 더 편리한 방식
+      - 단점 : URI 자원이 version을 중첩되게 포함하기 때문에 복잡해보임
+        - service의 여러 version을 cache해야하는 문제 등 실제로 media type 방식에 비해 cliend를 새 version으로 이관하기가 더 복잡함
+      - Google, Twitter, LinkedIn, Salesforce 등 거대한 internet 회사들 대부분이 URI 방식 사용
+    2. media type versioning
+      - client 측의 HTTP Accept header에서 version 번호를 지정
+    3. custom header
+      - 별로 효과적이지 않음
+
+### Cross Origin 설계
+
+- MicroService에서는 service가 동일한 host나 동일한 domain에서 운영된다는 보장이 없음
+  - 조합형 UI web application은 한 작업을 완료하기 위해 다른 domain이나 host에 있는 여러 개의 MicroService를 호출할 수도 있음
+- CORS; Cross Origin Resource Sharing(domain 간 자원 공유)는 browser client가 다른 domain에 있는 host에서 실행되고 있는 service에 요청을 보낼 수 있게 해줌
+  - MicroService architecture에서 반드시 필요함
+- 설계 방법
+  1. 신뢰하는 다른 domain으로부터의 cross origin 요청을 모든 MicroService가 허용하도록 하기
+  2. client가 신뢰하는 domain에 API gateway를 두는 것
+
+### 공유 참조 data 처리
+
+- master data나 참조 data의 관리 문제
+  - 대규모 application을 분리할 때 공통적으로 나타나는 문제임
+  - ex) 도시 master data, 국가 master data 등은 항공 schedule, 예약 등 많은 service에서 공통으로 사용됨
+- 해결 방법
+  1. 상대적으로 정적이고 변경될 가능성이 전혀 없는 data는 각 service에서 hard code로 집어넣는 방법
+  2. 공통으로 사용되는 		data를 별도의 MicroService로 빼는 방법
+    - 장점 : 깔끔함
+    - 단점 : 모든 service가 master data를 여러 번 호출할 필요가 있을 수도 있음
+  3. data를 모든 MicroService에 복제하는 방법
+    - data의 유일한 소유자가 없으며, 각 service가 필요한 master data를 소유함
+    - 장점 : 성능 친화적
+    - 단점 : 모든 service에 code를 복제해야 함 -> 모든 MicroService에 걸쳐 data를 동기화하고 유지하는 것이 복잡하게 됨
+    - code base나 data가 단순하고 비교적 정적인 data인 경우에 적합
+  4. 필요한 data를 local에 cache해서 가지고 있는 방식
+    - data의 규모에 따라 Ehcache 같은 local 내장 cache나 Haxelcase 또는 Infinispan 같은 data grid를 사용할 수도 있음
+    - master data에 대해 매우 많은 수의 MicroService가 의존하는 경우에 이 방식을 주로 사용
+
+### MicroService와 대규모 작업
+
+- 일체형 application을 더 작고 목적에 맞는 service로 나누면 여러 MicroService data store에서 join query를 통해 data를 가져올 수 없게 됨
+  - 이렇게 되면 한 service가 다른 service로부터 많은 data record를 필요로 하게 될 수 있음 == 다른 MicroService로의 요청이 너무 많아짐
+- 해결 방법
+  1. data가 생성될 때 사전 집계를 하는 방식
+    - MicroService1에 data가 생성되면 MicroService2에 event가 발송됨
+    - MicroService2는 event를 받으면 내부적으로 계속 data를 집계함
+    - 단점 : data의 중복이 발생
+  2. batch API 이용
+    - 사전 집계가 불가능할 때 적용할 수 있는 방법
+    - GetAllInvolices라는 기능을 호출하면 병렬 thread를 사용해서 batch 작업을 여러 개 수행할 수 있음
+    - Spring Batch를 사용하면 됨
+
+# MicroService 역량 model
+
+- MicroService는 UI, business log, database를 사용하는 일반적인 web application처럼 단순하지 않음
+- 대규모 Microservice를 다룰 때는 적은 수의 MicroService나 단순한 service를 개발할 때와는 달리 개발자가 고민해야 할 것이 많음
+- MicroService를 성공적으로 구축하려면 생태계 차원에서의 역량이 필요
+  - 이런 역량을 전제 조건으로 갖출 수 있게 보장하는 것이 중요함
+- 그러나 MicroService 구현을 위한 표준 참조 model은 없음
+  - 아직 한창 진화하는 중이기 때문이기 때문에 표준 architecture나 참조 architecture가 없음
+    - 현재 공개되어 있는 많은 architecture는 주로 도구 vender사에서 만든 것으로써, vender사가 만든 도구에 편향되어 있음
+- 역량 model은 크게 4개의 영역으로 분류할 수 있음
+  1. 핵심 역량
+  2. 지원 역량
+  3. infra structure 역량
+  4. process 및 통제 역량
+
+# 핵심 역량
+
+- 핵심 역량(Core capabilities)은 하나의 MicroService 안에 packaging되는 component
+- ex) 주문 MicroService
+  - 주문 application을 담고 있는 order.jar와 주문 data를 담고 있는 주문 DB 이렇게 2개의 핵심 요소로 배포할 수 이씅ㅁ
+    - order.jar에는 service listener, 실행 library, service 구현 code, service API와 endpoint가 들어 있음
+    - 주문 DB에는 주문 service를 위한 모든 data가 들어있음
+    - 작은 MicroService이므로 이 두가지 '핵심 역량'만 갖추면 됨
+- Gartner는 이런 핵심 역량을 내부(inner) architecture, 핵심 역량 외의 나머지를 외부(outer) architecture라고 구분함
+
+### Service listener와 library
+
+- service listener : MicroService로 들어오는 service 요청을 접수하는 endpoint listener
+  - HTTP 또는 AMQP나 JMS 같은 message listener 등이 service listener로 주로 사용됨
+  - Spring Boot는 HTTP 기반의 service 종단점을 통해 접근할 수 있는 MicroService를 구현할 수 있음
+    - HTTP listener가 내장되어 있음
+    - 외부의 application server가 필요 없음
+    - HTTP listener는 appilcation이 시작될 때 함께 시작됨
+- MicroService가 비동기 통신 기반이라면 HTTP listener 대신 message listener가 시작됨
+  - 비동기 통신을 지원하기 위해 Kafka나 RabbitMQ 등과 같은 대규모 messaging 처리 system이 필요함
+  - messaging endpoint는 RxJava 같은 Reactive client가 포함된 상황에서도 사용될 수 있음
+- 만약 MicroService가 scheduling 기능을 담당한다면 아무런 listener가 필요하지 않을 수도 있음
+
+### 저장 기능
+
+- MicroService는 상태나 transaction data를 적절한 business 범위에 맞게 저장하는 일종의 저장 mechanism을 가지고 있어야 함
+  - MicroService 전용으로 한정되어야 함
+  - 저장 기능이 필수는 아님
+    - 상태가 없는 계산 전용 service일 수도 있음
+- 구현된 저장 기능에 따라 여러 방식으로 저장
+  - RDBMS : MySQL
+  - NoSQL : Hadoop, Cassandra, Neo4J, ElastucSearch
+  - 'in memory 저장 cache' or 'in memory data grid' : Ehcache, Hazelcast, Infinispan
+  - in memory database : H2, solidDB, TimesTen
+
+### Service 구현
+
+- MicroService의 핵심
+- business logic이 구현되는 곳
+- Java, Scala, Clojure, Erlang 등 어떤 언어로도 구현될 수 있음
+- 기능 수행을 위한 모든 business logic은 MicroService 자체에 내장됨
+- 일반적인 모듈형, 계층형 architecture를 사용하는 것이 좋음
+- service 구현은 구체적인 service endpoint interface를 제공
+- MicroService의 상태 변화 event를 외부에서 어떻게 사용할지에 대해서는 관심을 기울이지 않게 구현하는 것이 best
+  - MicroService는 상태 변화를 외부에 알릴 수 있음
+  - 상태 변화는 다른 MicroService에 의해 사용될 수 있으며, 복제되어 감사에 사용될 수도 있고, 외부 application 같은 지원 service에서 사용될 수도 있음
+  - 소비하는 측에 대한 의존성이 없게 구현하면, 다른 MicroService나 application에도 상태 변화를 알려서 service를 동작하게 할 수 있음
+
+### Service Endpoint
+
+- service endpoint : 외부의 service 소비자가 service에게 요청을 전송할 수 있게 외부에 공개한 API
+- 동기 방식 endpoint
+  - 일반적으로 REST/JSON이지만, Avro, Thrift, Protocol Buffers 등과 같은 protocol을 사용할 수도 있음
+- 비동기 방식 endpoint
+  - Spring AMQP, Spring Cloud Stream 등과 같은 message listener 사용
+    - 요청을 받아서 backend에 있는 RabbitMQ나 다른 messaging server 또는 ZeroMQ 같은 다른 방식의 Messaging 구현체를 통해 처리함
+
+# InfraStructure 역량
+
+- MicroService를 배포하는 데에는 IaaS; Infrastructure as a Service(서비스로서의 인프라스트럭처) 같은 cloud infrastructure가 좋음
+  - infrastructure를 provisioning하는 데에 오랜 시간이 소요되는 전통적인 data center 환경에서는 MicroService를 구현하는 것이 어려움
+    - 대규모 infrastructure를 내부의 data center에서 관리하면 소유 비용과 운영비가 증가함
+- cloud 방식의 infrastructure
+  - virtual machine이나 container를 자동으로 provisioning할 수 있어 탄력적임 (자동화 기능 지원)
+- AWS, Azure, IBM Bluemix나 설치형 또는 service형 자체 cloud에 MicroService를 배포할 수 있음
+
+### Container Runtime
+
+- 다수의 MicroSerice를 대용량 물리 장비에 배포하는 것은 비용 효율성이 떨어지고 관리하기 어려움
+- 물리적인 장비만으로는 자동화된 장애 대응성을 갖추기 힘듬
+
+### Container Orchestration
+
+- container나 virtual machine의 수가 많으면 자동으로 유지 관리하기 어려움 -> container orchestration 도구 사용
+- container orchestration 도구
+  - == container scheduler
+  - == service로서의 container
+  - application 배포, traffic 제어, instance 복제, 무중단 upgrade를 자동으로 수행할 수 있음
+    - 다수의 MicroService로 구성된 배포 환경에서는 container orchestration 도구를 사용하는 것이 좋음
+  - container runtime 위에서 일관성 있는 운영 환경을 제공
+  - 가용한 자원을 여러 container에 분배해 줌
+  - application life cycle 관리 활동 작업에 도움에 됨
+    - application 가용성 확보
+    - 여러 data center에 걸친 배포
+    - 필요한 최소한의 instance만 사용 등의 제약 사항 기반 배포
+  - ex) Apache Mesos, Rancher, CoreOS, Kubernetes
+- 수작업으로 provisioning하고 배포하는 것은 어려운 일
+  - 배포 과정에 수작업이 포함된다면 개발자나 운영 관리자는
+    1. 운영 topology를 알아야 함
+    2. traffic routing을 직접 처리해야 함
+    3. 배포할 때도 모든 service가 upgrade될 때까지 하나하나 차례로 실행해야 함
+  - server instance가 많은 상황에서는 이런 운영 작업은 큰 부담이 되며, 수작업으로 인한 오류 발생 위험도 높아짐
+
+# 지원 역량
+
+- Supporting Capabilities
+- MicroService와 직접적으로 연결되지는 않지만, 대규모 MicroService 배포에 필수적임
+  - MicroService의 실제 운영 runtime에서는 지원 역량에 대한 의존 관계가 발생하게 됨
+
+### Service Gateway
+
+- service gateway 또는 API gateway는 service endpoint에 대한 proxy 역할이나 여러 개의 endpoint를 조합하는 역할을 담당하면서 간접화 계층을 제공함
+- API gateway는 정책의 강제 적용이나 routing에도 자주 사용됨
+  - 상황에 따라서는 실시간 load balancing에도 사용될 수 있음
+- ex) Spring Cloud Zuul, Machery, Apigee, Kong, WS)2, 3scale
+
+### Sofrware 정의 Load balancer
+
+- Software defined load balancer
+- load balancer는 배포 topology의 변화를 이해하고 적절히 대처할 수 있을 만큼 지능적이어야 함
+  - 정적 IP, domain 별칭, cluster 주소를 load balancer에서 설정하는 전톡적인 방식에서 벗어나야 함
+  - 새로운 server가 운영 환경에 추가되면 자동으로 감지해서 수작업 없이 논리적인 cluster에 추가되어야 함
+  - service instance가 service 불가 상태가 되면 그 instance는 load balancer의 부하 분산 대상에서 제외되어야 함
+- Spring Cloud Netflix Ribbon, Eureka, Zuul을 함께 사용해서 지능적인 software 정의 load balancer를 구현할 수 있음
+
+### 중앙 집중형 log 관리
+
+- log file은 분석과 debugging에 중요한 정보 제공
+- 모든 MicroService가 독립적으로 배포되므로 log도 보통은 각자의 local disk에 남음
+  - service를 여러 장비에 걸쳐 확장하면 각 service instance는 가자 별도의 file에 log를 쌓음
+  - 이렇게 되면 log가 분산되어 log mining을 통해 service의 동작을 이해하고 debugging하기가 어려워짐
+- MicroService를 구현할 때는 각 service에서 생성되는 log를 중앙의 log 저장소에 적재할 수 있어야 함
+  - log가 local disk나 local I/O로 분산되지 않고 한 곳에 모이도록
+  - log file이 중앙의 한 곳에서 관리되므로 이력, 실시간, trend 등 다양한 분석을 수행할 수 있음
+  - 연관 관계 ID(correlation ID)를 사용하면 transaction의 전 구간을 쉽게 추적할 수 있음
+- service instance에서 생산되는 모든 log에 연관 관계 ID를 부여해서 중앙 집중적인 방식으로 transaction의 전 구간을 추적할 수 있는 기능이 필요함
+
+### Service 탐색
+
+- 대규모 MicroService에서는 service가 실행되는 위치를 자동으로 찾을 수 있는 mechanism이 필요함
+  - 많은 service instance가 실행되는 cloud 환경에서 service의 위치를 정적으로 찾는 일은 거의 불가능하기 때문'
+- service registry
+  - service가 요청을 처리할 준비가 되었음을 운영 완경에 알려줄 수 있음
+  - registry는 어디에서나 service topology를 이해하는 데에 필요한 정보를 제공
+  - service 소비자는 registry에서 service를 탐색하고 찾을 수 있음
+- ex) Spring Cloud의 Eureka, ZooKeeper, Etcd
+  - container orchestration 도구에는 container 탐색 service가 포함되어 있음
+    - ex) Mesos-DNS는 DCOS 배포본에 포함되어 있음
+
+### 보안 service
+
+- 일체형 application에서는 보안도 application 자체의 일부로서 존재하므로 관리하기 쉬움
+- MicroService에서는 다수의 service가 존재하며, 보안 관련 master data를 하나의 service가 보유할 수 없으므로 보안이 상당히 까다로움
+- 분산 MicroService 생태계에서는 service 인증이나 token service 같은 service 보안을 담당할 중앙의 server를 필요로 함
+- Spring Security와 Spring Security OAuth가 service 보안 기능을 개발할 때 사용할 수 있음
+- Microsoft, Ping, Okta 등 기업용 보안 solution 회사에서 내놓은 통합 인증(SSO; Single Sign-On) solution도 MicroService에 통합해서 사용할 수 있음
+
+### Service 환경 설정
+
+- 서로 다른 server에서 실행되는 다수의 MicroService가 자동화 도구에 의해 배포되면 application 설정을 일체형 application 개발에서 했던 것처럼 정적으로 관리하기 어려움
+- MicroService에서는 12 요소 application처럼 service 환경설정 정보가 모두 외부화되어야 함
+  - 중앙의 service를 두고 한 곳에서 모든 완경설정 정보를 관리하는 것이 좋음
+- ex) Spring Cloud Config server, Archaius 등
+- 환경설정 변경 사항이 동적으로 변할 필요가 없는 소규모 MicroService에서는 Spring Boot profile도 환경설정 관리로 충분함
+
+### 운영 Monitoring
+
+- 여러 version의 service instance로 구성된 많은 수의 MicroService에서는 어떤 service가 어떤 server에서 실행되고 있는지, service 상태는 정상인지, service 의존 관계는 어떤지 알아내기 쉽지 않음
+  - application이 고정된 server에서 실행되는 일체형 application 환경에서는 쉬운 일
+- 배포 topology에 대한 이해는 별개로 하더라도 service 동작을 확인하고 debugging하고 문제 지점을 식별하는 것도 어려움
+- MicroService를 위한 infrastructure를 관리하는 데에는 강력한 monitoring 역량이 필요함
+- ex) Spring Cloud Netflix, Turbine, Hystrix Dashboard 등
+  - service 수준에서의 monitoring 정보를 보여줌
+- ex) AppDynamic, New Relic, Dynatrace, statd, Sensu, Spigo, Simian Viz 등
+  - service 전 구간을 아우르는 MicroService monitoring
+- ex) Datalog
+  - infrastructure를 효율적으로 관맇라 수 있게 해줌
+
+### 의존 관계 관리
+
+- 
