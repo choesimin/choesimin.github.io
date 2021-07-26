@@ -1,5 +1,3 @@
-# Jenkins
-
 # pipeline 작성 방식
 
 - Scripted와 Declarative 두 가지가 있음
@@ -172,3 +170,5 @@
 - https://stackoverflow.com/questions/35011699/java-nio-file-accessdeniedexception-at-jenkins-build
   - CentOS에서 실행 시 java.nio.file.AccessDeniedException
   - comment에 있음
+- https://www.jenkins.io/doc/book/pipeline/
+  - jenkins pipeline official documentation
