@@ -1,3 +1,23 @@
+# Freestyle Project
+
+- Build에서 shell script 선택해서 shell 명령어 적으면 됨
+
+### GitLab 연결
+
+1. 'DashBoard > Manage Jenkins > Security > Manage Credentials'에서 'Add credential' click
+2. kind 항목을 Username with Password로 선택하고, GitLab의 계정, 비밀번호 입력
+3. '[내 project] > Configure > SourceCodeManagement'에서 'Git' check
+4. URL 입력 후, Credential 선택
+
+### Project의 Node version 변경
+
+1. 'DashBoard > Manage Jenkins > Manage Plugins'에서 'NodeJS Plugin' 설치
+2. (reference 문서의 설명 따라서 )원하는 version 설치
+3. '[내 project] > Configure > Build Environment'의 'Provide Node & npm bin/ folder to PATH' check
+4. (2번 과정에서 설치한 )Node version 선택
+
+---
+
 # pipeline 작성 방식
 
 - Scripted와 Declarative 두 가지가 있음
@@ -118,17 +138,7 @@
   }
   ```
 
-# How
-
-- Jenkins 설치
-- Jenkins 실행
-  - terminal에 jenkins-lts 입력하면 실행됨
-  - service로 실행하면 background에 떠있게 됨
-- 해당 port로 url에 입력하여 접속
-- pipeline project 생성
-- script에 code 작성 후 build now
-
-### CentOS에서 사용 시 java.nio.file.AccessDeniedException
+# CentOS에서 사용 시 java.nio.file.AccessDeniedException
 
 1. Open up the this script (using VIM or other editor)
   ```shell
