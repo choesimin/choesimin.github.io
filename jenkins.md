@@ -1,7 +1,7 @@
 # pipeline 작성 방식
 
 - Scripted와 Declarative 두 가지가 있음
-  - 서로 호환되지 않아서 둘 중 하나로 통일하여 작성해야 함
+  - 서로 호환되지 않아서 둘 중 하나로 문법을 통일하여 작성해야 함
 
 ### Scripted
 
@@ -118,18 +118,25 @@
   }
   ```
 
+---
+
 # How
 
 - Jenkins 설치
 - Jenkins 실행
   - terminal에 jenkins-lts 입력하면 실행됨
   - service로 실행하면 background에 떠있게 됨
+    - sudo service start jenkins
 - 해당 port로 url에 입력하여 접속
 - pipeline project 생성
 - script에 code 작성 후 build now
 
-### CentOS에서 사용 시 java.nio.file.AccessDeniedException
+---
 
+# Trouble Shooting
+
+### CentOS에서 사용 시 java.nio.file.AccessDeniedException
+- 추천하지는 않음 : pm2나 directory의 file들은 user 기반으로 돌아가는데, root로 바꾸면 문제가 발생할 수 있음
 1. Open up the this script (using VIM or other editor)
   ```shell
   vim /etc/sysconfig/jenkins

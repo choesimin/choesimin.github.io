@@ -2,7 +2,7 @@
 
 - browser, Node.js를 위한 Promise API를 활용하는 HTTP 비동기 통신 javascript library
 - backend와 frontend의 통신을 쉽게 하기 위해서 AJAX와 더불이 사용
-	- AJAX보다 더 편리하며 더 많은 기능 지원
+  - AJAX보다 더 편리하며 더 많은 기능 지원
 - HTTP 요청과 응답을 JSON 형태로 자동 변경
 
 ---
@@ -24,4 +24,4 @@
 - https://mishka.kr/2020/02/19/axios/
 - https://github.com/axios/axios
 - https://velog.io/@kysung95/개발상식-Ajax와-Axios-그리고-fetch
-	- AJAX vs Axios vs Fetch API
+  - AJAX vs Axios vs Fetch API
