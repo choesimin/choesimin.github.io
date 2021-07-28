@@ -181,6 +181,25 @@
   ps -ef | grep jenkins
   ```
 
+# file 접근 권한 Error (CentOS)
+
+- 사용자 변경
+  ```shell
+  chown -R svcuser.svcuser /var/lib/jenkins
+  chown -R svcuser.svcuser /var/log/jenkins
+  chown -R svcuser.svcuser /var/cache/jenkins/
+  ```
+- 실행 권한 설정 file 변경 (port 변경도 이곳에서)
+  ```shell
+  vi /etc/sysconfig/jenkins
+  ```
+  - JENKINS_USER="svcuser"
+  - JENKINS_PORT="18080"
+- jenkins service run (start / stop / restart)
+```
+sudo service jenkins start
+```
+
 ---
 
 # Reference
@@ -203,3 +222,7 @@
   - comment에 있음
 - https://www.jenkins.io/doc/book/pipeline/
   - jenkins pipeline official documentation
+- https://itraveler.tistory.com/13
+  - user를 jenkins에서 다른 user로 바꾸기
+    - centos jenkins AccessDeniedException Error 날 때
+
