@@ -155,9 +155,6 @@
 ---
 
 # Trouble Shooting
-=======
-# CentOS에서 사용 시 java.nio.file.AccessDeniedException
->>>>>>> 4a28799c0b95b20b9fab188974dd88d66e2b24ee
 
 ### CentOS에서 사용 시 java.nio.file.AccessDeniedException
 - 추천하지는 않음 : pm2나 directory의 file들은 user 기반으로 돌아가는데, root로 바꾸면 문제가 발생할 수 있음
@@ -181,7 +178,7 @@
   ps -ef | grep jenkins
   ```
 
-# file 접근 권한 Error (CentOS)
+### file 접근 권한 Error (CentOS)
 
 - 사용자 변경
   ```shell

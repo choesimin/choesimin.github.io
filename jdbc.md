@@ -35,31 +35,31 @@
 # JDBC 단계별 사용
 
 1. import
-```
+```java
 import java.sql.*;
 ```
 2. driver load
-```
+```java
 Class.forName("com.mysql.jdbc.Driver");
 ```
 3. Connection 얻기
-```
+```java
 String dburl = "jdbc:mysql://localhost/dbName";
 Connection connection = DriverManager.getConnection(dburl, ID, PWD);
 ```
 4. Statement 생성
-```
+```java
 Statement statement = connection.createStatement();
 ```
 5. 질의 수행 & ResultSet으로 결과 받기
-```
+```java
 ResultSet resultSet = statement.executeQuery("select no from user");
 while (resultSet.next()) {
 	System.out.println( resultSet.getInt( "no") );
 }
 ```
 6. close
-```
+```java
 resultSet.close();
 statement.close();
 connection.close();
