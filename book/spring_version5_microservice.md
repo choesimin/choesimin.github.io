@@ -825,4 +825,60 @@
 
 ### 의존 관계 관리
 
-- 
+- 핵심 issue
+- 지나치게 많은 의존 관계는 MicroService에서 문제가 될 가능성이 높음
+- 지나친 의존 관계 생성을 방지하기 위한 설계 관점
+  1. service 경계를 적절히 설계해서 의존관계 낮추기
+  2. 가능한 한 느슨한 결합을 사용하게 설계해서 영향 여파를 줄이기
+    - 또한 service 간 상호작용을 비동기 통신 방식으로 설계하기
+  3. circuit breaker 같은 pattern을 사용해서 의존 관계로 인한 문제가 확산되는 것 막기
+  4. 의존 관계를 시각화해서 monitoring
+- 의존 관계 issue를 해결하기 위해서 여러 도구의 조합이 필요함
+  - APM; Application Performance Management : 운영 monitoring 도구 또는 AppDynamic
+  - Cloud Craft, Light Mesh, Simian Viz 등
+
+### Data 호수
+
+- MicroService는 각자의 local transaction data 저장소를 추상화하며, 각자의 transaction 목적에 맞게 사용함
+  - 저장소의 유형과 data 구조는 MicroService 제공하는 service에 맞게 최적화됨
+- ex) 고객 관계 graph 개발
+  - Neo4J, OrientDB 등과 같은 graph database 필요
+- ex) 여권 번호, 주소, email, 전화번호 등의 정보를 기준으로 고객을 찾아내는 예측 text 검색 개발
+  - Elasticsearch, Solr 등과 같은 index 검색 database 필요
+- 필요에 맞도록 data가 파편화되면 각 data가 서로 동떨어져 연결될 수 없는 이질적인 data 섬(data island)이 되어버림
+  - 각자의 business에 맞는 data를 사용하다가, 여러 가지 MicroService를 모두 조합해야 알아낼 수 있는 정보가 실시간으로 필요할 때, MicroService는 곤란함
+    - 일체형 application에서는 모든 data가 하나의 database에 모두 담겨 있으므로 비교적 쉬움
+  - 따라서 data 호수(data lake)가 필요
+- Spring Cloud Data Flow, Kafka, Flink, Flume 등의 data 입수 도구는 높은 확장성을 가지고 있어 MicroService에서 사용하기 적합
+
+### 신뢰성 Messaging
+
+- MicroService에서는 reactive style을 사용하는 것이 좋음
+  - MicroService의 결합도를 낮출 수 있음
+    - 더 높은 확장성 확보 가능
+- reactive system에서는 신뢰성 있는 고가용성 messaging infrastructure service가 필요함
+  - messaging에는 RabbitMQ, ActiveMQ, Kafka가 널리 사용됨
+  - IBM MQ와 TIBCO의 EMS은 대규모 massaging platform에서 사용되는 상용 제품
+  - cloud messaging 또는 Iron.io같은 service로서의 messaging도 intermet으로 연결된 다양한 환경에서 협업하는 messaging에 사용됨
+
+# Process 및 통제 역량
+
+### DevOps
+
+- 성공적인 MicroService를 위한 핵심 요소
+- MicroService 전달(delivery) 속도를 높이기 위해 조직이 도입해야할 것들
+  - Agile 개발 process
+  - 지속적 통합
+  - 자동화된 QA(Quality Assurance: 품질 보증) 검사
+  - 자동화된 전달 pipeline
+  - 자동화된 배포
+  - 자동화된 infrastructure provisioning
+- 폭포수 모형의 개발 방식이나, 무거운 출시 관리 process와 긴 출시 주기를 갖고 있는 조직에서는 MicroService 개발이 더 어려움
+
+### 자동화 도구
+
+- Agile 개발, 지속적 통합, 지속적 전달, 지속적 패보를 통해 MicroService를 성공적으로 전달하려면 자동화 도구가 필수적
+  - 자동화 도구 없이 많은 수의 작은 MicroService를 수작업으로 배포하는 것은 너무 길고 힘든 작업
+  - MicroService마다 변경 발생 빈도가 다르므로 MicroService마다 별도의 pipeline을 구성하는 것이 좋음
+- test 자동화 도구
+  - service의 test 용이성도 중요함
