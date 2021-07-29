@@ -882,3 +882,18 @@
   - MicroService마다 변경 발생 빈도가 다르므로 MicroService마다 별도의 pipeline을 구성하는 것이 좋음
 - test 자동화 도구
   - service의 test 용이성도 중요함
+  - 하나의 service는 다른 service에 동기적으로 또는 비동기적으로 의존하고, 다른 service는 또 다른 service에 의존하는 관계가 연쇄적으로 이어질 수 있음
+    - 이 때, service의 전 구간을 아우르는 test를 어떻게 수행할 수 있을까 (의존하는 service는 test 시점에 사용 가능한 상태일 수도 아닐 수도 있음)
+- service 가상화(service virtualization)와 모조 service(service mocking) 기법을 사용하면 실제 의존하는 service가 사용 가능한 상태가 아닐 때에도 test를 수행할 수 있음
+  - test 환경에서 의존하는 대상 service가 사용할 수 없는 상태라면 실제 service의 동작을 흉내 내는 모조 service로 test를 진행할 수 있음
+- 소비자 주도 계약 (consumer-driven contract)
+  - 소비자 주도 계약을 통해 service가 호출하는 모든 기능을 명세하여 빠지는 부분 없이 통합 test를 수행할 수도 있음
+- 붕괴 test (destructive test)
+  - Nexflix는 Simian Army를 이용해서 붕괴 저항성 test
+  - 성숙한 service에는 service의 신뢰성에 대한 확인과 붕괴 시 대비책이 정삭적으로 동작하는지 확인이 필요함
+  - Simian Army는 다양한 error 유발 scenario를 만들어서 system을 실패 지점으로 빠뜨리고, 그때의 system 동작을 확인할 수 있게 해줌
+
+### Container Registry
+
+- version 관리도는 MicriService는 binary를 MicroService 저장소에 저장
+- MicroService 저장소는 단순히 build 결과물을 담는 artifactory 저장소일 수 있으며, docker registry처럼 container 저장소일 수도 있음
