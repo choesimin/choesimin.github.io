@@ -117,7 +117,7 @@ console.log(result);    // 4540
   console.log(num);    // 8
   ```
 - 우선순위
-  - */ > +-
+  - (*, /)  >  (+, -)
 
 ### 연산자 줄여쓰기
 
@@ -152,9 +152,9 @@ console.log(d_result);    // 9
 
 # 비교 연산자
 
-- < > <= >= == !=
-- =을 하나 쓰는 것은 할당 연산자이므로 == 사용
-- 반환값은 항상 Boolean형
+- <, >, <=, >=, ==, !=
+  - =을 하나 쓰는 것은 할당 연산자이므로 == 사용
+- 반환값은 항상 Boolean
   ```javascript
   console.log(10 > 5);    // true
   console.log(10 == 5);    // false
@@ -478,14 +478,224 @@ let showError = () => {
 }
 ```
 
+# Object (객체)
 
+```javascript
+// 선언
+const superman = {
+  name: 'clark',
+  age: 33,
+}
 
+// 접근
+console.log(superman.name);    // "clark"
+console.log(superman['age']);    // 33
 
+// 추가
+superman.gender = 'male';
+superman['hair_color'] = 'black';
 
+// 삭제
+delete superman.hair_color;
 
+// property 존재 여부 확인
+console.log(superman.birth_day);    // undefined
+console.log('birth_day' in superman);    // false
+console.log('age' in superman);    // true
 
+// for ... in 반복문
+for (let key in superman) {
+  console.log(key);
+  console.log(superman[key]);
+}
+```
+- 단축 property
+  ```javascript
+  const name = 'clark';
+  const age = 33;
+
+  const superman = {
+    name,    // name: name
+    age,    // age: age
+    geneder: 'male',
+  }
+  ```
+- ex) 이름과 나이를 받아서 객체를 반환하는 함수
+  ```javascript
+  function makeObject(name, age) {
+    return {
+      name : name,    // 축약형으로 name이라고 써도 됨
+      age : age,    // 축약형으로 age로 써도 됨
+      hubby : "football"
+    };
+  }
+
+  const Mike = makeObject("Mike", 30);
+  console.log(Mike);    // Object형 반환
+  ```
+- ex) 객체 내의 값을 검사하는 함수
+  ```javascript
+  function isAdult(user) {
+    if (!('age' in user) || user.age < 20) {
+      return false;
+    }
+    return true;
+  }
+
+  const Mike = {
+    name : "Mike",
+    age : 30
+  };
+
+  const Jain = {
+    name: "Jain"
+  };
+
+  console.log(isAdult(Mike));
+  console.log(isAdult(Jane));
+  ```
+
+# Object - method, this
+
+### method : 객체 property로 할당된 함수
+
+```javascript
+const superman = {
+  name : 'clark',
+  age : 33,
+  fly : function () {
+    console.log('super fly!');
+  },
+  eat() {
+    console.log('super eat!');
+  },    // method 단축 구문
+  introduce: function () {
+    console.log(`Hello, I'm ${this.name}`);
+  }
+}
+
+superman.fly();    // "super fly!"
+superman.eat();    // "super eat!"
+```
+
+### this
+
+- 객체 자기 자신을 가리킴
+```javascript
+let boy = {
+  name : 'Mike',
+  sayHello : function () {
+    console.log(`Hello, I'm ${this.name});
+  },
+}
+
+let girl = {
+  name : 'Jane',
+  sayHello : function () {
+    console.log(`Hello, I'm ${this.name});
+  },
+}
+
+boy.sayHello();    // "Hello, I'm Mike"
+girl.sayHello();    // "Hello, I'm Jane"
+```
+- 화살표 함수는 일반 함수와는 달리 자신만의 this를 가지지 않음
+  - 화살표 함수 내부에서 this를 사용하면, 그 this는 외부에서 값을 가져 옴
+  ```javascript
+  let boy = {
+    name : 'Mike',
+    sayThis : () => {
+      console.log(this);
+    },
+  }
+
+  boy.sayThis();    // this는 boy를 가리키지 않고 전역 객체(Window)를 가리키게 됨
+  ```
+
+# Array (배열)
+
+- 순서가 있는 list 
+  ```javascript
+  let students = ['철수', '영희', ... '영수'];
+
+  console.log(students[0]);    // 철수
+  console.log(students[1]);    // 영희
+  console.log(students[29]);    // 영수
+
+  student[0] = '민정';
+  console.log(students[0]);    // 민정
+  ```
+- 배열은 문자 뿐만 아니라, 숫자, 객체, 함수 등도 포함할 수 있음
+  ```javascript
+  let arr = [
+    '민수',
+    3,
+    false,
+    {
+      name : 'Mike',
+      age : 30,
+    },
+    function () {
+      console.log('TEST');
+    }
+  ];
+  ```
+- length : 배열의 길이
+  ```javascript
+  students.length    // 30
+  ```
+- push() : 배열 끝에 추가
+  ```javascript
+  let days = ['월', '화', '수'];
+
+  days.push('목');
+  console.log(days);    // ['월', '화', '수', '목']
+  ```
+- pop() : 배열 끝 요소 제거
+  ```javascript
+  let days = ['월', '화', '수'];
+
+  days.pop();
+  console.log(days);    // ['월', '화']
+  ```
+- shift, unshift : 배열 앞에 제거/추가
+  ```javascript
+  let days = ['월', '화', '수'];
+
+  days.unshift('일');
+  console.log(days);    // ['일', '월', '화', '수']
+
+  days.shift();
+  console.log(days);    // ['월', '화', '수']
+
+  days.unshift('금', '토', '일');
+  console.log(days);    // ['금', '토', '일', '월', '화', '수']
+  ```
+- 반복문 : for
+  ```javascript
+  let days = ['월', '화', '수'];
+
+  for (let index = 0; index < days.length; index++) {
+    console.log(days[index]);
+  }
+  ```
+- 반복문 : for ... of
+  - index를 못 얻는다는 단점 
+  - for ... in 과 헷갈려서는 안됨
+    - for ... in은 배열에서의 사용이 권장되지 않음
+  ```javascript
+  let days = ['월', '화', '수'];
+
+  for (let day of days) {
+    console.log(day);
+  }
+  ```
+
+---
 
 # Reference
 
-- https://www.youtube.com/watch?v=KF6t61yuPCY 
-  - javascript 기초 강좌 100분 완성
+- https://www.youtube.com/watch?v=KF6t61yuPCY
+  - '자바스크립트 기초 강좌 : 100분 완성' - Youtube 코딩앙마
+- https://www.youtube.com/watch?v=4_WLS9Lj6n4
+  - '자바스크립트 중급 강좌 : 140분 완성' - Youtube 코딩앙마
