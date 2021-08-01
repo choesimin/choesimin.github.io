@@ -987,7 +987,7 @@ const obj = makeObj('나이', 33);    // 어떤 것이 key가 될 지 모르는 
     gender : 'male',
   }
 
-  Object.keys(user);
+  console.log(Object.keys(user));
     // ["name", "age", "gender"]
   ```
 - Object.values() : 값 배열 반환
@@ -998,7 +998,7 @@ const obj = makeObj('나이', 33);    // 어떤 것이 key가 될 지 모르는 
     gender : 'male',
   }
 
-  Object.values(user);
+  console.log(Object.values(user));
     // ["Mike", 30, "male"]
   ```
 - Object.entries() : key/값 배열 반환
@@ -1009,7 +1009,7 @@ const obj = makeObj('나이', 33);    // 어떤 것이 key가 될 지 모르는 
     gender : 'male',
   }
 
-  Object.entries(user);
+  console.log(Object.entries(user));
     // [["name", "Mike"], ["age", 30], ["gender", "male"]]
   ```
 - Object.fromEntries() : key/값 배열을 객체로
@@ -1020,7 +1020,7 @@ const obj = makeObj('나이', 33);    // 어떤 것이 key가 될 지 모르는 
     ["gender", "male"]
   ]
 
-  Object.fromEntries(arr);
+  console.log(Object.fromEntries(arr));
     // {name : 'Mike', age : 30, gender : 'male'}
   ```
 
@@ -1162,6 +1162,119 @@ for (let key in user) {
 }
 ```
 - 만약 함수를 Symbol로 추가하지 않았다면, 아래 for문에서 key, value를 출력할 때 function까지 출력되었을 것
+
+---
+
+# Number, Math
+
+- toString() : 10진수 -> 2진수/16진수
+  ```javascript
+  let num = 10;
+
+  console.log(num.toString());    // "10"
+  console.log(num.toString(2));    // "1010" : 2진수로 변환
+  console.log(num.toString(16));    // "ff" : 16진수로 변환
+  ```
+- Math.PI; : 3.141592653589793...
+- Math.ceil() : 올림
+  ```javascript
+  let num1 = 5.1;
+  let num2 = 5.7;
+
+  console.log(Math.ceil(num1));    // 6
+  console.log(Math.ceil(num2));    // 6
+  ```
+- Math.floor() : 내림
+  ```javascript
+  let num1 = 5.1;
+  let num2 = 5.7;
+
+  console.log(Math.floor(num1));    // 5
+  console.log(Math.floor(num2));    // 5
+  ```
+- Math.round() : 반올림
+  ```javascript
+  let num1 = 5.1;
+  let num2 = 5.7;
+
+  console.log(Math.round(num1));    // 5
+  console.log(Math.round(num2));    // 6
+  ```
+- 소숫점 자릿수
+  ```javascript
+  let user_rate = 30.1234;
+  // 요구사항 : 소수점 둘째 자리까지 표현 (셋째 자리에서 반올림)
+
+  console.log(Math.round(user_rate * 100) / 100);    // 30.12
+
+  console.log(user_rate.toFixed(2));    // "30.12"
+  console.log(Number(user_rate.toFixed(2));    // 30.12
+    // toFixed는 문자를 반환하므로 Number()를 이용하여 숫자로 바꿔줌
+  console.log(Number(user_rate.toFixed(0));    // 30
+  console.log(Number(user_rate.toFixed(6));    // 30.123400
+  ```
+- isNaN()
+  ```javascript
+  let x = Number('x');
+  
+  console.log(x == NaN);    // false
+  console.log(x === NaN);    // false
+  console.log(NaN == NaN);    // false
+
+  console.log(isNaN(x));    // true
+  console.log(isNaN(3));    // false
+  ```
+- parseint()
+  ```javascript
+  let margin = '10px';
+
+  console.log(parseInt(margin));    // 10
+  console.log(Number(margin));    // NaN
+
+
+  let red_color = 'f3';
+
+  console.log(parseInt(red_color));    // NaN : parseInt()는 숫자로 시작하지 않으면 NaN을 반환
+  console.log(parseInt(red_color, 16));    // 243 : 16진수를 10진수로 변환하여 반환
+  console.log(parseInt('11', 2);    // 3 : 2진수를 10진수로 변환하여 반환
+  ```
+- parseFloat()
+  ```javascript
+  let padding = '18.5%';
+
+  console.log(parseInt(padding));    // 18
+  console.log(parseFloat(padding));    // 18.5
+  ```
+- Math.random() : 0~1의 ramdom한 수
+  ```javascript
+  // 1 ~ 100 사이 임의의 숫자를 뽑고 싶다면?
+  console.log(Math.floor(Math.random() * 100) + 1);    // 1 ~ 100 사이의 ramdom 숫자
+  ```
+- Math.max() & Math.min() : 최댓값 & 최솟값
+  - MAXimum, MINimum
+  ```javascript
+  console.log(Math.max(1, 4, -1, 5, 10, 9, 5.54));    // 10
+  console.log(Math.min(1, 4, -1, 5, 10, 9, 5.54));    // -1
+  ```
+- Math.abs() : 절대값
+  - ABSolute
+  ```javascript
+  console.log(Math.abs(-1));    // 1
+  ```
+- Math.pow(n, m) : 제곱
+  - POWer
+  ```javascript
+  console.log(Math.pow(2, 10));    // 1024
+  ```
+- Math.sqrt() : 제곱근
+  - SQuare RooT
+  ```javascript
+  console.log(Math.sqrt(16));    // 4
+  ```
+
+---
+
+# String Methods (문자열 methods)
 
 
 
