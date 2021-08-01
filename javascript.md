@@ -48,6 +48,8 @@ console.log(typeof null);    // "object" 엄밀히 따지면 null은 object형�
 console.log(typeof undefined);    // "undefined"
 ```
 
+---
+
 # alert, prompt, confirm
 
 ### alert
@@ -75,6 +77,8 @@ const isAdult = confirm("Are you adult?");
 
 console.log(isAdult);    // true or false
 ```
+
+---
 
 # 형변환
 
@@ -104,6 +108,8 @@ console.log(result);    // 4540
   console.log(Boolean(''), Boolean(' '));    // false true
   ```
 
+---
+
 # 기본 연산자
 
 - + : 더하기
@@ -130,6 +136,8 @@ num /= 5;    // num = num / 5;
 num %= 5;    // num = num % 5;
 ```
 
+---
+
 # 증가 연산자, 감소 연산자
 
 ```javascript
@@ -150,6 +158,8 @@ let d_result = --d;
 console.log(d_result);    // 9
 ```
 
+---
+
 # 비교 연산자
 
 - <, >, <=, >=, ==, !=
@@ -168,6 +178,8 @@ console.log(d_result);    // 9
   console.log(a === b);    // false (일치 연산자는 type까지 비교)
   ```
 
+---
+
 # 조건문 : if, else
 
 ```javascript
@@ -181,6 +193,8 @@ if (age > 19) {
   console.log('bye');
 }
 ```
+
+---
 
 # 논리 연산자
 
@@ -248,6 +262,8 @@ if (age > 19) {
     }
     ```
 
+---
+
 # 반복문
 
 ### for
@@ -304,6 +320,8 @@ do {
   }
   ```
 
+---
+
 # switch
 
 - 각 case마다 brreak로 탈출하지 않으면 이후의 모든 case를 실행함
@@ -344,6 +362,8 @@ if (평가 == A) {
     default :
       console.log('no fruit');
   ```
+
+---
 
 # 함수 (함수 선언문)
 
@@ -422,6 +442,8 @@ const result_nothing = returnNothing();
 console.log(result_nothing);    // undefined
 ```
 
+---
+
 # 함수 표현식, 화살표 함수(arrow functino)
 
 ### 함수 선언문 vs 함수 표현식
@@ -477,6 +499,8 @@ let showError = () => {
   alert('error');
 }
 ```
+
+---
 
 # Object (객체)
 
@@ -555,6 +579,8 @@ for (let key in superman) {
   console.log(isAdult(Jane));
   ```
 
+---
+
 # Object - method, this
 
 ### method : 객체 property로 할당된 함수
@@ -611,6 +637,8 @@ girl.sayHello();    // "Hello, I'm Jane"
 
   boy.sayThis();    // this는 boy를 가리키지 않고 전역 객체(Window)를 가리키게 됨
   ```
+
+---
 
 # Array (배열)
 
@@ -693,9 +721,478 @@ girl.sayHello();    // "Hello, I'm Jane"
 
 ---
 
+# 변수
+
+### var
+
+- 한 번 선언된 변수를 다시 선언할 수 있음
+  ```javascript
+  var name = 'Mike';
+  console.log(name);    // "Mike"
+
+  var name = 'Jane';
+  console.log(name);    // "Jane"
+  ```
+- 선언하기 전에 사용할 수 있음 : error를 일으키지 않음
+  ```javascript
+  console.log(name);    // undefined
+  
+  var name = 'Mike';
+  ```
+  - 이렇게 동작함 (Hoisting)
+    ```javascript
+    var name;
+
+    console.log(name);    // undefined
+    
+    name = 'Mike';    // 선언은 hoisting되지만, 할당은 hoistring되지 않음
+    ```
+- var의 생성 과정
+  0. 선언 및 초기화 단계
+  1. 할당 단계
+  - 선언과 초기화가 동시에 되기 때문에 할당 전에 호출하면 error을 낳지 않고 undefined를 출력
+- 함수 scope (function-scoped)
+
+### let
+
+- 한 번 선언된 변수를 다시 선언할 수 없음
+  ```javascript
+  let name = 'Mike';
+  console.log(name);    // "Mike"
+
+  let name = 'Mike';    // error
+  console.log(name);
+  ```
+- 선언하기 전에 사용할 수 없음
+  ```javascript
+  console.log(name);    // ReferenceError
+  
+  let name = 'Mike';
+  ```
+  - let과 const도 hoisting 됨 : hoisting이 되지 않는다고 착각하면 안됨
+    - 그러나 var처럼 동작하지 않고 error를 발생시키는 것은 TDZ; Temporal Dead Zone 때문
+      - TDZ에 있는 변수들은 사용할 수 없으며, let과 const는 TDZ의 영향을 받음
+      - 할당받지 않은 변수는 사용할 수 없음 -> code를 예측 가능하게 하고 잠재적인 bug를 줄일 수 있음
+- hoisting
+  - scope 내부 어디에서든 변수 선언은 최상위에서 선언된 것처럼 행동한다는 뜻
+  - hoisting은 scope 단위로 일어남
+  ```javascript
+  let age = 30;
+
+  function showAge() {
+    console.log(age);
+
+    let age = 20;    // error
+  }
+  ```
+    - 여기서 scope는 showAge() 내부
+    - let으로 선언한 두번째 age 변수가 hoisting을 일으킴
+    - 만약 hoisting이 되지 않았다면 함수 바깥에 선언한 age = 30이 정상으로 찍혀야 함
+- let의 생성 과정
+  1. 선언 단계
+  2. 초기화 단계
+  3. 할당 단계
+  - hoisting되면서 선언 단계가 이루어지지만, 초기화 단계는 실제 code에 도달했을 때이기 때문에 ReferenceErorr가 발생
+- block scope (bock-scoped)
+
+### const
+
+- 한 번 선언된 변수를 다시 선언할 수 없음
+- const의 생성 과정
+  1. 선언 + 초기화 + 할당
+  - 선언과 할당이 동시에 되어야 함
+    - let과 var는 값을 바꿀 수 있기 때문에 선언만 해두고 나중에 할당하는 것이 허용됨
+  ```javascript
+  let name;
+  name = 'Mike'
+
+  var age;
+  age = 30;
+
+  const gender;    // Uncaught SyntaxError: Missing initializer in const declaration
+  gender = 'male';
+  ```
+- block scope (block-scoped)
+
+### Block Scope vs 함수 Scope
+
+- block scope
+  - 모든 code block에서 선언된 변수는 code block 내에서만 유효하며 외부에서는 접근할 수 없다는 의미
+    - 즉, code block 내부에서 선언한 변수는 지역변수
+  - code block : 함수, if문, for문, while문, try-catch문 등
+  ```javascript
+  functon add() {
+    // Block-level Scope
+  }
+
+  if () {
+    // Block-level Scope
+  }
+
+  for (let i = 0; i < 10; i++) {
+    // Block-level Scope
+  }
+  ```
+
+- 함수 scope
+  - 함수 내에서 선언된 변수만 그 지역변수가 되는 것
+  ```javascript
+  const age = 30;
+
+  if(age > 19) {
+    var txt = '성인';
+  }
+
+  console.log(txt);    // "성인"
+  ```
+    - if문 안에서 var로 선언한 변수는 if문 밖에서도 사용이 가능함
+      - let과 const는 이렇게 사용할 수 없음 (중괄호 내부에서만 사용 가능)
+  ```javascript
+  function add(num1, num2) {
+    var result = num1 + num2;
+  }
+
+  add(2, 3);
+
+  console.log(result);    // error
+  ```
+    - var도 이렇게 함수 내에서 선언되면 함수 밖에서 사용할 수 없음
+      - 유일하게 벗어날 수 없는 scope가 함수
+
+---
+
+# 생성자 함수
+
+```javascript
+function User(name, age) {
+  this.name = name;
+  this.age = age;
+  this.sayName = functino () {
+    console.log(this.name);
+  }
+}
+
+let user1 = new User('Mike', 30);
+let user2 = new User('Jane', 22);
+let user3 = new User('Tom', 17);
+let user5 = new User('Han', 40);
+
+user5.sayName();    // "Han"
+```
+- 첫 글자를 대문자로 해서 함수로 만들어줌
+- new 연산자를 사용해서 함수를 호출
+- 붕어빵틀, 와플팬
+  - 필요한 재료를 넣어주고 찍어내는 것 : 이름, 나이
+  - 와플, 붕어빵 : 객체
+- 보통 객체 literal로 객체를 만들지만, 비슷한 객체를 만들어야 할 때 생성자 함수를 사용
+  ```javascript
+  // 객체 literal
+  let user = {
+    name : 'Mike',
+    age : 30,
+  }
+  ```
+- 생성자 함수의 동작 과정
+  ```javascript
+  function User(name, age) {
+    // this = {}    // 2 : 일단 빈 객체를 만들고 this에 할당 (실제로 code에는 없음)
+
+    this.name = name;    // 3 : this에 property 추가
+    this.age = age;    // 3 : this에 property 추가
+
+    return this;    // 4 : this 반환
+  }
+
+  new user = User('Mike', 30);    // 1 : 생성자 함수 호출
+  ```
+- 함수 호출 시 new를 안 붙이면?
+  - 단지 return값이 없는 함수를 호출만하기 때문에 undefined 반환
+
+---
+
+# Object methods / Computed property
+
+### Conputed property
+
+```javascript
+let a = 'age';
+
+const user = {
+  name : 'Mike',
+  [a] : 30,    // computed property : 변수 a에 할당된 값이 들어감
+}
+```
+```javascript
+const user = {
+  [1 + 4] : 5,
+  ["안녕" + "하세요"] : "Hello",
+}
+```
+```javascript
+functino makeObj(key, val) {
+  return {
+    [key] : val
+  }
+}
+
+const obj = makeObj('나이', 33);    // 어떤 것이 key가 될 지 모르는 객체를 만들 때 유용함
+```
+
+### Object methods
+
+- Object.assign() : 객체 복제
+  ```javascript
+  const user = {
+    name : 'Mike',
+    age : 30,
+  }
+
+  const clone_user_1 = user;    // 복제가 된 것이 아님 (참조값만 복사)
+    // user 변수에는 객체 자체가 들어가있는 것이 아님
+    // user 변수엔 객체가 저장되어 있는 memory 주소(참조값)가 저장되어 있음
+    // 이렇게 되면 clone_user_1의 값을 바꿨을 때, user의 이름도 같이 바뀜
+
+  const clone_user_2 = Object.assign({}, user);    // 동일하게 복제
+    // 첫번째 인자의 빈 객체는 초기값
+    // 두번째 매개변수로 들어온 객체가 초기값에 병합됨
+    // user가 병합되므로 복제됨
+    // clone_user_2의 이름을 바꿔도 user의 이름은 변함 없음 (같은 객첵 아니기 때문)
+  
+  const clone_user_3 = Object.assign({gender : 'male'}, user);    // user에 gender 추가하여 복제
+    // 성별값만 있는 객체가 user를 병합
+    // 총 3개의 property를 가진 객체를 만듬
+
+  const clone_user_4 = Object.assign({name : 'Tom'}, user);    // user의 name을 Tom으로 덮어써서 복제
+  ```
+  ```javascript
+  const user = {
+    name : 'Mike',
+  }
+
+  const info1 = {
+    age : 30,
+  }
+
+  const info2 = {
+    gender : 'male',
+  }
+
+  Object.assign(user, info1, info2);    // 여러 개도 병합 가능
+  ```
+- Object.keys() : key 배열 반환
+  ```javascript
+  const user = {
+    name : 'Mike',
+    age : 30,
+    gender : 'male',
+  }
+
+  Object.keys(user);
+    // ["name", "age", "gender"]
+  ```
+- Object.values() : 값 배열 반환
+  ```javascript
+  const user = {
+    name : 'Mike',
+    age : 30,
+    gender : 'male',
+  }
+
+  Object.values(user);
+    // ["Mike", 30, "male"]
+  ```
+- Object.entries() : key/값 배열 반환
+  ```javascript
+  const user = {
+    name : 'Mike',
+    age : 30,
+    gender : 'male',
+  }
+
+  Object.entries(user);
+    // [["name", "Mike"], ["age", 30], ["gender", "male"]]
+  ```
+- Object.fromEntries() : key/값 배열을 객체로
+  ```javascript
+  const arr = [
+    ["name", "Mike"],
+    ["age", 30],
+    ["gender", "male"]
+  ]
+
+  Object.fromEntries(arr);
+    // {name : 'Mike', age : 30, gender : 'male'}
+  ```
+
+---
+
+# Symbol : 유일한 식별자
+
+```javascript
+const a = Symbol();    // new를 붙이지 않음
+const b = Symbol();
+
+console.log(a);    // Symbol()
+console.log(b);    // Symbol()
+
+console.log(a === b);    // false
+console.log(a == b);    // false
+```
+- 유일성 보장
+  ```javascript
+  const id1 = Symbol('id');    // 설명을 붙여주면 debugging할 때 편함
+  const id2 = Symbol('id');
+
+  console.log(id1);    // Symbol(id)
+  console.log(id2);    // Symbol(id)
+
+  console.log(id1 === id2);    // false
+  console.log(id1 == id2);    // false
+  ```
+- 이름 알아내기
+  ```javascript
+  const id = Symbol('id 입니다');
+  console.log(id.description);    // "id 입니다"
+  ```
+
+### property key : Symbol형 vs 문자형
+
+- property key : Symbol형
+  ```javascript
+  const id = Symbol('id');
+
+  const user = {
+    name : 'Mike',
+    age : 30,
+    [id] : 'myid'
+  }
+
+  console.log(user);    // {name : "Mike", age : 30, Symbol(id) : "myid"}
+  console.log(user[id]);    // "myid"
+
+  console.log(Object.keys(user));    // ["name", "age"]
+  console.log(Object.values(user));    // "Mike", 30]
+  console.log(Object.entries(user));    // [Array(2), Array(2)]
+  for (let a in user) {...}    // 마찬가지로 건너뜀
+  ```
+  - 꽁꽁 숨겨져 있기 때문에 특정 위치의 원본 data를 건드리지 않고 속성을 추가할 수 있음
+    ```javascript
+    const user = {
+      name : 'Mike',
+      age : 30,
+    }
+
+    const id = Symbol('id');    // good
+    user[id] = 'myid';    // good
+
+    user.name = 'myname';    // bad
+    user.a_key_no_one_used = 'hahaha';    // bad
+    ```
+    - 원본 data가 Object.keys나 for ... in으로 순회하면서 어디선가 data를  사용할 수도 있음
+      - 이 때, 객체에 property를 추가하거나 변경하면 문제가 생길 수 있음
+      - 내가 추가한 property가 어디서 어떻게 튀어나올지 예측할 수 없음
+- property key : 문자형
+  - 객체 property의 key는 기본적으로는 문자형으로 다루게 됨
+  ```javascript
+  const obj = {
+    1 : '1입니다',
+    false : '거짓',
+  }
+
+  console.log(Object.keys(obj));    // ["1", "false"]
+
+  console.log(obj['1']);    // "1입니다"
+  console.log(obj['false']);    // "거짓"
+  ```
+
+### Symbol.for() : 전역 Symbol
+
+- 하나의 Symbol만 보장받을 수 있음
+- 없으면 만들고, 있으면 가져오기 때문
+- Symbol 함수는 매번 다른 Symbol값을 생성하지만,
+  - Symbol.for method는 하나를 생성한 뒤 key를 통해 같은 Symbol을 공유
+```javascript
+const id1 = Symbol.for('id');
+const id2 = Symbol.for('id');
+
+console.log(id1 === id2);    // true
+console.log(Symbol.keyFor(id1));    // "id"
+```
+
+### 숨겨진 Symbol key 보는 법
+
+```javascript
+const id = Symbol('id');
+
+const user = {
+  name : 'Mike',
+  age : 30,
+  [id] : 'myid',
+}
+
+console.log(Object.getOwnPropertySymbols(user));    // [Symbol(id)]
+console.log(Reflect.ownKeys(user));    // ["name", "age", Symbol(id)]
+```
+- 대부분의 library나 내장 함수들은 Object.getOwnPropertySymbols나 Reflect.ownKeys 같은 method들을 사용하지 않음
+  - 따라서 걱정하지 말고 유일한 property를 생성하고 싶을 때, Symbol을 사용하면 됨
+
+### Symbol Example
+
+```javascript
+// 다른 개발자가 만들어 놓은 객체
+const user = {
+  name : 'Mike',
+  age : 30,
+};
+
+
+// 내 작업
+// user.showName = function () {};    // 다른 개발자의 작업물에 영향을 주어 예측할 수 없는 문제 발생 가능
+const showName = Symbol("show name");
+user[showName] = function () {
+  console.log(this.name);
+}
+
+user[showName]();
+
+
+// 사용자가 접속하면 보는 message
+for (let key in user) {
+  console.log(`His ${key} is ${user[key]}`);
+}
+```
+- 만약 함수를 Symbol로 추가하지 않았다면, 아래 for문에서 key, value를 출력할 때 function까지 출력되었을 것
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Reference
 
 - https://www.youtube.com/watch?v=KF6t61yuPCY
   - '자바스크립트 기초 강좌 : 100분 완성' - Youtube 코딩앙마
 - https://www.youtube.com/watch?v=4_WLS9Lj6n4
-  - '자바스크립트 중급 강좌 : 140분 완성' - Youtube 코딩앙마
