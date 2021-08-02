@@ -20,6 +20,8 @@
 	- autoindent : 줄바꿈할 때 바로 아래로 cursor를 떨어뜨림 (선호)
 	- smartindent : 줄바꿈할 때 tabstop만금 자동으로 더 띄어서 cursor를 위치시킴
 - set shiftwidth=2 : ">>" 또는 "<<" 로 들여쓰기 할때 공백의 갯수 (기본값 8)
+- set encoding=utf-8 : encoding 방식
+- set fileencodings=utf-8,cp949 : file encoding 방식
 
 ### Move Cursor
 
