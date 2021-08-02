@@ -892,21 +892,23 @@ user5.sayName();    // "Han"
     age : 30,
   }
   ```
-- 생성자 함수의 동작 과정
-  ```javascript
-  function User(name, age) {
-    // this = {}    // 2 : 일단 빈 객체를 만들고 this에 할당 (실제로 code에는 없음)
-
-    this.name = name;    // 3 : this에 property 추가
-    this.age = age;    // 3 : this에 property 추가
-
-    return this;    // 4 : this 반환
-  }
-
-  new user = User('Mike', 30);    // 1 : 생성자 함수 호출
-  ```
 - 함수 호출 시 new를 안 붙이면?
   - 단지 return값이 없는 함수를 호출만하기 때문에 undefined 반환
+
+### 생성자 함수의 동작 과정
+
+```javascript
+function User(name, age) {
+  // this = {}    // 2 : 일단 빈 객체를 만들고 this에 할당 (실제로 code에는 없음)
+
+  this.name = name;    // 3 : this에 property 추가
+  this.age = age;    // 3 : this에 property 추가
+
+  return this;    // 4 : this 반환
+}
+
+new user = User('Mike', 30);    // 1 : 생성자 함수 호출
+```
 
 ---
 
@@ -1276,6 +1278,140 @@ for (let key in user) {
 
 # String Methods (문자열 methods)
 
+- ' " `
+  ```javascript
+  let html = '<div class="box_title">제목 영역</div>';
+
+  let desc = "It's 3 o'clock";
+
+  let name = 'Mike';
+  let result = `My name is ${name}`;
+  let add = `2 + 3 = ${2+3}`
+  ```
+  ```javascript
+  let desc1 = '오늘은 맑고 화창한\n날씨가 계속 되겠습니다.';
+
+  let desc2 = `오늘은 맑고 화창한
+  날씨가 계속 되겠습니다.`;    // desc1과 같은 결과
+
+  let desc3 = '오늘은 맑고 화창한
+  날씨가 계속 되겠습니다.';    // error
+  ```
+- length : 문자열 길이
+  ```javascript
+  let desc = '안녕하세요.';
+
+  console.log(desc.length);    // 6
+  console.log(desc[2]);    // "하" : 특정 위치에 접근
+
+  desc[4] = '용';
+  console.log(desc);    // "안녕하세요." : 변화 없음
+  ```
+- toUpperCase() / toLowerCase()
+  ```javascript
+  let desc = "Hi guys. Nice to meet you.";
+
+  console.log(desc.toUpperCase());    // "HI GUYS. NICE TO MEET YOU."
+  console.log(desc.toLowerCase());    // "hi guys. nice to meet you."
+  ```
+- str.indexOf(text) : 문자열을 인수로 받아 몇번째에 위치하는지 알려줌
+  ```javascript
+  let desc = "Hi guys. Nice to meet you.";
+  
+  desc.indexOf('to');    // 14
+  desc.indexOf('man');    // -1
+
+  if (desc.indexOf('Hi') > -1) {
+    console.log('Hi가 포함된 문장입니다.');
+  }    // desc.indexOf('Hi)는 0(false)이므로 -1보다 큰지 비교
+  ```
+  ```javascript
+  // 금칙어 : 콜라
+
+  function hasCola(str) {
+    if (str.indexOf('콜라') > -1) {
+    // if (str.includes('콜라')) {    // 이것도 가능
+      console.log('금칙어가 있습니다');
+    } else {
+      console.log('통과');
+    }
+  }
+
+  hasCola('와 사이다가 짱이야!');    // 통과
+  hasCola('무슨 소리, 콜라가 최고');    // 금칙어가 있습니다
+  hasCola('콜라');    // 금칙어가 있습니다
+  ```
+- str.slice(n, m) : n부터 m까지의 문자열 반환
+  - n
+    - 시작점
+  - m
+    - 없으면 문자열 끝까지
+    - 양수면 그 숫자까지 (포함하지 않음)
+    - 음수면 끝에서부터 셈
+  ```javascript
+  let desc = "abcdefg";
+
+  console.log(desc.slice(2));    // "cdefg"
+  console.log(desc.slice(0, 5));    // "abcde"
+  console.log(desc.slice(2, -2));    // "cde"
+  ```
+  ```javascript
+  let list = [
+    "01. 들어가며",
+    "02. JS의 역사",
+    "03. 자료형",
+    "04. 함수",
+    "05. 배열"
+  ]
+
+  let new_list = [];
+
+  for (let i = 9; i < list.length; i++) {
+    new_list.push(list[i].slice(4));
+  }
+
+  console.log(new_list);    // ["들어가며", "JS의 역사", "자료형", "함수", "배열"]
+  ```
+- str.substring(n, m) : n과 m 사이 문자열 반환
+  - slice와 유사하지만, n과 m을 바꿔도 동작함
+  - 음수 허용 x : 0으로 인식
+  ```javascript
+  let desc = "abcdefg";
+
+  console.log(desc.substring(2, 5));    // "cde"
+  console.log(desc.substring(5, 2));    // "cde"
+  ```
+- str.substr(n, m) : n부터 시작하여 m개를 가져옴
+  - n부터 시작
+  - m개를 가져옴
+  ```javascript
+  let desc = "abcdefg";
+
+  console.log(desc.substr(2, 4));    // "cdef"
+  console.log(desc.substr(-4, 2));    // "de"
+  ```
+- str.trem() : 앞 뒤 공백 제거
+  ```javascript
+  let desc = " coding        ";
+
+  console.log(desc.trim());    // "coding"
+  ```
+- str.repeat(n) : n번 반복
+  ```javascript
+  let hello = "hello!";
+  console.log(hello.repeat(3));    // "hello!hello!hello!"
+  ```
+- 문자열 비교
+  - ASCII CODE대로 비교됨
+  ```javascript
+  console.log(1 < 3);    // true
+  console.log("a" < "c");    // true
+
+  console.log("a".codePointAt(0));    // 96
+  console.log(String.fromCodePoint(97));    // "a"
+  ```
+
+
 
 
 
@@ -1309,3 +1445,4 @@ for (let key in user) {
 - https://www.youtube.com/watch?v=KF6t61yuPCY
   - '자바스크립트 기초 강좌 : 100분 완성' - Youtube 코딩앙마
 - https://www.youtube.com/watch?v=4_WLS9Lj6n4
+  - '자바스크립트 중급 강좌 : 140분 완성' - Youtube 코딩앙마
