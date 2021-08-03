@@ -1411,6 +1411,335 @@ for (let key in user) {
   console.log(String.fromCodePoint(97));    // "a"
   ```
 
+---
+
+# Array methods (배열 method)
+
+- arr.splice(n, m) : 특정 요소 지움
+  - n : 시작
+  - m : 개수
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+  arr.splice(1, 2);
+
+  console.log(arr);    // [1, 4, 5]
+  ```
+- arr.splice(n, m, x) : 특정 요소 지우고 추가
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+  arr.splice(1, 3, 100, 200);
+
+  console.log(arr);    // [1, 100, 200, 5]
+  ```
+  ```javascript
+  let arr = ["나는", "철수", "입니다"];
+  arr.splice(1, 0, "대한민국", "소방관"];
+
+  console.log(arr);    // ["나는", "대한민국", "소방관", "철수", "입니다"]
+  ```
+- arr.splice() : 삭제된 요소 반환
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+  let result = arr.splice(1, 2);
+
+  console.log(arr);    // [1, 4, 5]
+  console.log(result);    // [2, 3]
+  ```
+- arr.slice(n, m) : n부터 m까지 반환
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+  console.log(arr.slice(1, 4));    // [2, 3, 4]
+
+  let arr_clone = arr.slice();
+  console.log(arr_clone)    // [1, 2, 3, 4, 5]
+  ```
+- arr.concat(arr2, arr3, ...) : 합쳐서 새 배열 반환
+  ```javascript
+  let arr = [1, 2];
+
+  console.log(arr.concat([3, 4]));    // [1, 2, 3, 4]
+  console.log(arr.concat([3, 4], [5, 6]));    // [1, 2, 3, 4, 5, 6]
+  console.log(arr.concat([3, 4], 5, 6));    // [1, 2, 3, 4, 5, 6]
+  ```
+- arr.forEach(fn) : 배열 반복
+  ```javascript
+  let users = ['Mike', 'Tom', 'Jane`'];
+
+  users.forEach((item, index, arr) => {
+    // ...
+  });
+  ```
+  ```javascript
+  let arr = ['Mike', 'Tom', 'Jane'];
+
+  arr.forEach((name, index) => {
+    console.log(`${index + 1}. ${name}`);
+  });
+  ```
+- arr.indexOf / arr.lastIndexOc
+  - 인수가 두 개인 경우, 두번째 인수는 시작 위치를 의미함
+  ```javascript
+  let arr = [1, 2, 3, 4, 5, 1, 2, 3];
+
+  console.log(arr.indexOx(3));    // 2
+  console.log(arr.indexOx(3, 3));    // 7
+
+  console.log(arr.lastIndexOf(3);    // 7
+  ```
+- arr.includes() : 포함하는지 확인
+  ```javascript
+  let arr = [1, 2, 3];
+
+  console.log(arr.includes(2));    // true
+  console.log(arr.includes(8));    // false
+  ```
+- arr.find(fn)
+  - 첫번째 true 값만 반환하고 끝
+  - 만약 없으면 undefined를 반환
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+  
+  const result = arr.find((item) => {
+    return item % 2 === 0;
+  });
+  
+  console.log(result);    // 2
+  ```
+  ```javascript
+  let user_list = [
+    { name: 'Mike', age: 30 },
+    { name: 'Jane', age: 27 },
+    { name: 'Tom', age: 10 },
+  ];
+
+  const result = user_list.find((user) => {
+    if (user.age < 19) {
+      return true;
+    }
+    return false;
+  });
+
+  console.log(result);    // {name: "Tom", age: 10}
+  ```
+- arr.findIndex(fn)
+  - 해당 index를 반환
+  - 없으면 -1 반환
+  ```javascript
+  let user_list = [
+    { name: 'Mike', age: 30 },
+    { name: 'Jane', age: 27 },
+    { name: 'Tom', age: 10 },
+  ];
+
+  const result = user_list.findIndex((user) => {
+    if (user.age < 19) {
+      return true;
+    }
+    return false;
+  });
+
+  console.log(result);    // 2
+  ```
+- arr.filter(fn) : 만족하는 모든 요소를 배열로 반환
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+  
+  const result = arr.filter((item) => {
+    return item % 2 === 0;
+  });
+  
+  console.log(result);    // [2, 4, 6]
+  ```
+- arr.reverse() : 역순으로 재정렬
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+
+  console.log(arr.reverse());    // [5, 4, 3, 2, 1]:
+  ```
+- arr.map(fn) : 함수를 받아 특정 기능을 실행하고 새로운 배열을 반환
+  ```javascript
+  let user_list = [
+    { name: 'Mike', age: 30 },
+    { name: 'Jane', age: 27 },
+    { name: 'Tom', age: 10 },
+  ];
+
+  let new_user_list = user_list.map((user, index) => {
+    return Object.assign({}, user, {
+      id: index + 1,
+      is_adult: user.age > 19,
+    });
+  });
+
+  console.log(new_user_list);    // user_list에 id, is_adult property가 추가되어 객체 list가 반환됨
+  ```
+- arr.join() : 배열 문자열로 합치기
+  ```javascript
+  let arr = ["안녕", "나는", "철수야"];
+
+  let result = arr.join();
+  let result_space = arr.join("  ");
+
+  console.log(result);    // 안녕,나는,철수야 : 인자에 아무것도 없으면 쉼표(,)로 구분됨
+  console.log(result_space);    // 안녕  나는  철수야
+  ```
+- arr.split() : 문자열을 나눠서 배열로 만들어줌
+  ```javascript
+  const users = "Mike,Jane,Tom,Tony";
+
+  const result = users.split(",");
+  
+  console.log(result);    // ["Mike", "Jane", "Tom", "Tony"]
+  ```
+  ```javascript
+  let str = 'Hello, My name is Mike.';
+
+  const result = str.split("");
+  
+  console.log(result);    // ["H", "e", "l", "l", "o", ",", " ", "M", "y", " ", "N", "a", "m", "e", " ", "i", "s", " ", "M", "i", "k", "e", "."]
+  ```
+- Array.isArray() : 배열인지 확인
+  - typeof는 배열을 객체라고 알려줌
+    - 배열은 객체이기 때문
+  ```javascript
+  let user = {
+    name: "Mike",
+    age: 30,
+  };
+
+  let user_list = ["Mike", "Tom", "Jane"];
+
+  console.log(typeof user);    // object
+  console.log(typeof user_list);    // object
+
+  console.log(Array.isArray(user);    // false
+  console.log(Array.isArray(user_list);    // true
+  ```
+- arr.sort() : 배열 재정렬
+  - 배열 자체가 변경되니 주의
+  ```javascript
+  let arr = [1, 5, 4, 2, 3];
+
+  arr.sort();
+  
+  console.log(arr);    // [1, 2, 3, 4, 5]
+  ```
+  ```javascript
+  let arr = ["a", "c", "d", "e", "b"];
+
+  arr.sort();
+  
+  console.log(arr);    // ["a", "b", "c", "d", "e"]
+  ```
+  ```javascript
+  let arr = [27, 8, 5, 13];
+
+  arr.sort();
+  
+  console.log(arr);    // [13, 27, 5, 8] : 문자열로 인식했기 때문에 1, 2가 앞에 있는 숫자가 먼저 정렬됨
+  ```
+  ```javascript
+  let arr = [27, 8, 5, 13];
+
+  arr.sort((a, b) => {
+    return a - b;
+  });
+  
+  console.log(arr);    // [5, 8, 13, 27]
+  ```
+    - Lodash를 사용하면 _.sortBy(arr)로 위의 기능을 사용할 수 있음
+      - https://lodash.com/
+- arr.reduce(fn, n)
+  - 첫번째 인수로 함수를 받음
+    - (누적 계산값, 현재값) => { return 계산값 };
+  - 두번째 인수는 초기값 (optional)
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+
+  let result = 0;
+  arr.forEach(num => {
+    result += num;
+  });
+
+  console.log(result);    // 15
+  ```
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+
+  const result = arr.reduce((prev, cur) => {
+    return prev + cur;
+  }, 0);
+
+  const result_init_100 = arr.reduce((prev, cur) => {
+    return prev + cur;
+  }, 100);
+
+  console.log(result);    // 15
+  console.log(result_init_100);    // 115
+  ```
+  ```javascript
+  // 성인인 사람 이름 구하기
+
+  let user_list = [
+    { name: "Mike", age: 30 },
+    { name: "Tom", age: 10 },
+    { name: "Jane", age: 27 },
+    { name: "Sue", age: 26 },
+    { name: "Herry", age: 3 },
+    { name: "Steve", age: 60 },
+  ];
+
+  let result = user_list.reduce((prev, cur) => {
+    if (cur.age > 19) {
+      prev.push(cur.name);
+    }
+    return prev;
+  }, {});
+
+  console.log(result);    // ["Mike", "Jane", "Sue", "Steve"]
+  ```
+  ```javascript
+  // 나이의 합 구하기
+
+  let user_list = [
+    { name: "Mike", age: 30 },
+    { name: "Tom", age: 10 },
+    { name: "Jane", age: 27 },
+    { name: "Sue", age: 26 },
+    { name: "Herry", age: 3 },
+    { name: "Steve", age: 60 },
+  ];
+
+  let result = user_list.reduce((prev, cur) => {
+    return prev += cur.age;
+  }, 0);
+
+  console.log(result);    // 156
+  ```
+  ```javascript
+  // 이름이 3자인 사람
+
+  let user_list = [
+    { name: "Mike", age: 30 },
+    { name: "Tom", age: 10 },
+    { name: "Jane", age: 27 },
+    { name: "Sue", age: 26 },
+    { name: "Herry", age: 3 },
+    { name: "Steve", age: 60 },
+  ];
+
+  let result = user_list.reduce((prev, cur) => {
+    if (cur.name.length === 3) {
+      prev.push(cur.name);
+    }
+    return prev;
+  }, []);
+
+  console.log(result);    // ["Tom", "Sue"]
+  ```
+- arr.reduceRight()
+  - arr.reduce()와 기능이 같으나 맨 오른쪽부터 시작하여 누적
+
 
 
 
