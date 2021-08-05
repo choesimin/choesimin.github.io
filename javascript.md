@@ -1740,6 +1740,475 @@ for (let key in user) {
 - arr.reduceRight()
   - arr.reduce()와 기능이 같으나 맨 오른쪽부터 시작하여 누적
 
+---
+
+# 구조 분해 할당 (destructuring assignment)
+
+- 배열이나 객체의 속성을 분해해서 그 값을 변수에 담을 수 있게 하는 표현식
+
+### 배열 구조 분해
+
+```javascript
+let [x, y] = [1, 2];
+
+console.log(x);    // 1
+console.log(y);    // 2
+```
+```javascript
+let users = ['Mike', 'Tom', 'Jane'];
+
+let [user1, user2, user3] = users;
+  // let user1 = users[0];
+  // let user2 = users[1];
+  // let user3 = users[2];
+
+console.log(user1);    // "Mike"
+console.log(user2);    // "Tom"
+console.log(user3);    // "Jane"
+```
+```javascript
+let str = "Mike-Tom-Jane";
+
+let [user1, user2, user3] = str.split('-');
+
+console.log(user1);    // "Mike"
+console.log(user2);    // "Tom"
+console.log(user3);    // "Jane"
+```
+- 기본값
+  ```javascript
+  //let [a, b, c] = [1, 2];    // c는 undefined가 됨
+
+  let [a=3, b=4, c=5] = [1, 2];    // 기본값을 설정해두면
+  
+  console.log(a);    // 1
+  console.log(b);    // 2
+  console.log(c);    // 5
+  ```
+- 일부 반환값 무시
+  ```javascript
+  let [user1, , user2] = ['Mike', 'Tom', 'Jane', 'Tony'];
+
+  console.log(user1);    // 'Mike'
+  console.log(user2);    // 'Jane'
+  ```
+- 바꿔치기
+  ```javascript
+  let a = 1;
+  let b = 2;
+
+  let c = a;
+  a = b;
+  b = c;
+  ```
+  ```javascript
+  let a = 1;
+  let b = 2;
+
+  [a, b] = [b, a];
+  ```
+
+### 객체 구조 분해
+
+```javascript
+let user = {name: 'Mike', age: 30};
+
+let {name, age} = user;    // 'let {age, name} = user;'도 동일하게 동작함
+  // let name = user.name;
+  // let age = user.age;
+
+console.log(name);    // "Mike"
+console.log(age);    // 30
+```
+- 새로운 변수 이름으로 할당
+  ```javascript
+  let user = {name: 'Mike', age: 30};
+
+  let {name: userName, age: userAge} = user;
+
+  console.log(userName);    // "Mike"
+  console.log(userAge);    // 30
+  ```
+- 기본값
+  ```javascript
+  let user = {name: 'Mike', age: 30};
+
+  // let {name, age, gender} = user;    // user에 gender값이 없어 undefined가 들어감
+  let {name, age, gender = 'male'} = user;
+
+  console.log(gender);    // 'male'
+  ```
+  ```javascript
+  let user = {
+    name: 'Mike',
+    age: 30,
+    gender: 'female'
+  };
+
+  let {name, age, gender = 'male'} = user;
+
+  console.log(gender);    // 'female'
+  ```
+
+---
+
+# 나머지 매개변수(rest parameters), 전개 구문(spread syntax)
+
+### 나머지 매개변수 (rest parameters)
+
+```javascript
+// javascript에서 함수에 넘겨주는 인수의 갯수는 제한이 없음
+// 인수의 갯수를 정해놓고 함수를 만들어도 실제 호출할 때 정확히 그 갯수를 맞출 필요는 없음
+
+function showName(name) {
+  console.log(name);
+}
+
+shoeName('Mike');    // "Mike"
+showName('Mike', 'Tom');    // ?
+
+showName();    // undefined : error가 아님
+```
+```javascript
+functino showName(...names) {
+  console.log(names);
+}
+
+showName();    // [] : undefined가 아니라 빈 배열
+showName('Mike');    // ['Mike']
+showName('Mike', 'Tom');    // ['Mike', 'Tom']
+```
+```javascript
+functionn add(...numbers) { 
+  let result = 0;
+  numbers.forEach(num => (result += num));    // 배열의 method 사용 가능
+  console.log(result);
+}
+
+add(1, 2, 3);    // 6
+add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);    // 55
+```
+```javascript
+functionn add(...numbers) { 
+  let result = numbers.reduce((prev, cur) => prev + cur);
+  console.log(result);
+}
+
+add(1, 2, 3);    // 6
+add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);    // 55
+```
+```javascript
+function User(name, age, ...skills) {    // 나머지 매개변수는 항상 마지막에 위치해야함
+  this.name = name;
+  this.age = age;
+  this.skills = skills;
+}
+
+const user1 = new User('Mike', 30, 'HTML', 'CSS');
+const user2 = new User('Tom', 20, 'JavaScript', 'React');
+const user3 = new User('Jane', 10, 'English);
+
+console.log(user1);
+  // {name: "Mike", age: 30, skills: ["HTML", "CSS"]}
+console.log(user2);
+  // {name: "Tom", age: 20, skills: ["JavaScript", "React"]}
+console.log(user3);
+  // {name: "Jane", age: 10, skills: ["English"]}
+```
+- arguments를 대신 사용할 수 있음 : 옛날 방법
+  - 함수로 넘어온 모든 인수에 접근
+  - 함수 내에서 이용 가능한 지역변수
+  - length / index
+  - Array 형태의 객체
+  - 배열의 내장 method 없음 (forEach, map)
+  ```javascript
+  function showName(name) {
+    console.log(arguments.length);
+    console.log(arguments[0]);
+    console.log(arguments[1]);
+  }
+
+  showName('Mike', 'Tom');
+    // 2
+    // 'Mike'
+    // 'Tom'
+  ```
+
+### 전개 구문(Spread syntax)
+
+- 배열
+  ```javascript
+  // arr.push(), arr.splice(), arr.concat() 대신 사용 가능
+
+  let arr1 = [1, 2, 3];
+  let arr2 = [4, 5, 6];
+
+  let result1 = [...arr1, ...arr2];
+  let result2 = [0, ...arr1, ...arr2, 7, 8, 9];
+
+  console.log(result1);    // [1, 2, 3, 4, 5, 6]
+  console.log(result2);    // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  ```
+  ```javascript
+  // arr1을 [4, 5, 6, 1, 2, 3]으로
+
+  let arr1 = [1, 2, 3];
+  let arr2 = [4, 5, 6];
+
+  // arr2.reverse().forEach((num) => {    // arr2를 역순 정렬하고 넣어야 원하는 순서대로 들어감
+  //   arr1.unshift(num);
+  // });
+
+  arr1 = [...arr2, ...arr1];    // 편하게 구현 가능
+
+  console.log(arr1);    // [4, 5, 6, 1, 2, 3]
+  ```
+- 겍체
+  ```javascript
+  let user = {name: 'Mike'}
+  let mike = {...user, age: 30}
+
+  coinsole.log(mike);    // {name: "Mike", age: 30}
+  ```
+  ```javascript
+  let user = { name: "Mike" };
+  let info = { age: 30 };
+  let fe = ["JavaScript", "React"];
+  let lang = ["Korean", "English"];
+
+  // user = Object.assign({}, user, info, {
+  //   skills: []
+  // });
+
+  // fe.forEach((item) => {
+  //  user.skills.push(item);
+  // };
+  // lang.forEach((item) => {
+  //   user.skills.push(item);
+  // };
+
+  user = {
+    ...user,
+    ...info,
+    skills: [...fe, ...lang]
+  };    // 훨씬 간단해짐
+
+  console.log(user);
+    // {name: "Mike", age: 30, skills: ["JavaScript", "React", "Korean", "English"]}
+  ```
+- 복제
+  ```javascript
+  let arr1 = [1, 2, 3];
+  let arr2 = [...arr1];    // [1, 2, 3]
+
+  let user1 = {name: 'Mike', age: 30}
+  let user2 = {...user}
+
+  user2.name = 'Tom';
+
+  console.log(user1.name);    // "Mike"
+  console.log(user2.name);    // "Tom"
+  ```
+
+---
+
+# Closure
+
+- 함수와 lexical 환경의 조합
+- 함수가 생성될 당시으 외부 변수를 기억
+- 생성 이후에도 계속 접근 가능
+  - 외부 함수의 실행이 끝나서 외부 함수가 소멸된 이후에도 내부 함수가 외부 함수의 변수에 접근할 수 있음
+```javascript
+function makeCounter() {
+  let num = 0;
+
+  return function () {
+    return num++;
+  }
+}
+
+let counter = makeCounter();
+
+console.log(counter());    // 0
+console.log(counter());    // 1
+console.log(counter());    // 2
+```
+  - makeCounter가 return하는 함수(num++)는 숫자를 반환함
+    - num++함수는 숫자를 반환하는데, 이는 외부 함수의 변수임
+  - 실행하면 초기값 0, 한번 더하면 1, 계속해서 2, 3이 나옴
+  - 내부 함수에서 외부 함수의 변수(num)에 접근하고 있음
+    - 생성된 이후에 계속 기억하고 있음
+  - 결과로 나오는 숫자들을 수정할 수 없음
+    - 오로지 counter를 증가시키고 반환받음 -> 은닉화 성공
+    - 갑자기 99를 반환하거나 100을 증가시키는 것이 불가능함
+
+### Lexical 환경 (어휘적 환경)
+
+- javascript는 어휘적 환경(lexical environment)을 가짐
+```javascript
+// A
+
+let one;
+one = 1;
+
+funcrtion addone(num) {
+  console.log(one + num);
+}
+
+addone(5);
+```
+  1. A
+    - hoisting : code가 실행되면 script 내에서 선언한 변수들이 lexical 환경에 올라가게됨
+      - let으로 선언된 변수도 hoisting됨 : lexical 환경으로 올라가지만 초기화가 안되었을 뿐
+        - 그래서 사용은 못 함
+      - 함수 선언문은 변수와 달리 바로 초기화 됨 : A 위치에서도 사용이 가능함
+        - 단, 변수에 할당하는 함수 표현식은 안됨
+  1. 'let one;'
+    - 아직 할당은 안 되어있기 때문에 초기값으로 undefined가 들어감 
+      - 사용을 해도 error는 발생하지 않음 (값이 undefined일 뿐)
+  2. 'one = 1;'
+    - one에 숫자 1이 할당됨
+  3. 'function ~'
+    - 함수 선언은 초기에 이미 완료된 상태라 그냥 넘어감
+  4. 'addOne(5);'
+    - 함수 실행 : 이 순간 새로운 lexical 환경이 만들어짐
+      - 함수가 넘겨받은 매개변수와 지역변수들이 저장됨
+        - num: 5
+      - 함수가 호출되는 동안 함수에서 만들어진 내부 lexical 환경과 외부에서 받은 전역 lexical 환경을 가짐
+        - 내부 lexical 환경은 외부 lexical 환경에 대한 참조를 가짐
+          - 지금 상황에서는 addOne 함수의 외부 lexical 환경이 전역 lexical 환경임
+      - code에서 변수를 찾을 때, 내부에서 찾고, 없으면 외부에서 찾고, 또 없으면 전역 lexical 환경까지 범위를 넓혀서 찾음
+        1. 이 code에선 one과 num을 일단 내부 lexical 환경에서 찾음
+        2. num은 찾았지만 one이 없으므로 외부로 넓혀서 있는지 찾게 됨
+        3. 찾은 값들을 더하기
+```javascript
+function makeAdder(x) {
+  return function (y) {
+    return x + y;;;
+  }
+}
+
+const add3 = makeAdder(3);
+
+console.log(add3(2));
+```
+  1. 최소 실행 시, makeAdder 함수와 add3 변수는 '젼역 lexical 환경'에 들어감
+    - 전역 lexical 환경
+      - makeAdder : function
+      - add3 : 초기화 안된 상태, 사용할 수 없음
+  2. 'const add3 = makeAdder(3);'이 실행될 때, makeAdder 함수가 실행되면서 'makeAdder lexical 환경'이 생성됨
+    - 넘겨받은 매개변수와 지역변수 들이 저장됨
+      - 전달받은 x의 값이 들어감
+    - makeAdder lexical 환경
+      - x : 3
+  3. 함수가 실행되어 add3은 초기화되고, '전역 lexical 환경'으로 들어감
+    - 전역 lexical 환경
+      - makeAddr : function
+      - add3 : function
+  4. 마지막 줄 실행
+    - add3을 실행하면 makeAdder가 실행되는데 이때 또 '익명함수 lexical 환경'이 만들어짐 
+    - 익명함수 lexical 환경
+      - y : 2
+    - makeAdder 실행
+      - x + y
+        - x와 y를 찾아야 함
+          - y는 있음
+          - x가 없으니 참조하는 '외부 lexical 환경'으로 가서 찾음
+  - makeAdder의 반환값이 되는 익명함수는 자신이 y를 가지고 있고 상위 함수인 makeAdder의 매개변수 x에 접근할 수 있음
+    - add3 함수가 생성된 이후에도 변함없이 상위 함수를 호출할 때 사용했던 인수에 접근 가능 -> 이것을 Clouser라고 함
+
+---
+
+# setTimeout / setInterval
+
+### setTimeout
+
+- 일정 시간이 지난 후 함수를 실행
+- 첫번째 매개변수 : 일정 시간이 지난 후 실행하는 함수
+- 두번째 매개변수 : 시간
+- 세번째 매개변수 : 필요한 인수
+```javascript
+// 3초 후에 log를 찍어줌
+
+// function fn() {
+//   console.log(3);
+// }
+
+// setTimeout(fn, 3000);
+
+setTimeout(function () {
+  console.log(3);
+}, 3000);
+```
+```javascript
+function showName(name) {
+  console.log(name);
+}
+
+setTimeout(showName, 3000, 'Mike');    // 'Mike'는 showName 함수의 인자로 들어감
+```
+- clearTimeout() : 예정된 작업을 없앰
+  - setTimeout은 time id를 반환
+    - 이를 이용하여 scheduling을 취소할 수 있음
+  ```javascript
+  const tid = function showName(name) {
+    console.log(name);
+  }
+
+  setTimeout(showName, 3000, 'Mike');
+
+  clearTimeout(t_id);    // 3초가 지나기 전에 이 code가 실행되기 때문에 아무 일도 일어나지 않음
+  ```
+
+### setInterval
+
+- 일정 시간 간격으로 함수를 반복
+- setTimeout과 사용법이 동일
+```javascript
+function showName(name) {
+  console.log(name);
+}
+
+const t_id = setInterval(showName, 3000, 'Mike');
+
+// clearInterval(t_id);    // 중단
+```
+- 주의사항 : delay = 0?
+  ```javascript
+  setTimeout(functino () {
+    console.log(2);
+  }, 0);
+
+  console.log(1);
+
+  // 1
+  // 2
+  ```
+    - delay time을 0으로 줘도 interval이 바로 실행되지는 않음 : 1 찍히고 2 찍힘
+      - 현재 실행 중인 script가 종료된 이후 scheduling 함수를 실행하기 때문
+      - 또한 browser는 기본적으로 4ms 정도의 대기 시간이 있음
+        - delay time을 0이라고 적어도 4ms 또는 그 이상이 걸릴 수 있음
+- example
+  ```javascript
+  // user가 접속하면, 접속한지 얼마나 되었는지 보여줌
+  // 5초 동안 실행하다 중단
+
+  let num = 0;
+
+  function showTime() {
+    console.log(`안녕하세요. 접속하신지 ${num++}초가 지났습니다.`);
+    if (num > 5) {
+      clearInterval(t_id);
+    }
+  }
+
+  const t_id = setInterval(showTime, 1000);
+  ```
+
+
+
+
+
 
 
 
