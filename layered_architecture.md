@@ -54,7 +54,7 @@
   - 최종 사용자에게 UI를 제공하거나 client로 응답을 다시 보내는 역할을 담당하는 모든 class임
   - 즉, API의 end point들을 정의하고 전송된 HTTP 요청들을 읽어들이는 logic을 구현
 
-# Application Layer
+### Application Layer
 
 - Application Layer == Service Layer
 - 일반적으로 Domain model의 business logic 1개를 호출해서는 복잡한 요청을 처리할 수 없음
@@ -75,7 +75,7 @@
     - 즉, Service Layer는 Domain model을 캡슐화하여 보호하는 역할도 겸함
     - 단일 책임 원칙을 지킬 수 있으며 유지 보수가 수월해짐
 
-# Business Layer
+### Business Layer
 
 - == Domain Model
 - Data와 그와 관련된 business logic(핵심 기능)을 가진 객체
@@ -86,7 +86,7 @@
   - Data Mapper는 흔히 ORM(Object Relational Model)이라고 함
   - 후술할 Repository는 Entity 객체를 보관하고 관리하는 collection으로, 엄밀하게 말하면 Domain Layer에 속함
 
-# Persistence Layer
+### Persistence Layer
 
 - == Repository Layer
 - Data Source를 추상화함
