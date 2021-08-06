@@ -11,6 +11,7 @@
 
 ### Project의 Node version 변경
 
+- gradle, maven도 비슷함
 1. 'DashBoard > Manage Jenkins > Manage Plugins'에서 'NodeJS Plugin' 설치
 2. (reference 문서의 설명 따라서 )원하는 version 설치
 3. '[내 project] > Configure > Build Environment'의 'Provide Node & npm bin/ folder to PATH' check
@@ -18,7 +19,7 @@
 
 ---
 
-# pipeline 작성 방식
+# Pipeline Project
 
 - Scripted와 Declarative 두 가지가 있음
   - 서로 호환되지 않아서 둘 중 하나로 문법을 통일하여 작성해야 함
@@ -138,7 +139,6 @@
   }
   ```
 
-<<<<<<< HEAD
 ---
 
 # How
@@ -149,7 +149,7 @@
   - service로 실행하면 background에 떠있게 됨
     - sudo service start jenkins
 - 해당 port로 url에 입력하여 접속
-- pipeline project 생성
+- pipeline project 또는 freestyle project 생성
 - script에 code 작성 후 build now
 
 ---
@@ -157,7 +157,7 @@
 # Trouble Shooting
 
 ### CentOS에서 사용 시 java.nio.file.AccessDeniedException
-- 추천하지는 않음 : pm2나 directory의 file들은 user 기반으로 돌아가는데, root로 바꾸면 문제가 발생할 수 있음
+- 추천하지 않음 : pm2나 directory의 file들은 user 기반으로 돌아가는데, root로 바꾸면 문제가 발생할 수 있음
 1. Open up the this script (using VIM or other editor)
   ```shell
   vim /etc/sysconfig/jenkins
