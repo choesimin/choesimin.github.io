@@ -9,62 +9,63 @@
 ### 보내기 : Local -> Remote
 
 - 단일 file을 원격지로 보내기
-  ```shell
+  ```sh
   scp [option] [local_file_path] [remote_id]@[remote_ip]:[remote_path]
   ```
-  ```shell
+  ```sh
   scp testfile2 root@192.168.159.129:/tmp/testclient
   ```
 
 - 복수의 file을 원격지로 보내기
-  ```shell
+  ```sh
   scp [option] [local_file1_path] [local_file2_path] [remote_id]@[remote_ip]:[remote_path]
   ```
-  ```shell
+  ```sh
   scp tesfile1 testfile2 root@192.168.159.129:/tmp/testclient
   ```
 
 - 여러 file을 포함하고 있는 directory를 원격지로 보내기
   - -r option 사용 : 보내고자 하는 directory의 하위 folder 및 file까지 동시에 전송 가능
     - folder 자체가 넘어가게 됨
-  ```shell
+  ```sh
   scp [option] [local_directory_path] [remote_id]@[remote_ip]:[remote_path]
   ```
-  ```shell
+  ```sh
   scp -r testgogo root@192.168.159.129:/tmp/testclient
   ```
 
 ### 받기 : Remote -> Local
 
 - 단일 file을 원격지에서 가져오기
-  ```shell
+  ```sh
   scp [option] [remote_id]@[remote_ip]:[remote_file_path] [local_path] 
   ```
-  ```shell
+  ```sh
   scp root@192.168.159.129:/tmp/testclient/testfile2 /tmp
   ```
 
 - 복수의 file을 원격지에서 가져오기
   - 주의 : 큰 따옴표("")로 묶어줘야 함
-  ```shell
+  ```sh
   scp [option] [remote_id]@[remote_ip]:"[remote_file1_path] [remote_file2_path]" [local_path]
   ```
-  ```shell
+  ```sh
   scp root@192.168.159.129:"/tmp/testclient/testfile2 /tmp/testclient/testfile3" /tmp
   ```
 
 - 여러 file을 포함하고 있는 directory를 원격지에서 가져오기
   - -r option 사용 : 보내고자 하는 directory의 하위 folder 및 file까지 동시에 전송 가능
     - folder 자체가 넘어가게 됨 (foleder 하위에 있는 것들이 넘어가는 것이 아님)
-  ```shell
+  ```sh
   scp [option] [remote_id]@[remote_ip]:[remote_directory_path] [local_path]
   ```
-  ```shell
+  ```sh
   scp -r root@192.168.159.129:/tmp/testclient/testgogo /tmp
   ```
 
 ### Option
 
+|option|설명|사용법|
 |-|-|-|
 |r|directory 내 모든 file/directory 복사|scp -r|
 |p|원본 권한 속성 유지 복사|scp -p|
