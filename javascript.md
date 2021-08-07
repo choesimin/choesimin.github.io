@@ -2347,37 +2347,1029 @@ bound_fn();    // "Hello, Mike"
 
 # 상속, prototype
 
+```javascript
+const user = {
+  name: 'Mike',
+}
 
+console.log(user.name);    // "Mike"
+console.log(user.hasOwnProperty('name');    // true
+console.log(user.hasOwnProperty('age');    // false
+```
+- 그렇다면 hasOwnProperty라는 method는 선언한 적도 없는데 어디서 오는걸까?
+  - __proto__ (prototype) : property를 찾으려고 할 때, 없으면 여기서 찾음
+  ```javascript
+  const user = {
+    name: 'Mike',
+    hasOwnProperty: function () {
+      console.log('haha');
+    },
+  }
 
+  console.log(user.hasOwnProperty();    // "haha"
+    // 일단 객체에 그 property가 있으면 거기서 탐색을 멈춤
+    // 없을 때만 prototype에서 property를 찾음
+  ```
+```javascript
+const bmw = {
+  color: "red",
+  wheels: 4,
+  navigation: 1,
+  drive() {
+    console.log("drive..");
+  }
+}
 
+const benz = {
+  color: "black",
+  wheels: 4,
+  drive() {
+    console.log("drive..");
+  }
+}
 
+const audi = {
+  color: "blue",
+  wheels: 4,
+  drive() {
+    console.log("drive..");
+  }
+}
+```
 
+### 상속
 
+- 차들이 늘어나면 이렇게 계속 비슷한 객체를 늘려야 할까?
+  - 상속 이용하여 중복 해결 가능
+```javascript
+const car = {
+  wheels: 4,
+  drive() {
+    console.log("drive..");
+  },
+}
 
+const bmw = {
+  color: "red",
+  navigation: 1,
+}
 
+const benz = {
+  color: "black",
+}
 
+const audi = {
+  color: "blue",
+}
 
+bmw.__proto__ = car;
+benz.__proto__ = car;
+audi.__proto__ = car;
 
+console.log(bmw.color);    // "red" : bmw.color는 바로 가지고 있기 때문에 출력
+console.log(bmw.wheels);    // 4 : bmw.wheels는 바로 가지고 있지 않기 때문에 prototype으로 들어가서 찾음
+```
+```javascript
+const car = {
+  wheels: 4,
+  drive() {
+    console.log("drive..");
+  },
+}
 
+const bmw = {
+  color: "red",
+  navigation: 1,
+}
 
+bmw.__proto__ = car;
 
+const x5 = {
+  color: "white",
+  name: "x5",
+}
 
+x5.__proto__ = bmw;    // 상속은 계속 이어질 수 있음
 
+console.log(x5.name);    // "x5"
+console.log(x5.color);    // "white"
+console.log(x5.navigation);    // 1
+  // 없는 property는 찾을 때까지 계속 올라감 == protocol chain
 
+for (p in x5) {
+  console.log(p);
+}
+  // color
+  // name
+  // navigation
+  // wheels
+  // drive
 
+Object.keys(x5);    // ["color", "name"]
+Object.values(x5);    // ["white", "x5"]
+  // key, 값과 관련된 객체 method는 상속된 property는 나오지 않음
 
+for (p in x5) {
+  if (x5.hasOwnProperty(p)) {
+    console.log('o', p);
+  } else {
+    console.log('x', p);
+  }
+}
+  // o color
+  // o name
+  // x navigation
+  // x wheels
+  // x drive
+```
 
+### 생성자 함수 이용하기
+  
+```javascript
+const car = {
+  wheels: 4,
+  drive() {
+     console.log("drive..");
+  },
+};
 
+const Bmw = function (color) {
+  this.color = color,
+};
 
+const x5 = new Bmw("red");
+const z4 = new Bmw("blue");
 
+x5.__proto__ = car;
+z4.__proto__ = car;
 
+// 객체 하나를 만들때 매번 이렇게 하면 귀찮음
+  // 생성자를 쓰는 이유가 만들면서 이런 것들을 하기 위함임
+```
+```javascript
+const Bmw = function (color) {
+  this.color = color,
+};
 
+// 생성자 함수가 생성하는 객체의 __proto__를 설정하는 것과 같음
+Bmw.prototype.wheels = 4;
+Bmw.prototype.drive = function () {
+  console.log("drive..");
+};
+Bmw.prototype.navigation = 1;
+Bmw.prototype.stop = function () {
+  console.log("stop!");
+};
 
+const x5 = new Bmw("red");
+const z4 = new Bmw("blue");
 
+console.log(x5.wheels);    // 4
+console.log(x5.drive());    // "drive.."
+console.log(x5.stop());    // "stop!"
 
+// 생성자 함수가 새로운 객체를 만들어내면, 그 객체는 생성자의 instance
+// instanceof를 이용해서 객체와 생성자를 비교할 수 있고, 해당 객체가 그 생성자로부터 생성된 것인지 판단해서 true false로 반환
+console.log(z4 instanceof Bmw);    // true
+console.log(z4.constructor === Bmw);    // true
 
+```
+```javascript
+const Bmw = function (color) {
+  this.color = color,
+};
 
+Bmw.prototype = {
+  // constructor: Bmw,    // 이 code를 넣어주면 지금 덮어쓰는 상황이라도 생성자와 instance를 비교했을 때, true가 나오게 됨
+  wheels: 4,
+  drive() {
+    console.log("drive..");
+  },
+  navigation: 1,
+  stop() {
+    console.log("stop!");
+  },
+};
 
+const x5 = new Bmw("red");
+const z4 = new Bmw("blue");
+
+console.log(z4.constructor === Bmw);    // false
+  // 이런 현상을 방지하기 위해서 property를 덮어쓰지 않고, 하나씩 property를 추가하는 것이 좋음
+  // 혹은 constructor라는 property에 부모 객체를 수동으로 명시해줘도 괜찮음
+```
+-  아무나 값을 바꾸면 안될 때
+  ```javascript
+  const Bmw = function (color) {
+    this.color = color;
+  };
+
+  const x5 = new Bmw("red");
+
+  console.log(x5.color);    // red
+  x5.color = "black";
+  console.log(x5.color);    // black
+  ```
+  ```javascript
+  const Bmw = function (color) {
+    const c = color;
+    this.getColor = function () {
+      console.log(c);
+    };
+  };
+
+  const x5 = new Bmw("red");
+
+  console.log(x5.getColor);    // "red" : 값을 바꿀 수 없으며 가져올 수만 있음
+  ```
+
+---
+
+# Class
+
+- ES6에 추가된 spec
+
+### 생성자 함수와 Class의 비교
+
+- 생성자 함수
+  ```javascript
+  const User = function (name, age) {
+    this.name = name;
+    this.age = age;
+    this.showName = function () {
+      console.log(this.name);
+    }
+  }
+
+  const mike = new User("Mike", 30);
+
+  console.log(mike);    // 객체 내부에 showName이 있음
+    // {name: "Mike", age: 30, showName: f}
+    
+  for (const p in mike) {
+    console.log(p);
+  }
+    // name
+    // age
+    // showName
+  ```
+  ```javascript
+  const User = function (name, age) {
+    this.name = name;
+    this.age = age;
+    // this.showName = function () {
+    //   console.log(this.name);
+    // }
+  }
+
+  // 생성자 함수를 class처럼 동작시키기
+  User.prototype.showName = function () {
+    console.log(this.name);
+  };
+
+  const mike = User("Mike", 30);
+
+  console.log(mike);    // undefined : new를 붙이지 않았기 때문
+    // 분명 개발자가 실수해서 undefined로 출력되지만 이 code는 문제가 없다고 나옴
+    // error라고 알아차릴 수 없음
+  ```
+  
+- Class
+  ```javascript
+  class User {
+    constructor(name, age) {    // 생성자 함수 : 객체에 name, age가 만들어짐
+      this.name = name;
+      this.age = age;
+    }
+    showName() {    // class 내에 정의한 method는 User2의 prototype에 저장함
+      console.log(this.name);
+    }
+  }
+
+  const mike = new User("Mike", 30);    // showName method가 prototype에 존재함
+  ```
+  ```javascript
+  class User {
+    constructor(name, age) {    // 생성자 함수 : 객체에 name, age가 만들어짐
+      this.name = name;
+      this.age = age;
+    }
+    showName() {    // class 내에 정의한 method는 User2의 prototype에 저장함
+      console.log(this.name);
+    }
+  }
+
+  const mike = User("Mike", 30);    // showName method가 prototype에 존재함
+
+  console.log(mike);    // error : new를 붙이지 않으면 error가 발생
+    // class로 선언했기 때문에, __proto__.constructor에 class라고 명시되어 있음
+      // 따라서 new 없이 생성하면 error가 발생하도록 설계되어 있음
+      
+  // 원래 for in문은 prototype에 포함된 property들을 모두 보여줬음
+  // 따라서 객체가 가진 property만 판별하기 위해선 hasOwnProperty를 사용했어야 했음
+  // 하지만 class의 method는 for in문에서 제외됨
+  for (const p in mike) {
+    console.log(p);
+  }
+    // name
+    // age
+  ```
+
+### 상속
+
+- 'extends' keyword 사용
+```javascript
+class Car {
+  constructor(color) {
+    this.color = color;
+    this.wheels = 4;
+  }
+  drive() {
+    console.log("drive..");
+  }
+  stop() {
+    console.log("stop!");
+  }
+}
+
+class Bmw extends Car {
+  park() {
+    console.log("park");
+  }
+}
+
+const z4 = new Bmw("blue");
+  // drive()와 stop()은 prototype에 들어있고, park()는 객체 내부에 들어있음
+    // 상속받은 것들은 prototype으로 들어감
+```
+
+### Method Orverriding
+
+```javascript
+class Car {
+  constructor(color) {
+    this.color = color;
+    this.wheels = 4;
+  }
+  drive() {
+    console.log("drive..");
+  }
+  stop() {
+    console.log("stop!");
+  }
+}
+
+class Bmw extends Car {
+  constructor(color) {
+    super(color);    // 부모를 반드시 먼저 호출해야함
+      // class의 constructor는 빈 객체를 만들어주고 this로 이 객체를 가리키게 됨
+      // 그렇게 되면 'extends를 써서 만든 자식 class'는 '빈 객체가 만들어지고 this에 할당하는 작업'을 건너뜀
+      // 그래서 항상 'super' keyword로 부모 constructor를 실행해줘야 함
+    this.navigation = 1;
+  }
+  
+  // 만약 constructor가 없으면? -> 자동으로 생성해서 있는것 처럼 횅동함
+  // 결국 자식 생성자엔 무조건 부모 생성자를 호출해야 한다는 것
+  // constructor(...args) {
+  //   super(...args);
+  // }
+  
+  park() {
+    console.log("park");
+  }
+  stop() {
+    super.stop();
+    console.log("off");
+  }
+}
+
+const z4 = new Bmw("blue");
+
+console.log(z4.stop());
+  // "stop!"    // super는 부모를 의미하므로, super.stop()은 부모의 stop() method
+  // "off"    // overriding
+```
+
+---
+
+# Promise
+
+### 예시
+
+- 상점에 가서 물건 주문했는데, 물건이 나올 때까지 시간이 걸림
+- 언제 완료되는지 알 수 없으며, 물건을 만들다가 실패하는 경우도 있음
+- 이럴 때 소비자는?
+  - 10초에 한번씩 물어보기 : 비효율적
+    1. "다 됐나요?"
+    2. "아니요"
+    3. "다 됐나요?"
+    4. "아니요"
+    5. "다 됐나요?"
+    6. "네, 준비 되었습니다. 가지고 가세요"
+    - 가끔 실패할 때는 소비자가 다시 물건 주문
+  - 주문 하고 상품이 준비되었거나 실패했으면 전화를 달라며 전화번호 주기
+    - 상품이 준비되는 동안 다른 작업도 할 수 있음
+    - 상점은 이 번호를 기억했다가 작업이 완료되거나 실패했을 때, 소비자에게 알려주면 됨
+    - 이럴 때 사용할 수 있는 것이 promise
+  
+### 사용
+
+```javascript
+const pr = new Promise((resolve, reject) => {
+  // code
+});
+```
+- new로 생성
+- 인수는 resolve와 reject
+  - resolve : 성공했을 때 실행하는 함수
+  - reject : 실패했을 때 실행하는 함수
+  - 이렇게 어떤 일이 완료되었을 때 실행하는 함수를 'callback 함수'라고 함
+  
+- new Promise 생성자가 반환하는 promise 객체는 'state'와 'result'를 property로 가짐
+  - state: pending (대기)
+  - result: undefined
+- 성공햐면( resolve(value)가 호출되면) : 'state'는 'fulfilled'가 되고, 'result'는 'resolve 함수로 전달된 값'이 됨
+  - state: fulfilled (이행됨)
+  - result: value
+- 실패햐면( reject(error)가 호출되면) : 'state'는 'rejected'가 되고, 'result'는 'reject 함수로 전달된 error'이 됨
+  - state: rejected (거부됨)
+  - result: error
+```javascript
+const pr = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('ok');
+  }, 3000);
+}
+
+// 3초 뒤 pr.property의 값 변화
+// state : pending -> fulfilled
+// result : undefined -> 'ok'
+```
+```javascript
+const pr = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('error..');
+  }, 3000);
+}
+
+// 3초 뒤 pr.property의 값 변화
+// state : pending -> rejected
+// result : undefined -> error
+```
+```javascript
+const pr = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('ok');
+  }, 3000);
+}
+
+// then을 이용해서 resolve와 reject를 처리할 수 있음
+pr.then(
+  function (result) {    // 이행되었을 때 실행 : 현재는 이 code만 실행됨 (위에 resolve이므로)
+    console.log(result + ' 가지러 가자');
+  },
+  function (error) {    // 거부 되었을 때 실행
+    console.log('다시 주문해주세요..');
+  }
+);
+```
+```javascript
+const pr = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('ok');
+  }, 3000);
+}
+
+// then 이외에 사용할 수 있는 catch, finally
+// catch : error가 발생(reject)할 경우 실행됨
+  // then에 몰아넣는 것보다 사용 권장됨
+    // catch로 명확하게 구분해주는 것이 가독성이 좋고, 첫번째 함수를 실행했다가 생기는 error를 잡아줄 수도 있기 때문
+// finally : 이행이든 거부든 처리가 완료되면 항상 실행됨
+  // loading 화면 같은 걸 없앨 때 유용함
+pr.then(
+  function (result) {
+    console.log(result + ' 가지러 가자');
+  }
+).catch(
+  function (error) {
+    console.log('다시 주문해주세요..');
+  }
+).finally(
+  function () {
+    console.log('--- 주문 끝 ---');
+  }
+);
+```
+
+### callback hell과 Promise
+
+  ```javascript
+  const f1 = (callback) => {
+    setTimeout(function () {
+      console.log("1번 주문 완료");
+      callback();
+    }, 1000);
+  };
+
+  const f2 = (callback) => {
+    setTimeout(function () {
+      console.log("2번 주문 완료");
+      callback();
+    }, 3000);
+  };
+
+  const f3 = (callback) => {
+    setTimeout(function () {
+      console.log("3번 주문 완료");
+      callback();
+    }, 2000);
+  };
+
+  // callback hell : depth가 깊어지면서 계속 callback을 호출
+  // 이 부분을 promise를 써서 해결할 수 있음
+  console.log('시작');
+  f1(function () {
+    f2(function () {
+      f3(function () {
+        console.log("끝");
+      });
+    });
+  });
+  ```
+  ```javascript
+  const f1 = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res("1번 주문 완료");
+      }, 1000);
+    });
+  };
+
+  const f2 = (message) => {
+    console.log(message);
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        // res("2번 주문 완료");
+        rej("xxx");    // reject이기 때문에 3번까지 도달하지 못하고 catch로 넘어감
+      }, 3000);
+    });
+  };
+
+  const f3 = (message) => {
+    console.log(message);
+    return new Promise((res, rej) => {
+      settimeout(() => {
+        res("3번 주문 완료");
+      }, 2000);
+    });
+  };
+
+  // promise chaining
+  console.log('시작');
+  f1()
+    .then(res => f2(res))
+    .then(res => f3(res))
+    .then(res => console.log(res))
+    .catch(console.log)
+    .finally(() => {
+      console.log("끝");
+    });
+    // 시작
+    // 1번 주문 완료
+    // xxx
+    // 끝
+  ```
+
+### Promise.all()
+
+  ```javascript
+  const f1 = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res("1번 주문 완료");
+      }, 1000);
+    });
+  };
+
+  const f2 = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res("2번 주문 완료");
+      }, 3000);
+    });
+  };
+
+  const f3 = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res("3번 주문 완료");
+      }, 2000);
+    });
+  };
+  
+  // Promise.all : 한번에 실행
+  // 순차적으로 실행하면 총 6초가 걸림
+  // 만약 3개 한번에 실행할 수 있다면 3초만에 끝낼 수 있음
+  console.time('x');
+  Promise.all([f1(), f2(), f3()])
+    .then(res => {
+      console.log(res);
+      console.time('x');
+    });
+      // ["1번 주문 완료", "2번 주문 완료", "3번 주문 완료"]
+      // x: 3001.15087890625 ms
+    // 주의 : 실패하는 경우에는 어떤 data도 얻지 못함
+      // 순차 실행에서는 받아아다가 끝이 나지만, Promise.all은 일괄 처리하므로 아무 data도 나오지 않음
+      // 바로 error가 뜨게 됨 -> 다 보여주거나, 아예 안보여주거나 하는 경우에 유용함
+  ```
+
+### Promise.race()
+
+  ```javascript
+  const f1 = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res("1번 주문 완료");
+      }, 1000);
+    });
+  };
+
+  const f2 = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        // res("2번 주문 완료");
+        rej("xxx");    // reject이기 때문에 3번까지 도달하지 못하고 catch로 넘어감
+      }, 3000);
+    });
+  };
+
+  const f3 = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res("3번 주문 완료");
+      }, 2000);
+    });
+  };
+  
+  // Promise.race : 첫번째 완료되는 것만 실행하고 끝냄
+  // 2번이 reject를 예정하고 있었지만, 이미 1번이 완료되었으므로 무시됨
+  console.time('x');
+  Promise.all([f1(), f2(), f3()])
+    .then(res => {
+      console.log(res);
+      console.time('x');
+    });
+      // "1번 주문 완료"
+      // x: 1002.0048828125 ms
+  ```
+
+---
+
+# async, await
+
+- async, await를 사용하면 promise의 then method를 chain 형식으로 호출하는 것보다 가독성이 좋아짐
+
+### async
+
+```javascript
+async function getName() {
+  return "Mike";
+}
+
+console.log(getName());    // Promise {<fulfilled>: "Mike"}
+
+getName().then((name) => {
+  console.log(name);
+});    // "Mike"
+```
+```javascript
+async function getName() {
+  return Promise.resolve("Tom");
+}
+
+// Promise를 반환했기 때문에 그대로 반환함
+getName().then((name) => {
+  console.log(name);
+});    // "Tom"
+```
+```javascript
+async function getName() {
+  // return Promise.resolve("Tom");
+  throw new Error("err..");
+}
+
+// rejected인 경우
+getName().catch((error) => {
+  console.log(err);
+});    // Error: err..
+```
+
+### await
+
+-  await keyword는 async 함수 내부에서만 사용할 수 있음
+  - 일반 함수에서 사용하면 error 발생됨
+```javascript
+function getName(name) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(name);
+    }, 1000);
+  });
+}
+
+async function showName() {
+  const result = await getName("Mike");
+    // 'result'에 'getName'에서 resolve된 값을 기다렸다가(await) 넣어줌
+  console.log(result);
+}
+
+console.log("시작");    // "시작"
+showName();    // (1초 뒤) "Mike"
+```
+
+```javascript
+const f1 = () => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res("1번 주문 완료");
+    }, 1000);
+  });
+};
+
+const f2 = (message) => {
+  console.log(message);
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res("2번 주문 완료");
+      // rej(new Error("err.."));
+    }, 3000);
+  });
+};
+
+const f3 = (message) => {
+  console.log(message);
+  return new Promise((res, rej) => {
+    settimeout(() => {
+      res("3번 주문 완료");
+    }, 2000);
+  });
+};
+
+// async await에서는 error처리를 try catch 문으로 함
+console.log("시작");
+async function order() {
+  try {
+    const result1 = await f1();
+    const result2 = await f2(result1);
+    const result3 = await f3(result2);
+    cosnole.log(result3);
+    
+    // const result = await Promise.all([f1(), f2(), f3()]);
+    // cosnole.log(result);    // Promise.all로 실행 시, 배열로 결과가 나옴
+      // ["1번 주문 완료", "2번 주문 완료", "3번 주문 완료"]
+  } catch (e) {
+    console.log(e);
+  }
+  console.log("종료");
+};
+
+order();
+  // 시작
+  // 1번 주문 완료
+  // 2번 주문 완료 (만약 f2에 reject 함수를 넣으면, 여기서 'Error: err..' 나오고 종료로 바로 넘어감)
+  // 3번 주문 완료
+  // 종료
+```
+
+---
+
+# Generator
+
+- 함수의 실행을 중간에 멈췄다가 재개할 수 있는 기능
+  - 다른 작업을 하다가 다시 돌아와서 next()해주면 진행이 멈췄던 부분부터 이어서 실행
+    - ex) Redux Saga
+  
+### next()
+
+```javascript
+function* fn() {
+  yield 1;    // 내부에 'yield' keyword를 사용함
+  yield 2;
+  yield 3;
+  return "finish";
+}
+
+const a = fn();    // generator 함수를 실행하면 Generator 객체가 반환됨
+
+console.log(a.next());    // {value: 1, done: false}
+  // 객체 반환
+    // value : 'yield' keyword 다음에 쓴 값
+      // 만약 값을 적지 않으면 undefined
+    // done : 모든 함수 code가 끝났는지 나타냄
+      // 실행이 끝났으면 true
+      // 끝나지 않았으면 false
+console.log(a.next());    // {value: 2, done: false}
+console.log(a.next());    // {value: 3, done: false}
+console.log(a.next());    // {value: "finish", done: true}
+console.log(a.next());    // {value: undefined, done: true}
+```
+
+### return()
+
+```javascript
+function* fn() {
+  yield 1;
+  yield 2;
+  yield 3;
+  return "finish";
+}
+
+const a = fn();
+
+console.log(a.next());    // {value: 1, done: false}
+console.log(a.return('END');    // {value: "END", done: true}
+console.log(a.next());    // {value: undefined, done: true}
+```
+
+### throw()
+
+```javascript
+function* fn() {
+  yield 1;
+  yield 2;
+  yield 3;
+  return "finish";
+}
+
+const a = fn();
+
+console.log(a.next());    // {value: 1, done: false}
+console.log(a.throw(new Error('err'));
+  // Error: err
+  // {value: undefined, done: true}
+console.log(a.next());    // {value: undefined, done: true}
+```
+
+### iterable
+
+- iterable : 반복이 가능한
+- 몇 가지 조건이 있음
+  - Symbol.iterator method가 구현되어 있어야 함
+    - Symbol.iterator는 iterator를 반환해야 함
+  - iterator : Symbol.itorator method를 호출한 결과
+    - next method를 가짐
+    - next method는 value와 done 속성을 가진 객체를 반환
+    - 작업이 끝나면 done은 true가 됨
+- 배열, generator, 문자열 모두 iteratble함
+  
+- 배열
+  ```javascript
+  const arr = [1, 2, 3, 4, 5];
+
+  // arr의 __proto__에는 Symbol.iterator가 있음
+  const it = arr[Symbol.iterator]();
+
+  it.next();    // {value: 1, done: false}
+  it.next();    // {value: 2, done: false}
+  it.next();    // {value: 3, done: false}
+  it.next();    // {value: 4, done: false}
+  it.next();    // {value: 5, done: false}
+  it.next();    // {value: undefined, done: true}
+  
+  // iterable하기 때문에 for of를 통해 순회할 수 있음
+  for (let num of arr) {
+    console.log(num);
+  };
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
+    // undefined
+  ```
+  - 배열은 Symbol.iterator method를 가지고 있고, 이 method가 반환하는 값이 iterator
+    - 즉 배열은 iterable하며 반복 가능한 객체
+  
+- generator
+```javascript
+function* fn() {
+  yield 4;
+  yield 5;
+  yield 6;
+}
+
+const a = fn();
+
+console.log(a[Symbol.iterator]() === a);    // true
+
+// for of가 시작되면 Symbol.iterator가 호출되고 만약에 없으면 error가 발생함
+// 반환된 iterator에 next() method를 호출하면서 done이 true가 될 때까지 반복
+for (let num of a) {
+  console.log(num);
+}
+  // 4
+  // 5
+  // 6
+  // undefined
+```
+
+- 문자열
+```javascript
+const str = 'hello';
+const it = str[Symbol.iterator]();
+
+console.log(xx.next());    // {value: "h", done: false}
+console.log(xx.next());    // {value: "e", done: false}
+console.log(xx.next());    // {value: "l", done: false}
+console.log(xx.next());    // {value: "l", done: false}
+console.log(xx.next());    // {value: "o", done: false}
+console.log(xx.next());    // {value: undefined, done: true}
+
+for (let s of it) {
+  console.log(s);
+}
+  // h
+  // e
+  // l
+  // l
+  // o
+  // undefined
+```
+
+### next()에 인수 전달
+
+```javascript
+function* fn() {
+  const num1 = yield "첫번째 숫자를 입력해주세요";
+  console.log(num1);
+  
+  const num2 = yield "두번째 숫자를 입력해주세요";
+  console.log(num2);
+  
+  return num1 + num2;
+}
+
+const a = fn();
+
+console.log(a.next());    // {value: "첫번째 숫자를 입력해주세요", done: false}
+console.log(a.next(2));
+  // 2
+  // {value: "두번째 숫자를 입력해주세요", done: false}
+console.log(a.next(4));
+  // 4
+  // {value: 6, done: true}
+```
+
+### 값을 미리 만들어두지 않음
+
+- generator는 필요한 값만 그때 그때 생성함
+  - 일반적인 함수로 어떤 값을 구할 때, 모든 값을 미리 계산 해놓아야 함
+    - 쓸지 안 쓸지 정해지지 않은 상황에서도 그 값을 유지해야 함
+  - genearator를 사용하면 필요한 순간까지 계산을 미룰 수 있음
+```javascript
+function* fn() {
+  let index = 0;
+  while (true) {
+    yield index++;
+  }
+}
+
+const a = fn();
+
+console.log(a.next());    // {value: 1, done: false}
+console.log(a.next());    // {value: 2, done: false}
+console.log(a.next());    // {value: 3, done: false}
+console.log(a.next());    // {value: 4, done: false}
+console.log(a.next());    // {value: 5, done: false}
+console.log(a.next());    // {value: 6, done: false}
+...
+...
+```
+  - 이렇게 while true 문을 만들어도 browser가 죽지 않음
+    - next를 호출할 때마다 값을 주기 때문
+    - generator가 아니었다면 break가 없는 while true 문을 사용했으면 안됨
+    
+### yield* 이용
+
+```javascript
+function* gen1() {
+  yield "W";
+  yield "o";
+  yield "r";
+  yield "l";
+  yield "d";
+}
+
+function* gen2() {
+  yield "Hello,";
+  yield* gen1();    // yield 옆에는 반복가능한 모든 객체가 위치할 수 있음
+  yield "!";
+}
+
+console.log(...gen2());    // "Hello, W o r l d !"
+```
+
+---
 
 # Reference
 
