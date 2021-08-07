@@ -2205,6 +2205,147 @@ const t_id = setInterval(showName, 3000, 'Mike');
   const t_id = setInterval(showTime, 1000);
   ```
 
+---
+
+# call, apply, bind
+
+- 함수 호출 방식과 관계없이 this를 지정할 수 있음
+
+### call
+
+- 모든 함수에서 사용할 수 있으며, this를 특정값으로 지정할 수 있음
+- 첫번째 매개변수 : this로 사용될 값
+- 두번째 매개변수 ~ : 함수에서 사용할 매개변수를 차례대로 지정
+```javascript
+const mike = {
+  name: "Mike",
+};
+
+const tom = {
+  name: "Tom",
+};
+
+function showThisName() {
+  console.log(this.name);
+}
+
+showThisName();    // "" : window.name이 나오기 때문
+showThisName.call(mike);    // Mike
+showThisName.call(tom);    // Tom
+
+function update(birthYear, occupation) {
+  this.birthYear = birthYear;
+  this.occupation = occupation;
+}
+
+update.call(mike, 1999, "singer");
+console.log(mike);    // {name: "Mike", birthYear: 1999, occupation: "singer"}
+
+update.call(tom, 1999, "teacher");
+console.log(tom);    // {name: "Tom", birthYear: 2002, occupation: "teacher"}
+```
+
+### apply
+
+- 함수 매개변수를 처리하는 방법을 제외하면 call과 완전히 같음
+- call은 일반적인 함수와 마찬가지로 매개변수를 직접 받지만, apply는 매개변수를 배열로 받음
+```javascript
+const mike = {
+  name: "Mike",
+};
+
+const tom = {
+  name: "Tom",
+};
+
+function showThisName() {
+  console.log(this.name);
+}
+
+showThisName();    // "" : window.name이 나오기 때문
+showThisName.call(mike);    // Mike
+showThisName.call(tom);    // Tom
+
+function update(birthYear, occupation) {
+  this.birthYear = birthYear;
+  this.occupation = occupation;
+}
+
+update.apply(mike, [1999, "singer"]);
+console.log(mike);    // {name: "Mike", birthYear: 1999, occupation: "singer"}
+
+update.apply(tom, [1999, "teacher"]);
+console.log(tom);    // {name: "Tom", birthYear: 2002, occupation: "teacher"}
+```
+- 배열을 함수의 매개변수로 사용할 때 유용함
+  ```javascript
+  const nums = [3, 10, 1, 6, 4];
+
+  const min_num = Math.min(...nums);
+  const max_num = Math.max(...nums);
+
+  console.log(max_num);    // 1
+  console.log(nim_num);    // 10
+  ```
+  ```javascript
+  const nums = [3, 10, 1, 6, 4];
+
+  const min_num = Matn.min.apply(null, nums);    // Math를 this로 가져올 필요가 없으므로 null(아무거나)로 줌
+    // = Math.min.apply(null, [3, 10, 1, 6, 4]);
+  const max_num = Matn.max.apply(null, nums);
+    // = Math.max.apply(null, [3, 10, 1, 6, 4]);
+
+  // const min_num = Matn.min.call(null, ...nums);    // call일 때는 ...nums 필요
+    // = Math.min.call(null, 3, 10, 1, 6, 4);
+  // const max_num = Matn.max.call(null, ...nums);
+    // = Math.max.call(null, 3, 10, 1, 6, 4);
+
+  console.log(max_num);    // 1
+  console.log(nim_num);    // 10
+  ```
+### bind
+
+- 함수의 this값을 영구히 바꿀 수 있음
+```javascript
+const mike = {
+  name: "Mike",
+};
+
+function update(birthYear, occupation) {
+  this.birthYear = birthYear;
+  this.occupation = occupation;
+}
+
+const update_mike = update.bind(mike);
+
+update_mike(1980, "police");
+console.log(mike);    // {name: "Mike", birthYear: 1980, occupation: "police"}
+```
+```javascript
+const user = {
+  name: "Mike",
+  showName: function () {
+    console.log(`hello, ${this.name}`);
+  },
+};
+
+user.showName();    // "hello, Mike"
+
+let fn = user.showName;
+
+fn();    // "hello, " : fn에 할당할 때, this를 잃어버린 것
+  // 점(.) 앞에 있는게 this인데, 호출할 때 fn()만 호출하니까 this가 없는 것
+
+fn.call(user);    // "Hello, Mike"
+fn.apply(user);    // "Hello, Mike"
+
+fn.bound_fn = fn.find(user);
+bound_fn();    // "Hello, Mike"
+```
+
+---
+
+# 상속, prototype
 
 
 
