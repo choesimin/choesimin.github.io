@@ -73,7 +73,7 @@
 
 |Option|Explanation|
 |-|-|
-|--staged (== -cached)|Staging Area에 넣은(Staged) file의 변경 부분 보기|
+|--staged (== --cached)|Staging Area에 넣은(Staged) file의 변경 부분 보기|
 
 ---
 
