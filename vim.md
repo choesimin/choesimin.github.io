@@ -2,7 +2,7 @@
 
 - linux의 대표적인 편집기인 vi와 호환되는 텍스트 편집기
 
-### Vim의 mode
+## Mode
 
 - 명령 mode (Command mode, 일반모드)
 	- 입력하는 모든 키는 명령으로 수행
@@ -12,7 +12,7 @@
 	- 입력하는 모든 키는 문서의 내용을 작성함
 - Visual mode : 선택 mode
 
-### Commands
+## Commands
 
 - set expandtab : tab을 공백으로 바꾸기
 - set tabstop=2 : tab 너비 2칸으로 설정
@@ -23,13 +23,13 @@
 - set encoding=utf-8 : encoding 방식
 - set fileencodings=utf-8,cp949 : file encoding 방식
 
-### Move Cursor
+## Move Cursor
 
 - '(쉴표) 2번 : 이전 위치로 이동
 - control + o : 이전 위치로 이동 (stack)
 - control + i : 다음 위치로 이동 (stack)
 
-### 화면 단위 이동
+## Move Display
 
 - control + f : 한 회면 밑으로 이동
 - control + f (forward) : 한화면 밑으로 이동
@@ -42,6 +42,49 @@
 - nz : n번 line을 화면상의 맨위로 
 - z : cursor의 위치와 함께, 화면상의 중간으로 
 - z- : cursor의 위치와 함께, 화면상의 맨아래로 
+
+## .vimrc
+
+```
+set nocompatible
+
+filetype off 
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
+Plugin 'Valloric/YouCompleteMe'  "auto complate
+Plugin 'vim-syntastic/syntastic'  "syntax check
+Plugin 'mhinz/vim-signify'  "view git history
+Plugin 'nanotech/jellybeans.vim'
+call vundle#end()
+
+filetype on
+
+set number
+set showmatch
+
+set cindent
+set autoindent
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+set hlsearch
+set ignorecase
+
+set encoding=utf-8
+set fileencoding=utf-8
+
+if has("syntax")
+  syntax on
+endif
+colorscheme jellybeans
+```
 
 ---
 
