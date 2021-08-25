@@ -1,27 +1,17 @@
 # Vim
 
-- linux의 대표적인 편집기인 vi와 호환되는 텍스트 편집기
+- Linux의 대표적인 편집기인 vi와 호환되는 텍스트 편집기
 
 ## Mode
 
-- 명령 mode (Command mode, 일반모드)
-	- 입력하는 모든 키는 명령으로 수행
-- 명령줄 mode (Command Line mode)
-	- 화면 하단에 :(colon) prompt에 명령문장을 입력하거나 /prompt에 단어를 입력
-- 입력 mode : Insert mode, 편집 mode
-	- 입력하는 모든 키는 문서의 내용을 작성함
-- Visual mode : 선택 mode
-
-## Commands
-
-- set expandtab : tab을 공백으로 바꾸기
-- set tabstop=2 : tab 너비 2칸으로 설정
-- set autoindent & set smartindent : 자동 들여쓰기
-	- autoindent : 줄바꿈할 때 바로 아래로 cursor를 떨어뜨림 (선호)
-	- smartindent : 줄바꿈할 때 tabstop만금 자동으로 더 띄어서 cursor를 위치시킴
-- set shiftwidth=2 : ">>" 또는 "<<" 로 들여쓰기 할때 공백의 갯수 (기본값 8)
-- set encoding=utf-8 : encoding 방식
-- set fileencodings=utf-8,cp949 : file encoding 방식
+- Command Mode
+	- 입력하는 모든 key는 명령으로 수행
+- Command Line Mode
+	- 화면 하단에 ':(colon) prompt'에 명령 문장을 입력하거나 /prompt에 단어를 입력
+- Insert Mode or Edit Mode
+	- 입력하는 모든 key는 문서의 내용을 작성함
+- Visual Mode
+  - 선택 mode
 
 ## Move Cursor
 
@@ -42,6 +32,17 @@
 - nz : n번 line을 화면상의 맨위로 
 - z : cursor의 위치와 함께, 화면상의 중간으로 
 - z- : cursor의 위치와 함께, 화면상의 맨아래로 
+
+## Setting Command
+
+- set expandtab : tab을 공백으로 바꾸기
+- set tabstop=2 : tab 너비 2칸으로 설정
+- set autoindent & set smartindent : 자동 들여쓰기
+	- autoindent : 줄바꿈할 때 바로 아래로 cursor를 떨어뜨림 (선호)
+	- smartindent : 줄바꿈할 때 tabstop만금 자동으로 더 띄어서 cursor를 위치시킴
+- set shiftwidth=2 : ">>" 또는 "<<" 로 들여쓰기 할때 공백의 갯수 (기본값 8)
+- set encoding=utf-8 : encoding 방식
+- set fileencodings=utf-8,cp949 : file encoding 방식
 
 ## .vimrc
 
