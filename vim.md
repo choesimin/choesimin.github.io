@@ -67,6 +67,8 @@ filetype on
 
 set number
 set showmatch
+set cursorline
+set cursorcolumn
 
 set cindent
 set autoindent
@@ -90,6 +92,8 @@ colorscheme jellybeans
 
 # Reference
 
+- https://devanix.tistory.com/62
+  - .vimrc options
 - https://www.lesstif.com/system-admin/vim-tab-space-4-18220149.html
 - https://velog.io/@qkqhqhrh11/Vim%EC%9D%B4%EB%9E%80
 - https://velog.io/@qkqhqhrh11/Vim-Command-mode
