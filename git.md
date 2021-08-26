@@ -137,6 +137,9 @@
 
 # git reset
 
+|||
+|-|-|
+|||
 - git reset HEAD <file>...
 - Staged 상태 -> Unstaged 상태
 - 위험한 명령어 (특히 '--hard' option)
@@ -145,9 +148,9 @@
 
 # git checkout
 
-- git checkout -- <file>
-- discard changes in work directory
-- 변경 취소 : Modified 상태 file이 초기화됨
+|||
+|-|-|
+|-- <file>|discard changes in work directory (변경 취소 : Modified 상태 file이 초기화됨)|
 
 ---
 
@@ -181,8 +184,38 @@
 
 # git push
 
-- git push <remote 저장소 이름> <branch 이름>
-- remote 저장소(upstream)에 push 하기
+|||
+|-|-|
+|<remote 저장소 이름> <branch 이름>|remote 저장소(upstream)에 branch push 하기|
+|<remote 저장소 이름> <tag 이름>|remote 저장소에 tag push 하기|
+|<remote 저장소 이름> --tags|remote server에 없는 tag 모두 push 하기|
+
+---
+
+# git tag
+
+- lightweight tag
+  - branch와 비슷한데 branch처럼 가리키는 지점을 최신 commit으로 이동시키지 않음
+  - 단순히 특정 commit에 대한 pointer
+- annotated tag
+  - Git dataabase에 tag를 만든 사람의 이름, email과 tag를 만든 날짜, tag message를 저장함
+  - 일반적으로 annotated tag를 만들어 많은 정보를 사용할 수 있도록 하는 것이 좋지만, 임시로 생성하는 tag거나 이러한 정보를 유지할 필요가 없는 경우에는 lightweight tag를 사용할 수도 있음
+|||
+|-|-|
+|--list|만들어진 tag 조회|
+|-l|'--list'와 동일|
+|-l "<검색어>"|검색하여 tag 조회|
+|<tag 이름>|lightweight tag 붙이기|
+|-a <tag 이름> -m "<tag message>"|annotated tag 붙이기|
+|-a <tag 이름> <checksum(commit hashcode)>|commit에 나중에 tag 붙이기|
+
+---
+
+# git show
+
+|||
+|=|=|
+|<tag 이름>|별도의 tag 정보 왁인 (단순 commit 정보만을 보여줌)|
 
 ---
 
