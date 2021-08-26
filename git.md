@@ -41,10 +41,11 @@
 - Git은 Staging Area에 속한 snapshot을 commit함
   - Staging Area에 넣지 않은 것은 다음에 commit할 수 있음
   - 나중에 snapshot끼리 비교하거나 예전 snapshot으로 되돌릴 수 있음
-|Option|Explanation|
+|||
 |-|-|
 |-v|편집기에 diff message도 추가됨|
 |-a|Trackd 상태의 file을 자동으로 Staging Area에 넣음 (add하지 않아도 됨)|
+|--amend|commit 합치기 (기존의 commit을 덮어씀)|
 
 ---
 
@@ -58,11 +59,10 @@
 # git status
 
 - file의 상태 확인
-
-## -s
-
-- == --short
-- 상태를 간략하게 보여줌
+|||
+|-|-|
+|--short|상태를 간략하게 보여줌|
+|-s|'--short'와 동일|
 
 ---
 
@@ -71,9 +71,10 @@
 - 수정했지만 아직 Unstaged 상태인 file을 비교해볼 수 있음
   - Working Directory에 있는 것과 Staging Area에 있는 것을 비교
 
-|Option|Explanation|
+|||
 |-|-|
-|--staged (== --cached)|Staging Area에 넣은(Staged) file의 변경 부분 보기|
+|--staged|Staging Area에 넣은(Staged) file의 변경 부분 보기|
+|--cached|'--staged'와 동일|
 
 ---
 
@@ -84,7 +85,7 @@
   - Working Directory에서 file을 삭제 -> Unstaged 상태
   - 'git rm'으로 삭제한 file -> Stated 상태
 
-|Option|Explanation|
+|||
 |-|-|
 |-f|이미 file을 수정했거나 Staging Area에 추가했을 때 강제로 삭제|
 |--cached|Staging Area에서만 제거하고 Working Directory에 있는 file은 지우지 않고 남겨두기 (hard disk에 있는 file은 그대로 두고 Git만 추적하지 않게 함)|
@@ -108,9 +109,10 @@
 
 - commit history 조회
 - 주요 option
-  |Option|Explanation|
+  |||
   |-|-|
-  |-p (== --patch)|각 commit의 diff 결과 조회|
+  |--patch|각 commit의 diff 결과 조회|
+  |-p|'--patch'와 동일|
   |--stat|각 commit에서 수정된 file의 통계 정보 조회|
   |--shortstat|--stat 명령의 결과 중에서 수정한 file, 추가된 line, 삭제된 line만 조회|
   |--name-only|commit 정보 중에서 수정된 file의 목록 조회|
@@ -121,7 +123,7 @@
   |--pretty|지정한 형식으로 조회. 이 option에는 oneline, short, full, fuller, format이 있음. format은 원하는 형식으로 출력할 때 사용|
   |--oneline|--pretty=oneline --abbrev-commit 을 함께 사용한 것|
 - 조회 범위를 제한하는 option
-  |Option|Explanation|
+  |||
   |-|-|
   |-(n)|최근 n 개의 commit만 조회|
   |--since, --after|명시한 날짜 이후의 commit만 조회|
@@ -130,6 +132,57 @@
   |--committer|입력한 committer의 commit만 조회|
   |--grep|commit message 안의 text 검색|
   |-S|commit 변경(추갸/삭제) 내용 안의 text 검색|
+
+---
+
+# git reset
+
+- git reset HEAD <file>...
+- Staged 상태 -> Unstaged 상태
+- 위험한 명령어 (특히 '--hard' option)
+
+---
+
+# git checkout
+
+- git checkout -- <file>
+- discard changes in work directory
+- 변경 취소 : Modified 상태 file이 초기화됨
+
+---
+
+# git remote
+
+- 원격 저장소 조회
+|||
+|-|-|
+|-v|단축 이름과 URL 전체 조회|
+|add <단축 이름> <URL>|Work Directory에 새 remote 저장소 추가|
+|show <remote 저장소 이름>|remote 저장소의 구체적인 정보를 확인|
+|rename <단축 이름>|remote 저장소의 이름 바꾸기|
+|remove <단축 이름>|remote 저장소 삭제 (추적 branch 정보나 모든 설정 내용도 함께 삭제됨)|
+|rm <단축 이름>|'remove'와 동일|
+
+---
+
+# git fetch
+
+- local에는 없지만 remote에 있는 모든 data를 가져옴
+- 자동으로 merge하지는 않음
+
+---
+
+# git pull
+
+- git fetch + git merge
+- server에서 data를 가져오고 그 data를 자동으로 현재 작업하는 code와 merge시킴
+
+---
+
+# git push
+
+- git push <remote 저장소 이름> <branch 이름>
+- remote 저장소(upstream)에 push 하기
 
 ---
 
