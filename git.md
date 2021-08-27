@@ -151,6 +151,7 @@
 |||
 |-|-|
 |-- <file>|discard changes in work directory (변경 취소 : Modified 상태 file이 초기화됨)|
+|<tag 이름>|tag를 checkout|
 
 ---
 
