@@ -132,6 +132,7 @@
   |--committer|입력한 committer의 commit만 조회|
   |--grep|commit message 안의 text 검색|
   |-S|commit 변경(추갸/삭제) 내용 안의 text 검색|
+  |--no-merges|merge commit 표시하지 않기|
 
 ---
 
