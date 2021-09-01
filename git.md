@@ -44,7 +44,7 @@
 |||
 |-|-|
 |-v|편집기에 diff message도 추가됨|
-|-a|Trackd 상태의 file을 자동으로 Staging Area에 넣음 (add하지 않아도 됨)|
+|-a|Trackd 상태의 file을 자동으로 Staging Area에 넣음|
 |--amend|commit 합치기 (기존의 commit을 덮어씀)|
 
 ---
@@ -122,6 +122,7 @@
   |--graph|branch와 merge history 정보까지 ASCII graph로 조회|
   |--pretty|지정한 형식으로 조회. 이 option에는 oneline, short, full, fuller, format이 있음. format은 원하는 형식으로 출력할 때 사용|
   |--oneline|--pretty=oneline --abbrev-commit 을 함께 사용한 것|
+  |--decorate|branch가 어떤 commit을 가리키는지 조회|
 - 조회 범위를 제한하는 option
   |||
   |-|-|
@@ -153,6 +154,8 @@
 |-|-|
 |-- <file>|discard changes in work directory (변경 취소 : Modified 상태 file이 초기화됨)|
 |<tag 이름>|tag를 checkout|
+|<branch 이름>|해당 branch로 이동|
+|-b <branch 이름>|branch를 만들면서 checkout까지 한번에 하기 (branch + checkout)|
 
 ---
 
@@ -216,8 +219,54 @@
 # git show
 
 |||
-|=|=|
+|-|-|
 |<tag 이름>|별도의 tag 정보 왁인 (단순 commit 정보만을 보여줌)|
+
+---
+
+# git branch
+
+- HEAD : 지금 작업하는 local branch를 가리키는 pointer
+- branch를 이동하면 Working Directory의 file이 변경됨
+
+|||
+|-|-|
+|-d <branch 이름>|해당 branch 삭제|
+
+---
+
+# git merge
+
+- fast-forwoard : branch pointer가 merge 과정 없이 최신 commit으로 이동하는 것
+  - A branch에서 다른 B branch를 merge할 때, B branch가 A branch 이후의 commit을 가리키고 있으면, 그저 A branch가 B branch와 동일한 commit을 가리키도록 이동만 하는 것
+- 3-way-merge
+  - 각 branch가 가리키는 commit 두 개와 공통 조상 하나를 이용하어 합치는 것
+  - 합친 결과를 별도의 commit으로 만들고나서 해당 branch가 가리키도록 이동시킴
+  - == merge commit
+- 충돌 (conflict)
+  - 3-way-merge에서 발생
+  - merge하는 두 branch에서 같은 file의 한 부분을 동시에 수정하면 Git은 해당 부분을 merge하지 못함
+  - 충돌이 일어난 file은 'git status'하면 unmerged 상태로 표시됨
+  - code에서 충돌을 알려주는 표시를 보고 수동으로 고쳐서 해결 가능
+    - '=======' 위 쪽 : current (HEAD version : merge 명령을 실행할 때 작업하던 branch)
+    - '=======' 아래 쪽 : incomming (충돌을 유발하는 branch)
+  - 'git mergetool'을 사용하면 merge 도구로 해결 가능
+  - 해결 후에 merge message에는 어떻게 충돌을 해결했고 좀 더 확인해야하는 부분은 무엇이고 왜 그렇게 해결했는지에 대해서 자세하게 기록 -> 나중에 이 merge commit을 이해하는 데에 도움을 줌
+
+
+|||
+|-|-|
+|-d <branch 이름>|해당 branch 삭제|
+|<branch 이름>|합칠 branch(HEAD가 있는 branch)에서 합쳐질 branch(merge 뒤에 적힌 branch)를 merge하는 것|
+||branch의 목록을 보여줌|
+|-v|각 branch의 마지막 commit message를 함께 보여줌|
+|--merge|현재 checkout한 branch에 이미 merge한 branch 목록 (삭제 가능한 branch)|
+|--no-merge|현재 checkout한 branch에 merge하지 않은 branch 목록 (삭제 불가능한 branch)|
+|-D|merge하지 않은 branch 강제로 삭제|
+|--merge|이미 merge한 branch 목록 확인 (삭제 가능한 branch)|
+|--no-merge|현재 checkout한 branch에 merge하지 않은 branch 목록 (삭제 불가능한 branch)|
+|--merge <branch 이름>|해당 branch에 이미 merge한 branch 목록|
+|--no-merge <branch 이름>|해당 branch에 merge하지 않은 branch 목록|
 
 ---
 
