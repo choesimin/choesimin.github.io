@@ -2,7 +2,7 @@
 
 - JetBrains사에서 개발한 통합 개발 환경
 
-### Shortcuts
+## Shortcuts
 
 - option + return : show context actions
 - command + shift + a : search everywhere

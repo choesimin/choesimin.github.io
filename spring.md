@@ -1,6 +1,6 @@
 # Spring Framework
 
-- java platform을 위한 oepnsource application framework
+- java platform을 위한 opensource application framework
 - 동적인 website를 개발하기 위한 여러가지 service를 제공
 - 전자정부 표준 framework의 기반 기술로 쓰임
 - enterprise급
@@ -53,7 +53,7 @@
 
 ### Spring Framework의 특징 : MVC (Model2)
 
-- Model + View + Controller 구조로 사용자 interface와 businuess logic을 분리하여 개발하는 것
+- Model + View + Controller 구조로 사용자 interface와 business logic을 분리하여 개발하는 것
   - MVC는 Model1과 Model2로 나누어져 있으며, 일반적인 MVC는 Model2를 지칭함
   - Model
     - data 처리 담당
@@ -86,7 +86,7 @@
     - Bean Factory는 IoC pattern을 적용하여 객체 구성부터 의존성 처리까지 모든 일을 처리하는 역할을 가짐
 - Spring Context
   - Spring Framework의 context 정보들을 제공하는 설정 file
-  - JNDI, EJB, Validation, Scheduling, Internaliztion 등 enterprice service들을 포함
+  - JNDI, EJB, Validation, Scheduling, Internalization 등 enterprise service들을 포함
 - Spring AOP
   - 관점지향 programming을 가능하게 함
 - Spring DAO
@@ -120,6 +120,6 @@
 - https://jonny-cho.github.io/spring/2019/01/21/springbootmysql/
 	- spring + mysql + mybatis (@Mapper 방식)
 - https://m.blog.naver.com/sgs03091/222067037646
-	- Doamin, VO, DTO, Entity 비교
+	- Domain, VO, DTO, Entity 비교
 
 

@@ -15,10 +15,10 @@
     - WAS 단에 설정 정보를 통해 DB가 몇 개 붙어있는지 정보 파악이 수월
   - DB connection pool을 효율적으로 사용 가능
 
-### JNDI 조회 밎 관련 참조
+## JNDI 조회 밎 관련 참조
 
 |JNDI 조회 이름|관련 참조|
-|---|---|
+|-|-|
 |java:comp/env|응용 program 환경 항목|
 |java:comp/enb/jdbc|JDBC dataSource 자원 관리자 연결 factory|
 |java:comp/env/ejb|EJB 참조|
@@ -33,25 +33,25 @@
 # How to
 
 - Servers -> tomcat -> context.xml -> <context></context> 하단에 추가
-```
-<ResourceLink global="jdbc/XE"
-  name="jdbc/XE"
-  type="javax.sql.DataSource" />
-```
+  ```xml
+  <ResourceLink global="jdbc/XE"
+    name="jdbc/XE"
+    type="javax.sql.DataSource" />
+  ```
 - Servers -> tomcat -> server.xml -> <GlobalNamingResources></GlobalNamingResources> 하단에 추가
-```
-<Resource name="jdbc/XE"
-  auth="Container"
-  type="javax.sql.DataSource"
-  driverClassName="oracle.jdbc.driver.OracleDriver"
-  factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-  url="jdbc:oracle:thin:@localhost:1521:XE"
-  username="스키마이름"
-  password="스키마비밀번호"
-  maxActive="20"
-  maxIdle="10"
-  maxWait="-1" />
-```
+  ```xml
+  <Resource name="jdbc/XE"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="oracle.jdbc.driver.OracleDriver"
+    factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+    url="jdbc:oracle:thin:@localhost:1521:XE"
+    username="스키마이름"
+    password="스키마비밀번호"
+    maxActive="20"
+    maxIdle="10"
+    maxWait="-1" />
+  ```
 
 ---
 

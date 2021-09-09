@@ -35,35 +35,35 @@
 # JDBC 단계별 사용
 
 1. import
-```java
-import java.sql.*;
-```
+  ```java
+  import java.sql.*;
+  ```
 2. driver load
-```java
-Class.forName("com.mysql.jdbc.Driver");
-```
+  ```java
+  Class.forName("com.mysql.jdbc.Driver");
+  ```
 3. Connection 얻기
-```java
-String dburl = "jdbc:mysql://localhost/dbName";
-Connection connection = DriverManager.getConnection(dburl, ID, PWD);
-```
+  ```java
+  String dburl = "jdbc:mysql://localhost/dbName";
+  Connection connection = DriverManager.getConnection(dburl, ID, PWD);
+  ```
 4. Statement 생성
-```java
-Statement statement = connection.createStatement();
-```
+  ```java
+  Statement statement = connection.createStatement();
+  ```
 5. 질의 수행 & ResultSet으로 결과 받기
-```java
-ResultSet resultSet = statement.executeQuery("select no from user");
-while (resultSet.next()) {
-	System.out.println( resultSet.getInt( "no") );
-}
-```
+  ```java
+  ResultSet resultSet = statement.executeQuery("select no from user");
+  while (resultSet.next()) {
+    System.out.println( resultSet.getInt( "no") );
+  }
+  ```
 6. close
-```java
-resultSet.close();
-statement.close();
-connection.close();
-```
+  ```java
+  resultSet.close();
+  statement.close();
+  connection.close();
+  ```
 
 # Statement & PreparedStatement
 
@@ -71,11 +71,15 @@ connection.close();
 - java는 주로 web 개발을 위해서 사용되는데, web 개발에서는 보안문제(SQL injection)때문에 PreparedStatement를 사용
 - Statement
   - SQL문을 실행할 때마다 SQL을 매번 구문을 새로 작성하고 해석해야해서 overhead가 있음
-    - ex) Spring sql = "insert customer (name, age) values('" + name + "', " + age + "')";
+    ```java
+    Spring sql = "insert customer (name, age) values('" + name + "', " + age + "')";
+    ```
 - PreparedStatement
   - 선처리 방식 사용 (준비된 statement)
   - SQL문을 미리 준비해놓고 binding 변수 (? 연산자)를 사용해서 반복되는 비슷한 SQL문을 쉽게 처리
-    - ex) Spring sql = "insert customer (name, age) values(?, ?)"; pstmt.setString(1, name); pstmt.setInt(2, age);
+    ```java
+    Spring sql = "insert customer (name, age) values(?, ?)"; pstmt.setString(1, name); pstmt.setInt(2, age);
+    ```
   - 사용하기 적절한 경우
     - Dynamic SQL을 사용할 때 : Dynamic SQL을 사용한다면 매번 조건절이 달라지므로 statement가 적절
 - query 실행 순서 : query 문장 분석 -> compile -> 실행
@@ -87,7 +91,7 @@ connection.close();
     - query 반복 수행 작업인 경우
 - 두 class의 주요 method
   |Statement|PreparedStatement|
-  |---|---|
+  |-|-|
   |ResultSet executeQuery(String sql) : select|ResultSet executeQuery(String sql) : select|
   |int executeUpdate(String sql) : insert, update, delete|int executeUpdate(String sql) : insert, update, delete|
   ||void setXXX(int index, ...) : ?에 binding 시킬 변수를 data type에 맞게 설정|

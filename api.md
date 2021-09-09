@@ -13,7 +13,7 @@
   - ex) Google Maps API
 - [Backend systems + API] <-> [API management system] <- [Apps & IoT devices & Mobile]
 
-### API 역할
+## API 역할
 
 1. server와 database에 대한 출입구 역할을 함
   - 허용된 사람들에게만 접근성 부여
@@ -23,7 +23,8 @@
   - 기계/운영체제 등과 상관없이 누구나 동일한 access를 얻을 수 있음
   - 범용 plug처럼 작동
 
-### API 유형
+## API 유형
+
 - Private API
   - API를 내부에서만 사용할 수 있도록 하며, 기업이 API를 최대한으로 제어할 수 있음
   - 회사 개발자가 자체 제품과 service를 개선하기 위해 내부적으로 발행
@@ -36,7 +37,8 @@
   - 품질 저하없이 추가 수익원을 창출할 수 있음
   - business 관게에서 사용되는 편이며, 종종 partner 회사 간에 software를 통합하기 위해 사용됨
 
-### Advantage
+## Advantage
+
 - Private API를 이용할 경우, 개발자들이 application code를 작성하는 방법을 표준화함으로써, 간소화되고 빠른 process 처리를 가능하게 함
   - 또한 software를 통합하고자 할 때는 개발자들 간의 협업을 용이하게 만들어줄 수 있음
 - Public API와 Partner API를 사용하면, 기업은 타사 data를 활용하여 brand 인지도를 높일 수 있음

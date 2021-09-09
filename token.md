@@ -22,7 +22,7 @@
 - https://velopert.com/2389
 	- jwt
 - https://memostack.tistory.com/200
-  - jwt + spring boot simple exsample
+  - jwt + spring boot simple example
 - https://goodteacher.tistory.com/99
 	- token 사용 vue example
 - https://flaviocopes.com/axios-send-authorization-header/

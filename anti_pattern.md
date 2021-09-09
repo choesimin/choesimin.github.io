@@ -8,7 +8,7 @@
   - project의 실패들과 올바르지 못한 개발 산출물들은 성공한 project의 것과 마가지고 중요한 가치를 지님
     - 모든 programmer들에게 지양해야 할 방향들을 알려주기 때문
 
-### Anti Pattern이 발생하는 측면
+## Anti Pattern이 발생하는 측면
 
 1. 관리 상의 anti pattern : project process와 project 구성원의 잘못된 관리
 2. architecture 상의 anti pattern : 설계와 구조의 잘못된 정의
@@ -17,7 +17,7 @@
 5. 설정 관리 상의 anti pattern : version 또는 configuration 관리 상의 잘못된 정의
 6. 개발 상의 anti pattern : code 상의 잘못된 사례
 
-### 잘 알려진 Anti Pattern
+## 잘 알려진 Anti Pattern
 
 1. Spaghetti Code : 개발
   - 개발 과정에서 기능의 추가 또는 유지보수에 의해 code가 복잡하게 꼬이는 것

@@ -7,11 +7,13 @@
   - Operand fetch : OF
     - 주기억 장치에서 피연산자를 읽거나 기억시키기 위한 접근
 
-### Instruction 내에 포함된 정보
-- 연산자 (Operation code : OP cpde)
+## Instruction 내에 포함된 정보
+
+- 연산자 (Operation code : OP code)
 - 피연산자 (Operand)
 
-### Instruction의 기능별 분류
+## Instruction의 기능별 분류
+
 - 함수 연산 기능 (functional operation) : 산술적 연산과 논리적 연산
 - 전달 기능 (transfer operation) : register들 사이의 정보 전달, 중앙 처리 장치와 주기억 장치 사이의 정보 이동
 - 제어 기능 (control operation) : instruction 수행 순서의 제어

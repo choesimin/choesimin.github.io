@@ -2,7 +2,7 @@
 
 - business logic을 완전히 분리하여 database system과 client의 사이에 배치한 client server system의 일종
 
-### 3-Tier Architecture
+## 3-Tier Architecture
 
 - 3-Tier는 infra(server)의 구성 구조임
   - application의 조직은 이것보다 더욱 복잡해질 수 있지만, 3계층 관점은 대규모 program에서 일부분에 관해 생각하기에 편리한 방법
@@ -11,7 +11,7 @@
   - 서로 다른 층에 있는 data 등과 communication함
   - GUI 및 front-end의 영역이며, 사용자 interface 제공
 2. Application Layer
-  - business logic 계층 또는 tracsaction 계층이라고도 함
+  - business logic 계층 또는 transaction 계층이라고도 함
   - business logic은 workstation으로부터의 client 요청에 대해 마치 server처럼 행동
   - 차례로 어떤 data가 필요한지 결정하고, mainframe computer 상에 위치하고 있을 세 번째 program에 대해서는 마치 client처럼 행동
   - == Middleware
@@ -20,7 +20,7 @@
   - database와 그것에 access해서 읽거나 쓰는 것을 관리하는 program을 포함
   - back-end 영역이지만 주로 DB server를 의미
 
-### Spring MVC (Model-View-Controller)
+## Spring MVC (Model-View-Controller)
 
 - MVC는 front controller pattern과 함께 사용됨
   - front controller : server로 들어오는 client의 요청을 가장 앞선에서 받아 처리하는 것
@@ -31,7 +31,7 @@
 4. 해당 정보를 바탕으로 DispatcherServlet은 ViewResolder를 통해 적합한 View 객체를 얻음
 5. View 객체가 사용자에게 보여줄 응답 화면을 출력
 
-### Layered Architecture의 장점
+## Layered Architecture의 장점
 
 - system을 layer로 나누면 system 전체를 수정하지 않고도 특정 layer를 수정 및 개선할 수 있어 재사용성을 높일 수 있고 유지보수가 용이함
 - 단방향 의존성
@@ -41,20 +41,20 @@
   - 표현 계층에는 business logic이 없으며, business 계층에는 DB 관련 logic이 존재하지 않음
 - code의 확장성과 재사용성 및 유지 보수 가능성을 높임
   - 각 layer가 서로 독립적이고 역할이 분명하기 때문에, 서로에게 끼치는 영향을 최소화하며 확장 및 수정이 가능
-  - layer가 독립적이면, 하나의 Service Layer는 여러개의 Presentaion Layer가 재사용할 수 있음
+  - layer가 독립적이면, 하나의 Service Layer는 여러개의 Presentation Layer가 재사용할 수 있음
 - 역할이 명확하게 분리되어 있어 code의 가독성이 높음
 - 범위가 명확하고 확실하여 기능을 test하기 쉬움
 
 ---
 
-### Presentation Layer
+## Presentation Layer
 
 - == Web Layer == UI Layer
 - 화면 조작 또는 사용자의 입력을 처리하기 위한 관심사를 모아놓은 layer
   - 최종 사용자에게 UI를 제공하거나 client로 응답을 다시 보내는 역할을 담당하는 모든 class임
   - 즉, API의 end point들을 정의하고 전송된 HTTP 요청들을 읽어들이는 logic을 구현
 
-### Application Layer
+## Application Layer
 
 - Application Layer == Service Layer
 - 일반적으로 Domain model의 business logic 1개를 호출해서는 복잡한 요청을 처리할 수 없음
@@ -75,7 +75,7 @@
     - 즉, Service Layer는 Domain model을 캡슐화하여 보호하는 역할도 겸함
     - 단일 책임 원칙을 지킬 수 있으며 유지 보수가 수월해짐
 
-### Business Layer
+## Business Layer
 
 - == Domain Model
 - Data와 그와 관련된 business logic(핵심 기능)을 가진 객체
@@ -86,7 +86,7 @@
   - Data Mapper는 흔히 ORM(Object Relational Model)이라고 함
   - 후술할 Repository는 Entity 객체를 보관하고 관리하는 collection으로, 엄밀하게 말하면 Domain Layer에 속함
 
-### Persistence Layer
+## Persistence Layer
 
 - == Repository Layer
 - Data Source를 추상화함

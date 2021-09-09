@@ -4,7 +4,7 @@
   - 그래서 landing(착륙) page라고 불림
 - link를 click하고 해당 web page에 접속하면 marketer가 의도 행위를 하도록 하는 page
 
-### Homepage & Landing Page
+## Homepage & Landing Page
 
 - 둘 다 직접적으로 website traffic을 높이기 위해 design되어 있음
 - 전형적으로 landing page가 homepage보다 더 상세한 경향이 있음
@@ -16,7 +16,8 @@
     - homepage보다 세분화되고 적은 target을 가짐
     - 따라서 다른 부가적인 설명 없이 유도하고 하는 action에 맞게 page를 구성
 
-### Landing Page 종류
+## Landing Page 종류
+
 1. funnel의 상위에 있는 고객을 끌어들이는 것
 2. funnel의 하위에 있는 사람들을 고객으로 전환시키기 위한 것
 - 하위 funnel

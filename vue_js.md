@@ -1,4 +1,4 @@
-#Vue.js
+# Vue.js
 
 - Evan You가 만들었으며, 2014년 release를 시작
 - controller 대신 view model을 가지는 MVVM(Model-View-ViewModel) pattern을 기반으로 design됨
@@ -24,7 +24,7 @@
   - ES5에서 새로 등장한 기능으로 하위 호환이 불가능
   - 따라서, IE8 이하를 지원하지 않음
 
-### MVVM Pattern
+## MVVM Pattern
 
 - Model - View - ViewModel
   - View : user interface
@@ -38,7 +38,7 @@
 - ViewModel이 없는 경우에는 직접 model과 view를 연결해야 함
   - 그러나 ViewModel이 중간에서 연결해주는 것이 MVVM임
 
-### 가상 DOM (Virtual DOM)
+## 가상 DOM (Virtual DOM)
 
 - DOM : Document Object Model
 - DOM 요소가 많아지면 javascript로 돔을 handling하는 일이 무거워짐
@@ -47,13 +47,14 @@
 - vue.js가 가상 DOM을 수정하면 DOM을 수정하는 것보다 빠름
 - vue는 가상 DOM이 변경될 때마다 진짜 DOM과 비교해서 차이를 찾고 차이난 부분의 DOM만 수정하는 작동을 하게 됨
 
-### Component
+## Component
+
 - 화면에 비춰지는 view의 단위를 쪼개어 재활용이 가능한 형태로 관리하는 것
 - vue에서 component는 미리 정의된 option을 가진 viw instance
 - 전역 등록과 지역 등록이 존재
 - component.vue = HTML + JS + CSS
 
-### Commands
+## Commands
 
 - npm install -g vue-cli
   - vue-cli 전역 설치, 권한 error시 sudo 추가
@@ -69,7 +70,7 @@
   - vue server 실행
   - 'http://localhost:8080'으로 접속 가능
 
-### Directive
+## Directive
 
 - v-text, {{ }}
   - innerText 속성에 연결됨
@@ -141,7 +142,7 @@
 - v-on
   - input event나 keyup event등의 처리를 수행할 수 있게 해줌
 
-### Vue Instance
+## Vue Instance
 
 - new Vue로 선언하여 만들어진 객체를 vue instance라고 부름
   - 때로는 ViewModel을 의미하는 vm을 삽입해서 vue vm instance라고도 함
@@ -198,7 +199,7 @@
       - 그래서 DOM에 종속성이 있는 연산을 이 단계에서 수행할 수 있음
     - beforDestroy : vue instance가 제거되기 전에 호출됨
     - destroyed : vue instance가 제거된 후에 호출됨
-      - 이 hook이 호출될 때는 vue instance의 모든 directive의 vinding이 해제되고, event 연결도 모두 제거됨
+      - 이 hook이 호출될 때는 vue instance의 모든 directive의 binding이 해제되고, event 연결도 모두 제거됨
 
 ---
 

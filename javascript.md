@@ -28,7 +28,7 @@ const y = name/2;
 console.log(y);    // NaN (Not a Number)
 ```
 
-### null & undifined
+### null & undefined
 
 ```javascript
 let age;    // or 'let age = null'
@@ -91,7 +91,7 @@ console.log(result);    // 4540
 ```
 - String() : 문자형으로 변환
   ```javascript
-  console.log(String(3), String(true), String(false), String(null), String(undifined));     // "3", "true", "false", "null", "undifined"
+  console.log(String(3), String(true), String(false), String(null), String(undefined));     // "3", "true", "false", "null", "undefined"
   ```
 - Number() : 숫자형으로 변환
   ```javascript
@@ -324,7 +324,7 @@ do {
 
 # switch
 
-- 각 case마다 brreak로 탈출하지 않으면 이후의 모든 case를 실행함
+- 각 case마다 break로 탈출하지 않으면 이후의 모든 case를 실행함
 ```javascript
 switch (평가) {
   case A :
@@ -444,7 +444,7 @@ console.log(result_nothing);    // undefined
 
 ---
 
-# 함수 표현식, 화살표 함수(arrow functino)
+# 함수 표현식, 화살표 함수(arrow function)
 
 ### 함수 선언문 vs 함수 표현식
 
@@ -461,7 +461,7 @@ console.log(result_nothing);    // undefined
       - code 위치가 실제로 올라가는 것은 아님
 - 함수 표현식
   ```javascript
-  let sayHello = functino() {
+  let sayHello = function() {
     console.log('Hello');
   }
   ```
@@ -541,7 +541,7 @@ for (let key in superman) {
   const superman = {
     name,    // name: name
     age,    // age: age
-    geneder: 'male',
+    gender: 'male',
   }
   ```
 - ex) 이름과 나이를 받아서 객체를 반환하는 함수
@@ -611,14 +611,14 @@ superman.eat();    // "super eat!"
 let boy = {
   name : 'Mike',
   sayHello : function () {
-    console.log(`Hello, I'm ${this.name});
+    console.log(`Hello, I'm ${this.name}`);
   },
 }
 
 let girl = {
   name : 'Jane',
   sayHello : function () {
-    console.log(`Hello, I'm ${this.name});
+    console.log(`Hello, I'm ${this.name}`);
   },
 }
 
@@ -745,7 +745,7 @@ girl.sayHello();    // "Hello, I'm Jane"
 
     console.log(name);    // undefined
     
-    name = 'Mike';    // 선언은 hoisting되지만, 할당은 hoistring되지 않음
+    name = 'Mike';    // 선언은 hoisting되지만, 할당은 hoisting되지 않음
     ```
 - var의 생성 과정
   0. 선언 및 초기화 단계
@@ -792,7 +792,7 @@ girl.sayHello();    // "Hello, I'm Jane"
   1. 선언 단계
   2. 초기화 단계
   3. 할당 단계
-  - hoisting되면서 선언 단계가 이루어지지만, 초기화 단계는 실제 code에 도달했을 때이기 때문에 ReferenceErorr가 발생
+  - hoisting되면서 선언 단계가 이루어지지만, 초기화 단계는 실제 code에 도달했을 때이기 때문에 ReferenceError가 발생
 - block scope (bock-scoped)
 
 ### const
@@ -821,7 +821,7 @@ girl.sayHello();    // "Hello, I'm Jane"
     - 즉, code block 내부에서 선언한 변수는 지역변수
   - code block : 함수, if문, for문, while문, try-catch문 등
   ```javascript
-  functon add() {
+  function add() {
     // Block-level Scope
   }
 
@@ -867,7 +867,7 @@ girl.sayHello();    // "Hello, I'm Jane"
 function User(name, age) {
   this.name = name;
   this.age = age;
-  this.sayName = functino () {
+  this.sayName = function () {
     console.log(this.name);
   }
 }
@@ -914,7 +914,7 @@ new user = User('Mike', 30);    // 1 : 생성자 함수 호출
 
 # Object methods / Computed property
 
-### Conputed property
+### Computed property
 
 ```javascript
 let a = 'age';
@@ -931,7 +931,7 @@ const user = {
 }
 ```
 ```javascript
-functino makeObj(key, val) {
+function makeObj(key, val) {
   return {
     [key] : val
   }
@@ -1226,7 +1226,7 @@ for (let key in user) {
   console.log(isNaN(x));    // true
   console.log(isNaN(3));    // false
   ```
-- parseint()
+- parseInt()
   ```javascript
   let margin = '10px';
 
@@ -1247,10 +1247,10 @@ for (let key in user) {
   console.log(parseInt(padding));    // 18
   console.log(parseFloat(padding));    // 18.5
   ```
-- Math.random() : 0~1의 ramdom한 수
+- Math.random() : 0~1의 random한 수
   ```javascript
   // 1 ~ 100 사이 임의의 숫자를 뽑고 싶다면?
-  console.log(Math.floor(Math.random() * 100) + 1);    // 1 ~ 100 사이의 ramdom 숫자
+  console.log(Math.floor(Math.random() * 100) + 1);    // 1 ~ 100 사이의 random 숫자
   ```
 - Math.max() & Math.min() : 최댓값 & 최솟값
   - MAXimum, MINimum
@@ -1390,7 +1390,7 @@ for (let key in user) {
   console.log(desc.substr(2, 4));    // "cdef"
   console.log(desc.substr(-4, 2));    // "de"
   ```
-- str.trem() : 앞 뒤 공백 제거
+- str.trim() : 앞 뒤 공백 제거
   ```javascript
   let desc = " coding        ";
 
@@ -1870,7 +1870,7 @@ showName('Mike', 'Tom');    // ?
 showName();    // undefined : error가 아님
 ```
 ```javascript
-functino showName(...names) {
+function showName(...names) {
   console.log(names);
 }
 
@@ -1879,7 +1879,7 @@ showName('Mike');    // ['Mike']
 showName('Mike', 'Tom');    // ['Mike', 'Tom']
 ```
 ```javascript
-functionn add(...numbers) { 
+function add(...numbers) { 
   let result = 0;
   numbers.forEach(num => (result += num));    // 배열의 method 사용 가능
   console.log(result);
@@ -1889,7 +1889,7 @@ add(1, 2, 3);    // 6
 add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);    // 55
 ```
 ```javascript
-functionn add(...numbers) { 
+function add(...numbers) { 
   let result = numbers.reduce((prev, cur) => prev + cur);
   console.log(result);
 }
@@ -2051,7 +2051,7 @@ console.log(counter());    // 2
 let one;
 one = 1;
 
-funcrtion addone(num) {
+function addone(num) {
   console.log(one + num);
 }
 
@@ -2115,7 +2115,7 @@ console.log(add3(2));
           - y는 있음
           - x가 없으니 참조하는 '외부 lexical 환경'으로 가서 찾음
   - makeAdder의 반환값이 되는 익명함수는 자신이 y를 가지고 있고 상위 함수인 makeAdder의 매개변수 x에 접근할 수 있음
-    - add3 함수가 생성된 이후에도 변함없이 상위 함수를 호출할 때 사용했던 인수에 접근 가능 -> 이것을 Clouser라고 함
+    - add3 함수가 생성된 이후에도 변함없이 상위 함수를 호출할 때 사용했던 인수에 접근 가능 -> 이것을 closure라고 함
 
 ---
 
@@ -2175,7 +2175,7 @@ const t_id = setInterval(showName, 3000, 'Mike');
 ```
 - 주의사항 : delay = 0?
   ```javascript
-  setTimeout(functino () {
+  setTimeout(function () {
     console.log(2);
   }, 0);
 
@@ -2290,14 +2290,14 @@ console.log(tom);    // {name: "Tom", birthYear: 2002, occupation: "teacher"}
   ```javascript
   const nums = [3, 10, 1, 6, 4];
 
-  const min_num = Matn.min.apply(null, nums);    // Math를 this로 가져올 필요가 없으므로 null(아무거나)로 줌
+  const min_num = Math.min.apply(null, nums);    // Math를 this로 가져올 필요가 없으므로 null(아무거나)로 줌
     // = Math.min.apply(null, [3, 10, 1, 6, 4]);
-  const max_num = Matn.max.apply(null, nums);
+  const max_num = Math.max.apply(null, nums);
     // = Math.max.apply(null, [3, 10, 1, 6, 4]);
 
-  // const min_num = Matn.min.call(null, ...nums);    // call일 때는 ...nums 필요
+  // const min_num = Math.min.call(null, ...nums);    // call일 때는 ...nums 필요
     // = Math.min.call(null, 3, 10, 1, 6, 4);
-  // const max_num = Matn.max.call(null, ...nums);
+  // const max_num = Math.max.call(null, ...nums);
     // = Math.max.call(null, 3, 10, 1, 6, 4);
 
   console.log(max_num);    // 1
@@ -2703,7 +2703,7 @@ const z4 = new Bmw("blue");
     // 상속받은 것들은 prototype으로 들어감
 ```
 
-### Method Orverriding
+### Method Overriding
 
 ```javascript
 class Car {
@@ -2918,7 +2918,7 @@ pr.then(
   const f3 = (message) => {
     console.log(message);
     return new Promise((res, rej) => {
-      settimeout(() => {
+      setTimeout(() => {
         res("3번 주문 완료");
       }, 2000);
     });
@@ -3109,7 +3109,7 @@ const f2 = (message) => {
 const f3 = (message) => {
   console.log(message);
   return new Promise((res, rej) => {
-    settimeout(() => {
+    setTimeout(() => {
       res("3번 주문 완료");
     }, 2000);
   });
@@ -3122,10 +3122,10 @@ async function order() {
     const result1 = await f1();
     const result2 = await f2(result1);
     const result3 = await f3(result2);
-    cosnole.log(result3);
+    console.log(result3);
     
     // const result = await Promise.all([f1(), f2(), f3()]);
-    // cosnole.log(result);    // Promise.all로 실행 시, 배열로 결과가 나옴
+    // console.log(result);    // Promise.all로 실행 시, 배열로 결과가 나옴
       // ["1번 주문 완료", "2번 주문 완료", "3번 주문 완료"]
   } catch (e) {
     console.log(e);
@@ -3216,11 +3216,11 @@ console.log(a.next());    // {value: undefined, done: true}
 - 몇 가지 조건이 있음
   - Symbol.iterator method가 구현되어 있어야 함
     - Symbol.iterator는 iterator를 반환해야 함
-  - iterator : Symbol.itorator method를 호출한 결과
+  - iterator : Symbol.iterator method를 호출한 결과
     - next method를 가짐
     - next method는 value와 done 속성을 가진 객체를 반환
     - 작업이 끝나면 done은 true가 됨
-- 배열, generator, 문자열 모두 iteratble함
+- 배열, generator, 문자열 모두 iterable함
   
 - 배열
   ```javascript
@@ -3325,7 +3325,7 @@ console.log(a.next(4));
 - generator는 필요한 값만 그때 그때 생성함
   - 일반적인 함수로 어떤 값을 구할 때, 모든 값을 미리 계산 해놓아야 함
     - 쓸지 안 쓸지 정해지지 않은 상황에서도 그 값을 유지해야 함
-  - genearator를 사용하면 필요한 순간까지 계산을 미룰 수 있음
+  - generator를 사용하면 필요한 순간까지 계산을 미룰 수 있음
 ```javascript
 function* fn() {
   let index = 0;

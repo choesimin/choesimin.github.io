@@ -14,7 +14,7 @@
 
 ### CI; Continuous Integration
 
-- 현대적인 applictaion 개발에서는 여러 개발자들이 동일한 application의 각기 다른 기능을 동시에 작업할 수 있도록 하는 것을 목표로 함
+- 현대적인 application 개발에서는 여러 개발자들이 동일한 application의 각기 다른 기능을 동시에 작업할 수 있도록 하는 것을 목표로 함
   - 그러나 조직에서 특정한 날(병합하는 날: merge day)을 정해 모든 분기 source code를 병합하는 경우, 결과적으로 반복적인 수작업에 많은 시간을 소모하게 됨
     - 독립적으로 작업하는 개발자가 application에 변경 사항을 적용할 때 다른 개발자가 동시에 적용하는 변경 사항과 충돌할 가능성이 있기 때문
 
@@ -48,10 +48,10 @@
 ### CI/CD pipeline
 
 - 새 version의 software를 제공하기 위해 수행해야 할 일련의 단계
-- 지속적 통합/ 지속적 배포(CI/CD) pipeline은 DevOps 또는 site 신뢰성 engineer(SRE) 방식을 통해 더 효과적으로 softwara를 제공하는 데에 초점을 맞춘 방법
+- 지속적 통합/ 지속적 배포(CI/CD) pipeline은 DevOps 또는 site 신뢰성 engineer(SRE) 방식을 통해 더 효과적으로 software를 제공하는 데에 초점을 맞춘 방법
 - 통합 및 test 단계와 제공 및 배포 단계에서 monitoring 및 자동화를 도입하여 application 개발 process를 개선함
 
-### CI/CD pipline stage
+### CI/CD pipeline stage
 
 1. Build : application을 compile하는 단계
 2. Test : code를 test하는 단계. 자동화 가능

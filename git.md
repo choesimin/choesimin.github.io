@@ -1,7 +1,7 @@
 # git
 
 - 3가지 상태
-  1. Committed : data가 local dataabase에 안전하게 저장한 상태
+  1. Committed : data가 local database에 안전하게 저장한 상태
   2. Modified : 수정한 file을 아직 local database에 commit하지 않은 상태
   3. Staged : 현재 수정한 파일을 곹 commit할 것이라고 표시한 상태
 
@@ -44,7 +44,7 @@
 |||
 |-|-|
 |-v|편집기에 diff message도 추가됨|
-|-a|Trackd 상태의 file을 자동으로 Staging Area에 넣음|
+|-a|Tracked 상태의 file을 자동으로 Staging Area에 넣음|
 |--amend|commit 합치기 (기존의 commit을 덮어씀)|
 
 ---
@@ -203,7 +203,7 @@
   - branch와 비슷한데 branch처럼 가리키는 지점을 최신 commit으로 이동시키지 않음
   - 단순히 특정 commit에 대한 pointer
 - annotated tag
-  - Git dataabase에 tag를 만든 사람의 이름, email과 tag를 만든 날짜, tag message를 저장함
+  - Git database에 tag를 만든 사람의 이름, email과 tag를 만든 날짜, tag message를 저장함
   - 일반적으로 annotated tag를 만들어 많은 정보를 사용할 수 있도록 하는 것이 좋지만, 임시로 생성하는 tag거나 이러한 정보를 유지할 필요가 없는 경우에는 lightweight tag를 사용할 수도 있음
 |||
 |-|-|
@@ -237,7 +237,7 @@
 
 # git merge
 
-- fast-forwoard : branch pointer가 merge 과정 없이 최신 commit으로 이동하는 것
+- fast-forward : branch pointer가 merge 과정 없이 최신 commit으로 이동하는 것
   - A branch에서 다른 B branch를 merge할 때, B branch가 A branch 이후의 commit을 가리키고 있으면, 그저 A branch가 B branch와 동일한 commit을 가리키도록 이동만 하는 것
 - 3-way-merge
   - 각 branch가 가리키는 commit 두 개와 공통 조상 하나를 이용하어 합치는 것

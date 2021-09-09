@@ -8,7 +8,7 @@
   - 즉, WAS는 JSP, Servlet 구동 환경을 제공
 - ex) Tomcat, JBoss, Jeus, Web Sphere 등
 
-### WAS의 역할
+## WAS의 역할
 
 - WAS = web server + Web Container
 - web server 기능들을 구조적으로 분리하여 처리하고자하는 목적으로 제시됨
@@ -16,13 +16,13 @@
   - 주로 DB server와 같이 수행됨
 - WAS가 가지고 있는 web server도 정적인 contents 처리에 있어 성능상 큰 차이가 없음
 
-### WAS의 주요 기능
+## WAS의 주요 기능
 
 1. program 실행 환경과 DB 접속 기능 제공
 2. 여려 개의 transaction(논리적인 작업 단위) 관리 기능
 3. 업무를 처리하는 business logic 수행
 
-### web server와 WAS를 구분하는 이유
+## web server와 WAS를 구분하는 이유
 
 - 자원 이용의 효율성 및 장애 극복, 배포 및 유지보수의 편의성을 위해 web server와 WAS를 분리
   - web server를 WAS 앞에 두고 필요한 WAS들을 web server에 plugin 형태로 설정하면 더욱 효율적인 분산 처리 가능
@@ -54,7 +54,7 @@
   5. 기타
     - 접근 허용 IP 관리, 2대 이상의 server에서의 session 관리 등도 web server에서 처리하면 효율적
 
-### Web Service Architecture
+## Web Service Architecture
 
 1. client -> web server -> DB
 2. client -> WAS -> DB

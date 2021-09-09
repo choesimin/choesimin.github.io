@@ -159,21 +159,21 @@
 ### CentOS에서 사용 시 java.nio.file.AccessDeniedException
 - 추천하지 않음 : pm2나 directory의 file들은 user 기반으로 돌아가는데, root로 바꾸면 문제가 발생할 수 있음
 1. Open up the this script (using VIM or other editor)
-  ```shell
+  ```sh
   vim /etc/sysconfig/jenkins
   ```
 2. Find this $JENKINS_USER and change to “root”
-  ```shell
+  ```sh
   $JENKINS_USER="root"
   ```
 3. Then change the ownership of Jenkins home, webroot and logs
-  ```shell
+  ```sh
   chown -R root:root /var/lib/jenkins
   chown -R root:root /var/cache/jenkins
   chown -R root:root /var/log/jenkins
   ```
 4. Restart Jenkins and check the user has been changed
-  ```shell
+  ```sh
   service jenkins restart
   ps -ef | grep jenkins
   ```
@@ -181,19 +181,19 @@
 ### file 접근 권한 Error (CentOS)
 
 - 사용자 변경
-  ```shell
+  ```sh
   chown -R svcuser.svcuser /var/lib/jenkins
   chown -R svcuser.svcuser /var/log/jenkins
   chown -R svcuser.svcuser /var/cache/jenkins/
   ```
 - 실행 권한 설정 file 변경 (port 변경도 이곳에서)
-  ```shell
+  ```sh
   vi /etc/sysconfig/jenkins
   ```
   - JENKINS_USER="svcuser"
   - JENKINS_PORT="18080"
 - jenkins service run (start / stop / restart)
-```
+```sh
 sudo service jenkins start
 ```
 

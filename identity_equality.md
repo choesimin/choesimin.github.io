@@ -1,7 +1,7 @@
 # Identity(동일성) & Equality(동등성)
 
 - 동일성(identity) 비교 : ==
-  ```
+  ```java
   Integer a = new Integer(3);
   Integer b = a;
    
@@ -14,7 +14,7 @@
   - 동일성 비교가 참인 경우 같은 객체이므로 동등성 비교도 참이 됨
 
 - 동등성(equality) 비교 : equals
-  ```
+  ```java
   Integer a = new Integer(3);
   Integer b = new Integer(3);
    

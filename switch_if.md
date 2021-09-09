@@ -30,7 +30,7 @@ switch (n) {
   ...
 ```
 - 변수를 입력받아 미리 정해놓은 여러 값들과의 일치여부를 판단하여 switch문 내의 control flow를 결정
-- perfomance > memory인 경우 사용
+- performance > memory인 경우 사용
 - 예전에는 case에 Integer만 가능했지만, 현재는 String도 가능
 - 장점
   - switch문 시작 시에 입력받은 값을 확인하는 instruction만 필요
@@ -55,7 +55,7 @@ else if (condition2) {
 - 각각의 조건문을 iterate하며 control flow를 결정
   - n개의 if else 구문이 있으면 n개의 조건문의 진위 여부를 판단
 - O(n)의 시간복잡도
-- perfomance < memory인 경우 사용
+- performance < memory인 경우 사용
 - 장점
   - jump table을 만드는 overhead가 없음
 - 단점

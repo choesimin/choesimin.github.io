@@ -3,7 +3,7 @@
 - spring framework에서 의존성을 주입하는 방법 중 하나
   - constructor based inject은 spring team에서 가장 권장하는 방식
 
-### Advantage
+## Advantage
 
 1. 순환 참조 방지
   - 객체의 의존성을 추가하다 보면 순환 참조 문제가 발생할 수 있음
@@ -123,7 +123,7 @@
   - 이렇게 하면 결합도를 낮출 수 있고 runtime시 의존 관계가 결정되기 때문에 유연한 구조를 가질 수 있음
   - SOLID 원칙에서 O에 해당하는 Open Closed Principle을 지키기 위해서 design pattern 중 전략 pattern을 사용하게 되는데, 생성자 주입을 사용하게 되면 전략 pattren을 사용하게 됨
 
-### Spring에서 사용할 수 있는 DI 방법 3가지
+## Spring에서 사용할 수 있는 DI 방법 3가지
 
 1. 생성자 주입 (Constructor Based Injection)
   ```java

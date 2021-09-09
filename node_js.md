@@ -1,10 +1,10 @@
 # Node.js
 
 - 공식 site에서 내린 Node.js의 정의 
-  - "Node.js는 Chrome V8 JavaScript Engine으로 build된 JavaScript Runtime입니다. Node.js는 event 기반, non-blocking I/O model을 사용해 가볍고 효율적이빈다. Node.js의 package 생태계인 npm은 세계에서 가장 큰 opensource library 생태계이기도 합니다."
+  - "Node.js는 Chrome V8 JavaScript Engine으로 build된 JavaScript Runtime입니다. Node.js는 event 기반, non-blocking I/O model을 사용해 가볍고 효율적이빈다. Node.js의 package 생태계인 npm은 세계에서 가장 큰 open source library 생태계이기도 합니다."
 - javascript runtime이 browser 밖에 존재하지 않았으나, 그 한계를 극복하고 Node.js가 나옴
 
-### 특징
+## 특징
 
 - Google V8 javascript engine
 - 고성능 network server
@@ -14,7 +14,7 @@
 - 개발 생산성 향상
 - 방대한 module 제공 (NPM)
 
-### thread 기반 동기 방식 & single thread event loop 기반 비동기 방식
+## thread 기반 동기 방식 & single thread event loop 기반 비동기 방식
 
 - thread 기반 동기 방식 (blocking I/O)
   - 하나의 thread가 request를 받으면 모든 처리가 완료될 때까지 기다리다가 처리 결과가 완료되면 다시 응답을 보냄
@@ -24,7 +24,7 @@
   - 하나의 thread가 request를 받으면 바로 다음 처리에 요청을 보내놓고 다른 작업을 처리하다가 먼저 요청한 작업이 끝나면 event를 받아서 응답을 보냄
   - 동시 request가 오더라도 처리가 완료될 때까지 기다리지 않아도 되기 때문에 server 부하가 적음
 
-### advantage
+## advantage
 
 - javascript를 동일하게 사용해서 server단 logic을 처리할 수 있음
   - front-end 개발자의 경우, 새로운 언어를 습득하지 않도고 javascript를 활용해 server 구현 가능
@@ -38,7 +38,7 @@
 - NPM;Node Package Manager을  통한 다양한 module(package) 제공
   - NPM을 이용해 자신이 필요한 library와 package를 검색해서 설치할 수 있기 때문에 개발 속도와 효율성이 크게 향상됨
 
-### disadvantage
+## disadvantage
 
 - event 기반 비동기 방식이라 server단 logic이 복잡한 경우 callback 함수의 늪에 빠질 수 있음
   - 한번에 요청에 대해 DB에서 조회한 결과값에 따라 다른 logic을 처리해야 할 때, 이런 logic이 여러 개인 경우 callback 함수 늪(callback hell)에 빠짐
@@ -48,7 +48,7 @@
 - code가 수행되어야 code에 error가 있는지 알 수 있으며, error가 날 경우 process가 내려가기 때문에 test가 굉장히 중요
   - 반드시 모든 case에 대해 source code를 검증해야함
 
-### Node.js가 어울리는 web service
+## Node.js가 어울리는 web service
 
 - simple logic
 - 대용량 : 동시에 여러 request를 처리
@@ -56,7 +56,7 @@
 - 빠른 개발 요구
 - 비동기 방식에 어울리는 service : network streaming service, chatting service 등
 
-### Node.js가 어울리지 않는 web service
+## Node.js가 어울리지 않는 web service
 
 - 단일 처리가 오래 걸리는 경우 : single thread이기 때문
 - server check logic이 많은 경우 : 비동기 방식이기 때문에 callback hell에 빠질 수 있음

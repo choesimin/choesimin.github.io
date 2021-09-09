@@ -29,7 +29,7 @@
 - Communication Diagram
   - instance 간의 상호 작용을 구조 중심으로 표현
 - Interaction Overview Diagram
-  - 조건에 따라 다르게 동작을 하는 sequance diagram을 activity diagram 안에 포함하여 표현
+  - 조건에 따라 다르게 동작을 하는 sequence diagram을 activity diagram 안에 포함하여 표현
 - Timing Diagram
   - instance 간의 상태 전이와 상호 작용을 시간 제약으로 표현
 - UseCase Diagram

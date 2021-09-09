@@ -10,17 +10,6 @@
 
 ---
 
-# 분류
-
-### 구현에 따라
-
-- 배열
-  - 가장 일반적인 구조
-
-
-
----
-
 # Reference
 
 - https://ko.wikipedia.org/wiki/자료_구조
