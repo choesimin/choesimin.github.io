@@ -1,9 +1,9 @@
 # API
 
 - Application Programming Interface
-- application software를 구축하고 통합하기 위한 정의 및 protocall set
+- application software를 구축하고 통합하기 위한 정의 및 protocol set
 - API를 사용하면 구현 방식을 알지 못해도 제품 또는 service가 서로 communication할 수 있음
-  - appication 개발을 간소화하여 시간과 비용을 절약할 수 있음
+  - application 개발을 간소화하여 시간과 비용을 절약할 수 있음
 - 설계와 관리 차원에서 유연성 제공
   - 사용 방법 간소화에 도움을 줌
 - 한 쪽 당사자가 특정한 방식으로 구성된 원격 요청을 보내면, 다른 쪽 당사자의 software가 이에 응답하는 방식

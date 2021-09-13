@@ -9,3 +9,4 @@
 - https://shinsunyoung.tistory.com/86
 - https://sowells.tistory.com/170
 	- session 받을 수 있도록 하기
+- https://developer.mozilla.org/ko/docs/Web/HTTP/CORS
