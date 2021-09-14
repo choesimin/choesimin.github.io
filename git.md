@@ -32,6 +32,13 @@
 - file 추가
 - 상태 : Modified -> Staged
 
+|||
+|-|-|
+|--interactive|대화형 모드|
+|-i|'--interactive'와 동일|
+|--patch|file 일부분만 Stage Area에 올리기|
+|-p|'--patch'와 동일|
+
 ---
 
 # git commit
@@ -41,11 +48,13 @@
 - Git은 Staging Area에 속한 snapshot을 commit함
   - Staging Area에 넣지 않은 것은 다음에 commit할 수 있음
   - 나중에 snapshot끼리 비교하거나 예전 snapshot으로 되돌릴 수 있음
+
 |||
 |-|-|
 |-v|편집기에 diff message도 추가됨|
 |-a|Tracked 상태의 file을 자동으로 Staging Area에 넣음|
-|--amend|commit 합치기 (기존의 commit을 덮어씀)|
+|--amend|commit을 합치고 commit message 수정하기 (Staging Area의 작업을 추가하면서 기존의 commit을 덮어쓰며 SHA-1 값을 바꿈)|
+|--amend --no-edit|commit message를 수정하도록 편집기가 실행되지 않음|
 
 ---
 
@@ -123,6 +132,8 @@
   |--pretty|지정한 형식으로 조회. 이 option에는 oneline, short, full, fuller, format이 있음. format은 원하는 형식으로 출력할 때 사용|
   |--oneline|--pretty=oneline --abbrev-commit 을 함께 사용한 것|
   |--decorate|branch가 어떤 commit을 가리키는지 조회|
+  |-S <문자열>|해당 문자열이 추가된 commit과 없어진 commit만 검색할 수 있음|
+
 - 조회 범위를 제한하는 option
   |||
   |-|-|
@@ -139,12 +150,13 @@
 
 # git reset
 
-|||
-|-|-|
-|||
 - git reset HEAD <file>...
 - Staged 상태 -> Unstaged 상태
 - 위험한 명령어 (특히 '--hard' option)
+
+|||
+|-|-|
+|--patch|file 일부만 Stage Area에서 내리기|
 
 ---
 
@@ -188,6 +200,12 @@
 ---
 
 # git push
+
+- Git은 local에 모든 version 관리 data를 복사(clone)해두고 있기 때문에 자유롭게 history를 local에서 수정해볼 수 있음
+- 그러나 local의 version 관리 data 혹은 commit이 외부로 push가 된 후라면, 그 history에 대해선 수정을 가하면 안됨
+- push된 data는 수정이 완전히 끝난 것임
+  - 고쳐야할 이유가 생겼더라도 새로 수정 작업을 추가해야지, 이전 commit 자체를 수정할 수는 없음
+  - 따라서 온전하게 수정 작업을 마무리했다는 확신 없이 작업 내용을 공유하는 remote 저장소로 보내는(push) 행동은 피해야 함
 
 |||
 |-|-|
@@ -253,7 +271,6 @@
   - 'git mergetool'을 사용하면 merge 도구로 해결 가능
   - 해결 후에 merge message에는 어떻게 충돌을 해결했고 좀 더 확인해야하는 부분은 무엇이고 왜 그렇게 해결했는지에 대해서 자세하게 기록 -> 나중에 이 merge commit을 이해하는 데에 도움을 줌
 
-
 |||
 |-|-|
 |-d <branch 이름>|해당 branch 삭제|
@@ -267,6 +284,100 @@
 |--no-merge|현재 checkout한 branch에 merge하지 않은 branch 목록 (삭제 불가능한 branch)|
 |--merge <branch 이름>|해당 branch에 이미 merge한 branch 목록|
 |--no-merge <branch 이름>|해당 branch에 merge하지 않은 branch 목록|
+
+---
+
+# git rebase
+
+- git rebase <basebranch> <topicbranch>
+  - 아래의 두 명령어를 합친 것
+    - git checkout <basebranch>
+    - git merge <topicbranch>
+- 과정
+  1. 두 branch가 나뉘기 전인 공통 commit으로 이동
+  2. 그 commit부터 지금 checkout한 branch가 가리키는 commit까지 diff를 차례로 만들어 어딘가에 임시로 저장해놓음
+  3. rebase할 branch가 합칠 branch가 가리키는 commit을 가리키게 하고 아까 저장해 놓았던 변경 사항을 차례대로 적용
+  4. 그리고 fast-forward함
+- branch를 합치는 2가지 방법
+  - merge
+    - 두 branch의 최종 결과만을 가지고 합침
+    - 3-way-merge를 통해 더 상세한 history를 기록할 수 있음
+  - rebase
+    - branch의 변경 사항을 순서대로 다른 branch에 적용함녀서 합침
+    - 좀 더 깨끗한 history를 만듬
+      - history가 선형 : 일을 병렬로 동시에 진행해도 rebase하면 모든 작업이 차례대로 수행된 것처럼 보임
+      - project 관리자는 어떠한 통합 작업도 필요 없고 그저 master branch를 fast-forward 시키면 됨
+- rebase, merge 모두 최종 결과물은 같고 commit history만 다름
+- remote 저장소에 push한 commit을 rebase하면 안됨
+  - rebase는 기존의 commit을 그대로 사용하는 것이 아니라, 내용은 같지만 다른 commit을 새로 만듬
+  - 협업자와 공유를 위해 push pull을 하다 보면 history가 꼬여서 내 code가 엉망이 되어버림
+- 되도록이면 merge를 사용하고 commit history를 가독성 있게 관리하기 위해서 rebase를 사용
+  - local branch에서 작업할 때는 history를 정리하기 위해 rebase할 수도 있지만, remote 등 어딘가에 push로 내보낸 commit에 대해서는 절대 rebase하지 말아야 함
+
+|||
+|-|-|
+|-i HEAD~n|마지막 n개(HEAD부터 n까지)의 commit을 수정 (실질적으로 가리키게 되는 것은 수정하려는 commit의 부모인 n+1 번째 이전의 commit임)|
+|||
+
+---
+
+# git stash
+
+- stack에 새로운 stash 만들기
+- 아직 끝나지 않은 수정 사항을 stack에 잠시 저장했다가 나중에 다시 적용할 수 있음
+  - branch가 달라져도 가능
+- Working Directory에서 수정한 file들만 저장
+  - Modified이면서 Tracked 상태일 file과 Staging Area에 있는 file들을 보관해두는 장소
+
+|||
+|-|-|
+|(save)|stack에 새로운 stash 만들기 (save는 생략 가능)|
+|(save) --keep-index|Staging Area에 있는 file을 stash하지 않음|
+|(save) --include-untracked|추적 중이지 않은(Untracked) file을 같이 저장|
+|(save) -u|'--include-untracked'와 동일|
+|(save) --patch|수정된 모든 사항을 저장하지 않고, 대화형 prompt가 떠서 변경된 data 중 저장할 것과 저장하지 않을 것을 지정하여 저장|
+|--all|모든 file을 stash (stash하고 변경 이력을 지우기 때문에 'git clean'에 비해 안전)|
+|list|저장한 stash 확인|
+|apply|가장 최근의 stash 적용|
+|apply <stash 이름>|해당 이름의 stash 적용|
+|apply --index|Staged 상태까지 적용|
+|drop <stash 이름>|해당 stash 제거|
+|pop <stash 이름>|stash를 적용하고 바로 stack에서 제거|
+|branch <branch>|stash할 당시의 commit을 checkout한 후 새로운 branch를 만들고 여기에 적용 (과정이 성공하면 stash를 삭제함)|
+
+---
+
+# git clean
+
+- merge나 외부 도구가 만들어낸 file을 지우거나 이전 build 작업으로 생성된 각종 file을 지우는 데에 필요함
+- Working Directory 안의 추적하고 있지 않은 모든 file이 지워지기 때문에 신중하게 사용해야 함
+  - 'git stash --all' 명령을 이용하면 지우는 건 똑같지만, 먼저 모든 file을 stash하므로 더 안전함
+
+|||
+|-|-|
+|(-?) <filename>|한 개의 file만 clean|
+|-d|하위 directory까지 지우기|
+|-f|강제(force) : '진짜로 그냥 해라'|
+|-n|이 명령을 실행했을 때 어떤 일이 일어날지 미리 보기 (가상으로 실행해보고 어떤 file이 지워질지 알려줌)|
+|-x|.gitignore로 무시된 file까지 함께 지우기|
+|-i|대화형으로 실행 (file마다 지울지 말지 결정하거나 특정 pattern으로 걸러서 지울 수 있음)|
+
+---
+
+# git grep
+
+- commit tree의 내용이나 Working Directory의 내용을 검색
+  - 검색어에는 문자열이나 정규표현식을 사용 가능
+- 매우 빠르고, Working Directory만이 아니라 Git history 내의 어떠한 정보라도 찾아낼 수 있음
+
+|||
+|-|-|
+|--line-number <검색어>|찾을 문자열이 위치한 line number 함께 출력|
+|-n <검색어>|'--line-number'와 동일|
+|--count <검색어>|어떤 file에서 몇 개나 찾았는지 알려줌|
+|-c <검색어>|'--count'와 동일|
+|--show-function <검색어>|matching되는 line이 있는 함수나 method 찾기|
+|-p <검색어>|'--show-function'과 동일|
 
 ---
 

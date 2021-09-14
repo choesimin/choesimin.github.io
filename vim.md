@@ -5,11 +5,11 @@
 ## Mode
 
 - Command Mode
-	- 입력하는 모든 key는 명령으로 수행
+  - 입력하는 모든 key는 명령으로 수행
 - Command Line Mode
-	- 화면 하단에 ':(colon) prompt'에 명령 문장을 입력하거나 /prompt에 단어를 입력
+  - 화면 하단에 ':(colon) prompt'에 명령 문장을 입력하거나 /prompt에 단어를 입력
 - Insert Mode or Edit Mode
-	- 입력하는 모든 key는 문서의 내용을 작성함
+  - 입력하는 모든 key는 문서의 내용을 작성함
 - Visual Mode
   - 선택 mode
 
@@ -38,8 +38,8 @@
 - set expandtab : tab을 공백으로 바꾸기
 - set tabstop=2 : tab 너비 2칸으로 설정
 - set autoindent & set smartindent : 자동 들여쓰기
-	- autoindent : 줄바꿈할 때 바로 아래로 cursor를 떨어뜨림 (선호)
-	- smartindent : 줄바꿈할 때 tabstop만금 자동으로 더 띄어서 cursor를 위치시킴
+  - autoindent : 줄바꿈할 때 바로 아래로 cursor를 떨어뜨림 (선호)
+  - smartindent : 줄바꿈할 때 tabstop만금 자동으로 더 띄어서 cursor를 위치시킴
 - set shiftwidth=2 : ">>" 또는 "<<" 로 들여쓰기 할때 공백의 갯수 (기본값 8)
 - set encoding=utf-8 : encoding 방식
 - set fileencodings=utf-8,cp949 : file encoding 방식
@@ -98,8 +98,8 @@ colorscheme jellybeans
 - https://www.lesstif.com/system-admin/vim-tab-space-4-18220149.html
 - https://velog.io/@qkqhqhrh11/Vim%EC%9D%B4%EB%9E%80
 - https://velog.io/@qkqhqhrh11/Vim-Command-mode
-	- command mode
+  - command mode
 - https://velog.io/@qkqhqhrh11/Vim-Command-Line-mode
-	- command line mode
+  - command line mode
 - https://booolean.tistory.com/345
   - cursor move

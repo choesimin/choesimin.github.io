@@ -1,15 +1,17 @@
-# 재귀함수 (再歸函數)
+# 재귀 함수 (再歸函數)
 
 - 정의 단계에서 자신을 재참조하는 함수
-- 일반 반복문이 성능이나 구현, 가독성 측면에서 나음
-- 그러나 특정한 상황에서는 재귀 함수를 사용해서 logic을 간단히 할 수 있음
+- 일반 반복문이 성능이나 구현, 가독성 측면에서 나을 때가 많음
+- 그러나 특정한 상황에서는 재귀 함수를 사용해서 효과를 볼 수 있음
+  - (읽기에 힘들어지지 않게) logic을 더 간단히 할 수 있을 때
+  - code의 의미(의도)가 재귀를 사용했을 때, 잘 드러나는 경우
   - ex) Quick Sort, XML/JSON Parsing
-- 명령형 개념에서의 재귀호출 == 흐름 제어 (자기 자신을 호출)
-- 함수형 개념에서의 재귀호출 == 점화식 (자기 함수와의 값의 관계를 맺는 것)
-- 함수형 언어에서 재귀함수를 작성하지 않고, 재귀하는 부분만이 구현된 고차함수를 사용할 수도 있음
+- 명령형 개념에서의 재귀 호출 == 흐름 제어 (자기 자신을 호출)
+- 함수형 개념에서의 재귀 호출 == 점화식 (자기 함수와의 값의 관계를 맺는 것)
+- 함수형 언어에선 재귀 함수를 작성하지 않고, 재귀하는 부분만이 구현된 고차함수를 사용할 수도 있음
   - ex) fold, reduce 등
-- 호출하는 / 호출되는 재귀 함수 사이의 관계만 명확하게 정의하면 되고, 호출된 함수가 그 안에서 또 재귀함수를 어떤 식으로 호출했는지 보지 않아도 program의 정당성을 볼 수 있음
-  - 점화식을 올바르게 세웠다면 나머지는 재귀함수가 알아서 잘 해줌
+- 호출하는 / 호출되는 재귀 함수 사이의 관계만 명확하게 정의하면 되고, 호출된 함수가 그 안에서 또 재귀 함수를 어떤 식으로 호출했는지 보지 않아도 program의 정당성을 볼 수 있음
+  - 점화식을 올바르게 세웠다면 나머지는 재귀 함수가 알아서 잘 해줌
 - 꼬리 재귀, compiler의 재귀 호출 최적화 등으로 성능 문제를 해결할 수 있음
 - 유용한 상황
   - 하나의 함수 호출이 둘 이상의 재귀 호출을 할 가능성이 있을 때
@@ -33,23 +35,23 @@ bool visited[N];
 
 void BFS(queue<int> q)
 {
-	if (q.empty())
-		return;
-	queue<int> q2;
-	while (!q.empty())
-	{
-		int x = q.front();
-		q.pop();
-		for (int y : adj[x])
-		{
-			if (!visited[y])
-			{
-				visited[y] = true;
-				q2.push(y);
-			}
-		}
-	}
-	BFS(q2);
+  if (q.empty())
+    return;
+  queue<int> q2;
+  while (!q.empty())
+  {
+    int x = q.front();
+    q.pop();
+    for (int y : adj[x])
+    {
+      if (!visited[y])
+      {
+        visited[y] = true;
+        q2.push(y);
+      }
+    }
+  }
+  BFS(q2);
 }
 ```
 - 반복문의 기능을 그대로 재귀로 옮긴 것에 불과함
@@ -82,31 +84,31 @@ int n, m;
 
 void f(int c)
 {
-	if (c == m)
-	{
-		for (int x : a)
-			cout << x << ' ';
-		cout << '\n';
-		return;
-	}
+  if (c == m)
+  {
+    for (int x : a)
+      cout << x << ' ';
+    cout << '\n';
+    return;
+  }
 
-	for (int i = 1; i <= n; i++)
-	{
-		if (!v[i])
-		{
-			v[i] = true;
-			a.push_back(i);
-			f(c + 1);
-			a.pop_back();
-			v[i] = false;
-		}
-	}
+  for (int i = 1; i <= n; i++)
+  {
+    if (!v[i])
+    {
+      v[i] = true;
+      a.push_back(i);
+      f(c + 1);
+      a.pop_back();
+      v[i] = false;
+    }
+  }
 }
 
 int main()
 {
-	cin >> n >> m;
-	f(0);
+  cin >> n >> m;
+  f(0);
 }
 ```
 - 재귀 함수의 동작 원리는 기본적으로 DFS에 기반함
@@ -137,3 +139,6 @@ int main()
 
 - https://namu.wiki/w/%EC%9E%AC%EA%B7%80%ED%95%A8%EC%88%98
 - https://www.secmem.org/blog/2021/07/09/recursion/
+  - 예제와 자세한 설명
+- https://wani.kr/posts/2020/02/11/make-parser-1/
+  - 재귀를 이용한 JSON serializer (JSON.stringify) 구현
