@@ -1,4 +1,4 @@
-# TDD (Test Driven Devalopment)
+# TDD (Test Driven Development)
 
 - 테스트 주도 개발
 - 매우 짧은 개발 cycle을 반복하는 software 개발 process 중 하나

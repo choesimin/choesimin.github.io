@@ -17,7 +17,7 @@
 - software 개발 작업에 이용된 많은 개체 중 하나에 수정(변경)을 일으킬 때 그 개체를 이용하는 다른 개체들을 모두 수정해야 한다면
   - 수정 자체의 작업도 번거로울 뿐더러 수정 과정에서 다른 개체들에 추가 문제가 발생했을 경우까지 두 번 생각해야 하는 상황이 발생함
 
-### LSP (Liskov Subsitution Principle)
+### LSP (Liskov Substitution Principle)
 
 - 리스코프 치환 원칙
 - "상위 type의 객체를 하위 type의 객체로 치환해도 상위 type을 사용하는 program은 정상적으로 작동해야 한다"는 programming 원칙
@@ -29,7 +29,7 @@
 - 인터페이스 분리 원칙
 - "client(객체를 사용하는 소비자. e.g method, class 등)가 자신이 이용하지 않는 method에 의존하지 않아야 한다"는 programming 원칙
 - 기능이 많은 큰 덩어리의 interface를 구현하는 대신 이를 구체적이고 작은 단위들로 분리시켜 사용함으로써 client들이 꼭 필요한 method들만 이용할 수 있게 하는 것이 좋음
-- ISP를 통해 system의 내부 의존성을 약화시켜(낮은 결합도) repactoring, 수정, 재배포를 쉽게 할 수 있음
+- ISP를 통해 system의 내부 의존성을 약화시켜(낮은 결합도) refactoring, 수정, 재배포를 쉽게 할 수 있음
 
 ### DIP (Dependency Inversion Principle)
 

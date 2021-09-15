@@ -22,8 +22,12 @@
   - a가 처음에 참조하고 있는 "aa" 값이 "bb"로 변경되는 것이 아니라, 아예 "bb"라는 새로운 객체를 만들고 그 객체를 a가 참조하게 하는 것
   - "aa" 값을 지니고 있는 객체는 그 누구도 참조하고 있지 않는 객체가 되고, GC의 대상의 됨
 - immutable class를 만드는 방법
-  1. member 변수를 final로 선언
-  2. 접근 method 구현하지 않기 (setter method)
+  - 객체를 변경하는 method를 제공하지 않기
+  - 재정의할 수 있는 method를 제공하지 않기
+    - ex) Setter method
+  - 모든 field를 final로 만들기
+  - 모든 field를 private으로 만들기
+  - 가변 객체를 참조하는 field는 배타적으로 접근하기
   ```java
   public class ImmutableString {
     private final String name;
