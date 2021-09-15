@@ -15,7 +15,22 @@
 - ex) int 등의 기본 type, String 등
   - String은 immutable하기 때문에 새로 수정할 때마다, 기존 memory를 버리고 새로운 memory에 값을 넣어서 연결함
 - 직접 immutable class를 만드는 방법
-  - 
+  - member 변수를 final로 선언
+  - 접근 method 구현하지 않기 (setter method)
+  ```java
+  public class ImmutableString {
+    private final String name;
+
+    ImmutableString(String name) {
+      this.name = name;
+    }
+
+    @Override
+    public String toString() {
+      return this.name;
+    }
+  }
+  ```
 
 ---
 
