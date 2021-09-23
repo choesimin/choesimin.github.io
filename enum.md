@@ -4,26 +4,145 @@
   - 요일, 계절과 같이 한정된 data만을 가지는 type
 - 관련 있는 상수(constnat)들의 집합
 - .java로 생성하되 Java file 안에서 class 대신 enum을 적어줌
+- interface나 class로 상수를 정의하는 것을 보완하여 IDE의 지원을 적극적으로 받을 수 있으며 type 안전성을 갖출 수 있음
 
-## 열거 상수 naming
+## 예전 방식의 단점 : Enum이 등장한 이유
+
+- 해당 class 내부에 'final static String', 'final static int'와 같이 정의
+  - 이 방식은 상수가 많아질 경우 가독성이 떨어지고, 무엇에 관한 상수인지 파악하기 어려움
+- class에 상수를 선언할 때의 불편함을 피하기 위해 새로운 상수 class 또는 상수 interface를 만들어서 정의
+  - interface에 선언되는 변수는 자동으로 static final이 붙는 것을 이용
+
+```java
+interface UNIVERSITY {
+    int SEOUL = 1;
+    int YONSEI = 2;
+    int KOREA = 3;
+}
+
+interface MAJOR {
+    int KOREAN = 1;
+    int MATH = 2;
+    int ENGLISH = 3;
+    int SCIENCE = 4;
+}
+
+public class EnumExample {
+    public static void main(String[] args) {
+
+        if(UNIVERSITY.SEOUL == MAJOR.KOREAN){
+            System.out.println("두 상수는 같습니다");
+        }
+
+        int major = MAJOR.MATH;
+
+        switch (major){
+            case MAJOR.KOREAN:
+                System.out.println("국어 전공");
+                break;
+            case MAJOR.MATH:
+                System.out.println("수학 전공");
+                break;
+            case MAJOR.ENGLISH:
+                System.out.println("영어 전공");
+                break;
+            case MAJOR.SCIENCE:
+                System.out.println("과학 전공");
+                break;
+        }
+    }
+}
+```
+
+- interface를 통해 상수를 표현했을 때, 'final static int'와 같이 표현하는 것보다 구별하기 쉬워짐
+- 단점 : UNIVERSITY의 상수와 MAJOR 상수를 비교할 때 두 상수 모두 int type이고 1이라는 값도 동일하기 때문에 제대로 된 비교를 할 수 없음
+  - 다른 집합의 상수끼리는 비교를 하면 안되기 때문에 compile 단계에서 error를 확인할 수 있어야 함
+  - 이렇게 code를 구현하게 되면 runtime 단계에서 예기치 못한 문제를 마주치게 됨
+
+```java
+class UNIVERSITY {
+    public static final UNIVERSITY SEOUL = new UNIVERSITY();
+    public static final UNIVERSITY YONSEI = new UNIVERSITY();
+    public static final UNIVERSITY KOREA = new UNIVERSITY();
+}
+
+class MAJOR {
+    public static final MAJOR KOREAN = new MAJOR();
+    public static final MAJOR MATH = new MAJOR();
+    public static final MAJOR ENGLISH = new MAJOR();
+    public static final MAJOR SCIENCE = new MAJOR();
+}
+
+public class EnumExample {
+    public static void main(String[] args) {
+
+        if(UNIVERSITY.SEOUL == MAJOR.KOREAN){
+            System.out.println("두 상수는 같습니다");
+        }
+
+        MAJOR major = MAJOR.MATH;
+
+        switch (major){
+            case MAJOR.KOREAN:
+                System.out.println("국어 전공");
+                break;
+            case MAJOR.MATH:
+                System.out.println("수학 전공");
+                break;
+            case MAJOR.ENGLISH:
+                System.out.println("영어 전공");
+                break;
+            case MAJOR.SCIENCE:
+                System.out.println("과학 전공");
+                break;
+        }
+    }
+}
+```
+
+- interface로 작성한 부분을 class로 변경
+  - 각 상수에 자기 자신을 instance화하여 값을 할당하기 때문에 상수 집합에서 각 상수들의 type은 동일하되 data는 다르게 됨
+  - 상수를 interface로 정의한 결과와 달리 UNIVERSITY의 상수와 MAJOR 상수를 비교할 경우 서로 다른 data type끼리 비교할 수 없다는 message와 함께 compile 단계에 예외가 발생함
+  - runtime에서 발생할 수 있는 error를 compile 단계에서 미리 알 수 있기 때문에 사전에 잘못된 code를 차단할 수 있음
+- 단점 : switch문에서 호환될 수 없는 type이라는 message와 함께 compile 예외가 발생
+  - 상수를 사용할 때 switch문을 사용하지 못하면 가독성이 크게 저하됨
+  - 이를 해결할 수 있는 상수 표현 방법이 Enum class
+
+## Enum의 특징
+
+1. class를 상수처럼 사용할 수 있음
+  - Enum은 고정된 상수들의 집합으로, rum time이 아닌 compile time에 모든 값에 대해 알아야 함
+  - 즉, 다른 package나 class에서 Enum type에 접근해서 동적으로 어떤 값을 정해줄 수 없음
+2. Enum class를 구현하는 경우 상수 값과 같이 유일하게 하나의 instance가 생성되어 사용됨
+  - Enum class에서 선언한 상수들은 class가 load될 때 생성되어 Sigleton 형태로 사용됨
+  - '상수 값으로 정의되지 않은 instance 변수'가 있다면 multi thread programming 환경에서 문제가 발생할 수 있음
+    - '상수 값으로 정의되지 않은 instance 변수'는 Enum class 내에 선언된 일반 method를 통해 변경할 수 있음
+    - 여러 thread에서 상수를 사용하면 '상수 값으로 정의되지 않은 instance 변수'는 공유되기 때문에 조심해야 함
+3. instance의 생성과 상속을 방지하여 상수 값의 type 안정성이 보장됨
+  - Enum class의 생성자를 private로 선언하여 다른 package나 class에서 동적으로 값을 할당할 수 없기 때문에 타입 안정성이 보장됨
+  - 모든 Enum class는 내부적으로 java.lang.enum class를 상속 받고 Java는 다중 상속을 지원하지 않기 때문에 Enum은 다른 class를 상속받을 수 없음
+    - 하지만 여러 개의 interface들은 구현 가능
+
+## Enum 열거 상수 선언하기
 
 - 모두 대문자
 - 2개 이상의 단어일 때는 '_'로 연결
 
 ```java
-Week.java 
+// Week.java 
+
 public enum Week {
   MONDAY, TUSEDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
 }
 ```
 
-## Enum과 Memory 구조
+## Enum과 Memory
 
 - Java에서 열거 상수는 각각을 내부적으로 'public static final' field이면서 객체로 제공되도록 함
 - static이 붙어있기 때문에 각각의 상수는 class 변수로 class loader가 load 시점에 JVM Method 영역에 해당 class 변수들을 항상 상주시킴
   - program이 종료되기 전에는 언제든지 가져다 쓸 수 있는 주소 공간을 확보함
 
-## Enum과 Memory 초기화
+### Memory 초기화
 
 - 사용법은 class의 instance를 생성하는 것과 비슷하지만, new가 없는 형태
 
@@ -228,4 +347,10 @@ System.out.println(Color.BLUE.calc());
 
 # Reference
 
+- https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html
+  - 공식 문서
+    - method에 대한 명세
 - https://honbabzone.com/java/java-enum
+  - enum
+- https://math-coding.tistory.com/179
+  - 예전 방식의 문제점
