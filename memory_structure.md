@@ -64,7 +64,6 @@
     - 공간이 비교적 작기 때문에 모든 응용 program에서 Stack을 사용할 수는 없음
   - variables cannot be resized
 
-
 ## Heap 영역
 
 - programmer가 할당/해제하는 memory 공간
@@ -107,7 +106,7 @@
   - 두 개 이상의 thread에서 동시에 data에 access하려고 하면 경합이 발생
     - 한 쪽 thread의 작업이 완료되어야 다른 쪽 thread의 작업이 진행될 수 있음
   - 경합으로 인해 항상 문제가 발생하며, 이 문제는 다중 processor system에서 일어나는 문제 중 가장 큰 문제임
-    - memomry block을 아주 많이 사용하는 응용 program이나 DDL이 여러 개의 thread로 실행되거나 다중 process system에서 실행되면 속도가 느려짐
+    - memory block을 아주 많이 사용하는 응용 program이나 DDL이 여러 개의 thread로 실행되거나 다중 process system에서 실행되면 속도가 느려짐
   - 일반적인 해결 방법 : 단일 잠금 방법
     - 해당 Heap을 사용하는 모든 작업을 serialize하는 것
     - serialization으로 인해 thread에서는 잠금을 기다리는 동안 context를 switching할 수 있음
@@ -117,7 +116,7 @@
 ### Heap 영역이 필요한 이유 (== 동적 할당이 필요한 이유)
 
 - memory를 효울적으로 관리할 수 있음
-  - embeded system을 개발하다 보면 hardware memory 크기가 매우 작은 경우가 많음
+  - embedded system을 개발하다 보면 hardware memory 크기가 매우 작은 경우가 많음
   - 그런 작은 memory 공간을 compiler가 자동으로 관리하는 것보다 programmer가 관리하는 것이 더 효율적인 경우가 많음
 
 ---
