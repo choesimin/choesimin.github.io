@@ -340,8 +340,6 @@ wildCard.test(lowerList); // Error
 - List<? super Foo>
 - 특정 class의 부모 class만을 인자로 받겠다는 선언
 
-
-
 ---
 
 # Reference
