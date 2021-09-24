@@ -2,16 +2,17 @@
 
 - Build에서 shell script 선택해서 shell 명령어 적으면 됨
 
-### GitLab 연결
+## GitLab 연결
 
 1. 'DashBoard > Manage Jenkins > Security > Manage Credentials'에서 'Add credential' click
 2. kind 항목을 Username with Password로 선택하고, GitLab의 계정, 비밀번호 입력
 3. '[내 project] > Configure > SourceCodeManagement'에서 'Git' check
 4. URL 입력 후, Credential 선택
 
-### Project의 Node version 변경
+## Project의 Node version 변경
 
 - gradle, maven도 비슷함
+
 1. 'DashBoard > Manage Jenkins > Manage Plugins'에서 'NodeJS Plugin' 설치
 2. (reference 문서의 설명 따라서 )원하는 version 설치
 3. '[내 project] > Configure > Build Environment'의 'Provide Node & npm bin/ folder to PATH' check
@@ -24,7 +25,7 @@
 - Scripted와 Declarative 두 가지가 있음
   - 서로 호환되지 않아서 둘 중 하나로 문법을 통일하여 작성해야 함
 
-### Scripted
+## Scripted
 
 - 장점
   - 더 많은 절차적인 code를 작성 가능
@@ -61,6 +62,7 @@
     - ...
       - ...
 - example
+
   ```groovy
   node {
     def hello = 'Hello jojoldu'  // 변수선언
@@ -82,6 +84,7 @@
     echo "${message}"
   }
   ```
+
   ```groovy
   // try-catch 예시
   node {
@@ -96,7 +99,7 @@
   }
   ```
 
-### Declarative
+## Declarative
 
 - Scripted보다 훨씬 간단하게 작성할 수 있는 방법
 - Groovy Scrip에 친숙하지 않은 사용자를 위해 최근에 도입된 declarartive programming model
@@ -156,29 +159,38 @@
 
 # Trouble Shooting
 
-### CentOS에서 사용 시 java.nio.file.AccessDeniedException
-- 추천하지 않음 : pm2나 directory의 file들은 user 기반으로 돌아가는데, root로 바꾸면 문제가 발생할 수 있음
-1. Open up the this script (using VIM or other editor)
-  ```sh
-  vim /etc/sysconfig/jenkins
-  ```
-2. Find this $JENKINS_USER and change to “root”
-  ```sh
-  $JENKINS_USER="root"
-  ```
-3. Then change the ownership of Jenkins home, webroot and logs
-  ```sh
-  chown -R root:root /var/lib/jenkins
-  chown -R root:root /var/cache/jenkins
-  chown -R root:root /var/log/jenkins
-  ```
-4. Restart Jenkins and check the user has been changed
-  ```sh
-  service jenkins restart
-  ps -ef | grep jenkins
-  ```
+## CentOS에서 사용 시 java.nio.file.AccessDeniedException
 
-### file 접근 권한 Error (CentOS)
+- 추천하지 않음 : pm2나 directory의 file들은 user 기반으로 돌아가는데, root로 바꾸면 문제가 발생할 수 있음
+
+1. Open up the this script (using VIM or other editor)
+
+```sh
+vim /etc/sysconfig/jenkins
+```
+
+2. Find this $JENKINS_USER and change to “root”
+
+```sh
+$JENKINS_USER="root"
+```
+
+3. Then change the ownership of Jenkins home, webroot and logs
+
+```sh
+chown -R root:root /var/lib/jenkins
+chown -R root:root /var/cache/jenkins
+chown -R root:root /var/log/jenkins
+```
+
+4. Restart Jenkins and check the user has been changed
+
+```sh
+service jenkins restart
+ps -ef | grep jenkins
+```
+
+## file 접근 권한 Error (CentOS)
 
 - 사용자 변경
   ```sh
@@ -193,6 +205,7 @@
   - JENKINS_USER="svcuser"
   - JENKINS_PORT="18080"
 - jenkins service run (start / stop / restart)
+
 ```sh
 sudo service jenkins start
 ```
@@ -222,4 +235,3 @@ sudo service jenkins start
 - https://itraveler.tistory.com/13
   - user를 jenkins에서 다른 user로 바꾸기
     - centos jenkins AccessDeniedException Error 날 때
-
