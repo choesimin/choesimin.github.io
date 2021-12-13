@@ -153,10 +153,25 @@
 - git reset HEAD <file>...
 - Staged 상태 -> Unstaged 상태
 - 위험한 명령어 (특히 '--hard' option)
+- 아에 과거의 특정 사건(commit)으로 되돌림
+  - 과거로 갔다는 기록(history)을 남기지 않음
+- commit history를 깔끔하게 유지할 수 있음
+- 혼자 작업할 때 편하게 되돌아갈 수 있음
+- 다른 사람과 같은 branch에서 작업할 때 commit이 뒤섞여버릴 수 있음
 
 |||
 |-|-|
 |--patch|file 일부만 Stage Area에서 내리기|
+
+---
+
+# git revert
+
+- git revert <돌리고 싶은 commit ID>
+- 현재에 있으면서 과거의 특정 사건(commit)들만 없던 일로 만듬
+  - 과거로 되돌리겠다는 내용도 기록(commit 이력에 남김)
+- 중간에 무슨 문제가 있었는지, 왜 돌아갔는지 등의 기록이 가능함
+- 다른 사람과 같은 branch에서 작업할 때 code 충돌을 최소화할 수 있음
 
 ---
 
@@ -381,7 +396,26 @@
 
 ---
 
+# Git remote 저장소가 없다고 나올 때 대처
+
+- 증상
+  ```sh
+  # git pull origin master
+
+  remote: The project you were looking for could not be found
+  fatal: repository '~~~~' not found
+  ```
+- 해결법
+  ```sh
+  git credential-cache exit
+  ```
+
+
+---
+
 # Reference
 
 - https://git-scm.com/book/ko/v2
   - pro git 2nd edition (2014)
+- https://velog.io/@njs04210/Git-reset과-revert-알고-사용하기
+  - git reset revert
