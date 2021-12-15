@@ -4,13 +4,13 @@
 
 ## LIfecycle
 
-- 종류
+### 종류
     - default lifecycyle : compile -> test -> package -> install -> deploy
     - clean lifecycle : clean
     - site lifecycle : site -> site-deploy
 - 'mvn install'이란 명령을 내리면 compile부터 install 단계까지 모두 실행됨
 
-## 명령어
+### Command
 
 - mvn clean : 생성된 target folder 삭제
 - mvn validate
@@ -34,25 +34,57 @@
 - mvn dependency:tree : dependency tree 보기
 - mvn spring-boot:run : Spring Boot 실행
 
-## pom.xml
+## Maven 설정 file
 
-- <groupId>
-    - project를 구분하는 값으로 사용됨
-    - domain을 주로 사용
-- <artifactId>
-    - project를 구분하는 값으로 사용됨
-    - project명을 사용
-- <properties>
-    - POM 내에서 공통적으로 사용되는 값들을 설정
-    - pom.xml file의 다른 곳에서 ${org.springframework-version} 처럼 사용
-- <repositories>
-    - library를 받아올 저장소를 지정함
-- <dependencies>
-    - project에서 사용되는 library를 지정함
-- <build>
-    - project의 build 방법을 지정함
+### settings.xml
+
+- Maven build tool과 관련한 설정 file
+- MAVEN_HOME/conf directory에 위치 (Maven 설치 시 기본 제공)
+- settings.xml에서 원하는 local 저장소의 경로를 지정, 변경할 수 있음
+  - Maven을 build할 때 의존 관계에 있는 library, plugin을 중앙 저장소에서 개발자 PC로 download함
+  - 이 때 download하는 위치(local 저장소)의 기본 설정값은 'USER_HOME/.m2/repository'
+
+### POM (pom.xml)
+
+- Project Object Model
+- Maven을 이용하는 project의 root에 존재하는 xml file
+  - 하나의 Java project에 build tool을 Maven으로 설정하면, project 최상위 directory에 'pom.xml'이라는 file이 생성됨
+- Maven의 기능을 이용하기 위해서 POM이 사용됨
+- file은 project마다 1개이며, pom.xml만 보면 project의 모든 설정, 의존성 등을 알 수 있음
+- pom.xml element
+    - <modelVersion>
+        - POM model의 version
+    - <parent>
+        - project의 계층 정보
+    - <groupId>
+        - project를 생성하는 조직의 고유 id를 결정함
+        - 일반적으로 domain 이름을 거꾸로 적음
+    - <artifactId>
+        - project build시 file 대표 이름
+        - groupId 내에서 유일해야 함
+        - project명을 사용
+    - <packaging>
+        - packaging 유형 (jar, war, ear 등)
+    - <name>
+        - project 이름
+    - <description>
+        - project에 대한 간략한 설명
+    - <url>
+        - project에 대한 참고 reference site
+    - <properties>
+        - version 관리 시 용이함
+            - dependencies에서 활용 가능
+        - POM 내에서 공통적으로 사용되는 값들을 설정
+        - pom.xml file의 다른 곳에서 ${org.springframework-version} 처럼 사용
+    - <repositories>
+        - library를 받아올 저장소를 지정함
+    - <dependencies>
+        - project와 의존 관계에 있는 library들을 관리하
+    - <build>
+        - project의 build에 사용할 plugin 목록
 
 ---
 
 # Reference
 
+- https://goddaehee.tistory.com/199
