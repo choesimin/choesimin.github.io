@@ -1,22 +1,22 @@
 # git
 
 - 3가지 상태
-  1. Committed : data가 local database에 안전하게 저장한 상태
-  2. Modified : 수정한 file을 아직 local database에 commit하지 않은 상태
-  3. Staged : 현재 수정한 파일을 곹 commit할 것이라고 표시한 상태
+    1. Committed : data가 local database에 안전하게 저장한 상태
+    2. Modified : 수정한 file을 아직 local database에 commit하지 않은 상태
+    3. Staged : 현재 수정한 파일을 곹 commit할 것이라고 표시한 상태
 
 - Working Directory files
-  - Tracked files (관리대상임) : 이미 snapshot에 포함되어 있던 file
-    - Unmodified files (수정하지 않음)
-      - 처음 저장소를 clone하면 모든 file이 이 상태임
-        - file을 checkout하고 나서 아무것도 수정하지 않았기 때문
-    - Modified files (수정함)
-      - 마지막 commit 이후, 아무것도 수정하지 않은 상태에서 어떤 file을 수정하면 Git은 그 file을 Modified 상태로 인식
-    - Staged files (commit으로 저장소에 기록할 상태) : Git이 알고 있는 file
-  - Untracked files (관리대상이 아님)
-    - 나머지 file 모두
-    - Working Directory에 있는 file 중 snapshot에도 Staging Area에도 포함되지 않은 file
-    - 새로운 file을 만들면 Untracked files에 들어감
+    - Tracked files (관리대상임) : 이미 snapshot에 포함되어 있던 file
+        - Unmodified files (수정하지 않음)
+            - 처음 저장소를 clone하면 모든 file이 이 상태임
+                - file을 checkout하고 나서 아무것도 수정하지 않았기 때문
+        - Modified files (수정함)
+            - 마지막 commit 이후, 아무것도 수정하지 않은 상태에서 어떤 file을 수정하면 Git은 그 file을 Modified 상태로 인식
+        - Staged files (commit으로 저장소에 기록할 상태) : Git이 알고 있는 file
+    - Untracked files (관리대상이 아님)
+        - 나머지 file 모두
+        - Working Directory에 있는 file 중 snapshot에도 Staging Area에도 포함되지 않은 file
+        - 새로운 file을 만들면 Untracked files에 들어감
 
 ---
 
@@ -46,8 +46,8 @@
 - file commit
 - 상태 : Staged -> Committed
 - Git은 Staging Area에 속한 snapshot을 commit함
-  - Staging Area에 넣지 않은 것은 다음에 commit할 수 있음
-  - 나중에 snapshot끼리 비교하거나 예전 snapshot으로 되돌릴 수 있음
+    - Staging Area에 넣지 않은 것은 다음에 commit할 수 있음
+    - 나중에 snapshot끼리 비교하거나 예전 snapshot으로 되돌릴 수 있음
 
 |||
 |-|-|
@@ -78,7 +78,7 @@
 # git diff
 
 - 수정했지만 아직 Unstaged 상태인 file을 비교해볼 수 있음
-  - Working Directory에 있는 것과 Staging Area에 있는 것을 비교
+    - Working Directory에 있는 것과 Staging Area에 있는 것을 비교
 
 |||
 |-|-|
@@ -91,8 +91,8 @@
 
 - Tracked 상태의 file을 Staging Area에서 삭제
 - 일반 삭제와의 차이
-  - Working Directory에서 file을 삭제 -> Unstaged 상태
-  - 'git rm'으로 삭제한 file -> Stated 상태
+    - Working Directory에서 file을 삭제 -> Unstaged 상태
+    - 'git rm'으로 삭제한 file -> Stated 상태
 
 |||
 |-|-|
@@ -105,11 +105,11 @@
 
 - file 이름 변경
 - 아래 명령어를 수행한 것과 같음
-  ```sh
-  mv README.md README
-  git rm README.md
-  git add README
-  ```
+    ```sh
+    mv README.md README
+    git rm README.md
+    git add README
+    ```
 - 일종의 단축 명령어
 
 ---
@@ -118,33 +118,33 @@
 
 - commit history 조회
 - 주요 option
-  |||
-  |-|-|
-  |--patch|각 commit의 diff 결과 조회|
-  |-p|'--patch'와 동일|
-  |--stat|각 commit에서 수정된 file의 통계 정보 조회|
-  |--shortstat|--stat 명령의 결과 중에서 수정한 file, 추가된 line, 삭제된 line만 조회|
-  |--name-only|commit 정보 중에서 수정된 file의 목록 조회|
-  |--name-status|수정된 file의 목록 + 파일 추가, 수정, 삭제 여부 조회|
-  |--abbrev-commit|40자 짜리 SHA-1 checksum 중 처음 몇 자만 조회|
-  |--relative-date|정확한 시간이 아닌 '2 weeks ago'와 같이 상대적인 형식으로 조회|
-  |--graph|branch와 merge history 정보까지 ASCII graph로 조회|
-  |--pretty|지정한 형식으로 조회. 이 option에는 oneline, short, full, fuller, format이 있음. format은 원하는 형식으로 출력할 때 사용|
-  |--oneline|--pretty=oneline --abbrev-commit 을 함께 사용한 것|
-  |--decorate|branch가 어떤 commit을 가리키는지 조회|
-  |-S <문자열>|해당 문자열이 추가된 commit과 없어진 commit만 검색할 수 있음|
+    |||
+    |-|-|
+    |--patch|각 commit의 diff 결과 조회|
+    |-p|'--patch'와 동일|
+    |--stat|각 commit에서 수정된 file의 통계 정보 조회|
+    |--shortstat|--stat 명령의 결과 중에서 수정한 file, 추가된 line, 삭제된 line만 조회|
+    |--name-only|commit 정보 중에서 수정된 file의 목록 조회|
+    |--name-status|수정된 file의 목록 + 파일 추가, 수정, 삭제 여부 조회|
+    |--abbrev-commit|40자 짜리 SHA-1 checksum 중 처음 몇 자만 조회|
+    |--relative-date|정확한 시간이 아닌 '2 weeks ago'와 같이 상대적인 형식으로 조회|
+    |--graph|branch와 merge history 정보까지 ASCII graph로 조회|
+    |--pretty|지정한 형식으로 조회. 이 option에는 oneline, short, full, fuller, format이 있음. format은 원하는 형식으로 출력할 때 사용|
+    |--oneline|--pretty=oneline --abbrev-commit 을 함께 사용한 것|
+    |--decorate|branch가 어떤 commit을 가리키는지 조회|
+    |-S <문자열>|해당 문자열이 추가된 commit과 없어진 commit만 검색할 수 있음|
 
 - 조회 범위를 제한하는 option
-  |||
-  |-|-|
-  |-(n)|최근 n 개의 commit만 조회|
-  |--since, --after|명시한 날짜 이후의 commit만 조회|
-  |--until, --before|명시한 날짜 이전의 commit만 조회|
-  |--author|입력한 저자의 commit만 조회|
-  |--committer|입력한 committer의 commit만 조회|
-  |--grep|commit message 안의 text 검색|
-  |-S|commit 변경(추갸/삭제) 내용 안의 text 검색|
-  |--no-merges|merge commit 표시하지 않기|
+    |||
+    |-|-|
+    |-(n)|최근 n 개의 commit만 조회|
+    |--since, --after|명시한 날짜 이후의 commit만 조회|
+    |--until, --before|명시한 날짜 이전의 commit만 조회|
+    |--author|입력한 저자의 commit만 조회|
+    |--committer|입력한 committer의 commit만 조회|
+    |--grep|commit message 안의 text 검색|
+    |-S|commit 변경(추갸/삭제) 내용 안의 text 검색|
+    |--no-merges|merge commit 표시하지 않기|
 
 ---
 
@@ -154,7 +154,7 @@
 - Staged 상태 -> Unstaged 상태
 - 위험한 명령어 (특히 '--hard' option)
 - 아에 과거의 특정 사건(commit)으로 되돌림
-  - 과거로 갔다는 기록(history)을 남기지 않음
+    - 과거로 갔다는 기록(history)을 남기지 않음
 - commit history를 깔끔하게 유지할 수 있음
 - 혼자 작업할 때 편하게 되돌아갈 수 있음
 - 다른 사람과 같은 branch에서 작업할 때 commit이 뒤섞여버릴 수 있음
@@ -169,7 +169,7 @@
 
 - git revert <돌리고 싶은 commit ID>
 - 현재에 있으면서 과거의 특정 사건(commit)들만 없던 일로 만듬
-  - 과거로 되돌리겠다는 내용도 기록(commit 이력에 남김)
+    - 과거로 되돌리겠다는 내용도 기록(commit 이력에 남김)
 - 중간에 무슨 문제가 있었는지, 왜 돌아갔는지 등의 기록이 가능함
 - 다른 사람과 같은 branch에서 작업할 때 code 충돌을 최소화할 수 있음
 
@@ -219,8 +219,8 @@
 - Git은 local에 모든 version 관리 data를 복사(clone)해두고 있기 때문에 자유롭게 history를 local에서 수정해볼 수 있음
 - 그러나 local의 version 관리 data 혹은 commit이 외부로 push가 된 후라면, 그 history에 대해선 수정을 가하면 안됨
 - push된 data는 수정이 완전히 끝난 것임
-  - 고쳐야할 이유가 생겼더라도 새로 수정 작업을 추가해야지, 이전 commit 자체를 수정할 수는 없음
-  - 따라서 온전하게 수정 작업을 마무리했다는 확신 없이 작업 내용을 공유하는 remote 저장소로 보내는(push) 행동은 피해야 함
+    - 고쳐야할 이유가 생겼더라도 새로 수정 작업을 추가해야지, 이전 commit 자체를 수정할 수는 없음
+    - 따라서 온전하게 수정 작업을 마무리했다는 확신 없이 작업 내용을 공유하는 remote 저장소로 보내는(push) 행동은 피해야 함
 
 |||
 |-|-|
@@ -233,11 +233,11 @@
 # git tag
 
 - lightweight tag
-  - branch와 비슷한데 branch처럼 가리키는 지점을 최신 commit으로 이동시키지 않음
-  - 단순히 특정 commit에 대한 pointer
+    - branch와 비슷한데 branch처럼 가리키는 지점을 최신 commit으로 이동시키지 않음
+    - 단순히 특정 commit에 대한 pointer
 - annotated tag
-  - Git database에 tag를 만든 사람의 이름, email과 tag를 만든 날짜, tag message를 저장함
-  - 일반적으로 annotated tag를 만들어 많은 정보를 사용할 수 있도록 하는 것이 좋지만, 임시로 생성하는 tag거나 이러한 정보를 유지할 필요가 없는 경우에는 lightweight tag를 사용할 수도 있음
+    - Git database에 tag를 만든 사람의 이름, email과 tag를 만든 날짜, tag message를 저장함
+    - 일반적으로 annotated tag를 만들어 많은 정보를 사용할 수 있도록 하는 것이 좋지만, 임시로 생성하는 tag거나 이러한 정보를 유지할 필요가 없는 경우에는 lightweight tag를 사용할 수도 있음
 |||
 |-|-|
 |--list|만들어진 tag 조회|
@@ -266,26 +266,6 @@
 |-|-|
 |-d <branch 이름>|해당 branch 삭제|
 
----
-
-# git merge
-
-- fast-forward : branch pointer가 merge 과정 없이 최신 commit으로 이동하는 것
-  - A branch에서 다른 B branch를 merge할 때, B branch가 A branch 이후의 commit을 가리키고 있으면, 그저 A branch가 B branch와 동일한 commit을 가리키도록 이동만 하는 것
-- 3-way-merge
-  - 각 branch가 가리키는 commit 두 개와 공통 조상 하나를 이용하어 합치는 것
-  - 합친 결과를 별도의 commit으로 만들고나서 해당 branch가 가리키도록 이동시킴
-  - == merge commit
-- 충돌 (conflict)
-  - 3-way-merge에서 발생
-  - merge하는 두 branch에서 같은 file의 한 부분을 동시에 수정하면 Git은 해당 부분을 merge하지 못함
-  - 충돌이 일어난 file은 'git status'하면 unmerged 상태로 표시됨
-  - code에서 충돌을 알려주는 표시를 보고 수동으로 고쳐서 해결 가능
-    - '=======' 위 쪽 : current (HEAD version : merge 명령을 실행할 때 작업하던 branch)
-    - '=======' 아래 쪽 : incomming (충돌을 유발하는 branch)
-  - 'git mergetool'을 사용하면 merge 도구로 해결 가능
-  - 해결 후에 merge message에는 어떻게 충돌을 해결했고 좀 더 확인해야하는 부분은 무엇이고 왜 그렇게 해결했는지에 대해서 자세하게 기록 -> 나중에 이 merge commit을 이해하는 데에 도움을 줌
-
 |||
 |-|-|
 |-d <branch 이름>|해당 branch 삭제|
@@ -302,32 +282,56 @@
 
 ---
 
+# git merge
+
+- fast-forward : branch pointer가 merge 과정 없이 최신 commit으로 이동하는 것
+    - A branch에서 다른 B branch를 merge할 때, B branch가 A branch 이후의 commit을 가리키고 있으면, 그저 A branch가 B branch와 동일한 commit을 가리키도록 이동만 하는 것
+- 3-way-merge
+    - 각 branch가 가리키는 commit 두 개와 공통 조상 하나를 이용하어 합치는 것
+    - 합친 결과를 별도의 commit으로 만들고나서 해당 branch가 가리키도록 이동시킴
+    - == merge commit
+- 충돌 (conflict)
+    - 3-way-merge에서 발생
+    - merge하는 두 branch에서 같은 file의 한 부분을 동시에 수정하면 Git은 해당 부분을 merge하지 못함
+    - 충돌이 일어난 file은 'git status'하면 unmerged 상태로 표시됨
+    - code에서 충돌을 알려주는 표시를 보고 수동으로 고쳐서 해결 가능
+        - '=======' 위 쪽 : current (HEAD version : merge 명령을 실행할 때 작업하던 branch)
+        - '=======' 아래 쪽 : incomming (충돌을 유발하는 branch)
+    - 'git mergetool'을 사용하면 merge 도구로 해결 가능
+    - 해결 후에 merge message에는 어떻게 충돌을 해결했고 좀 더 확인해야하는 부분은 무엇이고 왜 그렇게 해결했는지에 대해서 자세하게 기록 -> 나중에 이 merge commit을 이해하는 데에 도움을 줌
+
+|||
+|-|-|
+|--abort|병합 전의 상태로 되돌림(commit 이전에 사용)|
+
+---
+
 # git rebase
 
 - git rebase <basebranch> <topicbranch>
-  - 아래의 두 명령어를 합친 것
-    - git checkout <basebranch>
-    - git merge <topicbranch>
+    - 아래의 두 명령어를 합친 것
+        - git checkout <basebranch>
+        - git merge <topicbranch>
 - 과정
-  1. 두 branch가 나뉘기 전인 공통 commit으로 이동
-  2. 그 commit부터 지금 checkout한 branch가 가리키는 commit까지 diff를 차례로 만들어 어딘가에 임시로 저장해놓음
-  3. rebase할 branch가 합칠 branch가 가리키는 commit을 가리키게 하고 아까 저장해 놓았던 변경 사항을 차례대로 적용
-  4. 그리고 fast-forward함
+    1. 두 branch가 나뉘기 전인 공통 commit으로 이동
+    2. 그 commit부터 지금 checkout한 branch가 가리키는 commit까지 diff를 차례로 만들어 어딘가에 임시로 저장해놓음
+    3. rebase할 branch가 합칠 branch가 가리키는 commit을 가리키게 하고 아까 저장해 놓았던 변경 사항을 차례대로 적용
+    4. 그리고 fast-forward함
 - branch를 합치는 2가지 방법
-  - merge
-    - 두 branch의 최종 결과만을 가지고 합침
-    - 3-way-merge를 통해 더 상세한 history를 기록할 수 있음
-  - rebase
-    - branch의 변경 사항을 순서대로 다른 branch에 적용함녀서 합침
-    - 좀 더 깨끗한 history를 만듬
-      - history가 선형 : 일을 병렬로 동시에 진행해도 rebase하면 모든 작업이 차례대로 수행된 것처럼 보임
-      - project 관리자는 어떠한 통합 작업도 필요 없고 그저 master branch를 fast-forward 시키면 됨
+    - merge
+        - 두 branch의 최종 결과만을 가지고 합침
+        - 3-way-merge를 통해 더 상세한 history를 기록할 수 있음
+    - rebase
+        - branch의 변경 사항을 순서대로 다른 branch에 적용함녀서 합침
+        - 좀 더 깨끗한 history를 만듬
+            - history가 선형 : 일을 병렬로 동시에 진행해도 rebase하면 모든 작업이 차례대로 수행된 것처럼 보임
+            - project 관리자는 어떠한 통합 작업도 필요 없고 그저 master branch를 fast-forward 시키면 됨
 - rebase, merge 모두 최종 결과물은 같고 commit history만 다름
 - remote 저장소에 push한 commit을 rebase하면 안됨
-  - rebase는 기존의 commit을 그대로 사용하는 것이 아니라, 내용은 같지만 다른 commit을 새로 만듬
-  - 협업자와 공유를 위해 push pull을 하다 보면 history가 꼬여서 내 code가 엉망이 되어버림
+    - rebase는 기존의 commit을 그대로 사용하는 것이 아니라, 내용은 같지만 다른 commit을 새로 만듬
+    - 협업자와 공유를 위해 push pull을 하다 보면 history가 꼬여서 내 code가 엉망이 되어버림
 - 되도록이면 merge를 사용하고 commit history를 가독성 있게 관리하기 위해서 rebase를 사용
-  - local branch에서 작업할 때는 history를 정리하기 위해 rebase할 수도 있지만, remote 등 어딘가에 push로 내보낸 commit에 대해서는 절대 rebase하지 말아야 함
+    - local branch에서 작업할 때는 history를 정리하기 위해 rebase할 수도 있지만, remote 등 어딘가에 push로 내보낸 commit에 대해서는 절대 rebase하지 말아야 함
 
 |||
 |-|-|
@@ -340,9 +344,9 @@
 
 - stack에 새로운 stash 만들기
 - 아직 끝나지 않은 수정 사항을 stack에 잠시 저장했다가 나중에 다시 적용할 수 있음
-  - branch가 달라져도 가능
+    - branch가 달라져도 가능
 - Working Directory에서 수정한 file들만 저장
-  - Modified이면서 Tracked 상태일 file과 Staging Area에 있는 file들을 보관해두는 장소
+    - Modified이면서 Tracked 상태일 file과 Staging Area에 있는 file들을 보관해두는 장소
 
 |||
 |-|-|
@@ -366,7 +370,7 @@
 
 - merge나 외부 도구가 만들어낸 file을 지우거나 이전 build 작업으로 생성된 각종 file을 지우는 데에 필요함
 - Working Directory 안의 추적하고 있지 않은 모든 file이 지워지기 때문에 신중하게 사용해야 함
-  - 'git stash --all' 명령을 이용하면 지우는 건 똑같지만, 먼저 모든 file을 stash하므로 더 안전함
+    - 'git stash --all' 명령을 이용하면 지우는 건 똑같지만, 먼저 모든 file을 stash하므로 더 안전함
 
 |||
 |-|-|
@@ -382,7 +386,7 @@
 # git grep
 
 - commit tree의 내용이나 Working Directory의 내용을 검색
-  - 검색어에는 문자열이나 정규표현식을 사용 가능
+    - 검색어에는 문자열이나 정규표현식을 사용 가능
 - 매우 빠르고, Working Directory만이 아니라 Git history 내의 어떠한 정보라도 찾아낼 수 있음
 
 |||
@@ -399,23 +403,24 @@
 # Git remote 저장소가 없다고 나올 때 대처
 
 - 증상
-  ```sh
-  # git pull origin master
+    ```sh
+    # git pull origin master
 
-  remote: The project you were looking for could not be found
-  fatal: repository '~~~~' not found
-  ```
+    remote: The project you were looking for could not be found
+    fatal: repository '~~~~' not found
+    ```
 - 해결법
-  ```sh
-  git credential-cache exit
-  ```
-
+    ```sh
+    git credential-cache exit
+    ```
 
 ---
 
 # Reference
 
 - https://git-scm.com/book/ko/v2
-  - pro git 2nd edition (2014)
+    - pro git 2nd edition (2014)
 - https://velog.io/@njs04210/Git-reset과-revert-알고-사용하기
-  - git reset revert
+    - git reset revert
+- https://velog.io/@henotony/git-명령-취소되돌리기
+    - merge 명령 되돌리는 방법
