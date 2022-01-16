@@ -9,7 +9,6 @@ HashMap<String, String> headers = new HashMap<String, String>() {{
 String response = httpManager.post(String.format(URL, APPKEY), headers, body);
 ```
 
-
 ---
 
 # Reference

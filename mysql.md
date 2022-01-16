@@ -27,7 +27,7 @@
 ```sh
 mysqldump -u [user id] -p [password] [original database name] > [backup database name to create].sql
 
-// ex
+# example
 mysqldump -u test_user -p test_db > backup_test_db.sql
 passowrd : 123456
 ```
@@ -35,16 +35,32 @@ passowrd : 123456
 ## Table backup
 
 ```sh
-mysqldump -u [user id] -p [password] [database name] [origin backup table name] > [backup 받을 table name].sql
+mysqldump -u [user id] -p [password] [database name] [origin backup table name] > [table name to backup].sql
 
-// ex
+# example
 mysqldump -u test_user -p test_db test_table > backup_test_table.sql
 passowrd : 123456
 ```
 
 ## DB restoration
 
-- 
+```sh
+mysql -u [user id] -p [password] [database name to restore] < [backup database].sql
+
+# example
+mysql -u test_user -p test_db < backup_test_db.sql
+passowrd : 123456
+```
+
+## Table restoration
+
+```sh
+mysql -u [user id] -p [password] [database name to restore] < [backup table].sql
+
+# example
+mysql -u test_user -p 123456 test_db < backup_test_table.sql
+passowrd : 123456
+```
 
 ---
 
