@@ -5,7 +5,7 @@
 - 90년대 당시, 산업 현장에서 business 언어로는 COBOL을 사용했음
 - 그 땐, C++과 Java가 신기술이었음
 - 그러나 지금, 더 새로운 것들을 원하는 개발자들이 IT 산업의 주류를 이루면서, Java는 낡은 언어, 더는 발전이 없는 언어라는 인식이 생김
-  - "Java는 죽었다"는 소리가 나오는 이유
+    - "Java는 죽었다"는 소리가 나오는 이유
 - "Write Once, Run Anywhere"
 
 |Version|Year|Desc|
@@ -27,47 +27,47 @@
 |JDK 14|2020|LTS version이 아니지만 변화 많음 (switch/instanceof 개선, Records 초안 발표)|
 
 - 연대표 3가지 특징
-  1. 1995년  beta version이 나온 이후로 현재까지 Java는 꾸준히 새로운 version을 발표하고 있음
-  2. 추가되는 기능이나 변경되는 내용을 보면 Java라는 언어적인 한계를 넘어서 변화하는 환경에 적응하고자 노력하고 있음
-    - ex) Java8의 functional programming
-  3. 초창기엔 거의 1년 단위로 upgrade되던 Java가 2000년대 후반 다소 주춤함 (version 6 ~ version 7)
-    - 이 시기에 IT 업계에서는 "Java가 정체되었다", "Java는 죽었다" 등의 말들이 나옴
+    1. 1995년    beta version이 나온 이후로 현재까지 Java는 꾸준히 새로운 version을 발표하고 있음
+    2. 추가되는 기능이나 변경되는 내용을 보면 Java라는 언어적인 한계를 넘어서 변화하는 환경에 적응하고자 노력하고 있음
+        - ex) Java8의 functional programming
+    3. 초창기엔 거의 1년 단위로 upgrade되던 Java가 2000년대 후반 다소 주춤함 (version 6 ~ version 7)
+        - 이 시기에 IT 업계에서는 "Java가 정체되었다", "Java는 죽었다" 등의 말들이 나옴
 
 ## Java는 죽었나?
 
 - "Java는 죽지 않았다"
 1. 여전히 세계에서 가장 많은 개발자가 사용하고 있는 언어
 2. 여전히 발전하고 있음
-  - 매번 신규 version이 나올 때마다 새로운 paradigm을 흡수하려고 노력해 옴
-  - 특히, Java 5, 8 에서 혁신적인 변화가 있었음
+    - 매번 신규 version이 나올 때마다 새로운 paradigm을 흡수하려고 노력해 옴
+    - 특히, Java 5, 8 에서 혁신적인 변화가 있었음
 3. 그동안 생산된 많은 code와 library가 있음
-  - Java 언어에 기반한 많은 library, framework, code들이 무료로 유통되고 있으며 지속적으로 version upgrade가 되고 있음
+    - Java 언어에 기반한 많은 library, framework, code들이 무료로 유통되고 있으며 지속적으로 version upgrade가 되고 있음
 4. 개발 환경이 탄탄함
-  - IntelliJ, Eclipse 등
+    - IntelliJ, Eclipse 등
 
 ## Java version 정책의 변화
 
 - 전통적으로 software의 version upgrade는 2~3년 정도의 긴 기간 동안 혁신적인 개념과 가능을 추가하고 안정화를 거친 후 발표하는 것이 일반적이었음
 - 그러나 최근에는 짧은 주기로 계속해서 upgrade를 제공해서 software의 기능을 빠르게 보강하는 방식이 추세임
-  - ex) Windows 10, Ubuntu
+    - ex) Windows 10, Ubuntu
 - Java의 version 정책 변화
-  1. 6개월에 한 번씩 신규 version 발표
-    - 잦은 update는 legacy 환경 호환에 안 좋을 수 있다는 우려가 있었음
-    - 그러나 예전 3~5년에 걸쳐 나올 때처럼 dynamic한 변화는 없을 것이라고 함
-      - 또한 지금까지 그래왔듯 이전 version에 대한 호환을 갖추어 출시
-  2. version에 대한 명명 규칙 변경안 제시
-    - Ubuntu처럼 년도를 따라가는 version 명명 규칙을 고려한 적이 있었음
-    - 그러나 현재 방식(숫자 늘려가기)를 고수하기로 함
-  3. 장기 지원 version 구분
-    - LTS : Long Term Support
+    1. 6개월에 한 번씩 신규 version 발표
+        - 잦은 update는 legacy 환경 호환에 안 좋을 수 있다는 우려가 있었음
+        - 그러나 예전 3~5년에 걸쳐 나올 때처럼 dynamic한 변화는 없을 것이라고 함
+            - 또한 지금까지 그래왔듯 이전 version에 대한 호환을 갖추어 출시
+    2. version에 대한 명명 규칙 변경안 제시
+        - Ubuntu처럼 년도를 따라가는 version 명명 규칙을 고려한 적이 있었음
+        - 그러나 현재 방식(숫자 늘려가기)를 고수하기로 함
+    3. 장기 지원 version 구분
+        - LTS : Long Term Support
 
 ## Java version별 새로운 기능
 
 ### Java 5
 
 - 명명 규첵을 1.x에서 x 형태로 변경 (1.5 -> 5)
-  - JDK나 JVM을 download 받으면 1.5 형태의 directory가 생성되긴 함
-  - 공식적인 version은 5임
+    - JDK나 JVM을 download 받으면 1.5 형태의 directory가 생성되긴 함
+    - 공식적인 version은 5임
 
 |||
 |-|-|
@@ -82,8 +82,8 @@
 ### Java 6
 
 - Java 5의 안정화 version
-  - 새로운 기능을 없고 주로 Garbage Collection, 동기화, JVM의 성능 향상에 중점을 둠
-  - 변화가 미미함
+    - 새로운 기능을 없고 주로 Garbage Collection, 동기화, JVM의 성능 향상에 중점을 둠
+    - 변화가 미미함
 
 |||
 |-|-|
@@ -94,7 +94,7 @@
 ### Java 7
 
 - Java 6이후 5년 만에 발표됨
-  - 그런 것치고는 새로운 기능이 많지는 않았음
+    - 그런 것치고는 새로운 기능이 많지는 않았음
 
 |||
 |-|-|
@@ -152,8 +152,8 @@
 - Java 11은 장기 지원 version(Long Term Support, LTS)으로, 발표 후 지속적인 upgrade와 patch 작업, 기술 지원을 제공함 (유료)
 - 지원 측면에서 안정성을 도모하고 시대의 흐름에 맞게 중요한 기능들을 포함함
 - 제거된 기능
-  - 기존 JDK에 오랜 기간 포함되어 있던 CORBA, Java EE, JavaFX module
-  - Java 초창기 version부터 계속 지원해 온 Applet과 Java web start 기능
+    - 기존 JDK에 오랜 기간 포함되어 있던 CORBA, Java EE, JavaFX module
+    - Java 초창기 version부터 계속 지원해 온 Applet과 Java web start 기능
 
 |||
 |-|-|
@@ -189,4 +189,4 @@
 # Reference
 
 - Practical 모던 자바 - 장윤기
-  - 1장 자바의 발전 과정
+    - 1장 자바의 발전 과정
