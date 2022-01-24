@@ -2,405 +2,442 @@
 
 ## CPU : Central Processing Unit
 
-- CPU는 컴퓨터의 두뇌에 해당한다. 종종 간단하게 processor(처리 장치) 또는 중앙 processor(중앙 처리 장치)라고 부른다.
 - CPU(Central Processing Unit) is the brain of a computer. Sometimes it is referred to simply as the processor or the central processor.
+    - computer의 두뇌
+    - 간단하게 processor(처리 장치) 또는 중앙 processor(중앙 처리 장치)라고 부르기도 함
 
 ## ALU : Arithmetic and Logic Unit
 
 - The Arithmetic Logic Unit(ALU) is where calculation and logical operations take place.
-- 산술 논리 연산 장치(ALU)에서는 계산과 논리적 연산을 주관한다.
+    - 계산과 논리적 연산을 주관함
 
 ## CU : Control Unit
 
-- The Control Unit(CU) has control of the operations of the memory, ALU, and the input / output subsystem.(제어장치(CU)는 기억장치와 ALU, 입 / 출력 서브시스템의 동작을 조정하는 장치이다.)
+- The Control Unit(CU) has control of the operations of the memory, ALU, and the input / output subsystem.
+    - 기억 장치와 ALU, 입/출력 subsystem의 동작을 조정하는 장치
 
-Register
-• A register is a special high-speed storage area within the CPU. (레지스터는 CPU 안에 속하여 있는 고속의 저장 장소를 말한다.)
+## Register
+
+- A register is a special high-speed storage area within the CPU.
+    - CPU 안에 속한 고속의 저장 장소
+
+## DR : Data Register
+
+- Date Register(DR) contains the input data or the result.
+    - 입력 data나 결과 값을 보관하는 장치
+
+## PC : Program Counter
+
+- Program Counter(PC) keeps track of the instruction currently being executed. After executing the instruction, the program counter is augmented to point the address of the next instruction in memory.
+    - 현재 실행 중인 명령어를 추적하는 것
+    - 이 명령의 실행이 종료되면 program counter는 memory 안에 있는 다음 명령어의 주소를 가리키도록 증가하게 되는 장치
+
+## Memory
+
+- Memory is the internal storage areas in the computer. Memory is used to store program and data.
+    - computer 내부에 존재하는 저장 영역
+    - program과 data를 저장하는 데에 사용되는 장치
+
+## RAM : Random Access Memory
+
+- Random Access Memory(RAM) is same as the main memory. We can both write data into RAM and read data from RAM. This is the contrast to ROM, which permits you only to read data.
+    - main memory(주 기억장치)
+    - RAM 안에 data를 기록할 수도 있으며 data를 읽을 수도 있음
+        - data를 읽을 수만 있는 ROM과 대조
+
+## DRAM : Dynamic RAM
+
+- Dynamic RAM(DRAM) being the more common type. Dynamic RAM(DRAM) needs to be refreshed thousands of times per second.
+    - 보편적인 형식의 RAM
+    - 매 초당 수천 번씩 기억을 재생하는 장치
+
+## SRAM : Static RAM
+
+- Static RAM(SRAM) does not need to be refreshed, which makes it faster, but it is also more expensive than Dynamic RAM(DRAM).
+    - DRAM보다 속도가 빠른 장치
+    - 가격은 상대적으로 비싼 편임
+
+## ROM : Read-Only Memory
+
+- Read-Only Memory(ROM) is the acronym for read-only memory, computer memory on which data has been prerecorded. Once data has been written onto a ROM chip, it cannot be removed and can only be read.
+    - 읽기 전용 memory의 약자
+    - data가 미리 기록되어 있는 computer memory
+    - ROM chip에 data가 일단 기록되면 지워지지 않으며 읽을 수만 있음
+
+## PROM : Programmable ROM
+
+- Programmable ROM(PROM) s are manufactured as blank chips on which data can be written with a special device called a PROM programmer.
+    - 비어있는 chip으로 제작됨
+    - PROM programmer를 가지고 data를 기록할 수 있는 장치
+
+## EPROM : Erasable Programmable ROM
+
+- An Erasable Programmable ROM(EPROM) is a special type of PROM that can be erased by exposing it to the ultraviolet light. The ultraviolet light clears its contents, making it possible to reprogram the memory.
+    - 자외선을 쬐면 data가 소거되는 특별한 형태의 PROM
+    - 덕분에 memory를 다시 programming 할 수 있도록 함
+
+## EEPROM : Electrically Erasable and Programmable ROM
+
+- An Electrically Erasable and Programmable ROM(EEPROM) is a special type of PROM and it's contents can be erased by exposing it to an electrical charge. Like other types of PROM, EEPROM retains its contents even when the power is turned off.
+    - 전기 충전에 노출되면 내용이 지워지는 PROM의 특별한 형태
+    - computer의 전원이 꺼져도 그 내용을 유지함
+        - 다른 PROM도 동일함
+
+## RISC : Reduced Instruction Set Computer
+
+- RISC is the acronym for Reduced Instruction Set Computer, a type of microprocessor that recognizes a relatively limited of instructions. ↔ CISC(Complex Instruction Set Computers)
+    - 상대적으로 제한된 개수의 명령어를 인식하는 일종의 microprocessor
+        - CISC와 상반됨
+
+## Cache
+
+- cache is a special high-speed storage mechanism. It can be either a reserved section of main memory or an independent high-speed storage device. Two types of caching are commonly used in personal computers, Memory Cache and Disk Cache.
+    - 고속 저장 mechanism
+    - main memory 상에 예약된 부분일 수도 있고, 독립적인 고속 기억 장치일 수도 있음
+        - 개인용 computer에서 일반적으로 두 가지 type의 memory cache와 디스크 캐시가 사용됨
 
 
-DR(Data register)
-• Date Register(DR) contains the input data or the result.(데이터 레지스터는 입력 데이터나 결과 값을 보관하는 장치이다.)
+>>>>>>>>>>
 
 
-PC(Program counter)
-• Program Counter(PC) keeps track of the instruction currently being executed. After executing the instruction, the program counter is augmented to point the address of the next instruction in memory.(프로그램 카운터는 현재 실행 중인 명령어를 추적하는 것을 말한다. 이 명령의 실행이 종료되면 프로그램 카운터는 메모리 안에 있는 다음 명령어의 주소를 가리키도록 증가하게 되는 장치이다.)
+## Memory Cache
 
+- A Memory Cache sometimes called a cache store or RAM cache, is a portion of memory made of high-speed SRAM instead of the slower and cheaper DRAM used for main memory.
+- 메모리 캐시는 캐시 저장소 또는 RAM 캐시라고도 불리는 데, 주로 메인 메모리용으로 사용되는 느리고 저렴한 DRAM 대신에 고속의 비싼 SRAM으로 만들어진 메모리의 일부이다.)
 
-Memory
-• Memory is the internal storage areas in the computer. Memory is used to store program and data.(Memory는 컴퓨터 내부에 존재하는 저장 영역으로 Memory는 프로그램과 데이터를 저장하는데 사용되는 장치이다.)
-
-
-RAM(Random Access Memory)
-• Random Access Memory(RAM) is same as the main memory. We can both write data into RAM and read data from RAM. This is the contrast to ROM, which permits you only to read data.(RAM은 메인 메모리(주 기억장치) 와 같은 말이다. RAM 안에 데이터를 기록할 수도 있으며 데이터를 읽을 수도 있다. 이러한 점에서 데이터를 읽을 수만 있는 ROM과 대조된다.)
-
-
-DRAM(Dynamic RAM)
-• Dynamic RAM(DRAM) being the more common type. Dynamic RAM(DRAM) needs to be refreshed thousands of times per second.(DRAM 은 보편적인 형식의 램이며, DRAM은 매 초당 수천 번씩 기억을 재생하는 장치이다.)
-
-
-SRAM(Static RAM)
-• Static RAM(SRAM) does not need to be refreshed, which makes it faster, but it is also more expensive than Dynamic RAM(DRAM)(SRAM은 DRAM과 달리 속도가 빠르며 가격은 상대적으로 비싼 편이라는 특징을 가진 장치이다.)
-
-
-ROM(Read - Only Memory)
-• Read - Only Memory(ROM) is the acronym for read - only memory, computer memory on which data has been prerecorded. Once data has been written onto a ROM chip, it cannot be removed and can only be read.(ROM은 읽기 전용 메모리의 약자로서, 데이터가 미리 기록되어 있는 컴퓨터 메모리이다. 데이터가 ROM 칩에 일단 기록되면 지워지지 않으며 단지 읽을 수만 있다.)
-
-
-PROM(Programmable ROM)
-• Programmable ROM(PROM) s are manufactured as blank chips on which data can be written with a special device called a PROM programmer.(PROM은 비어있는 칩으로 제작되며, PROM 작성기라 불리는 장치를 가지고 데이터를 기록할 수 있는 장치이다.)
-
-
-EPROM(Erasable Programmable ROM)
-• An Erasable Programmable ROM(EPROM) is a special type of PROM that can be erased by exposing it to the ultraviolet light. The ultraviolet light clears its contents, making it possible to reprogram the memory.
-(EPROM은 자외선을 쬐면 데이터가 소거되는 특별한 형태의 PROM이다. 자외선은 EPROM의 내용을 삭제하며 메모리를 다시 프로그래밍 할 수 있도록 해주게 된다.)
-
-
-EEPROM(Electrically Erasable and Programmable ROM)
-• An Electrically Erasable and Programmable ROM(EEPROM) is a special type of PROM and it's contents can be erased by exposing it to an electrical charge. Like other types of PROM, EEPROM retains its contents even when the power is turned off.
-(EEPROM은 PROM의 특별한 경우로서 전기 충전에 노출되면 내용이 지워진다. 다른 형태의 PROM과 마찬가지로 EEPROM은 컴퓨터의 전원이 꺼져도 그 내용을 유지하는 특징을 가진다.)
-
-
-RISC(Reduced Instruction Set Computer)
-• RISC is the acronym for Reduced Instruction Set Computer, a type of microprocessor that recognizes a relatively limited of instructions. ↔ CISC(Complex Instruction Set Computers)
-(RISC는 축소된 명령어 집합 컴퓨터의 약어로서 상대적으로 제한된 개수의 명령어를 인식하는 일종의 마이크로프로세서이다. CISC와 상반됨.)
-
-
-Cache
-• cache is a special high - speed storage mechanism. It can be either a reserved section of main memory or an independent high - speed storage device. Two types of caching are commonly used in personal computers, Memory Cache and Disk Cache.
-(캐시는 특별한 고속 저장 메커니즘이라고 할 수 있다. 캐시는 메인 메모리 상에 예약된 부분일 수도 있고, 독립적인 고속 기억 장치일 수도 있다. 개인용 컴퓨터에서 일반적으로 두 가지 타입의 메모리 캐시와 디스크 캐시가 사용된다.)
-
-
- Memory Cache
-• A Memory Cache sometimes called a cache store or RAM cache, is a portion of memory made of high - speed SRAM instead of the slower and cheaper DRAM used for main memory.
-(메모리 캐시는 캐시 저장소 또는 RAM 캐시라고도 불리는 데, 주로 메인 메모리용으로 사용되는 느리고 저렴한 DRAM 대신에 고속의 비싼 SRAM으로 만들어진 메모리의 일부이다.)
-
-
-Disk Cache
-• Disk Cache works under the same principle as memory caching, but instead of using high - speed SRAM, a disk cache uses conventional main memory.
+## Disk Cache
+- Disk Cache works under the same principle as memory caching, but instead of using high-speed SRAM, a disk cache uses conventional main memory.
 (디스크 캐시는 메모리 캐시와 동일한 원리에 따라 동작하는 장치라고 할 수 있다. 하지만 디스크 캐시는 고속 SRAM을 사용하지 않고 일반적인 메인 메모리를 사용하는 것이 특징이다.)
 
 
-DMA(Direct Memory Access)
-• DMA is the short for Direct Memory Access, a technique for transferring data from main memory to a device without passing it through the CPU. (DMA는 직접 메모리 접근의 약칭으로서 데이터를 메인 메모리에서 입출력 장치로 전달할 때 CPU를 거치지 않는 기술을 말한다.)
+## DMA(Direct Memory Access)
+- DMA is the short for Direct Memory Access, a technique for transferring data from main memory to a device without passing it through the CPU. (DMA는 직접 메모리 접근의 약칭으로서 데이터를 메인 메모리에서 입출력 장치로 전달할 때 CPU를 거치지 않는 기술을 말한다.)
 
 
-Hardware
-• The Hardware is the computer system that allows physical access to data. (하드웨어는 데이터에 대한 물리적 접근을 허용하는 컴퓨터 시스템을 말한다.)
+## Hardware
 
+- The Hardware is the computer system that allows physical access to data. (하드웨어는 데이터에 대한 물리적 접근을 허용하는 컴퓨터 시스템을 말한다.)
 
-USB(Universal Serial Bus)
-• USB is the short for Universal Serial Bus, an external serial bus standard that supports data transfer rates of 12Mbps(in USB 1.1) and 480Mbps(in USB 2.0).
+## USB(Universal Serial Bus)
+
+- USB is the short for Universal Serial Bus, an external serial bus standard that supports data transfer rates of 12Mbps(in USB 1.1) and 480Mbps(in USB 2.0).
 (USB는 범용 직렬 버스의 약칭으로서 데이터 전송률을 12Mbps(USB 1.1의 경우)와 400Mbps(USB 2.0의 경우)까지 지원하는 외부 직렬 버스 표준이다.)
 
 
-OS(Operating System)
-• Operating System(OS) is an interface between the hardware of a computer and the user(program or humans). It is a program(or a set of programs) that facilitates the execution of other programs.
+## OS(Operating System)
+
+- Operating System(OS) is an interface between the hardware of a computer and the user(program or humans). It is a program(or a set of programs) that facilitates the execution of other programs.
 (운영체제란 컴퓨터의 하드웨어와 사용자(사용자는 프로그램 일 수도 있고, 사람 일 수도 있다) 사이의 인터페이스이다. 운영체제는 다른 프로그램들의 실행을 돕는 프로그램이다.)
 
 
-Multiuser OS
-• Allows two or more users to run a program at the same time. some operating
+## Multiuser OS
+
+- Allows two or more users to run a program at the same time. some operating
 system permits hundreds or even thousands of concurrent users.
 (동시에 두 사람 이상이 프로그램을 실행할 수 있게 해주는 운영체제이다. 어떤 운영체제는 수백 명 또는 수천 명의 동시 사용자를 허용한다.)
 
 
-Multiprocessing OS
-• Supports running a program on more than one CPU.
+## Multiprocessing OS
+
+- Supports running a program on more than one CPU.
 (한 프로그램이 한 개 이상의 CPU에서 수행되도록 지원하는 운영체제이다.)
 
 
-Multitasking OS
-• Allows more than one program to run concurrently.
+## Multitasking OS
+
+- Allows more than one program to run concurrently.
 (한 개 이상의 프로그램이 동시에 수행되는 것을 허용하는 운영체제이다.)
 
 
-Multithreading OS
-• Allows different parts of a single program to run concurrently.
+## Multithreading OS
+
+- Allows different parts of a single program to run concurrently.
 (단일 프로그램 내의 서로 다른 부분들이 동시에 수행되도록 허용하는 운영체제이다.)
 Real-time OS
-• Respond to inputs instantly. General - Purpose operating system, such as DOS and LUIX, are real - time.
+- Respond to inputs instantly. General-Purpose operating system, such as DOS and LUIX, are real-time.
 (입력에 즉각 반응하는 운영체제이다. 여기서 DOS나 UNIX 같은 범용 운영체제는 실 시간 운영체제가 아니다.)
 
 
-GUI(Graphical User Interface)
-• Graphical User Interface(GUI) allows you to enter commands by pointing and clicking at objects that appear on the screen.
+## GUI(Graphical User Interface)
+
+- Graphical User Interface(GUI) allows you to enter commands by pointing and clicking at objects that appear on the screen.
 (그래픽 사용자 인터페이스는 화면에 나타난 대상을 가리키거나 클릭 함으로써 명령을 입력할 수 있게 해준다.)
 
 
 Software
-• The Software is the program that allows users to access, maintain and update physical data.
+- The Software is the program that allows users to access, maintain and update physical data.
 (소프트웨어는 사용자로 하여금 물리적 데이터에 접근하고 유지하며 갱신할 수 있도록 해주는 프로그램을 말한다.)
 
 
 File System
-• File System is a system that an operating system or program uses to organize and keep track of files. A file system is also referred to as a file management system.
+- File System is a system that an operating system or program uses to organize and keep track of files. A file system is also referred to as a file management system.
 (파일시스템은 운영체제나 프로그램 파일이 구성하고 그 경로를 추적하는데 사용하는 시스템이다. 파일 관리 시스템이라고 불리기도 한다.)
 
 
 DB(DataBase)
-• A DataBase(DB) is a composed of record, each containing fields together with a set of operations for searching, sorting, recombining, and other functions. It is a collection of information organized in such a way that a computer program can quickly select desired pieces of data.
+- A DataBase(DB) is a composed of record, each containing fields together with a set of operations for searching, sorting, recombining, and other functions. It is a collection of information organized in such a way that a computer program can quickly select desired pieces of data.
 (데이터베이스는 필드를 포함하고 있는 레코드로 구성된 하나의 파일로서 검색이나 정렬, 재결합 등 여러 기능을 위한 연산의 집합과 함께 제공되는 것이다. 데이터베이스는 컴퓨터 프로그램이 원하는 데이터 조각을 빠르게 검색할 수 있도록 구성된 정보의 집합이다.)
 
 
 DBMS(DataBase Management System)
-• DBMS is a collection of programs that enables you to store, modify, and extract information from a database.
+- DBMS is a collection of programs that enables you to store, modify, and extract information from a database.
 (DBMS는 데이터베이스로부터 정보를 조정하고 수정하며, 추출하도록 해주는 프로그램들의 집합을 말한다.)
 
 
 Field 
-• A Field is a single piece of information. (필드는 단일화된 정보의 조각을 의미한다.)
+- A Field is a single piece of information. (필드는 단일화된 정보의 조각을 의미한다.)
 
 
 Record 
-• A Record is one complete set of fields.
+- A Record is one complete set of fields.
 (레코드는 필드로 구성된 한 개의 완전한 집합을 말한다.) 
 
 
 File 
-• A File is a collection of records. (파일은 레코드의 모음을 말한다.) 
+- A File is a collection of records. (파일은 레코드의 모음을 말한다.) 
 
 
 Sequential File 
-• A Sequential File is a file in which records can only be accessed sequentially, one after another, from beginning to end. 
+- A Sequential File is a file in which records can only be accessed sequentially, one after another, from beginning to end. 
 (순차 파일은 레코드가 순차적으로 처음부터 끝까지 하나씩 접근될 수밖에 없는 파일을 말한다.) 
 
 
 Indexed File 
-• An Indexed File is made of a data file, which is a Sequential File, and an index. The index itself is a very small file with only two fields, the key of the Sequential File file and the address of the corresponding record on the disk. 
+- An Indexed File is made of a data file, which is a Sequential File, and an index. The index itself is a very small file with only two fields, the key of the Sequential File file and the address of the corresponding record on the disk. 
 (인덱스 파일은 순차 파일인 데이터 파일과 인덱스로 만들어지는 것을 말한다. 인덱스 자체는 매우 작은 파일로서, 순차 파일의 키와 해당 레코드의 디스크 내 주소라는 두 개의 필드만을 보유하게 된다.) 
 
 
 Hashed File
-• A Hashed File is very similar to indexed file. In an indexed file, the index maps the key to the address. A Hashed File uses a function to accomplish this mapping. The user gives the key, the function maps the key to the address and passes it to the operating system, and the record is retrieved. This function is called a hash function.
+- A Hashed File is very similar to indexed file. In an indexed file, the index maps the key to the address. A Hashed File uses a function to accomplish this mapping. The user gives the key, the function maps the key to the address and passes it to the operating system, and the record is retrieved. This function is called a hash function.
 (해시 파일은 인덱스 파일과 매우 유사하다. 인덱스 파일에서는 인덱스가 키를 주소로 매핑한다. 반면에 해시 파일은 이러한 매핑을 수행하기 위하여 함수를 사용한다. 사 용자가 키를 제공하면 함수는 이 키를 주소로 매핑한 후 그 결과를 운영체제에 전 달한다. 이 함수를 해시 함수라고 부른다.)
 
 
 Programming Language
-• Programming Language is a vocabulary and set of grammatical rules for instructing a computer to perform specific tasks.
+- Programming Language is a vocabulary and set of grammatical rules for instructing a computer to perform specific tasks.
 (프로그래밍 언어는 컴퓨터에게 특정 작업을 실행하도록 지시할 때 사용하는 단어의 자 문법적 규칙의 집합을 말한다.)
 
 
-High - Level Programming Languages
-• High - Level Programming Languages, while simple compared to human languages, are more complex than the languages the computer actually understands, called machine languages.
+High-Level Programming Languages
+- High-Level Programming Languages, while simple compared to human languages, are more complex than the languages the computer actually understands, called machine languages.
 (고급 프로그래밍 언어는 인간들이 사용하는 자연언어와 비교해 볼 때, 단순하지만 컴퓨터가 실제로 이해하는 언어 즉, 기계어보다는 더 복잡한 언어를 말한다.)
 
 
 Assembly Languages
-• Lying between machine languages and high - level languages are languages called assembly languages. Assembly Languages are similar to machine languages but they are much easier to program in because they allow a programmer to substitute names for numbers.
+- Lying between machine languages and high-level languages are languages called assembly languages. Assembly Languages are similar to machine languages but they are much easier to program in because they allow a programmer to substitute names for numbers.
 (기계어와 고급언어 사이에 놓여있는 언어가 어셈블리어이다. 어셈블리어는 기계어와 유사하지만 프로그램 작성자가 숫자를 명칭으로 대체할 수 있도록 허용하고 있기 때문에 프로그램 작성이 훨씬 용이한 언어를 말한다.)
 
 
 4GL
-• 4GLs are far removed from machine languages and represent the class of computer languages closest to human languages.
+- 4GLs are far removed from machine languages and represent the class of computer languages closest to human languages.
 (4GL은 기계어로부터 가장 멀리 떨어져 있으며, 사람의 언어에 가장 가까운 컴퓨터 언어 등급을 나타낸다.)
 
 
 FORTRAN
-• FORTRAN is a particularly good language for processing numerical data, but it does not lend itself very well to organizing large programs.
+- FORTRAN is a particularly good language for processing numerical data, but it does not lend itself very well to organizing large programs.
 (FORTRAN은 수치 데이터를 처리하는 데 있어서 특히 좋은 언어이지만, 대형 프로그램을 구성하는 데 적합하지 않은 언어이다.)
 
 
 Pascal
-• Pascal is very good for writing well - structured and readable programs, but it is not as flexible as the C programming language.
+- Pascal is very good for writing well-structured and readable programs, but it is not as flexible as the C programming language.
 (Pascal은 잘 구성되고 읽기 쉬운 프로그램을 작성하는데 매우 좋지만 C 언어만큼 융 통성이 있지는 못한 언어이다.)
 
 
 C++
-• C++ embodies powerful object-oriented features, but it is complex and difficult to learn.
+- C++ embodies powerful object-oriented features, but it is complex and difficult to learn.
 (C++는 객체 지향형 특징이 강하지만 배우기에 복잡하고 어렵다는 것이 특징인 언어이다.)
 
 
 Imperative Programming
-• Imperative Programming, as opposed to declarative programming, is a programming paradigm that describes computation in terms of a program state and statements that change the program state.
+- Imperative Programming, as opposed to declarative programming, is a programming paradigm that describes computation in terms of a program state and statements that change the program state.
 (명령형 언어는 선언형 언어와 대조적으로 프로그램 상태 및 이 상태들을 변화 시키는 문장으로 계산을 표현하고 있는 프로그래밍 패러다임을 나타낸다.)
 
 
-Objected - Oriented Languages
-• Objected - Oriented Languages are used for object-oriented programming. Objected - Oriented programming is a type of programming in which programmers define not only the data type of a data structure but also the type of operations(functions) that can be applied to the data structure.
+Objected-Oriented Languages
+- Objected-Oriented Languages are used for object-oriented programming. Objected-Oriented programming is a type of programming in which programmers define not only the data type of a data structure but also the type of operations(functions) that can be applied to the data structure.
 (객체 지향형 언어는 객체지향형 프로그래밍을 위해 사용되는 언어이다. 객체 지향형 프로그래밍에서는 프로그램 작성자가 데이터 구조의 데이터 종류뿐만 아니라 데이터 구조에 적용될 수 있는 연산(함수)의 종류까지도 정의하게 된다.)
 
 
 Declarative Languages
-• Declarative Languages use the principle of logical reasoning to answer queries. It is based on formal logic defined by Greek mathematicians. Logical reasoning is based on deduction. Prolog is an example of declarative languages.
+- Declarative Languages use the principle of logical reasoning to answer queries. It is based on formal logic defined by Greek mathematicians. Logical reasoning is based on deduction. Prolog is an example of declarative languages.
 (선언형 언어는 질의어에 대하여 답변하기 위한 논리적 추론의 원리를 사용한다. 이 언어는 그리스 수학자들이 정의한 형식 논리를 토대로 하고 있다. Prolog는 대표적인 선언형 언어라고 할 수 있다.)
 
 
 Functional Languages
-• Functional Languages are used in functional programming where a program is considered a mathematical function. LISP, Scheme, and Haskell are examples of functional languages.
+- Functional Languages are used in functional programming where a program is considered a mathematical function. LISP, Scheme, and Haskell are examples of functional languages.
 (함수형 언어는 프로그램을 수학적 함수로 취급하는 함수형 프로그래밍에서 사용되는 언어이다. LISP, Scheme, Haskell이 함수형 언어의 사례라고 할 수 있다.)
 
 
 SCSI(Small Computer System Interface)
-• SCSI is short for Small Computer System Interface, a parallel interface standard used by Apple Macintosh computers, PCs, and many UNIX systems for attaching peripheral devices to computers.
+- SCSI is short for Small Computer System Interface, a parallel interface standard used by Apple Macintosh computers, PCs, and many UNIX systems for attaching peripheral devices to computers.
 (SCSI는 소규모 컴퓨터 시스템 인터페이스의 약칭으로서, 주변 장치를 컴퓨터에 부착하기 위하여 애플 매킨토시, PC, 유닉스 시스템이 사용하는 병렬 인터페이스의 표준을 말한다.)
 
 
 Computer Network
-• A Computer Network is a group of two or more computer systems links together. Computer networks can be divided into three broad categories, LAN, MAN WAN.
+- A Computer Network is a group of two or more computer systems links together. Computer networks can be divided into three broad categories, LAN, MAN WAN.
 (컴퓨터 네트워크란 두 개 이상의 컴퓨터 시스템이 연결된 그룹을 말한다. 컴퓨터 네트워크는 크게 LAN, MAN, WAN이라는 세 개의 범주로 구분될 수 있다.)
 
 
 LAN(Local Area Network)
-• Local Area Network(LAN) is a group of computers and other devices dispersed over a relatively limited area and connected by a communications link that enables any device to interact with any other devices on the network.
+- Local Area Network(LAN) is a group of computers and other devices dispersed over a relatively limited area and connected by a communications link that enables any device to interact with any other devices on the network.
 (LAN(근거리 통신망)은 비교적 제한된 영역 안에 분산되어 있는 컴퓨터와 다른 장치들의 그룹으로, 통신 링크에 의해 연결되어 네트워크 내의 장치들끼리 상호 작용할 수 있다는 특징을 가진다.)
 
 
 MAN(Metropolitan Area Network)
-• Metropolitan Area Network(MAN) is a high - speed network which can carry voice, data, and images at up to 200 Mbps or faster over distances of up to 75Km. Based on the network architecture, the transmission speed can be higher for shorter distances.
+- Metropolitan Area Network(MAN) is a high-speed network which can carry voice, data, and images at up to 200 Mbps or faster over distances of up to 75Km. Based on the network architecture, the transmission speed can be higher for shorter distances.
 (MAN(시내 정보 통신망)은 최대 75Km까지의 거리에 걸쳐 200Mbps 이상의 속도로 음성, 데이터, 이미지를 전송할 수 있는 고속 네트워크이다. 네트워크 구조에 의해, 비교적 짧은 거리에 대해서는 상대적으로 높은 속도를 보일 수 있다.)
 
 
 WAN(Wide Area Network)
-• Wide Area Network(WAN) is a geographically widespread network, which relies on communications capabilities to link various network segments. A Wide Area Network(WAN) can be one large network or consist of a number of linked LANs.
+- Wide Area Network(WAN) is a geographically widespread network, which relies on communications capabilities to link various network segments. A Wide Area Network(WAN) can be one large network or consist of a number of linked LANs.
 (WAN(광역 통신망)은 지리적으로 넓게 펼쳐진 네트워크로서 다양한 네트워크 세그먼트들을 연결하기 위하여 통신 능력에 의존한다. WAN은 한 개의 넓은 네트워크 일 수 있지만 많은 수의 LAN이 연결되어 구성될 수도 있다.)
 
 
 SO / OSI(International Standard Organization's
 / Open System Interconnect) Network Model
-• It is the standard model for networking protocols and distributed applications. This International Standard Organization's / Open System Interconnect(ISO/OSI) Network Model theoretically allows any two different system(eg, computer) to communicate with each other regardless of their underlying architecture.
+- It is the standard model for networking protocols and distributed applications. This International Standard Organization's / Open System Interconnect(ISO/OSI) Network Model theoretically allows any two different system(eg, computer) to communicate with each other regardless of their underlying architecture.
 (ISO / OSI 네트워크 모델은 네트워크의 규약(프로토콜) 및 분산 애플리케이션에 대 한 표준 모델을 말한다. 이론적으로 ISO / OSI 네트워크 모델은 두 개의 서로 다른 시스템(즉, 컴퓨터)이 기초가 되는 구조와 무관하게 통신할 수 있도록 해주는 특징을 가진다.)
 
 
 Physical Layer(Layer 1)
-• The Physical Layer(Layer 1) is responsible for transferring a bit stream through a physical medium. It defines all electrical and physical specifications for devices.
+- The Physical Layer(Layer 1) is responsible for transferring a bit stream through a physical medium. It defines all electrical and physical specifications for devices.
 (물리적 계층(계층 1)은 물리적 매체를 통하여 비트 스트림을 전송하는 책임을 담당하는 장치이다. 이 계층에서는 네트워크 장치의 전기적이며 물리적인 모든 사양을 정의하게 된다.)
 
 
 Data Link Layer(Layer 2)
-• The Data Link Layer(Layer 2) is responsible only for node - to - node delivery of the frame from one station to other. The Data Link Layer(Layer 2) is responsible for error handling between two adjacent stations.
+- The Data Link Layer(Layer 2) is responsible only for node-to-node delivery of the frame from one station to other. The Data Link Layer(Layer 2) is responsible for error handling between two adjacent stations.
 (데이터 링크 계층(계층 2)은 비트를 프레임이라 불리는 논리적 단위로 구성되는 계층이다. 데이터 링크 계층은 두 인접국 사이의 오류 처리를 담당하는 계층이다.)
 
 
 Network Layer(Layer 3)
-• The Network Layer(Layer 3) is in duty bound to delivery of a packet(the data unit handled by the network layer is called a packet) between the original source and final destination where the Data Link Layer(Layer 2) is responsible for node - to - node delivery of a frame between two adjacent stations.
-(데이터 링크 계층은 두 인접 장치 사이에서 프레임의 노드 - 대 - 노드 전달을 담당하는 반면, 네트워크 계층(계층 3) 은 최초 근원지로부터 최종 목적지로 패킷(네트 워크 계층에 의하여 다루어지는 데이터 단위를 패킷이라고 부른다)을 전달하는 임무를 수행하는 계층이다.)
+- The Network Layer(Layer 3) is in duty bound to delivery of a packet(the data unit handled by the network layer is called a packet) between the original source and final destination where the Data Link Layer(Layer 2) is responsible for node-to-node delivery of a frame between two adjacent stations.
+(데이터 링크 계층은 두 인접 장치 사이에서 프레임의 노드-대-노드 전달을 담당하는 반면, 네트워크 계층(계층 3) 은 최초 근원지로부터 최종 목적지로 패킷(네트 워크 계층에 의하여 다루어지는 데이터 단위를 패킷이라고 부른다)을 전달하는 임무를 수행하는 계층이다.)
 
 
 Transport Layer(Layer 4)
-• The Network Layer(Layer 3) is responsible for end - to - end delivery of individual packets. The Transport Layer(Layer 4), in contrast, is responsible for end - to - end delivery of the whole message.
+- The Network Layer(Layer 3) is responsible for end-to-end delivery of individual packets. The Transport Layer(Layer 4), in contrast, is responsible for end-to-end delivery of the whole message.
 (네트워크 계층(계층 3)은 개별 패킷의 종단 전송을 담당하는 계층이다. 반면에 전송 계층(계층 4)은 전체 메시지의 종단 간 전송을 담당하는 역할을 수행한다.)
 
 
 Session Layer(Layer 5)
-• The Session Layer(Layer 5) is responsible to control the dialog between users. It establishes, maintains and synchronizes the dialog between communicating system.
+- The Session Layer(Layer 5) is responsible to control the dialog between users. It establishes, maintains and synchronizes the dialog between communicating system.
 (세선 계층(계층 5)은 사용자들 사이의 대화를 제어하는 역할을 담당하는 계층이다. 이 계층은 통신 시스템 사이의 대화를 확립하고 유지하며 동기화 시키는 일을 한다.)
 
 
 Presentation Layer(Layer 6)
-• The Presentation Layer(Layer 6) is related with the syntax(format) and semantics(meaning) of the information exchanged between two systems. It deals with the fact that different systems use different coding methods(eg, Unicode and ASCII).
+- The Presentation Layer(Layer 6) is related with the syntax(format) and semantics(meaning) of the information exchanged between two systems. It deals with the fact that different systems use different coding methods(eg, Unicode and ASCII).
 (표현 계층(계층 6)은 두 시스템 사이에 교환되는 정보의 신 텍스(구문, 형식)와 시맨틱 스(의미)에 관한 것이다. 이 계층은 시스템이 다르면 코딩 방식도 다르다는 사실(예, 유니코드 와 ASCII)을 다룬다.)
 
 
 Application Layer(Layer 7)
-• The Application Layer(Layer 7) enables the user, whether human or software, to access the network. It defines the common application that can be implemented to make jobs simpler. It provides network services to the end - users.
+- The Application Layer(Layer 7) enables the user, whether human or software, to access the network. It defines the common application that can be implemented to make jobs simpler. It provides network services to the end-users.
 (응용 계층(계층 7)은 사람이든 소프트웨어이든 간에 사용자로 하여금 네트워크에 접근할 수 있도록 해주는 계층이다. 이 계층에서는 사용자의 작업을 좀 더 간단하게 만들기 위해 구현할 수 있는 공통된 애플리케이션을 정의하고 있다.)
 
 
 Repeater
-• A Repeater is a network device used to regenerate or replicate a signal. Repeaters are used in transmission systems to regenerate analog or digital signals distorted by transmission loss.
+- A Repeater is a network device used to regenerate or replicate a signal. Repeaters are used in transmission systems to regenerate analog or digital signals distorted by transmission loss.
 (리피터는 신호를 재생하거나 중복하는데 사용하는 네트워크 장치이다. 전송 손실로 인하여 일그러진 아날로그 또는 디지털 신호를 재생하기 위하여 리피터는 전송 시스템에서 사용된다.)
 
 
 Bridge
-• A Bridge is a device that connects two local - area networks or two segments of the same LAN that use the same protocol, such as Ethernet or Token - Ring.
+- A Bridge is a device that connects two local-area networks or two segments of the same LAN that use the same protocol, such as Ethernet or Token-Ring.
 (브리지는 두 개의 근거리 망을 연결하거나 이더넷이나 토큰 링 같이 동일한 프로토 콜을 사용하는 동일한 근거 리망 내의 두 세그먼트를 연결하는 장치이다.)
 
 
 Router
-• A Router is a device that forwards data packets along networks. A router is connected to at least two networks, commonly two LANs or WANs or a LAN and its ISP's network.
+- A Router is a device that forwards data packets along networks. A router is connected to at least two networks, commonly two LANs or WANs or a LAN and its ISP's network.
 (라우터는 데이터 패킷을 네트워크를 따라 진행시키는 장치이다. 라우터는 최소한 두 개의 네트워크, 보통의 경우 두 개의 LAN이나 WAN 혹은 LAN과 해당 ISP의 네트워크를 연결한다.)
 
 
 Gateway
-• A Gateway is a node on a network that serves as an entrance to another network. In enterprises, the gateway is the computer that routes the traffic from a workstation to the outside network that is serving the Web pages.
+- A Gateway is a node on a network that serves as an entrance to another network. In enterprises, the gateway is the computer that routes the traffic from a workstation to the outside network that is serving the Web pages.
 (게이트웨이는 다른 네트워크로의 관문으로 작동하는 네트워크 노드를 말한다. 기업 체에 있어서 게이트웨이는 워크스테이션으로부터 웹페이지를 제공하는 바깥 네트워크로 경로를 제공하는 컴퓨터에 해당한다.)
 
 
 FireWire
-• FireWire is a serial interface defined by IEEE standard 1394. So FireWire is called IEEE 1394. It transfers data in packets.
+- FireWire is a serial interface defined by IEEE standard 1394. So FireWire is called IEEE 1394. It transfers data in packets.
 (FireWire는 IEEE 표준 1394에 의하여 정의된 직렬 인터페이스로서 IEEE 1394라고도 부른다. FireWire는 데이터를 패킷 형태로 전송하는 특징을 가지고 있다.)
 
 
 JPEG(Joint Photographic Experts Group)
-• Joint Photographic Experts Group(JPEG) is the original name of the committee that wrote the standard. JPEG(or JPG) is one of the image file formats supported on the Web. JPG is a lossy compression technique that is designed to compress color and grayscale continuous - tone images.
+- Joint Photographic Experts Group(JPEG) is the original name of the committee that wrote the standard. JPEG(or JPG) is one of the image file formats supported on the Web. JPG is a lossy compression technique that is designed to compress color and grayscale continuous-tone images.
 (JPEG(연합사진 전문가 그룹)은 표준을 작성하기 위한 위원회의 원래 명칭을 말한다. JPEG(또는 JPG)은 웹에서 지원되는 이미지 파일 포맷 중 하나를 뜻하며, JPG는 컬 러 및 그레이스케일 연속 색조 형태의 이미지를 압축하기 위하여 설계된 손실성 압 축 기술을 말한다.)
 
 
 GIF(Graphics Interchange Format)
-• Graphics Interchange Format(GIF) is another of the graphics formats supported by the Web. Unlike JPG, the GIF format is a lossless compression technique and it supports only 256 colors.
+- Graphics Interchange Format(GIF) is another of the graphics formats supported by the Web. Unlike JPG, the GIF format is a lossless compression technique and it supports only 256 colors.
 (GIF(그래픽 교환 포맷)은 웹에 의해 지원되는 또 다른 그래픽 포맷을 말한다. JPG와 달리 GIF 포맷은 무손실 압축 기술을 사용하여 256컬러만을 지원하는 것이 특징이다.)
 
 
 MPEG(Moving Picture Experts Group)
-• Moving Picture Experts Group(MPEG) is a working group of ISO and it also refers to the family of digital video compression standards and file formats developed by the group.
+- Moving Picture Experts Group(MPEG) is a working group of ISO and it also refers to the family of digital video compression standards and file formats developed by the group.
 (MPEG(동영상 전문가 그룹)은 ISO의 작업 그룹이자, 이 그룹에 의하여 개발된 디지털 비디오 압축 표준 및 파일 포맷의 군을 가리키는 말이기도 하다.)
 
 
 PNG(Portable Network Graphics)
-• Portable Network Graphics(PNG) is the third graphics standard supported by the Wed(though not supported by all browsers). PNG was developed as a patent-free answer to the GIF format but is also an improvement on the GIF technique.
+- Portable Network Graphics(PNG) is the third graphics standard supported by the Wed(though not supported by all browsers). PNG was developed as a patent-free answer to the GIF format but is also an improvement on the GIF technique.
 (PNG(이식 가능한 네트워크 그래픽)는 (비록 모든 브라우저가 지원하는 것은 아니지 만) 웹에서 지원되는 세 번째 그래픽 표준이다. PNG는 GIF 포맷이 가지는 특허를 피하고자 하는 해결책으로서 개발되었지만 GIF 기술을 개선한 것을 말한다.)
 
 
 Divx(Digital Video Express)
-• Divx is a new DVD - ROM format promoted by several large Hollywood companies, including Disney, Dreamworks SKG Paramount and Universal With DivX, a movie(or other data) loaded onto a DVD - ROM is playable only during a specific time frame, typically two days.
+- Divx is a new DVD-ROM format promoted by several large Hollywood companies, including Disney, Dreamworks SKG Paramount and Universal With DivX, a movie(or other data) loaded onto a DVD-ROM is playable only during a specific time frame, typically two days.
 (DIvx는 디즈니, 드림웍스, 선경그룹, 파라마운트와 유니버설 등 여러 개의 할리우드 대기업이 추진한 새로운 DVD-ROM 포맷이다. 한 장의 DVD-ROM에 실린 한 편의 영화는 정해진 기일(대표적으로 이틀) 동안만 재생할 수 있다.)
 
 
 DivX
-• When spelled DivX, instead of Divx, a trademark of DivX Networks, Inc, DivX is a digital video compression format based on the MPEG-4 technology. DivX files can be downloaded over high - speed lines in a relatively short time without sacrificing the quality of the digital video.
+- When spelled DivX, instead of Divx, a trademark of DivX Networks, Inc, DivX is a digital video compression format based on the MPEG-4 technology. DivX files can be downloaded over high-speed lines in a relatively short time without sacrificing the quality of the digital video.
 (Divx 대신에 DivXNetwork 사의 상표인 DivX라고 쓸 경우, 이는 MPEG-4 기술에 토대를 둔 디지털 비디오 압축 포맷을 뜻한다. DivX 파일은 디지털 비디오의 품질을 희생하지 않고서도 상당히 짧은 시간 내에 고속으로 다운로드 될 수 있다는 특징을 가진다.)
 
 
-MP3(MPEG Audio Layer - 3)
-• MPEG Audio Layer - 3(MP3) is a digital audio coding scheme used in distributing recorded music over the Internet.
+MP3(MPEG Audio Layer-3)
+- MPEG Audio Layer-3(MP3) is a digital audio coding scheme used in distributing recorded music over the Internet.
 (MP3는 녹음된 음악을 인터넷상에 배포하는데 사용하는 디지털 오디오 코딩 구조를 말한다.)
 
 
 WMA(Windows Media Audio)
-• Windows Media Audio(WMA) is a Microsoft file format for encoding digital audio files similar to MP3 though can compress files at a higher rate than MP3
+- Windows Media Audio(WMA) is a Microsoft file format for encoding digital audio files similar to MP3 though can compress files at a higher rate than MP3
 .(WMA(윈도 미디어 오디오)는 MP3 외 유사하게 디지털 오디오 파일을 부호화하는 마이크로소프트사의 파일 포맷으로서 MP3보다 더 높은 비율로 압축할 수 있다.)
 
 
 AVI(Audio Video Interleaved)
-• Audio Video Interleaved(AVI) is a window multimedia file format for sound and moving pictures that uses the Microsoft RIFF(Resource Interchange File Format) specification.
+- Audio Video Interleaved(AVI) is a window multimedia file format for sound and moving pictures that uses the Microsoft RIFF(Resource Interchange File Format) specification.
 (AVI(오디오 비디오 인터 브리드)는 소리와 동영상을 위한 윈도 멀티미디어 파일 포맷으로서 마이크로소프트사의 RIFF(자원 교환 파일 포맷) 사양을 사용하고 있다.)
 
 
 Information Security
-• Information Security is the technologies used to make a service resistant to unauthorized access to the data that it holds or for which it is responsible.
+- Information Security is the technologies used to make a service resistant to unauthorized access to the data that it holds or for which it is responsible.
 (정보보호란 서비스가 자신이 보유하거나 담당하는 데이터에 대해 비인가 된 접근을 견뎌 낼 수 있도록 해주는 기술을 말한다.)
 
 
 Authentication
-• Authentication is the process of identifying an individual, usually based on a username and password.
+- Authentication is the process of identifying an individual, usually based on a username and password.
 (인증이란, 개인으로서 마땅히 요구되는 신분에 해당하는지 단지 확인하는 것으로, 개인의 접근 권한에 관하여 말하는 것은 아니다.)
 
 
 Encryption
-• Encryption is the translation of data into a secret code. (암호화는 데이터를 비밀코드로 변환하는 것을 말한다.)
+- Encryption is the translation of data into a secret code. (암호화는 데이터를 비밀코드로 변환하는 것을 말한다.)
 
 
 Symmetric encryption
-• Symmetric encryption is a type of encryption where the same key is used to encrypt and decrypt the message.
+- Symmetric encryption is a type of encryption where the same key is used to encrypt and decrypt the message.
 (대칭형 암호화는 메시지를 암호화하거나 복호화 할 때 동일한 키를 사용하는 암호화 유형을 말한다.)
 
 
-Public - Key Encryption
-• Public - Key Encryption is a cryptographic system that uses two keys, a public key known to everyone and a private or secret key known only to the recipient of the message.
+Public-Key Encryption
+- Public-Key Encryption is a cryptographic system that uses two keys, a public key known to everyone and a private or secret key known only to the recipient of the message.
 (공개키 암호화는 모든 사람에게 알려진 공개키와 메시지 수신자에게만 알려진 개인키 또는 비밀키라는 두 개의 키를 사용하는 암호시스템을 말한다.)
 
 
 Computer Virus
-• A Computer Virus attaches itself to a program or file so it can spread from one computer to another, leaving infections as it travels. (컴퓨터 바이러스는 자기 자신을 프로그램이나 파일에 부착하여 이 컴퓨터에서 저 컴퓨터로 퍼질 수 있으며, 이동할 때마다 감염시키고 떠나는 것을 말한다.)
+- A Computer Virus attaches itself to a program or file so it can spread from one computer to another, leaving infections as it travels. (컴퓨터 바이러스는 자기 자신을 프로그램이나 파일에 부착하여 이 컴퓨터에서 저 컴퓨터로 퍼질 수 있으며, 이동할 때마다 감염시키고 떠나는 것을 말한다.)
 
 
 Worm
-• A Worm is similar to a virus by its design and is considered to be a subclass of a virus. Worms spread from computer to computer, but unlike a virus, it has the ability to travel without any help from a person.
+- A Worm is similar to a virus by its design and is considered to be a subclass of a virus. Worms spread from computer to computer, but unlike a virus, it has the ability to travel without any help from a person.
 (웜은 그 설계 측면에서 바이러스와 비슷해서 마치 바이러스의 한 부류인 것처럼 인식된다. 바이러스와 달리 웜은 컴퓨터에서 컴퓨터로 퍼져 나가는데 사람 도움 없이 도 이동할 수 있는 능력을 갖추고 있는 프로그램이다.)
 
 
 Trojan Horse
-• A Trojan Horse, at first glance will appear to be useful software but will actually do damage once installed or run on your computer.
+- A Trojan Horse, at first glance will appear to be useful software but will actually do damage once installed or run on your computer.
 (트로이 목마는 신화 속에 나오는 트로이 목마에서 이름을 따서 만들었다. 이것은 상당한 속임수로 가득 차 있다. 첫눈에 트로이 목마는 유용한 소프트웨어인 것처럼 다가오지만 실제는 컴퓨터에 설치되거나 실행되면 손해를 끼치는 프로그램을 말한다.)
 
 
