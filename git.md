@@ -400,6 +400,20 @@
 
 ---
 
+# git cherry-pick
+
+- 다른 branch에 있는 commit을 선택적으로 현재의 branch에 적용시킬 때 사용
+
+|||
+|-|-|
+|<commit_hash_1>|해당 hash 값을 가진 commit을 가져와 현재 commit의 바로 뒤에 추가하기|
+|<commit_hash_1> <commit_hash_2>|commit 여러 개 가져오기|
+|<commit_hash_1>...<commit_hash_3>|commit과 commit 사이의 모든 commit을 가져오기|
+|--continue|충돌이 발생한 경우, 충돌을 해결한 뒤 계속 진행하기|
+|--abort|충돌이 발생한 경우, cherry-pick하기 이전으로 돌아가기|
+
+---
+
 # Git remote 저장소가 없다고 나올 때 대처
 
 - 증상
@@ -416,6 +430,22 @@
 
 ---
 
+# 과거의 commit 수정
+
+1. git log
+    - 변경하려는 commit의 이전 commit hash 값 복사
+2. git rebase -i <복사한 값>
+    - 수정하고 싶은 commit의 맨 앞 pick을 edit으로 수정하고 rebase interface에서 나오기
+3. 수정하려 했던 내용 수정 후, git add
+    - 또는 stash 해두었던 것 꺼내기 (pop 등)
+4. git commit --amend
+5. git rebase --continue
+    - 이후 commit들과 충돌이 있다면 해겷해야 함
+6. (optional) git push -f
+    - 주의) 이미 원격 저장소에 올라간 commit history라면 강제로 원격 저장소에 반영해야 함
+
+---
+
 # Reference
 
 - https://git-scm.com/book/ko/v2
@@ -424,3 +454,7 @@
     - git reset revert
 - https://velog.io/@henotony/git-명령-취소되돌리기
     - merge 명령 되돌리는 방법
+- https://hbase.tistory.com/145
+    - 과거의 commit 수정하기
+- https://cselabnotes.com/kr/2021/03/31/56/
+    - git cherry-pick
