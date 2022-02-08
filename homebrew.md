@@ -13,3 +13,4 @@
 # Reference
 
 - https://docs.brew.sh/FAQ
+- https://sukvvon.tistory.com/7
