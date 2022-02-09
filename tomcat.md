@@ -93,15 +93,11 @@
 - bin/startup.sh : 가동
 - bin/shutdown.sh : 정지
 
-## 다른 directory에 있는 war file로 배포하기
-
-- 
-
-## Tomcat 10에서 javax.servlet.ServletContextListener ClassNotFoundException
+## Tomcat 10 Error : javax.servlet.ServletContextListener ClassNotFoundException
 
 - Tomcat 10을 사용하려면 servlet-api dependency에 javax가 아닌 jakarta를 사용해야 함 (JavaEE -> JakartaEE)
 - Spring 5는 JakartaEE보다 JavaEE가 환경 설정이 수월함
-- 추천 조합
+- 조합
     - Tomcat 9 + Spring 5 + JavaEE
     - Tomcat 10 + Spring 6 + JakartaEE
 
@@ -115,4 +111,3 @@
     - context 설정
 - https://stackoverflow.com/questions/66711660/tomcat-10-x-throws-java-lang-noclassdeffounderror-on-javax-servlet
     - java.lang.ClassNotFoundException: javax.servlet.ServletContextListener
-
