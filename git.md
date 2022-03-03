@@ -180,9 +180,9 @@
 |||
 |-|-|
 |-- <file>|discard changes in work directory (변경 취소 : Modified 상태 file이 초기화됨)|
-|<tag 이름>|tag를 checkout|
-|<branch 이름>|해당 branch로 이동|
-|-b <branch 이름>|branch를 만들면서 checkout까지 한번에 하기 (branch + checkout)|
+|<tag_name>|tag를 checkout|
+|<branch_name>|해당 branch로 이동|
+|-b <branch_name>|branch를 만들면서 checkout까지 한번에 하기 (branch + checkout)|
 
 ---
 
@@ -191,12 +191,14 @@
 - 원격 저장소 조회
 |||
 |-|-|
-|-v|단축 이름과 URL 전체 조회|
-|add <단축 이름> <URL>|Work Directory에 새 remote 저장소 추가|
-|show <remote 저장소 이름>|remote 저장소의 구체적인 정보를 확인|
-|rename <단축 이름>|remote 저장소의 이름 바꾸기|
-|remove <단축 이름>|remote 저장소 삭제 (추적 branch 정보나 모든 설정 내용도 함께 삭제됨)|
-|rm <단축 이름>|'remove'와 동일|
+|-v|remote_name과 URL 전체 조회|
+|add <remote_name> <URL>|Work Directory에 새 remote 저장소 추가|
+|show <remote_name>|remote 저장소의 구체적인 정보를 확인|
+|rename <remote_name>|remote 저장소의 이름 바꾸기|
+|remove <remote_name>|remote 저장소 삭제 (추적 branch 정보나 모든 설정 내용도 함께 삭제됨)|
+|rm <remote_name>|'remove'와 동일|
+|prune <remote_name>|remote 저장소에 추가되거나 삭제된 branch를 local에 적용|
+|||
 
 ---
 
@@ -224,9 +226,11 @@
 
 |||
 |-|-|
-|<remote 저장소 이름> <branch 이름>|remote 저장소(upstream)에 branch push 하기|
-|<remote 저장소 이름> <tag 이름>|remote 저장소에 tag push 하기|
-|<remote 저장소 이름> --tags|remote server에 없는 tag 모두 push 하기|
+|<remote_name> <branch_name>|remote 저장소(upstream)에 branch push 하기|
+|<remote_name> <tag_name>|remote 저장소에 tag push 하기|
+|<remote_name> --tags|remote server에 없는 tag 모두 push 하기|
+|<remote_name> --delete|remote branch 삭제|
+|<remote_name>:<branch_name>|remote branch 삭제|
 
 ---
 
@@ -243,9 +247,9 @@
 |--list|만들어진 tag 조회|
 |-l|'--list'와 동일|
 |-l "<검색어>"|검색하여 tag 조회|
-|<tag 이름>|lightweight tag 붙이기|
-|-a <tag 이름> -m "<tag message>"|annotated tag 붙이기|
-|-a <tag 이름> <checksum(commit hashcode)>|commit에 나중에 tag 붙이기|
+|<tag_name>|lightweight tag 붙이기|
+|-a <tag_name> -m "<tag message>"|annotated tag 붙이기|
+|-a <tag_name> <checksum(commit hashcode)>|commit에 나중에 tag 붙이기|
 
 ---
 
@@ -253,7 +257,7 @@
 
 |||
 |-|-|
-|<tag 이름>|별도의 tag 정보 왁인 (단순 commit 정보만을 보여줌)|
+|<tag_name>|별도의 tag 정보 왁인 (단순 commit 정보만을 보여줌)|
 
 ---
 
@@ -264,12 +268,12 @@
 
 |||
 |-|-|
-|-d <branch 이름>|해당 branch 삭제|
+|-d <branch_name>|해당 branch 삭제|
 
 |||
 |-|-|
-|-d <branch 이름>|해당 branch 삭제|
-|<branch 이름>|합칠 branch(HEAD가 있는 branch)에서 합쳐질 branch(merge 뒤에 적힌 branch)를 merge하는 것|
+|-d <branch_name>|해당 branch 삭제|
+|<branch_name>|합칠 branch(HEAD가 있는 branch)에서 합쳐질 branch(merge 뒤에 적힌 branch)를 merge하는 것|
 ||branch의 목록을 보여줌|
 |-v|각 branch의 마지막 commit message를 함께 보여줌|
 |--merge|현재 checkout한 branch에 이미 merge한 branch 목록 (삭제 가능한 branch)|
@@ -277,8 +281,10 @@
 |-D|merge하지 않은 branch 강제로 삭제|
 |--merge|이미 merge한 branch 목록 확인 (삭제 가능한 branch)|
 |--no-merge|현재 checkout한 branch에 merge하지 않은 branch 목록 (삭제 불가능한 branch)|
-|--merge <branch 이름>|해당 branch에 이미 merge한 branch 목록|
-|--no-merge <branch 이름>|해당 branch에 merge하지 않은 branch 목록|
+|--merge <branch_name>|해당 branch에 이미 merge한 branch 목록|
+|--no-merge <branch_name>|해당 branch에 merge하지 않은 branch 목록|
+|-a|모든 branch 확인|
+|-r|remote branch들 확인|
 
 ---
 
@@ -358,11 +364,11 @@
 |--all|모든 file을 stash (stash하고 변경 이력을 지우기 때문에 'git clean'에 비해 안전)|
 |list|저장한 stash 확인|
 |apply|가장 최근의 stash 적용|
-|apply <stash 이름>|해당 이름의 stash 적용|
+|apply <stash_name>|해당 이름의 stash 적용|
 |apply --index|Staged 상태까지 적용|
-|drop <stash 이름>|해당 stash 제거|
-|pop <stash 이름>|stash를 적용하고 바로 stack에서 제거|
-|branch <branch>|stash할 당시의 commit을 checkout한 후 새로운 branch를 만들고 여기에 적용 (과정이 성공하면 stash를 삭제함)|
+|drop <stash_name>|해당 stash 제거|
+|pop <stash_name>|stash를 적용하고 바로 stack에서 제거|
+|branch <branch_name>|stash할 당시의 commit을 checkout한 후 새로운 branch를 만들고 여기에 적용 (과정이 성공하면 stash를 삭제함)|
 
 ---
 
@@ -458,3 +464,6 @@
     - 과거의 commit 수정하기
 - https://cselabnotes.com/kr/2021/03/31/56/
     - git cherry-pick
+- https://velog.io/@easttwave/Git-로컬에서-원격-브랜치-삭제
+    - remote branch 삭제 반영
+    - local에서 remote branch 삭제하기
