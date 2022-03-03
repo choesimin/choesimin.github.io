@@ -229,8 +229,7 @@
 |<remote_name> <branch_name>|remote 저장소(upstream)에 branch push 하기|
 |<remote_name> <tag_name>|remote 저장소에 tag push 하기|
 |<remote_name> --tags|remote server에 없는 tag 모두 push 하기|
-|<remote_name> --delete|remote branch 삭제|
-|<remote_name>:<branch_name>|remote branch 삭제|
+|<remote_name> <branch_name> --delete|remote branch 삭제|
 
 ---
 
