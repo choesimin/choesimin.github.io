@@ -198,7 +198,6 @@
 |remove <remote_name>|remote 저장소 삭제 (추적 branch 정보나 모든 설정 내용도 함께 삭제됨)|
 |rm <remote_name>|'remove'와 동일|
 |prune <remote_name>|remote 저장소에 추가되거나 삭제된 branch를 local에 적용|
-|||
 
 ---
 
@@ -206,6 +205,9 @@
 
 - local에는 없지만 remote에 있는 모든 data를 가져옴
 - 자동으로 merge하지는 않음
+|||
+|-|-|
+|--all --prune|등록된 모든 remote 저장소의 branch를 동기화함 (추가/삭제 포함)|
 
 ---
 
