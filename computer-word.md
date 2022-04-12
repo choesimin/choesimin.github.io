@@ -1,155 +1,213 @@
-# Computer Word
-
-## CPU : Central Processing Unit
+# CPU : Central Processing Unit
 
 - CPU(Central Processing Unit) is the brain of a computer. Sometimes it is referred to simply as the processor or the central processor.
     - computer의 두뇌
     - 간단하게 processor(처리 장치) 또는 중앙 processor(중앙 처리 장치)라고 부르기도 함
 
-## ALU : Arithmetic and Logic Unit
+
+
+
+# ALU : Arithmetic and Logic Unit
 
 - The Arithmetic Logic Unit(ALU) is where calculation and logical operations take place.
     - 계산과 논리적 연산을 주관함
 
-## CU : Control Unit
+
+
+
+# CU : Control Unit
 
 - The Control Unit(CU) has control of the operations of the memory, ALU, and the input / output subsystem.
     - 기억 장치와 ALU, 입/출력 subsystem의 동작을 조정하는 장치
 
-## Register
+
+
+
+# Register
 
 - A register is a special high-speed storage area within the CPU.
     - CPU 안에 속한 고속의 저장 장소
 
-## DR : Data Register
+
+
+
+# DR : Data Register
 
 - Date Register(DR) contains the input data or the result.
     - 입력 data나 결과 값을 보관하는 장치
 
-## PC : Program Counter
+
+
+
+# PC : Program Counter
 
 - Program Counter(PC) keeps track of the instruction currently being executed. After executing the instruction, the program counter is augmented to point the address of the next instruction in memory.
     - 현재 실행 중인 명령어를 추적하는 것
     - 이 명령의 실행이 종료되면 program counter는 memory 안에 있는 다음 명령어의 주소를 가리키도록 증가하게 되는 장치
 
-## Memory
+
+
+
+# Memory
 
 - Memory is the internal storage areas in the computer. Memory is used to store program and data.
     - computer 내부에 존재하는 저장 영역
     - program과 data를 저장하는 데에 사용되는 장치
 
-## RAM : Random Access Memory
+
+
+
+# RAM : Random Access Memory
 
 - Random Access Memory(RAM) is same as the main memory. We can both write data into RAM and read data from RAM. This is the contrast to ROM, which permits you only to read data.
     - main memory(주 기억장치)
     - RAM 안에 data를 기록할 수도 있으며 data를 읽을 수도 있음
         - data를 읽을 수만 있는 ROM과 대조
 
-## DRAM : Dynamic RAM
+
+
+
+# DRAM : Dynamic RAM
 
 - Dynamic RAM(DRAM) being the more common type. Dynamic RAM(DRAM) needs to be refreshed thousands of times per second.
     - 보편적인 형식의 RAM
     - 매 초당 수천 번씩 기억을 재생하는 장치
 
-## SRAM : Static RAM
+
+
+
+# SRAM : Static RAM
 
 - Static RAM(SRAM) does not need to be refreshed, which makes it faster, but it is also more expensive than Dynamic RAM(DRAM).
     - DRAM보다 속도가 빠른 장치
     - 가격은 상대적으로 비싼 편임
 
-## ROM : Read-Only Memory
+
+
+
+# ROM : Read-Only Memory
 
 - Read-Only Memory(ROM) is the acronym for read-only memory, computer memory on which data has been prerecorded. Once data has been written onto a ROM chip, it cannot be removed and can only be read.
     - 읽기 전용 memory의 약자
     - data가 미리 기록되어 있는 computer memory
     - ROM chip에 data가 일단 기록되면 지워지지 않으며 읽을 수만 있음
 
-## PROM : Programmable ROM
+
+
+
+# PROM : Programmable ROM
 
 - Programmable ROM(PROM) s are manufactured as blank chips on which data can be written with a special device called a PROM programmer.
     - 비어있는 chip으로 제작됨
     - PROM programmer를 가지고 data를 기록할 수 있는 장치
 
-## EPROM : Erasable Programmable ROM
+
+
+
+# EPROM : Erasable Programmable ROM
 
 - An Erasable Programmable ROM(EPROM) is a special type of PROM that can be erased by exposing it to the ultraviolet light. The ultraviolet light clears its contents, making it possible to reprogram the memory.
     - 자외선을 쬐면 data가 소거되는 특별한 형태의 PROM
     - 덕분에 memory를 다시 programming 할 수 있도록 함
 
-## EEPROM : Electrically Erasable and Programmable ROM
+
+
+
+# EEPROM : Electrically Erasable and Programmable ROM
 
 - An Electrically Erasable and Programmable ROM(EEPROM) is a special type of PROM and it's contents can be erased by exposing it to an electrical charge. Like other types of PROM, EEPROM retains its contents even when the power is turned off.
     - 전기 충전에 노출되면 내용이 지워지는 PROM의 특별한 형태
     - computer의 전원이 꺼져도 그 내용을 유지함
         - 다른 PROM도 동일함
 
-## RISC : Reduced Instruction Set Computer
+
+
+
+# RISC : Reduced Instruction Set Computer
 
 - RISC is the acronym for Reduced Instruction Set Computer, a type of microprocessor that recognizes a relatively limited of instructions. ↔ CISC(Complex Instruction Set Computers)
-    - 상대적으로 제한된 개수의 명령어를 인식하는 일종의 microprocessor
+    - 상대적으로 제한된 개수의 명령어를 인식하는 일종의 Micro Processor
         - CISC와 상반됨
 
-## Cache
+
+
+
+# Cache
 
 - cache is a special high-speed storage mechanism. It can be either a reserved section of main memory or an independent high-speed storage device. Two types of caching are commonly used in personal computers, Memory Cache and Disk Cache.
     - 고속 저장 mechanism
-    - main memory 상에 예약된 부분일 수도 있고, 독립적인 고속 기억 장치일 수도 있음
-        - 개인용 computer에서 일반적으로 두 가지 type의 memory cache와 디스크 캐시가 사용됨
+    - Main Memory 상에 예약된 부분일 수도 있고, 독립적인 고속 기억 장치일 수도 있음
+        - 개인용 computer에서 일반적으로 두 가지 type의 Memory Cache와 Disk Cache가 사용됨
 
 
->>>>>>>>>>
 
 
-## Memory Cache
+# Memory Cache
 
 - A Memory Cache sometimes called a cache store or RAM cache, is a portion of memory made of high-speed SRAM instead of the slower and cheaper DRAM used for main memory.
-- 메모리 캐시는 캐시 저장소 또는 RAM 캐시라고도 불리는 데, 주로 메인 메모리용으로 사용되는 느리고 저렴한 DRAM 대신에 고속의 비싼 SRAM으로 만들어진 메모리의 일부이다.)
+    - Memory의 일부
+    - Cache 저장소 또는 RAM Cache라고도 불리움
+    - 주로 main 메모리용으로 사용되는 느리고 저렴한 DRAM 대신에 고속의 비싼 SRAM으로 만들어짐
 
-## Disk Cache
+
+
+
+# Disk Cache
+
 - Disk Cache works under the same principle as memory caching, but instead of using high-speed SRAM, a disk cache uses conventional main memory.
-(디스크 캐시는 메모리 캐시와 동일한 원리에 따라 동작하는 장치라고 할 수 있다. 하지만 디스크 캐시는 고속 SRAM을 사용하지 않고 일반적인 메인 메모리를 사용하는 것이 특징이다.)
+    - Memory Cache와 동일한 원리에 따라 동작하는 장치
+        - 하지만 Disk Cache는 고속 SRAM을 사용하지 않고 일반적인 Main Memory를 사용함
 
 
-## DMA(Direct Memory Access)
+
+
+# DMA(Direct Memory Access)
+
 - DMA is the short for Direct Memory Access, a technique for transferring data from main memory to a device without passing it through the CPU. (DMA는 직접 메모리 접근의 약칭으로서 데이터를 메인 메모리에서 입출력 장치로 전달할 때 CPU를 거치지 않는 기술을 말한다.)
 
 
-## Hardware
 
-- The Hardware is the computer system that allows physical access to data. (하드웨어는 데이터에 대한 물리적 접근을 허용하는 컴퓨터 시스템을 말한다.)
 
-## USB(Universal Serial Bus)
+# Hardware
+
+- The Hardware is the computer system that allows physical access to data.
+    - data에 대한 물리적 접근을 허용하는 computer system
+
+
+
+
+# USB(Universal Serial Bus)
 
 - USB is the short for Universal Serial Bus, an external serial bus standard that supports data transfer rates of 12Mbps(in USB 1.1) and 480Mbps(in USB 2.0).
 (USB는 범용 직렬 버스의 약칭으로서 데이터 전송률을 12Mbps(USB 1.1의 경우)와 400Mbps(USB 2.0의 경우)까지 지원하는 외부 직렬 버스 표준이다.)
 
 
-## OS(Operating System)
+# OS(Operating System)
 
 - Operating System(OS) is an interface between the hardware of a computer and the user(program or humans). It is a program(or a set of programs) that facilitates the execution of other programs.
 (운영체제란 컴퓨터의 하드웨어와 사용자(사용자는 프로그램 일 수도 있고, 사람 일 수도 있다) 사이의 인터페이스이다. 운영체제는 다른 프로그램들의 실행을 돕는 프로그램이다.)
 
 
-## Multiuser OS
+# Multiuser OS
 
 - Allows two or more users to run a program at the same time. some operating
 system permits hundreds or even thousands of concurrent users.
 (동시에 두 사람 이상이 프로그램을 실행할 수 있게 해주는 운영체제이다. 어떤 운영체제는 수백 명 또는 수천 명의 동시 사용자를 허용한다.)
 
 
-## Multiprocessing OS
+# Multiprocessing OS
 
 - Supports running a program on more than one CPU.
 (한 프로그램이 한 개 이상의 CPU에서 수행되도록 지원하는 운영체제이다.)
 
 
-## Multitasking OS
+# Multitasking OS
 
 - Allows more than one program to run concurrently.
 (한 개 이상의 프로그램이 동시에 수행되는 것을 허용하는 운영체제이다.)
 
 
-## Multithreading OS
+# Multithreading OS
 
 - Allows different parts of a single program to run concurrently.
 (단일 프로그램 내의 서로 다른 부분들이 동시에 수행되도록 허용하는 운영체제이다.)
@@ -158,37 +216,39 @@ Real-time OS
 (입력에 즉각 반응하는 운영체제이다. 여기서 DOS나 UNIX 같은 범용 운영체제는 실 시간 운영체제가 아니다.)
 
 
-## GUI(Graphical User Interface)
+# GUI(Graphical User Interface)
 
 - Graphical User Interface(GUI) allows you to enter commands by pointing and clicking at objects that appear on the screen.
 (그래픽 사용자 인터페이스는 화면에 나타난 대상을 가리키거나 클릭 함으로써 명령을 입력할 수 있게 해준다.)
 
 
-Software
+## Software
+
 - The Software is the program that allows users to access, maintain and update physical data.
 (소프트웨어는 사용자로 하여금 물리적 데이터에 접근하고 유지하며 갱신할 수 있도록 해주는 프로그램을 말한다.)
 
 
-File System
+## File System
+
 - File System is a system that an operating system or program uses to organize and keep track of files. A file system is also referred to as a file management system.
 (파일시스템은 운영체제나 프로그램 파일이 구성하고 그 경로를 추적하는데 사용하는 시스템이다. 파일 관리 시스템이라고 불리기도 한다.)
 
 
-DB(DataBase)
+## DB(DataBase)
 - A DataBase(DB) is a composed of record, each containing fields together with a set of operations for searching, sorting, recombining, and other functions. It is a collection of information organized in such a way that a computer program can quickly select desired pieces of data.
 (데이터베이스는 필드를 포함하고 있는 레코드로 구성된 하나의 파일로서 검색이나 정렬, 재결합 등 여러 기능을 위한 연산의 집합과 함께 제공되는 것이다. 데이터베이스는 컴퓨터 프로그램이 원하는 데이터 조각을 빠르게 검색할 수 있도록 구성된 정보의 집합이다.)
 
 
-DBMS(DataBase Management System)
+## DBMS(DataBase Management System)
 - DBMS is a collection of programs that enables you to store, modify, and extract information from a database.
 (DBMS는 데이터베이스로부터 정보를 조정하고 수정하며, 추출하도록 해주는 프로그램들의 집합을 말한다.)
 
 
-Field 
+# Field 
 - A Field is a single piece of information. (필드는 단일화된 정보의 조각을 의미한다.)
 
 
-Record 
+## Record 
 - A Record is one complete set of fields.
 (레코드는 필드로 구성된 한 개의 완전한 집합을 말한다.) 
 
