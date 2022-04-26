@@ -37,15 +37,10 @@ tail mylog1.log mylog2.log
 
 # gzip / gunzip (Linux)
 
-- Linux에서 압축 기능을 담당하는 명령어
-    - 여러 파일을 압축할 때는 tar로 파일을 묶고 gzip으로 tar파일을 압축
-        - tar : file을 하나로 모으되 압축은 하지 않음
-            - tar의 option에서 gzip 실행 여부를 지정할 수 있기 때문에 gzip이 단독으로 쓰일 경우는 많지 않음
-        - gzip : file을 모을 수는 없지만 압축 수 있음
 ```sh
 gzip [option] [file-name]
 ```
-| Option | Description |
+| option | desc |
 | - | - |
 | -n | n은 1부터 9까지 숫자로, 1이 가장 빠르지만 압축률은 가장 낮음 |
 | -c | 압축 결과를 출력하고 원본 file은 그대로 놔둠 |
@@ -58,9 +53,16 @@ gzip [option] [file-name]
 | -h | 도움말 출력 |
 | -V | version 출력 |
 
----
 
-#
+출처: https://steven-life-1991.tistory.com/9 [INS LOG]
+- Linux에서 압축 기능을 담당하는 명령어
+    - 여러 파일을 압축할 때는 tar로 파일을 묶고 gzip으로 tar파일을 압축
+        - tar : file을 하나로 모으되 압축은 하지 않음
+            - tar의 option에서 gzip 실행 여부를 지정할 수 있기 때문에 gzip이 단독으로 쓰일 경우는 많지 않음
+        - gzip : file을 모을 수는 없지만 압축 수 있음
+
+
+
 
 ---
 
