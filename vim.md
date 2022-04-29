@@ -44,50 +44,39 @@
 - set encoding=utf-8 : encoding 방식
 - set fileencodings=utf-8,cp949 : file encoding 방식
 
-## .vimrc
+## My .vimrc setting
 
 ```
 set nocompatible
-
-filetype off 
-
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'othree/html5.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'elzr/vim-json'
-Plugin 'Valloric/YouCompleteMe'    "auto complate
-Plugin 'vim-syntastic/syntastic'    "syntax check
-Plugin 'mhinz/vim-signify'    "view git history
-Plugin 'nanotech/jellybeans.vim'
+
+Plugin 'suan/vim-instant-markdown'
+
 call vundle#end()
+filetype plugin indent on
 
-filetype on
 
-set number
-set showmatch
 set cursorline
-set cursorcolumn
-
-set cindent
 set autoindent
 set expandtab
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 
-set hlsearch
-set ignorecase
+syntax on
 
-set encoding=utf-8
-set fileencoding=utf-8
-
-if has("syntax")
-    syntax on
-endif
-colorscheme jellybeans
+colorscheme slate
 ```
+
+## Turning off markdown underscore syntax error
+
+- '~/.vim/after/syntax/markdown.vim'에 추가
+    ```
+    " New error pattern without the underscore
+    syn match markdownError "\w\@<=\w\@="
+    ```
 
 ---
 
@@ -103,3 +92,5 @@ colorscheme jellybeans
     - command line mode
 - https://booolean.tistory.com/345
     - cursor move
+- https://exchangetuts.com/turn-off-highlighting-a-certain-pattern-in-vim-1640071384657173
+    - Turning off markdown underscore syntax error
