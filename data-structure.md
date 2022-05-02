@@ -1,6 +1,5 @@
-# Data Structure
+# Data Structure : 자료구조
 
-- 자료구조
 - computer science에서 효율적인 접근 및 수정을 가능케 하는 자료의 조직, 관리, 저장을 의미
 - 자료구조는 data 값의 모임, data 간의 관계, data에 적용할 수 있는 함수나 명령을 의미
 - 신중히 선택한 자료구조는 보다 효율적인 algorithm을 사용할 수 있게 함

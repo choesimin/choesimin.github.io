@@ -12,22 +12,9 @@
         - CORS는 브라우저의 구현 spec에 포함되는 정책이기 때문에, browser를 통하지 않고 서버 간 통신을 할 때는 이 정책이 적용되지 않음
         - CORS 정책을 위반하는 resource 요청 때문에 error가 발생했다고 해도 server 쪽 log에는 정상적으로 응답을 했다는 log만 남음
 
-## Request 종류
-
-### Preflight Request
-
-- 
-
-### Simple Request
-
-- 
-
-### Credentialed Request
-
-
 ## 같은 출처와 다른 출처의 구분
 
-|URL|is same origin|reason|
+|URL|is same origin|Reason|
 |-|-|-|
 |https://choesimin.github.io/about|o|scheme, post, port가 동일함|
 |https://choesimin.github.io/about?q=hi|o|scheme, post, port가 동일함|

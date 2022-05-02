@@ -52,35 +52,35 @@
 - Maven의 기능을 이용하기 위해서 POM이 사용됨
 - file은 project마다 1개이며, pom.xml만 보면 project의 모든 설정, 의존성 등을 알 수 있음
 - pom.xml element
-    - <modelVersion>
+    - modelVersion
         - POM model의 version
-    - <parent>
+    - parent
         - project의 계층 정보
-    - <groupId>
+    - groupId
         - project를 생성하는 조직의 고유 id를 결정함
         - 일반적으로 domain 이름을 거꾸로 적음
-    - <artifactId>
+    - artifactId
         - project build시 file 대표 이름
         - groupId 내에서 유일해야 함
         - project명을 사용
-    - <packaging>
+    - packaging
         - packaging 유형 (jar, war, ear 등)
-    - <name>
+    - name
         - project 이름
-    - <description>
+    - description
         - project에 대한 간략한 설명
-    - <url>
+    - url
         - project에 대한 참고 reference site
-    - <properties>
+    - properties
         - version 관리 시 용이함
             - dependencies에서 활용 가능
         - POM 내에서 공통적으로 사용되는 값들을 설정
         - pom.xml file의 다른 곳에서 ${org.springframework-version} 처럼 사용
-    - <repositories>
+    - repositories
         - library를 받아올 저장소를 지정함
-    - <dependencies>
+    - dependencies
         - project와 의존 관계에 있는 library들을 관리하
-    - <build>
+    - build
         - project의 build에 사용할 plugin 목록
 
 ---
