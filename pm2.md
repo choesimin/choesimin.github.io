@@ -17,6 +17,15 @@
   - --watch : pm2가 실행된 process의 변경 사항을 감지하여 server를 자동 reload해줌
   - -i max([core 개수]) : Node.js의 single thread를 보완하기 위한 cluster mode
 
+## pm2 restart
+
+- application 을재시작
+
+|Option|Desc|
+|-|-|
+|all|모든 application 재시작|
+|[application name]|해당 application 재시작|
+
 ## pm2 kill
 
 - 실행 중인 pm2 daemon을 종료시킴
