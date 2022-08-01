@@ -13,18 +13,20 @@
 ## pm2 start example.js
 
 - pm2를 실행하는 명령어로 server source code가 작성되어있는 js file을 실행
-- options
-  - --watch : pm2가 실행된 process의 변경 사항을 감지하여 server를 자동 reload해줌
-  - -i max([core 개수]) : Node.js의 single thread를 보완하기 위한 cluster mode
+
+| Option | Desc |
+| - | - |
+| --watch | pm2가 실행된 process의 변경 사항을 감지하여 server를 자동 reload해줌 |
+| -i max([core 개수]) | Node.js의 single thread를 보완하기 위한 cluster mode |
 
 ## pm2 restart
 
 - application 을재시작
 
-|Option|Desc|
-|-|-|
-|all|모든 application 재시작|
-|[application name]|해당 application 재시작|
+| Option | Desc |
+| - | - |
+| all | 모든 application 재시작 |
+| [application name] | 해당 application 재시작 |
 
 ## pm2 kill
 
@@ -34,13 +36,17 @@
 
 - pm2에 등록된 관리 list 조회
 
-## pm2 log
+## pm2 log [application_name]
 
- 실행 중인 pm2 daemon의 log를 확인
+- 실행 중인 pm2 daemon의 log를 확인
 
-## pm2 monit
+## pm2 monit [application_name]
 
 - pm2로 실행한 server의 상황을 monitoring
+
+## pm2 info [application_name]
+
+- application 정보 조회
 
 ---
 

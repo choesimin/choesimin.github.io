@@ -340,7 +340,7 @@ system permits hundreds or even thousands of concurrent users.
 
 
 
-Assembly Languages
+# Assembly Languages
 
 - Lying between machine languages and high-level languages are languages called assembly languages. Assembly Languages are similar to machine languages but they are much easier to program in because they allow a programmer to substitute names for numbers.
 (기계어와 고급언어 사이에 놓여있는 언어가 어셈블리어이다. 어셈블리어는 기계어와 유사하지만 프로그램 작성자가 숫자를 명칭으로 대체할 수 있도록 허용하고 있기 때문에 프로그램 작성이 훨씬 용이한 언어를 말한다.)
@@ -348,7 +348,7 @@ Assembly Languages
 
 
 
-4GL
+# 4GL
 
 - 4GLs are far removed from machine languages and represent the class of computer languages closest to human languages.
 (4GL은 기계어로부터 가장 멀리 떨어져 있으며, 사람의 언어에 가장 가까운 컴퓨터 언어 등급을 나타낸다.)
@@ -356,7 +356,7 @@ Assembly Languages
 
 
 
-FORTRAN
+# FORTRAN
 
 - FORTRAN is a particularly good language for processing numerical data, but it does not lend itself very well to organizing large programs.
 (FORTRAN은 수치 데이터를 처리하는 데 있어서 특히 좋은 언어이지만, 대형 프로그램을 구성하는 데 적합하지 않은 언어이다.)
@@ -364,7 +364,7 @@ FORTRAN
 
 
 
-Pascal
+# Pascal
 
 - Pascal is very good for writing well-structured and readable programs, but it is not as flexible as the C programming language.
 (Pascal은 잘 구성되고 읽기 쉬운 프로그램을 작성하는데 매우 좋지만 C 언어만큼 융 통성이 있지는 못한 언어이다.)
@@ -372,7 +372,7 @@ Pascal
 
 
 
-C++
+# C++
 
 - C++ embodies powerful object-oriented features, but it is complex and difficult to learn.
 (C++는 객체 지향형 특징이 강하지만 배우기에 복잡하고 어렵다는 것이 특징인 언어이다.)
@@ -380,7 +380,7 @@ C++
 
 
 
-Imperative Programming
+# Imperative Programming
 
 - Imperative Programming, as opposed to declarative programming, is a programming paradigm that describes computation in terms of a program state and statements that change the program state.
 (명령형 언어는 선언형 언어와 대조적으로 프로그램 상태 및 이 상태들을 변화 시키는 문장으로 계산을 표현하고 있는 프로그래밍 패러다임을 나타낸다.)
@@ -388,7 +388,7 @@ Imperative Programming
 
 
 
-Objected-Oriented Languages
+# Objected-Oriented Languages
 
 - Objected-Oriented Languages are used for object-oriented programming. Objected-Oriented programming is a type of programming in which programmers define not only the data type of a data structure but also the type of operations(functions) that can be applied to the data structure.
 (객체 지향형 언어는 객체지향형 프로그래밍을 위해 사용되는 언어이다. 객체 지향형 프로그래밍에서는 프로그램 작성자가 데이터 구조의 데이터 종류뿐만 아니라 데이터 구조에 적용될 수 있는 연산(함수)의 종류까지도 정의하게 된다.)
@@ -396,7 +396,7 @@ Objected-Oriented Languages
 
 
 
-Declarative Languages
+# Declarative Languages
 
 - Declarative Languages use the principle of logical reasoning to answer queries. It is based on formal logic defined by Greek mathematicians. Logical reasoning is based on deduction. Prolog is an example of declarative languages.
 (선언형 언어는 질의어에 대하여 답변하기 위한 논리적 추론의 원리를 사용한다. 이 언어는 그리스 수학자들이 정의한 형식 논리를 토대로 하고 있다. Prolog는 대표적인 선언형 언어라고 할 수 있다.)
@@ -404,7 +404,7 @@ Declarative Languages
 
 
 
-Functional Languages
+# Functional Languages
 
 - Functional Languages are used in functional programming where a program is considered a mathematical function. LISP, Scheme, and Haskell are examples of functional languages.
 (함수형 언어는 프로그램을 수학적 함수로 취급하는 함수형 프로그래밍에서 사용되는 언어이다. LISP, Scheme, Haskell이 함수형 언어의 사례라고 할 수 있다.)
@@ -412,7 +412,7 @@ Functional Languages
 
 
 
-SCSI(Small Computer System Interface)
+# SCSI : Small Computer System Interface
 
 - SCSI is short for Small Computer System Interface, a parallel interface standard used by Apple Macintosh computers, PCs, and many UNIX systems for attaching peripheral devices to computers.
 (SCSI는 소규모 컴퓨터 시스템 인터페이스의 약칭으로서, 주변 장치를 컴퓨터에 부착하기 위하여 애플 매킨토시, PC, 유닉스 시스템이 사용하는 병렬 인터페이스의 표준을 말한다.)
@@ -420,7 +420,7 @@ SCSI(Small Computer System Interface)
 
 
 
-Computer Network
+# Computer Network
 
 - A Computer Network is a group of two or more computer systems links together. Computer networks can be divided into three broad categories, LAN, MAN WAN.
 (컴퓨터 네트워크란 두 개 이상의 컴퓨터 시스템이 연결된 그룹을 말한다. 컴퓨터 네트워크는 크게 LAN, MAN, WAN이라는 세 개의 범주로 구분될 수 있다.)
@@ -428,7 +428,7 @@ Computer Network
 
 
 
-LAN(Local Area Network)
+# LAN : Local Area Network
 
 - Local Area Network(LAN) is a group of computers and other devices dispersed over a relatively limited area and connected by a communications link that enables any device to interact with any other devices on the network.
 (LAN(근거리 통신망)은 비교적 제한된 영역 안에 분산되어 있는 컴퓨터와 다른 장치들의 그룹으로, 통신 링크에 의해 연결되어 네트워크 내의 장치들끼리 상호 작용할 수 있다는 특징을 가진다.)
@@ -436,7 +436,7 @@ LAN(Local Area Network)
 
 
 
-MAN(Metropolitan Area Network)
+# MAN : Metropolitan Area Network
 
 - Metropolitan Area Network(MAN) is a high-speed network which can carry voice, data, and images at up to 200 Mbps or faster over distances of up to 75Km. Based on the network architecture, the transmission speed can be higher for shorter distances.
 (MAN(시내 정보 통신망)은 최대 75Km까지의 거리에 걸쳐 200Mbps 이상의 속도로 음성, 데이터, 이미지를 전송할 수 있는 고속 네트워크이다. 네트워크 구조에 의해, 비교적 짧은 거리에 대해서는 상대적으로 높은 속도를 보일 수 있다.)
@@ -444,7 +444,7 @@ MAN(Metropolitan Area Network)
 
 
 
-WAN(Wide Area Network)
+# WAN : Wide Area Network
 
 - Wide Area Network(WAN) is a geographically widespread network, which relies on communications capabilities to link various network segments. A Wide Area Network(WAN) can be one large network or consist of a number of linked LANs.
 (WAN(광역 통신망)은 지리적으로 넓게 펼쳐진 네트워크로서 다양한 네트워크 세그먼트들을 연결하기 위하여 통신 능력에 의존한다. WAN은 한 개의 넓은 네트워크 일 수 있지만 많은 수의 LAN이 연결되어 구성될 수도 있다.)
@@ -452,16 +452,15 @@ WAN(Wide Area Network)
 
 
 
-SO / OSI(International Standard Organization's
+# SO / OSI (International Standard Organization's / Open System Interconnect) Network Model
 
-/ Open System Interconnect) Network Model
 - It is the standard model for networking protocols and distributed applications. This International Standard Organization's / Open System Interconnect(ISO/OSI) Network Model theoretically allows any two different system(eg, computer) to communicate with each other regardless of their underlying architecture.
 (ISO / OSI 네트워크 모델은 네트워크의 규약(프로토콜) 및 분산 애플리케이션에 대 한 표준 모델을 말한다. 이론적으로 ISO / OSI 네트워크 모델은 두 개의 서로 다른 시스템(즉, 컴퓨터)이 기초가 되는 구조와 무관하게 통신할 수 있도록 해주는 특징을 가진다.)
 
 
 
 
-Physical Layer(Layer 1)
+# Physical Layer : Layer 1
 
 - The Physical Layer(Layer 1) is responsible for transferring a bit stream through a physical medium. It defines all electrical and physical specifications for devices.
 (물리적 계층(계층 1)은 물리적 매체를 통하여 비트 스트림을 전송하는 책임을 담당하는 장치이다. 이 계층에서는 네트워크 장치의 전기적이며 물리적인 모든 사양을 정의하게 된다.)
@@ -469,7 +468,7 @@ Physical Layer(Layer 1)
 
 
 
-Data Link Layer(Layer 2)
+# Data Link Layer : Layer 2
 
 - The Data Link Layer(Layer 2) is responsible only for node-to-node delivery of the frame from one station to other. The Data Link Layer(Layer 2) is responsible for error handling between two adjacent stations.
 (데이터 링크 계층(계층 2)은 비트를 프레임이라 불리는 논리적 단위로 구성되는 계층이다. 데이터 링크 계층은 두 인접국 사이의 오류 처리를 담당하는 계층이다.)
@@ -477,7 +476,7 @@ Data Link Layer(Layer 2)
 
 
 
-Network Layer(Layer 3)
+# Network Layer : Layer 3
 
 - The Network Layer(Layer 3) is in duty bound to delivery of a packet(the data unit handled by the network layer is called a packet) between the original source and final destination where the Data Link Layer(Layer 2) is responsible for node-to-node delivery of a frame between two adjacent stations.
 (데이터 링크 계층은 두 인접 장치 사이에서 프레임의 노드-대-노드 전달을 담당하는 반면, 네트워크 계층(계층 3) 은 최초 근원지로부터 최종 목적지로 패킷(네트 워크 계층에 의하여 다루어지는 데이터 단위를 패킷이라고 부른다)을 전달하는 임무를 수행하는 계층이다.)
@@ -485,7 +484,7 @@ Network Layer(Layer 3)
 
 
 
-Transport Layer(Layer 4)
+# Transport Layer : Layer 4
 
 - The Network Layer(Layer 3) is responsible for end-to-end delivery of individual packets. The Transport Layer(Layer 4), in contrast, is responsible for end-to-end delivery of the whole message.
 (네트워크 계층(계층 3)은 개별 패킷의 종단 전송을 담당하는 계층이다. 반면에 전송 계층(계층 4)은 전체 메시지의 종단 간 전송을 담당하는 역할을 수행한다.)
@@ -493,7 +492,7 @@ Transport Layer(Layer 4)
 
 
 
-Session Layer(Layer 5)
+# Session Layer : Layer 5
 
 - The Session Layer(Layer 5) is responsible to control the dialog between users. It establishes, maintains and synchronizes the dialog between communicating system.
 (세선 계층(계층 5)은 사용자들 사이의 대화를 제어하는 역할을 담당하는 계층이다. 이 계층은 통신 시스템 사이의 대화를 확립하고 유지하며 동기화 시키는 일을 한다.)
@@ -501,7 +500,7 @@ Session Layer(Layer 5)
 
 
 
-Presentation Layer(Layer 6)
+# Presentation Layer : Layer 6
 
 - The Presentation Layer(Layer 6) is related with the syntax(format) and semantics(meaning) of the information exchanged between two systems. It deals with the fact that different systems use different coding methods(eg, Unicode and ASCII).
 (표현 계층(계층 6)은 두 시스템 사이에 교환되는 정보의 신 텍스(구문, 형식)와 시맨틱 스(의미)에 관한 것이다. 이 계층은 시스템이 다르면 코딩 방식도 다르다는 사실(예, 유니코드 와 ASCII)을 다룬다.)
@@ -509,7 +508,7 @@ Presentation Layer(Layer 6)
 
 
 
-Application Layer(Layer 7)
+# Application Layer : Layer 7
 
 - The Application Layer(Layer 7) enables the user, whether human or software, to access the network. It defines the common application that can be implemented to make jobs simpler. It provides network services to the end-users.
 (응용 계층(계층 7)은 사람이든 소프트웨어이든 간에 사용자로 하여금 네트워크에 접근할 수 있도록 해주는 계층이다. 이 계층에서는 사용자의 작업을 좀 더 간단하게 만들기 위해 구현할 수 있는 공통된 애플리케이션을 정의하고 있다.)
@@ -517,7 +516,7 @@ Application Layer(Layer 7)
 
 
 
-Repeater
+# Repeater
 
 - A Repeater is a network device used to regenerate or replicate a signal. Repeaters are used in transmission systems to regenerate analog or digital signals distorted by transmission loss.
 (리피터는 신호를 재생하거나 중복하는데 사용하는 네트워크 장치이다. 전송 손실로 인하여 일그러진 아날로그 또는 디지털 신호를 재생하기 위하여 리피터는 전송 시스템에서 사용된다.)
@@ -525,7 +524,7 @@ Repeater
 
 
 
-Bridge
+# Bridge
 
 - A Bridge is a device that connects two local-area networks or two segments of the same LAN that use the same protocol, such as Ethernet or Token-Ring.
 (브리지는 두 개의 근거리 망을 연결하거나 이더넷이나 토큰 링 같이 동일한 프로토 콜을 사용하는 동일한 근거 리망 내의 두 세그먼트를 연결하는 장치이다.)
@@ -533,7 +532,7 @@ Bridge
 
 
 
-Router
+# Router
 
 - A Router is a device that forwards data packets along networks. A router is connected to at least two networks, commonly two LANs or WANs or a LAN and its ISP's network.
 (라우터는 데이터 패킷을 네트워크를 따라 진행시키는 장치이다. 라우터는 최소한 두 개의 네트워크, 보통의 경우 두 개의 LAN이나 WAN 혹은 LAN과 해당 ISP의 네트워크를 연결한다.)
@@ -541,7 +540,7 @@ Router
 
 
 
-Gateway
+# Gateway
 
 - A Gateway is a node on a network that serves as an entrance to another network. In enterprises, the gateway is the computer that routes the traffic from a workstation to the outside network that is serving the Web pages.
 (게이트웨이는 다른 네트워크로의 관문으로 작동하는 네트워크 노드를 말한다. 기업 체에 있어서 게이트웨이는 워크스테이션으로부터 웹페이지를 제공하는 바깥 네트워크로 경로를 제공하는 컴퓨터에 해당한다.)
@@ -549,7 +548,7 @@ Gateway
 
 
 
-FireWire
+# FireWire
 
 - FireWire is a serial interface defined by IEEE standard 1394. So FireWire is called IEEE 1394. It transfers data in packets.
 (FireWire는 IEEE 표준 1394에 의하여 정의된 직렬 인터페이스로서 IEEE 1394라고도 부른다. FireWire는 데이터를 패킷 형태로 전송하는 특징을 가지고 있다.)
@@ -557,7 +556,7 @@ FireWire
 
 
 
-JPEG(Joint Photographic Experts Group)
+# JPEG : Joint Photographic Experts Group
 
 - Joint Photographic Experts Group(JPEG) is the original name of the committee that wrote the standard. JPEG(or JPG) is one of the image file formats supported on the Web. JPG is a lossy compression technique that is designed to compress color and grayscale continuous-tone images.
 (JPEG(연합사진 전문가 그룹)은 표준을 작성하기 위한 위원회의 원래 명칭을 말한다. JPEG(또는 JPG)은 웹에서 지원되는 이미지 파일 포맷 중 하나를 뜻하며, JPG는 컬 러 및 그레이스케일 연속 색조 형태의 이미지를 압축하기 위하여 설계된 손실성 압 축 기술을 말한다.)
@@ -565,7 +564,7 @@ JPEG(Joint Photographic Experts Group)
 
 
 
-GIF(Graphics Interchange Format)
+# GIF : Graphics Interchange Format
 
 - Graphics Interchange Format(GIF) is another of the graphics formats supported by the Web. Unlike JPG, the GIF format is a lossless compression technique and it supports only 256 colors.
 (GIF(그래픽 교환 포맷)은 웹에 의해 지원되는 또 다른 그래픽 포맷을 말한다. JPG와 달리 GIF 포맷은 무손실 압축 기술을 사용하여 256컬러만을 지원하는 것이 특징이다.)
@@ -573,7 +572,7 @@ GIF(Graphics Interchange Format)
 
 
 
-MPEG(Moving Picture Experts Group)
+# MPEG : Moving Picture Experts Group
 
 - Moving Picture Experts Group(MPEG) is a working group of ISO and it also refers to the family of digital video compression standards and file formats developed by the group.
 (MPEG(동영상 전문가 그룹)은 ISO의 작업 그룹이자, 이 그룹에 의하여 개발된 디지털 비디오 압축 표준 및 파일 포맷의 군을 가리키는 말이기도 하다.)
@@ -581,7 +580,7 @@ MPEG(Moving Picture Experts Group)
 
 
 
-PNG(Portable Network Graphics)
+# PNG : Portable Network Graphics
 
 - Portable Network Graphics(PNG) is the third graphics standard supported by the Wed(though not supported by all browsers). PNG was developed as a patent-free answer to the GIF format but is also an improvement on the GIF technique.
 (PNG(이식 가능한 네트워크 그래픽)는 (비록 모든 브라우저가 지원하는 것은 아니지 만) 웹에서 지원되는 세 번째 그래픽 표준이다. PNG는 GIF 포맷이 가지는 특허를 피하고자 하는 해결책으로서 개발되었지만 GIF 기술을 개선한 것을 말한다.)
@@ -589,7 +588,7 @@ PNG(Portable Network Graphics)
 
 
 
-Divx(Digital Video Express)
+# Divx : Digital Video Express
 
 - Divx is a new DVD-ROM format promoted by several large Hollywood companies, including Disney, Dreamworks SKG Paramount and Universal With DivX, a movie(or other data) loaded onto a DVD-ROM is playable only during a specific time frame, typically two days.
 (DIvx는 디즈니, 드림웍스, 선경그룹, 파라마운트와 유니버설 등 여러 개의 할리우드 대기업이 추진한 새로운 DVD-ROM 포맷이다. 한 장의 DVD-ROM에 실린 한 편의 영화는 정해진 기일(대표적으로 이틀) 동안만 재생할 수 있다.)
@@ -597,7 +596,7 @@ Divx(Digital Video Express)
 
 
 
-DivX
+# DivX
 
 - When spelled DivX, instead of Divx, a trademark of DivX Networks, Inc, DivX is a digital video compression format based on the MPEG-4 technology. DivX files can be downloaded over high-speed lines in a relatively short time without sacrificing the quality of the digital video.
 (Divx 대신에 DivXNetwork 사의 상표인 DivX라고 쓸 경우, 이는 MPEG-4 기술에 토대를 둔 디지털 비디오 압축 포맷을 뜻한다. DivX 파일은 디지털 비디오의 품질을 희생하지 않고서도 상당히 짧은 시간 내에 고속으로 다운로드 될 수 있다는 특징을 가진다.)
@@ -605,7 +604,7 @@ DivX
 
 
 
-MP3(MPEG Audio Layer-3)
+# MP3 : MPEG Audio Layer-3
 
 - MPEG Audio Layer-3(MP3) is a digital audio coding scheme used in distributing recorded music over the Internet.
 (MP3는 녹음된 음악을 인터넷상에 배포하는데 사용하는 디지털 오디오 코딩 구조를 말한다.)
@@ -613,7 +612,7 @@ MP3(MPEG Audio Layer-3)
 
 
 
-WMA(Windows Media Audio)
+# WMA : Windows Media Audio
 
 - Windows Media Audio(WMA) is a Microsoft file format for encoding digital audio files similar to MP3 though can compress files at a higher rate than MP3
 .(WMA(윈도 미디어 오디오)는 MP3 외 유사하게 디지털 오디오 파일을 부호화하는 마이크로소프트사의 파일 포맷으로서 MP3보다 더 높은 비율로 압축할 수 있다.)
@@ -621,7 +620,7 @@ WMA(Windows Media Audio)
 
 
 
-AVI(Audio Video Interleaved)
+# AVI : Audio Video Interleaved
 
 - Audio Video Interleaved(AVI) is a window multimedia file format for sound and moving pictures that uses the Microsoft RIFF(Resource Interchange File Format) specification.
 (AVI(오디오 비디오 인터 브리드)는 소리와 동영상을 위한 윈도 멀티미디어 파일 포맷으로서 마이크로소프트사의 RIFF(자원 교환 파일 포맷) 사양을 사용하고 있다.)
@@ -629,7 +628,7 @@ AVI(Audio Video Interleaved)
 
 
 
-Information Security
+# Information Security
 
 - Information Security is the technologies used to make a service resistant to unauthorized access to the data that it holds or for which it is responsible.
 (정보보호란 서비스가 자신이 보유하거나 담당하는 데이터에 대해 비인가 된 접근을 견뎌 낼 수 있도록 해주는 기술을 말한다.)
@@ -637,7 +636,7 @@ Information Security
 
 
 
-Authentication
+# Authentication
 
 - Authentication is the process of identifying an individual, usually based on a username and password.
 (인증이란, 개인으로서 마땅히 요구되는 신분에 해당하는지 단지 확인하는 것으로, 개인의 접근 권한에 관하여 말하는 것은 아니다.)
@@ -645,14 +644,14 @@ Authentication
 
 
 
-Encryption
+# Encryption
 
 - Encryption is the translation of data into a secret code. (암호화는 데이터를 비밀코드로 변환하는 것을 말한다.)
 
 
 
 
-Symmetric encryption
+# Symmetric encryption
 
 - Symmetric encryption is a type of encryption where the same key is used to encrypt and decrypt the message.
 (대칭형 암호화는 메시지를 암호화하거나 복호화 할 때 동일한 키를 사용하는 암호화 유형을 말한다.)
@@ -660,7 +659,7 @@ Symmetric encryption
 
 
 
-Public-Key Encryption
+# Public-Key Encryption
 
 - Public-Key Encryption is a cryptographic system that uses two keys, a public key known to everyone and a private or secret key known only to the recipient of the message.
 (공개키 암호화는 모든 사람에게 알려진 공개키와 메시지 수신자에게만 알려진 개인키 또는 비밀키라는 두 개의 키를 사용하는 암호시스템을 말한다.)
@@ -668,14 +667,14 @@ Public-Key Encryption
 
 
 
-Computer Virus
+# Computer Virus
 
 - A Computer Virus attaches itself to a program or file so it can spread from one computer to another, leaving infections as it travels. (컴퓨터 바이러스는 자기 자신을 프로그램이나 파일에 부착하여 이 컴퓨터에서 저 컴퓨터로 퍼질 수 있으며, 이동할 때마다 감염시키고 떠나는 것을 말한다.)
 
 
 
 
-Worm
+# Worm
 
 - A Worm is similar to a virus by its design and is considered to be a subclass of a virus. Worms spread from computer to computer, but unlike a virus, it has the ability to travel without any help from a person.
 (웜은 그 설계 측면에서 바이러스와 비슷해서 마치 바이러스의 한 부류인 것처럼 인식된다. 바이러스와 달리 웜은 컴퓨터에서 컴퓨터로 퍼져 나가는데 사람 도움 없이 도 이동할 수 있는 능력을 갖추고 있는 프로그램이다.)
@@ -683,7 +682,7 @@ Worm
 
 
 
-Trojan Horse
+# Trojan Horse
 
 - A Trojan Horse, at first glance will appear to be useful software but will actually do damage once installed or run on your computer.
 (트로이 목마는 신화 속에 나오는 트로이 목마에서 이름을 따서 만들었다. 이것은 상당한 속임수로 가득 차 있다. 첫눈에 트로이 목마는 유용한 소프트웨어인 것처럼 다가오지만 실제는 컴퓨터에 설치되거나 실행되면 손해를 끼치는 프로그램을 말한다.)
@@ -691,21 +690,21 @@ Trojan Horse
 
 
 
-ACN (Automatic Crash Notification)
+# ACN : Automatic Crash Notification
 
 차량 충돌이 발생할 경우 이 사건에 관계된 제반 정보들을 가공 처리하여 표준화된 데이터 메시지로 변환한 후 무선통신매체를 이용하여 다른 운전자들에게 실시간으로 알려주는 자동차 자동화 시스템이다.
 
 
 
 
-Ad-hoc(애드혹) 네트워크
+# Ad-hoc Network
 
 무선 기반의 이동단말기 간의 연결망의 일종으로서, 라우터 장비가 따로 없고 이동단말기 중 일부가 라우터 역할을 담당하는 네트워크이다. 동적으로 경로를 설정할 수 있기 때문에 기반구조 없는 네트워킹이라고도 한다. 험난한 지형 위험한 장소에서의 네트워크 구성을 하는 데 유용하다. 이동단말기에 센서 기능을 부가할 경우 USN(Ubiquitous Sensor Network)로 발전한다.
 
 
 
 
-Adaptive Learning
+# Adaptive Learning
 
 (적응형 학습, 맞춤형 학습)
 학습자의 수준과 학습 형태를 파악하여 이에 가장 알맞은 학습방법과 학습정보를 제공하며 피드백을 제공하는 이러닝 학습법이다.
@@ -713,34 +712,35 @@ Adaptive Learning
 
 
 
-AJAX
+# AJAX
 
 인터넷 사용자에게 보다 향상된 대화식 웹 서비스를 제공하기 위한 웹프로그래밍의 일종으로서, 하나의 기술이라기보다는 여러 기술들이 복합된 개념이다. HTML, XHTML, CSS, 자바스크립트, DOM(문서객체모델), XML, XSLT, XMLHttpRequest 객체 등 기존의 다양한 웹 기술들을 함께 사용하는 새로운 접근 방법이다.
 
 
 
 
-Alt-text
+# Alt-text
 
- 웹에서 이미지와 링크는 시각 장애인에게는 불편한을 초래하여 웹 접근성을 떨어뜨리게 되는데 이를 극복하기 위하여 부가적으로 문자 형태로 해당 이미지나 속성의 속성을 제공하는 것을 말한다.
+- 웹에서 이미지와 링크는 시각 장애인에게는 불편한을 초래하여 웹 접근성을 떨어뜨리게 되는데 이를 극복하기 위하여 부가적으로 문자 형태로 해당 이미지나 속성의 속성을 제공하는 것을 말한다.
 
 
 
-AP (Access Point)
+
+# AP : Access Point
 
 무선 LAN 카드를 이용하여 인터넷 서비스를 받을 수 있도록 지원해주는 장비로서 유선 네트워크의 끝단에 장착된다.
 
 
 
 
-App Store
+# App Store
 
  스마트폰 제조회사가 자신의 스마트폰 운영체제를 공개함으로써 다른 기업체들로부터 많은 응용 프로그램 개발을 유도한 뒤, 이를 온라인상에서 함께 일반인에게 판매할 수 있도록 해주는 판매 시스템을 말한다. 최초로 애플사가 스마트폰인 “아이폰”을 대상으로 시도했는데, 2008년 7월부터 아이튠스(온라인 미디어 판매 서비스)를 통해 앱 스토어 서비스가 시작되었다. 수익은 7대 3으로 개발자와 애플사가 나눈다. 국내에서도 SKT가 앱 스토어 사업을 2009년 말에 시작했다.
 
 
 
 
-AR : Augmented Reality
+# AR : Augmented Reality
 
 (AR, 증강현실)
  사용자가 눈으로 보는 현실 세계에 부가적인 정보를 포함하는 3차원의 입체적인 가상세계를 겹쳐서 보여주는 기술이다. 존재하지 않은 사물과 환경만을 대상으로 다루며, 게임과 오락 위주로 활용되고 있는 가상현실(Virtural Reality)과는 차별된다. 원격 의료 진단 영역이나 방송 영역, 건축 토목 설계 영역 등 다양한 실생활에서 사용한다. 실외에서는 착용식 컴퓨터(Wearable Computer)나 HMD(Head Mounted Device) 등의 별도 장비를 사용하여 증강현실을 구현하고 있다.
@@ -748,7 +748,7 @@ AR : Augmented Reality
 
 
 
-Barebone PC
+# Barebone PC
 
 (반제품 PC)
 PC를 만들 때 사용하는 기본 골격인 케이스, 메인보드, 전원 공급 장치만을 갖춘 컴퓨터로서 CPU, HD, CR-ROM, CD-RW 등은 고객의 선호도에 따라 추가한다. 고객 개인별 사용 목적에 맞도록 작으면서도 강력한 컴퓨터를 제작할 수 있게 해준다.
@@ -756,15 +756,13 @@ PC를 만들 때 사용하는 기본 골격인 케이스, 메인보드, 전원 �
 
 
 
-BEMS
-
-(Building Energy Management System)
+# BEMS : Building Energy Management System
  가정 주택은 물론 일반적인 건물에 대하여 에너지 소비를 최적화할 목적으로 스마트 가전을 정보 네트워크에 접근한 후 조작할 수 있도록 한 IT 시스템을 말한다.
 
 
 
 
-BIO Information Technology
+# BIT : BIO Information Technology
 
 (BIT, 생명 정보 기술)
  BT(Biotechnology, 생명 기술)과 IT(Information Technology, 정보 기술)의 합성어로서, 크게 Bioinformatics(생명 정보학), Biochip(바이오칩, 생물화학소자), Bio-MEMS 그래픽 등의 정보 기술을 활용하여 생명공학과 관련된 데이터를 분석하고 저장하고 해석하는 분야로서, 인간의 유전자 지도를 완성한 HGP(Human Genome Project)로 인하여 크게 각광을 받고 있다.
@@ -772,16 +770,15 @@ BIO Information Technology
 
 
 
-BLE
+# BLE : Bluetooth Low Energy,
 
-(Bluetooth Low Energy, 
 저전력 블루투스, 블루투스 4.0)
  10m 이내에서 저전력 저용량 데이터 송수신이 가능한 블루투스를 말한다. 2.4GHz 주파수 대역을 사용하여 평균 전송 속도가 10kbps 이하인 경우에는 1년 넘게 사용할 수 있어서 비곤(beacon), 웨어러블 컴퓨터, 장난감 등에 사용된다. 2006년 노키아(Nokia)가 와이브리(Wibree)라는 이름으로 개발하였고 2010년 블루투스 4.0 규격으로 채택되었다.
 
 
 
 
-Blog
+# Blog
 
 (블로그)
  웹 로그(Web log)의 약자로서 특정한 주제에 대한 개인의 의견, 자료 등의 기록을 축적하여 제공하는 사이트를 말한다.
@@ -789,7 +786,7 @@ Blog
 
 
 
-Blue Ray
+# Blue Ray
 
 (블루레이)
  단층으로 25기가(G)를 담을 수 있는 차세대 대용량 저장 매체이다. 기존의 DVD나 CD에는 적색 레이저를 사용하여 디스크를 읽지만, 블루레이는 청색 레이저를 사용해서 디스크를 읽어서 붙여진 명칭이다.
@@ -797,7 +794,7 @@ Blue Ray
 
 
 
-Bluesumer
+# Bluesumer
 
 (블루슈머)
  경쟁자가 거의 없는 시장에서의 새로운 소비자 그룹을 이르는 말이다. 블루오션(blue ocean)과 컨슈머(consumer)의 합성어로서, 우리나라 통계청에서는 블루슈머를 ① 이동족(Moving Life), ② 무서워하는 여성(Scared Woman), ③ 20대 아침 사양족(hungry Morning), ④ 피곤한 직장인(Weary Worker), ⑤ 3050 일하는 엄마(Working Mom), ⑥ 살찐 한국인(Heavy Korean)으로 꼽았다.
@@ -805,7 +802,7 @@ Bluesumer
 
 
 
-Bluetooth
+# Bluetooth
 
 (블루투스)
  WPAN의 일종으로 휴대폰과 PC 주변장치 간의 효율적인 무선 인터페이스를 위해 에릭슨 사가 1994년부터 도입한 기술이다. 데이터 교환 대상으로는 컴퓨터, 개인용 단말기(핸드폰, PDA), 백색 가전제품(냉장고, 세탁기) 등이 있다. 주로 10m 정도의 단거리에서 저전력 무선 연결이 필요할 때 사용된다.
@@ -813,33 +810,29 @@ Bluetooth
 
 
 
-BYOD
-
-(Bring Your Own Device)
+# BYOD : Bring Your Own Device
  개인용과 업무용 디지털 기기가 별도로 존재하는 기존 방식과 달리 집에서 사용하는 개인용 디지털 기기를 회사에도 가지고 와서 업무에도 계속하여 사용할 수 있도록 하는 것을 말하는 것으로 2009년 인텔이 처음으로 도입하였다. 동일한 디지털 기기로 개인용무와 회사업무를 병행할 수 있어서 장점이 있지만 보안 및 프라이버스의 문제를 해결해야 한다.
 
 
 
 
-CA
+# CA : Carrier Aggregation
 
-(Carrier Aggregation, 
 주파수 결합 기술)
  이동통신상에서 2개 이상의 상이한 주파수를 합함으로써 사용자가 다수의 주파수에 동시에 접근하여 최대의 데이터 송수신 속도를 낼 수 있도록 하는 주파수 집성 기술이다.
 
 
 
 
-CEM
+# CEM : Customer Experience Management, 
 
-(Customer Experience Management, 
 고객 경험 관리)
  기업과 제품에 관한 고객들의 경험을 토대로 하여 기업을 경영하는 전략으로서, 고객관리(CRM)의 다음 단계로 제시되고 있다. 고객이 매장에서 상품을 구매를 하는 동안의 느낌을 데이터베이스로 구축하여 활용한다.
 
 
 
 
-Cloud Computing
+# Cloud Computing
 
 (클라우드 컴퓨팅)
  일반고객이나 기업고객이 필요로 하는 만큼의 컴퓨팅 자원(하드웨어, 네트워크, 소프트웨어 모두를 포함)을 인터넷을 통해서 유연하게 제공해주고 이에 상응하는 사용료를 받는 새로운 컴퓨팅 서비스 모델이다. 고객의 사용량에 비례하여 과금한다는 측면에서 유틸리티 컴퓨팅(utility computing) 성격을 가진다. 서비스 제공업체의 입장에서 볼 때, 유한한 컴퓨팅 자원을 가지고 거의 무한한 고객들의 예측 불가능한 서비스를 제공해줘야 하므로, 가상화 기술을 기반으로 클라우드 컴퓨팅을 구축하게 된다. 고객의 방대한 데이터를 안전하게 저장하고 신속하게 접근할 수 있도록 하기 위하여 구글의 Hadoop과 같은 분산 파일 관리 시스템도 사용한다.
@@ -849,7 +842,7 @@ Cloud Computing
 
 
 
-CODEC
+# CODEC
 
 (코덱)
  음성, 영상 등의 멀티미디어 데이터를 컴퓨터용 디지털 신호로 변환(코딩)해주거나 다시 원래의 상태로 복원(디코딩)해주는 프로그램이다. 코딩(Coding)에는 압축과 암호화 기술이 사용되는데, 멀티미디어 데이터를 재생하려면 코덱에 의하여 디코딩(Decoding) 과정을 거쳐야 한다.
@@ -857,7 +850,7 @@ CODEC
 
 
 
-Collective Intelligence
+# Collective Intelligence
 
 (집단지성)
 키스 소여는 자신의 책 『그룹 지니어스(Group Genius)』를 통해서 개인 한 사람이 보유하는 지적 능력보다는 여러 사람이 소통하는 조직이 창출하는 지적 능력이 더 우수할 수 있음의 중요성을 강조한다. 위키디피아, RSS, 블로그로 대표되며 참여와 공유를 핵심으로 내세우는 웹 2.0은 이러한 집단 지성의 가치를 정보지식사회에서 증명하는 대표적인 사례이다. 창의적 아이디어 발상법 중에서 브레인스토밍 기법 역시 개인의 창의성보다는 소통이 잘 이루어지는 다수로 구성된 조직의 창의성이 우수하다는 집단 지성을 근간으로 한다.
@@ -865,7 +858,7 @@ Collective Intelligence
 
 
 
-Context Awareness
+# Context Awareness
 
 (상황인지)
  현재 사람이 처한 상황을 자동으로 인지하여 필요한 정보를 적합한 형태로 제공해주는 정보 시스템을 말한다. 시스템이 인지하는 상황에는 사람의 위치, 시간, 기후, 임무 등이 포함된다. 현실 공간과 가상공간을 연결하여 현실의 상황을 인지하여 가상공간 안에 정보화한 후 이를 토대로 지능화된 서비스를 제공한다.
@@ -873,7 +866,7 @@ Context Awareness
 
 
 
-Cresumer
+# Cresumer
 
 (크리슈머)
  단순한 소비자의 수준을 뛰어넘어 기업의 신제품 개발, 마케팅 등에 걸쳐 피드백을 통하여 자발적으로 기업 활동에 참여함으로써 일반 소비자들의 미래 지향적 요구를 기업이 앞서 반영할 수 있도록 적극적이며 창의적으로 활동하는 소비자로서 앨빈토플러가 제 3의 물결에서 제시한 용어이다.
@@ -881,7 +874,7 @@ Cresumer
 
 
 
-Cross Browsing
+# Cross Browsing
 
 (크로스 브라우징)
 다양한 종류의 웹 브라우저나 운영체제와 무관하게 어느 곳에서나 읽힐 수 있도록 웹 문서를 표준화하는 기법을 말한다.
@@ -890,7 +883,7 @@ Cross Browsing
 
 
 
-Crowd Animation
+# Crowd Animation
 
 (군중 애니메이션)
 영화와 동영상에 등장하는 다수의 사람, 곤충, 동물들 등을 실제가 아닌 가상의 캐릭터로 대치시켜 동작하도록 하여 촬영하는 방식이다. 실제 존재(엑스트라)를 사용하는 방식에 비하여 저렴하고 반복 수정이 가능하다는 장점을 제공한다.
@@ -898,259 +891,303 @@ Crowd Animation
 
 
 
-CUI
+# CUI : Conversational User Interface
 
-(Conversational User Interface, 대화형 사용자 인터페이스)
+, 대화형 사용자 인터페이스)
  일반적인 사용자 인터페이스(UI, User Interface)가 점점 발달하여 사용자의 표정, 언어, 몸짓까지도 컴퓨터가 원활하게 인식하여 사용자와 컴퓨터가 대화하듯이 이루어지는 사용자 인터페이스이다. 이전의 CUI(문자 UI), GUI(그래픽 UI)보다 더 뛰어난 최신 UI기술이다.
 
 
 
 
-Cyber Now
+# Cyber Now
 
 (사이버 나우)
  사이버 공간과 사람을 온종일 연결해주는 미래의 가상현실 장비를 말한다. 이 장비는 뇌의 지시를 받아 동작하며, 옷이나 콘텍트렌즈, 안경 등의 형태로 착용하거나 피부에 이식하는 것이 가능하다. 원격 의료 검진, 원격 교육, 원격 근무를 가능하게 해준다.
 
 
-4. D
 
 
-
-DAISY
-
-(Digital Accessible Information SYstem, 데이지)
+# DAISY : Digital Accessible Information SYstem
 
  디지털 정보에 정상적으로 접근하기 힘든 사람(시각 장애인, 노인, 독서 장애인)들을 위하여 다른 접근 방법을 제공해주는 시스템이다. 시각 장애인을 위한 점자도서관에서 책을 읽어주는 기능을 추가 확장한데서 출발한다. 국제 데이지 컨소시엄을 통해서 데이지 관련 기술 표준을 제정하여, 각종 저작도구 및 다양한 멀티미디어 콘텐츠를 제작하여 보급하고 있다.
 
-Data Mart
+
+
+
+# Data Mart
 
 (데이터마트)
 
  데이터웨어하우스 등으로부터 유도될 수 있는 데이터의 저장소를 가리킨다. 데이터웨어하우스가 다소 덜 다듬어지고 전략적인 반면, 데이터마트는 당장의 요구에 활용할 수 있는 전술적인 특징을 가지고 있다.
 
-Data Mining
+
+
+
+# Data Mining
 
 (데이터마이닝)
 
  이전에는 발견되지 않았던 데이터 간의 상호관계를 분석해내는 것을 가리킨다. 수치화하기 힘든 데이터 간의 연계성을 찾아내며, 인공지능기법을 통해 데이터들의 상관관계를 자동으로 찾아낸다.
 
-Devops
+
+
+
+# Devops
 
 (데브옵스)
 
  조직 내에서 상호의존적인 시스템 개발(Development)과 시스템 운영(Operation)을 병행하고 협업하는 방식을 말한다.
 
-Digilog
+
+
+
+# Digilog
 
 (디지로그)
 
  첨단의 디지털 기술과 부드러운 아날로그적 정서가 결합한 제품이나 서비스를 말하거나, 아날로그 시대에서 디지털 시대로 넘어가는 변혁기에 위치한 세대를 가리키며, 디지털의 장점을 내포하면서도 아날로그 시스템으로 구성된 제품을 이르는 말이기도 하다. Digital과 Analog의 합성어로서, 아날로그적 사고방식과 행태가 디지털 사회를 더욱 풍부하게 해 준다는 인식에서 출발하고 있다.
 
-Digital Access Index
 
-(DAI, 디지털 접근지수)
+
+
+# DAI : Digital Access Index
+
+, 디지털 접근지수)
 
  IT에 대한 접근성과 IT 서비스 이용에 관한 세계적인 비교지수를 말한다. 세계 각국의 정보통신망 및 정보기기의 보급, 정보 서비스 이용에 관한 제반 자료를 토대로 이 지수를 결정하는데, 국제전기통신연합(ITU)이 2003년 처음 발표해서 사용하고 있다.
 
-Digital Archiving
+
+
+
+# Digital Archiving
 
  디지털로 기록된 자원들을 장기적으로 잘 보전하고 관리, 운영하기 위한 전반적인 작업을 의미한다. 기존의 아날로그 자원들도 디지털 자원으로 변환하여 데이터베이스를 구축하는 것도 포함하고 있다.
 
-Digital Boomer
+
+
+
+# Digital Boomer
 
 (디지털 부머)
 
  점차 확산일로에 있는 디지털 시대에 제품의 소비 확산을 주도하는 디지털 신인류를 이르는 말이다.
 
-Digital Native
+
+
+
+# Digital Native
 
 (디지털 원주민)
 
  인터넷, 휴대폰, 컴퓨터 등의 복잡한 디지털 기술을 어려서부터 친근하게 접한 세대를 가리킨다. 기성세대는 어렵게 생각하는 디지털 기술을 텔레비전 정도의 가전제품으로 친숙하고 쉽게 생각하는 세대이다.
 
-Digital Prosumer
+
+
+
+# Digital Prosumer
 
  인터넷 커뮤니티에 참여하여 정보를 얻고 디지털 콘텐츠를 즐기는 소비자이면서 동시에 적극적인 의견을 개진하여 생산 활동에도 참여하는 사림이다.
 
-DIVA
 
-(Digital Interface for Video and Audio, AV용 디지털 인터페이스)
+
+
+# DIVA : Digital Interface for Video and Audio
+
+AV용 디지털 인터페이스)
 
  디지털 TV를 중심으로 가전제품들 간에 네트워킹을 지원하는 인터페이스이다. 기술적으로 일반 데이터를 보내는 고속 양방향 채널과 비디오와 오디오를 보내는 채널이 통합되어있다.
 
-DivX
+
+
+
+# DivX : Digital Internet Video Express
 
 DivXNetworks사의 상표로서, MPEG-4 기술에 토대를 둔 디지털 비디오 압축 포맷이다. DivX 파일은 품질 저하 없이도 상당히 짧은 시간 내에 고속으로 다운로드될 수 있다.
-
-DivX
-
-(Digital Internet Video Express, 
-
 디지털 비디오 익스프레스)
 
  디즈니, 드림웍스, 선경그룹, 파라마운트와 유니버설 등 여러 개의 헐리우드 대기업이 추진한 새로운 DVD-ROM 포맷이다.
 
-
  한 장의 DVD-ROM에 실린 한 편의 영화는 정해진 기일(대표적으로 이틀) 동안만 재생이 가능하다. 마이크로소프트사의 MPEG-4 코덱 기술을 변형해서 만든 새로운 영화 파일 형식으로서, Divx 디스크는 궁극적으로 비디오 테이프를 교체할 잠재력을 가지고 있다. 다만, Divx 포맷이 현재의 DVD-ROM 재생기와 역방향 호환성이 없기 때문에 Divx는 DVD 시장을 방해하고 있는 존재가 되고 있다.
 
-DLP
 
-(Digital Light Processing, 
+
+
+# DLP : Digital Light Processing
 
 디지털 광학 기술)
 
  DLP는 디지털 마이크로-미러 장비를 사용하는 마이크로-전자-기계 기술을 토대로 동작하는 디스플레이 장비이다. DLP는 전통적인 정적 디스플에이에서부터 대화형 디스플레이와 의료, 보안, 산업용 비전통적 임베디드 응용에 이르기까지 다양한 디스플레이 응용에 사용된다.
 
 
-DOM
 
-(Document Object Model, 
 
+# DOM : Document Object Model
 문서 객체 모델)
 
  객체 기반의 문서 모델로서 웹 브라우저를 통해 XML 문서의 상호 연동을 보장한다. W3C가 주관하는 프로그래밍 인터페이스 규격의 일종이다. DOM은 HTML로 구성된 홈 페이지나 XML 문서들을 프로그램 객체로 변환하도록 해준다. 프로그래밍 제어를 문서상에 어떻게 제공할 것인지를 명시하기 위해 투입한 연구 노력의 결과물이다. DOM Core와 DOM HTML이라는 두 가지 계층의 인터페이스 구현을 제공한다.
 
 
-DRM
 
-(Digital Radio Mondiale)
+
+# DRM : Digital Radio Mondiale
 
 유럽 방식의 디지털 라디오 방송을 말한다. 현재 30MHz 이하 대역에서 사용 중인 아날로그 라디오 방송 주파수대를 그대로 사용하면서도 디지털로의 전환을 가능하게 해준다. FM 모노 수준의 음질을 제공하며, 다양한 데이터 방송을 서비스할 수 있다. 우리나라의 경우 4.5MHz, 9MHz, 18MHz 대역을 선택할 수 있다.
 
 
-Dual SIM Portable Phone
+
+
+# Dual SIM Portable Phone
 
 (듀얼심 휴대전화)
 
  휴대폰 1대에 2개의 SIM(Subscriber Identity Module, 가입자 식별 모듈) 카드를 장착하여 마치 2대의 휴대폰처럼 사용할 수 있도록 하는 기술이다.
 
-DVI
 
-(Digital Video Interactive, 
+
+
+# DVI : Digital Video Interactive
 
 대화형 디지털 비디오)
 
  동영상을 최고 1/120로 압축하는 데이터 압축 기술로서, 12층의 CD-ROM 한 장에 최고 72분의 동화와 음성을 기록할 수 있다. 모자이크 처리나 흑백 반전, 확대, 축소 등의 특수 효과를 일으키기 쉬우며, 1,670만(244)색 중 512색을 동시에 표시할 수 있다. 인텔과 마이크로소프트에 의하여 공동으로 개발되었다.
 
-DW
 
-(Data Warehouse, 
+
+
+# DW : Data Warehouse
 
 데이터웨어하우스)
 
  웨어하우스는 “창고”라는 의미로서 데이터의 저장에서 분석 방법까지 포함하여 조직의 의사 결정에 이용된다. 기존의 데이터베이스들에 저장된 데이터들을 통일된 형식으로 변환하여 한 곳에서 통합적으로 관리하는 데이터베이스가 데이터웨어하우스이다. 기업측면에서는 ① 고객들의 구매 동향, ② 새로운 제품에 대한 고객 반응, ③ 제품별 수익률 등의 마케팅 정보를 획득하는 것을 목표로 하여 구축되고 운영된다.
 
 
-5. E
 
 
-
-EA
-
-(Enterprise Architecture, 
+# EA : Enterprise Architecture
 
 엔터프라이즈 아키텍처)
 
  기업 정보와 관련된 자원을 단순화하고 재사용성을 최대화함으로써 변화에 신속하게 대응하도록 기업 내 최고정보책임자(CIO)들이 마련하는 밑그림이다. 기업의 목적과 목적수행을 위한 정보와 기술, 새로운 기술 적용을 위한 순환 절차 등을 정의하여 명시한 문서나 아키텍처 개발 기법으로서, ① 비즈니스 아키텍처, ② 데이터 아키텍처, ③ 기술 참조 모델과 표준, ④ 어플리케이션 아키텍처, ⑤ 기술 아키텍처를 구성요소로 가지고 있다.
 
-ECU
 
-(Electronic Control Unit, 
+
+
+# ECU : Electronic Control Unit
 
 전자제어장치)
 
  자동차 안에 있는 한 개 이상의 전기 시스템 혹은 서브시스템을 제어하는 임의의 내장형 시스템에 대한 일반적인 용어이다. ECU에 대한 다른 이름은 ECM, CCM, 제어 장치 또는 제어 모듈이다. 모두 합해서 이들 시스템은 종종 자동차의 컴퓨터라고 부른다.
 
-EDMS
+
+
+
+# EDMS
 
 (전자문서 관리 시스템)
 
  다양한 종류의 문서와 정보를 생성부터 폐기에 이르기까지 일관성 있게 통합 관리함으로써 업무의 효율성을 추구하는 정보 시스템이다. 여러 종류의 전자 문서에 대한 등록, 저장, 관리, 송수신, 조회 등을 지원한다.
 
-EIS
 
-(Executive Information System, 
+
+
+# EIS : Executive Information System
 
 경영진 정보 시스템)
 
  일종의 경영 정보 시스템으로서 기업 중역들의 전략 기획을 지원하려는 목적으로 구축된다. 이와 유사한 시스템으로는 경영전략시스템(ESS), 전략정보시스템(SIS), 의사결정지원시스템(DSS) 등이 있다.
 
-Embedded Software
+
+
+
+# Embedded Software
 
 (임베디드 소프트웨어)
 
  미리 정해진 기능을 디지털 제품이 수행하도록 제어하는 프로그램을 말한다. 다양한 디지털 기기나 장비에 장착되어 제품이 동작하도록 이끄는 프로그램으로서, 휴대폰, 게임기, 셋톱박스, 디지털 TV 등 많은 디지털 제품에 내장되어 사용된다.
 
 
-Emotional ICT
+
+
+# Emotional ICT
 
 (감성 아이시티)
 
  정보통신기술(ICT)을 적용하는 기기나 기구가 사람의 감성(기분, 표정, 생각 등)에 따라 조정되는 기술이다. 예를 들어, 스마트폰으로 사진을 촬영할 때 피사체 사람의 표정에 따라 촬영 환경을 바꾸어줄 수 있다.
 
-Emotional User Interface
+
+
+
+# EUI : Emotional User Interface
 
 (EUI, 감성 사용자 인터페이스)
 
  기능 위주로 제공되던 딱딱한 사용자 인터페이스를 사용자의 추억과 감성을 자극함으로써 한층 더 친밀감을 느끼며 즐길 수 있도록 변형한 인터페이스를 말한다. 이성적이고 차가운 느낌을 주던 디지털 장비에 추억과 감성을 불러일으키도록 구현된 새로운 사용자 인터페이스를 말한다.
 
 
-Enterprise(엔터프라이즈) 2.0
+
+
+# Enterprise 2.0
 
  참여와 공유를 핵심으로 내세우는 웹 2.0의 기본 철학을 기업의 IT 인프라 구현에 접목시킨 개념이다. 기업 내 직원들 외에 파트너인 외부기업, 기업의 고객들이 모두 다 함께 사회적 소프트웨어 환경을 활용하여 기업 경영에 참여하도록 하는 새로운 기업 환경을 말한다.
 
-
  위키피디아, RSS, 블로그 등 웹 2.0과 관련된 기술과 문화가 기업 안으로 파급되면서 파생된 새로운 기업 환경으로서 2006년 미국 하버드대 앤드류 맥아피 교수가 최초로 제시하였다.
 
-EPG
 
-(Electronic Program Guide, 
+
+
+# EPG : Electronic Program Guide
 
 전자 프로그램 가이드)
 
  막대한 TV 채널의 프로그램들을 효과적으로 안내하기 위해 빈 주파수나 빈 채널을 사용하여 TV 프로그램 정보를 제공하는 기술을 말한다. 일종의 TV 포털(Portal)이라고 할 수 있다.
 
-ETL
 
-(Extract, Transform and Load, 
+
+
+# ETL : Extract, Transform and Load
 
 추출, 변환, 적재)
 
  어떤 시스템에 저장된 데이터를 다른 시스템으로 옮길 때 이루어지는 3단계 과정을 이르는 말이다. 기존 시스템으로부터 데이터를 추출하고 이를 변형한 후 새로운 시스템으로 적재하는 과정으로서, 기업에서 데이터를 통합하거나 새로운 시스템을 구축할 때 ETL 도구를 사용한다.
 
 
-6. F
 
 
-
-FDR
-
-(Flight Data Recorder)
+# FDR : Flight Data Recorder
 
 비행 데이터 기록 장치를 말하는 것으로 일명 블랙박스라고 부른다.
 
-FemtoCell
+
+
+
+# FemtoCell
 
 (펨토셀)
 
  기존의 휴대폰이 지원해주는 서비스 영역보다 훨씬 작은 영역을 지원해주는 이동통신 서비스이다. 아주 작은 규모의 휴대폰 기지국과 집안의 유선 인터넷을 연결함으로써 자유로운 유무선 통신을 지원한다. 중계기를 통하지 않으므로 네트워크 구축 비용이 낮고, 통화 품질이 좋다. 펨토(Femto)와 셀(Cell)의 합성어로서 펨토는 1000조분의 일을 나타내며, 셀은 휴대폰 기지국 1개를 의미한다.
 
 
-Flash Memory
+
+
+# Flash Memory
 
 (Flash RAM, 플래시 메모리)
 
  EEPROM의 변형 중 한 가지로서, Byte 레벨에서 지우거나 수정하는 전통적인 EEPROM과는 달리 블록 단위로 수정되기 때문에 속도가 빠르다는 장점이 있다. 이러한 블록 단위 사용의 특징 때문에 일반 램처럼 아직은 광범위하게 사용되지는 못하고 있다. 플래시 메모리는 지속적으로 전원이 공급되는 비휘발성 메모리의 일종으로서, 휴대전화, 디지털카메라, 디지털 텔레비전, 디지털 캠코더, 개인휴대단말기(PDA), 게임기, MP3 플레이어 등에 널리 이용되고 있다. 종종 PC의 BIOS와 같은 제어코드를 저장하는데 사용되는데 이 경우 플래시 메모리는 바이트 단위가 아닌 블록 단위로 기록되므로 수정이 쉬워진다. 플래시 메모리는 저장 용량이 큰 데이터 저장형(NAND 타입)과 처리 속도가 빠른 코드 저장형(NOR 타입)으로 분류된다.
 
 
-Flipped Learning
+
+
+# Flipped Learning
 
 (역순 학습, 플립트 러닝, 거꾸로 학습)
 
  정식 수업이 이루어지기 전에 학생들이 먼저 충분한 학습(주로 사이버 강의)을 한 후, 강의실에 들어와서 교수자와 토론이나 질의 등의 형태로 수업을 진행하는 학습법이다. 강의실에서 이루어지는 기존의 학습법과 반대로 이루어진다고 해서 붙여진 이름이다.
 
 
-Folksonomy
+
+
+# Folksonomy
 
 (폭소노미, 대중분류학)
 
@@ -1158,101 +1195,116 @@ Folksonomy
 
 
 
-7. G
 
-
-
-G4C
-
-(Government For Citizen, 
+# G4C : Government For Citizen
 
 민원 서비스 혁신)
 
  국내 행정안전부, 국토해양부, 국세청, 대법원 등에 흩어져 있는 주민·부동산·자동차·기업·세금 등 5대 민원정보에 대한 공동이용체계를 마련하고 이를 기반으로 전자민원 포털사이트인 ‘정부대표 전자민원실’을 구축하는 사업을 말한다. 주요 사업 내용으로, 인터넷을 통한 민원 안내, 행정정보 공동 이용 서비스, 민원 신청 및 처리서비스, 행정서비스용 인프라 확충 및 관련 법·제도 정비 등을 포함하고 있다.
 
-Game Learning
+
+
+
+# Game Learning
 
 (G 러닝)
 
  기능성 게임들을 이용하여 진행하는 교육을 말한다. 게임이 주는 기대감과 재미를 최대한 살리면서 교육 학습적 요소를 게임에 적용함으로써 즐겁게 배울 수 있도록 해준다.
 
-GIS
 
-(Geographic Information System, 
+
+
+# GIS : Geographic Information System
 
 지리 정보 시스템)
 
  지구의 표면과 지하 및 지상 공간에 존재하고 있는 각종 자연물(산, 강, 토지 등)과 인공물(건물, 도로, 철도 등)에 대한 위치 정보를 보관하고 활용하는 시스템이다. 국토를 대상으로 각종 사업 계획을 수립하거나 의사결정을 할 때, 그리고 제반 산업 활동을 효율적으로 지원하는데 활용한다. GIS를 활용하면, 지도나 도면의 생산·수정 및 유지관리에 드는 시간과 비용을 절감할 수 있으며, 지도를 쉽게 확대하거나 축소할 수 있고 서로 다른 축척과 내용을 가진 지도나 도면을 쉽게 중첩시켜 볼 수 있게 된다. 또한 공간 관련 각종 자료를 신속하게 분석한 후 이를 토대로 의사결정을 신속하게 할 수 있으며, 가스 폭발 사고, 지진, 홍수 등의 재해 발생을 사전에 방지하고 빠른 복구 작업을 지원할 수 있다.
 
 
-GPS
 
-(Global Positioning System, 
+
+# GPS : Global Positioning System
 
 위성 위치 확인 시스템)
 
  비행기, 자동차, 선박에서 뿐만 아니라 세계 어느 곳에서든 인공위성을 이용해 자신의 위치를 알 수 있는 시스템이다. 단순 위치 정보 제공에서부터 자동항법, 유조선의 충돌방지, 교통관제, 토목공사에 있어서의 정밀 측량, 지도 제작 분야에 광범위하게 응용되고 있다.
 
-Green IT
+
+
+
+# Green IT
 
 (녹색 정보 기술)
 
  정보 통신 기술 분야에서 친환경 저전력 서비스를 구현하기 위한 기술을 말한다. 예를 들어, 같은 수준의 IT 서비스를 제공하면서도 컴퓨터의 수를 줄임으로써 전력을 적게 사용하는 것도 그린 IT라고 할 수 있다.
 
-Green Technology
+
+
+
+# GT : Green Technology
 
 (GT, 녹색 기술)
 
  지구 온난화, 자원 고갈, 유해 가스 배출 증가에 따른 환경 문제를 해결하기 위하여 개발되는 친환경 저전력 기술을 가리킨다. 정보 통신 기술 분야에 있어서는 Green IT가 녹색 기술의 대표주자라고 할 수 있다.
 
-Grid Computing
+
+
+
+# Grid Computing
 
 (그리드 컴퓨팅)
 
  전 세계에 산재해있는 컴퓨터 자원을 초고속 인터넷을 이용하여 격장구조로 연결한다는 의미를 내포한다. 사용하지 않는 시간대의 수많은 컴퓨터들을 하나의 고성능 슈퍼컴퓨터처럼 활용할 수 있도록 해주어 슈퍼컴퓨팅을 구현하기 위한 저렴한 대안으로 떠오르고 있다.
 
-Groupware
+
+
+
+# Groupware
 
 (그룹웨어)
 
  여러 사람이 함께 쓸 수 있는 소프트웨어로서, 집단 작업을 지원하도록 만들어진 소프트웨어라는 의미로 이름이 붙여졌다. 대부분의 소프트웨어들이 구성원 각자의 사용을 전제로 만들어진 것과는 달리, 그룹웨어는 통신망을 활용하여 전체 구성원 간에 정보를 교환하면서 작업을 진행함으로써 전체 생산성을 향상시키도록 해준다.
 
 
-8. H
 
 
-
-HCI
-
-(Human Centric Interface, 
+# HCI : Human Centric Interface
 
 사람 중심 인터페이스)
 
  컴퓨터와의 대화가 마치 사람과의 대화처럼 자연스럽게 이루어질 수 있도록 해주는 기술이다. 높은 수준으로 발달한 입출력장치, 상황 인식 기술 등을 사용하여 이를 구현한다.
 
-HDMI
 
-(High Definition Multimedia Interface, 
+
+
+# HDMI : High Definition Multimedia Interface
 
 고화질 멀티미디어 인터페이스)
 
  TV용 셋톱박스, DVD 플에이어 등 HD급 영상기기를 간편하게 연결해주는 초고속 멀티미디어 인터페이스 규격을 말한다. 압축되지 않은 풀 디지털 오디오와 비디오 신호를 통합하여 전송한다. HDMI는 기존의 아날로그 케이블에 비해 화질 저하가 없다. Full HD를 지원하는 HDMI 1.3의 대역폭은 10 Gbps(340MHz)이다.
 
-HMD
 
-(Head Mounted Display, 
+
+
+# HMD : Head Mounted Display
 
 머리 장착형 디스플레이)
 
  사람의 눈이 볼 수 있는 시야각 전체에 영상이 꽉 차게 들어올 수 있도록 머리에 부착하는 디스플레이 장치이다. 헬멧형과 안경형이 있으며 사용자의 머리의 방향을 감안하여 화면이 자동으로 이동하여 보여진다. 게임과 같이 가상현실을 구현하는데, 주로 사용하지만 업무용, 연구용으로도 사용한다.
 
-Human Body Communication Technology
+
+
+
+# Human Body Communication Technology
 
 (인체 통신 기술)
 
  기존의 네트워크 회선을 대신하여 사람 몸을 활용함으로써 사람과 사람 사이에 통신이 이루어지도록 해주는 기술이다. 사람 몸에 약간의 전류가 흐른다는 점에 착안하여 출발한 기술로서, 예를 들어 두 사람이 악수하는 것만으로 두 사람 사이에 정보 교류가 일어나는 경우도 이러한 기술의 사례에 해당한다.
 
-Hybrid Drive
+
+
+
+# HDD : Hybrid Disk Drive
 
 (하이브리드 드라이브, 
 
@@ -1262,89 +1314,95 @@ Hybrid Drive
 
 
 
-9. I
 
-
-
-ICN
+# ICN
 
  통신을 기반으로 한 이전의 인터넷 통신 패러다임을 정보 중심으로 재편성하려는 네트워킹을 가리킨다. 통신을 원하는 개체가 통신 대상 호스트의 주소에 기반한 통신이 아닌 정보 식별자를 기반으로 하는 통신이다. 기존 인터넷이 통신의 목적보다는 절차에 집중한 반면, 이것은 절차보다는 목적에 집중하는 새로운 형태의 네트워킹 기술이다.
 
 
-IEEE 802.11n
+
+
+# IEEE 802.11n
 
  무선네트워크의 새로운 규격으로서 데이터 처리속도가 600Mbps 이상이다. 핵심 기반 기술로는, 최소한의 오류와 최적의 데이터 속도를 위하여 송신부와 수신부 모두에 다중 안테나를 사용하는 MIMO가 있다. 데이터 신뢰성을 향상시키기 위해 중복 사본을 다수 전송하는 코딩 방식을 사용한다.
 
 
-i-Fashion
+
+
+# i-Fashion
 
  패션 기술에 정보 기술을 접목하여 만들어지는 새로운 패션 산업을 말한다. 정보 기술과 패션의 합성어로서, 고객은 자신의 아바타를 이용하여 자신이 가지고 싶은 옷의 디자인을 선택하여 주문할 수 있다. 핵심 요소 기술로는, 3차원 스캔 기술, 가상현실, RFID 기반의 무선 인식, 전자상거래 등을 꼽을 수 있다.
 
-IMS
 
-(IP Multimedia Subsystem)
+
+
+# IMS : IP Multimedia Subsystem
 
  인터넷 프로토콜(IP)을 기반으로 오디오, 음성, 비디오, 데이터 등의 멀티미디어 서비스를 제공하는 규격이다. 서비스의 가격 경쟁력 향상과 신속한 서비스 개발 및 변경을 추구할 목적으로, 인터넷 기반 기술과 표준화된 네트워크 기능들을 사용하고 있다.
 
 
-IMT-2020
 
-(International Mobile Telecommunications-2020, 
+
+# IMT-2020 : International Mobile Telecommunications-2020
 
 5세대 이동 통신)
 
  국제 전기 통신 연합(ITU)에서 채택한 5세대 이동 통신에 대한 공식 명칭이다. 일반적으로 알려진 이동통신의 3세대, 4세대, 5세대에 대하여 ITU에서는 각각 IMT-2000, IMT-Advanced, IMT-2020라는 용어를 사용한다. IMT-2020은 전송 속도가 최대 20Gbps이다.
 
 
-Infolust
+
+
+# Infolust
 
 (인포러스트, 정보열광자)
 
  사람들에게 민감한 관심을 불러일으킬 새로운 정보를 발굴하여 빠르게 대중화시키는 사람을 말한다. Information(정보)과 Lust(열광)의 합성어이다. 포털의 실시간 검색어 1위, 신제품 비교평가 등은 이러한 인포러스트들의 활동 결과물이라고 볼 수 있다.
 
 
-Interlacing
+
+
+# Interlacing
 
 (인터레이싱)
 
  먼저 개략적인 모습을 보여준 후 점차 자세한 부분을 보여주는 이미지 파일 표현 기법이다.
 
-IPA
 
-(Intelligent Personal Assistant, 
+
+
+# IPA : Intelligent Personal Assistant
 
 지능형 가상비서)
 
 개인 사용자의 필요를 채워주는 개인 비서와 같은 역할을 하는 지능형 소프트웨어를 말한다. 사용자가 명령하면 음성을 인식하여 비서로서의 여러 가지 사무를 지원해준다.
 
 
-IPTV
 
-(Internet Protocol TV)
+
+# IPTV : Internet Protocol TV
 
  인터넷 통신망을 이용하여 시청하는 텔레비전이다. 방통 융합(방송 서비스와 통신 서비스가 동일한 인프라를 사용하여 운영됨)의 대표적 사례이다. 시청자가 SVS(Switched Video Service) 시스템을 이용하여 원하는 네트워크 채널, 가입자 서비스, 영화 감상 등의 서비스를 선택할 수 있다. 별도의 영상 전용 장비 없이도 인터넷망을 통해서 영상 서비스가 이루어진다는 장점이 있다. IPTV의 구성요소로는 ① IPTV 서버(콘텐츠의 전송, 저장, 등록을 담당) ② IPTV 콘텐츠 매니저(IPTV 전체를 관리하고, 사용법과 프로그램을 안내함) ③ IPTV뷰터(시청자에게 프로그램을 보여줌)가 있다. 특히 IPTV뷰어에는 인터넷 망에서의 영상신호를 표준 텔레비전 신호로 변환해주는 셋톱박스가 포함된다.
 
 
-ITIL
 
-(IT Infrastructure Library)
+
+# ITIL : IT Infrastructure Library
 
  IT 서비스 관리 분야의 프로세스에 관한 세계적인 선진 사례를 영국 OGG가 정리한 것으로서, IT 서비스를 지원, 구축, 관리하는 프레임워크이자, IT 서비스를 효과적으로 관리하기 위한 교본에 해당한다. ITIL 프로세스 모델은 ① 서비스 서포트 영역과 ② 서비스 딜리버리 영역으로 구분되는데, 서비스 서포트 영역은 IT 서비스에 대한 지원 및 운영에 대한 선진사례 가이드를 말하며, 서비스 딜리버리 영역은 IT 서비스의 장기적인 계획 및 개선 업무에 대한 선진사례 가이드를 말한다.
 
 
 
-10. K
 
-
-
-Killer Application
+# Killer Application
 
 (킬러앱)
 
  사용자가 이 어플리케이션을 실행할 수 있는 시스템을 구입하도록 결심하게 만드는 어플리케이션 프로그램 자체를 가리킨다. 처음으로 등장한 특유한 어플리케이션, 다수의 폭발적인 관심을 끄는 어플리케이션 등을 가리키는 용어로도 사용한다. 예를 들어, VisiCalc(스프레드시트 프로그램), 로터스 1-2-3, 앱 브라우저(1990년대)가 대표적인 킬러앱이다.
 
 
-KIOSK
+
+
+# KIOSK
 
 (키오스크)
 
@@ -1353,79 +1411,92 @@ KIOSK
  
 
 
-
-11. L
-
-
-
-LBS
-
-(Location Based Service, 
+# LBS : Location Based Service
 
 위치 기반 서비스)
 
  휴대폰 기지국과 위성 서비스를 이용하여 사람이나 차량, 선박 등의 위치를 찾아내는 서비스를 말한다.
 
-LED
 
-(Light Emitting Diode)
+
+
+# LED : Light Emitting Diode
 
  전기를 이용하여 색의 기본요소인 적색, 녹색, 청색은 물론 백색에 이르기까지 다양한 색상의 빛을 만드는 기술의 일종이다. 기존 조명방식보다 에너지 효율이 높고 유해물질이 전혀 사용되지 않는다는 장점이 있다.
 
 
-Long-tail
+
+
+# Long-tail
 
 (롱테일)
 
  1년 내내 판매해도 불과 몇 권 밖에 팔리지 않는 책들의 총 판매량을 모두 합하면, 놀랍게도 베스트셀러인 책들의 매출을 추월할 수 있다는 온라인 판매의 특성을 가리키는 말이다. 인터넷 서점에서 일 년에 몇 권 밖에 팔리지 않는 80%의 소외 받던 책들의 총 매출액이 20% 분량의 베스트셀러들의 총 매출액을 능가하는 현상을 가리킨다. 20%의 핵심고객으로부터 총 매출액의 80%가 달성된다는 파레토 법칙과 반대되는 개념이라서 역(疫) 파레토 법칙이라고도 부른다. 이는 인터넷이 가져다준 유통혁명과 관련된 용어이다.
 
-LTE
 
-(Long Term Evolution)
+
+
+# LTE : Long Term Evolution
 
  3세대 이동통신 WCDMA를 장기적으로 진화시킨 기술이라는 뜻에서 붙여진 명칭으로서, 3세대 이동통신과 4세대 이동통신의 중간에 해당하는 진보된 기술이라는 의미로 3.9세대 이동통신이라고 부른다.
 
 
 
-12. M
 
-M2M
-
-(Machine-To-Machine)
+# M2M : Machine-To-Machine
 
  지금까지의 네트워크가 사람과 디지털 장비와 같은 기계 사이에 이루어진 반면, 사람의 직접적인 개입이 없이 기계와 기계 사이에 커뮤니케이션이 자동으로 이루어진 것을 말한다.
 
-M-Commerce
+
+
+
+# M-Commerce
 
  무선통신환경 하에서 휴대폰이나 스마트폰 등의 개인용 휴대무선단말기를 이용하여 물품 구매, 은행 업무 등의 전자상거래를 구현한 서비스를 말한다.
 
-MDM
 
-(Mobile Device Management)
+
+
+# MDM : Mobile Device Management
 
  휴대폰과 같은 이동 장비를 원격으로 제어하는 것으로서 원래는 펌웨어를 원격으로 업데이트하거나 애플리케이션을 원격으로 설치할 목적으로 태동되었으나 지금은 이동 장비의 분실에 대한 대책 실행, 이동 장비의 실시간 관리 등에 사용된다.
 
-Media Bigbang
+
+
+
+# Media Bigbang
 
  방송과 통신의 융합, 신문과 방송의 겸업, 뉴미디어의 출현 등을 통하여 전체 미디어 관련 분야에 우주 대폭발과 같은 재편이 이루어지는 현상을 말한다.
 
-Memory
+
+
+
+# Memory
 
 : MRAM, PRAM, FRAM
 
  반도체 내부의 기본단위인 셀을 구성하는 물질에 따라서 PRAM(Phase Change RAM, 상변화 메모리), FRAM(Ferroelectric RAM, 강유전체 메모리), MRAM(Magnetic RAM, 강자성 메모리), PoRAM(Polymer RAM, 폴리머 메모리), 나노튜브 RAM, 홀로 그래픽 메모리, 모듈러 메모리 등으로 구분된다. 비휘발성 메모리이며 처리 속도가 매우 빠르다. 플래시 메모리보다 단위가 다르게 빠르다. 반도체 시장에 가장 빠르게 진입한 것은 FRAM이며, 현재 가장 빠른 기술진척도를 보이고 있는 것은 PRAM이다.
 
-MEMS
 
-(Micro Electro Mechanical System, 초소형 정밀 기계체계, 멤스)
+
+
+# MEMS : Micro Electro Mechanical System
+
+, 초소형 정밀 기계체계, 멤스)
 
  MEMS는 전기에 의하여 구동되는 아주 작은 기계 장치에 대한 기술이다. MEMS를 일본에서는 마이크로머신이라고 부르며, 유럽에서는 마이크로 시스템 기술 – MST라고 부른다. MEMS는 크기가 1과 100마이크로미터 사이인 구성요소들로 이루어지며, MEMS 장치는 크기에 있어서 일반적으로 20마이크로미터에서 1밀리미터 사이에 이른다.
 
-Meta Blog
+
+
+
+# Meta Blog
 
 (메타 블로그)
 
  블로그에 대한 포털 사이트를 가리키는데, 여러 블로그의 내용이 변할 때마다 종합적으로 한 곳에서 파악할 수 있도록 해주는 장점을 제공한다.
+
+
+
 
 MICS
 
