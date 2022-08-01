@@ -58,9 +58,11 @@ gzip [option] [file-name]
 | -h | 도움말 출력 |
 | -V | version 출력 |
 
----
+## 여러 gz file에서 특정 단어를 검색할 때
 
-#
+```sh
+gunzip -cv [common_file_name_string].**.gz | grep [search_word]
+```
 
 ---
 
