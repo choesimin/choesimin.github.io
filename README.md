@@ -1,6 +1,3 @@
-[ACID](./acid.md)
-
-
 [HERE](./acid.md)
 [HERE](./anti-pattern.md)
 [HERE](./api.md)
