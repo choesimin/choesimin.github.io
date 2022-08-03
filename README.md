@@ -68,7 +68,6 @@
 [Runtime](./runtime.md)  
 
 [Scheduler](./scheduler.md)  
-[scp](./scp.md)  
 [Servlet](./servlet.md)  
 [Session](./session.md)  
 [SOLID](./solid.md)  
