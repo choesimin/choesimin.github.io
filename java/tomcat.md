@@ -1,7 +1,7 @@
 # Tomcat
 
 - HTTP(HyperText Transfer Protocol) server
-- Java EE Container 의 기능을 포함한 Web Application Server (WAS)
+- Java EE Container의 기능을 포함한 Web Application Server (WAS)
     - Servlet container의 역할을 함
         - Java Servlet을 실행하고 JSP(JavaServer Pages) 및 JSF(JavaServerFaces)를 Java Servlet으로 변환할 수 있음
 

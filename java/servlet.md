@@ -1,6 +1,6 @@
 # Servlet
 
-- client의 요청을 처리하고, 그 결과를 반환하는 servlet 클래스의 구현 규칙을 지킨 java web programming 기술
+- client의 요청을 처리하고, 그 결과를 반환하는 servlet class의 구현 규칙을 지킨 java web programming 기술
 - java를 사용하여 web을 만들기위해 필요한 기술
 
 ## Servlet 특징
