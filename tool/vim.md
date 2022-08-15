@@ -78,6 +78,18 @@ colorscheme slate
     syn match markdownError "\w\@<=\w\@="
     ```
 
+## nvim 사용시 vimrc를 통해 설정하기
+
+- vim과 nvim의 config file 경로가 다름
+    - vim : ~/.vimrc
+    - nvim : ~/.config/nvim/init.vim
+- nvim의 config file에 아래 세 줄을 적으면 ```~/.vimrc```에서 nvim 설정을 할 수 있음
+    ```
+    set runtimepath+=~/.vim,~/.vim/after
+    set packpath+=~/.vim
+    source ~/.vimrc
+    ```
+
 ---
 
 # Reference
@@ -94,3 +106,5 @@ colorscheme slate
     - cursor move
 - https://exchangetuts.com/turn-off-highlighting-a-certain-pattern-in-vim-1640071384657173
     - Turning off markdown underscore syntax error
+- https://jinmay.github.io/2020/05/18/linux/vimrc-to-nvimrc/
+    - nvim에서 vim과 같은 설정 사용하기
