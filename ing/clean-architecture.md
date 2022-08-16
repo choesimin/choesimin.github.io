@@ -500,7 +500,118 @@ S type의 객체 o1 각각에 대응하는 T type 객체 o2가 있고, T type을
 # 5부. 아키텍처
 
 ## 15장. 아키텍처란?
+
+- software architect는 programmer이며 고수준의 문제에만 집충하는 일이 전부가 아님
+    - 발생하는 문제를 경험해보지 않는다면 다른 programmer를 지원하는 일을 제대로 수행할 수 없기 때문
+- software system의 architecture란 system을 구축했던 사람들이 만들어낸 system의 형태
+    - 그 모양은 system을 component로 분할하는 방법, 분할된 component를 배치하는 방법, component가 서로 의사소통하는 방식에 따라 정해짐
+    - 이 형태는 architecture 안에 담긴 software system이 쉽게 갭라, 배포, 운영 유지보수되도록 만들어짐
+    ```
+    이러한 일을 용이하게 만들기 위해서는 가능한 한 많은 선택지를, 가능한 한 오래 남겨두는 전략을 따라야 한다.
+    ```
+- system architecture는 system의 동작 여부와는 겨의 관련 없음
+    - 형편없는 architecture를 갖춘 system도 잘 동잘할 수 있음
+        - 그러나 이런 system은 대체로 운영보다는 배포, 유지보수, 개발 과정에서 어려움을 겪음
+    - architecture도 system이 제대로 동작하도록 지원하지만, 이때의 역할은 능동적/본질적이지 않고 수동적/피상적임
+- architecture의 주된 목적
+    - system의 생명주기를 지원하는 것
+    - system을 쉽게 이해하고, 쉽게 개발하며, 쉽게 유지보수하고, 쉽게 배포하게 해줌
+    - system의 수명과 관련된 비용은 최소화하고, programmer의 생산성을 최대화하는 것이 궁극적인 목표
+- system architecture는 개발팀(들) system을 수비게 개발할 수 있도록 뒷받침해야 함
+    - 개발하기 힘든 system은 수명이 길지도 않고 건강하지 않음
+    - team이 개발자 5명으로 구성되어 있다면 monolitic system으로도 개발할 수 있음
+        - 오히려 architecture 관련 제약들이 방해된다 여길 수 있음
+    - 그러나 7명씩으로 구성된 5개 team은 잘 설계된 architecture 없이는 개발이 진척되지 않음
+        - 다른 요소를 고려하지 않는다면 이 system의 architecture는 5개의 component(team마다 하나씩)로 발전할 가능성이 높음
+            - 좋지 않음
+- software architecture는 system을 단 한 번에 쉽게 배포할 수 있도록 만들어야 함
+    - software system이 사용될 수 있으려면 배포가 되어야 하고, 배포 비용이 높을수록 system의 유용성이 떨어짐
+- architecture를 잘 설계하면 유지보수를 위한 탐사(spelunking) 비용과 위험부담을 줄일 수 있음
+    - 탐사 : 기존 software에 새로운 기능을 추가하거나 결함을 수정할 때, software를 파헤쳐서 어디를 고치는 게 최선인지, 어떤 전략ㅇ르 쓰는 것이 최적인지 결정할 때 드는 비용
+    - 유지보수는 software system에서 비용이 가장 많이 들어감
+- 선택사항 열어 두기
+    - software를 부드럽게 유지하는 방법은 선택사항을 가능한 한 많이, 가능한 한 오랫동안 열어두는 것
+    - 중요치 않은 세부사항을 끝까지 열어 둬야 함
+    - 정책(policy) & 세부사항(detail)
+        - 정책 : 정책 요소는 업무 규칙과 업무 절차를 구체화함 (system의 가치가 있는 곳)
+        - 세부사항 : 사람, 외부 system, programmer가 정책과 소통할 때 필요한 요소 (정책이 가진 행위에는 영향을 미치지 않음)
+            - ex) 입출력 장치, database, web system, server, framework, 통신 protocol 등
+    - architect는 system에서 정책을 가장 핵심적인 요소로 식별하고, 세부사항은 정책에 무관하게 만들 수 있는 형태의 system을 구축해야 함
+        - 이로써 세부사항을 결정하는 일은 뒤로 미룰 수 있음
+        ```
+        좋은 architect는 결정되지 않은 사항의 수를 최대화한다.
+        ```
+    - 정책은 세부사항에 대해 몰라야 하고, 세부사항에 의존해서는 안 됨
+
 ## 16장. 독립성
+
+- 좋은 architecture는 system의 Usecase를 지원해야 함
+    - system의 의도를 지원해야 함
+        - system의 행위에 영향을 주는 것
+    - system의 행위를 명확히 하고 외부로 드러내며, 이를 통해 system이 지닌 의도를 architecture 수준에서 알아볼 수 있게 해야 함
+- 좋은 architecture는 system의 운영을 지원해야 함
+    - system의 의도를 충족시킬 수 있을 구조를 지니도록 해야함
+        - ex) 초당 100,00명의 고객을 처리 -> 많은 server에서 병렬로 실행할 수 있게 만들기
+- 좋은 architecture는 system의 개발을 지원해야 함
+    - 콘웨이(Conway)의 법칙이 적용됨
+        ```
+        system을 설계하는 조직이라면 어디든지 그 조직의 의사소통 구조와 동일한 구조의 설계를 만들어 낼 것이다.
+        ```
+    - 잘 격리되어 독립적으로 개발 가능한 component 단위로 system을 분할하기
+        - 각 team이 독립적으로 행동하기 편한 architecture를 확보해야 함
+- 좋은 architecture는 system의 배포를 지원해야 함
+    - 목표는 즉각적인 배포(immediate deployment)
+    - system이 build된 수 즉각 배포할 수 있도록 지원해야 함
+
+- 계층 결합 분리
+    - 의도와 맥락에 따라서 다른 이유로 변경되는 것들은 분리하고, 동일한 이유로 변경되는 것들을 묶기
+        - 단일 책임 원칙 + 공통 폐쇄 원칙
+    - 수평적 계층 분리
+        - UI 계층
+        - 업무 logic 계층
+        - Database 계층
+- Usecase 결합 분리
+    - Usecase에 따라 분리
+    - 수직적 분리 (수평적 계층을 가로지르며 분리)
+        - 주문 추가
+        - 주문 삭제
+
+- 결합 분리
+    - 결합 분리 최종 형태
+        | | 주문 추가 Usecase | 주문 삭제 Usecase |
+        | - | - | - |
+        | UI 계층 | 주문 추가용 UI | 주문 삭제용 UI |
+        | 업무 logic 계층 | 주문 추가용 업무 logic | 주문 삭제용 업무 logic |
+        | database 계층 | 주문 추가용 database | 주문 삭제용 database |
+    - 이렇게 결합을 분리했을 때 좋은 점
+        - 개발 독립성 : component가 분리되면 team 사이의 간섭이 줄어듬
+        - 배포 독립성 : 배포 유연성이 생김
+        - ex) 높은 처리량을 보장해야하는 Usecase와 낮은 처리량으로 충분한 Usecase를 분리 운영할 수 있음
+        - ex) UI와 database는 업무 규칙과는 다른 server에서 실행될 수 있음
+        - ex) 높은 대역폭을 요구하는 Usecase는 여러 server로 복제하여 실행할 수 있음
+
+- 결합 분리 Mode
+    - source 수준 분리 mode
+        - source code module 사이의 의존성을 제어할 수 있음
+        - 하나의 module이 변하더라도 다른 module을 변경하거나 다시 compile하지 않도록 만들 수 있음
+        - 모든 component가 같은 주소 공간에서 실행되고, 서로 통신할 때는 간단한 함수 호출을 사용함
+            - computer memory에는 하나의 실행 file만이 load됨
+            - Monolitic 구조
+    - 배포 수준 분리 mode
+        - jar file, DDL, 공유 library와 같이 배포 가능한 단위들 사이의 의존성을 제어할 수 있음
+        - 한 module의 source code가 변하더라도 다른 module을 다시 build하거나 재배포하지 않도록 만들 수 있음
+        - 많은 component가 같은 주고 공간에 상주하며, 단순한 함수 호출을 통해 통신할 수 있음
+        - 어떤 component는 동일한 processor의 다른 process에 상주하고, process간 통신, socket, 또는 공유 memory를 통해 통신할 수 있음
+        - 결합이 분리된 component가 jar file, Gem file, DDL과 같이 독립적으로 배포할 수 있는 단위로 분할되어 있음
+    - service 수준 분리 mode
+        - 의존하는 수준을 data 구조 단위까지 낮출 수 있고, network packet을 통해서만 통신하도록 만들 수 있음
+        - 모든 실행 가능한 단위는 source와 binary 변경에 대해 서로 완전히 독립적이게 됨
+            - ex) service, micro service
+        - service 경계를 처리하는 데 memory, 계산량, 노력이 많이 들어감
+
+- system이 성장함에 따라 'source 수준 분리 mode' -> '배포 수준 분리 mode' -> 'service 수준 분리 mode' 식으로 커짐
+    - 그러나 나중에 상황이 바뀌었을 때(ex. 요구사항이 감소했을 때) 진행 방향을 거구로 돌려 다시 monolitic 구조로 되돌릴 수도 있어야 함
+
 ## 17장. 경계: 선 긋기
 ## 18장. 경계 해부학
 ## 19장. 정책과 수준
