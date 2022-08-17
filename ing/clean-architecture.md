@@ -46,9 +46,6 @@
     - 33장. 사례 연구: 비디오 판매
     - 34장. 빠져있는 장
 
-- 7부. 부록
-    - 부록 A. 아키텍처 고고학
-
 ---
 
 # 1부. 소개
@@ -613,6 +610,44 @@ S type의 객체 o1 각각에 대응하는 T type 객체 o2가 있고, T type을
     - 그러나 나중에 상황이 바뀌었을 때(ex. 요구사항이 감소했을 때) 진행 방향을 거구로 돌려 다시 monolitic 구조로 되돌릴 수도 있어야 함
 
 ## 17장. 경계: 선 긋기
+
+- 경계(boundary)는 software 요소를 서로 분리하고, 경계 한편에 있는 요소가 반대편에 있는 요소를 알지 못하도록 막음
+- 너무 일찍 내려진 결정에 대한 결합(coupling)은 인적 자원의 효율을 떨어뜨림
+- 좋은 architecture는 system의 업무 요구사항(Usecase)과 관련 없는 결정은 가능한 한 최후에 내릴 수 있게 해줌
+    - 업무 요구사항(Usecase)과 관련 없는 것들 : framework, database, web server, utility library, 의존성 주입 등
+- 선은 관련이 있는 것과 없는 것 사이에 그으면 됨
+    - ex) GUI와 업무 규칙, database와 업무 규칙, ...
+- 업무 규칙은 database와 관련된 나머지 세부사항에 대해 어떤 것도 알아서는 안 됨
+    ```mermaid
+    classDiagram
+    Business Rules --> Database Interface
+    <<Interface>> Database Interface
+    Database Access --> Database Interface : ----Boundary----
+    Database Access --> Database
+    ```
+- 입력과 출력은 중요하지 않음
+    - 이는 system의 행위를 입출력이 지닌 행위적 측면에서 생각하는 경향이 있기 때문
+    ```mermaid
+    classDiagram
+    Business Rules <-- GUI : ----Boundary----
+    ```
+    - GUI는 다른 종류의 interface로 얼마든지 교체할 수 있으며 BusinessRules는 이에 대해 영향을 받지 않음
+- Plugin architecture
+    ```
+    software 개발 기술의 역사는 plugin을 손쉽게 생성하여, 확장 가능하며 유지보수가 쉬운 system architecture를 확립할 수 있게 만드는 방법에 대한 이야기이다.
+    ```
+    ```mermaid
+    classDiagram
+    Business Rules <-- GUI : ----Boundary----
+    Business Rules <-- DB : ----Boundary----
+    ```
+    - system을 plugin architecture로 배치함으로써 변경이 전파될 수 없는 방화벽을 생성할 수 있음
+        - 경계의 한 쪽에 위치한 component는 경계 반대편의 component와는 다른 속도로 변경되므로, 둘 사이에는 반드시 경계가 필요함
+    - 경계 맞은 편의 component는 다른 시점에 다른 이유로 변경되므로 단일 책임 원칙이 적용됨
+- 경계선을 그리려면 먼저 system을 component 단위로 분할해야 함
+    - plugin으로 분할된 component의 화살표는 핵심 업무 규칙 component를 향하도록 함
+        - 의존성 역전 원칙과 안정된 추상화 원칙의 응용 : 의존성 화살표가 저수준 세부사항에서 고주순의 추상화를 향해야 하므로
+
 ## 18장. 경계 해부학
 ## 19장. 정책과 수준
 ## 20장. 업무 규칙
@@ -638,13 +673,6 @@ S type의 객체 o1 각각에 대응하는 T type 객체 o2가 있고, T type을
 
 ---
 
-# 7부. 부록
-
-## 부록 A. 아키텍처 고고학
-
----
-
 # Reference
 
-- Clean Architecture : 소프트웨어 구조와 설계의 원칙 : 로버트 C. 마틴
-
+- Clean Architecture : 소프트웨어 구조와 설계의 원칙 - 로버트 C. 마틴
