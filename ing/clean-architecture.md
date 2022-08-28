@@ -943,6 +943,30 @@ S type의 객체 o1 각각에 대응하는 T type 객체 o2가 있고, T type을
             - data 구조가 의존성을 가지게 될 수 있음
 
 ## 23장. 프레젠터와 험블 객체
+
+- Presenter
+    - humber object pattern을 따른 형태
+    - architecture 경계를 식별하고 보호하는 데 도움이 됨
+- Humble Object Pattern : 대강 만든 객체
+    - test하기 어려운 행위와 test하기 쉬운 행위를 단위 test 작성자가 분리하기 쉽게 하는 design pattern
+    - 사용 방법
+        - 행위들을 두 개의 module 또는 class로 나누고, 이 모듈 중 하나를 humble로 지정
+        - 가장 기본적인 본질은 남기고, test하기 어려운 행위를 모두 humber 객체로 옮기기
+- presenter와 view
+    - view
+        - humber 객체이고 test하기 어려움
+        - view는 view modeldml data를 화면을 load할 뿐이며, 이 외에 view가 맡는 역할은 없어야 함
+            - 따라서 view가 맡은 일은 전혀 없고, humber함(보잘것없음)
+    - presenter
+        - test하기 쉬운 객체
+        - application으로부터 data를 받아 화면에 표현할 수 있는 format으로 만드는 것이 presenter의 역할
+        - 이로써 view는 data를 화면으로 전달하는 간단한 일만 처리할 수 있음
+
+- test와 architecture
+    - 좋은 architecture는 test가 용이해야 함
+        - ex) humber 객체 : 행위를 test하기 쉬운 부분과 어려운 부분으로 분리하여 architecture 경계를 정의함
+
+
 ## 24장. 부분적 경계
 ## 25장. 계층과 경계
 ## 26장. 메인(Main) 컴포넌트
