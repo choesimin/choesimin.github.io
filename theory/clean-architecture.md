@@ -37,14 +37,11 @@
     - 26장. 메인(Main) 컴포넌트
     - 27장. '크고 작은 모든' 서비스들
     - 28장. 테스트 경계
-    - 29장. 클린 임베디드 아키텍처
 
 - 6부. 세부사항
     - 30장. 데이터베이스는 세부사항이다
     - 31장. 웹은 세부사항이다
     - 32장. 프레임워크는 세부사항이다
-    - 33장. 사례 연구: 비디오 판매
-    - 34장. 빠져있는 장
 
 ---
 
@@ -945,18 +942,20 @@ S type의 객체 o1 각각에 대응하는 T type 객체 o2가 있고, T type을
 ## 23장. 프레젠터와 험블 객체
 
 - Presenter
-    - humber object pattern을 따른 형태
+    - humble object pattern을 따른 형태
     - architecture 경계를 식별하고 보호하는 데 도움이 됨
+
 - Humble Object Pattern : 대강 만든 객체
     - test하기 어려운 행위와 test하기 쉬운 행위를 단위 test 작성자가 분리하기 쉽게 하는 design pattern
     - 사용 방법
         - 행위들을 두 개의 module 또는 class로 나누고, 이 모듈 중 하나를 humble로 지정
-        - 가장 기본적인 본질은 남기고, test하기 어려운 행위를 모두 humber 객체로 옮기기
+        - 가장 기본적인 본질은 남기고, test하기 어려운 행위를 모두 humble 객체로 옮기기
+
 - presenter와 view
     - view
-        - humber 객체이고 test하기 어려움
+        - humble 객체이고 test하기 어려움
         - view는 view modeldml data를 화면을 load할 뿐이며, 이 외에 view가 맡는 역할은 없어야 함
-            - 따라서 view가 맡은 일은 전혀 없고, humber함(보잘것없음)
+            - 따라서 view가 맡은 일은 전혀 없고, humble함(보잘것없음)
     - presenter
         - test하기 쉬운 객체
         - application으로부터 data를 받아 화면에 표현할 수 있는 format으로 만드는 것이 presenter의 역할
@@ -964,25 +963,240 @@ S type의 객체 o1 각각에 대응하는 T type 객체 o2가 있고, T type을
 
 - test와 architecture
     - 좋은 architecture는 test가 용이해야 함
-        - ex) humber 객체 : 행위를 test하기 쉬운 부분과 어려운 부분으로 분리하여 architecture 경계를 정의함
+        - ex) humble 객체 : 행위를 test하기 쉬운 부분과 어려운 부분으로 분리하여 architecture 경계를 정의함
 
 
 ## 24장. 부분적 경계
+
+- 완벽한 architecture 경계를 만드는 데에는 비용이 많이 듬
+    - 쌍방향의 다형적 Boundary interface, Inout/Output을 위한 data 구조가 필요함
+    - 두 영역을 독립적으로 compile하고 배포할 수 있는 component로 격리하는데 필요한 모든 의존성 관리가 필요함
+    - Agile에서는 이런 종류의 선행적인 설계를 선호하지 않음
+        - YAGNI(You Aren't Going to Need It) 원칙을 위배하기 때문
+    - 따라서 부분적 경계(partial boundary)를 구현하기도 함
+
+- 부분적 경계를 구현하는 3가지 방법
+    - 마지막 단계를 건너뛰기
+        - 독립적으로 compile하고 배포할 수 있는 component를 만들기 위한 작업은 모두 수행한 후, 단일 component에 그대로 모아만 두는 것
+            - 쌍방향 interface도, 입력/출력 data 구조도 단일 component에 있음
+        - 완벽한 경계를 만들 때 만큼의 code 양과 사전 설계가 필요하지만, 다수의 component를 관리하는 작업을 하지 않아도 됨
+    - 일차원 경계
+        - 완벽한 형태의 architecture 경계는 양방향으로 격리된 상태를 유지해야 하므로 쌍방향 Boundary interface를 사용하지만, 이는 초기 설정할 때난 지속적으로 유지할 때 비용이 많이 듬
+        - 전략(strategy) pattern을 사용
+            ```mermaid
+            classDiagram
+
+            Client --> ServiceeBoundary Interface
+            ServiceImpl --> ServiceeBoundary Interface
+
+            <<Interface>> ServiceeBoundary Interface
+            ```
+            - Client가 ServiceImpl과 직접 통신하지 않고, 중간에 ServiceBoundary Interface를 통해서 통신하도록 함
+            - ServiceBoundary Interface는 Client가 사용하며 ServiceImpl class가 구현함
+        - Client를 ServiceImpl로부터 격리시키는 데 필요한 의존성 역전이 이미 적용되었지 때문에, 미래에 필요한 architecture 경계를 위한 기초를 제공함
+        - 그러나 Client와 ServiceImpl 사이에 비밀 통로가 생길 수 있기 때문에, 정확히 관리되지 않으면 분리가 붕괴될 수도 있음
+    - Facade
+        - Facade pattern 사용
+        - 경계가 Facade class로만 간단히 정의됨
+        - Facade class에는 모든 service class를 method 형태로 정의하고, service 호출이 발새아면 해당 service class로 호출을 전달함
+        - Client는 이 Service class에 직접 접근할 수 없음
+        - Client -> Facade -> 다수의 Service
+        ```mermaid
+        classDiagram
+
+        ServiceImpl --> Facade
+        Facade --> 다수의 Service
+        ```
+        - Facade class를 통하지 않는 비밀 통로가 쉽게 생길 수 있음
+
 ## 25장. 계층과 경계
+
+- architecture 경계가 언제 필요한지를 신중하게 파악해야 함
+    - 경계를 제대로 구현하는 데에는 비용이 많이 듬
+        - 따라서 단순한 system에는 필요없을 수도 있음
+    - YAGNI(You Aren't Coing to Need It)
+    - 추상화가 필요하리라고 미리 예측해선 안 됨
+        - over engineering이 unger engineering보다 나쁠 때가 훨씬 많음
+    - 그러나 경계가 무시되었다면 나중에 다시 추가하는 비용이 크다는 것을 고려해야 함
+    - 경계를  구현하는 비용과 무시할 때 감수할 비용을 가늠해 결정해야 함
+
 ## 26장. 메인(Main) 컴포넌트
+
+- 모든 system에는 최소한 하나의 component가 존재하고, 이 component가 나머지 component를 생성하고, 조정하며, 관리함 -> 이 component가 main component
+- main component
+    - 궁극적인 세부사항으로 가장 낮은 수준의 정책
+    - system의 초기 진입점
+    - 운영체제를 제외하면 어떤 것도 main에 의존하지 않음
+    - 모든 Factory와 Stratege, 그리고 system 전반을 담당하는 나머지 기반 설비를 생성한 후, system에서 더 높은 수준을 담당하는 부분으로 제어권을 넘기는 역할을 맡음
+    - 의존성 주입 framework를 이용해 의존성을 주입하는 역할을 맡음
+        - main은 의존성 주입 framework를 사용하지 않ㄷ고도 일반적인 방식으로 의존성을 분배할 수 있어야 함
+    - 가장 바깥에 위치하는 지저분한 저수준 module
+        - 고수준의 system을 위한 모든 것을 load한 후, 제어권을 고주순의 system에게 넘김
+
+- main component는 application의 plugin이라고 생각하면 됨
+    - 초기 조건과 설정을 구성하고, 외부 자원을 모두 수집한 후, 제어권을 application의 고수준 정책으로 넘기는 plugin
+    - plugin이므로 main component를 application의 설정별로 하나씩 두도록 하여 둘 이상의 main component를 만들 수도 있음
+        - ex) 개발용 main plugin, test용 main plugin, 상용 main plugin 등
+        - ex) 국가별 main plugin, 관할별 main plugin, 고객별 main plugin 등
+    - architecture 경계 바깥에 위치시키기 때문에 설정 관련 문제를 쉽게 해결할 수 있음
+
 ## 27장. '크고 작은 모든' 서비스들
+
+- service architecture?
+    - service를 사용한다는 것이 본직적으로 architecture에 해당하지는 않음
+    - 단순히 application의 행위를 분리할 뿐인 service라면 값비싼 함수 호출에 불과함
+    - system의 architecture는 의존성 규칙을 준수하며 고수준의 정책을 저수준의 세부사항으로부터 분리하는 경계에 정의되는 것
+    - 기능을 process나 platform에 독립적이 되게끔 service들을 생성하면 의존성 규칙 준수 여부와 상관없이 도움이 됨
+        - 이같이 모든 service가 architecture 관점에서 중요해야만 하는 것은 아님
+    - service는 process나 platform 경계를 가로지는 함수 호출에 지나지 않음
+
+- service architecture의 일반적인 오해
+    - 결합 분리의 오류
+        - service는 개별 변수 수준에서는 각각 결합이 분리되지만, processor 내의 또는 network 상의 공유 자원 때문에 결합될 가능성이 여전히 존재함
+        - 서로 공유하는 data에 의해 이들 service는 강력하게 결합됨
+        - interface가 잘 정의되어 있어야 한다는 이점이 있지만, 함수의 경우에도 전혀 다르지 않음
+            - service interface가 함수 interface보다 더 엄밀하거나, 더 엄격하고, 더 잘 정의되는 것은 아님
+    - 개발 및 배포 독립성의 오류
+        - 횡단 관심사(cross-cutting consern)가 있다면 service가 분리되어 있더라도 독립적으로 개발하고 배포하거나 유지할 수 없음
+            - 결합되어 있기 때문
+
+- component 기반 service
+    - service는 반드시 단일체(monolith)이어야 할 필요는 없음
+    - service를 SOLID 원칙대로 설계하고 component 구조를 갖추도록 해야 함
+        - 이를 통해 service 내의 기존 component를 변경하지 않고도 새로운 component를 추가할 수 있음 (개방 폐쇄 원칙)
+
 ## 28장. 테스트 경계
-## 29장. 클린 임베디드 아키텍처
+
+- test는 system의 일부이며, architecture에도 관여함
+- system component인 test
+    - test는 태생적으로 의존성 규칙을 따름
+    - test는 세부적이며 구체적인 것으로, 의존성은 한상 test 대상이 되는 code를 향함
+    - system 내부의 어떤 것도 test에는 의존하지 않으며, test는 system의 component를 향해, 항상 안쪽으로 의존함
+        - test는 architecture에서 가장 바깥쪽에 위치함
+    - test는 독립적으로 배포 가능함
+        - 대다수의 경우 test는 test system에만 배포하며, 상용 system에는 배포하지 않음
+    - test는 system component 중에서 가장 고립되어 있음
+        - 어떤 사용자도 test에 의존하지 않기 때문
+
+- test를 고려한 설계
+    - test는 극단적으로 고립되어 있지만, 그렇다고 설계 범위 밖에 있는 것은 아님
+        - test가 system의 설계와 잘 통합되지 않으면, test는 깨지기 쉬워지고, system은 뻣뻣해져서 변경하기가 어려워짐
+    - system에 강하게 결합된 test라면 system이 변경될 때 함께 변경되어야만 함
+        - system component에서 생긴 사소한 변경이, 이와 결합된 수많은 test를 망가뜨릴 수 있음 : 깨지기 쉬운 test 문제(Fragile Tests Problems)
+        - 만약 간단한 변경이 대량의 test 실패로 이어진다면, 개발자는 변경하려하지 않을 것임 -> system이 뻣뻣해짐
+    - 따라서 test는 변동성이 있는 것이 의존해서는 안 됨
+        - GUI는 변동성이 크기 때문에 GUI에 의존하지 않고 업무 규칙을 test할 수 있어야 함
+
+- Test API
+    - 모든 업무 규칙을 검증하는 데 사용할 수 있도록 특화된 test API를 만들면 됨
+        - 변동성이 있는 것에 의존하지 않고 업무 규칙을 test할 수 있게 하기 위해
+    - test API는 보안 제약사항을 무시할 수 있으며, database와 같은 값비싼 자원은 건너뛰고, system을 test 가능한 특정 상태로 강제하는 힘을 가져야 함
+    - test API는 사용자 interface가 사용하는 Interactor와 Interface Adaptor들의 상위 집합이 됨
+    - test API는 test를 application으로부터 분리할 목적으로 사용함
+        - test 구조를 application 구조로부터 결합 분리하는 것이 목표
+    - test API는 application의 구조를 test로부터 숨김
+        - 구조적 결합의 해결
+        - 상용 code를 refactoring하거나 진화시키더라도 test에는 영향을 주지 않게 됨
+        - test를 refactoring하거나 진화시킬 때도 상용 code에는 영향을 주지 않음
+        - 따로따로 진화하므로, test는 계속해서 더 구체적이고 더 특화된 형태로 변하고, 반대로 상용 code는 더 추상적이고 범용적인 형태로 변함
+    - test API가 지닌 강력한 힘을 운영 system에 배포하면, 보안적으로 위험할 수 있음
+        - 따라서 test API 자체와 test API 중 위험한 부분의 구현부는 독립적으로 배포할 수 있는 component로 분리해야 함
 
 ---
 
 # 6부. 세부사항
 
 ## 30장. 데이터베이스는 세부사항이다
+
+- database는 세부사항
+    - architecture 관점에서 database는 entity가 아니며 세부사항이라서 architecture의 구성요소 수준으로 끌어올릴 수 없음
+    - appilcation 내부의 data의 구조와 data model은 system architecture에 중요하지만, database는 data model이 아님
+    - database는 data에 접근할 방법을 제공하는 utility이므로, 저수준의 세부사항(mechanism)일 뿐이므로 architecture와는 상관이 없음
+
+- 관계형 database
+    - 관계형 model이 성장함에 따라 관계형 database는 data 저장소의 지배적인 형태가 됨
+    - 관계형 database는 data를 저장하고 접근하는 데 탁월한 기술이지만, 결국은 그저 기술일 뿐임 == 관계형 database는 세부사항
+    - data를 table에 행 단위로 배치한다는 것 자체는 architecture적으로 볼 때 전혀 중요하지 않음
+        - application의 usecase는 이러한 방식을 알고 있거나 관여하면 안 됨
+        - data가 table 구조를 가진다는 사실은 오직 architecture의 외부에 위치한 최하위 수준의 utility 함수만 알아야 함
+    - 많은 data 접근 framework가 table과 행이 객체 형태로 system 여기저기를 돌아다니게 허용하지만, 이는 architecture적으로는 잘못된 설계임
+        - usecase, 업무 규칙, UI까지 관계형 database 구조에 결합되어 버림
+
+- database system이 널리 사용되는 이유
+    - 회전식 자기 disk(magnetic disk)는 현재 data 저장소의 중심에 있음
+    - disk는 '느리다'라는 치명적인 단점이 있음
+        - disk에서 data는 원형 trackdp wjwkdehla
+        - track은 sector로 분할되고, 각 sector는 사용하기 편한 크기의 byte를 저장함(대체로 4K)
+        - 각 platter는 대략 수백 개의 track으로 구성되고, disk는 십여개의 platter로 구성됨
+        - disk에서 특정 byte를 읽는 법
+            - head를 적절한 track으로 옮김
+            - disk가 돌면서 head 위치에 적절한 sector가 올 때까지 기다림
+            - 해당 sector에서 4K 모두를 RAM으로 읽으들임
+            - 해당 RAM buffer의 색인을 찾아서 필요한 byte를 가져옴
+        - processor에서 한 명령어를 처리하는 주기와 비교했을 때 백만 배 오래 걸림
+    - disk 때문에 생기는 시간 지연을 완화하기 위해 필요한 것들
+        - 색인
+        - cache
+        - query 계획 최적화
+    - data 접근 및 관리 system
+        - file system
+            - 문서(document) 기반
+            - 문서 전체를 자연스럽고 편리하게 저장하는 방법을 제공함
+            - 일련의 문서를 이름 기준으로 저장하거나 조회할 때는 잘 동작함
+            - 내용을 기준으로 검색할 때는 어렵고 오래걸림
+        - 관계형 database 관리 system : RDBMS
+            - 내용을 기반으로 record를 자연스업고 편리하게 찾는 방법 제공
+            - record가 서로 공유하는 일부 내용에 기반해서 다수의 record를 연관 짓는 데에 매우 작원함
+            - 정형화되지 않은 문서를 저장하고 검색하는 데에 부적합함
+
+- disk가 없다면(RAM에 모든 것을 저장한다면) database라는 mechanism은 사라질 것임
+    - 후일 disk가 RAM으로 대체된다면, data들은 연결 list, tree, hash table, stack, queue 등의 data 구조로 체계화될 것임
+        - table 구조와 file 구조는 disk에 특화되어 있음
+        - 사실 programmer가 다루기 편리한 형태는 list, 집합, stack, queue, tree 등의 data 구조임
+
+- database는 disk 표면과 RAM 사이에서 data를 옮길 때 사용할 뿐이므로 mechanism에 불과함
+    - 따라서 architecture 관점에서 본다면 회전식 자기 disk에 data가 있기만 한다면, data가 어떤 형태인지는 신경 써서는 안 됨
+
+- 성능도 data 저장소의 측면에서 완전히 캡슐화하여 업무 규칙과는 분리할 수 있으므로, 저수준의 관심사임
+    - 이 성능은 저수준의 data 접근 mechanism 단에서 다룰 수 있음
+    - 성능은 system의 전반적인 architecture와는 관련 없음
+
 ## 31장. 웹은 세부사항이다
+
+```
+GUI는 세부사항이다.
+web은 GUI다.
+따라서 web은 세부사항이다.
+```
+- web은 입출력 장치
+- web의 GUI는 특이하고 다채롭기 때문에 장치 독립적인 architecture를 구현하기 위해서는 usecase를 사용해야 함
+    - UI와 application 사이에는 추상화가 가능한 usecase라는 경계가 존재함
+    - 업무 logic은 다수의 usecase로 구성되며, 각 usecase는 사용자를 대신해서 일부 함수를 수행함
+    - 각 usecase는 입력 data, 수행할 처리 과정, 출력 data를 기반으로 기술할 수 있음
+    - 입력 data와 그에 따른 출력 data는 data 구조로 만들어서 usecase를 실행하는 처리 과정의 입력 값과 출력 값으로 사용할 수 있음
+    - 이 방식으로 각 usecase가 장치 독립적인 방식으로 UI라는 입출력 장치를 동작시킨다고 간주할 수 있음
+
 ## 32장. 프레임워크는 세부사항이다
-## 33장. 사례 연구: 비디오 판매
-## 34장. 빠져있는 장
+
+- 위험 요인
+    - framework는 내가 풀어야 할 특별한 관심사를 염두에 두지 않음
+        - framework 제작자는 자신과 주변에서 보이는 문제를 해결하기 위해 framework를 만듬
+        - 나의 문제와 framework가 풀려는 문제가 많이 겹칠수록 framework는 더 유용함
+    - framework의 architecture는 그다지 깔끔하지 않은 경우가 많음
+        - 의존성 규칙을 위반하는 경향이 있음
+            - 업무 객체(나만의 고유한 entity)를 만들 때, framework 제작자는 자신의 code를 상속할 것을 요구함
+            - 이는 framework가 내부로 들어가게 하는 일이며, 이렇게 framework와 한번 결합하면 그 관계를 깨기 매우 어려움
+    - framework는 application의 초기 기능을 만드는 데는 도움에 되지만, 제품이 성숙해지면서 framework가 제공하는 기능과 틀을 벗어나게 됨
+    - framework는 나에게 도움되지 않는 방향으로 진화할 수도 있음
+        - 신규 version으로 upgrade했을 때, 사용 중이던 기능이 사라지거나 반영하기 힘든 형태로 변경될 수도 있음
+    - 새롭고 더 나은 framework가 등장해서 갈아타고 싶어질 수도 있음
+
+- 해결책 : framework와 결합하지 않기
+    - framework가 안쪽으로(고수준으로) 들어오지 못하게 해야 함
+    - 업무 객체를 만들 때 framework가 자신의 기반 class로 부터 파생하기를 요구한다면, 거절하기
+        - 대신 proxy를 만들고, 업무 규칙에 plugin할 수 있는 component에 이들 proxy를 위치하기
+    - framework가 핵심 code 안으로 들어오지 못하게 하기
+        - 대신 핵심 code에 plugin할 수 있는 component에 framework를 통합하고, 의존성 규칙을 준수하기
 
 ---
 

@@ -11,6 +11,8 @@
         - Stack Memory
         - Heap Memory
 
+---
+
 ## Code 영역 (== Text 영역)
 
 - 작성한 source code가 들어가는 부분
@@ -19,6 +21,8 @@
     - 함수, 제어문, 상수 등
 - compile time에 결정되고 중간에 code를 바꿀 수 없게 Read-Only로 지정되어 있음
 - CPU는 code 영역에 저장된 명령어를 하나씩 가져가서 처리함
+
+---
 
 ## Data 영역
 
@@ -33,6 +37,8 @@
 - Data 영역은 크게 두가지로 나뉨
     1. 초기화된 변수 영역 (initialized data segment)
     2. 초기화되지 않은 변수 영역 (uninitialized data segment)
+
+---
 
 ## Stack 영역
 
@@ -63,6 +69,8 @@
     - limit on stack size (OS-dependent)
         - 공간이 비교적 작기 때문에 모든 응용 program에서 Stack을 사용할 수는 없음
     - variables cannot be resized
+
+---
 
 ## Heap 영역
 
