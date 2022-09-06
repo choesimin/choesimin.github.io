@@ -10,13 +10,13 @@
         - computer와 computer가 통신 회선 등으로 연결하기 위한 통신 규약
     - 그외 HTTP, ARP, ICMP, SNMP, SMTP, POP, FTP, TFTP, DHCP 등
 
-### protocal의 요소
+## protocal의 요소
 
 - 구문(Syntax) : data의 형식이나 신호. 부호화 방법 등을 정의
 - 의미(Sementics) : 오류 제어, 동기 제어, 흐름 제어 같은 각종 제어 절차에 관한 제어 정보를 정의
 - 순서(Timing) : 송/수신자 간 혹은 양단(end-to-end)의 통신 system과 망 사이의 통신 속도나 순서 등을 정의
 
-### protocol의 기능
+## protocol의 기능
 
 - 세분화(or 단편화)와 재합성
     - 대용량 크기의 file은 그대로 전송할 수가 없어서 작은 단위로 나누어 보내고 수신 측에서는 재조합해야함
@@ -58,7 +58,7 @@
 - 전송 service
     - 우선순위 결정, service 등급과 보안 요구 등을 제어하는 service
 
-### Protocol의 특성 및 분류
+## Protocol의 특성 및 분류
 
 1. 직접/간접(Direct/Indirect) Protocol
     1. 직접 방식 : 2개의 entity 사이에 직접 정보를 교환하는 방식

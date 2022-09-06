@@ -2,6 +2,8 @@
 
 - project를 build하고 library를 관리해주는 도구
 
+---
+
 ## LIfecycle
 
 ### 종류
@@ -33,6 +35,8 @@
 - mvn archetype:generate : architype 생성
 - mvn dependency:tree : dependency tree 보기
 - mvn spring-boot:run : Spring Boot 실행
+
+---
 
 ## Maven 설정 file
 

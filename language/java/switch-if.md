@@ -16,7 +16,7 @@
 
 ### switch case
 
-```
+```java
 switch (n) {
   case 1:
     ~
@@ -41,7 +41,7 @@ switch (n) {
 
 ### if else
 
-```
+```java
 if (condition1) {
   ~
 }

@@ -1,14 +1,11 @@
 # MySQL
 
-
-
-
+---
 
 ## View
 
 - MySQL 버전 5 이상부터 가능한 특정 명령문에 매칭된 가상 table
 - SELECT, WEHRE, Sub Query, UNION, JOIN 등 다양한 결합과 조건으로 만들어진 data를 가상 table(View)에 넣어 편리하고 빠르게 data에 접근하도록 함
-
 
 ### 특징
 
@@ -82,8 +79,7 @@
     ALTER VIEW seoul_members AS SELECT LastName, FirstName FROM members where City = '서울';
     ```
 
-
-
+---
 
 ## Comment
 
@@ -109,8 +105,7 @@ WHERE
     table_schema = 'DB 이름' AND table_name = '테이블 이름';
 ```
 
-
-
+---
 
 ## Backup & Restoration
 
@@ -154,13 +149,7 @@ mysql -u test_user -p 123456 test_db < backup_test_table.sql
 passowrd : 123456
 ```
 
-
-
-
 ---
-
-
-
 
 # Reference
 

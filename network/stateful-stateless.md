@@ -20,6 +20,8 @@
 5. CORS의 문제 : domain resource 문제
 6. REST API : Stateless 지향
 
+---
+
 # Stateless
 
 - server side에 client와 server의 동작, 상태 정보를 저장하지 않는 형태
