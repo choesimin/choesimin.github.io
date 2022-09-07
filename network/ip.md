@@ -1,4 +1,4 @@
-# IP : Internet Protocol)
+# IP : Internet Protocol
 
 - internet에 연결되어 있는 모든 장치들(computer, server device, smart phone, etc..)을 식별할 수 있도록 각가의 장비에 보여되는 고유 주소
 

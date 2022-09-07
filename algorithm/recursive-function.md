@@ -133,6 +133,45 @@ int main()
 - f(c, v)가 c와 v에 의해 만들어진 상태에 대한 답을 구해주는 함수라는 것을 정의했다면, 더 나아가 어떤 재귀 호출을 하게 되는지 등은 몰라도 됨
     - 현재 상태에서 다음 상태로 넘어가는 과정만 정확하게 구현해주면, 이후 상태는 재귀 호출된 함수가 알아서 잘 처리하기 때문
 
+## Java 사용 예 : S3 upload 싪패해도 3번 더 시도하기 
+
+```java
+/* 선언부 */
+public void uploadImage(ItemPurchaseEntity purchase, PurchaseRequest coupon, int tryCount) throws CommonException {
+    try {
+        String imageURL = "http://image-url";
+        File file = downloadImageURL(imageURL, "filename", "jpg");
+        amazonS3Client.putObject(new PutObjectRequest("bucket", file.getName(), file));
+        file.delete();
+    } catch(Exception e) {
+        if (tryCount <= 3) {
+            log.info("{}번째 이미지 저장 실패", tryCount);
+            uploadImage(purchase, coupon, tryCount++);
+        } else {
+            throw new CommonException("이미지 저장 실패");
+        }
+    }
+}
+
+private File downloadImageURL(String imageURL, String fileName, String extension) {
+    File file = new File(couponProperties.getDownloadImage() + "/" + fileName + "." + extension);
+    try {
+        URL url = new URL(imageURL);
+        BufferedImage image = ImageIO.read(url);
+        ImageIO.write(image, extension, file);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return file;
+}
+
+
+/* 호출부 */
+S3Uploader s3Uploader = new S3Uploader();
+s3Uploader.uploadCouponImage(purchasedCoupon.getPurchase(), purchasedCoupon.getCoupon(), 1);
+```
+
 ---
 
 # Reference
