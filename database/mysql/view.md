@@ -1,13 +1,9 @@
-# MySQL
-
----
-
-## View
+# View
 
 - MySQL 버전 5 이상부터 가능한 특정 명령문에 매칭된 가상 table
 - SELECT, WEHRE, Sub Query, UNION, JOIN 등 다양한 결합과 조건으로 만들어진 data를 가상 table(View)에 넣어 편리하고 빠르게 data에 접근하도록 함
 
-### 특징
+# 특징
 
 - 실제로 data를 저장하지 않고 오직 보여주는데 중점을 둔 기능
 - View의 기반 table의 data를 수정할 경우 View에도 반영됨
@@ -15,7 +11,7 @@
 - View로 생성된 가상 table에도 data의 UPDATE 및 INSERT가 가능
     - 그러나 JOIN, UNION, Sub Query 등으로 만들어진 View에는 data를 조작할 수 없음
 
-### 사용법
+# 사용법
 
 - 생성
     ```sql
@@ -81,81 +77,6 @@
 
 ---
 
-## Comment
-
-### table comment 조회
-
-```sql
-SELECT 
-    table_name, table_comment
-FROM
-    information_schema.tables
-WHERE
-    table_schema = 'DB 이름' AND table_name = '테이블 이름';
-```
-
-### column comment
-
-```sql
-SELECT
-    table_name, column_name, column_comment
-FROM
-    information_schema.columns
-WHERE
-    table_schema = 'DB 이름' AND table_name = '테이블 이름';
-```
-
----
-
-## Backup & Restoration
-
-### DB backup
-
-```sh
-mysqldump -u [user_id] -p [password] [original_database_name] > [backup_database_name_to_create].sql
-
-# example
-mysqldump -u test_user -p test_db > backup_test_db.sql
-passowrd : 123456
-```
-
-### Table backup
-
-```sh
-mysqldump -u [user_id] -p [password] [database_name] [origin_backup_table_name] > [table_name_to_backup].sql
-
-# example
-mysqldump -u test_user -p test_db test_table > backup_test_table.sql
-passowrd : 123456
-```
-
-### DB restoration
-
-```sh
-mysql -u [user_id] -p [password] [database_name_to_restore] < [backup_database].sql
-
-# example
-mysql -u test_user -p test_db < backup_test_db.sql
-passowrd : 123456
-```
-
-### Table restoration
-
-```sh
-mysql -u [user_id] -p [password] [database_name_to_restore] < [backup_table].sql
-
-# example
-mysql -u test_user -p 123456 test_db < backup_test_table.sql
-passowrd : 123456
-```
-
----
-
 # Reference
 
-- https://extbrain.tistory.com/97
-    - comment 조회
-- https://server-talk.tistory.com/30
-    - data backup
 - https://seung.tistory.com/entry/MySQL-뷰View-사용법
-    -View
