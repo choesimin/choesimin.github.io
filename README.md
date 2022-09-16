@@ -1,158 +1,169 @@
 # siminee.github.io
 
-## algorithm
-
-recursive-function
-
----
-
-## computer
-
-cache
-memory-structure
-process-thread
-
----
-
-## data-structure
-
-data-structure
+- [Algorithm](#Algorithm)
+- [Computer](#Computer)
+- [Data Structure](#Data_Structure)
+- [Database](#Database)
+- [Design](#Design)
+- [Framework](#Framework)
+- [Language](#Language)
+- [Network](#Network)
+- [Tool](#Tool)
+- [Word](#Word)
 
 ---
 
-## database
+## Algorithm
 
-dbcp
-mysql
-
-### mysql
-
-backup
-comment
-storage-engine
-view
-
-### storage-engine
-
-archive
-blackhole
-cluster
-csv
-federated
-inno-db
-memory
-my-isam
-storage-engine
+- [Recursive Function](./algorithm/recursive-function.md)
 
 ---
 
-## design
+## Computer
 
-clean-architecture
-layered-architecture
-micro-service-architecture
-solid
-
----
-
-## framework
-
-framework
-maven
-mybatis
-spring
-vue-js
-
-### spring
-
-bean-validation
-constructor-injection
-spring
+- [Cache](./computer/cache.md)
+- [Memory Structure](./computer/memory-structure.md)
+- [Process & Thread](./computer/process-thread.md)
 
 ---
 
-## language
+## Data Structure
 
-### java
-
-enum
-for-each
-generic
-hashmap
-history
-jdbc
-jndi
-jvm
-mutable-immutable
-reflection
-servlet
-stream
-string-stringbuffer-stringbuilder
-switch-if
-throwable-error-exception
-unchecked-warning
-
-### javascript
-
-javascript
-node-js
-
-### markdown
-
-markdown
-mermaid
+- [Data Structure](./data-structure/data-structure.md)
 
 ---
 
-## network
+## Database
 
-cors
-ip
-protocol
-stateful-stateless
+- [DBCP](./database/dbcp.md)
 
----
+### Database > MySQL
 
-## tool
+- [Backup](./database/mysql/backup.md)
+- [Comment](./database/mysql/comment.md)
+- [View](./database/mysql/view.md)
 
-### common
+#### Database > MySQL > Storage Engine
 
-git
-jenkins
-pm2
-tomcat
-vim
-
-### linux
-
-grep
-gunzip
-ls
-scp
-stat
-tail
-
-### mac
-
-homebrew
+- [Storage Engine](./database/mysql/storage-engine/storage-engine.md)
+- [Archive](./database/mysql/storage-engine/archive.md)
+- [Blackhole](./database/mysql/storage-engine/blackhole.md)
+- [Cluster](./database/mysql/storage-engine/cluster.md)
+- [CSV](./database/mysql/storage-engine/csv.md)
+- [Federated](./database/mysql/storage-engine/federated.md)
+- [InnoDB](./database/mysql/storage-engine/inno-db.md)
+- [Memory](./database/mysql/storage-engine/memory.md)
+- [MyISAM](./database/mysql/storage-engine/my-isam.md)
 
 ---
 
-## word
+## Design
 
-acid
-anti-pattern
-api
-atomic-operation
-batch
-ci-cd
-computer-word
-coupling-cohesion
-identity-equality
-payment
-scheduler
-tdd
-thread-safety
-uml
-was
-web-server
+- [SOLID](./design/solid.md)
+- [Clean Architecture](./design/clean-architecture.md)
+- [Layered Architecture](./design/layered-architecture.md)
+- [Micro Service Architecture](./design/micro-service-architecture.md)
+
+---
+
+## Framework
+
+- [Framework](./framework/framework.md)
+- [Maven](./framework/maven.md)
+- [MyBatis](./framework/mybatis.md)
+- [Spring](./framework/spring.md)
+- [Vue.js](./framework/vue-js.md)
+
+### Framework > Spring
+
+[Spring](./spring/spring.md)
+[Bean validation](./spring/bean-validation.md)
+[Constructor injection](./spring/constructor-injection.md)
+
+---
+
+## Language
+
+### Language > Java
+
+- [Enum](./language/java/enum.md)
+- [For each](./language/java/for-each.md)
+- [Generic](./language/java/generic.md)
+- [HashMap](./language/java/hashmap.md)
+- [History](./language/java/history.md)
+- [JDBC](./language/java/jdbc.md)
+- [JNDI](./language/java/jndi.md)
+- [JVM](./language/java/jvm.md)
+- [Mutable & Immutable](./language/java/mutable-immutable.md)
+- [Reflection](./language/java/reflection.md)
+- [Servlet](./language/java/servlet.md)
+- [Stream](./language/java/stream.md)
+- [String Stringbuffer Stringbuilder](./language/java/string-stringbuffer-stringbuilder.md)
+- [Switch & If](./language/java/switch-if.md)
+- [Throwable & Error & Exception](./language/java/throwable-error-exception.md)
+- [Unchecked warning](./language/java/unchecked-warning.md)
+
+### Language > Javascript
+
+- [JavaScript](./language/javascript/javascript.md)
+- [Node.js](./language/javascript/node-js.md)
+
+### Language > Markdown
+
+- [Markdown](./language/markdown/markdown.md)
+- [Mermaid](./language/markdown/mermaid.md)
+
+---
+
+## Network
+
+- [CORS](./network/cors.md)
+- [IP](./network/ip.md)
+- [Protocol](./network/protocol.md)
+- [Stateful & Stateless](./network/stateful-stateless.md)
+
+---
+
+## Tool
+
+### Tool > Common
+
+- [Git](./tool/common/git.md)
+- [Jenkins](./tool/common/jenkins.md)
+- [PM2](./tool/common/pm2.md)
+- [Tomcat](./tool/common/tomcat.md)
+- [Vim](./tool/common/vim.md)
+
+### Tool > Linux
+
+- [grep](./tool/linux/grep.md)
+- [gunzip](./tool/linux/gunzip.md)
+- [ls](./tool/linux/ls.md)
+- [scp](./tool/linux/scp.md)
+- [stat](./tool/linux/stat.md)
+- [tail](./tool/linux/tail.md)
+
+### Tool > Mac
+
+- [Homebrew](./tool/mac/homebrew.md)
+
+---
+
+## Word
+
+- [ACID](./word/acid.md)
+- [Anti pattern](./word/anti-pattern.md)
+- [API](./word/api.md)
+- [Atomic operation](./word/atomic-operation.md)
+- [Batch](./word/batch.md)
+- [CI & CD](./word/ci-cd.md)
+- [Computer word](./word/computer-word.md)
+- [Coupling & Cohesion](./word/coupling-cohesion.md)
+- [Identity & Equality](./word/identity-equality.md)
+- [Payment](./word/payment.md)
+- [Scheduler](./word/scheduler.md)
+- [TDD](./word/tdd.md)
+- [Thread safety](./word/thread-safety.md)
+- [UML](./word/uml.md)
+- [WAS](./word/was.md)
+- [Web server](./word/web-server.md)

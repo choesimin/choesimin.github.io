@@ -350,4 +350,3 @@ __double underscores__
 # Reference
 
 - https://gist.githubusercontent.com/ihoneymon/652be052a0727ad59601/raw/279d94f6cb00772e812ded20f0a17b2a3761a7a1/how-to-write-by-markdown.md
-    - 기본 문법
