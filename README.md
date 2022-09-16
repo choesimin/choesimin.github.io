@@ -1,4 +1,4 @@
-# siminee.github.io
+# Index
 
 - [Algorithm](#Algorithm)
 - [Computer](#Computer)
