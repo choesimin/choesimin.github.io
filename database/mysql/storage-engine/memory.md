@@ -14,10 +14,9 @@
         - query를 처리할 때 중간 결과를 저장할 임시 table이 필요함
 - MySQL은 내부에서 memory engine을 사용함
     - 이때 중간 결과가 memory table에 저장하기에 너무 커지거나 TEXT 또는 BLOB column이 포함되어 있다면 MySQL은 disk에 MyISAM table을 만들어 처리함
-
-```
-사용자들은 memory table을 CREATE TEMPORARY TABLE 구문으로 만들어진 임시 table과 자주 혼동한다. 임시 table은 어떤 storage engine이든 사용할 수 있으며 memory storage engine을 사용하는 table과는 다르다. 임시 table은 단일 연결에서만 보이며 연결이 끝나면 사라진다.
-```
+- 임시 table과 혼동할 수 있지만 서로 다름
+    - 임시 table은 CREATE TEMPORARY TABLE 구문으로 만들 수 있고, 어떤 storage engine이든 사용할 수 있음
+        - memory storage engine을 사용하는 table과는 다름
 
 ## 사용법
 
