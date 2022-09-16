@@ -1,15 +1,15 @@
 # Index
 
-- [Algorithm](#Algorithm)
-- [Computer](#Computer)
-- [Data Structure](#Data_Structure)
-- [Database](#Database)
-- [Design](#Design)
-- [Framework](#Framework)
-- [Language](#Language)
-- [Network](#Network)
-- [Tool](#Tool)
-- [Word](#Word)
+- [Algorithm](##Algorithm)
+- [Computer](##Computer)
+- [Data Structure](##Data_Structure)
+- [Database](##Database)
+- [Design](##Design)
+- [Framework](##Framework)
+- [Language](##Language)
+- [Network](##Network)
+- [Tool](##Tool)
+- [Word](##Word)
 
 ---
 
