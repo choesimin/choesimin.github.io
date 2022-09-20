@@ -1,11 +1,11 @@
-# Index
+## Index
 
 - [Algorithm](#algorithm)
 - [Computer](#computer)
 - [Data Structure](#data-structure)
 - [Database](#database)
     - [MySQL](#database---mysql)
-        - [Stirage Engine](#database---mysql---storage-engine)
+        - [Storage Engine](#database---mysql---storage-engine)
 - [Design](#design)
 - [Framework](#framework)
     - [Spring](#framework---spring)
@@ -22,7 +22,7 @@
 
 ---
 
-# Life
+## Life
 
 - 음식
     - 아침에 일어나서 물 마시기
@@ -53,13 +53,13 @@
 
 ---
 
-# Algorithm
+## Algorithm
 
 - [Recursive Function](./algorithm/recursive-function.md)
 
 ---
 
-# Computer
+## Computer
 
 - [Cache](./computer/cache.md)
 - [Memory Structure](./computer/memory-structure.md)
@@ -67,23 +67,23 @@
 
 ---
 
-# Data Structure
+## Data Structure
 
 - [Data Structure](./data-structure/data-structure.md)
 
 ---
 
-# Database
+## Database
 
 - [DBCP](./database/dbcp.md)
 
-## Database - MySQL
+### Database - MySQL
 
 - [Backup](./database/mysql/backup.md)
 - [Comment](./database/mysql/comment.md)
 - [View](./database/mysql/view.md)
 
-### Database - MySQL - Storage Engine
+#### Database - MySQL - Storage Engine
 
 - [Storage Engine](./database/mysql/storage-engine/storage-engine.md)
 - [Archive](./database/mysql/storage-engine/archive.md)
@@ -97,7 +97,7 @@
 
 ---
 
-# Design
+## Design
 
 - [SOLID](./design/solid.md)
 - [Clean Architecture](./design/clean-architecture.md)
@@ -106,7 +106,7 @@
 
 ---
 
-# Framework
+## Framework
 
 - [Framework](./framework/framework.md)
 - [Maven](./framework/maven.md)
@@ -114,7 +114,7 @@
 - [Spring](./framework/spring.md)
 - [Vue.js](./framework/vue-js.md)
 
-## Framework - Spring
+### Framework - Spring
 
 [Spring](./spring/spring.md)
 [Bean validation](./spring/bean-validation.md)
@@ -122,9 +122,9 @@
 
 ---
 
-# Language
+## Language
 
-## Language - Java
+### Language - Java
 
 - [Enum](./language/java/enum.md)
 - [For each](./language/java/for-each.md)
@@ -143,19 +143,19 @@
 - [Throwable & Error & Exception](./language/java/throwable-error-exception.md)
 - [Unchecked warning](./language/java/unchecked-warning.md)
 
-## Language - Javascript
+### Language - Javascript
 
 - [JavaScript](./language/javascript/javascript.md)
 - [Node.js](./language/javascript/node-js.md)
 
-## Language - Markdown
+### Language - Markdown
 
 - [Markdown](./language/markdown/markdown.md)
 - [Mermaid](./language/markdown/mermaid.md)
 
 ---
 
-# Network
+## Network
 
 - [CORS](./network/cors.md)
 - [IP](./network/ip.md)
@@ -164,9 +164,9 @@
 
 ---
 
-# Tool
+## Tool
 
-## Tool - Common
+### Tool - Common
 
 - [Git](./tool/common/git.md)
 - [Jenkins](./tool/common/jenkins.md)
@@ -174,7 +174,7 @@
 - [Tomcat](./tool/common/tomcat.md)
 - [Vim](./tool/common/vim.md)
 
-## Tool - Linux
+### Tool - Linux
 
 - [grep](./tool/linux/grep.md)
 - [gunzip](./tool/linux/gunzip.md)
@@ -183,13 +183,13 @@
 - [stat](./tool/linux/stat.md)
 - [tail](./tool/linux/tail.md)
 
-## Tool - Mac
+### Tool - Mac
 
 - [Homebrew](./tool/mac/homebrew.md)
 
 ---
 
-# Word
+## Word
 
 - [ACID](./word/acid.md)
 - [Anti pattern](./word/anti-pattern.md)
