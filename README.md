@@ -1,24 +1,33 @@
 # Index
 
-- [Algorithm](#Algorithm)
-- [Computer](#Computer)
-- [Data Structure](#Data_Structure)
-- [Database](#Database)
-- [Design](#Design)
-- [Framework](#Framework)
-- [Language](#Language)
-- [Network](#Network)
-- [Tool](#Tool)
-- [Word](#Word)
+- [Algorithm](#algorithm)
+- [Computer](#computer)
+- [Data Structure](#data-structure)
+- [Database](#database)
+    - [MySQL](#database---mysql)
+        - [Stirage Engine](#database---mysql---storage-engine)
+- [Design](#design)
+- [Framework](#framework)
+    - [Spring](#framework---spring)
+- [Language](#language)
+    - [Java](#language---java)
+    - [Javascript](#language---javascript)
+    - [Markdown](#language---markdown)
+- [Network](#network)
+- [Tool](#tool)
+    - [Common](#tool---common)
+    - [Linux](#tool---linux)
+    - [Mac](#tool---mac)
+- [Word](#word)
 
 ---
 
-# My Life
+# Life
 
 - 음식
     - 아침에 일어나서 물 마시기
     - 차 마시기
-        - 추천 차 : 루이보스 차
+        - 추천) 루이보스
     - 술 마시지 않기
     - 과하게 먹지 않기
 
@@ -32,14 +41,15 @@
 
 - 옷
     - 화려하게 입지 않기
-    - 하나의 옷을 사서 아껴 입기
-    - 사계절 내내 입을 수 있는 옷 입기
+    - 맘에 드는 옷으로 적게 사서 아껴 입기
+    - 사계절 내내 입을 수 있는 옷 사기
         - 추울 땐 두꺼운 옷 하나 말고 얇은 옷을 여러겹 입기
 
 - 공부
     - 공백기 만들지 않기
         - 방향 잡을 목표가 항상 하나씩은 있어야 함
             - ex) 개인 project, 책 한권 정해서 정리하기 등
+        - 진행이 더디어도 괜찮음
 
 ---
 
@@ -67,13 +77,13 @@
 
 - [DBCP](./database/dbcp.md)
 
-## Database > MySQL
+## Database - MySQL
 
 - [Backup](./database/mysql/backup.md)
 - [Comment](./database/mysql/comment.md)
 - [View](./database/mysql/view.md)
 
-### Database > MySQL > Storage Engine
+### Database - MySQL - Storage Engine
 
 - [Storage Engine](./database/mysql/storage-engine/storage-engine.md)
 - [Archive](./database/mysql/storage-engine/archive.md)
@@ -104,7 +114,7 @@
 - [Spring](./framework/spring.md)
 - [Vue.js](./framework/vue-js.md)
 
-## Framework > Spring
+## Framework - Spring
 
 [Spring](./spring/spring.md)
 [Bean validation](./spring/bean-validation.md)
@@ -114,7 +124,7 @@
 
 # Language
 
-## Language > Java
+## Language - Java
 
 - [Enum](./language/java/enum.md)
 - [For each](./language/java/for-each.md)
@@ -133,12 +143,12 @@
 - [Throwable & Error & Exception](./language/java/throwable-error-exception.md)
 - [Unchecked warning](./language/java/unchecked-warning.md)
 
-## Language > Javascript
+## Language - Javascript
 
 - [JavaScript](./language/javascript/javascript.md)
 - [Node.js](./language/javascript/node-js.md)
 
-## Language > Markdown
+## Language - Markdown
 
 - [Markdown](./language/markdown/markdown.md)
 - [Mermaid](./language/markdown/mermaid.md)
@@ -156,7 +166,7 @@
 
 # Tool
 
-## Tool > Common
+## Tool - Common
 
 - [Git](./tool/common/git.md)
 - [Jenkins](./tool/common/jenkins.md)
@@ -164,7 +174,7 @@
 - [Tomcat](./tool/common/tomcat.md)
 - [Vim](./tool/common/vim.md)
 
-## Tool > Linux
+## Tool - Linux
 
 - [grep](./tool/linux/grep.md)
 - [gunzip](./tool/linux/gunzip.md)
@@ -173,7 +183,7 @@
 - [stat](./tool/linux/stat.md)
 - [tail](./tool/linux/tail.md)
 
-## Tool > Mac
+## Tool - Mac
 
 - [Homebrew](./tool/mac/homebrew.md)
 
