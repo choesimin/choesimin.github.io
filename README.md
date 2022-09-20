@@ -1,25 +1,55 @@
 # Index
 
-- [Algorithm](##Algorithm)
-- [Computer](##Computer)
-- [Data Structure](##Data_Structure)
-- [Database](##Database)
-- [Design](##Design)
-- [Framework](##Framework)
-- [Language](##Language)
-- [Network](##Network)
-- [Tool](##Tool)
-- [Word](##Word)
+- [Algorithm](#Algorithm)
+- [Computer](#Computer)
+- [Data Structure](#Data_Structure)
+- [Database](#Database)
+- [Design](#Design)
+- [Framework](#Framework)
+- [Language](#Language)
+- [Network](#Network)
+- [Tool](#Tool)
+- [Word](#Word)
 
 ---
 
-## Algorithm
+# My Life
+
+- 음식
+    - 아침에 일어나서 물 마시기
+    - 차 마시기
+        - 추천 차 : 루이보스 차
+    - 술 마시지 않기
+    - 과하게 먹지 않기
+
+- 운동
+    - 근력 운동하기
+        - pull-up 20, push-up 50, squat 50, sit-up 50
+    - 혈액 순환되도록 하기
+        - 표정 짓기 & 얼굴 massage
+        - 손/발 지압
+        - stretching
+
+- 옷
+    - 화려하게 입지 않기
+    - 하나의 옷을 사서 아껴 입기
+    - 사계절 내내 입을 수 있는 옷 입기
+        - 추울 땐 두꺼운 옷 하나 말고 얇은 옷을 여러겹 입기
+
+- 공부
+    - 공백기 만들지 않기
+        - 방향 잡을 목표가 항상 하나씩은 있어야 함
+            - ex) 개인 project, 책 한권 정해서 정리하기 등
+
+---
+
+# Algorithm
 
 - [Recursive Function](./algorithm/recursive-function.md)
 
 ---
 
-## Computer
+# Computer
 
 - [Cache](./computer/cache.md)
 - [Memory Structure](./computer/memory-structure.md)
@@ -27,23 +57,23 @@
 
 ---
 
-## Data Structure
+# Data Structure
 
 - [Data Structure](./data-structure/data-structure.md)
 
 ---
 
-## Database
+# Database
 
 - [DBCP](./database/dbcp.md)
 
-### Database > MySQL
+## Database > MySQL
 
 - [Backup](./database/mysql/backup.md)
 - [Comment](./database/mysql/comment.md)
 - [View](./database/mysql/view.md)
 
-#### Database > MySQL > Storage Engine
+### Database > MySQL > Storage Engine
 
 - [Storage Engine](./database/mysql/storage-engine/storage-engine.md)
 - [Archive](./database/mysql/storage-engine/archive.md)
@@ -57,7 +87,7 @@
 
 ---
 
-## Design
+# Design
 
 - [SOLID](./design/solid.md)
 - [Clean Architecture](./design/clean-architecture.md)
@@ -66,7 +96,7 @@
 
 ---
 
-## Framework
+# Framework
 
 - [Framework](./framework/framework.md)
 - [Maven](./framework/maven.md)
@@ -74,7 +104,7 @@
 - [Spring](./framework/spring.md)
 - [Vue.js](./framework/vue-js.md)
 
-### Framework > Spring
+## Framework > Spring
 
 [Spring](./spring/spring.md)
 [Bean validation](./spring/bean-validation.md)
@@ -82,9 +112,9 @@
 
 ---
 
-## Language
+# Language
 
-### Language > Java
+## Language > Java
 
 - [Enum](./language/java/enum.md)
 - [For each](./language/java/for-each.md)
@@ -103,19 +133,19 @@
 - [Throwable & Error & Exception](./language/java/throwable-error-exception.md)
 - [Unchecked warning](./language/java/unchecked-warning.md)
 
-### Language > Javascript
+## Language > Javascript
 
 - [JavaScript](./language/javascript/javascript.md)
 - [Node.js](./language/javascript/node-js.md)
 
-### Language > Markdown
+## Language > Markdown
 
 - [Markdown](./language/markdown/markdown.md)
 - [Mermaid](./language/markdown/mermaid.md)
 
 ---
 
-## Network
+# Network
 
 - [CORS](./network/cors.md)
 - [IP](./network/ip.md)
@@ -124,9 +154,9 @@
 
 ---
 
-## Tool
+# Tool
 
-### Tool > Common
+## Tool > Common
 
 - [Git](./tool/common/git.md)
 - [Jenkins](./tool/common/jenkins.md)
@@ -134,7 +164,7 @@
 - [Tomcat](./tool/common/tomcat.md)
 - [Vim](./tool/common/vim.md)
 
-### Tool > Linux
+## Tool > Linux
 
 - [grep](./tool/linux/grep.md)
 - [gunzip](./tool/linux/gunzip.md)
@@ -143,13 +173,13 @@
 - [stat](./tool/linux/stat.md)
 - [tail](./tool/linux/tail.md)
 
-### Tool > Mac
+## Tool > Mac
 
 - [Homebrew](./tool/mac/homebrew.md)
 
 ---
 
-## Word
+# Word
 
 - [ACID](./word/acid.md)
 - [Anti pattern](./word/anti-pattern.md)

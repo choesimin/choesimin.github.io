@@ -60,6 +60,7 @@ grep [option] [pattern] [file_name]
 | -m 숫자 | 최대로 표시될 수 있는 결과를 제한 |
 | -E | 정규표현식 pattern으로 찾기 |
 | -F | 문자열 pattern으로 찾기 |
+| -A 숫자 | 결과부터 몇줄까지 표시할지 설정해서 검색 |
 
 ## grep의 종류
 
