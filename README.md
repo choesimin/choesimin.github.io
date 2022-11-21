@@ -21,36 +21,104 @@
 - [Word](#word)
 
 ---
-
-## Life
-
-- 음식
-    - 아침에 일어나서 물 마시기
-    - 차 마시기
-        - 추천) 루이보스
-    - 술 마시지 않기
-    - 과하게 먹지 않기
-
-- 운동
-    - 근력 운동하기
-        - pull-up 20, push-up 50, squat 50, sit-up 50
-    - 혈액 순환되도록 하기
-        - 표정 짓기 & 얼굴 massage
-        - 손/발 지압
-        - stretching
-
-- 옷
-    - 화려하게 입지 않기
-    - 맘에 드는 옷으로 적게 사서 아껴 입기
-    - 사계절 내내 입을 수 있는 옷 사기
-        - 추울 땐 두꺼운 옷 하나 말고 얇은 옷을 여러겹 입기
-
-- 공부
-    - 공백기 만들지 않기
-        - 방향 잡을 목표가 항상 하나씩은 있어야 함
-            - ex) 개인 project, 책 한권 정해서 정리하기 등
-        - 진행이 더디어도 괜찮음
-
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
 ---
 
 ## Algorithm
@@ -79,6 +147,7 @@
 
 ### Database - MySQL
 
+- [Data Type](./database/mysql/data-type.md)
 - [Backup](./database/mysql/backup.md)
 - [Comment](./database/mysql/comment.md)
 - [View](./database/mysql/view.md)
@@ -95,11 +164,16 @@
 - [Memory](./database/mysql/storage-engine/memory.md)
 - [MyISAM](./database/mysql/storage-engine/my-isam.md)
 
+#### Database - MySQL - Index
+
+- [Index](./database/mysql/index/index.md)
+
 ---
 
 ## Design
 
 - [SOLID](./design/solid.md)
+- [Clean Code](./design/clean-code.md)
 - [Clean Architecture](./design/clean-architecture.md)
 - [Layered Architecture](./design/layered-architecture.md)
 - [Micro Service Architecture](./design/micro-service-architecture.md)
@@ -116,9 +190,9 @@
 
 ### Framework - Spring
 
-[Spring](./spring/spring.md)
-[Bean validation](./spring/bean-validation.md)
-[Constructor injection](./spring/constructor-injection.md)
+- [Spring](./framework/spring/spring.md)
+- [Bean validation](./framework/spring/bean-validation.md)
+- [Constructor injection](./framework/spring/constructor-injection.md)
 
 ---
 
