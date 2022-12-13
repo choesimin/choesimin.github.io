@@ -164,10 +164,6 @@
 - [Memory](./database/mysql/storage-engine/memory.md)
 - [MyISAM](./database/mysql/storage-engine/my-isam.md)
 
-#### Database - MySQL - Index
-
-- [Index](./database/mysql/index/index.md)
-
 ---
 
 ## Design
