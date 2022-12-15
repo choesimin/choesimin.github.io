@@ -272,6 +272,7 @@
 - [Identity & Equality](./word/identity-equality.md)
 - [Payment](./word/payment.md)
 - [Scheduler](./word/scheduler.md)
+- [Syntax & Semantics](./word/syntax-semantics.md)
 - [TDD](./word/tdd.md)
 - [Thread safety](./word/thread-safety.md)
 - [UML](./word/uml.md)

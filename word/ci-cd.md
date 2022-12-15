@@ -12,7 +12,7 @@
     - 지속적인 배포 : CD
 - CI/CD는 새로운 code 통합으로 인해 개발 및 운영 team에 발생하는 문제(integration hell)을 해결하기 위한 solution
 
-## CI; Continuous Integration
+## CI : Continuous Integration
 
 - 현대적인 application 개발에서는 여러 개발자들이 동일한 application의 각기 다른 기능을 동시에 작업할 수 있도록 하는 것을 목표로 함
     - 그러나 조직에서 특정한 날(병합하는 날: merge day)을 정해 모든 분기 source code를 병합하는 경우, 결과적으로 반복적인 수작업에 많은 시간을 소모하게 됨
@@ -23,7 +23,7 @@
         - class와 기능에서부터 전체 application을 구성하는 서로 다른 module에 이르기까지 모든 것에 대한 test 수행
         - 자동화된 test에서 기존 code와 신규 code 간의 충돌이 발견되면 CI를 통해 이러한 bug를 더욱 빠르게 자주 수정할 수 있음
 
-## CD; Continuous Delivery
+## CD : Continuous Delivery
 
 - CI의 build 자동화, 단위 및 통합 test 수행 후, 이어지는 지속적 제공(CD; Continuous Delivery) process에서는 유효한 code를 repository에 자동으로 release
     - 효과적인 지속적 제공 process를 실현하기 위해서는 개발 pipeline에 CI가 먼저 구축되어 있어야 함
@@ -31,7 +31,7 @@
 - 지속적 제공의 경우, code 변경 사항 병합부터 production에 적합한 build 제공에 이르는 모든 단계에는 test 자동화와 code release 자동화가 포함됨
     - 이 process를 완료하면 운영팀이 보다 빠르고 쉽게 application을 production으로 배포할 수 있음
 
-## CD; Continuous Deployment
+## CD : Continuous Deployment
 
 - CI/CD pipeline의 마지막 단계는 지속적 배포
     - production 준비가 완료된 build를 code repository에 자동으로 release하는 지속적 제공의 확장된 형태
