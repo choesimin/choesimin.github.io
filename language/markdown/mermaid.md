@@ -95,6 +95,10 @@ Class01 <|-- AveryLongClass : Cool
 <<Interface>> Class01
 Class09 --> C2 : Where am i?
 Class09 --* C3
+Class09 --o C4
+Class09 .. C5
+Class09 ..> C6
+Class09 ..|> C7
 Class09 --|> Class07
 Class07 : equals()
 Class07 : Object[] elementData
@@ -115,6 +119,10 @@ Class01 <|-- AveryLongClass : Cool
 <<Interface>> Class01
 Class09 --> C2 : Where am i?
 Class09 --* C3
+Class09 --o C4
+Class09 .. C5
+Class09 ..> C6
+Class09 ..|> C7
 Class09 --|> Class07
 Class07 : equals()
 Class07 : Object[] elementData

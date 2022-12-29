@@ -147,9 +147,10 @@
 
 ### Database - MySQL
 
-- [Data Type](./database/mysql/data-type.md)
-- [Backup](./database/mysql/backup.md)
 - [Comment](./database/mysql/comment.md)
+- [Data Type](./database/mysql/data-type.md)
+- [mysqldump](./database/mysql/mysqldump.md)
+- [Restoration](./database/mysql/restoration.md)
 - [View](./database/mysql/view.md)
 
 #### Database - MySQL - Storage Engine
@@ -168,11 +169,16 @@
 
 ## Design
 
-- [SOLID](./design/solid.md)
-- [Clean Code](./design/clean-code.md)
 - [Clean Architecture](./design/clean-architecture.md)
+- [Clean Code](./design/clean-code.md)
 - [Layered Architecture](./design/layered-architecture.md)
 - [Micro Service Architecture](./design/micro-service-architecture.md)
+- [SOLID](./design/solid.md)
+
+### Design - Design Pattern
+
+- [Design Pattern](./design/design-pattern/design-pattern.md)
+- [Strategy Pattern](./design/design-pattern/strategy-pattern.md)
 
 ---
 
@@ -229,6 +235,7 @@
 
 - [CORS](./network/cors.md)
 - [IP](./network/ip.md)
+- [Network Layer](./network/network-layer.md)
 - [Protocol](./network/protocol.md)
 - [Stateful & Stateless](./network/stateful-stateless.md)
 
@@ -249,6 +256,7 @@
 - [grep](./tool/linux/grep.md)
 - [gunzip](./tool/linux/gunzip.md)
 - [ls](./tool/linux/ls.md)
+- [nohup](./tool/linux/nohup.md)
 - [scp](./tool/linux/scp.md)
 - [stat](./tool/linux/stat.md)
 - [tail](./tool/linux/tail.md)
