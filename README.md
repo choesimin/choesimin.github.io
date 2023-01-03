@@ -178,6 +178,8 @@
 ### Design - Design Pattern
 
 - [Design Pattern](./design/design-pattern/design-pattern.md)
+- [Decorator Pattern](./design/design-pattern/decorator-pattern.md)
+- [Observer Pattern](./design/design-pattern/observer-pattern.md)
 - [Strategy Pattern](./design/design-pattern/strategy-pattern.md)
 
 ---
