@@ -28,19 +28,19 @@ classDiagram
 class Component {
     methodA()
     methodB()
-    etc() ...
+    ...()
 }
 
 class ConcreteComponent {
     methodA()
     methodB()
-    etc() ...
+    ...()
 }
 
 class Decorator {
     methodA()
     methodB()
-    etc() ...
+    ...()
 }
 
 class ConcreteDecoratorA {
@@ -48,7 +48,7 @@ class ConcreteDecoratorA {
     methodA()
     methodB()
     newBehavior()
-    etc() ...
+    ...()
 }
 
 class ConcreteDecoratorB {
@@ -57,7 +57,7 @@ class ConcreteDecoratorB {
     methodA()
     methodB()
     newBehavior()
-    etc() ...
+    ...()
 }
 
 Component <|-- ConcreteComponent
@@ -98,7 +98,7 @@ class Beverage {
     cost()
     setSize()
     getSize()
-    etc() ...
+    ...()
 }
 
 class HouseBlend {

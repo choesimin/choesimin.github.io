@@ -11,7 +11,9 @@
 
 - simple factory는 객체 생성 부분을 캡슐화한 것
     - 객체 생성을 처리하는 class는 factory라고 부름
-    - 객체를 생성하는 작업을 한 class에 캡슐화시켜 놓으면, 구현을 변경해야 하는 경우에 여기저기 다 들어가서 고칠 필요 없이 factory class 하나만 고치면 됨
+    - 객체를 생성하는 작업을 한 class에 캡슐화시켜 놓는 것의 장점
+        - 구현을 변경해야 하는 경우에 여기저기 다 들어가서 고칠 필요 없이 factory class 하나만 고치면 됨
+        - code에서 중복되는 내용을 제거할 수 있음
 
 - 정적(static) factory
     - simple factory를 static method로 정의하는 기법
@@ -42,18 +44,10 @@ class Pizza {
     box()
 }
 
-class CheesePizza {
-    ...
-}
-class VeggiePizza {
-    ...
-}
-class ClamPizza {
-    ...
-}
-class PepperoniPizza {
-    ...
-}
+class CheesePizza
+class VeggiePizza
+class ClamPizza
+class PepperoniPizza
 
 PizzaStore --> SimplePizzaFactory
 SimplePizzaFactory --> Pizza
