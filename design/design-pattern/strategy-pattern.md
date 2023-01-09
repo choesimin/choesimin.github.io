@@ -342,3 +342,4 @@ public class FakeQuack implements QuackBehavior {
 # Reference
 
 - Head First Design Patterns
+- https://gmlwjd9405.github.io/2018/07/06/strategy-pattern.html
