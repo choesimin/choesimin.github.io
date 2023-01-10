@@ -9,6 +9,10 @@ Don’t reinvent the wheel
     - 경험을 재사용하는 것
 
 - Pattern
+    ```
+    A solution to a problem in a context
+    특정 상황(Context)에서 자주 반복되는 비슷한 문제(Problem)에 대한 해결책(Solution)
+    ```
     - 설계 문제와 해결책의 유사점을 일반화한 것
         - 각기 다른 software 모듈이나 기능을 가진 다양한 응용 software system들을 개발할 때, 서로 간에 공통되는 설계 문제가 존재하며 이를 처리하는 해결책 사이에도 공통점이 있음
     - pattern은 공통의 언어를 만들어주며 팀원 사이의 의사소통을 원활하게 해줌
@@ -18,35 +22,41 @@ Don’t reinvent the wheel
 
 ## 구조
 
-- Context
+1. Context
     - 문제가 발생하는 여러 상황을 기술함
         - pattern이 적용될 수 있는 상황
     - 경우에 따라서는 pattern이 유용하지 못한 상황을 나타내기도 함
 
-- Problem
+2. Problem
     - pattern이 적용되어 해결될 필요가 있는 여러 design issue들을 기술함
         - 여러 제약사항과 영향력도 문제 해결을 위해 고려해야 함
 
-- Solution
+3. Solution
     - 문제를 해결하도록 설계를 구성하는 요소들과 그 요소들 사이의 관계, 책임, 협력 관계를 기술함
         - 구체적인 구현 방법이나 언어에 의존적이지 않으며, 다양한 상황에 적용할 수 있는 일종의 template
 
+- Example : Iterator pattern
+    ```
+    Context : Objects의 Collection을 가지고 있다.
+    Problem : Collection의 구현을 밖으로 드러내지 않고 Object들을 처리하고 싶다.
+    Solution : 별도의 class에 Iteration을 Encapsulation한다.
+    ```
 
 
 
 ## 분류
 
-- 생성(Creational) pattern
+- 생성(Creational) Pattern
     - 객체 생성에 관련된 pattern
     - 객체의 생성과 조합을 캡슐화해 특정 객체가 생성되거나 변경되어도 program 구조에 영향을 크게 받지 않도록 유연성을 제공함
 
-- 구조(Structural) pattern
+- 구조(Structural) Pattern
     - class나 객체를 조합해 더 큰 구조를 만드는 pattern
     - example
         - 서로 다른 interface를 지닌 2개의 객체를 묶어 단일 interface를 제공하기
         - 객체들을 서로 묶어 새로운 기능을 제공하기
 
-- 행위(Behavioral) pattern
+- 행위(Behavioral) Pattern
     - 객체나 class 사이의 algorithm이나 책임 분배에 관련된 pattern
     - 한 객체가 혼자 수행할 수 없는 작업을 여러 개의 객체로 분배하고, 그렇게 하면서도 객체 사이의 결합도를 최소화하는 것에 중점 둠
 
@@ -265,3 +275,5 @@ Don’t reinvent the wheel
     - 개념
 - https://velog.io/@poiuyy0420/디자인-패턴-개념과-종류
     - 종류
+- https://jw92.tistory.com/11
+    - design pattern의 구성 (context, problem, solution)
