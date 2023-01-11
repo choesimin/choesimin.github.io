@@ -5,6 +5,28 @@
     - algorithm군을 정의하고 각각을 캡슐화하여 교환해서 사용할 수 있도록 만듬
     - algorithm을 사용하는 client와는 독립적으로 algorithm을 변경할 수 있음
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
+
+
 - 구현된 algorithm은 다르지만 동일한 목적을 지닌 class들이 존재할 때 사용하기
     - 평소에 한 가지 algorithm을 사용하더라도 algorithm을 변경해야 할 때가 있음
         - 참조하는 class가 변경/제거될 때 (compile time)
@@ -13,6 +35,27 @@
         - 새로운 algorithm을 추가하는 확장이 용이함
         - 언제든지 algorithm을 쉽게 대체할 수 있음
 
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
 
 
 
@@ -30,8 +73,8 @@
 - 단점
     - 복잡도가 증가함
         - algorithm이 늘어날 수록 객체도 무한히 늘어남
-        - logic을 단순히 client에 if-else로 분리해서 구현하는 게 보기 편할 수도 있음
-            - 한 눈에 들어오는 짧은 code에서는 strategy pattern을 사용하는 것이 오히려 가독성을 떨어쯔림
+        - logic을 단순히 client에 if-else로 분리해서 그 안에 구현하는 게 보기 편할 수도 있음
+            - 한 눈에 들어오는 짧은 code에서는 strategy pattern을 사용하는 것이 오히려 가독성을 떨어뜨림
             - ex) 분기가 2개인 경우
         - logic이 늘어날 때마다 구현체 class가 늘어남
     - client가 구체적인 전략(concrete strategy)을 알아야 함
@@ -39,6 +82,27 @@
             - 많은 algorithm에 대한 성능과 효율을 알고 있어야 함
         - client와 strategy를 한번 조립하면 전략을 변경하기 힘듬
 
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
 
 
 
@@ -77,6 +141,27 @@ ConcreteStrategyC .. ConcreteStrategyC : 전략에 대해 캡슐화된 구현을
 ```
 
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
+
 
 
 ## Sequence Diagram
@@ -93,6 +178,27 @@ loop 2
 end
 ```
 
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/> 
 
 
 
