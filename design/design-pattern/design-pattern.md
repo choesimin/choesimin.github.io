@@ -5,29 +5,8 @@ Don’t reinvent the wheel
 (바퀴를 다시 발명하지 마라)
 ```
 
-- software 설계의 특정 맥락에서 자주 발생하는 고질적인 문제들이 또 발생했을 때, 재사용할 할 수있는 훌륭한 해결책
-    - 경험을 재사용하는 것
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
+- (software 설계)의 (특정 맥락에서 자주 발생하는 고질적인 문제들이 또 발생했을 때, 재사용할 할 수있는 훌륭한 해결책)
+- 경험을 재사용하는 것
 
 - Pattern
     ```
@@ -38,27 +17,6 @@ Don’t reinvent the wheel
         - 각기 다른 software 모듈이나 기능을 가진 다양한 응용 software system들을 개발할 때, 서로 간에 공통되는 설계 문제가 존재하며 이를 처리하는 해결책 사이에도 공통점이 있음
     - pattern은 공통의 언어를 만들어주며 팀원 사이의 의사소통을 원활하게 해줌
 
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
 
 
 
@@ -85,26 +43,6 @@ Don’t reinvent the wheel
     ```
 
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
 
 
 ## 분류
@@ -124,27 +62,6 @@ Don’t reinvent the wheel
     - 한 객체가 혼자 수행할 수 없는 작업을 여러 개의 객체로 분배하고, 그렇게 하면서도 객체 사이의 결합도를 최소화하는 것에 중점 둠
 
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-
 
 
 ## 종류
@@ -163,27 +80,6 @@ Don’t reinvent the wheel
 |  |  | Memento |
 |  |  | Chain of Responsibility |
 
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
 
 
 
@@ -371,7 +267,13 @@ Don’t reinvent the wheel
             - 이미 구현되어 있는 method를 overriding한다는 것은 애초부터 base class가 제대로 추상화된 것이 아니었다고 볼 수 있음
             - base class에서 method를 정의할 때는 모든 sub class에서 공유할 수 있는 것만 정의해야 함
 
+
+
+
 ---
+
+
+
 
 # Reference
 

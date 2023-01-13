@@ -5,28 +5,6 @@
     - algorithm군을 정의하고 각각을 캡슐화하여 교환해서 사용할 수 있도록 만듬
     - algorithm을 사용하는 client와는 독립적으로 algorithm을 변경할 수 있음
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-
-
 - 구현된 algorithm은 다르지만 동일한 목적을 지닌 class들이 존재할 때 사용하기
     - 평소에 한 가지 algorithm을 사용하더라도 algorithm을 변경해야 할 때가 있음
         - 참조하는 class가 변경/제거될 때 (compile time)
@@ -35,27 +13,6 @@
         - 새로운 algorithm을 추가하는 확장이 용이함
         - 언제든지 algorithm을 쉽게 대체할 수 있음
 
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
 
 
 
@@ -82,27 +39,6 @@
             - 많은 algorithm에 대한 성능과 효율을 알고 있어야 함
         - client와 strategy를 한번 조립하면 전략을 변경하기 힘듬
 
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
 
 
 
@@ -141,69 +77,24 @@ ConcreteStrategyC .. ConcreteStrategyC : 전략에 대해 캡슐화된 구현을
 ```
 
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-
 
 
 ## Sequence Diagram
 
 ```mermaid
 sequenceDiagram
-loop 1
-    Client ->> ConcreteStrategyA : algorithm()
-    ConcreteStrategyA ->> Client : return result
-end
-loop 2
-    Client ->> ConcreteStrategyB : algorithm()
-    ConcreteStrategyB ->> Client : return result
-end
+
+Client ->> ConcreteStrategyA : algorithm()
+ConcreteStrategyA ->> Client : return result
+Client ->> Client : Strategy를 ConcreteStrategyA에서 ConcreteStrategyB로 변경
+Client ->> ConcreteStrategyB : algorithm()
+ConcreteStrategyB ->> Client : return result
 ```
 
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/> 
 
 
 
 ---
-
 
 
 
@@ -467,7 +358,7 @@ public class ModelDuck extends Duck {
 }
 ```
 
-### 캡슐화된 나는 행동
+### Strategy : 나는 행동
 
 ```java
 public interface FlyBehavior {
@@ -499,7 +390,7 @@ public class FlyRocketPowered implements FlyBehavior {
 }
 ```
 
-### 캡슐화된 꽥꽥거리는 행동
+### Strategy : 꽥꽥거리는 행동
 
 ```java
 public interface QuackBehavior {
@@ -538,7 +429,6 @@ public class FakeQuack implements QuackBehavior {
     }
 }
 ```
-
 
 
 
