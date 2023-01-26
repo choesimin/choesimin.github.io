@@ -217,21 +217,21 @@
             - 변수를 묶기 위해 이름을 붙여 개념을 표현하게 됨
     - 동사와 keyword
         - 단항 함수는 함수와 인수가 동사/명사 쌍을 이루어야 함
-            - write(name) 보다 writeField(name)이 더 나음
+            - `write(name)` 보다 `writeField(name)`이 더 나음
                 - 한번에 알아보기 더 쉬움
         - 함수 이름에 keyword(인수 이름)를 추가하면 인수 순서를 기억할 필요가 없음
-            - assertEquals보다 assertExpectedEqualsActual(expected, actual)이 더 나음
+            - `assertEquals(expected, actual)`보다 `assertExpectedEqualsActual(expected, actual)`이 더 나음
 
 - 부수 효과 일으키지 않기
     - 부수 효과는 그 자체로 거짓말이 됨
         - 함수에서 한 가지를 하는 척 하면서 다른 것도 하기 때문
     - 예상치 못하게 함수로 넘어온 인수나 class 변수, system 전역 변수를 수정하기도 함
     - 출력 인수를 사용하는 것은 피하기
-        - appendFooter(s);
+        - `appendFooter(s);`
             - 이 함수가 s를 바닥글로 첨부할지, s에 바닥글을 첨부할지 알 수 없음
         - 객체 지향 언어에서는 출력 인수를 사용할 필요가 거의 없음
-            - 출력 인수로 사용하라고 설계한 this라는 변수가 있기 때문
-                - appendFooter(s)보다 report.appendFooter()가 나음
+            - 출력 인수로 사용하라고 설계한 `this`라는 변수가 있기 때문
+                - `appendFooter(s)`보다 `report.appendFooter()`가 나음
         - 함수에서 상태를 변경해야 한다면, 함수가 속한 객체 상태를 변경하는 방식을 사용하는 것이 더 좋음
 
 - 명령과 조회를 분리하기
@@ -239,7 +239,7 @@
 
 - 오류 code보다 예외를 사용하기
     - 오류 처리도 '한 가지 작업'이기 때문에, 오류를 처리하는 함수는 오류만 처리해야 함
-    - try/catch/finaly 문 사용
+    - `try-catch-finaly` 문 사용
 
 - 반복하지 않기
     - 중복이 늘어나면, code 길이가 늘어나고, 수정 시 변경점이 많아짐
@@ -267,22 +267,29 @@
     - code가 알아보기 어렵다면 주석을 달기보단, code를 깨끗하게 만드는 것이 나음
 
 - code로 의도를 표현하기
-    - 나쁜 예) // 직원에게 복지 혜택을 받을 자격이 있는지 검사한다. if ((employee.flags & HOURLY_FLAG) && (employee.age > 65))
-    - 좋은 예) if (employee.isEligibleForFullBenefits())
+    - 나쁜 예
+        ```java
+        // 직원에게 복지 혜택을 받을 자격이 있는지 검사한다.
+        if ((employee.flags & HOURLY_FLAG) && (employee.age > 65)) { ... }
+        ```
+    - 좋은 예
+        ```java
+        if (employee.isEligibleForFullBenefits()) { ... }
+        ```
 
 ## 주석이 필요하거나 유익한 경우
 
 - 법적인 주석
-    - ex) 저작권 정보, 소유권 정보  등
+    - ex) 저작권 정보, 소유권 정보 등
 - 정보를 제공하는 주석
 - 의도를 설명하는 주석
 - 의미를 명료하게 밝히는 주석
     - 인수나 반환값이 표준 library나 변경하지 못하는 code에 속한다면 의미를 밝혀주는 주석이 유용함
 - 결과를 경고하는 주석
 - TODO 주석
-    - 앞으로 할 일을 // TODO 주석으로 남겨두면 편함
-    - TODO로 떡칠한 code는 바람직하지 않음
-    - 주기적으로 TODO 주석을 점검해 없애도 괜찮은 주석은 없애는 것이 좋음
+    - 앞으로 할 일을 `// TODO` 주석으로 남겨두면 편함
+    - `TODO`로 떡칠한 code는 바람직하지 않음
+    - 주기적으로 `TODO` 주석을 점검해 없애도 괜찮은 주석은 없애는 것이 좋음
 - 중요성을 강조하는 주석
     - 자칫 대수롭지 않다고 여겨질 부분의 중요성을 강조하기 위해서 사용하기도 하마
 - 공개 API의 Javadocs
@@ -310,7 +317,13 @@
 - 함수나 변수로 충분히 표현할 수 있는 주석
 - 위치를 표시하는 주석
 - 닫는 괄호에 다는 주석
-    - ex) try { while (...) { ... } // while } // try
+    ```java
+    try {
+        while (...) {
+            ...
+        } // while
+    } // try
+    ```
     - 중첩이 심하고 장황한 함수라면 의미가 있을지도 모르지만, 작고 캡슐화된 함수에는 잡음이 됨
     - 닫는 괄호에 주석을 달아야 한다면, 함수를 줄이는 시도를 하는 것이 나음
 - 공로를 돌리거나 저자를 표시하는 주석
@@ -390,14 +403,20 @@
     - 가로 공백과 밀집도
         - 가로 공백을 사용해 밀접한 개념과 느슨한 개념을 표현하기
             - 할당문의 왼쪽 요소와 오른쪽 요소를 분명히 나누기 위한 공백
-                - int lineSize =  line.length();
-                - totalChars += lineSize;
+                ```java
+                int lineSize = line.length();
+                totalChars += lineSize;
+                ```
             - 함수와 인수는 관계가 밀접하기 때문에 함수 이름과 이어지는 괄호 사이에는 공백을 넣지 않음
-                - lineWidthHistogram.addLine(lineSize, lineCount);
-                - recordWidestLine(lineSize);
+                ```java
+                lineWidthHistogram.addLine(lineSize, lineCount);
+                recordWidestLine(lineSize);
+                ```
         - 연산자 우선순위를 강조할 때
-            - (-b + Math.sqrt(determinant)) / (2*a)
-            - b*b - 4*a*c
+            ```java
+            (-b + Math.sqrt(determinant)) / (2*a)
+            b*b - 4*a*c
+            ```
     - 가로 정렬 사용하지 않기
         - 가로 정렬 : 여러 변수를 선언할 때 길이가 다른 변수명들의 할당 영역 시작 위치를 맞추는 것
         - code가 엉뚱한 부분을 강조해 진짜 의도를 가리게 됨
@@ -448,14 +467,20 @@
         - C instance 변수에 저장된 객체
     - 기차 충돌(train wreck) 문제
         - 여러 객체가 한 줄로 이어진 기차처럼 보이는 문제
-            - final String outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath();
+            ```java
+            final String outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath();
+            ```
         - 기차는 나누는 것이 나음
-            - Option opts = ctxt.getOptions();
-            - File scratchDir = opts.getScratchDir();
-            - final String outputDir = scratchDir.getAbsolutePath();
+            ```java
+            Option opts = ctxt.getOptions();
+            File scratchDir = opts.getScratchDir();
+            final String outputDir = scratchDir.getAbsolutePath();
+            ```
         - 객체와 자료 구조의 구분을 확실하게 하는 것이 나음
-            - final String outputDir = ctxt.options.scratchDir.absolutePath;
-                - 객체 method와 조회 함수를 함께 사용하면 자료 구조와 객체의 역할을 모두 가지고 있는 셈이므로 하나로 통일되도록 변경
+            ```java
+            final String outputDir = ctxt.options.scratchDir.absolutePath;
+            ```
+            - 객체 method와 조회 함수를 함께 사용하면 자료 구조와 객체의 역할을 모두 가지고 있는 셈이므로 하나로 통일되도록 변경
     - 잡종 구조
         - 절반은 객체, 절반은 자료 구조인 경우
             - 중요한 기능을 수행하는 함수, 공개 변수, 공개 조회/설정 함수 모두 가지고 있는 경우

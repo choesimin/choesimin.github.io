@@ -5,7 +5,7 @@ Don’t reinvent the wheel
 (바퀴를 다시 발명하지 마라)
 ```
 
-- (software 설계)의 (특정 맥락에서 자주 발생하는 고질적인 문제들이 또 발생했을 때, 재사용할 할 수있는 훌륭한 해결책)
+- 'software 설계'(Design)의 '특정 맥락에서 자주 발생하는 고질적인 문제들이 또 발생했을 때, 재사용할 할 수 있는 훌륭한 해결책'(Pattern)
 - 경험을 재사용하는 것
 
 - Pattern
@@ -16,6 +16,7 @@ Don’t reinvent the wheel
     - 설계 문제와 해결책의 유사점을 일반화한 것
         - 각기 다른 software 모듈이나 기능을 가진 다양한 응용 software system들을 개발할 때, 서로 간에 공통되는 설계 문제가 존재하며 이를 처리하는 해결책 사이에도 공통점이 있음
     - pattern은 공통의 언어를 만들어주며 팀원 사이의 의사소통을 원활하게 해줌
+        - ex) "기능마다 별도의 class를 만들고, 그 기능들로 해야할 일을 한번에 처리해주는 class를 만들자"라고 제안하는 것보다 "Facade pattern을 써보자"라고 제안하는 쪽이 이해하기 쉬움
 
 
 
@@ -212,6 +213,9 @@ Don’t reinvent the wheel
     - 이를 연결되어 있는 경우에 따라 동적으로 다르게 처리될 수 있도록 연결해주는 pattern
     - 한 요청을 2개 이상의 객체에서 처리함
 
+
+
+
 ---
 
 
@@ -284,3 +288,5 @@ Don’t reinvent the wheel
     - 종류
 - https://jw92.tistory.com/11
     - design pattern의 구성 (context, problem, solution)
+- https://namu.wiki/w/%EB%94%94%EC%9E%90%EC%9D%B8%20%ED%8C%A8%ED%84%B4#s-1
+    - 나무위키
