@@ -32,6 +32,8 @@ Adapter -->|translatedRequest| Adaptee
 
 - Two Way Adapter (다중 Adapter) : 여러 interface를 모두 지원하는 Adapter
 
+- Target interface의 크기와 구조에 따라 coding해야 할 분량이 결정됨
+
 - Decorator Pattern & Adapter Pattern & Facade pattern
     - 공통점
         - 객체를 감싸서 호환되지 않는 interface를 Client가 사용할 수 있게 함
@@ -125,20 +127,11 @@ Adapter .. Adapter : Adaptee를 적응시키는 데 있어서 구성을 사용�
 
 
 
-# Example : 
+# Example : 오리 Adapter로 감싼 칠면조
 
-
-
-
-## Class Diagram
-
-
-
-
-```mermaid
-classDiagram
-
-```
+- 오리처럼 걷고 꽥꽥거린다면, 반드시 오리가 아니라, 오리 Adapter로 감싼 칠면조일 수도 있음
+- Duck <-> Turkey 변환
+- Duck <-> Dron 변환
 
 
 
@@ -148,7 +141,193 @@ classDiagram
 
 
 
+### Client
+
 ```java
+public class DuckTestDrive {
+    public static void main(String[] args) {
+        Duck duck = new MallardDuck();
+
+        Turkey turkey = new WildTurkey();
+        Duck turkeyAdapter = new TurkeyAdapter(turkey);
+
+        System.out.println("The Turkey says...");
+        turkey.gobble();
+        turkey.fly();
+
+        System.out.println("\nThe Duck says...");
+        testDuck(duck);
+
+        System.out.println("\nThe TurkeyAdapter says...");
+        testDuck(turkeyAdapter);
+        
+        // Challenge
+        Drone drone = new SuperDrone();
+        Duck droneAdapter = new DroneAdapter(drone);
+        testDuck(droneAdapter);
+    }
+
+    static void testDuck(Duck duck) {
+        duck.quack();
+        duck.fly();
+    }
+}
+```
+
+```java
+public class TurkeyTestDrive {
+    public static void main(String[] args) {
+        MallardDuck duck = new MallardDuck();
+        Turkey duckAdapter = new DuckAdapter(duck);
+ 
+        for(int i=0;i<10;i++) {
+            System.out.println("The DuckAdapter says...");
+            duckAdapter.gobble();
+            duckAdapter.fly();
+        }
+    }
+}
+```
+
+
+
+
+### Adapter
+
+```java
+public class DuckAdapter implements Turkey {
+    Duck duck;
+    Random rand;
+ 
+    public DuckAdapter(Duck duck) {
+        this.duck = duck;
+        rand = new Random();
+    }
+    
+    public void gobble() {
+        duck.quack();
+    }
+  
+    public void fly() {
+        if (rand.nextInt(5)  == 0) {
+             duck.fly();
+        }
+    }
+}
+```
+
+```java
+public class TurkeyAdapter implements Duck {
+    Turkey turkey;
+ 
+    public TurkeyAdapter(Turkey turkey) {
+        this.turkey = turkey;
+    }
+    
+    public void quack() {
+        turkey.gobble();
+    }
+  
+    public void fly() {
+        for(int i=0; i < 5; i++) {
+            turkey.fly();
+        }
+    }
+}
+```
+
+```java
+public class DroneAdapter implements Duck {
+    Drone drone;
+ 
+    public DroneAdapter(Drone drone) {
+        this.drone = drone;
+    }
+    
+    public void quack() {
+        drone.beep();
+    }
+  
+    public void fly() {
+        drone.spin_rotors();
+        drone.take_off();
+    }
+}
+```
+
+
+
+
+### Duck
+
+```java
+public interface Duck {
+    public void quack();
+    public void fly();
+}
+```
+
+```java
+public class MallardDuck implements Duck {
+    public void quack() {
+        System.out.println("Quack");
+    }
+ 
+    public void fly() {
+        System.out.println("I'm flying");
+    }
+}
+```
+
+
+
+
+### Turkey
+
+```java
+public interface Turkey {
+    public void gobble();
+    public void fly();
+}
+```
+
+```java
+public class WildTurkey implements Turkey {
+    public void gobble() {
+        System.out.println("Gobble gobble");
+    }
+ 
+    public void fly() {
+        System.out.println("I'm flying a short distance");
+    }
+}
+```
+
+
+
+
+### Dron
+
+```java
+public interface Drone {
+    public void beep();
+    public void spin_rotors();
+    public void take_off();
+}
+```
+
+```java
+public class SuperDrone implements Drone {
+    public void beep() {
+        System.out.println("Beep beep beep");
+    }
+    public void spin_rotors() {
+        System.out.println("Rotors are spinning");
+    }
+    public void take_off() {
+        System.out.println("Taking off");
+    }
+}
 ```
 
 
