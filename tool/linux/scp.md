@@ -30,7 +30,7 @@ scp tesfile1 testfile2 root@192.168.159.129:/tmp/testclient
 
 ### 여러 file을 포함하고 있는 directory를 원격지로 보내기
 
-- -r option 사용 : 보내고자 하는 directory의 하위 folder 및 file까지 동시에 전송 가능
+- `-r` option 사용 : 보내고자 하는 directory의 하위 folder 및 file까지 동시에 전송 가능
   - folder 자체가 넘어가게 됨
 
 ```sh
@@ -67,7 +67,7 @@ scp root@192.168.159.129:"/tmp/testclient/testfile2 /tmp/testclient/testfile3" /
 
 ### 여러 file을 포함하고 있는 directory를 원격지에서 가져오기
 
-- -r option 사용 : 보내고자 하는 directory의 하위 folder 및 file까지 동시에 전송 가능
+- `-r` option 사용 : 보내고자 하는 directory의 하위 folder 및 file까지 동시에 전송 가능
   - folder 자체가 넘어가게 됨 (foleder 하위에 있는 것들이 넘어가는 것이 아님)
 
 ```sh
