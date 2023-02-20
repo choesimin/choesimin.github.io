@@ -314,3 +314,5 @@ journey
     - mermaid
 - https://frhyme.github.io/mermaid/mermaid_basic00/
     - flowchart
+- https://mermaid.js.org/syntax/stateDiagram.html
+    - state diagram
