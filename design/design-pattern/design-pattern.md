@@ -8,10 +8,15 @@ Don’t reinvent the wheel
 - 'software 설계'(Design)의 '특정 맥락에서 자주 발생하는 고질적인 문제들이 또 발생했을 때, 재사용할 할 수 있는 훌륭한 해결책'(Pattern)
 - 경험을 재사용하는 것
 
+- '규칙'이나 '법칙'이 아닌 '지침' 정도로 생각해야 함
+    - 정의를 엄격하게 따를 필요는 없고, 필요에 따라 적당히 고쳐서 사용해도 됨
+        - 실제 pattern이 적용되는 곳을 보면 고전적인 pattern design하고 다른 부분도 많음
+        - pattern을 변경시켜서 사용할 때는 고전적인 pattern design과 다른 부분을 문서화해 놓는 것이 좋음
+
 - Pattern
     ```
     A solution to a problem in a context
-    특정 상황(Context)에서 자주 반복되는 비슷한 문제(Problem)에 대한 해결책(Solution)
+    특정 상황(Context)에서 주어진 문제(Problem)에 대한 해결책(Solution)
     ```
     - 설계 문제와 해결책의 유사점을 일반화한 것
         - 각기 다른 software 모듈이나 기능을 가진 다양한 응용 software system들을 개발할 때, 서로 간에 공통되는 설계 문제가 존재하며 이를 처리하는 해결책 사이에도 공통점이 있음
@@ -27,12 +32,16 @@ Don’t reinvent the wheel
     - 문제가 발생하는 여러 상황을 기술함
         - pattern이 적용될 수 있는 상황
     - 경우에 따라서는 pattern이 유용하지 못한 상황을 나타내기도 함
+    - 반복적으로 일어날 수 있는 상황이어야 함
 
 2. Problem
     - pattern이 적용되어 해결될 필요가 있는 여러 design issue들을 기술함
         - 여러 제약사항과 영향력도 문제 해결을 위해 고려해야 함
+    - context 내에서 이루고자 하는 목적
+        - context 내에서 생길 수 있는 제약조건도 problem에 포함됨
 
 3. Solution
+    - 일련의 제약조건 내에서 목적을 달성할 수 있는 일반적인 design
     - 문제를 해결하도록 설계를 구성하는 요소들과 그 요소들 사이의 관계, 책임, 협력 관계를 기술함
         - 구체적인 구현 방법이나 언어에 의존적이지 않으며, 다양한 상황에 적용할 수 있는 일종의 template
 
@@ -48,24 +57,24 @@ Don’t reinvent the wheel
 
 ## 분류
 
+### 생성 & 구조 & 행위
+
 - 생성(Creational) Pattern
     - 객체 생성에 관련된 pattern
+        - 객체 instance 생성을 위한 pattern
+        - client와 그 client에서 생성해야 할 instance 사이의 연결을 끊어줌
     - 객체의 생성과 조합을 캡슐화해 특정 객체가 생성되거나 변경되어도 program 구조에 영향을 크게 받지 않도록 유연성을 제공함
 
 - 구조(Structural) Pattern
     - class나 객체를 조합해 더 큰 구조를 만드는 pattern
+        - '구성'을 통해서 더 큰 구조를 만듬
     - example
         - 서로 다른 interface를 지닌 2개의 객체를 묶어 단일 interface를 제공하기
         - 객체들을 서로 묶어 새로운 기능을 제공하기
 
 - 행위(Behavioral) Pattern
-    - 객체나 class 사이의 algorithm이나 책임 분배에 관련된 pattern
+    - 객체나 class 사이의 algorithm(상호작용)이나 책임 분배(역할 분담)에 관련된 pattern
     - 한 객체가 혼자 수행할 수 없는 작업을 여러 개의 객체로 분배하고, 그렇게 하면서도 객체 사이의 결합도를 최소화하는 것에 중점 둠
-
-
-
-
-## 종류
 
 | 생성 Pattern | 구조 Pattern | 행위 Pattern |
 | - | - | - |
@@ -81,8 +90,44 @@ Don’t reinvent the wheel
 |  |  | Memento |
 |  |  | Chain of Responsibility |
 
+### Class & Object
+
+- Class Pattern
+    - class 사이의 관계가 상속을 통해서 어떤 식으로 정의되는지를 다룸
+    - compile시에 관계가 결정됨
+
+- Object Pattern
+    - 객체 사이의 관계를 다룸
+        - 객체 사이의 관계는 보통 구성을 통해서 정의됨
+    - 일반적으로 실행 중에 관계가 생성됨
+        - 더 동적이고 유연함
+
+| Class Pattern | Object Pattern |
+| - | - |
+| Template Method | Strategy |
+| Factory Method | Observer |
+| Adaptor | Decorator |
+| Interpreter | Proxy |
+|  | Composite |
+|  | Iterator |
+|  | State |
+|  | Abstract Factory |
+|  | Singleton |
+|  | Visitor |
+|  | Memento |
+|  | Chain of Responsibility |
+|  | Bridge |
+|  | Mediator |
+|  | Flyweight |
+|  | Prototype |
+|  | Builder |
+|  | Facade |
+|  | Command |
 
 
+
+
+## 종류
 
 ### 생성 pattern
 
@@ -112,9 +157,6 @@ Don’t reinvent the wheel
 - Singleton
     - 전역 변수를 사용하지 않고 객체를 하나만 생성하도록 하며, 생성된 객체를 어디에서든지 참조할 수 있도록 하는 design pattern
     - 한 class에 한 객체만 존재하도록 제한함
-
-
-
 
 ### 구조 pattern
 
@@ -156,8 +198,6 @@ Don’t reinvent the wheel
     - 기존에 생성된 class를 재사용할 수 있도록 중간에서 맞춰주는 역할의 interface를 만드는 pattern
     - 상속을 이용하는 class pattern과 위임을 이용하는 instance pattern의 두 가지 형태로 사용됨
     - interface가 호환되지 않는 class들을 함께 이용할 수 있도록 타 class의 interface를 기존 interface에 덧씌움
-
-
 
 ### 행위 pattern
 
