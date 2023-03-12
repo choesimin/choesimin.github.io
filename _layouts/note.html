@@ -4,8 +4,12 @@ layout: base
 
 {{ content }}
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/dark.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+    mermaid.initialize({ startOnLoad: false, theme: 'dark' });
     await mermaid.run({ querySelector: '.language-mermaid' });
 </script>
