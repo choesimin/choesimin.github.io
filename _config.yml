@@ -1,0 +1,13 @@
+title: 시민 개발 사전
+author:
+  name: Choe Simin
+  email: choesimin961009@gmail.com
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+collections:
+  notes:
+    output: true
+

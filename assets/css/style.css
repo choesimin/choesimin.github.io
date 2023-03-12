@@ -1,0 +1,21 @@
+body {
+    margin: 100px 10% 100px 10%;
+
+    font-family: Arial, sans-serif;
+
+    color: #333333;
+    background-color: #DDDDDD;
+
+    line-height: 1.5;
+}
+
+a {
+    text-decoration-line: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #000000;
+    font-weight: bold;
+    text-decoration-line: underline;
+}

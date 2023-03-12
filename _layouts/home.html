@@ -1,0 +1,132 @@
+---
+layout: base
+---
+
+<script>
+  printNodes(groupNodes(makeNodes(getPages())));
+
+
+
+
+  function printNodes(nodes) {
+    nodes.forEach(node => {
+      var list = document.createElement("ul");
+      printNode(node, list);
+      document.getElementsByTagName("main")[0].appendChild(list);
+    });
+  }
+
+  function printNode(node, list) {
+    var childList = document.createElement("ul");
+    var listItem = document.createElement("li");
+
+    list.appendChild(childList);
+    childList.appendChild(listItem);
+
+    if (node.children != undefined) {
+      listItem.innerHTML = capitalizeKebab(node.name);
+
+      for (var i = 0; i < node.children.length; i++) {
+        printNode(node.children[i], childList);
+      }
+
+    } else {
+      var a = document.createElement("a");
+      listItem.appendChild(a);
+
+      a.innerHTML = node.name;
+      a.href = node.url;
+    }
+  }
+
+  function capitalizeKebab(str) {
+    return str.split("-")
+      .map(word => word[0].toUpperCase() + word.substring(1))
+      .join(" ");
+  }
+
+
+
+
+  function groupNodes(nodes) {
+    var root = {name: "root"};
+    root.children = nodes;
+
+    return groupNode(root).children;
+  }
+
+  function groupNode(node) {
+    var categories = Array.from(new Set(node.children.filter(child => child.children != undefined).map(child => child.name)));
+
+    for (var i = 0; i < categories.length; i++) {
+      var category = categories[i];
+      var groupedNode = {
+        name: category,
+        children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
+      };
+
+      node.children = node.children.filter(child => child.name != category);
+      node.children.push(groupedNode);
+
+      if (groupedNode.children != undefined) {
+        groupNode(groupedNode);
+      }
+    }
+
+    return node;
+  }
+
+
+
+
+  function makeNodes(pages) {
+    var nodes = pages.map(page => makeNode(page));
+    return nodes;
+  }
+
+  function makeNode(page) {
+    var leaf = {
+      name: page.title,
+      url: page.url
+    }
+    return makeMultiDepthNode(page.category, leaf, 1);
+  }
+
+  function makeMultiDepthNode(category, child, indent) {
+    var node = {
+      name: category[category.length - indent],
+      children: [child]
+    };
+
+    while (indent < category.length) {
+      indent++;
+      return makeMultiDepthNode(category, node, indent);
+    }
+
+    return node;
+  }
+
+
+
+
+  /* Get pages from _notes */
+
+  function getPages() {
+    var pages = [];
+
+    {% for note in site.notes %}
+      var id = "{{ note.id }}".split("/");
+
+      pages.push({
+        category: id.slice(2, id.length - 1),
+        title: "{{ note.title }}",
+        url: "{{ note.url | relative_url }}",
+      });
+    {% endfor %}
+
+    return pages;
+  }
+
+
+
+</script>
