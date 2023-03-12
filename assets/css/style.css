@@ -1,11 +1,9 @@
 body {
     margin: 100px 10% 100px 10%;
-
-    font-family: Arial, sans-serif;
-
-    color: #333333;
     background-color: #DDDDDD;
 
+    font-family: Arial, sans-serif;
+    color: #333333;
     line-height: 1.5;
 }
 
@@ -18,4 +16,9 @@ a:hover {
     color: #000000;
     font-weight: bold;
     text-decoration-line: underline;
+}
+
+hr {
+    border-style: solid;
+    border-width: 1px 0 0 0;
 }
