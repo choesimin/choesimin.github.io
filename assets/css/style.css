@@ -5,19 +5,31 @@ body {
     font-family: Arial, sans-serif;
     color: #dddddd;
     line-height: 2;
+
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+@media screen and (max-width:1024px) {
+    body {
+        padding: 10px;
+    }
 }
 
 a {
     text-decoration-line: none;
     color: inherit;
 }
-
 a:hover {
     color: #ffffff;
     font-weight: bold;
 }
 
+ul {
+    padding-left: 20px;
+}
+
 hr {
+    margin: 50px 0;
     border-style: solid;
     border-width: 1px 0 0 0;
 }

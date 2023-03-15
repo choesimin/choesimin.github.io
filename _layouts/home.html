@@ -4,48 +4,52 @@ layout: base
 
 <script>
 
-  printNodes(groupNodes(makeNodes(getPages())));
+  var pages = getPages();
+  var nodes = makeNodes(pages);
+  var root = groupNodes(nodes);
+
+  var list = document.createElement("ul");
+  makeList(root, list);
+
+  list.removeChild(list.querySelector("li"));
+  document.querySelector("main").innerHTML = list.innerHTML;
 
 
 
 
-  function printNodes(nodes) {
-    nodes.forEach(node => {
-      var list = document.createElement("ul");
-      printNode(node, list);
-      document.getElementsByTagName("main")[0].appendChild(list);
-    });
-  }
-
-  function printNode(node, list) {
-    var childList = document.createElement("ul");
-    var listItem = document.createElement("li");
-
-    list.appendChild(childList);
-    childList.appendChild(listItem);
-
+  function makeList(node, list) {
     if (node.children != undefined) {
       var index = node.children.filter(child => child.name === 'Index')[0];
       node.children = node.children.filter(child => child.name != 'Index');
 
-      if (index != undefined) {
+      var listItem = document.createElement("li");
+      if (index === undefined) {
+        listItem.innerHTML = capitalizeKebab(node.name);
+      } else {
         var anchor = document.createElement("a");
-        listItem.appendChild(anchor);
         anchor.innerHTML = capitalizeKebab(node.name);
         anchor.href = index.url;
-      } else {
-        listItem.innerHTML = capitalizeKebab(node.name);
+        listItem.appendChild(anchor);
+      }
+      list.appendChild(listItem);
+
+      var childList = document.createElement("ul");
+      for (var i = 0; i < node.children.length; i++) {
+        makeList(node.children[i], childList);
       }
 
-      for (var i = 0; i < node.children.length; i++) {
-        printNode(node.children[i], childList);
-      }
+      list.appendChild(childList);
 
     } else {
+      var listItem = document.createElement("li");
       var anchor = document.createElement("a");
+
       listItem.appendChild(anchor);
+
       anchor.innerHTML = node.name;
       anchor.href = node.url;
+
+      list.appendChild(listItem);
     }
   }
 
@@ -62,7 +66,7 @@ layout: base
     var root = {name: "root"};
     root.children = nodes;
 
-    return groupNode(root).children;
+    return groupNode(root);
   }
 
   function groupNode(node) {
