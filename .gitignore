@@ -1,2 +1,6 @@
 .DS_Store
 .swp
+
+Gemfile.lock
+_site/
+.jekyll-cache/
