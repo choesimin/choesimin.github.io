@@ -5,11 +5,13 @@ layout: note
 # MySQL Storage Engine
 
 - MySQL은 각 database(scheme)를 file system 안의 data directory의 하위 direcory로 저장함
+
 - table을 생성하면 MySQL은 table 이름과 같은 이름을 가진 .frm file을 만들고 그 안에 table 정의 정보를 저장함
     - ex
         - MyTable이라는 table을 만들 경우 MySQL은 MyTable.frm에 table 정의를 저장함
         - MySQL은 database 이름과 table 정의를 저장하는 데에 file system을 사용하므로 대/소문자 구분은 platform에 따라 결정됨
             - Windows MySQL instance에서 table과 database 이름에는 대/소문자 구분이 없으나, Unix 계열 system에서는 대/소문자를 구분함
+
 - storage engine에 따라 table data와 index를 저장하는 방식이 다르지만 table 정의는 server에서 담당함
 
 - 종류
@@ -35,6 +37,7 @@ layout: note
 ```sql
 SHOW TABLE STATUS LIKE 'user';
 ```
+
 ```
 *************************** 1. row ***************************
 Name: user
@@ -56,6 +59,7 @@ Checksum: NULL
 Create_options: row_format=DYNAMIC stats_persistent=0
 Comment: Users and global privileges
 ```
+
 | 항목 | 설명 |
 | - | - |
 | Name | table 이름 |

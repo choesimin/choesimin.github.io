@@ -3,6 +3,7 @@ layout: base
 ---
 
 <script>
+
   printNodes(groupNodes(makeNodes(getPages())));
 
 
@@ -24,18 +25,27 @@ layout: base
     childList.appendChild(listItem);
 
     if (node.children != undefined) {
-      listItem.innerHTML = capitalizeKebab(node.name);
+      var index = node.children.filter(child => child.name === 'Index')[0];
+      node.children = node.children.filter(child => child.name != 'Index');
+
+      if (index != undefined) {
+        var anchor = document.createElement("a");
+        listItem.appendChild(anchor);
+        anchor.innerHTML = capitalizeKebab(node.name);
+        anchor.href = index.url;
+      } else {
+        listItem.innerHTML = capitalizeKebab(node.name);
+      }
 
       for (var i = 0; i < node.children.length; i++) {
         printNode(node.children[i], childList);
       }
 
     } else {
-      var a = document.createElement("a");
-      listItem.appendChild(a);
-
-      a.innerHTML = node.name;
-      a.href = node.url;
+      var anchor = document.createElement("a");
+      listItem.appendChild(anchor);
+      anchor.innerHTML = node.name;
+      anchor.href = node.url;
     }
   }
 
@@ -126,7 +136,5 @@ layout: base
 
     return pages;
   }
-
-
 
 </script>
