@@ -1,5 +1,6 @@
 body {
     padding: 50px 10%;
+
     background-color: #222222;
 
     font-family: Arial, sans-serif;
@@ -11,7 +12,12 @@ body {
 }
 @media screen and (max-width:1024px) {
     body {
-        padding: 10px;
+        padding: 30px 5%;
+    }
+}
+@media screen and (max-width:512px) {
+    body {
+        padding: 10px 0;
     }
 }
 
