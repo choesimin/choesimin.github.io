@@ -18,9 +18,9 @@ layout: note
     6. 지원하는 program과 platform이 다양함
 
 - 단점
-  1. 표준이 없음
-  2. 표준이 없기 때문에 도구에 따라서 변환 방식이나 생성물이 다름
-  3. 모든 HTML markup을 대신하지 못함
+    1. 표준이 없음
+    2. 표준이 없기 때문에 도구에 따라서 변환 방식이나 생성물이 다름
+    3. 모든 HTML markup을 대신하지 못함
 
 # 문법
 
@@ -294,6 +294,7 @@ Link: [Google][googlelink]
 [googlelink]: https://google.com "Go google"
 
 * 외부 link
+
 ```
 사용문법: [Title](link)
 적용예: [Google](https://google.com, "google link")
@@ -301,6 +302,7 @@ Link: [Google][googlelink]
 Link: [Google](https://google.com, "google link")
 
 * 자동 연결
+
 ```
 일반적인 URL 혹은 이메일주소인 경우 적절한 형식으로 링크를 형성한다.
 
