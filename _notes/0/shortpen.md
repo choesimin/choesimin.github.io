@@ -6,47 +6,77 @@ layout: note
 
 # [Blog](https://siminee.github.io)
 
+
+
+
 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
 # Essential Requirements
 
-## Tree
+## [Home > Tree](https://siminee.github.io)
 
-## Markdown (with mermaid)
+## [Content > Markdown](https://siminee.github.io/notes/language/markdown/index.html)
+
+## [Content > Mermaid](https://siminee.github.io/notes/language/markdown/mermaid.html)
 
 ## Free & Stable Hosting
+
+
+
 
 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
 # [Github Pages](https://pages.github.com)
 
+
+
+
 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
 # [Jekyll](https://jekyllrb.com)
+
+
+
 
 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
 # [Jekyll Theme](http://jekyllthemes.org)
 
+## Title Format
+- _posts
+    ```
+    yyyy-mm-dd-title-here.md
+    ```
+
+<br/>
+
+## Yes : Markdown
+
+## No : Tree + Mermaid
+
+
+
+
 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
-# Jekyll Posting Template
+# Jekyll Custom
 
-## _posts
+## Title Format
+```
+_notes
+    title-here.md
+```
 
-### yyyy-mm-dd-title-here.md
+## Home > Tree
+
+## Content > Mermaid
+
+
+
 
 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
-# Jekyll Archiving Template (custom)
-
-## _notes
-
-### title-here.md
-
-<br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-
-# Blog Home : Tree
+# Tree
 
 ## [Composite Pattern](https://siminee.github.io/notes/design/design-pattern/composit-pattern.html)
 
@@ -85,18 +115,22 @@ layout: note
 }
 ```
 
+
+
+
 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
-# Blog Content : Markdown
+# Mermaid
 
-## [Mermaid](https://siminee.github.io/notes/language/markdown/mermaid.html)
+```html
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+    await mermaid.run({ querySelector: '.language-mermaid' });
+</script>
+```
 
-## Example
 
-### [State Diagram : 사업장 개시](http://dev.paymint.co.kr:50500/notes/service/merchant/registration.html)
 
-### [State Diagram : 뽑기 기계](https://siminee.github.io/notes/design/design-pattern/state-pattern.html)
-
-### [Sequence Diagram : VAN 결제 Process](http://dev.paymint.co.kr:50500/notes/service/payment/card/van/process.html)
 
 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
