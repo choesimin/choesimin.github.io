@@ -35,7 +35,7 @@ layout: note
         ```sql
         ORDER BY $ {columnName}
         ```
-    - SQL Injection 같은 문제게 취약함
+    - SQL Injection 같은 문제에 취약함
 
 ---
 

@@ -5,80 +5,93 @@ layout: note
 # Composite Pattern
 
 ```
-Composite Pattern을 이용하면 객체들을 Tree 구조로 구헝하여 부분과 전체를 나타내는 계층구조로 만들 수 있습니다. 이 pattern을 이용하면 client에서 개별 객체와 다른 객체들로 구성된 복합 객체(composite)를 똑같은 방법으로 다룰 수 있습니다.
+Composite Pattern을 이용하면 객체들을 Tree 구조로 구현하여 부분과 전체를 나타내는 계층구조로 만들 수 있습니다.
+이 pattern을 이용하면 client에서 개별 객체와 다른 객체들로 구성된 복합 객체(composite)를 똑같은 방법으로 다룰 수 있습니다.
 ```
-
-- 부분-전체-계층 구조(part-whole hierrarchy)를 생성할 수 있음
-    - tree 구조
-    - 'group(복합 객체)'과 'group의 항목(개별 객체)'을 같은 구조에 집어넣을 수 있음
-        - 중첩되어 있는 'group'과 'group의 항목'을 똑같은 구조 내에서 처리
-    - 'group의 항목'은 또 다시 'group'이 될 수 있음
 
 - client에서 개별 객체와 복합 객체를 똑같은 방법으로 다룰 수 있음
     - 대부분의 경우에 복합 객체와 개별 객체를 구분할 필요가 없어짐
 
-- Composite Pattern의 구성
-    - 복합 객체(composite)에는 구성 요소(component)가 들어있음
-    - 구성 요소는 복합 객체(composite)와 개별 객체(leaf:잎) 2가지로 나뉨
-        - 복합 객체(composite object) : 다른 구성 요소를 포함하고 있는 구성 요소
-        - 개별 객체(leaf object) : 다른 구성 요소를 포함하지 않는 구성 요소
-            - 개별 객체 == 잎 객체
-
-- Composite Pattern의 구조
-    1. 재귀적 구조
-        - 복합 객체
-            - 개별 객체
-            - 복합 객체
-                - 개별 객체
-                - 복합 객체
-                    - 개별 객체
-                    - 복합 객체
-                        - 개별 객체
-                        - 복합 객체
-                            - ...
-    2. Tree 구조
-        - 복합 객체
-            - 개별 객체
-            - 개별 객체
-            - 개별 객체
-            - 복합 객체
-                - 개별 객체
-                - 복합 객체
-                    - 개별 객체
-                    - 복합 객체
-                        - 개별 객체
-                        - 복합 객체
-                    - 복합 객체
-                        - 개별 객체
-                        - 복합 객체
-            - 복합 객체
-                - 개별 객체
-                - 복합 객체
-                    - 개별 객체
-                    - 개별 객체
-                    - 개별 객체
-
-- Composite Pattern은 단일 역할 원칙을 깨고 투명성(transparency)을 확보함
-    - 모든 객체의 interface가 같음
-    - Component interface에 자식들을 관리하기 위한 기능과 개별 객체으로써의 기능을 전부 집어넣음으로써 client에서 복합 객체와 개별 객체 를 똑같은 방식으로 처리할 수 있도록 함
-        - 어떤 원소가 복합 객체인지 개별 객체 인지가 client 입장에서는 투명하게 느끼게 됨
-    - Component class에 두 종류의 기능이 모두 들어있기 때문에 안전성은 떨어짐
-        - interface를 통일시켰기 때문에 객체에 따라 아무 의미 없는 method가 생기게 됨
-            - 이 method를 사용하여 client에서 어떤 원소에 대해 무의미하거나 부적절한 작업을 처리하려고 할 수도 있음
-        - 이 문제는 design 상의 결정 사항에 속함
-            - 상황에 따라 투명성과 안정성 사이에서 적절한 평형점을 찾아야 함
-
-- client가 보기에 투명하게 작동하기 위해 복합 객체 내에 있는 모든 객체들의 interface가 같아야 함
-    - interface를 동일시키다 보면 객체에 아무 의미가 없는 method도 생길 수 있음
-        - 이런 method들에 대해서는 아무 일도 하지 않게 하거나, null 또는 false를 상황에 맞게 return하도록 하면 됨
-            - 예외를 던질 수도 있는데, 그렇다면 client에서는 해당 예외에 대해 처리 준비가 되어 있어야 함
-
 - 복합 객체에서 자식을 특별한 순서에 맞게 저장해야할 때
     - 자식을 추가하거나 제거할 때 더 복잡한 관리 방법을 사용해야 함
+        - ex) stack & queue
     - 계층 구조를 돌아다닐 때 더 많은 주의를 기울여야 함
 
-- method 하나만 호출해서 전체 구조에 대해서 반복해서 작업을 처리할 수 있는 경우도 있음
-    - 재귀적 구조이기 때문
+
+
+
+## 투명성(Transparency) 확보
+
+- 단일 역할 원칙을 어기고 투명성을 확보함
+    - Component interface에 자식들을 관리하기 위한 기능과 개별 객체으로써의 기능을 전부 집어넣음으로써 client에서 복합 객체와 개별 객체 를 똑같은 방식으로 처리할 수 있도록 함
+        - client가 보기에 투명하게 작동하기 위해 복합 객체 내에 있는 모든 객체들의 interface가 같아야 함
+        - 어떤 원소가 복합 객체인지 개별 객체 인지가 client 입장에서는 투명하게 느끼게 됨
+
+- 안전성은 떨어짐
+    - Component class에 두 종류의 기능이 모두 들어있기 때문
+        - interface를 통일시켰기 때문에 객체에 따라 아무 의미 없는 method가 생기게 됨
+            - 이 method를 사용하여 client에서 어떤 원소에 대해 무의미하거나 부적절한 작업을 처리하려고 할 수도 있음
+            - 이런 method들에 대해서는 아무 일도 하지 않게 하거나, null 또는 false를 상황에 맞게 return하도록 하면 됨
+                - 예외를 던질 수도 있는데, 그렇다면 client에서는 해당 예외에 대해 처리 준비가 되어 있어야 함
+    - design 상의 결정 사항
+        - 상황을 분석하여 투명성과 안정성 사이의 적절한 평형점을 찾아야 함
+
+
+
+
+## Composite Pattern의 구성
+
+| Object | Name | Description |
+| - | - | - |
+| Component | 구성 요소 | Component는 Composite와 Leaf로 나뉨 |
+| Composite | 복합 객체 | 다른 Component를 포함하고 있는 Component |
+| Leaf | 개별 객체 (잎 객체) | 다른 Component를 포함하지 않는 Component |
+
+
+
+
+## Composite Pattern의 구조
+
+1. Part-Whole Hierarchy 구조
+    - 부분-전체 계층 구조
+    - 복합 객체와 개별 객체를 같은 구조에 집어넣을 수 있음
+        - 복합 객체 : group
+        - 개별 객체 : group item
+    - 중첩되어 있는 group과 group item을 똑같은 구조 내에서 처리함
+        - group item은 또 다시 group이 될 수 있음
+
+2. 재귀적 구조
+    ```
+    복합 객체
+        개별 객체
+        복합 객체
+            개별 객체
+            복합 객체
+                ...
+    ```
+    - 재귀적 구조이기 때문에 method 하나만 호출해서 전체 구조에 대해 반복하여 작업을 처리할 수 있는 경우가 많음
+
+3. Tree 구조
+    ```mermaid
+    classDiagram
+
+    class Root
+    class Leaf1
+    class Leaf2
+    class Leaf3
+    class Leaf4
+    class Leaf5
+    class Branch1
+    class Branch2
+
+    Root -- Leaf1
+    Root -- Branch1
+    Branch1 -- Branch2
+    Branch1 -- Leaf2
+    Branch1 -- Leaf3
+    Branch2 -- Leaf4
+    Branch2 -- Leaf5
+    ```
 
 
 
