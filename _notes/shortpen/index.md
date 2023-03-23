@@ -25,13 +25,13 @@ layout: note
 <br/>
 
 >## Home
-### [Tree](https://siminee.github.io)
+### [Tree Menu](https://siminee.github.io)
 
 <br/>
 
 >## Contents
-### Markdown
-### [Mermaid](https://siminee.github.io/notes/language/markdown/mermaid.html)
+### Markdown Format
+### [Mermaid UML](https://siminee.github.io/notes/language/markdown/mermaid.html)
 
 <br/>
 
@@ -69,21 +69,21 @@ layout: note
 
 <br/>
 
->## Markdown O
+>## Markdown Format : O
 
 <br/>
 
->## Title Format X
+>## Title Format : X
 
->>### _posts/yyyy-mm-dd-title-here.md
-
-<br/>
-
->## Tree X
+>>### [YEAR-MONTH-DAY-title.md](https://jekyllrb-ko.github.io/docs/structure/)
 
 <br/>
 
->## Mermaid X
+>## Tree Menu : X
+
+<br/>
+
+>## Mermaid UML : X
 
 
 
@@ -93,21 +93,25 @@ layout: note
 
 
 
-# [Jekyll Custom](https://github.com/siminee/siminee.github.io)
+# Jekyll Custom Theme
 
 >## [docs](https://jekyllrb-ko.github.io/docs/structure/)
 
 <br/>
 
->## _config.yml > notes collection 추가
+>## [_config.yml > notes collection 추가](https://github.com/siminee/siminee.github.io/blob/master/_config.yml)
 
->## _notes 추가
+>## _notes folder 추가
 
->>### title-here.md
+>>### title.md
 
 >## _layout > note.html 추가
 
 >## _layout > home.html 수정
+
+<br/>
+
+>## [최종](https://github.com/siminee/siminee.github.io)
 
 
 
@@ -117,9 +121,9 @@ layout: note
 
 
 
-# [Tree](https://github.com/siminee/siminee.github.io/blob/master/_layouts/home.html)
+# [Home > Tree Menu](https://github.com/siminee/siminee.github.io/blob/master/_layouts/home.html)
 
-## [Composite Pattern](https://siminee.github.io/notes/design/design-pattern/composit-pattern.html)
+>## [Composite Pattern](https://siminee.github.io/notes/design/design-pattern/composit-pattern.html)
 
 ### Component
 
@@ -131,34 +135,37 @@ layout: note
 }
 ```
 
-### Category
+### Composite : Menu
 
 ```json
 {
-    "name": "Category",
+    "name": "Menu Name",
     "children": [
         {
-            // Category or Leaf
+            // Menu or Content
         },
         {
-            // Category or Leaf
+            // Menu or Content
         }
     ]
 }
 ```
 
-### Leaf
+### Leaf : Content
 
 ```json
 {
-    "name": "Content Title",
+    "name": "Content Name",
     "url": "Content URL"
 }
 ```
 
-## [1. _notes에서 Contents 가져오기](https://siminee.github.io/notes/shortpen/pages.html)
-## [2. 깊이를 가진 Node로 변환하기](https://siminee.github.io/notes/shortpen/nodes.html)
-## [3. Node들을 Grouping 하기](https://github.com/siminee/siminee.github.io/blob/master/_layouts/home.html)
+<br/>
+
+>## [1. _notes에서 Contents 가져오기](https://siminee.github.io/notes/shortpen/pages.html)
+>## [2. 깊이를 가진 Node로 변환하기](https://siminee.github.io/notes/shortpen/nodes.html)
+>## [3. Node들을 Grouping 하기](https://siminee.github.io/notes/shortpen/group.html)
+>## [4. Rendering](https://github.com/siminee/siminee.github.io/blob/master/_layouts/home.html)
 
 
 
@@ -168,11 +175,11 @@ layout: note
 
 
 
-# Mermaid
+# Mermaid UML
 
 <br/>
 
-## _layout > note.html
+## [_layout > note.html](https://github.com/siminee/siminee.github.io/blob/master/_layouts/note.html)
 
 ```html
 <script type="module">
@@ -195,13 +202,13 @@ layout: note
 <br/>
 
 ## Home
-### Tree
+### Tree Menu
 
 <br/>
 
 ## Contents
-### Markdown
-### Mermaid
+### Markdown Format
+### Mermaid UML
 
 <br/>
 
@@ -225,9 +232,10 @@ layout: note
 
 
 
-# Personal Branding?
+# Blog = Web Log
 
-## 개발자에겐?
+>## 기록, 어디까지?
+>## 우리들의 Logging Style
 
 
 
