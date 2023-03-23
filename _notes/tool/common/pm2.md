@@ -5,10 +5,10 @@ layout: note
 # PM2
 
 - Process Manager
-- Node.js의 process를 관리해주는 역할
+    - process를 관리해주는 역할
 - 생산 process 관리자로 server instance들에 대한 load balancing과 Node.js의 scale up 또는 scale down을 도움
-- process들이 계속 실핻할 수 있는 환경을 제공
-- 처리하지 못한 에외에 thread가 죽음으로 인해 application이 죽는 현상을 방지
+- process들이 계속 실핻할 수 있는 환경을 제공함
+- 처리하지 못한 에외에 thread가 죽음으로 인해 application이 죽는 현상을 방지함
 
 ## pm2 -version
 
@@ -25,7 +25,7 @@ layout: note
 
 ## pm2 restart
 
-- application 을재시작
+- application을 재시작
 
 | Option | Desc |
 | - | - |

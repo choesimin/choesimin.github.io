@@ -8,13 +8,13 @@ layout: note
 
 ---
 
-## LIfecycle
+## Lifecycle
 
 ### 종류
-    - default lifecycyle : compile -> test -> package -> install -> deploy
-    - clean lifecycle : clean
-    - site lifecycle : site -> site-deploy
-- 'mvn install'이란 명령을 내리면 compile부터 install 단계까지 모두 실행됨
+
+- Default Lifecycyle : compile -> test -> package -> install -> deploy
+- clean Lifecycle : clean
+- site Lifecycle : site -> site-deploy
 
 ### Command
 
@@ -33,6 +33,7 @@ layout: note
 - mvn verify
 - mvn install : 배포
     - local repository(Maven이 설치되어 있는 PC)에 배포
+    - compile부터 install 단계까지 실행
 - mvn site : 문서 site 생성
 - mvn deploy : 배포
     - 원격 repository가 등록되어 있다면 해당 원격 repository에 배포함

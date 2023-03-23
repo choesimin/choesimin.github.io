@@ -5,10 +5,12 @@ layout: note
 # gzip / gunzip
 
 - Linux에서 압축 기능을 담당하는 명령어
-    - 여러 파일을 압축할 때는 tar로 파일을 묶고 gzip으로 tar파일을 압축
-        - tar : file을 하나로 모으되 압축은 하지 않음
-            - tar의 option에서 gzip 실행 여부를 지정할 수 있기 때문에 gzip이 단독으로 쓰일 경우는 많지 않음
-        - gzip : file을 모을 수는 없지만 압축 수 있음
+
+- 여러 file을 압축할 때는 tar로 file을 묶고 gzip으로 tar file을 압축
+    - tar : file을 하나로 모으되 압축은 하지 않음
+        - tar의 option에서 gzip 실행 여부를 지정할 수 있기 때문에 gzip이 단독으로 쓰일 경우는 많지 않음
+    - gzip : file을 모을 수는 없지만 압축 수 있음
+
 ```sh
 gunzip [option] [file-name]
 ```

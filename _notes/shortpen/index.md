@@ -11,8 +11,6 @@ layout: note
 
 
 # [Blog](https://siminee.github.io)
-## Posting
-## Archive
 
 
 
@@ -26,18 +24,18 @@ layout: note
 
 <br/>
 
-## Home
+>## Home
 ### [Tree](https://siminee.github.io)
 
 <br/>
 
-## Contents
+>## Contents
 ### Markdown
 ### [Mermaid](https://siminee.github.io/notes/language/markdown/mermaid.html)
 
 <br/>
 
-## Free & Stable Hosting
+>## Free & Stable Hosting
 
 
 
@@ -71,25 +69,21 @@ layout: note
 
 <br/>
 
-## Markdown O
+>## Markdown O
 
 <br/>
 
-## Title Format X
+>## Title Format X
 
-### _posts
-
-```
-yyyy-mm-dd-title-here.md
-```
+>>### _posts/yyyy-mm-dd-title-here.md
 
 <br/>
 
-## Tree X
+>## Tree X
 
 <br/>
 
-## Mermaid X
+>## Mermaid X
 
 
 
@@ -99,26 +93,21 @@ yyyy-mm-dd-title-here.md
 
 
 
-# [Jekyll Custom](https://jekyllrb-ko.github.io/docs/structure/)
+# [Jekyll Custom](https://github.com/siminee/siminee.github.io)
+
+>## [docs](https://jekyllrb-ko.github.io/docs/structure/)
 
 <br/>
 
-## _config.yml > notes collection 추가
+>## _config.yml > notes collection 추가
 
-<br/>
+>## _notes 추가
 
-## _notes Folder 추가
+>>### title-here.md
 
-### Title Format
+>## _layout > note.html 추가
 
-```
-title-here.md
-```
-
-<br/>
-
-## _layout > note.html 추가
-## _layout > home.html 수정
+>## _layout > home.html 수정
 
 
 
@@ -128,7 +117,7 @@ title-here.md
 
 
 
-# Tree
+# [Tree](https://github.com/siminee/siminee.github.io/blob/master/_layouts/home.html)
 
 ## [Composite Pattern](https://siminee.github.io/notes/design/design-pattern/composit-pattern.html)
 
@@ -167,19 +156,9 @@ title-here.md
 }
 ```
 
-
-
-
-<br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-
-
-
-
-# Contents
-
-## _notes에서 contents 가져오기
-## 깊이를 가진 Node로 변환하기
-## Node들을 Grouping 하기
+## [1. _notes에서 Contents 가져오기](https://siminee.github.io/notes/shortpen/pages.html)
+## [2. 깊이를 가진 Node로 변환하기](https://siminee.github.io/notes/shortpen/nodes.html)
+## [3. Node들을 Grouping 하기](https://github.com/siminee/siminee.github.io/blob/master/_layouts/home.html)
 
 
 
@@ -246,9 +225,9 @@ title-here.md
 
 
 
-# Personal Branding
+# Personal Branding?
 
-## 개발자에게 필요한가
+## 개발자에겐?
 
 
 
