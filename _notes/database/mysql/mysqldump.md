@@ -14,7 +14,7 @@ layout: note
 
 
 
-# dmup 명령어 기본 규칙
+## dmup 명령어 기본 규칙
 
 - 하나의 databse 안의 table들을 dump
     ```sh
@@ -34,9 +34,9 @@ layout: note
 
 
 
-# Option
+## Option
 
-## 접속 Option
+### 접속 Option
 
 - `G-host=[host_name]`, `-h [host_name]`
     - 접속하려는 server의 host 정보 입력
@@ -55,7 +55,7 @@ layout: note
     - 접속하려는 server의 user 지정
 
 
-## DDL Option
+### DDL Option
 
 - `--events`, `-E`
     - dump file에 event 관련 정보도 같이 dump받음
@@ -99,7 +99,7 @@ layout: note
     - `INSERT` 구문 대신에 `REPLACE` 구문을 사용하여 insert하도록 설정
 
 
-## Data Option
+### Data Option
 
 - `--events`, `-E`
     - dump file에 event 관련 정보도 같이 dump
@@ -121,7 +121,7 @@ layout: note
     - where 구문에 맞는 data만 dump
 
 
-## 성능 Option
+### 성능 Option
 
 - `--delayes-insert`
     - transaction을 지원 하지 않는 table(MyISAM)을 위한 지원 option
@@ -153,7 +153,7 @@ layout: note
         - 대부분의 MySQL 5.x는 `--opt` option이 default로 enable되어 있음
 
 
-## Transaction Option
+### Transaction Option
 
 - `--add-locks`
     - dump 작성 시, 각 table의 앞 뒤에 `LOCK TABLES`와 `UNLOCK TABLES` 구문을 삽입함
@@ -201,7 +201,7 @@ layout: note
     - data의 크기가 크다면, `--quick` option을 추가하여 사용하는 것이 좋음
 
 
-## 촐력 포멧 Options
+### 촐력 Format Options
 
 - `--compact`
     - `--skip-add-drop-table`, `--skip-add-locks`, `--skip-comments`, `--skip-disable-keys`, `--skip-set-charset` option들을 enable함
@@ -226,7 +226,7 @@ layout: note
     - enable이 default option
 
 
-## Replication Option
+### Replication Option
 
 - `--apply-slave-statements`
     - `--dump-slaveoption` option과 같이 dump하는 경우에 `STOP SLAVE`, `CHANGE MASTER TO`, `START SLAVE` 구문을 같이 작성하게 함
@@ -260,7 +260,7 @@ layout: note
         - `AUTO` : Add a SET statement to the output if GTIDs are enabled on the server.
 
 
-## 그 외 Option
+### 그 외 Option
 
 - `--default-character-set=[charset_name]`
     - 기본 character set으로 charset_name을 사용하도록 설정
@@ -294,7 +294,7 @@ layout: note
     - column 이름으로 keyword를 사용하는 것을 허용함
 
 
-## 관련 variables
+### 관련 variables
 
 - `max_allowed_packet`
     - client와 server 사이의 buffer의 max size를 결정하는 variable
@@ -307,7 +307,11 @@ layout: note
 
 
 
+
 ---
+
+
+
 
 # Reference
 

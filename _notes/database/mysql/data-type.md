@@ -4,7 +4,13 @@ layout: note
 
 # Data Type
 
+
+
+
 ---
+
+
+
 
 ## 숫자
 
@@ -24,7 +30,13 @@ layout: note
     - 소수점이 들어간 실수를 저장하려면 DECIMAL을 사용하기
     - FLOAT와 DOUBLE은 상당히 큰 숫자를 저장할 수 있음
 
+
+
+
 ---
+
+
+
 
 ## 문자
 
@@ -62,7 +74,13 @@ layout: note
 | ENUM(values...) | 1 또는 2 | 최대 65535개의 열거형 data 값 |
 | SET(values...) | 1, 2, 3, 4, 8 | 최대 64개의 서로 다른 data 값 |
 
+
+
+
 ---
+
+
+
 
 ## 날짜 & 시간
 
@@ -74,7 +92,13 @@ layout: note
 | TIMESTAMP | 4 | 1001-01-01 00:00:00 ~ 9999-12-31 23:59:59 까지 저장됨 ('YYYY-MM-DD HH:MM:SS'). time_zone system 변수와 관련이 있고 UTC 시간대 변환하여 저장함 |
 | YEAR | 1 | 1901 ~ 2155까지 저장됨 ('YYYY') |
 
+
+
+
 ---
+
+
+
 
 # Reference
 

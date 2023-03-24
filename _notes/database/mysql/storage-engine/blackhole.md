@@ -6,9 +6,16 @@ layout: note
 
 - 저장 mechanism을 전혀 갖고 있지 않으며 모든 INSERT 구문을 실행하지 않고 그냥 버림
     - 그러나 server는 Blackhole table에 대한 query를 log에 기록하므로, 그 정보가 slave에 복제되거나 log에 남아 있을 수 있음
+
 - 복잡한 복제 구성과 감사용 logging에 유용하게 사용할 수 있음
 
+
+
+
 ---
+
+
+
 
 # Reference
 

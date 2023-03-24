@@ -10,7 +10,13 @@ layout: note
 - 현재 Federated engine을 구현하는 방법에는 여러 문제점과 제한점이 있음
     - 특유의 작동 방식 때문에 primary key를 이용한 단일 행 조회나 원격 server에 실행될 INSERT query에 가장 유용하지만, 집계 query나 join 또는 다른 기본적인 작업에는 성능이 떨어짐
 
+
+
+
 ---
+
+
+
 
 # Reference
 

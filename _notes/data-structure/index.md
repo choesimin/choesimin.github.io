@@ -20,44 +20,66 @@ layout: note
             - C++, Java와 같은 객체지향 programming 언어는 특히 이러한 목적으로 객체를 사용함
             - ex) C++의 표준 Template Library, Java의 Java API, MicroSoft의 .NET
 
-- 자료구조의 기초 단위
-    1. 행렬
-    2. Record
-    3. Union
-    4. 참조
-    - ex) Nullable 참조 = 참조 + Union
-    - ex) 연결 List = Record + Nullable 참조
+
+
 
 ---
 
-# 분류
+
+
+## 자료구조의 기초 단위
+
+1. 행렬
+2. Record
+3. Union
+4. 참조
+    - ex) Nullable 참조 = 참조 + Union
+    - ex) 연결 List = Record + Nullable 참조
+
+
+
+
+---
+
+
+
+
+## 분류
 
 - 자료의 특성과 크기, 주요 사용법과 수행하는 연산의 종류, 구현에 필요한 기억 공간 크기에 따라 여러 가지 종류의 자료구조 중 하나를 선택할 수 있음
 - 자료구조의 종류로는 자료형의 따라 분류하는 단순 구조와 자료 간 관계가 1:1인 선형 구조, 1:N 혹은 N:N 구조인 비선형 구조, 마지막으로 file 구조가 있음
 
-## 구현에 따른 분류
+
+### 구현에 따른 분류
 
 - 배열
     - 가장 일반적인 구조
     - memory 상에 같은 type의 자료가 연속적으로 저장됨
     - 자료값을 나타내는 가장 작은 단위가 자료를 다루는 단위
+
 - Tuple
     - 둘 이상의 자료형을 묶음으로 다루는 구조
+
 - 연결 List
     - node를 단위로 함
     - node는 자료와 다음 node를 가리키는 참조값으로 구성되어 있음
     - node가 다음 node로 아무것도 가리키지 않으면 list의 끝
+
 - 원형 연결 List
     - 각 node는 다음 node를 가리키고, 마지막 node가 처음 node를 가리키는 연결 list
+
 - 이중 연결 List
     - 각 node는 이전 node와 다음 node를 가리키는 참조값으로 구성됨
     - 처음 node의 이전 node와 마지막 node의 다음 node는 없음
+
 - 환형 이중 연결 List
     - 처음 node가 이전 node로 마지막 node를 가리키고, 마지막 node가 다음 node로 처음 node를 가리키는 이중 연결 list
+
 - Hash Table
     - 개체가 hash값에 따라 indexing됨
 
-## 형태에 따른 분류
+
+### 형태에 따른 분류
 
 - 선형 구조
     - Stack
@@ -71,6 +93,7 @@ layout: note
         - 한정된 길이 안에서 부수적인 작업 없이 읽고 쓰기를 할 수 있는 queue
     - Deque
         - 양쪽에서 넣기와 빼기를 할 수 있는 일반화된 선형 구조
+
 - 비선형 구조
     - Graph : 꼭짓점과 꼭짓점을 잇는 변으로 구성됨
         - 유향 graph & 무향 graph : 변이 방향성을 가지는지 가지지 않는지에 따른 graph의 분류
@@ -80,7 +103,13 @@ layout: note
         - 이진 Tree : 자식이 최대 두 개인 tree
             - Heap : 이진 tree의 일종으로 이진 tree에 어떤 특성을 부여한 것이라 할 수 있음
 
+
+
+
 ---
+
+
+
 
 # Reference
 

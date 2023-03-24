@@ -9,7 +9,13 @@ layout: note
 - Spreadsheet에서 CSV file을 내보내 MySQL server의 data directory에 저장하면 server는 그 즉시 이 file을 읽을 수 있음
 - 마찬가지로 CSV table에 data를 기록하면 외부 program이 이를 바로 읽을 수 있음
 
+
+
+
 ---
+
+
+
 
 # Reference
 

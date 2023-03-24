@@ -4,10 +4,20 @@ layout: note
 
 # View
 
-- MySQL 버전 5 이상부터 가능한 특정 명령문에 매칭된 가상 table
-- SELECT, WEHRE, Sub Query, UNION, JOIN 등 다양한 결합과 조건으로 만들어진 data를 가상 table(View)에 넣어 편리하고 빠르게 data에 접근하도록 함
+- 특정 명령문에 matching되는 가상 table
+    - SELECT, WEHRE, Sub Query, UNION, JOIN 등 다양한 결합과 조건으로 만들어진 data를 가상 table(View)에 넣어 편리하고 빠르게 data에 접근하도록 함
 
-# 특징
+- MySQL version 5 이상부터 사용 가능
+
+
+
+
+---
+
+
+
+
+## 특징
 
 - 실제로 data를 저장하지 않고 오직 보여주는데 중점을 둔 기능
 - View의 기반 table의 data를 수정할 경우 View에도 반영됨
@@ -15,7 +25,15 @@ layout: note
 - View로 생성된 가상 table에도 data의 UPDATE 및 INSERT가 가능
     - 그러나 JOIN, UNION, Sub Query 등으로 만들어진 View에는 data를 조작할 수 없음
 
-# 사용법
+
+
+
+---
+
+
+
+
+## 사용법
 
 - 생성
     ```sql
@@ -79,7 +97,13 @@ layout: note
     ALTER VIEW seoul_members AS SELECT LastName, FirstName FROM members where City = '서울';
     ```
 
+
+
+
 ---
+
+
+
 
 # Reference
 

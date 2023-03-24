@@ -14,22 +14,48 @@ layout: note
 
 - storage engine에 따라 table data와 index를 저장하는 방식이 다르지만 table 정의는 server에서 담당함
 
-- 종류
-    - InnoDB Engine
-    - MyISAM Engine
-    - Memory Engine
-    - Archive Engine
-    - CSV Engine
-    - Federated Engine
 
-- 선택 시 고려사항
-    - table 별로 storage engine을 선택할 수 있음
-        - 각 table이 어떻게 사용되고 data가 어떻게 저장되는지 고려해야 함
-        - 응용 program을 전체적으로 이해하고 확장 가능성을 아는 것도 선택에 유용함
-    - 응용 program에 transaction이 필요함 -> InnoDB engine이 가장 안정적임
-    - transaction이 필요없고, DML 중 select가 main인 업무 -> MyISAM engine
-        - data 실무에서 transaction을 지원하지 않는 것은 말이 되지 않는 상황이지만 logging과 같은 환경에서는 유리함
-    - 삽입과 읽기만 하면 된다면 MyISAM으로도 충분하지만 여러 작업이 서로 interrupt 없이 동시에 실행되려면 Row 수준 잠금 기능이 있는 InnoDB engine을 선택해야 함
+
+---
+
+
+
+## 종류
+
+- InnoDB Engine
+- MyISAM Engine
+- Memory Engine
+- Archive Engine
+- CSV Engine
+- Federated Engine
+
+
+
+
+---
+
+
+
+
+## 선택 시 고려사항
+
+- table 별로 storage engine을 선택할 수 있음
+    - 각 table이 어떻게 사용되고 data가 어떻게 저장되는지 고려해야 함
+    - 응용 program을 전체적으로 이해하고 확장 가능성을 아는 것도 선택에 유용함
+
+- 응용 program에 transaction이 필요함 -> InnoDB engine이 가장 안정적임
+
+- transaction이 필요없고, DML 중 select가 main인 업무 -> MyISAM engine
+    - data 실무에서 transaction을 지원하지 않는 것은 말이 되지 않는 상황이지만 logging과 같은 환경에서는 유리함
+
+- 삽입과 읽기만 하면 된다면 MyISAM으로도 충분하지만 여러 작업이 서로 interrupt 없이 동시에 실행되려면 Row 수준 잠금 기능이 있는 InnoDB engine을 선택해야 함
+
+
+
+
+---
+
+
 
 
 ## 특정 table이 어떤 storage engine을 사용하는지 확인하기
@@ -80,7 +106,13 @@ Comment: Users and global privileges
 | Create_options | table 생성 시에 지정된 별도 option |
 | Comment | 다양한 부수 정보. MyISAM table은 table이 생성되었을 때 설정된 주석이 표시됨. InnoDB table에서는 InnoDB table space에 있는 빈 공간에 대한 정보가 표시됨. table이 view라면 ‘VIEW’라는 문자 표시 |
 
+
+
+
 ---
+
+
+
 
 # Reference
 

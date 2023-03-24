@@ -6,15 +6,26 @@ layout: note
 
 - 아주 빠르게 INSERT 구문을 처리할 수 있는 engine
     - 가장 빠른 data load 속도를 제공함
+
 - MyISAM보다 disk 입출력을 훨씬 적게 일으킴
     - data 쓰기를 buffering하고 각 행이 삽입될 때마다 자동적오르 zlib으로 압축하기 때문
+
 - index를 지원하지 않음
+
 - INSERT/REPLACE/SELECT 구문과 같이 data를 삽입하거나 읽는 것만 가능
     - DELETE/UPDATE와 같이 data를 삭제하거나 수정할 수는 없음
+
 - transaction을 지원하지 않고 row-level locking을 사용함
+
 - 주로 많은 양의 log data를 저장하고 읽는 데에 사용됨
 
+
+
+
 ---
+
+
+
 
 # Reference
 

@@ -4,6 +4,11 @@ layout: note
 
 # 복원
 
+- dump한 file을 복원할 수 있음
+
+
+
+
 ## DB 복원
 
 ```sh
@@ -13,6 +18,9 @@ mysql -u [user_id] -p [password] [database_name_to_restore] < [backup_database].
 mysql -u test_user -p test_db < backup_test_db.sql
 passowrd : 123456
 ```
+
+
+
 
 ## Table 복원
 
@@ -28,6 +36,9 @@ passowrd : 123456
 
 
 ---
+
+
+
 
 # Reference
 
