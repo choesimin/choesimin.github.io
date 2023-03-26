@@ -19,17 +19,17 @@ layout: base
 
   function makeList(node, list) {
     if (node.children != undefined) {
-      var index = node.children.filter(child => child.name === 'Index')[0];
-      node.children = node.children.filter(child => child.name != 'Index');
+      var index = node.children.filter(child => child.isIndex)[0];
+      node.children = node.children.filter(child => !child.isIndex);
 
       var listItem = document.createElement("li");
-      if (index === undefined) {
-        listItem.innerHTML = capitalizeKebab(node.name);
-      } else {
+      if (index != undefined) {
         var anchor = document.createElement("a");
-        anchor.innerHTML = capitalizeKebab(node.name);
+        anchor.innerHTML = index.name;
         anchor.href = index.url;
         listItem.appendChild(anchor);
+      } else {
+        listItem.innerHTML = node.name + " ---- You must add 'index.md' file for this category.";
       }
       list.appendChild(listItem);
 
@@ -54,9 +54,7 @@ layout: base
   }
 
   function capitalizeKebab(str) {
-    return str.split("-")
-      .map(word => word[0].toUpperCase() + word.substring(1))
-      .join(" ");
+    return ;
   }
 
 
@@ -101,7 +99,8 @@ layout: base
   function makeNode(page) {
     var leaf = {
       name: page.title,
-      url: page.url
+      url: page.url,
+      isIndex: page.name === "index.md"
     }
     return makeMultiDepthNode(page.category, leaf, 1);
   }
@@ -133,6 +132,7 @@ layout: base
 
       pages.push({
         category: id.slice(2, id.length - 1),
+        name: "{{ note.name }}",
         title: "{{ note.title }}",
         url: "{{ note.url | relative_url }}",
       });

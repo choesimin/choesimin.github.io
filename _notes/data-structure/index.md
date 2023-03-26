@@ -1,5 +1,6 @@
 ---
 layout: note
+title: 자료구조
 ---
 
 # Data Structure : 자료구조
