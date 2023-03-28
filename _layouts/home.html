@@ -108,7 +108,7 @@ layout: base
     var leaf = {
       name: page.title,
       url: page.url,
-      isIndex: page.name === "index.md"
+      isIndex: page.name === "index"
     }
     return makeMultiDepthNode(page.category, leaf, 1);
   }
@@ -138,7 +138,7 @@ layout: base
 
       pages.push({
         category: id.slice(2, id.length - 1),
-        name: "{{ note.name }}",
+        name: id[id.length - 1],
         title: "{{ note.title }}",
         url: "{{ note.url | relative_url }}",
       });
