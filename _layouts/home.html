@@ -5,8 +5,16 @@ layout: base
 <script>
 
   var pages = getPages();
+  console.log("pages");
+  console.log(pages);
+
   var nodes = makeNodes(pages);
+  console.log("nodes");
+  console.log(nodes);
+
   var root = groupNodes(nodes);
+  console.log("root");
+  console.log(root);
 
   var list = document.createElement("ul");
   makeList(root, list);
