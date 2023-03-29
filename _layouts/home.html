@@ -12,6 +12,7 @@ layout: base
   makeList(root, list);
 
   list.removeChild(list.querySelector("li"));
+  list.querySelector("ul").className = "root";
   document.querySelector("main").innerHTML = list.innerHTML;
 
 
@@ -51,10 +52,6 @@ layout: base
 
       list.appendChild(listItem);
     }
-  }
-
-  function capitalizeKebab(str) {
-    return ;
   }
 
 
@@ -140,3 +137,14 @@ layout: base
   }
 
 </script>
+
+
+
+
+<style>
+  ul.root > ul {
+    border-bottom: 1px solid;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+  }
+</style>
