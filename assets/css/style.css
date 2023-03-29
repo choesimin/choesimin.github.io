@@ -1,14 +1,11 @@
 body {
-    padding: 50px 10%;
+    margin: 0;
+    padding: 0;
 
     background-color: #222222;
 
     font-family: Arial, sans-serif;
     color: #dddddd;
-    line-height: 2;
-
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 
 
@@ -57,6 +54,16 @@ th:first-child, td:first-child {
 
 
 
+main {
+    margin: 100px;
+    line-height: 2;
+
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+
+
 
 nav {
     position: fixed;
@@ -73,9 +80,9 @@ nav {
 nav a.logo {
     display: inline-block;
     position: absolute;
-    margin-left: 5px 0;
+    left: 20px;
+    width: 120px;
 
-    width: 200px;
     font-size: 30px;
 }
 
@@ -87,7 +94,7 @@ nav a.logo span.first {
 nav a.logo span.second {
     position: absolute;
     z-index: 2;
-    opacity: 0.3;
+    opacity: 0.5;
 }
 nav a.logo span.third {
     position: absolute;
@@ -110,23 +117,28 @@ nav a.logo span.first:hover ~ span.third {
 
 nav a.logo span.word {
     display: inline-block;
-    width: 30px;
-    overflow: visible;
+    width: 35px;
+    overflow-wrap: normal;
 }
 
 
 
 
 @media screen and (max-width:1024px) {
-    body {
-        padding: 30px 5%;
+    main {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    nav a.logo {
+        left: 10px;
     }
 }
 @media screen and (max-width:512px) {
-    body {
-        padding: 10px 0;
+    main {
+        margin-left: 5px;
+        margin-right: 5px;
     }
     nav a.logo {
-        margin-left: 5px 0;
+        left: 5px;
     }
 }
