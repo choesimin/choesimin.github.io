@@ -10,16 +10,6 @@ body {
     word-break: keep-all;
     overflow-wrap: break-word;
 }
-@media screen and (max-width:1024px) {
-    body {
-        padding: 30px 5%;
-    }
-}
-@media screen and (max-width:512px) {
-    body {
-        padding: 10px 0;
-    }
-}
 
 
 h1, h2, h3, h4, h5, h6 {
@@ -49,21 +39,6 @@ hr {
 }
 
 
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-
-    background-color: #222222;
-}
-
-nav a {
-    margin: 20px;
-}
-
-
 table {
     border-top: 1px solid #444444;
     border-collapse: collapse;
@@ -77,4 +52,81 @@ th, td {
 
 th:first-child, td:first-child {
     border-left: none;
+}
+
+
+
+
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    font-family: monospace;
+
+    background-color: #222222;
+}
+
+nav a.logo {
+    display: inline-block;
+    position: absolute;
+    margin-left: 5px 0;
+
+    width: 200px;
+    font-size: 30px;
+}
+
+nav a.logo span.first {
+    position: absolute;
+    z-index: 3;
+    opacity: 1;
+}
+nav a.logo span.second {
+    position: absolute;
+    z-index: 2;
+    opacity: 0.3;
+}
+nav a.logo span.third {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+}
+
+nav a.logo span.first:hover {
+    opacity: 0;
+    transition: 0.3s;
+}
+nav a.logo span.first:hover ~ span.second {
+    opacity: 0;
+    transition: 0.3s;
+}
+nav a.logo span.first:hover ~ span.third {
+    opacity: 1;
+    transition: 0.3s;
+}
+
+nav a.logo span.word {
+    display: inline-block;
+    width: 30px;
+    overflow: visible;
+}
+
+
+
+
+@media screen and (max-width:1024px) {
+    body {
+        padding: 30px 5%;
+    }
+}
+@media screen and (max-width:512px) {
+    body {
+        padding: 10px 0;
+    }
+    nav a.logo {
+        margin-left: 5px 0;
+    }
 }
