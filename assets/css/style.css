@@ -2,10 +2,10 @@ body {
     margin: 0;
     padding: 0;
 
-    background-color: #222222;
+    background-color: #111111;
 
     font-family: Arial, sans-serif;
-    color: #dddddd;
+    color: #cccccc;
 }
 
 
@@ -17,10 +17,11 @@ h1, h2, h3, h4, h5, h6 {
 a {
     text-decoration-line: none;
     color: inherit;
+    transition: 0.2s;
 }
 a:hover {
+    text-decoration-line: underline;
     color: #ffffff;
-    font-weight: bold;
 }
 
 
@@ -40,13 +41,11 @@ table {
     border-top: 1px solid #444444;
     border-collapse: collapse;
 }
-
 th, td {
     border-bottom: 1px solid #444444;
     border-left: 1px solid #444444;
     padding: 5px 10px;
 }
-
 th:first-child, td:first-child {
     border-left: none;
 }
@@ -81,44 +80,36 @@ nav a.logo {
     display: inline-block;
     position: absolute;
     left: 20px;
-    width: 120px;
+    width: 150px;
 
-    font-size: 30px;
+    font-size: 35px;
+}
+nav a.logo span.word {
+    display: inline-block;
+    width: 38px;
+    overflow-wrap: normal;
+    letter-spacing: -3px;
 }
 
 nav a.logo span.first {
     position: absolute;
     z-index: 3;
     opacity: 1;
+    transition: 1s;
 }
 nav a.logo span.second {
     position: absolute;
     z-index: 2;
-    opacity: 0.5;
-}
-nav a.logo span.third {
-    position: absolute;
-    z-index: 1;
     opacity: 0;
+    transition: 1s;
 }
-
 nav a.logo span.first:hover {
     opacity: 0;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 nav a.logo span.first:hover ~ span.second {
-    opacity: 0;
-    transition: 0.3s;
-}
-nav a.logo span.first:hover ~ span.third {
     opacity: 1;
-    transition: 0.3s;
-}
-
-nav a.logo span.word {
-    display: inline-block;
-    width: 35px;
-    overflow-wrap: normal;
+    transition: 0.1s;
 }
 
 

@@ -1,5 +1,14 @@
-ul.root > ul {
-    border-bottom: 1px solid;
-    margin-bottom: 50px;
-    padding-bottom: 50px;
+ul.root > li {
+    border-top: 1px solid;
+    margin-top: 50px;
+    padding-top: 50px;
+
+    font-size: 25px;
+    list-style: none;
+}
+
+ul.root > li:first-child {
+    border: none;
+    margin-top: 0;
+    padding-top: 0;
 }
