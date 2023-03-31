@@ -1,0 +1,5 @@
+ul.root > ul {
+    border-bottom: 1px solid;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+}
