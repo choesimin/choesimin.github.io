@@ -4,10 +4,14 @@ body {
 
     background-color: #111111;
 
+    font-size: 16px;
     font-family: Arial, sans-serif;
     color: #cccccc;
 }
 
+p {
+    margin: 0;
+}
 
 h1, h2, h3, h4, h5, h6 {
     margin-top: 50px;
@@ -27,6 +31,7 @@ a:hover {
 
 ul {
     padding-left: 20px;
+    list-style-type: '· ';
 }
 
 

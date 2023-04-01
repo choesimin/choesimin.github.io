@@ -19,18 +19,22 @@ layout: base
 
 
   function makeList(node, list) {
+    var listItem = document.createElement("li");
+
     if (node.children != undefined) {
       var index = node.children.filter(child => child.isIndex)[0];
       node.children = node.children.filter(child => !child.isIndex);
 
-      var listItem = document.createElement("li");
       if (index != undefined) {
         var anchor = document.createElement("a");
         anchor.innerHTML = index.name;
         anchor.href = index.url;
         listItem.appendChild(anchor);
+        var span = document.createElement("span");
+        span.innerHTML = index.version;
+        listItem.appendChild(span);
       } else {
-        listItem.innerHTML = node.name + " ---- You must add 'index.md' file for this category.";
+        listItem.innerHTML = node.name + " (Must add category's index file)";
       }
       list.appendChild(listItem);
 
@@ -42,14 +46,13 @@ layout: base
       list.appendChild(childList);
 
     } else {
-      var listItem = document.createElement("li");
       var anchor = document.createElement("a");
-
-      listItem.appendChild(anchor);
-
       anchor.innerHTML = node.name;
       anchor.href = node.url;
-
+      listItem.appendChild(anchor);
+      var span = document.createElement("span");
+      span.innerHTML = node.version;
+      listItem.appendChild(span);
       list.appendChild(listItem);
     }
   }
@@ -96,6 +99,7 @@ layout: base
   function makeNode(page) {
     var leaf = {
       name: page.title,
+      version: page.version,
       url: page.url,
       isIndex: page.name === "index"
     }
@@ -129,6 +133,7 @@ layout: base
         category: id.slice(2, id.length - 1),
         name: id[id.length - 1],
         title: "{{ note.title }}",
+        version: "{{ note.version }}",
         url: "{{ note.url | relative_url }}",
       });
     {% endfor %}

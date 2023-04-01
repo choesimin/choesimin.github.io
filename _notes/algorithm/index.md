@@ -1,6 +1,7 @@
 ---
 layout: note
 title: Algorithm
+version: 2023-03-01
 ---
 
 
