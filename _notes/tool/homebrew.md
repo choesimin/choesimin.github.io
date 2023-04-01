@@ -1,5 +1,7 @@
 ---
 layout: note
+title: Homebrew : macOS 용 패키지 관리자
+version: 2023-04-01
 ---
 
 # HomeBrew
