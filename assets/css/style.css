@@ -59,9 +59,11 @@ th:first-child, td:first-child {
 
 
 main {
-    margin: 100px;
-    line-height: 2;
+    margin: 50px auto;
+    padding: 10px;
+    max-width: 700px;
 
+    line-height: 2;
     word-break: keep-all;
     overflow-wrap: break-word;
 }
@@ -121,19 +123,11 @@ nav a.logo span.first:hover ~ span.second {
 
 
 @media screen and (max-width:1024px) {
-    main {
-        margin-left: 50px;
-        margin-right: 50px;
-    }
     nav a.logo {
         left: 10px;
     }
 }
 @media screen and (max-width:512px) {
-    main {
-        margin-left: 5px;
-        margin-right: 5px;
-    }
     nav a.logo {
         left: 5px;
     }

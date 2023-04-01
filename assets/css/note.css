@@ -1,5 +1,9 @@
-h1 > span.version {
-    margin-left: 30px;
-    font-size: 15px;
+h1.title {
+    line-height: 1;
+    margin-bottom: 0px;
+}
+
+p.version {
+    font-size: 17px;
     opacity: 0.5;
 }
