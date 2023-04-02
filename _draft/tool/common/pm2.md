@@ -16,7 +16,7 @@ layout: note
 
 ## pm2 start example.js
 
-- pm2를 실행하는 명령어로 server source code가 작성되어있는 js file을 실행
+- pm2를 실행하는 명령어로 server source code가 작성되어 있는 js file을 실행
 
 | Option | Desc |
 | - | - |

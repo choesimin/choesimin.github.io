@@ -21,4 +21,4 @@ version: 2023-04-01
 
 # Reference
 
-- [wikipedia/프로그래밍_도구](https://ko.wikipedia.org/wiki/프로그래밍_도구)
+- [https://ko.wikipedia.org/wiki/프로그래밍_도구](https://ko.wikipedia.org/wiki/프로그래밍_도구)
