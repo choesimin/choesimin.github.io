@@ -1,6 +1,7 @@
 ---
 layout: note
 title: gunzip(gzip) - 단일 file 압축하기
+version: 2023-04-02
 ---
 
 
@@ -18,7 +19,7 @@ title: gunzip(gzip) - 단일 file 압축하기
 gunzip [option] [file_name]
 ```
 
-| Option | Description |
+| Option | 설명 |
 | - | - |
 |  | option이 없으면 압축합니다. |
 | -n | n은 1부터 9까지 숫자입니다. 1이 가장 빠르지만 압축률은 가장 낮습니다. |
