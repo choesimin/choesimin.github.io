@@ -81,7 +81,7 @@ layout: note
 
 # git diff
 
-- 수정했지만 아직 Unstaged 상태인 file을 비교해볼 수 있음
+- 수정했지만 아직 Unstaged 상태인 file을 비교해 볼 수 있음
     - Working Directory에 있는 것과 Staging Area에 있는 것을 비교
 
 |||
@@ -459,16 +459,9 @@ layout: note
 
 # Reference
 
-- https://git-scm.com/book/ko/v2
-    - pro git 2nd edition (2014)
-- https://velog.io/@njs04210/Git-reset과-revert-알고-사용하기
-    - git reset revert
-- https://velog.io/@henotony/git-명령-취소되돌리기
-    - merge 명령 되돌리는 방법
-- https://hbase.tistory.com/145
-    - 과거의 commit 수정하기
-- https://cselabnotes.com/kr/2021/03/31/56/
-    - git cherry-pick
-- https://velog.io/@easttwave/Git-로컬에서-원격-브랜치-삭제
-    - remote branch 삭제 반영
-    - local에서 remote branch 삭제하기
+- [https://git-scm.com/book/ko/v2](https://git-scm.com/book/ko/v2)
+- [https://velog.io/@njs04210/Git-reset과-revert-알고-사용하기](https://velog.io/@njs04210/Git-reset과-revert-알고-사용하기)
+- [https://velog.io/@henotony/git-명령-취소되돌리기](https://velog.io/@henotony/git-명령-취소되돌리기)
+- [https://hbase.tistory.com/145](https://hbase.tistory.com/145)
+- [https://cselabnotes.com/kr/2021/03/31/56/](https://cselabnotes.com/kr/2021/03/31/56/)
+- [https://velog.io/@easttwave/Git-로컬에서-원격-브랜치-삭제](https://velog.io/@easttwave/Git-로컬에서-원격-브랜치-삭제)
