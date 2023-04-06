@@ -1,6 +1,6 @@
 ---
 layout: note
-title: scp - file과 directory를 원격으로 전송하기
+title: scp - file을 원격으로 전송하기
 version: 2023-04-03
 ---
 
@@ -10,10 +10,9 @@ version: 2023-04-03
 ## scp : 안전한 원격 전송 protocol
 
 - SecureCoPy의 약자입니다.
-- 원격지의 file과 directory를 가져오거나 또는 반대로 보낼 때 사용하는 file 전송 protocol입니다.
-- ssh 원격 접속 protocol을 기반으로 합니다.
+- 원격지의 file과 directory를 가져오거나, 원격지로 보낼 때 사용하는 file 전송 protocol입니다.
+- ssh 원격 접속 protocol을 기반으로 통신하기 때문에 안전합니다.
   - ssh와 동일한 22번 port의 identity file을 사용해서 file을 송수신합니다.
-  - 따라서 보안적으로 안정된 protocol입니다.
 
 
 ## 사용법

@@ -1,8 +1,13 @@
 ---
 layout: note
+title: Git - 형상 관리 도구
+version: 2023-04-06
 ---
 
-# git
+
+
+
+## git
 
 - 3가지 상태
     1. Committed : data가 local database에 안전하게 저장한 상태
@@ -438,22 +443,6 @@ layout: note
     ```sh
     git credential-cache exit
     ```
-
----
-
-# 과거의 commit 수정
-
-1. git log
-    - 변경하려는 commit의 이전 commit hash 값 복사
-2. git rebase -i <복사한 값>
-    - 수정하고 싶은 commit의 맨 앞 pick을 edit으로 수정하고 rebase interface에서 나오기
-3. 수정하려 했던 내용 수정 후, git add
-    - 또는 stash 해두었던 것 꺼내기 (pop 등)
-4. git commit --amend
-5. git rebase --continue
-    - 이후 commit들과 충돌이 있다면 해겷해야 함
-6. (optional) git push -f
-    - 주의) 이미 원격 저장소에 올라간 commit history라면 강제로 원격 저장소에 반영해야 함
 
 ---
 
