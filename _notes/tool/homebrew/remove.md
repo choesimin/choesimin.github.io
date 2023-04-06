@@ -7,14 +7,14 @@ version: 2023-04-01
 
 
 
-## 1. 삭제하고자 하는 package 이름을 확인합니다.
+## 1. package 이름 확인
 
 ```sh
 brew list
 ```
 
 
-## 2. 삭제합니다.
+## 2. 삭제
 
 ```sh
 brew uninstall [package_name]

@@ -1,6 +1,6 @@
 ---
 layout: note
-title: nohup - program을 daemon 형태로 background에서 실행시키기
+title: nohup - background에서 program 실행시키기
 version: 2023-04-05
 ---
 

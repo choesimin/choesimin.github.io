@@ -1,13 +1,13 @@
 ---
 layout: note
-title: gunzip(gzip) - 단일 file 압축하기
+title: gzip - 단일 file 압축하기
 version: 2023-04-02
 ---
 
 
 
 
-## gzip / gunzip
+## gzip : gunzip
 
 - 단일 file/stream 무손실 data 압축 utility입니다.
 - 압축 file의 접미사는 `.gz`입니다. 

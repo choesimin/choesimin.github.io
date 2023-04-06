@@ -7,7 +7,7 @@ version: 2023-04-01
 
 
 
-- macOS의 package 관리 application입니다.
+## Homebrew : macOS의 package 관리 application
 
 - 쉽게 package를 관리할 수 있게 해 줍니다.
     - CLI 기반입니다.

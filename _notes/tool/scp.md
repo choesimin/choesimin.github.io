@@ -7,7 +7,7 @@ version: 2023-04-03
 
 
 
-## scp - 안전한 원격 전송 protocol
+## scp : 안전한 원격 전송 protocol
 
 - SecureCoPy의 약자입니다.
 - 원격지의 file과 directory를 가져오거나 또는 반대로 보낼 때 사용하는 file 전송 protocol입니다.
