@@ -2,8 +2,6 @@
 layout: note
 ---
 
-# Flowchart
-
 
 
 

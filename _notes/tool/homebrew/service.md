@@ -36,6 +36,3 @@ brew services stop [service_name]
 ```sh
 brew services restart [service_name]
 ```
-
-
-

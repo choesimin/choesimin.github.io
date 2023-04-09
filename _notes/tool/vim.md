@@ -95,4 +95,4 @@ version: 2023-04-06
 
 # Reference
 
-[https://www.vim.org](https://www.vim.org)
+- <https://www.vim.org>

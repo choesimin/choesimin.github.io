@@ -30,6 +30,3 @@ brew install [package_name]@[version]    # 특정 version 설치
 ```sh
 brew list
 ```
-
-
-

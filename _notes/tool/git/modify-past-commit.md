@@ -42,4 +42,4 @@ version: 2023-04-06
 
 # Reference
 
-- [https://git-scm.com/book/ko/v2](https://git-scm.com/book/ko/v2)
+- <https://git-scm.com/book/ko/v2>

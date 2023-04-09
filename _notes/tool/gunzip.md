@@ -79,7 +79,7 @@ gunzip -cv **[common_file_name_string]**.gz | grep [search_keyword]
 
 # Reference
 
-- [https://www.gzip.org](https://www.gzip.org)
-- [https://steven-life-1991.tistory.com/9](https://steven-life-1991.tistory.com/9)
+- <https://www.gzip.org>
+- <https://steven-life-1991.tistory.com/9>
 
 

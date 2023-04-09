@@ -124,4 +124,4 @@ grep '^[ab]' [file_name]
 
 # Reference
 
-- [https://coding-factory.tistory.com/802](https://coding-factory.tistory.com/802)
+- <https://coding-factory.tistory.com/802>

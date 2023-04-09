@@ -1,11 +1,15 @@
 ---
 layout: note
+title: Mermaid - class diagram 그리기
+version: 2023-04-09
 ---
 
-# Class diagram
+
+
 
 ```mermaid
 classDiagram
+
 Class01 <|-- AveryLongClass : Cool
 <<Interface>> Class01
 Class09 --> C2 : Where am i?
@@ -52,8 +56,14 @@ class Class10 {
 ```
 </pre>
 
+
+
+
 ---
+
+
+
 
 # Reference
 
-- https://github.com/mermaid-js/mermaid#sequence-diagram-docs---live-editor
+- <https://github.com/mermaid-js/mermaid#sequence-diagram-docs---live-editor>
