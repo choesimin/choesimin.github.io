@@ -11,19 +11,19 @@ version: 2023-04-05
 
 - nohup을 사용하면 기본적으로 `nohup.out`에 표준 출력을 쌓습니다.
 
-```
-0 | 표준 입력
-1 | 표준 출력
-2 | 표준 오류
-```
+| Code |  |
+| - | - |
+| 0 | 표준 입력 |
+| 1 | 표준 출력 |
+| 2 | 표준 오류 |
 
 
 ### 표준 출력을 원하는 곳에 쌓기
 
+```sh
+nohup ./my_shellscript.sh > nohup_script.out
+```
 - log를 다른 file에 출력할 수 있습니다.
-    ```sh
-    nohup ./my_shellscript.sh > nohup_script.out
-    ```
     - redirection(`>`, `>>`)을 이용합니다.
 
 
@@ -45,7 +45,7 @@ nohup ./my_shellscript.sh > my_shellscript.log 2>&1 &
 - 표준 오류(2)도 표준 출력(1)이 쓰여지는 file에 redirection합니다.
 
 
-### 어디에도 표준 출력(log)을 기록하고 싶지 않을 때
+### 표준 출력(log)을 기록하고 싶지 않을 때
 
 ```sh
 nohup ./my_shellscript.sh > /dev/null

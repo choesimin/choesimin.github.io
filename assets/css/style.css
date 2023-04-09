@@ -67,67 +67,15 @@ main {
     overflow-wrap: break-word;
 }
 
-
-
-
 nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-
-    font-family: monospace;
-
-    background-color: #222222;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-nav a.logo {
-    display: inline-block;
-    position: absolute;
-    left: 20px;
-    width: 150px;
-
-    font-size: 35px;
-}
-nav a.logo span.word {
-    display: inline-block;
-    width: 38px;
-    overflow-wrap: normal;
-    letter-spacing: -3px;
-}
-
-nav a.logo span.first {
-    position: absolute;
-    z-index: 3;
-    opacity: 1;
-    transition: 1s;
-}
-nav a.logo span.second {
-    position: absolute;
-    z-index: 2;
-    opacity: 0;
-    transition: 1s;
-}
-nav a.logo span.first:hover {
-    opacity: 0;
-    transition: 0.5s;
-}
-nav a.logo span.first:hover ~ span.second {
-    opacity: 1;
-    transition: 0.1s;
-}
-
-
-
-
-@media screen and (max-width:1024px) {
-    nav a.logo {
-        left: 10px;
-    }
-}
-@media screen and (max-width:512px) {
-    nav a.logo {
-        left: 5px;
-    }
+nav a.logo img {
+    width: 65px;
 }
