@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Markdown - 강조하기 문법
+title: Markdown - 문자열 강조하기
 version: 2023-04-09
 ---
 
@@ -8,15 +8,18 @@ version: 2023-04-09
 
 
 ```
-*single asterisks*
-_single underscores_
-**double asterisks**
-__double underscores__
-~~cancel line~~
+normal   
+*single asterisk*   
+_single underscore_   
+**double asterisk**   
+__double underscore__   
+~~double tilde~~
 ```
 
-- *single asterisks*
-- _single underscores_
-- **double asterisks**
-- __double underscores__
-- ~~cancel line~~
+normal   
+*single asterisk*   
+_single underscore_   
+**double asterisk**   
+__double underscore__   
+~~double tilde~~
+

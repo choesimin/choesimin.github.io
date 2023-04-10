@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Markdown - 줄바꿈 문법
+title: Markdown - 줄 바꾸기
 version: 2023-04-09
 ---
 

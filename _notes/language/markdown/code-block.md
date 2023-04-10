@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Markdown - code block 문법
+title: Markdown - code block 작성하기
 version: 2023-04-09
 ---
 
@@ -35,6 +35,8 @@ public class BootSpringBootApplication {
 </code>
 </pre>
 ```
+
+
 
 
 ## 방법 2. \`\`\` (code block code)

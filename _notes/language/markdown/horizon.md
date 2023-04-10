@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Markdown - 수평전 문법
+title: Markdown - 수평선 그리기
 version: 2023-04-09
 ---
 
