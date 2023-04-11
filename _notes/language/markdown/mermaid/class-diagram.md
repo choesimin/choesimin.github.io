@@ -71,6 +71,7 @@ class BracketClass {
 
 - class의 member는 중괄호(`{}`) 또는 colon(`:`)으로 정의할 수 있습니다.
 - 변수와 함수의 구분은 소괄호(`()`)로 합니다.
+    - 함수명 뒤에 소괄호를 붙입니다.
 
 ```txt
 classDiagram
@@ -106,7 +107,7 @@ class BracketClass {
 
 ## 주석 작성하기
 
-- percent 기호 두개(`%%`)을 사용합니다.
+- percent 기호 두 개(`%%`)를 사용합니다.
 
 ```text
 classDiagram
