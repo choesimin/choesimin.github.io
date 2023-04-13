@@ -7,6 +7,8 @@ version: 2023-04-09
 
 
 
+## 문법
+
 ```
 normal   
 *single asterisk*   
@@ -15,6 +17,9 @@ _single underscore_
 __double underscore__   
 ~~double tilde~~
 ```
+
+
+## 결과
 
 normal   
 *single asterisk*   

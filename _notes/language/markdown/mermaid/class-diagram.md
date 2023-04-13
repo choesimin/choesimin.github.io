@@ -7,6 +7,66 @@ version: 2023-04-09
 
 
 
+## 예제
+
+```mermaid
+classDiagram
+
+Animal <|-- Duck
+Animal <|-- Fish
+Animal <|-- Zebra
+Animal : +int age
+Animal : +String gender
+Animal: +isMammal()
+Animal: +mate()
+class Duck{
+    +String beakColor
+    +swim()
+    +quack()
+}
+class Fish{
+    -int sizeInFeet
+    -canEat()
+}
+class Zebra{
+    +bool is_wild
+    +run()
+}
+```
+
+```txt
+classDiagram
+
+Animal <|-- Duck
+Animal <|-- Fish
+Animal <|-- Zebra
+Animal : +int age
+Animal : +String gender
+Animal: +isMammal()
+Animal: +mate()
+class Duck{
+    +String beakColor
+    +swim()
+    +quack()
+}
+class Fish{
+    -int sizeInFeet
+    -canEat()
+}
+class Zebra{
+    +bool is_wild
+    +run()
+}
+```
+
+
+
+
+---
+
+
+
+
 ## class 정의하기
 
 - `class` 뒤에 class 이름을 작성하여 class를 정의합니다.
@@ -29,13 +89,18 @@ class `Class with back quote !@#`
 ```
 
 
-### class에 annotation 넣기
+## class에 annotation 넣기
 
 - `<<`와 `>>`를 사용합니다.
 
-| interface class | abstract class | service class | enum | custom annotation |
-| - | - | - | - |
-| `<<Interface>>` | `<<Abstract>>` | `<<Service>>` | `<<Enumeration>>` | `<<custom>>` |
+| 종류 | 문법 |
+| - | - |
+| interface class | `<<Interface>>` |
+| abstract class | `<<Abstract>>` |
+| service class | `<<Service>>` |
+| enum | `<<Enumeration>>` |
+| custom annotation | `<<custom>>` |
+
 
 ```txt
 classDiagram
@@ -95,6 +160,19 @@ class BracketClass {
     variable
     function()
 }
+```
+
+
+
+
+---
+
+
+
+
+## 관계 정의하기
+
+```mermaid
 ```
 
 

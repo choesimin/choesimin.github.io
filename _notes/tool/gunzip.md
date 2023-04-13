@@ -17,6 +17,7 @@ version: 2023-04-02
 
 ```sh
 gunzip [option] [file_name]
+gzip [option] [file_name]
 ```
 
 | Option | 설명 |
@@ -37,7 +38,7 @@ gunzip [option] [file_name]
 ## 압축하기
 
 ```sh
-gunzip [file_name]
+gzip [file_name]
 gzip -9v [file_name]    # 가장 높은 압축률로 정보를 출력하며 압축합니다.
 ```
 
@@ -45,25 +46,28 @@ gzip -9v [file_name]    # 가장 높은 압축률로 정보를 출력하며 압�
 ## 압축 해제하기
 
 ```sh
-gunzip -d [gz_file_name]
+gzip -d [gz_file_name]
 ```
 
 
 ## 여러 .gz file에서 특정 단어를 검색하기
 
 ```sh
-gunzip -cv **[common_file_name_string]**.gz | grep [search_keyword]
+gzip -cv **[common_file_name_string]**.gz | grep [search_keyword]
 ```
 
 
-## `gzip`과 `tar` & gzip
+## `gzip`과 `tar`
 
-|  |  | file 모으기 | 압축하기 |
-| - | - | - | - |
-| `tar` | file을 하나로 모으되 압축은 하지 않습니다. | O | X |
-| `gzip` | file을 모을 수는 없지만 압축할 수 있습니다. | X | O |
+- `gzip` : 여러 file들을 하나로 모으되 압축은 하지 않습니다.
+- `tar` : file들을 모을 수는 없지만 압축할 수 있습니다.
 
-- 따라서 여러 file을 압축할 때는 tar와 gzip을 모두 사용해야 합니다.
+| 기능 | `tar` | `gzip` |
+| - | - | - |
+| file들 하나로 모으기 | O | X |
+| 압축하기 | X | O |
+
+- 따라서 여러 file을 압축할 때는 `tar`와 `gzip`을 모두 사용해야 합니다.
     1. `tar`로 여러 file 하나로 묶습니다.
     2. `gzip`으로 tar file을 압축합니다.
 

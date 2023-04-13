@@ -12,52 +12,70 @@ version: 2023-04-09
 
 
 
+---
+
+
+
+
 ## 방법 1. `<pre><code>`
 
-<pre>
-<code>
-public class BootSpringBootApplication {
-    public static void main(String[] args) {
-        System.out.println("Hello, Honeymon");
-    }
-}
-</code>
-</pre>
+
+### 문법
 
 ```
 <pre>
 <code>
-public class BootSpringBootApplication {
-    public static void main(String[] args) {
-        System.out.println("Hello, Honeymon");
-    }
+main( ) {
+    puts("Hello, world!");
+    return 0;
 }
 </code>
 </pre>
 ```
+
+
+### 결과
+
+<pre>
+<code>
+main( ) {
+    puts("Hello, world!");
+    return 0;
+}
+</code>
+</pre>
+
+
+
+
+---
 
 
 
 
 ## 방법 2. \`\`\` (code block code)
 
-```
-public class BootSpringBootApplication {
-    public static void main(String[] args) {
-        System.out.println("Hello, Honeymon");
-    }
-}
-```
+
+### 문법
 
 <pre>
 <code>
 ```
-public class BootSpringBootApplication {
-    public static void main(String[] args) {
-        System.out.println("Hello, Honeymon");
-    }
+main( ) {
+    puts("Hello, world!");
+    return 0;
 }
 ```
 </code>
 </pre>
+
+
+### 결과
+
+```
+main( ) {
+    puts("Hello, world!");
+    return 0;
+}
+```
 
