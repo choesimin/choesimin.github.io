@@ -38,6 +38,18 @@ version: 2024-04-15
     3. Heuristics & Filters : 균형 있고 다양하게 보일 수 있도록 filtering합니다.
     4. Mixing : tweet들과 non-tweet들을 섞습니다.
 
+```mermaid
+flowchart TD
+
+cand[Candidate Sources]
+rank[Ranking]
+filt[Heuristics and Filters]
+mix[Mixing]
+
+tweet_lake((엄청나게 많은 tweet들))
+tweet_relevent((.......))
+```
+
 
 
 ## 1. Candidate Sources
@@ -46,6 +58,16 @@ version: 2024-04-15
 - In-Network(follow하는 사람들)과 Out-of-Network(follow하지 않는 사람들)에게서 후보를 가져옵니다.
     - 추천 timeline은 평균적으로 In-Network 50%, Out-of-Network 50% 비율로 구성됩니다.
 
+```mermaid
+pie
+title 관련성 있는 tweet들
+
+"In-Network": 50
+"Out-of-Network (Social Graph)": 15
+"Out-of-Network (Embedding Space)": 35
+
+```
+
 ### In-Network Source
 
 - follow한 사람의 tweet들 중에 가장 '최신'이며 가장 '관련성 있는' tweet들을 가져옵니다.
@@ -53,17 +75,17 @@ version: 2024-04-15
         - logistic 회귀(regression)는 수학을 사용하여 두 data 요인 간의 관계를 찾는 data 분석 기법입니다.
     - 높은 순위의 tweet들을 다음 단계로 보냅니다.
 
-- "Real Graph"는 In-Network에서 순위를 정할 때 사용되는 핵심 component입니다.
+- [Real Graph](https://www.ueo-workshop.com/wp-content/uploads/2014/04/sig-alternate.pdf)는 In-Network에서 순위를 정할 때 사용되는 핵심 component입니다.
     - Real Graph는 두 사용자 간의 참여(engagement) 가능성을 예측하는 model입니다.
         - engagement는 상호 간의 관계를 맺는 모든 행위를 의미합니다.
             - ex) 댓글 작성하기
     - '사용자(user)'와 '사용자가 follow하는 사람(author of tweet)' 간의 Real Graph 점수가 높을 수록 더 많은 tweet이 후보에 포함됩니다.
-    - Real Graph에 대한 논문 : <https://www.ueo-workshop.com/wp-content/uploads/2014/04/sig-alternate.pdf>
 
 ### Out-of-Network Sources
 
 - Out-of-Network에서 관련성 있는 tweet들을 찾는 것은 In-Network에서 찾는 것보다 더 까다롭습니다.
-- Twitter는 이 문제를 해결하기 위해 두 가지 접근법을 사용합니다.
+
+- Twitter는 Out-of-Newtork에서 사용자가 좋아할 것같은 tweet들을 찾기 위해 두 가지 접근법을 사용합니다.
     1. Social Graph
     2. Embedding Spaces
 
@@ -77,9 +99,8 @@ version: 2024-04-15
 
 - 위 질문들에 대한 답을 하면서 후보 tweet들을 생성하고, logistic 회귀 model을 사용하여 결과 tweet들의 순위를 매깁니다.
     - 이런 유형의 graph 순회(traversal) Out-of-Network 추천에 필수적입니다.
-    - Twitter는 graph 순회를 실행하기 위해 자체 개발한 "GraphJet"을 사용합니다.
+    - Twitter는 graph 순회를 실행하기 위해 자체 개발한 GraphJet(https://www.vldb.org/pvldb/vol9/p1281-sharma.pdf)을 사용합니다.
         - GraphJet은 사용자와 tweet 간의 실시간 상호 작용 graph를 유지하는 graph 처리 engine입니다.
-        - GraphJet에 대한 논문 : <https://www.vldb.org/pvldb/vol9/p1281-sharma.pdf>
 
 #### Embedding 공간 접근법
 
