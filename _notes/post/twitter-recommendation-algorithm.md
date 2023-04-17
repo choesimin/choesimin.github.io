@@ -16,7 +16,7 @@ version: 2024-04-15
     1. Follwing timeline : 'follow한 사람의 posting'을 볼 수 있습니다.
     2. For You (추천) timeline : 'follow한 사람의 posting', 'follow하지 않는 사람의 posting', '광고' 등이 추천 algorithm으로 선정되어 보여집니다.
 
-- 이 글에선 추천 algorithm의 내용을 설명하고, source code를 분석합니다.
+- 이 글은 추천 algorithm에 대해 설명합니다.
 
 
 
@@ -26,7 +26,7 @@ version: 2024-04-15
 
 
 
-## Algorithm 내용 : 추천 timeline의 tweet들을 선정하는 방법
+## 추천 timeline의 tweet들을 선정하는 algorithm
 
 - 추천 algorithm은 timeline 상위에 노출시킬 tweet들을 선정합니다.
     - Twitter에는 매일 5억개 정도의 tweet들이 게시됩니다.
@@ -39,10 +39,12 @@ version: 2024-04-15
     4. Mixing : tweet들과 non-tweet들을 섞습니다.
 
 ```mermaid
+---
+title: Tweet들을 선정하는 과정
+---
 flowchart TD
 
-
-all(((.................... All Tweets ....................)))
+all(((.................... All Recent Tweets ....................)))
 
 in((In-Network Tweets))
 out((Out-of-Network Tweets))
@@ -51,21 +53,11 @@ real[\Real Graph Component/]
 social[\Social Graph 접근법/]
 embed[\Embedding 공간 접근법/]
 
-candidate((1500 Tweets))
+candidate((1500 Relevant Tweets))
 
-netstart(( ))
-net00(( ))
-net01(( ))
-net02(( ))
-net10(( ))
-net11(( ))
-net12(( ))
-net20(( ))
-net21(( ))
-net22(( ))
-netend(( ))
+heavy[[Heavy Ranker]]
 
-rank((Ranked\n1500 Tweets))
+rank((1500 Ranked Tweets))
 
 filter0[\Visibility Filtering/]
 filter1[\Author Diversity/]
@@ -77,65 +69,45 @@ filter6[\Edited Tweets/]
 
 filter_result((Filtered Tweets))
 
+mixer{Mixer}
 non_tweet((Non-Tweets))
+
+result(((Final Tweets)))
 
 
 all ---->|follow하는 사람들| in
 all ---->|follow하지 않는 사람들| out
 
-subgraph 1. Candidate Sources
+subgraph Candidate Sources : Find relevant tweets 
 in --> real
 out --> social
 out --> embed
 end
 
-real ---->|후보의 50%| candidate
-social ---->|후보의 15%| candidate
-embed ---->|후보의 35%| candidate
-candidate ----> netstart
+real ---->|50% of result| candidate
+social ---->|15% of result| candidate
+embed ---->|35% of result| candidate
+candidate ----> heavy
 
-subgraph 2. Ranking
-netstart --> net00
-netstart --> net01
-netstart --> net02
-
-subgraph Heavy Ranker 신경망
-net00 --> net10
-net00 --> net11
-net00 --> net12
-net01 --> net10
-net01 --> net11
-net01 --> net12
-net02 --> net10
-net02 --> net11
-net02 --> net12
-net10 --> net20
-net10 --> net21
-net10 --> net22
-net11 --> net20
-net11 --> net21
-net11 --> net22
-net12 --> net20
-net12 --> net21
-net12 --> net22
+subgraph 2. Ranking : Rank tweets with neural network
+heavy ---|신경망| heavy
 end
 
-net20 --> netend
-net21 --> netend
-net22 --> netend
-end
-
-netend ----> rank
-
+heavy ----> rank
 rank ----> filter0
 
-subgraph 3. Heuristics and Filters
+subgraph 3. Heuristics & Filters : Filter out specific preferences
 filter0 --> filter1 --> filter2 --> filter3 --> filter4 --> filter5 --> filter6
 end
 
-filter6 --> filter_result
-non_tweet --> filter_result
+filter6 ----> filter_result
+filter_result ----> mixer
 
+subgraph 4. Mixing : MIx with non-tweets
+non_tweet --> mixer
+end
+
+mixer ----> result
 ```
 
 
@@ -260,42 +232,6 @@ non_tweet --> filter_result
 
 
 
---- 
-
-
-
-
-
-- https://velog.io/@kihoonx/트위터-추천-알고리즘-핵심-소스코드-분석-일론-머스크의-공개
-- https://devocean.sk.com/blog/techBoardDetail.do?ID=164696
-
-
-
-
-
-
-## Source Code 분석 : 구조
-
-The core components of the For You Timeline included in this repository are listed below:
-
-| Type | Component | Description |
-|------------|------------|------------|
-
-| Candidate Source | [search-index](src/java/com/twitter/search/README.md) | Find and rank In-Network Tweets. ~50% of Tweets come from this candidate source. |
-|                  | [cr-mixer](cr-mixer/README.md) | Coordination layer for fetching Out-of-Network tweet candidates from underlying compute services. |
-|                  | [user-tweet-entity-graph](src/scala/com/twitter/recos/user_tweet_entity_graph/README.md) (UTEG)| Maintains an in memory User to Tweet interaction graph, and finds candidates based on traversals of this graph. This is built on the [GraphJet](https://github.com/twitter/GraphJet) framework. Several other GraphJet based features and candidate sources are located [here](src/scala/com/twitter/recos). |
-|                  | [follow-recommendation-service](follow-recommendations-service/README.md) (FRS)| Provides Users with recommendations for accounts to follow, and Tweets from those accounts. |
-
-| Ranking | [light-ranker](src/python/twitter/deepbird/projects/timelines/scripts/models/earlybird/README.md) | Light Ranker model used by search index (Earlybird) to rank Tweets. |
-|         | [heavy-ranker](https://github.com/twitter/the-algorithm-ml/blob/main/projects/home/recap/README.md) | Neural network for ranking candidate tweets. One of the main signals used to select timeline Tweets post candidate sourcing. |
-| Tweet mixing & filtering | [home-mixer](home-mixer/README.md) | Main service used to construct and serve the Home Timeline. Built on [product-mixer](product-mixer/README.md). |
-|                          | [visibility-filters](visibilitylib/README.md) | Responsible for filtering Twitter content to support legal compliance, improve product quality, increase user trust, protect revenue through the use of hard-filtering, visible product treatments, and coarse-grained downranking. |
-|                          | [timelineranker](timelineranker/README.md) | Legacy service which provides relevance-scored tweets from the Earlybird Search Index and UTEG service. |
-
-
-
-
-
 ---
 
 
@@ -306,3 +242,4 @@ The core components of the For You Timeline included in this repository are list
 - <https://github.com/twitter/the-algorithm>
 - <https://github.com/twitter/the-algorithm-ml>
 - <https://blog.twitter.com/engineering/en_us/topics/open-source/2023/twitter-recommendation-algorithm>
+- <https://www.youtube.com/watch?v=a8wCny94-_U>
