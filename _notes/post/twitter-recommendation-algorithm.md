@@ -41,13 +41,101 @@ version: 2024-04-15
 ```mermaid
 flowchart TD
 
-cand[Candidate Sources]
-rank[Ranking]
-filt[Heuristics and Filters]
-mix[Mixing]
 
-tweet_lake((엄청나게 많은 tweet들))
-tweet_relevent((.......))
+all(((.................... All Tweets ....................)))
+
+in((In-Network Tweets))
+out((Out-of-Network Tweets))
+
+real[\Real Graph Component/]
+social[\Social Graph 접근법/]
+embed[\Embedding 공간 접근법/]
+
+candidate((1500 Tweets))
+
+netstart(( ))
+net00(( ))
+net01(( ))
+net02(( ))
+net10(( ))
+net11(( ))
+net12(( ))
+net20(( ))
+net21(( ))
+net22(( ))
+netend(( ))
+
+rank((Ranked\n1500 Tweets))
+
+filter0[\Visibility Filtering/]
+filter1[\Author Diversity/]
+filter2[\Content Balance/]
+filter3[\Feedback-based Fatigue/]
+filter4[\Social Proof/]
+filter5[\Conversations/]
+filter6[\Edited Tweets/]
+
+filter_result((Filtered Tweets))
+
+non_tweet((Non-Tweets))
+
+
+all ---->|follow하는 사람들| in
+all ---->|follow하지 않는 사람들| out
+
+subgraph 1. Candidate Sources
+in --> real
+out --> social
+out --> embed
+end
+
+real ---->|후보의 50%| candidate
+social ---->|후보의 15%| candidate
+embed ---->|후보의 35%| candidate
+candidate ----> netstart
+
+subgraph 2. Ranking
+netstart --> net00
+netstart --> net01
+netstart --> net02
+
+subgraph Heavy Ranker 신경망
+net00 --> net10
+net00 --> net11
+net00 --> net12
+net01 --> net10
+net01 --> net11
+net01 --> net12
+net02 --> net10
+net02 --> net11
+net02 --> net12
+net10 --> net20
+net10 --> net21
+net10 --> net22
+net11 --> net20
+net11 --> net21
+net11 --> net22
+net12 --> net20
+net12 --> net21
+net12 --> net22
+end
+
+net20 --> netend
+net21 --> netend
+net22 --> netend
+end
+
+netend ----> rank
+
+rank ----> filter0
+
+subgraph 3. Heuristics and Filters
+filter0 --> filter1 --> filter2 --> filter3 --> filter4 --> filter5 --> filter6
+end
+
+filter6 --> filter_result
+non_tweet --> filter_result
+
 ```
 
 
@@ -57,16 +145,6 @@ tweet_relevent((.......))
 - 수억 개의 후보 중에서 약 1500개 정도의 관련성 있는 최신 tweet들을 가져오는 작업입니다.
 - In-Network(follow하는 사람들)과 Out-of-Network(follow하지 않는 사람들)에게서 후보를 가져옵니다.
     - 추천 timeline은 평균적으로 In-Network 50%, Out-of-Network 50% 비율로 구성됩니다.
-
-```mermaid
-pie
-title 관련성 있는 tweet들
-
-"In-Network": 50
-"Out-of-Network (Social Graph)": 15
-"Out-of-Network (Embedding Space)": 35
-
-```
 
 ### In-Network Source
 
