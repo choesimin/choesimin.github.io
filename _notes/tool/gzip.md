@@ -1,6 +1,6 @@
 ---
 layout: note
-title: gzip - 단일 file 압축하기
+title: gzip - 단일 File 압축하기
 version: 2023-04-02
 ---
 

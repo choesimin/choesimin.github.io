@@ -1,6 +1,6 @@
 ---
 layout: note
-title: scp - file을 원격으로 전송하기
+title: scp - File을 원격으로 전송하기
 version: 2023-04-03
 ---
 

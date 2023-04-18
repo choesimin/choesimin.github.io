@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Markdown - code block 작성하기
+title: Markdown - Code Block 작성하기
 version: 2023-04-09
 ---
 

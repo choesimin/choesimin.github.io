@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Homebrew - service 관리하기
+title: Homebrew - Service 관리하기
 version: 2023-04-01
 ---
 

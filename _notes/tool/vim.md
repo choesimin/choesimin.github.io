@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Vim - terminal text 편집기
+title: Vim - Terminal Text 편집기
 version: 2023-04-06
 ---
 

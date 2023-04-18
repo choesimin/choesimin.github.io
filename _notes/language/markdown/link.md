@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Markdown - 외부 link 달기
+title: Markdown - 외부 Link 달기
 version: 2023-04-09
 ---
 

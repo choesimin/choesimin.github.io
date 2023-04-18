@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Homebrew - package 설치하기
+title: Homebrew - Package 설치하기
 version: 2023-04-01
 ---
 

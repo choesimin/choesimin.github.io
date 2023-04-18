@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Homebrew - package 삭제하기
+title: Homebrew - Package 삭제하기
 version: 2023-04-01
 ---
 

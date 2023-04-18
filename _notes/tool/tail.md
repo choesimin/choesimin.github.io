@@ -1,6 +1,6 @@
 ---
 layout: note
-title: tail - file의 마지막 부분 출력하기
+title: tail - File의 마지막 부분 출력하기
 version: 2023-04-03
 ---
 
