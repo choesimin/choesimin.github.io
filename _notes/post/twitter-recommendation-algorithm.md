@@ -1,7 +1,7 @@
 ---
 layout: note
-title: Twitter의 추천 algorighm
-version: 2024-04-15
+title: Twitter의 Tweet 추천 algorighm
+version: 2024-04-16
 ---
 
 
@@ -78,7 +78,7 @@ result(((Final Tweets)))
 all ---->|follow하는 사람들| in
 all ---->|follow하지 않는 사람들| out
 
-subgraph Candidate Sources : Find relevant tweets 
+subgraph 1. Candidate Sources : Find relevant tweets 
 in --> real
 out --> social
 out --> embed
@@ -162,7 +162,7 @@ mixer ----> result
 - embedding 공간에서 유사성을 계산하여 관련도를 얻습니다.
     - embedding은 사용자의 관심사와 tweet의 content를 수치로 표현함으로써(numerical representation) 작동합니다.
     - 이 수치로 embedding 공간에서 user-user, tweet-tweet, user-tweet 간의 유사성을 계산할 수 있습니다.
-    - 정확한 embedding을 생성한 경우, 이 유사성을 관련성에 대한 대안으로 사용할 수 있습니다.
+    - 정확한 embedding을 생성한 경우, 이 유사성을 관련성 지표로 사용할 수 있습니다.
 
 - community를 이용해 tweet이 어떤 관심사에 속하는지 알아낼 수 있으며, 이 과정에서 [custom matrix factorization algorithm](https://github.com/twitter/sbf)을 사용하는 [SimClusters](https://dl.acm.org/doi/10.1145/3394486.3403370)라는 embedding 공간을 사용합니다.
     - community는 특정한 관심사를 다른 사람들과 함께 모아볼 수 있는 공간입니다.
@@ -205,7 +205,7 @@ mixer ----> result
     - ex) block 또는 mute한 계정의 tweet들을 제거합니다.
 
 2. Author Diversity
-    - 한 author의 연속되는 tweet을 피합니다.
+    - 한 작성자의 연속되는 tweet을 피합니다.
 
 3. Content Balance
     - In-Network의 tweet들과 Out-of-Network의 tweet들을 군형 있게 제공합니다.
@@ -215,7 +215,7 @@ mixer ----> result
 
 5. Social Proof
     - 품질 보호를 위해 tweet에 대한 2단계 연결이 없는 Out-of-Network tweet들은 제외합니다.
-        - 사용자가 follow하는 tweet에 참여하거나, tweet의 author를 follow하는지 확인합니다.
+        - 사용자가 follow하는 tweet에 참여하거나, tweet의 작성자를 follow하는지 확인합니다.
 
 6. Conversations
     - tweet에 대한 응답(reply) tweet은 thread로 만들어, 원래 tweet의 내용을 함께 제공합니다.
@@ -227,7 +227,7 @@ mixer ----> result
 ## 4. Mixing
 
 - 이 시점에서 Home Mixer는 사용자에게 표시할 최종 tweet들을 가지고 있습니다.
-- 마지막 과정으로, system은 tweet들을 non-tweet(광고, follow 추천 등)과 섞어 화면에 표시합니다.
+- 마지막 과정으로, system은 tweet들을 non-tweet(광고, follow할 사람 추천 등)과 섞어 화면에 표시합니다.
 
 
 
