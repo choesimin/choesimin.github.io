@@ -28,12 +28,10 @@ version: 2024-04-16
 
 ## 추천 timeline의 tweet들을 선정하는 algorithm
 
+- Twitter에는 매일 5억개 정도의 tweet들이 게시됩니다.
 - 추천 algorithm은 timeline 상위에 노출시킬 tweet들을 선정합니다.
-    - Twitter에는 매일 5억개 정도의 tweet들이 게시됩니다.
-
-- 화면에 표시되는 tweet들은 선정을 위한 pipeline을 거칩니다.
+- 화면에 표시되는 tweet들은 선정을 위한 pipeline을 거치면서 정해집니다.
     1. Candidate Sources : 후보를 선정합니다.
-        - In-Network Source + Out-of-Network Sources
     2. Ranking : 순위를 매깁니다.
     3. Heuristics & Filters : 균형 있고 다양하게 보일 수 있도록 filtering합니다.
     4. Mixing : tweet들과 non-tweet들을 섞습니다.
