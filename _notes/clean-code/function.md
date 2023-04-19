@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Clean Code - 함수
-version: 2023-04-18
+version: 2023-04-20
 ---
 
 
@@ -31,7 +31,7 @@ version: 2023-04-18
         - 특정 표현이 근본 개념인지 세부사항인지 구분하기 어렵게 되기 때문
     - code는 위에서 아래로 이야기처럼 읽혀야 좋음
 
-- Switch 문 (+ if/else 문)
+- Switch 문 (+ if-else 문)
     - switch 문은 작게 만들기 어려움
     - 본질적으로 switch 문은 N가지를 처리하기 때문에 '한 가지' 작업만 하도록 만들기 어려움
         - SRP(Single Responsibility Principle)를 위반함
