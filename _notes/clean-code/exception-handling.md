@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Clean Code - 오류 처리
-version: 2023-04-18
+version: 2023-04-19
 ---
 
 
@@ -26,7 +26,7 @@ version: 2023-04-18
 ## Error Code보다 Exception을 사용하기
 
 - 논리와 오류 처리 code가 섞이지 않도록 해야 합니다.
-- exception은 오류를 논리 logic와 떨어진 곳에서 처리하기 위해 사용합니다.
+- exception은 오류를 논리 code와 떨어진 곳에서 처리하기 위해 사용합니다.
 
 
 ### Error Code 사용
@@ -212,7 +212,7 @@ void sendFinishTalk() throws SendFailException {
 
 
 
-## 호출자를 고려해 예외 class를 정의하기
+## 호출자를 고려해 Exception Class를 정의하기
 
 - exception class를 만들 때, 호출자가 어떤 방식으로 예외를 잡을지 고려해야 합니다.
     - 한 예외는 잡아내고 다른 예외는 무시해도 괜찮은 경우라면, 예외 class를 여러 개 사용할 수도 있습니다.
@@ -226,7 +226,6 @@ void sendFinishTalk() throws SendFailException {
     | Good | Bad |
     | - | - |
     | 외부 library를 사용하는 class를 wrapper class로 한 번 감싼 뒤 이 class에 대한 예외를 처리하기 | 외부 library가 던질 모든 예외를 catch로 구분하여 예외를 처리하기 |
-
 
 
 ### Example : ACMEPort class(외부 API class)를 사용하는 상황
