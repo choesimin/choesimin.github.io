@@ -110,6 +110,12 @@ mixer ----> result
 
 
 
+
+---
+
+
+
+
 ## 1. Candidate Sources
 
 - 수억 개의 후보 중에서 약 1500개 정도의 관련성 있는 최신 tweet들을 가져오는 작업입니다.
@@ -179,6 +185,13 @@ mixer ----> result
         | NBA | 70,000,000 |
 
 
+
+
+---
+
+
+
+
 ## 2. Ranking
 
 - 후보 선정이 끝나고, 순위 작업이 시작되는 시점의 pipeline에는 최대 1500개의 후보가 있습니다.
@@ -191,6 +204,13 @@ mixer ----> result
 - 신경망을 이용한 ranking mechanism은 각 tweet에 점수를 주고, 이 점수로 tweet의 순위를 매깁니다.
     - ranking mechanism은 수천 개의 feature로 10개의 label을 예측합니다.
     - 각 label은 참여 확률(probability of engagement)을 나타냅니다.
+
+
+
+
+---
+
+
 
 
 ## 3. Heuristics & Filters
@@ -220,6 +240,13 @@ mixer ----> result
 
 7. Edited Tweets
     - 현재 device에 있는 tweet들이 오래되었는지 확인하고, 편집된 version의 tweet들로 바꾸라는 명령을 보냅니다.
+
+
+
+
+---
+
+
 
 
 ## 4. Mixing
