@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Clean Code - 의미있는 이름
+title: Clean Code - 이름 짓기
 version: 2023-04-19
 ---
 
@@ -82,7 +82,12 @@ version: 2023-04-19
 ### Method 이름
 
 - method 이름은 동사, 동사구가 적합합니다.
-- 접근자(accessor), 변경자(mutator), 조건자(predicate)는 Java bean 표준에 따라 값 앞에 `get`, `set`, `is`를 붙입니다.
+- 접근자(accessor), 변경자(mutator), 조건자(predicate)의 명명은 Java Bean 표준에 따릅니다.
+    | 종류 | 이름 |
+    | - | - |
+    | 접근자 | `get` + 값 |
+    | 변경자 | `set` + 값 |
+    | 조건자 | `is` + 값 |
 
 
 ### 기발한 이름 피하기
