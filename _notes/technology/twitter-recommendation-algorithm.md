@@ -8,7 +8,7 @@ version: 2023-04-16
 
 
 - 2023년 3월 31일, Twitter는 home timeline의 **"For You" feed 추천 Algorithm**을 Github와 자사의 기술 blog에 공개했습니다.
-    - algorithm source code : <https://github.com/twitter/the-algorithm>, 
+    - algorithm source code : <https://github.com/twitter/the-algorithm>
     - machine learning source code : <https://github.com/twitter/the-algorithm-ml>
     - algorithm에 대한 설명 : <https://blog.twitter.com/engineering/en_us/topics/open-source/2023/twitter-recommendation-algorithm>
 
