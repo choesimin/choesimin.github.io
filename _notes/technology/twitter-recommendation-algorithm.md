@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Twitter의 Tweet 추천 Algorighm
-version: 2024-04-16
+version: 2023-04-16
 ---
 
 
