@@ -33,7 +33,7 @@ version: 2023-04-16
 - 화면에 표시되는 tweet들은 선정을 위한 pipeline을 거치면서 정해집니다.
     1. Candidate Sources : 후보를 선정합니다.
     2. Ranking : 순위를 매깁니다.
-    3. Heuristics & Filters : 균형 있고 다양하게 보일 수 있도록 filtering합니다.
+    3. Heuristics & Filters : filtering하고 순위를 조정합니다.
     4. Mixing : tweet들과 non-tweet들을 섞습니다.
 
 ```mermaid
@@ -132,7 +132,7 @@ mixer ----> result
 - [Real Graph](https://www.ueo-workshop.com/wp-content/uploads/2014/04/sig-alternate.pdf)는 In-Network에서 순위를 정할 때 사용되는 핵심 component입니다.
     - Real Graph는 두 사용자 간의 참여(engagement) 가능성을 예측하는 model입니다.
         - engagement : 상호 간의 관계를 맺는 모든 행위.
-            - ex) 댓글 작성하기, Retweet
+            - e.g., 댓글 작성하기
     - '사용자(user)'와 '사용자가 follow하는 사람(author of tweet)' 간의 Real Graph 점수가 높을 수록 더 많은 tweet이 후보에 포함됩니다.
 
 ### Out-of-Network Sources
@@ -220,13 +220,13 @@ mixer ----> result
 
 1. Visibility Filtering
     - tweet의 내용과 사용자의 선호도에 따라 tweet들을 filtering합니다.
-    - ex) block 또는 mute한 계정의 tweet들을 제거합니다.
+    - e.g., block 또는 mute한 계정의 tweet들을 제거합니다.
 
 2. Author Diversity
     - 한 작성자의 연속되는 tweet을 피합니다.
 
 3. Content Balance
-    - In-Network의 tweet들과 Out-of-Network의 tweet들을 군형 있게 제공합니다.
+    - In-Network의 tweet들과 Out-of-Network의 tweet들을 균형 있게 제공합니다.
 
 4. Feedback-based Fatigue
     - 특정 tweet을 보았던 사용자가 부정적인 feedback을 줬다면, 해당 tweet의 점수를 낮춥니다.
