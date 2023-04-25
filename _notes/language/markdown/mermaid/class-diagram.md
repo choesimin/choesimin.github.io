@@ -7,7 +7,7 @@ version: 2023-04-09
 
 
 
-## Class 정의하기
+## Class
 
 - `class` 뒤에 class 이름을 작성하여 class를 정의합니다.
 - label 방식과 back quote 방식으로 class 이름에 공백, 특수문자를 넣을 수 있습니다.
@@ -29,7 +29,7 @@ class `Class with back quote !@#`
 ```
 
 
-## Class에 annotation 넣기
+### Annotation
 
 - `<<`와 `>>`를 사용합니다.
 
@@ -72,7 +72,7 @@ class BracketClass {
 
 
 
-## Class member 정의하기
+## Class Member
 
 - class의 member는 중괄호(`{}`) 또는 colon(`:`)으로 정의할 수 있습니다.
 - 변수와 함수의 구분은 소괄호(`()`)로 합니다.
@@ -105,20 +105,68 @@ class BracketClass {
 ```
 
 
-## Class member에 접근 제한자 설정하기
-
-
-
-
-## 자료형 설정하기
+### 자료형
 
 - 변수의 자료형과 함수 반환값의 자료형을 표시할 수 있습니다.
     - 변수의 자료형은 변수 앞에 작성합니다.
     - 함수 반환값의 자료형은 함수 뒤에 작성합니다.
 
 
+### 함수의 Parameter
 
-## 함수에 parameter 넣기
+
+
+
+### 접근 제한자
+
+- 변수와 함수 앞에 접근 제한자 기호를 붙일 수 있습니다.
+
+| Code | 접근 제한자 |
+| - | - |
+| `+` | Public |
+| `-` | Private |
+| `#` | Protected |
+| `~` | Package/Internal |
+
+```txt
+classDiagram
+
+class ColonClass
+ColonClass : +variable
+ColonClass : -variable
+ColonClass : +method()
+ColonClass : -method()
+
+class BracketClass {
+    +variable
+    -variable
+    +method()
+    -method()
+}
+```
+
+```mermaid
+classDiagram
+
+class ColonClass
+ColonClass : +variable
+ColonClass : -variable
+ColonClass : +method()
+ColonClass : -method()
+
+class BracketClass {
+    +variable
+    -variable
+    +method()
+    -method()
+}
+```
+
+
+
+
+
+### Generic Type
 
 
 
@@ -167,7 +215,7 @@ TwoWayA <|--|> TwoWayB : 양방향 many to many
 ```
 
 
-## 화살표에 label 작성하기
+### Label 작성하기
 
 ```txt
 [class] [arrow] [target_class] : [label]
