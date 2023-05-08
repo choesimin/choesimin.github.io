@@ -1,13 +1,15 @@
 ---
 layout: note
+title: Memory 구조
+version: 2023-05-08
 ---
 
-# Memory Structure
 
-- program이 실행될 때, OS(운영 체제)는 disk에 있는 program을 memory(RAM) 공간에 할당
-    - 이 때, OS에 할당할 공간을 제공하는 memory는 4가지 영역(Code, Data, Stack, Heap)으로 구성됨
-    - Code 영역, Data 영역은 program loading(compile time)할 때 크기가 정해져서 수행 중간에 크기 변화가 없음
-    - Stack 영역, Heap 영역은 program 수행(run time) 중에 memory 크기가 변함
+
+- program이 실행될 때, OS(운영 체제)는 disk에 있는 program을 memory(RAM) 공간에 할당합니다.
+    - 이 때, OS에 할당할 공간을 제공하는 memory는 4가지 영역(Code, Data, Stack, Heap)으로 구성됩니다.
+    - Code 영역, Data 영역은 program loading(compile time)할 때 크기가 정해져서 수행 중간에 크기 변화가 없습니다.
+    - Stack 영역, Heap 영역은 program 수행(run time) 중에 memory 크기가 변합니다.
 
 - Memory
     - Code Section
@@ -24,16 +26,17 @@ layout: note
 
 
 
-## Code 영역 (== Text 영역)
+## Code 영역
 
-- 작성한 source code가 들어가는 부분
-    - compile된 기계어가 들어감
+- text 영역이라고도 합니다.
 
-- 실행 file을 구성하는 명령문들이 올라감
-    - 함수, 제어문, 상수 등
+- 작성한 source code를 compile한 기계어가 들어갑니다.
 
-- compile time에 결정되고 중간에 code를 바꿀 수 없게 Read-Only로 지정되어 있음
-- CPU는 code 영역에 저장된 명령어를 하나씩 가져가서 처리함
+- 실행 file을 구성하는 명령문들이 올라갑니다.
+    - e.g., 함수, 제어문, 상수.
+
+- compile time에 결정되고 중간에 code를 바꿀 수 없게 Read-Only로 지정되어 있습니다.
+- CPU는 Code 영역에 저장된 명령어를 하나씩 가져가서 처리합니다.
 
 
 
@@ -45,15 +48,15 @@ layout: note
 
 ## Data 영역
 
-- 전역변수, 정적(static)변수가 할당되는 영역
-- program의 시작할 때 할당되고, program이 종료될 때 소멸됨
-- 실핻 도중에 전역변수가 변경될 수도 있기 때문에 Read-Write로 지정되어 있음
+- 전역변수, 정적(static)변수가 할당되는 영역입니다.
+- program의 시작할 때 할당되고, program이 종료될 때 소멸됩니다.
+- 실핻 도중에 전역변수가 변경될 수도 있기 때문에 read-write로 지정되어 있습니다.
 
 
 ### BBS : Block Started by Symbol
 
-- 초기화되지 않은 변수 영역을 뜻함
-- 0으로 자동 초기화 해줌
+- 초기화되지 않은 변수 영역을 뜻합니다.
+- 0으로 자동 초기화해 줍니다.
 - Data 영역은 크게 두가지로 나뉨
     1. 초기화된 변수 영역 (initialized data segment)
     2. 초기화되지 않은 변수 영역 (uninitialized data segment)

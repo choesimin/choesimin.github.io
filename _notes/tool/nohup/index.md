@@ -42,21 +42,25 @@ nohup ./my_shellscript.sh &
 ### `&` (ampersand)
 
 - program 실행 시에 명령어 맨 끝에 붙이면 foreground가 아니라 background로 실행됩니다.
-    ```sh
-    ./my_shellscript.sh & 
-    ```
+
+```sh
+./my_shellscript.sh & 
+```
 
 - logout으로 session과 연결이 끊어지면, `&`로 실행되고 있던 program도 함께 종료됩니다.
     - program을 단지 사용자 눈에 보이지 않는 background 형태로 돌리고 있는 것이기 때문입니다.
     - 예외적으로, 연결이 끊어져도 `nohup`처럼 program은 계속 실행되는 경우가 있습니다.
         - 특정 version 이상부터 session이 끊어져도 program이 종료되지 않는 option이 default로 바뀌었기 때문입니다.
 
-- `shopt`로 `&`의 default option을 확인할 수 있습니다.
-    ```sh
-    shopt | grep huponexit
-    ```
-    - `shopt`: shell option을 조회해 볼 수 있는 명령어입니다.
-    - `huponexit off`라고 나오면 `&`만으로만 program을 실행해도 session 연결 종료 시에 program이 종료되지 않습니다.
+
+### `shopt` : `&`의 default option을 확인하기
+
+```sh
+shopt | grep huponexit
+```
+
+- `shopt`: shell option을 조회해 볼 수 있는 명령어입니다.
+- `huponexit off`라고 나오면 `&`만으로만 program을 실행해도 session 연결 종료 시에 program이 종료되지 않습니다.
 
 
 
@@ -68,16 +72,11 @@ nohup ./my_shellscript.sh &
 
 ## background에 떠 있는 process 종료하는 방법
 
-
 1. `ps` 명령어로 `process_id`를 알아냅니다.
-    ```sh
-    ps -ef | grep my_shellscript.sh
-    ```
+    - `ps -ef | grep my_shellscript.sh`
 
 2. `kill` 명령어로 process를 종료시킵니다.
-    ```sh
-    kill -9 [process_id]
-    ```
+    - `kill -9 [process_id]`
 
 
 

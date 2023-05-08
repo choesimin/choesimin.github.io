@@ -31,17 +31,20 @@ ls [optoin] [directory]
 | -t | time | 출력 결과를 file이 수정된 시간을 기준으로 정렬합니다. |
 
 
-### option을 조합하여 사용하기
+### Option을 조합하여 사용하기
 
-- 숨겨진 file을 포함하여(`a`) 자세히(`l`) 출력합니다.
-    ```sh
-    ls -al
-    ```
+#### 숨겨진 file을 포함하여(`a`) 자세히(`l`) 출력하기
 
-- 숨겨진 file을 포함해서(`a`) file size(`S`) 역순(`r`)으로 보기 좋게(`h`) 자세히(`l`) 출력합니다.
-    ```sh
-    ls -alSrh
-    ```
+```sh
+ls -al
+```
+
+#### 숨겨진 file을 포함해서(`a`) file size(`S`) 역순(`r`)으로 보기 좋게(`h`) 자세히(`l`) 출력하기
+
+```sh
+ls -alSrh
+```
+
 
 
 
@@ -50,7 +53,7 @@ ls [optoin] [directory]
 
 
 
-## 현재 위치의 file 목록 출력하기
+## 현재 위치의 File 목록 출력하기
 
 ```sh
 ls
@@ -58,7 +61,7 @@ ls -l
 ```
 
 
-## directory 안의 file 출력하기
+## Directory 안의 File 출력하기
 
 ```sh
 ls /
@@ -67,7 +70,7 @@ ls -l /home
 ```
 
 
-## directory 내용을 file에 저장하기
+## Directory 내용을 File에 저장하기
 
 ```sh
 ls > file.txt
