@@ -7,7 +7,7 @@ version: 2023-04-06
 
 
 
-## Git - DVSC(Distributed Version Control System)
+## Git : DVSC(Distributed Version Control System)
 
 - 분산 version 관리 system입니다.
     - 여러 명의 사용자들 간의 file에 대한 작업을 조율하는 데에 사용됩니다.
