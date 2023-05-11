@@ -1,6 +1,6 @@
 ---
 layout: note
-title: HTML Layout
+title: HTML 구조 설계
 version: 2023-05-08
 ---
 
@@ -13,23 +13,23 @@ version: 2023-05-08
 
 
 
-## Layout에 사용하는 Tag
+## Elements for Layout
 
-| Tag | 설명 |
+| 요소 | 설명 |
 | - | - |
-| header |   |
-| nav |  |
+| header | web page에 대한 대표적인 설명글 또는 머릿말 등을 나타낼 때 사용합니다. 검색 engine의 검색에 참고가 되는 중요한 자료로써 사용되기도 합니다.  |
+| nav | navigation menu를 표시합니다. page 상단에 위치하는 경우가 대부분이므로, header 안에 포홤되는 경우가 많습니다. |
 | main |  |
 | section |  |
 | article |  |
 | aside |  |
 | footer |  |
-| div |  |
+| div | layout에 자주 사용되는 non-sementic 요소입니다. 다른 요소와 달리 의미가 없기 때문에 식별자(id, class, name)를 지정하여 layout에 사용합니다. |
 
 
 
 
-## Layout의 예시
+## Layout Exsample
 
 ```txt
 ┌──────────────────────────────────────┐
