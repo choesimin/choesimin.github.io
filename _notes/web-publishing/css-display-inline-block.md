@@ -10,13 +10,22 @@ version: 2023-05-17
 ## `display` 속성
 
 - HTML의 모든 요소는 각각의 `display` 속성값을 가지고 있습니다.
-    - `display` 속성은 HTML 요소가 web browser에 언제 어떻게 보이는가를 결정합니다.
+- `display` 속성은 HTML 요소를 web browser에 어떻게 보여줄지 결정하는 속성입니다.
 
 
 ### `block`과 `inline`
 
 - 대부분의 HTML 요소는 `display` 속성의 기본값으로 `block`과 `inline` 중 하나의 값을 가집니다.
 
+
+
+display 속성은 레이아웃을 제어하기 위한 중요한 속성입니다.
+예를들어, block 형태를 띄는 Tag들에게 display : inline 속성을 주면 inline형태로 사용자에게 보여지고
+반대로 inline 형태를 띄는 Tag들에게 display : block 속성을 주면 block형태로 사용자에게 보여집니다.
+
+none : 제거하지 않고 숨긴다
+inline : 필요한 폭만 가진다
+block : 새 줄에서 시작하며 브라우저 전체 폭을 차지한다
 
 
 
