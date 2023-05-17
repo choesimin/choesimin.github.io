@@ -1,5 +1,6 @@
 ---
 layout: note
+title: Design Pattern
 ---
 
 # Design Pattern

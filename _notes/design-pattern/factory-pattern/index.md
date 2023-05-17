@@ -1,5 +1,6 @@
 ---
 layout: note
+title: Factory Pattern
 ---
 
 # Simple Factory
