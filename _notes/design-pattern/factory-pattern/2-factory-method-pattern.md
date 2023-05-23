@@ -1,16 +1,21 @@
 ---
 layout: note
+title: Factory Method Pattern - 상속을 이용한 Factory Pattern
+version: 2023-05-23
 ---
 
-# Factory Method Pattern
+
+
+
+## Factory Method Pattern
 
 ```
-factory method pattern에서는 객체를 생성하기 위한 interface를 정의하는데, 이떤 class의 instance를 만들지는 sub class에서 결정하게 만듭니다.
-factory method pattern을 이용하면 class의 instance를 만드는 일을 sub class에게 맡기는 것이죠.
+Factory Method Pattern에서는 객체를 생성하기 위한 interface를 정의하는데, 이떤 class의 instance를 만들지는 sub class에서 결정하게 만듭니다.
+Factory Method Pattern을 이용하면 class의 instance를 만드는 일을 sub class에게 맡길 수 있습니다.
 ```
 
 - 구상 형식의 instance를 만드는 작업을 캡슐화할 수 있음
-    - client 입장에서는 '객체 instance를 만들 때 필요한 구상 class'가 아닌 'interface'만 필요로 하게 됨
+    - client 입장에서는 '객체 instance를 만들 때 필요한 concrete class'가 아닌 'interface'만 필요로 하게 됨
         - 구현이 아닌 interface를 바탕으로 programming을 할 수 있음
         - 유연성, 확장성이 좋아짐
 
@@ -18,17 +23,20 @@ factory method pattern을 이용하면 class의 instance를 만드는 일을 sub
     - 객체 생성이 sub class에게 위임됨
     - sub class에서는 factory method를 구현하여 객체를 생산함
 
-- factory method
-    - factory method는 객체 생성을 처리함
-    - factory method를 이용하면 객체를 생성하는 작업을 sub class에 캡슐화시킬 수 있음
-        - super class에 있는 client code와 sub class에 있는 객체 생성 code를 분리시킬 수 있음
-    ```java
-    abstract Product factoryMethod(String type)
-    ```
-    - `abstract` : factory method는 추상 method로 선언하여 sub class에서 객체 생성을 책임지도록 함
-    - `Product` : factory method에서는 특정 제품(객체)를 return하면, 그 객체는 보통 super class에서 정의한 method 내에서 쓰이게 됨
-    - `factoryMethod()` : factory method는 client(super class에 있는 공통 code)에서 실제로 생성되는 구상 객체가 무엇인지 알 수 없게 만드는 역할을 함
-    - `String type` : factory method를 만들 때 매개변수를 써서 만들어낼 객체 종류를 선택할 수 있음
+
+### Factory Method
+
+- factory method는 객체 생성을 처리함
+- factory method를 이용하면 객체를 생성하는 작업을 sub class에 캡슐화시킬 수 있음
+    - super class에 있는 client code와 sub class에 있는 객체 생성 code를 분리시킬 수 있음
+```java
+abstract Product factoryMethod(String type)
+```
+- `abstract` : factory method는 추상 method로 선언하여 sub class에서 객체 생성을 책임지도록 함
+- `Product` : factory method에서는 특정 제품(객체)를 return하면, 그 객체는 보통 super class에서 정의한 method 내에서 쓰이게 됨
+- `factoryMethod()` : factory method는 client(super class에 있는 공통 code)에서 실제로 생성되는 구상 객체가 무엇인지 알 수 없게 만드는 역할을 함
+- `String type` : factory method를 만들 때 매개변수를 써서 만들어낼 객체 종류를 선택할 수 있음
+
 
 ## Class Diagram
 

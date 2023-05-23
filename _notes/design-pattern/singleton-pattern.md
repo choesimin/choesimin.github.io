@@ -39,15 +39,15 @@ Singleton Pattern은 해당 class의 instance가 하나만 만들어지고, 어�
         - 간단한 객체에 대한 전역 reference를 자꾸 만들게 되어 namespace를 지저분하게 만듬
             - singleton도 남용될 수 있지만, namespace를 지저분해지게 만드는 정도까진 아님
 
-- singleton class의 subclass를 만드는 것은 좋지 않음
-    - singleton을 subclass로 확장할 이유가 없음
+- singleton class의 sub class를 만드는 것은 좋지 않음
+    - singleton을 sub class로 확장할 이유가 없음
         - application을 만들 때, singleton을 꽤 많이 사용하고 있다면 전반적인 design을 다시 생각해 보는 것이 좋음
             - singleton은 제한된 용도로 특수한 상황에서 사용하기 위해 만들어진 것이기 때문
     - singleton은 생성자가 private으로 선언되어 있어, 확장할 수 없음
-        - subclass를 만들기 위해서는 public 또는 protected로 선언해야 함
+        - sub class를 만들기 위해서는 public 또는 protected로 선언해야 함
             - 이렇게 하면 다른 곳에서 instance를 만들 수 있기 때문에 더 이상 singleton이 아니게 됨
-    - singleton은 정적 변수를 바탕으로 구현하기 때문에 모든 subclass들이 똑같은 instance 변수를 공유하게 됨
-        - subclass를 만들려면 base class에서 registry 같은 걸 구현해 놓아야 함
+    - singleton은 정적 변수를 바탕으로 구현하기 때문에 모든 sub class들이 똑같은 instance 변수를 공유하게 됨
+        - sub class를 만들려면 base class에서 registry 같은 걸 구현해 놓아야 함
 
 
 
