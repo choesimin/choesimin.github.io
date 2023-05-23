@@ -183,4 +183,4 @@ b*b - 4*a*c
 
 # Reference
 
-- Robert C. Martin, 『Clean Code』
+- Clean Code - Robert C. Martin

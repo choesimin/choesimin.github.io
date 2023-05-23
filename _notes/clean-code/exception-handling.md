@@ -381,4 +381,4 @@ void sendFinishTalk() throws SendFailException {
 
 # Reference
 
-- Robert C. Martin, 『Clean Code』
+- Clean Code - Robert C. Martin

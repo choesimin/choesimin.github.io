@@ -368,12 +368,8 @@ Don’t reinvent the wheel
 
 # Reference
 
-- Head First Design Patterns
-- https://gmlwjd9405.github.io/2018/07/06/design-pattern.html
-    - 개념
-- https://velog.io/@poiuyy0420/디자인-패턴-개념과-종류
-    - 종류
-- https://jw92.tistory.com/11
-    - design pattern의 구성 (context, problem, solution)
-- https://namu.wiki/w/%EB%94%94%EC%9E%90%EC%9D%B8%20%ED%8C%A8%ED%84%B4#s-1
-    - 나무위키
+- Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- <https://gmlwjd9405.github.io/2018/07/06/design-pattern.html>
+- <https://velog.io/@poiuyy0420/디자인-패턴-개념과-종류>
+- <https://jw92.tistory.com/11>
+- <https://namu.wiki/w/%EB%94%94%EC%9E%90%EC%9D%B8%20%ED%8C%A8%ED%84%B4#s-1>

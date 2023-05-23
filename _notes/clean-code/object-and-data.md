@@ -46,5 +46,5 @@ version: 2023-04-19
 
 # Reference
 
-- Robert C. Martin, 『Clean Code』
+- Clean Code - Robert C. Martin
 

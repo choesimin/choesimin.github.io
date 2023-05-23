@@ -27,4 +27,3 @@ _single underscore_
 **double asterisk**   
 __double underscore__   
 ~~double tilde~~
-

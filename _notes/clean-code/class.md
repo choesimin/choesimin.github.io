@@ -86,6 +86,6 @@ version: 2023-04-19
 
 # Reference
 
-- Robert C. Martin, 『Clean Code』
+- Clean Code - Robert C. Martin
 - <https://www.oracle.com/java/technologies/javase/codeconventions-fileorganization.html#1852>
 

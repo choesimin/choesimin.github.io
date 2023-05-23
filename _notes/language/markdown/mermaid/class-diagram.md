@@ -490,4 +490,3 @@ Start --|> End
 # Reference
 
 - <https://mermaid.js.org/syntax/classDiagram.html>
-

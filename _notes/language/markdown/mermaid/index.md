@@ -69,4 +69,3 @@ class Class
 # Reference
 
 - <https://mermaid.js.org/intro/>
-

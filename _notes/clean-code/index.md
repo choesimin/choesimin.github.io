@@ -93,4 +93,4 @@ A[기한을 맞추기 위해 나쁜 code 작성] --> B[개선 없이 기능 추�
 
 # Reference
 
-- Robert C. Martin, 『Clean Code』
+- Clean Code - Robert C. Martin

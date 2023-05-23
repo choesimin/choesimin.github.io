@@ -444,6 +444,6 @@ public class FakeQuack implements QuackBehavior {
 
 # Reference
 
-- Head First Design Patterns
-- https://gmlwjd9405.github.io/2018/07/06/strategy-pattern.html
-- https://scorpio-mercury.tistory.com/21
+- Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- <https://gmlwjd9405.github.io/2018/07/06/strategy-pattern.html>
+- <https://scorpio-mercury.tistory.com/21>

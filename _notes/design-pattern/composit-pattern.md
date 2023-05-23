@@ -603,4 +603,4 @@ public class NullIterator implements Iterator<MenuComponent> {
 
 # Reference
 
-- Head First Design Patterns
+- Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
