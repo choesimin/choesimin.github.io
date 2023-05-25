@@ -48,7 +48,11 @@ grep [option] [pattern] [file_name]
 | fgrep | 문자열 pattern 검색 (`grep -F`와 동일) | X |
 
 
+
+
 ---
+
+
 
 
 ## grep의 다양한 사용 예시
@@ -95,9 +99,6 @@ grep 'error' *.log
 ### 정규표현식으로 찾기
 
 ```sh
-# 특정 file에서 문자열이 포함된 행을 찾습니다.
-grep '^[ab]' [file_name]
-
 # 특정 file에서 'a'로 시작하는 모든 단어를 찾습니다.
 grep 'a*' [file_name]
 
@@ -109,9 +110,6 @@ grep [a-c] [file_name]
 
 # 특정 file에서 'apple' 또는 'Apple'로 시작하는 단어를 모두 찾습니다.
 grep [aA]pple [file_name]
-
-# 특정 file에서 'a'나 'b'로 시작되는 모든 행을 찾습니다.
-grep '^[ab]' [file_name]
 ```
 
 
