@@ -119,17 +119,17 @@ version: 2023-04-19
 
 #### 가로 공백을 사용해 밀접한 개념과 느슨한 개념을 표현하기
 
-- 할당문의 왼쪽 요소와 오른쪽 요소를 분명히 나누기 위해 공백을 넣습니다.
-    ```java
-    int lineSize = line.length();
-    totalChars += lineSize;
-    ```
+```java
+// 할당문의 왼쪽 요소와 오른쪽 요소를 분명히 나누기 위해 공백을 넣습니다.
+int lineSize = line.length();
+totalChars += lineSize;
+```
 
-- 함수와 인수는 관계가 밀접하기 때문에 함수 이름과 이어지는 괄호 사이에는 공백을 넣지 않습니다.
-    ```java
-    lineWidthHistogram.addLine(lineSize, lineCount);
-    recordWidestLine(lineSize);
-    ```
+```java
+// 함수와 인수는 관계가 밀접하기 때문에 함수 이름과 이어지는 괄호 사이에는 공백을 넣지 않습니다.
+lineWidthHistogram.addLine(lineSize, lineCount);
+recordWidestLine(lineSize);
+```
 
 #### 연산자 우선순위를 강조하기
 

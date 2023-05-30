@@ -146,10 +146,11 @@ mixer ----> result
 #### Social Graph 접근법
 
 - 사용자가 follow하는 사람과 선호하는 tweet들을 기준으로 관심도 높은 후보를 생성합니다.
-    ```
-    사용자가 follow하는 사람들이 최근에 어떤 tweet에 참여했습니까?
-    사용자가 좋아하는 tweet들과 비슷한 tweet을 좋아하는 사람들이 최근에 어떤 것들을 좋아했습니까?
-    ```
+
+```
+사용자가 follow하는 사람들이 최근에 어떤 tweet에 참여했습니까?
+사용자가 좋아하는 tweet들과 비슷한 tweet을 좋아하는 사람들이 최근에 어떤 것들을 좋아했습니까?
+```
 
 - 위 질문들에 대한 답을 하면서 후보 tweet들을 생성하고, logistic 회귀 model을 사용하여 결과 tweet들의 순위를 매깁니다.
     - 이런 유형의 graph 순회(traversal)는 Out-of-Network 추천에 필수적입니다.
@@ -159,9 +160,10 @@ mixer ----> result
 #### Embedding 공간 접근법
 
 - embedding 공간 접근법은 content의 유사성에 대해 social graph 접근법보다 **일반적인** 기준으로 판단합니다.
-    ```
-    사용자의 관심사와 비슷한 tweet과 사용자가 무엇입니까?
-    ```
+
+```
+사용자의 관심사와 비슷한 tweet과 사용자가 무엇입니까?
+```
 
 - embedding 공간에서 유사성을 계산하여 관련도를 얻습니다.
     - embedding은 사용자의 관심사와 tweet의 content를 수치로 표현함으로써(numerical representation) 작동합니다.
@@ -174,15 +176,15 @@ mixer ----> result
         - 따라서 "'어떤 사용자'와 '어떤 tweet'이 '어떤 community'에 속해있는지"는 tweet의 관심사를 분류하는 데에 중요한 정보로 활용할 수 있습니다.
         - Twitter에는 이미 145,000개의 community들이 있으며, 3주마다 새로운 community들이 update됩니다.
 
-    - Top 5 Community
+##### Top 5 Community
 
-        | Community | 사용자 수 |
-        | - | - |
-        | POP | 332,000,000 |
-        | NEWS | 293,000,000 |
-        | SOCCER | 191,000,000 |
-        | BOLLYWOOD | 80,000,000 |
-        | NBA | 70,000,000 |
+| Community | 사용자 수 |
+| - | - |
+| POP | 332,000,000 |
+| NEWS | 293,000,000 |
+| SOCCER | 191,000,000 |
+| BOLLYWOOD | 80,000,000 |
+| NBA | 70,000,000 |
 
 
 

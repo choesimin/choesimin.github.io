@@ -9,6 +9,10 @@ version: 2023-04-18
 
 ## 주석은 필요악
 
+| Good | Bad |
+| - | - |
+| 표현력이 풍부하고 깔끔하며 주석이 거의 없는 code | 복잡하고 어수선하며 주석이 많이 달린 code |
+
 - 주석은 code로 의도를 표현하지 못해서 사용하게 됩니다.
     - 현대 programming 언어들은 그 자체로 표현력이 풍부합니다.
     - programming 언어를 치밀하게 사용해 의도를 표현할 능력이 있다면, 주석은 필요하지 않습니다.
@@ -18,10 +22,6 @@ version: 2023-04-18
 
 - 주석은 나쁜 code를 보완하지 않습니다.
     - code가 알아보기 어렵다면 주석을 달기보단, code를 깨끗하게 만드는 것이 낫습니다.
-
-    | Good | Bad |
-    | - | - |
-    | 표현력이 풍부하고 깔끔하며 주석이 거의 없는 code | 복잡하고 어수선하며 주석이 많이 달린 code |
 
 
 
@@ -33,16 +33,18 @@ version: 2023-04-18
 
 ## Code로 의도를 표현하기
 
-- Good Code
-    ```java
-    if (employee.isEligibleForFullBenefits()) { ... }
-    ```
+### Good Code
 
-- Bade Code
-    ```java
-    // 직원에게 복지 혜택을 받을 자격이 있는지 검사한다.
-    if ((employee.flags & HOURLY_FLAG) && (employee.age > 65)) { ... }
-    ```
+```java
+if (employee.isEligibleForFullBenefits()) { ... }
+```
+
+### Bade Code
+
+```java
+// 직원에게 복지 혜택을 받을 자격이 있는지 검사한다.
+if ((employee.flags & HOURLY_FLAG) && (employee.age > 65)) { ... }
+```
 
 
 

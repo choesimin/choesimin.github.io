@@ -9,11 +9,12 @@ version: 2023-04-19
 
 ## Class 작게 만들기
 
+```txt
+class나 module을 변경할 이유는 하나여야 한다.
+```
+
 - 각 class가 맡는 책임이 적을수록 좋습니다.
     - 단일 책임 원칙(SRP, Single Responsibility Principle)
-        ```txt
-        class나 module을 변경할 이유는 하나여야 한다.
-        ```
 
 - class 이름은 해당 class의 책임을 기술합니다.
     - 작명은 class 크기에 영향을 줍니다.

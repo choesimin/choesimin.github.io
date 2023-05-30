@@ -223,66 +223,70 @@ void sendFinishTalk() throws SendFailException {
 - 외부 library를 사용할 때, 외부 class를 wrapper class로 감싸서 사용하는 것이 좋습니다.
     - 외부 library와 program 사이의 의존성이 낮아집니다.
 
-    | Good | Bad |
-    | - | - |
-    | 외부 library를 사용하는 class를 wrapper class로 한 번 감싼 뒤 이 class에 대한 예외를 처리하기 | 외부 library가 던질 모든 예외를 catch로 구분하여 예외를 처리하기 |
+| Good | Bad |
+| - | - |
+| 외부 library를 사용하는 class를 wrapper class로 한 번 감싼 뒤 이 class에 대한 예외를 처리하기 | 외부 library가 던질 모든 예외를 catch로 구분하여 예외를 처리하기 |
 
 
 ### Example : ACMEPort class(외부 API class)를 사용하는 상황
 
-- Good Code
-    ```java
-    // ACME class를 LocalPort class로 wrapping해 new ACMEPort().open() method에서 던질 수 있는 exception들을 간략화함
-    LocalPort port = new LocalPort(12);
-    try {
-        port.open();
-    } catch (PortDeviceFailure e) {
-        reportError(e);
-        logger.log(e.getMessage(), e);
-    } finally {
-        ...
-    }
+#### Good Code
 
-    public class LocalPort {
-        private ACMEPort innerPort;
-        public LocalPort(int portNumber) {
-        innerPort = new ACMEPort(portNumber);
-        }
-        
-        public void open() {
-        try {
-            innerPort.open();
-        } catch (DeviceResponseException e) {
-            throw new PortDeviceFailure(e);
-        } catch (ATM1212UnlockedException e) {
-            throw new PortDeviceFailure(e);
-        } catch (GMXError e) {
-            throw new PortDeviceFailure(e);
-        }
-        }
-        ...
-    }
-    ```
+- `ACME` class를 `LocalPort` class로 wrapping해 `new ACMEPort().open()` method에서 던질 수 있는 exception들을 간략화합니다.
 
-- Bad Code
-    ```java
-    // catch 문의 내용이 거의 같음
-    ACMEPort port = new ACMEPort(12);
+```java
+LocalPort port = new LocalPort(12);
+try {
+    port.open();
+} catch (PortDeviceFailure e) {
+    reportError(e);
+    logger.log(e.getMessage(), e);
+} finally {
+    ...
+}
+
+public class LocalPort {
+    private ACMEPort innerPort;
+    public LocalPort(int portNumber) {
+    innerPort = new ACMEPort(portNumber);
+    }
+    
+    public void open() {
     try {
-        port.open();
+        innerPort.open();
     } catch (DeviceResponseException e) {
-        reportPortError(e);
-        logger.log("Device response exception", e);
+        throw new PortDeviceFailure(e);
     } catch (ATM1212UnlockedException e) {
-        reportPortError(e);
-        logger.log("Unlock exception", e);
+        throw new PortDeviceFailure(e);
     } catch (GMXError e) {
-        reportPortError(e);
-        logger.log("Device response exception");
-    } finally {
-        ...
+        throw new PortDeviceFailure(e);
     }
-    ```
+    }
+    ...
+}
+```
+
+#### Bad Code
+
+- `catch` 문의 내용이 거의 같습니다.
+
+```java
+ACMEPort port = new ACMEPort(12);
+try {
+    port.open();
+} catch (DeviceResponseException e) {
+    reportPortError(e);
+    logger.log("Device response exception", e);
+} catch (ATM1212UnlockedException e) {
+    reportPortError(e);
+    logger.log("Unlock exception", e);
+} catch (GMXError e) {
+    reportPortError(e);
+    logger.log("Device response exception");
+} finally {
+    ...
+}
+```
 
 
 
@@ -300,76 +304,73 @@ void sendFinishTalk() throws SendFailException {
     - 호출자는 null check logic을 작성해야만 합니다. 많아져야 함
 - null 확인 누락의 문제가 많이 발생한다면, 먼저 null 확인이 너무 많지는 않은지 봐야 합니다.
 
-
-
-### Null이면 안 되는 경우
-
-- 오류 상황이므로, 예외 처리합니다.
-    - java에서는 `NullPointerException`을 잡아서 던지거나 처리합니다.
-
-
-### Null이 의미를 가지고 쓰이는 경우
+- null이면 안 되는 경우에 null이 사용되는 경우는 오류 상황이므로, 예외 처리합니다.
+    - Java에서는 `NullPointerException`을 잡아서 던지거나 처리합니다.
 
 - 정상적인 인수로 null을 기대하는 API라면, null의 반환/전달을 필요에 의해 사용할 수도 있습니다.
     - 반환하는 쪽과 호출하는 쪽 모두 사전에 null의 사용을 약속하고, 지속적으로 관리해야 합니다.
+    - 그러나 null 사용은 최대한 피하는 것이 좋기 때문에, 특수 사례 객체(special case object)를 사용을 권장합니다.
 
 
-#### 특수 사례 객체(special case object)를 반환하기
+### Null 대신 Empty List
 
-- list로 넘길 수 있는 경우라면, null이 아닌 empty list를 반환합니다.
-    ```java
-    Collections.emptyList();    // []
-    ```
+```java
+Collections.emptyList();    // []
+```
 
-    - Good Code
-        ```java
-        // Good
-        List<Employee> employees = getEmployees();
-        for(Employee e : employees) {
-            totalPay += e.getPay();
-        }
-        
-        public List<Employee> getEmployees() {
-            if( .. there are no employees .. ) {
-                return Collections.emptyList();
-            }
-        }
-        ```
+#### Good Code
 
-    - Bad Code
-        ```java
-        // Bad
-        List<Employee> employees = getEmployees();
-        if (employees != null) {
-            for(Employee e : employees) {
-                totalPay += e.getPay();
-            }
-        }
-        ```
+```java
+List<Employee> employees = getEmployees();
+for(Employee e : employees) {
+    totalPay += e.getPay();
+}
 
-- Java8 이상을 사용한다면, `Optional` 객체를 사용합니다.
+public List<Employee> getEmployees() {
+    if( .. there are no employees .. ) {
+        return Collections.emptyList();
+    }
+}
+```
 
-    | Null 처리를 위한 Optional의 함수 | 설명 |
-    | - | - |
-    | `orElse()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 값을 반환합니다. |
-    | `orElseGet()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 Lambda 표현식의 결괏값을 반환합니다. |
-    | `orElseThrow()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 예외를 발생시킵니다. |
+#### Bad Code
 
-    - Good Code
-        ```java
-        Optional<String> opt = Optional.ofNullable("Optional 객체");
-        if (opt.isPresent()) {
-            System.out.println(opt.get());
-        }
-        ```
+```java
+List<Employee> employees = getEmployees();
+if (employees != null) {
+    for(Employee e : employees) {
+        totalPay += e.getPay();
+    }
+}
+```
 
-    - Bad Code
-        ```java
-        String s = "String 객체";
-        if (s != null) {
-            System.out.println(s);
-        }
-        ```
+### Null 대신 `Optional` 객체
+
+- Java8 이상을 사용한다면, `Optional`객체를 사용합니다.
+
+| Null 처리를 위한 Optional의 함수 | 설명 |
+| - | - |
+| `orElse()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 값을 반환합니다. |
+| `orElseGet()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 Lambda 표현식의 결괏값을 반환합니다. |
+| `orElseThrow()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 예외를 발생시킵니다. |
+
+#### Good Code
+
+```java
+Optional<String> opt = Optional.ofNullable("Optional 객체");
+if (opt.isPresent()) {
+    System.out.println(opt.get());
+}
+```
+
+#### Bad Code
+
+```java
+String s = "String 객체";
+if (s != null) {
+    System.out.println(s);
+}
+```
 
 
 
