@@ -29,7 +29,7 @@ layout: note
     - 다양한 solution들을 확실한 추상화의 개념 없이 임의로 묶어 하나의 제품을 만들면 신뢰성이 떨어지며 유지보수가 힘든 제품이 탄생하게 됨
 3. 분석 마비(Analysis Paralysis) : 관리
     - 분석 단계에서 완벽하고 완전한 분석을 꿈꾸면 이는 software 개발 진행을 마비시켜 버림
-4. 신의 객체(Got Object) : Object 설계
+4. 신의 객체(God Object) : Object 설계
     - 하나의 객체에 너무 많은 기능과 interface를 담아버리면 복잡하고 유지보수하기 힘들고 상호 의존성이 높은 class가 탄생함
 5. Singletonitis : Object 설계
     - Singletone pattern의 불필요한 남용

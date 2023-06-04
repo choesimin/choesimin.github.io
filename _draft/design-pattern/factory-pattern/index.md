@@ -38,7 +38,7 @@ version: 2023-05-18
 | 상속(inheritance)을 통해서 객체를 만듭니다. | 구성(composition)을 통해서 객체를 만듭니다. |
 |  |  |
 |  |  |
-| 'client code'와 'instance를 만들어야할 concrete class'를 분리시켜야 할 때 활용합니다. 어떤 concrete class를 필요로 하게 될지 미리 알 수 없는 경우에도 유용합니다. sub class를 만들고 factory method를 구현하기만 하면 됩니다. | client에서 제품군(서로 연관된 일련의 제품들)을 만들어야 할 때 활용합니다. |
+| 'client code'와 'instance를 만들어야 할 concrete class'를 분리시켜야 할 때 활용합니다. 어떤 concrete class를 필요로 하게 될지 미리 알 수 없는 경우에도 유용합니다. sub class를 만들고 factory method를 구현하기만 하면 됩니다. | client에서 제품군(서로 연관된 일련의 제품들)을 만들어야 할 때 활용합니다. |
 
 
 ### Factory Method Pattern : Inheritance
