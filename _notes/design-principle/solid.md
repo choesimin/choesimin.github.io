@@ -123,4 +123,4 @@ client가 자신이 이용하지 않는 method에 의존하지 않아야 합니�
 
 # Reference
 
-- <https://yeon-log.tistory.com/5?category=297607>
+- <https://ko.wikipedia.org/wiki/SOLID_(객체_지향_설계)>
