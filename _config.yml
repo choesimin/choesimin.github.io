@@ -1,3 +1,12 @@
+name: 시민이의 개발 공책
+description: 개발 지식을 정리하여 기록합니다.
+email: choesimin961009@gmail.com
+
 collections:
   notes:
     output: true
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
