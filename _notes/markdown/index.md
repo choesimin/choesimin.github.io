@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Markdown - 문서 작성하기
+title: Markdown
 version: 2023-04-09
 ---
 
