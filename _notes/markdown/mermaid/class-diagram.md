@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Mermaid - Class Diagram 그리기
+title: Mermaid - Class Diagram
 version: 2023-04-09
 ---
 
@@ -403,7 +403,7 @@ class Class
 
 
 
-## Class diagram 화살표 방향 설정하기
+## Class Diagram 화살표 방향 설정하기
 
 - `direction` 명령어와 상하좌우를 의미하는 `T`, `B`, `L`, `R` code를 이용하여 화살표의 방향을 설정합니다.
 

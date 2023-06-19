@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Mermaid - Markdown에 diagram 그리기
+title: Mermaid - Markdown 문서에 Diagram 그리기
 version: 2023-04-09
 ---
 
