@@ -19,26 +19,9 @@ version: 2023-06-19
 
 ## Example
 
-```mermaid
----
-title : Simple
----
-stateDiagram-v2
-direction LR
-
-[*] --> Still
-Still --> [*]
-
-Still --> Moving
-Moving --> Still
-Moving --> Crash
-Crash --> [*]
-```
+### 집
 
 ```mermaid
----
-title : Room
----
 stateDiagram-v2
 direction LR
 
@@ -51,6 +34,8 @@ closed --> opened : 문 열기
 closed --> [*] : 2층 가기
 ```
 
+### 일
+
 ```mermaid
 ---
 title : Working
@@ -59,7 +44,7 @@ stateDiagram-v2
 
 state "돈 없음" as poor
 state "돈 버는 중" as working
-state "돈 있음" as rich
+state "돈 많음" as rich
 
 [*] --> poor : 학교 졸업
 poor --> working : 일하기 [잔고 100만원 이상 1000만원 미만]
@@ -71,6 +56,40 @@ working --> rich : 일하기 [잔고 1000만원 이상]
 rich --> working : 일하기 [잔고 1000만원 미만]
 rich --> rich : 많이 놀면서 일하기 [잔고 1000만원 이상 2000만원 미만]
 rich --> [*] : 은퇴하기 [잔고 2000만원 이상]
+```
+
+### 뽑기 기계
+
+```mermaid
+stateDiagram-v2
+
+state "동전 없음" as noQuarter
+state "동전 있음" as hasQuarter
+state "알맹이 판매" as sold
+state "알맹이 매진" as soldOut
+state "당첨" as winner
+
+state ifSold <<choice>>
+state ifWinner <<choice>>
+
+
+[*] --> noQuarter
+noQuarter --> hasQuarter : 동전 투입
+
+hasQuarter --> noQuarter : 동전 반환
+hasQuarter --> sold : 손잡이 돌림, 당첨되지 않음
+hasQuarter --> winner : 손잡이 돌림, 당첨!!
+
+sold --> ifSold : 알맹이 내보냄
+ifSold --> noQuarter : 알맹이 > 0
+ifSold --> soldOut : 알맹이 = 0
+
+winner --> ifWinner : 알맹이 두 개 내보냄
+ifWinner --> noQuarter : 알맹이 > 0
+ifWinner --> soldOut : 알맹이 = 0
+
+soldOut --> noQuarter : 알맹이 충전 [여분 있음]
+soldOut --> [*] : 폐업 [여분 없음]
 ```
 
 
@@ -137,6 +156,30 @@ state3 --> state4 : 행동[조건]
 | 설명 | 전이란 하나의 상태에서 다른 상태로 변화하는 것이며, 상태 간의 관계를 의미합니다. |
 
 
+### 선택
+
+```mermaid
+stateDiagram-v2
+direction LR
+
+state "State 1" as state1
+state "State 2" as state2
+state "State 3" as state3
+state "State 4" as state4
+state if <<choice>>
+
+state1 --> state2
+state2 --> if : 행동
+if --> state3 : 조건 1
+if --> state4 : 조건 2
+```
+
+|  | 선택 (Choice) |
+| - | - |
+| 표기법 | 마름모로 표기합니다. |
+| 설명 | 조건에 따라 다음 상태가 달라지는 경우에 사용합니다. 전이의 선 위에 표기하는 조건과 의미가 같습니다. |
+
+
 
 
 ---
@@ -171,4 +214,6 @@ state3 --> state4 : 행동[조건]
 
 - <https://ko-de-dev-green.tistory.com/96>
 - <https://5dol.tistory.com/169>
+- <https://www.guru99.com/state-machine-transition-diagram.html>
+- <https://www.lucidchart.com/pages/uml-state-machine-diagram>
 - <https://mermaid.js.org/syntax/stateDiagram.html>
