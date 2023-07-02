@@ -39,7 +39,7 @@ crash --> [*]
 ```txt
 [stateId]
 [stateId] : [description]
-state [description] as [stateId]
+state "[description]" as [stateId]
 ```
 
 - 상태의 식별값과 설명을 작성하여 정의합니다.
