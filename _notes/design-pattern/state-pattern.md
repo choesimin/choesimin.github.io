@@ -110,15 +110,18 @@ state "당첨" as winner
 
 state ifSold <<choice>>
 state ifWinner <<choice>>
+state ifSoldOut <<choice>>
+state ifHasQuarter <<choice>>
 
 
-soldOut --> noQuarter : 알맹이 충전
+[*] --> noQuarter
 
 noQuarter --> hasQuarter : 동전 투입
 
 hasQuarter --> noQuarter : 동전 반환
-hasQuarter --> sold : 손잡이 돌림, 당첨되지 않음
-hasQuarter --> winner : 손잡이 돌림, 당첨!!
+hasQuarter --> ifHasQuarter : 손잡이 돌림
+ifHasQuarter --> sold : 당첨되지 않음
+ifHasQuarter --> winner : 당첨됨
 
 sold --> ifSold : 알맹이 내보냄
 ifSold --> noQuarter : 알맹이 > 0
@@ -127,6 +130,10 @@ ifSold --> soldOut : 알맹이 = 0
 winner --> ifWinner : 알맹이 두 개 내보냄
 ifWinner --> noQuarter : 알맹이 > 0
 ifWinner --> soldOut : 알맹이 = 0
+
+soldOut --> ifSoldOut : 알맹이 충전
+ifSoldOut --> noQuarter : 여분 있음
+ifSoldOut --> [*] : 여분 없음
 ```
 
 
