@@ -19,6 +19,7 @@ version: 2023-06-19
 
 ## Example
 
+
 ### 집
 
 ```mermaid
@@ -34,29 +35,63 @@ closed --> opened : 문 열기
 closed --> [*] : 2층 가기
 ```
 
+
 ### 일
 
+- 조건에 대한 표현 방식은 두 가지입니다.
+
+#### 1. 전이에 작성하기
+
 ```mermaid
----
-title : Working
----
 stateDiagram-v2
 
 state "돈 없음" as poor
-state "돈 버는 중" as working
+state "돈 적당히 있음" as normal
 state "돈 많음" as rich
 
 [*] --> poor : 학교 졸업
-poor --> working : 일하기 [잔고 100만원 이상 1000만원 미만]
+poor --> poor : 열심히 일하기 [잔고 100만원 미만]
+poor --> normal : 열심히 일하기 [잔고 100만원 이상 1000만원 미만]
 
-working --> poor : 일하기 [잔고 100만원 미만]
-working --> working : 놀면서 일하기 [잔고 100만원 이상 1000만원 미만]
-working --> rich : 일하기 [잔고 1000만원 이상]
+normal --> poor : 일하기 [잔고 100만원 미만]
+normal --> normal : 일하기 [잔고 100만원 이상 1000만원 미만]
+normal --> rich : 일하기 [잔고 1000만원 이상]
 
-rich --> working : 일하기 [잔고 1000만원 미만]
-rich --> rich : 많이 놀면서 일하기 [잔고 1000만원 이상 2000만원 미만]
-rich --> [*] : 은퇴하기 [잔고 2000만원 이상]
+rich --> normal : 놀면서 일하기 [잔고 1000만원 미만]
+rich --> rich : 놀면서 일하기 [잔고 1000만원 이상 2000만원 미만]
+rich --> [*] : 놀면서 일하기 [잔고 2000만원 이상]
 ```
+
+#### 2. 선택에 작성하기
+
+```mermaid
+stateDiagram-v2
+
+state "돈 없음" as poor
+state "돈 적당히 있음" as normal
+state "돈 많음" as rich
+
+state ifPoor <<choice>>
+state ifNormal <<choice>>
+state ifRich <<choice>>
+
+[*] --> poor : 학교 졸업
+poor --> ifPoor : 열심히 일하기
+ifPoor --> poor : 잔고 100만원 미만
+ifPoor --> normal : 잔고 100만원 이상 1000만원 미만
+
+normal --> ifNormal : 일하기
+ifNormal --> poor : 잔고 100만원 미만
+ifNormal --> normal : 잔고 100만원 이상 1000만원 미만
+ifNormal --> rich : 잔고 1000만원 이상
+
+rich --> ifRich : 놀면서 일하기
+ifRich --> normal : 잔고 1000만원 미만
+ifRich --> rich : 잔고 1000만원 이상 2000만원 미만
+ifRich --> [*] : 잔고 2000만원 이상
+```
+
+
 
 ### 뽑기 기계
 
@@ -71,14 +106,18 @@ state "당첨" as winner
 
 state ifSold <<choice>>
 state ifWinner <<choice>>
+state ifSoldOut <<choice>>
+state ifHasQuarter <<choice>>
 
 
 [*] --> noQuarter
+
 noQuarter --> hasQuarter : 동전 투입
 
 hasQuarter --> noQuarter : 동전 반환
-hasQuarter --> sold : 손잡이 돌림, 당첨되지 않음
-hasQuarter --> winner : 손잡이 돌림, 당첨!!
+hasQuarter --> ifHasQuarter : 손잡이 돌림
+ifHasQuarter --> sold : 당첨되지 않음
+ifHasQuarter --> winner : 당첨됨
 
 sold --> ifSold : 알맹이 내보냄
 ifSold --> noQuarter : 알맹이 > 0
@@ -88,8 +127,9 @@ winner --> ifWinner : 알맹이 두 개 내보냄
 ifWinner --> noQuarter : 알맹이 > 0
 ifWinner --> soldOut : 알맹이 = 0
 
-soldOut --> noQuarter : 알맹이 충전 [여분 있음]
-soldOut --> [*] : 폐업 [여분 없음]
+soldOut --> ifSoldOut : 알맹이 충전
+ifSoldOut --> noQuarter : 여분 있음
+ifSoldOut --> [*] : 여분 없음
 ```
 
 
@@ -177,7 +217,7 @@ if --> state4 : 조건 2
 |  | 선택 (Choice) |
 | - | - |
 | 표기법 | 마름모로 표기합니다. |
-| 설명 | 조건에 따라 다음 상태가 달라지는 경우에 사용합니다. 전이의 선 위에 표기하는 조건과 의미가 같습니다. |
+| 설명 | 조건에 따라 다음 상태가 달라지는 경우에 사용합니다. 전이의 실선 위에 표기하는 조건과 의미가 같습니다. |
 
 
 
