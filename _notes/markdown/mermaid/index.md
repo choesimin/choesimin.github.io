@@ -28,11 +28,11 @@ version: 2023-04-09
 
 
 
-## Diagram 제목
+## Diagram 제목 작성하기
 
 ```txt
 ---
-title: [diagram_title]
+title: [diagramTitle]
 ---
 ```
 
@@ -57,6 +57,114 @@ class Class
 ```
 
 
+
+
+---
+
+
+
+
+## Diagram 방향 설정하기
+
+- `direction` 명령어와 상하좌우를 의미하는 `T`, `B`, `L`, `R` code를 이용하여 화살표의 방향을 설정합니다.
+
+```txt
+direction [start_direction][end_direction]
+```
+
+| Code | 화살표의 방향 |
+| - | - |
+| `direction TB` | 상 -> 하 |
+| `direction BT` | 하 -> 상 |
+| `direction LR` | 좌 -> 우 |
+| `direction RL` | 우 -> 좌 |
+
+
+
+### 상 -> 하
+
+```txt
+classDiagram
+direction TB
+Start --|> End
+```
+
+```mermaid
+classDiagram
+direction TB
+Start --|> End
+```
+
+
+### 하 -> 상
+
+```txt
+classDiagram
+direction BT
+Start --|> End
+```
+
+```mermaid
+classDiagram
+direction BT
+Start --|> End
+```
+
+
+### 좌 -> 우
+
+```txt
+classDiagram
+direction LR
+Start --|> End
+```
+
+```mermaid
+classDiagram
+direction LR
+Start --|> End
+```
+
+
+### 우 -> 좌
+
+```txt
+classDiagram
+direction RL
+Start --|> End
+```
+
+```mermaid
+classDiagram
+direction RL
+Start --|> End
+```
+
+
+
+
+---
+
+
+
+
+## 주석 작성하기
+
+- percent 기호 두 개(`%%`)를 사용합니다.
+
+```text
+classDiagram
+
+%% 주석입니다.
+class Class
+```
+
+```mermaid
+classDiagram
+
+%% 주석입니다.
+class Class
+```
 
 
 
