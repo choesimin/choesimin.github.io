@@ -1,47 +1,73 @@
 ---
 layout: note
+title: Strategy Pattern - 전략적으로 행동 바꾸기
+version: 2023-07-03
 ---
 
-# Strategy Pattern
 
-- 동일한 목적을 지닌 algorithm군을 interface로 묶고 캡슐화하여 서로 대체가 가능하게 사용하는 것
-    - 특정 client에서 algorithm을 별도로 분리함
-    - algorithm군을 정의하고 각각을 캡슐화하여 교환해서 사용할 수 있도록 만듬
-    - algorithm을 사용하는 client와는 독립적으로 algorithm을 변경할 수 있음
 
-- 구현된 algorithm은 다르지만 동일한 목적을 지닌 class들이 존재할 때 사용하기
-    - 평소에 한 가지 algorithm을 사용하더라도 algorithm을 변경해야 할 때가 있음
-        - 참조하는 class가 변경/제거될 때 (compile time)
-        - 사용하는 시점에 따라서 적용할 algorithm이 다를 때 (runtime)
-    - 이런 경우 strategy pattern을 사용하면 좋음
-        - 새로운 algorithm을 추가하는 확장이 용이함
-        - 언제든지 algorithm을 쉽게 대체할 수 있음
+
+- State Pattern을 이용하면 algorithm을 상황에 따라 변경해가며 사용할 수 있습니다.
+    - 동일한 목적을 지닌 algorithm group을 정의하고 각각을 캡슐화하여 group 내의 algorithm을 교환해서 사용할 수 있도록 합니다.
+    - algorithm을 사용하는 client에서 algorithm을 분리하기 때문에 독립적으로 algorithm을 변경할 수 있습니다.
+
+- 같은 목적을 가진 class들의 algorithm을 상황에 따라 교체해야 하는 경우, Strategy Pattern을 사용하면 좋습니다.
+    - 평소에는 한 가지 algorithm을 사용하더라도 algorithm을 변경해야 할 때가 있습니다.
+        - e.g., 참조하는 class가 변경/제거될 때(compile time).
+        - e.g., 사용하는 시점에 따라서 적용할 algorithm이 다를 때(runtime).
+
+
+
+
+---
 
 
 
 
 ## 장단점
 
-- 장점
-    - algorithm마다 사용되는 code의 중복을 방지할 수 있음
-        - algorithm의 변경 부분만 concrete strategy로 빼내어 구현했기 때문
-    - 새로운 전략을 추가하더라도 기존 code를 변경하지 않음
-    - 상속 대신 구성(composition)을 사용함
-        - 공통 logic이 super class에 있지 않고, 별도의 client class에 존재하기 때문에 구현체들에 대한 영향도가 적음
-        - client가 strategy interface에 의존하고 있기 때문에 strategy 구현체를 갈아끼우기 쉬움
-    - Runtime에 strategy(algorithm)를 변경할 수 있음
 
-- 단점
-    - 복잡도가 증가함
-        - algorithm이 늘어날 수록 객체도 무한히 늘어남
-        - logic을 단순히 client에 if-else로 분리해서 그 안에 구현하는 게 보기 편할 수도 있음
-            - 한 눈에 들어오는 짧은 code에서는 strategy pattern을 사용하는 것이 오히려 가독성을 떨어뜨림
-            - ex) 분기가 2개인 경우
-        - logic이 늘어날 때마다 구현체 class가 늘어남
-    - client가 구체적인 전략(concrete strategy)을 알아야 함
-        - client가 사용할 전략 객체를 직접 결정해야 함
-            - 많은 algorithm에 대한 성능과 효율을 알고 있어야 함
-        - client와 strategy를 한번 조립하면 전략을 변경하기 힘듬
+### 장점
+
+#### Code 중복이 줄어듬
+
+- algorithm마다 사용되는 code의 중복을 방지할 수 있습니다.
+    - algorithm의 변경 부분만 concrete strategy로 빼내어 구현했기 때문입니다.
+
+#### 전략 확장이 용이함
+
+- 새로운 전략을 추가하더라도 기존 code를 변경하지 않습니다.
+- 새로운 algorithm을 추가하려면 새로운 객체를 추가하면 됩니다.
+
+#### Runtime에 전략 결정과 교체가 가능함
+
+- 상속 대신 구성(composition)을 사용하기 때문에 runtime에 strategy(algorithm)를 변경할 수 있습니다.
+    - client가 strategy interface에 의존하고 있기 때문에 strategy 구현체를 교체하기 쉽습니다.
+
+
+### 단점
+
+#### 복잡도 증가
+
+- algorithm이 늘어날 수록 객체도 무한히 늘어납니다.
+    - logic이 늘어날 때마다 구현체 class가 늘어납니다.
+
+- logic을 단순히 client에 if-else로 분리해서 그 안에 구현하는 게 보기 편할 수도 있습니다.
+    - 한 눈에 들어오는 짧은 code에서는 Strategy Pattern을 사용하는 것이 오히려 가독성을 떨어뜨립니다.
+    - e.g., 분기가 2개인 경우에는 if-else를 사용하는 것이 더 나을 수 있습니다.
+
+#### Client가 구체적인 전략(concrete strategy)에 대해 알고 있어야 함
+
+- client는 모든 algorithm에 대한 성능과 효율을 알고 있어야 합니다.
+    - client가 자신이 사용할 전략 객체를 직접 결정하기 때문입니다.
+
+- client와 strategy를 한번 조립하면 전략을 변경하기 힘들어집니다.
+    - client가 algorithm을 알고 있기 때문입니다.
+
+
+
+
+---
 
 
 
@@ -61,13 +87,13 @@ class Strategy {
 }
 
 class ConcreteStrategyA {
-    algorithm() override
+    algorithm()
 }
 class ConcreteStrategyB {
-    algorithm() override
+    algorithm()
 }
 class ConcreteStrategyC {
-    algorithm() override
+    algorithm()
 }
 
 Client --> Strategy : strategy
@@ -75,10 +101,15 @@ Strategy <|.. ConcreteStrategyA
 Strategy <|.. ConcreteStrategyB
 Strategy <|.. ConcreteStrategyC
 
-Client .. Client : Strategy를 사용하는 객체 (변하지 않는 부분)
-Strategy .. Strategy : 전략에 대한 interface를 담당하는 객체 (변하는 부분)
-ConcreteStrategyC .. ConcreteStrategyC : 전략에 대해 캡슐화된 구현을 담당하는 객체
+note for Client "Strategy를 사용하는 객체입니다.\n변하지 않는 부분입니다."
+note for Strategy "전략에 대한 interface를 담당하는 객체입니다.\n변하는 부분입니다."
+note for ConcreteStrategyA "전략 구현을 담당하는 객체입니다."
 ```
+
+
+
+
+---
 
 
 
@@ -90,7 +121,7 @@ sequenceDiagram
 
 Client ->> ConcreteStrategyA : algorithm()
 ConcreteStrategyA ->> Client : return result
-Client ->> Client : Strategy를 ConcreteStrategyA에서 ConcreteStrategyB로 변경
+Client ->> Client : Strategy를 ConcreteStrategyA에서 ConcreteStrategyB로 변경합니다.
 Client ->> ConcreteStrategyB : algorithm()
 ConcreteStrategyB ->> Client : return result
 ```
@@ -103,18 +134,22 @@ ConcreteStrategyB ->> Client : return result
 
 
 
-# Example : 오리 Class
+## Example : 오리 Class
 
-- client에서는 '나는 행동'과 '꽥꽥거리는 행동' 모두에 대해서 캡슐화된 algorithm군을 '활용'함
-    - client는 setter로 행동 변수를 설정하고 perform 함수를 사용하면 됨
-        - setFlyBehavior() -> performFly()
-- 각 행동의 집합을 algorithm군으로 생각하면 됨
+- client에서는 **나는 행동**과 **꽥꽥거리는 행동** 모두에 대해서 캡슐화된 algorithm group을 **활용**합니다.
+    - client는 `setter`로 행동 변수를 설정하고 `perform` 함수를 사용하면 됩니다.
+        - e.g., `setFlyBehavior()` -> `performFly()`
 
-## Class Diagram
+- 각 행동의 집합은 각 algorithm group입니다.
 
-### Client
+
+### Class Diagram
 
 ```mermaid
+---
+title: Client
+---
+
 classDiagram
 
 class Duck {
@@ -155,9 +190,11 @@ Duck <|-- DecoyDuck
 Duck <|-- ModelDuck
 ```
 
-### Strategy : 나는 행동
-
 ```mermaid
+---
+title: Strategy (나는 행동)
+---
+
 classDiagram
 
 class FlyBehavior {
@@ -182,9 +219,11 @@ FlyBehavior <|.. FlyNoWay
 FlyBehavior <|.. FlyRocketPowered
 ```
 
-### Strategy : 꽥꽥거리는 행동
-
 ```mermaid
+---
+title: Strategy (꽥꽥거리는 행동)
+---
+
 classDiagram
 
 class QuackBehavior {
@@ -214,9 +253,11 @@ QuackBehavior <|.. MuteQuack
 QuackBehavior <|.. FakeQuack
 ```
 
-## Code
 
-## Main
+### Code
+
+
+#### Main
 
 ```java
 public class MiniDuckSimulator {
@@ -257,7 +298,8 @@ public class MiniDuckSimulator {
 }
 ```
 
-### Client
+
+#### Client
 
 ```java
 public abstract class Duck {
@@ -362,7 +404,8 @@ public class ModelDuck extends Duck {
 }
 ```
 
-### Strategy : 나는 행동
+
+#### Strategy : 나는 행동
 
 ```java
 public interface FlyBehavior {
@@ -394,7 +437,8 @@ public class FlyRocketPowered implements FlyBehavior {
 }
 ```
 
-### Strategy : 꽥꽥거리는 행동
+
+#### Strategy : 꽥꽥거리는 행동
 
 ```java
 public interface QuackBehavior {

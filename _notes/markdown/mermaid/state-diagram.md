@@ -65,10 +65,10 @@ state "This is a state description with alias" as descStateWithAlias
 
 ```txt
 note [position] of [stateId]
-    [note]
+    [memo]
 end
 
-note [position] of [stateId] : [note]
+note [position] of [stateId] : [memo]
 ```
 
 - `note` keyword로 상태에 대한 설명을 추가할 수 있습니다.

@@ -31,7 +31,7 @@ Template Method Pattern에서는 method에서 algorithm의 골격을 정의합�
 - Strategy Pattern & Template Method Pattern
     - 모두 algorithm을 캡슐화하는 pattern
     - Strategy Pattern : 객체 구성을 사용함
-        - 일련의 algorithm군을 정의하고 그 algorithm들을 서로 바꿔가면서 쓸 수 있게 해 줌
+        - 일련의 algorithm group을 정의하고 그 algorithm들을 서로 바꿔가면서 쓸 수 있게 해 줌
         - 의존성이 낮아 유연함
             - 어떤 것에도 의존하지 않고, algorithm을 전부 알아서 구현할 수 있음
     - Template Method Pattern : 객체 상속을 사용함

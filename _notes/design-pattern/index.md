@@ -319,7 +319,7 @@ A solution to a problem in a context.
 
 #### Strategy Pattern
 
-- algorithm군을 정의하고(abstract class), algorithm들을 각각 하나의 class로 캡슐화한 다음, 필요할 때 서로 교환해서 사용합니다.
+- algorithm group을 정의하고(abstract class), algorithm들을 각각 하나의 class로 캡슐화한 다음, 필요할 때 서로 교환해서 사용합니다.
 - 행위 객체를 class로 캡슐화해 동적으로 행위를 자유롭게 변환합니다.
 
 #### Memento Pattern

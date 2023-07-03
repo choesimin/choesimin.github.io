@@ -113,7 +113,7 @@ note for [class_name] "[memo]"
 ```
 
 - `note` keyword를 사용하여, class에 설명을 추가할 수 있습니다.
-    - class를 지정하지 않으면 연결선 없이 설명만 추가됩니다.
+    - class를 지정하지 않으면 연결선 없이 설명만 추가합니다.
 - 줄바꿈은 `\n`을 사용합니다.
 
 ```txt
@@ -121,8 +121,8 @@ classDiagram
 
 class Class
 
-note "This is \nnot a class memo."
-note for Class "This is \na class memo."
+note "This is not a class memo.\nmemo one.\nmemo two."
+note for Class "This is a class memo.\nmemo one.\nmemo two."
 ```
 
 ```mermaid
