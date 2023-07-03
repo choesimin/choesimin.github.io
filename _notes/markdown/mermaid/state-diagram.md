@@ -149,7 +149,7 @@ direction LR
 stateDiagram-v2
 
 Previous --> Next
-Previous --> Next : Action [Condition]
+Previous --> Next : action[condition]
 ```
 
 ```mermaid
@@ -157,7 +157,7 @@ stateDiagram-v2
 direction LR
 
 Previous --> Next
-Previous --> Next : Action [Condition]
+Previous --> Next : action[condition]
 ```
 
 
