@@ -72,7 +72,7 @@ version: 2023-07-03
 
 
 
-## Class Diagram
+## Diagram
 
 ```mermaid
 classDiagram
@@ -106,16 +106,6 @@ note for Strategy "전략에 대한 interface를 담당하는 객체입니다.\n
 note for ConcreteStrategyA "전략 구현을 담당하는 객체입니다."
 ```
 
-
-
-
----
-
-
-
-
-## Sequence Diagram
-
 ```mermaid
 sequenceDiagram
 
@@ -141,9 +131,6 @@ ConcreteStrategyB ->> Client : return result
         - e.g., `setFlyBehavior()` -> `performFly()`
 
 - 각 행동의 집합은 각 algorithm group입니다.
-
-
-### Class Diagram
 
 ```mermaid
 ---

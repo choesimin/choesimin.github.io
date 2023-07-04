@@ -24,7 +24,6 @@ version: 2023-06-10
     - `Context` class에 정의해야 하는 `if`문을 없앨 수 있습니다.
 
 - 상태 전환은 `State` class로 제어할 수도 있고, `Context` class로 제어할 수도 있습니다.
-- `State` class를 여러 `Context` 객체의 instance에서 공유하도록 설계할 수도 있습니다.
 
 
 
@@ -40,8 +39,8 @@ version: 2023-06-10
 
 | Strategy Pattern | State Pattern |
 | - | - |
-| `Context` class를 만들 때 행동 또는 algorithm을 설정합니다. | `Context`의 내부 상태가 바뀜에 따라서 알아서 행동을 바꿉니다. |
-| 객체에서 어떤 전략을 사용하는지는 보통 `Context` 객체가 직접 결정합니다. | `Context` 객체에서는 미리 정해진 상태 전환 규칙을 바탕으로 알아서 자기 상태를 변경합니다. |
+| `Context` 객체가 행동을 결정합니다. | `State` 객체가 행동을 결정합니다. `Context` 객체가 행동할 때는 상태 전환 규칙에 따라 결정된 상태의 행동을 수행합니다. |
+| 새로운 **algorithm**을 추가할 때 새로운 객체를 추가합니다. | 새로운 **상태**를 추가할 때 새로운 객체를 추가합니다. |
 
 
 
@@ -51,7 +50,7 @@ version: 2023-06-10
 
 
 
-## Class Diagram
+## Diagram
 
 ```mermaid
 classDiagram
@@ -81,6 +80,16 @@ note for State "모든 구상 상태 class에 대한 공통 interface를 정의�
 note for ConcreteStateB "Context로부터 전달된 요청을 처리합니다.\n각 ConcreteState에서 그 요청을 처리하는 방법을 자기 나름의 방식으로 구현합니다.\nContext에서 상태를 바꾸기만 하면 행동도 바뀌게 됩니다."
 ```
 
+```mermaid
+sequenceDiagram
+
+Context ->> ConcreteStateA : handle()
+ConcreteStateA ->> ConcreteStateA : State를 ConcreteStateA에서 ConcreteStateB로 변경합니다.
+ConcreteStateA ->> Context : return result
+Context ->> ConcreteStateB : handle()
+ConcreteStateB ->> Context : return result
+```
+
 
 
 
@@ -93,11 +102,6 @@ note for ConcreteStateB "Context로부터 전달된 요청을 처리합니다.\n
 
 - 동전을 넣고 손잡이를 돌리면 알맹이가 나오는 뽑기 기계입니다.
 - 10% 확률로 당첨되면 알맹이를 하나 더 줍니다.
-
-
-
-
-### State Diagram
 
 ```mermaid
 stateDiagram-v2
@@ -135,11 +139,6 @@ soldOut --> ifSoldOut : 알맹이 충전
 ifSoldOut --> noQuarter : 여분 있음
 ifSoldOut --> [*] : 여분 없음
 ```
-
-
-
-
-### Class Diagram
 
 ```mermaid
 classDiagram
