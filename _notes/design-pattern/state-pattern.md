@@ -98,10 +98,491 @@ ConcreteStateB ->> Context : return result
 
 
 
+## Example : Mobile 청구서
+
+- 발송할 수 있는 형태의 청구서입니다.
+- 발송을 예약하면 예약 시간 전에는 발송할 수 없습니다.
+
+```mermaid
+stateDiagram-v2
+
+state "작성 완료" as written
+state "발송 예약" as reserved
+state "발송 완료" as sent
+state "결제 완료" as payed
+state "결제 취소 완료" as paymentCanceled
+state "파기 완료" as destroyed
+
+state ifSendReservation <<choice>>
+
+
+[*] --> written : 작성하기
+written --> sent : 발송하기
+written --> reserved : 발송 예약하기
+
+reserved --> ifSendReservation : 발송하기
+ifSendReservation --> sent : 발송 가능 (발송 예정 시각 ≥ 현재 시각)
+ifSendReservation --> reserved : 발송 불가능 (발송 예정 시각 < 현재 시각)
+
+sent --> payed : 결제하기
+payed --> paymentCanceled : 결제 취소하기
+
+sent --> destroyed : 파기하기
+reserved --> destroyed : 파기하기
+
+paymentCanceled --> [*]
+destroyed --> [*]
+```
+
+```mermaid
+classDiagram
+
+class Bill {
+    State state
+    String phone
+    int amount
+    LocalDateTime scheduledTime
+    send()
+    reserveSending()
+    pay()
+    cancelPayment()
+    destroy()
+}
+
+class State {
+    <<Interfcae>>
+    send()
+    reserveSending()
+    pay()
+    cancelPayment()
+    destroy()
+}
+
+class WrittenState {
+    Bill bill
+    send()
+    reserveSending()
+}
+
+class SentState {
+    Bill bill
+    pay()
+    destroy()
+}
+
+class ReservedState {
+    Bill bill
+    send()
+    destroy()
+}
+
+class PayedState {
+    Bill bill
+    cancelPayment()
+}
+
+class PaymentCanceledState {
+    Bill bill
+}
+
+class DestroyedState {
+    Bill bill
+}
+
+Bill --* State
+State <|.. WrittenState
+State <|.. SentState
+State <|.. ReservedState
+State <|.. PayedState
+State <|.. PaymentCanceledState
+State <|.. DestroyedState
+```
+
+
+### Code
+
+
+#### Test Code
+
+```java
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
+public class BillTest {
+    public static void main(String[] args) throws InterruptedException {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("청구서를 작성합니다.");
+        System.out.print("전화번호 : ");
+        String phone = sc.next();
+        System.out.print("금액 : ");
+        int amount = sc.nextInt();
+
+        Bill bill = new Bill(phone, amount);
+
+        while (true) {
+            System.out.println("\n행동을 선택하세요.\n0. 상태보기\n1. 발송하기\n2. 발송 예약하기\n3. 결제하기\n4. 결제 취소하기\n5. 파기하기\n9. 종료하기");
+            System.out.print("행동 번호 : ");
+            int action = sc.nextInt();
+
+            switch(action) {
+                case 0:
+                    System.out.println(bill);
+                    break;
+                case 1:
+                    bill.send();
+                    break;
+                case 2:
+                    System.out.print("예약 발송 시간을 몇 초 뒤로 설정하시겠습니까? : ");
+                    long seconds = sc.nextLong();
+                    bill.reserveSending(LocalDateTime.now().plusSeconds(seconds));
+                    break;
+                case 3:
+                    bill.pay();
+                    break;
+                case 4:
+                    bill.cancelPayment();
+                    break;
+                case 5:
+                    bill.destroy();
+                    break;
+                case 9:
+                    System.out.println("종료합니다.");
+                    return;
+                default:
+                    System.out.println("없는 행동입니다.");
+                    break;
+            }
+
+            Thread.sleep(1000);
+        }
+    }
+}
+```
+
+#### Context
+
+```java
+import java.time.LocalDateTime;
+
+public class Bill {
+    State writtenState;
+    State sentState;
+    State reservedState;
+    State payedState;
+    State paymentCanceledState;
+    State destroyedState;
+
+    State state;
+    String phone;
+    int amount;
+    LocalDateTime scheduledTime;
+
+    public Bill(String phone, int amount) {
+        writtenState = new WrittenState(this);
+        sentState = new SentState(this);
+        reservedState = new ReservedState(this);
+        payedState = new PayedState(this);
+        paymentCanceledState = new PaymentCanceledState(this);
+        destroyedState = new DestroyedState(this);
+
+        this.state = writtenState;
+        this.phone = phone;
+        this.amount = amount;
+    }
+
+    public void send() {
+        this.state.send();
+    }
+
+    public void reserveSending(LocalDateTime scheduledTime) {
+        this.state.reserveSending(scheduledTime);
+    }
+
+    public void pay() {
+        this.state.pay();
+    }
+
+    public void cancelPayment() {
+        this.state.cancelPayment();
+    }
+
+    public void destroy() {
+        this.state.destroy();
+    }
+
+    public String toString() {
+        return "청구서 상태 : " + state.toString();
+    }
+}
+```
+
+#### State
+
+```java
+import java.time.LocalDateTime;
+
+public interface State {
+    default void send() {
+        System.out.println(this + " 상태의 청구서는 발송할 수 없습니다.");
+    }
+
+    default void reserveSending(LocalDateTime scheduledTime) {
+        System.out.println(this + " 상태의 청구서는 발송 예약할 수 없습니다.");
+    }
+
+    default void pay() {
+        System.out.println(this + " 상태의 청구서는 결제할 수 없습니다.");
+    }
+
+    default void cancelPayment() {
+        System.out.println(this + " 상태의 청구서는 결제 취소할 수 없습니다.");
+    }
+
+    default void destroy() {
+        System.out.println(this + " 상태의 청구서는 파기할 수 없습니다.");
+    }
+
+    String toString();
+}
+```
+
+```java
+import java.time.LocalDateTime;
+
+public class WrittenState implements State {
+    Bill bill;
+
+    public WrittenState(Bill bill) {
+        this.bill = bill;
+    }
+
+    public void send() {
+        System.out.println("발송 성공했습니다.");
+        this.bill.state = this.bill.sentState;
+    }
+
+    public void reserveSending(LocalDateTime scheduledTime) {
+        this.bill.scheduledTime = scheduledTime;
+        System.out.println(this.bill.scheduledTime + "에 발송이 예약되었습니다.");
+        this.bill.state = this.bill.reservedState;
+    }
+
+    public String toString() {
+        return "작성 완료";
+    }
+}
+```
+
+```java
+public class SentState implements State {
+    Bill bill;
+
+    public SentState(Bill bill) {
+        this.bill = bill;
+    }
+
+    public void pay() {
+        System.out.println("결제되었습니다.");
+        this.bill.state = this.bill.payedState;
+    }
+
+    public void destroy() {
+        System.out.println(this + " 상태의 청구서를 파기했습니다.");
+    }
+
+    public String toString() {
+        return "발송 완료";
+    }
+}
+```
+
+```java
+import java.time.LocalDateTime;
+
+public class ReservedState implements State {
+    Bill bill;
+
+    public ReservedState(Bill bill) {
+        this.bill = bill;
+    }
+
+    public void send() {
+        if (LocalDateTime.now().isAfter(this.bill.scheduledTime)) {
+            System.out.println("예약 발송 성공했습니다.");
+            this.bill.state = this.bill.sentState;
+        } else {
+            System.out.println("아직 발송 예정 시각 전입니다.");
+        }
+    }
+
+    public void destroy() {
+        System.out.println(this + " 상태의 청구서를 파기했습니다.");
+    }
+
+    public String toString() {
+        return "발송 예약";
+    }
+}
+```
+
+```java
+public class PayedState implements State {
+    Bill bill;
+
+    public PayedState(Bill bill) {
+        this.bill = bill;
+    }
+
+    public void cancelPayment() {
+        System.out.println("결제가 취소되었습니다.");
+
+        this.bill.state = this.bill.paymentCanceledState;
+    }
+
+    public String toString() {
+        return "결제 완료";
+    }
+}
+```
+
+```java
+public class PaymentCanceledState implements State {
+    Bill bill;
+
+    public PaymentCanceledState(Bill bill) {
+        this.bill = bill;
+    }
+
+    public String toString() {
+        return "결제 취소 완료";
+    }
+}
+```
+
+```java
+public class DestroyedState implements State {
+    Bill bill;
+
+    public DestroyedState(Bill bill) {
+        this.bill = bill;
+    }
+
+    public String toString() {
+        return "파기 완료";
+    }
+}
+```
+
+#### Context without State Pattern
+
+```java
+import java.time.LocalDateTime;
+
+public class Bill {
+    final static int WRITTEN = 0;
+    final static int RESERVED = 1;
+    final static int SENT = 2;
+    final static int PAYED = 3;
+    final static int PAYMENT_CANCELED = 4;
+    final static int DESTROYED = 5;
+
+    int state;
+    String phone;
+    int amount;
+    LocalDateTime scheduledTime;
+
+    public Bill(String phone, int amount) {
+        this.state = this.WRITTEN;
+        this.phone = phone;
+        this.amount = amount;
+    }
+
+    private void setState(int state) {
+        this.state = state;
+    }
+
+    public void send() {
+        if (this.state == WRITTEN) {
+            System.out.println("발송 성공했습니다.");
+            this.setState(SENT);
+        } else if (this.state == RESERVED) {
+            if (LocalDateTime.now().isAfter(scheduledTime)) {
+                System.out.println("예약 발송 성공했습니다.");
+                this.setState(SENT);
+            } else {
+                System.out.println("아직 발송 예정 시각 전입니다.");
+            }
+        } else {
+            System.out.println(getStateName() + " 상태의 청구서는 발송할 수 없습니다.");
+        }
+    }
+
+    public void reserveSending(LocalDateTime scheduledTime) {
+        if (this.state == WRITTEN) {
+            this.scheduledTime = scheduledTime;
+            System.out.println(scheduledTime + "에 발송이 예약되었습니다.");
+            this.setState(RESERVED);
+        } else {
+            System.out.println(getStateName() + " 상태의 청구서는 발송 예약할 수 없습니다.");
+        }
+    }
+
+    public void pay() {
+        if (this.state == SENT) {
+            System.out.println("결제되었습니다.");
+            this.setState(PAYED);
+        } else {
+            System.out.println(getStateName() + " 상태의 청구서는 결제할 수 없습니다.");
+        }
+    }
+
+    public void cancelPayment() {
+        if (this.state == PAYED) {
+            System.out.println("결제가 취소되었습니다.");
+            this.setState(PAYMENT_CANCELED);
+        } else {
+            System.out.println(getStateName() + " 상태의 청구서는 결제 취소할 수 없습니다.");
+        }
+    }
+
+    public void destroy() {
+        if (this.state == RESERVED || this.state == PAYMENT_CANCELED) {
+            System.out.println(getStateName() + " 상태의 청구서를 파기했습니다.");
+            this.setState(DESTROYED);
+        } else {
+            System.out.println(getStateName() + " 상태의 청구서는 파기할 수 없습니다.");
+        }
+    }
+
+    private String getStateName() {
+        if (this.state == WRITTEN) return "작성 완료";
+        else if (this.state == RESERVED) return "발송 예약";
+        else if (this.state == SENT) return "발송 완료";
+        else if (this.state == PAYED) return "결제 완료";
+        else if (this.state == PAYMENT_CANCELED) return "결제 취소 완료";
+        else if (this.state == DESTROYED) return "파기 완료";
+        else return "";
+    }
+
+    public String toString() {
+        return "청구서 상태 : " + getStateName();
+    }
+}
+```
+
+
+
+
+---
+
+
+
+
 ## Example : 뽑기 기계
 
-- 동전을 넣고 손잡이를 돌리면 알맹이가 나오는 뽑기 기계입니다.
-- 10% 확률로 당첨되면 알맹이를 하나 더 줍니다.
+- 동전을 넣고 손잡이를 돌리면 알맹이가 1개 나오는 기계입니다.
+- 10% 확률로 당첨되면 알맹이를 2개 받습니다.
 
 ```mermaid
 stateDiagram-v2
@@ -143,6 +624,16 @@ ifSoldOut --> [*] : 여분 없음
 ```mermaid
 classDiagram
 
+class GumballMachine {
+    int count
+    State state
+    insertQuarter()
+    ejectQuarter()
+    turnCrank()
+    dispense()
+    refill()
+}
+
 class State {
     <<Interfcae>>
     insertQuarter()
@@ -153,6 +644,7 @@ class State {
 }
 
 class SoldState {
+    GumballMachine gumballMachine
     insertQuarter()
     ejectQuarter()
     turnCrank()
@@ -161,6 +653,7 @@ class SoldState {
 }
 
 class SoldOutState {
+    GumballMachine gumballMachine
     insertQuarter()
     ejectQuarter()
     turnCrank()
@@ -169,6 +662,7 @@ class SoldOutState {
 }
 
 class NoQuarterState {
+    GumballMachine gumballMachine
     insertQuarter()
     ejectQuarter()
     turnCrank()
@@ -177,6 +671,7 @@ class NoQuarterState {
 }
 
 class HasQuarterState {
+    GumballMachine gumballMachine
     insertQuarter()
     ejectQuarter()
     turnCrank()
@@ -185,6 +680,7 @@ class HasQuarterState {
 }
 
 class WinnerState {
+    GumballMachine gumballMachine
     insertQuarter()
     ejectQuarter()
     turnCrank()
@@ -192,6 +688,8 @@ class WinnerState {
     refill()
 }
 
+
+GumballMachine --* State
 
 State <|.. SoldState
 State <|.. SoldOutState
@@ -209,14 +707,12 @@ note for State "모든 상태 class에서 사용하는 interface입니다.\nmeth
 ### Code
 
 
-#### Test code
+#### Test Code
 
 ```java
 public class GumballMachineTestDrive {
-
     public static void main(String[] args) {
-        GumballMachine gumballMachine = 
-            new GumballMachine(10);
+        GumballMachine gumballMachine = new GumballMachine(10);
 
         System.out.println(gumballMachine);
 
@@ -565,55 +1061,7 @@ public class WinnerState implements State {
 }
 ```
 
-
-
-
----
-
-
-
-
-## Example : State Pattern을 사용하지 않은 뽑기 기계
-
-```java
-public class GumballMachineTestDrive {
-
-    public static void main(String[] args) {
-        GumballMachine gumballMachine = new GumballMachine(5);
-
-        System.out.println(gumballMachine);
-
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
-
-        System.out.println(gumballMachine);
-
-        gumballMachine.insertQuarter();
-        gumballMachine.ejectQuarter();
-        gumballMachine.turnCrank();
-
-        System.out.println(gumballMachine);
-
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
-        gumballMachine.ejectQuarter();
-
-        System.out.println(gumballMachine);
-
-        gumballMachine.insertQuarter();
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
-
-        System.out.println(gumballMachine);
-    }
-}
-```
+#### Context without State Pattern
 
 ```java
 public class GumballMachine {
@@ -720,7 +1168,6 @@ public class GumballMachine {
     }
 }
 ```
-
 
 
 

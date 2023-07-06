@@ -169,7 +169,7 @@ closed --> [*]
 ```
 
 
-### 돈
+### 일
 
 - 조건은 전이나 선택에 작성할 수 있습니다.
 
@@ -226,86 +226,6 @@ rich --> ifRich : 놀면서 일하기
 ifRich --> normal : 잔고 1000만원 미만
 ifRich --> rich : 잔고 1000만원 이상 2000만원 미만
 ifRich --> [*] : 잔고 2000만원 이상
-```
-
-
-### 뽑기 기계
-
-- 동전을 넣고 손잡이를 돌리면 알맹이가 1개 나오는 기계입니다.
-- 10% 확률로 당첨되면 알맹이를 2개 받습니다.
-
-```mermaid
-stateDiagram-v2
-
-state "동전 없음" as noQuarter
-state "동전 있음" as hasQuarter
-state "알맹이 판매" as sold
-state "알맹이 매진" as soldOut
-state "당첨" as winner
-
-state ifSold <<choice>>
-state ifWinner <<choice>>
-state ifSoldOut <<choice>>
-state ifHasQuarter <<choice>>
-
-
-[*] --> noQuarter
-
-noQuarter --> hasQuarter : 동전 투입
-
-hasQuarter --> noQuarter : 동전 반환
-hasQuarter --> ifHasQuarter : 손잡이 돌림
-ifHasQuarter --> sold : 당첨되지 않음
-ifHasQuarter --> winner : 당첨됨
-
-sold --> ifSold : 알맹이 내보냄
-ifSold --> noQuarter : 알맹이 > 0
-ifSold --> soldOut : 알맹이 = 0
-
-winner --> ifWinner : 알맹이 두 개 내보냄
-ifWinner --> noQuarter : 알맹이 > 0
-ifWinner --> soldOut : 알맹이 = 0
-
-soldOut --> ifSoldOut : 알맹이 충전
-ifSoldOut --> noQuarter : 여분 있음
-ifSoldOut --> [*] : 여분 없음
-```
-
-
-### Mobile 청구서
-
-- 발송할 수 있는 형태의 청구서입니다.
-- 발송을 예약하면 예약 시간 전에는 발송할 수 없습니다.
-
-```mermaid
-stateDiagram-v2
-
-state "작성 완료" as written
-state "발송 예약" as reserved
-state "발송 완료" as sent
-state "결제 완료" as payed
-state "결제 취소 완료" as paymentCanceled
-state "파기 완료" as destroyed
-
-state ifSendReservation <<choice>>
-
-
-[*] --> written : 작성하기
-written --> sent : 발송하기
-written --> reserved : 발송 예약하기
-
-reserved --> ifSendReservation : 발송하기
-ifSendReservation --> sent : 발송 가능 (발송 예정 시각 ≥ 현재 시각)
-ifSendReservation --> reserved : 발송 불가능 (발송 예정 시각 < 현재 시각)
-
-sent --> payed : 결제하기
-payed --> paymentCanceled : 결제 취소하기
-
-sent --> destroyed : 파기하기
-reserved --> destroyed : 파기하기
-
-paymentCanceled --> [*]
-destroyed --> [*]
 ```
 
 
