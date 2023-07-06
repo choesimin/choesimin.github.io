@@ -1,6 +1,6 @@
 ---
 layout: note
-title: State Diagram
+title: State Diagram - 상태의 변화를 분석하기
 version: 2023-06-19
 ---
 
@@ -8,129 +8,6 @@ version: 2023-06-19
 
 
 - State Diagram이란 하나의 객체가 생명 주기(life cycle) 동안 가질 수 있는 상태의 변화를 분석한 diagram입니다.
-
-
-
-
----
-
-
-
-
-## Example
-
-
-### 집
-
-```mermaid
-stateDiagram-v2
-direction LR
-
-state "문 열림" as opened
-state "문 닫힘" as closed
-
-[*] --> opened : 들어가기
-opened --> closed : 문 닫기
-closed --> opened : 문 열기
-closed --> [*] : 2층 가기
-```
-
-
-### 일
-
-- 조건에 대한 표현 방식은 두 가지입니다.
-
-#### 1. 전이에 작성하기
-
-```mermaid
-stateDiagram-v2
-
-state "돈 없음" as poor
-state "돈 적당히 있음" as normal
-state "돈 많음" as rich
-
-[*] --> poor : 학교 졸업
-poor --> poor : 열심히 일하기 [잔고 100만원 미만]
-poor --> normal : 열심히 일하기 [잔고 100만원 이상 1000만원 미만]
-
-normal --> poor : 일하기 [잔고 100만원 미만]
-normal --> normal : 일하기 [잔고 100만원 이상 1000만원 미만]
-normal --> rich : 일하기 [잔고 1000만원 이상]
-
-rich --> normal : 놀면서 일하기 [잔고 1000만원 미만]
-rich --> rich : 놀면서 일하기 [잔고 1000만원 이상 2000만원 미만]
-rich --> [*] : 놀면서 일하기 [잔고 2000만원 이상]
-```
-
-#### 2. 선택에 작성하기
-
-```mermaid
-stateDiagram-v2
-
-state "돈 없음" as poor
-state "돈 적당히 있음" as normal
-state "돈 많음" as rich
-
-state ifPoor <<choice>>
-state ifNormal <<choice>>
-state ifRich <<choice>>
-
-[*] --> poor : 학교 졸업
-poor --> ifPoor : 열심히 일하기
-ifPoor --> poor : 잔고 100만원 미만
-ifPoor --> normal : 잔고 100만원 이상 1000만원 미만
-
-normal --> ifNormal : 일하기
-ifNormal --> poor : 잔고 100만원 미만
-ifNormal --> normal : 잔고 100만원 이상 1000만원 미만
-ifNormal --> rich : 잔고 1000만원 이상
-
-rich --> ifRich : 놀면서 일하기
-ifRich --> normal : 잔고 1000만원 미만
-ifRich --> rich : 잔고 1000만원 이상 2000만원 미만
-ifRich --> [*] : 잔고 2000만원 이상
-```
-
-
-
-### 뽑기 기계
-
-```mermaid
-stateDiagram-v2
-
-state "동전 없음" as noQuarter
-state "동전 있음" as hasQuarter
-state "알맹이 판매" as sold
-state "알맹이 매진" as soldOut
-state "당첨" as winner
-
-state ifSold <<choice>>
-state ifWinner <<choice>>
-state ifSoldOut <<choice>>
-state ifHasQuarter <<choice>>
-
-
-[*] --> noQuarter
-
-noQuarter --> hasQuarter : 동전 투입
-
-hasQuarter --> noQuarter : 동전 반환
-hasQuarter --> ifHasQuarter : 손잡이 돌림
-ifHasQuarter --> sold : 당첨되지 않음
-ifHasQuarter --> winner : 당첨됨
-
-sold --> ifSold : 알맹이 내보냄
-ifSold --> noQuarter : 알맹이 > 0
-ifSold --> soldOut : 알맹이 = 0
-
-winner --> ifWinner : 알맹이 두 개 내보냄
-ifWinner --> noQuarter : 알맹이 > 0
-ifWinner --> soldOut : 알맹이 = 0
-
-soldOut --> ifSoldOut : 알맹이 충전
-ifSoldOut --> noQuarter : 여분 있음
-ifSoldOut --> [*] : 여분 없음
-```
 
 
 
@@ -227,7 +104,7 @@ if --> state4 : 조건 2
 
 
 
-## 주의 사항
+## State Diagram 작성 주의 사항
 
 
 ### 하나의 객체에 대한 상태 변화를 표현하기
@@ -241,6 +118,195 @@ if --> state4 : 조건 2
 - 들어오는 전이만 있고 나가는 전이가 없는 경우 Black Hole 상태가 됩니다.
 - Black Hole 상태가 있으면, 객체가 종료 상태에 이르지 못하고 무한 loop를 수행하게 됩니다.
 - 상태는 들어오는 전이와 나가는 전이가 모두 정의되어야 합니다.
+
+
+
+
+---
+
+
+
+
+## Example
+
+
+### 집
+
+- 행동과 조건은 필요에 따라 생략할 수 있습니다.
+
+```mermaid
+---
+title: 행동을 작성하기
+---
+
+stateDiagram-v2
+direction LR
+
+state "문 열림" as opened
+state "문 닫힘" as closed
+
+[*] --> opened : 들어가기
+opened --> closed : 문 닫기
+closed --> opened : 문 열기
+closed --> [*] : 2층 가기
+```
+
+```mermaid
+---
+title: 행동을 생략하기
+---
+
+stateDiagram-v2
+direction LR
+
+state "문 열림" as opened
+state "문 닫힘" as closed
+
+[*] --> opened
+opened --> closed
+closed --> opened
+closed --> [*]
+```
+
+
+### 돈
+
+- 조건은 전이나 선택에 작성할 수 있습니다.
+
+```mermaid
+---
+title: 조건을 전이에 작성하기
+---
+
+stateDiagram-v2
+
+state "돈 없음" as poor
+state "돈 적당히 있음" as normal
+state "돈 많음" as rich
+
+[*] --> poor : 학교 졸업
+poor --> poor : 열심히 일하기 [잔고 100만원 미만]
+poor --> normal : 열심히 일하기 [잔고 100만원 이상 1000만원 미만]
+
+normal --> poor : 일하기 [잔고 100만원 미만]
+normal --> normal : 일하기 [잔고 100만원 이상 1000만원 미만]
+normal --> rich : 일하기 [잔고 1000만원 이상]
+
+rich --> normal : 놀면서 일하기 [잔고 1000만원 미만]
+rich --> rich : 놀면서 일하기 [잔고 1000만원 이상 2000만원 미만]
+rich --> [*] : 놀면서 일하기 [잔고 2000만원 이상]
+```
+
+```mermaid
+---
+title: 조건을 선택에 작성하기
+---
+
+stateDiagram-v2
+
+state "돈 없음" as poor
+state "돈 적당히 있음" as normal
+state "돈 많음" as rich
+
+state ifPoor <<choice>>
+state ifNormal <<choice>>
+state ifRich <<choice>>
+
+[*] --> poor : 학교 졸업
+poor --> ifPoor : 열심히 일하기
+ifPoor --> poor : 잔고 100만원 미만
+ifPoor --> normal : 잔고 100만원 이상 1000만원 미만
+
+normal --> ifNormal : 일하기
+ifNormal --> poor : 잔고 100만원 미만
+ifNormal --> normal : 잔고 100만원 이상 1000만원 미만
+ifNormal --> rich : 잔고 1000만원 이상
+
+rich --> ifRich : 놀면서 일하기
+ifRich --> normal : 잔고 1000만원 미만
+ifRich --> rich : 잔고 1000만원 이상 2000만원 미만
+ifRich --> [*] : 잔고 2000만원 이상
+```
+
+
+### 뽑기 기계
+
+- 동전을 넣고 손잡이를 돌리면 알맹이가 1개 나오는 기계입니다.
+- 10% 확률로 당첨되면 알맹이를 2개 받습니다.
+
+```mermaid
+stateDiagram-v2
+
+state "동전 없음" as noQuarter
+state "동전 있음" as hasQuarter
+state "알맹이 판매" as sold
+state "알맹이 매진" as soldOut
+state "당첨" as winner
+
+state ifSold <<choice>>
+state ifWinner <<choice>>
+state ifSoldOut <<choice>>
+state ifHasQuarter <<choice>>
+
+
+[*] --> noQuarter
+
+noQuarter --> hasQuarter : 동전 투입
+
+hasQuarter --> noQuarter : 동전 반환
+hasQuarter --> ifHasQuarter : 손잡이 돌림
+ifHasQuarter --> sold : 당첨되지 않음
+ifHasQuarter --> winner : 당첨됨
+
+sold --> ifSold : 알맹이 내보냄
+ifSold --> noQuarter : 알맹이 > 0
+ifSold --> soldOut : 알맹이 = 0
+
+winner --> ifWinner : 알맹이 두 개 내보냄
+ifWinner --> noQuarter : 알맹이 > 0
+ifWinner --> soldOut : 알맹이 = 0
+
+soldOut --> ifSoldOut : 알맹이 충전
+ifSoldOut --> noQuarter : 여분 있음
+ifSoldOut --> [*] : 여분 없음
+```
+
+
+### Mobile 청구서
+
+- 발송할 수 있는 형태의 청구서입니다.
+- 발송을 예약하면 예약 시간 전에는 발송할 수 없습니다.
+
+```mermaid
+stateDiagram-v2
+
+state "작성 완료" as written
+state "발송 예약" as reserved
+state "발송 완료" as sent
+state "결제 완료" as payed
+state "결제 취소 완료" as paymentCanceled
+state "파기 완료" as destroyed
+
+state ifSendReservation <<choice>>
+
+
+[*] --> written : 작성하기
+written --> sent : 발송하기
+written --> reserved : 발송 예약하기
+
+reserved --> ifSendReservation : 발송하기
+ifSendReservation --> sent : 발송 가능 (발송 예정 시각 ≥ 현재 시각)
+ifSendReservation --> reserved : 발송 불가능 (발송 예정 시각 < 현재 시각)
+
+sent --> payed : 결제하기
+payed --> paymentCanceled : 결제 취소하기
+
+sent --> destroyed : 파기하기
+reserved --> destroyed : 파기하기
+
+paymentCanceled --> [*]
+destroyed --> [*]
+```
 
 
 
