@@ -186,7 +186,7 @@ state "돈 많음" as rich
 
 [*] --> poor : 학교 졸업
 poor --> poor : 열심히 일하기 [잔고 100만원 미만]
-poor --> normal : 열심히 일하기 [잔고 100만원 이상 1000만원 미만]
+poor --> normal : 열심히 일하기 [잔고 100만원 이상]
 
 normal --> poor : 일하기 [잔고 100만원 미만]
 normal --> normal : 일하기 [잔고 100만원 이상 1000만원 미만]
@@ -215,7 +215,7 @@ state ifRich <<choice>>
 [*] --> poor : 학교 졸업
 poor --> ifPoor : 열심히 일하기
 ifPoor --> poor : 잔고 100만원 미만
-ifPoor --> normal : 잔고 100만원 이상 1000만원 미만
+ifPoor --> normal : 잔고 100만원 이상
 
 normal --> ifNormal : 일하기
 ifNormal --> poor : 잔고 100만원 미만

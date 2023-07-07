@@ -8,10 +8,31 @@ version: 2023-06-10
 
 
 - State Pattern을 이용하면 객체의 내부 상태가 바뀜에 따라서 객체의 행동을 바꿀 수 있습니다.
-    - 마치 객체의 class가 바뀌는 것과 같은 결과를 얻을 수 있습니다.
-    - 상황에 따라서 상태가 바뀔 때 사용합니다.
+    - 마치 객체의 class 자체가 바뀌는 것과 같은 결과를 얻을 수 있습니다.
 
 - 상태 전환은 상태 객체가 제어할 수도 있고, 상태를 사용하는 객체가 제어할 수도 있습니다.
+
+- State Pattern은 Strategy Pattern과 `solution`이 동일하지만, `context`와 `problem`이 다르기 때문에 별개의 pattern으로 분리되어 있습니다.
+
+
+
+
+---
+
+
+
+
+## Strategy Pattern & State Pattern
+
+- 두 pattern을 구현했을 때, class의 구성이 완전히 같습니다.
+
+
+### 차이점
+
+| Strategy Pattern | State Pattern |
+| - | - |
+| **Context** 객체가 행동을 결정합니다. | **State** 객체가 행동을 결정합니다. Context 객체가 행동할 때는 상태 전환 규칙에 따라 결정된 상태의 행동을 수행합니다. |
+| 새로운 **algorithm**을 추가할 때 새로운 객체를 추가합니다. | 새로운 **상태**를 추가할 때 새로운 객체를 추가합니다. |
 
 
 
@@ -24,39 +45,22 @@ version: 2023-06-10
 ## State Pattern이 동작하는 원리 : 상태의 추상화
 
 
-### 상태
+### 상태 (`State`)
 
 - 여러 상태를 추상화한 상태를 만듭니다.
 - 각 상태는 추상화된 상태를 구현합니다.
     - 해당 상태일 때 해야할 행동을 구현합니다.
 
 
-### 상태를 사용하는 객체
+### 상태를 사용하는 객체 (`Context`)
 
-- 상태를 사용하는 객체는 현재 상태를 나타내는 객체에게 행동을 위임합니다.
-- 상태를 사용하는 객체는 추상화된 상태만을 알고 있습니다.
+- Context 객체는 현재 상태를 나타내는 객체에게 행동을 위임합니다.
+- Context 객체는 추상화된 상태만을 알고 있습니다.
     - 상속을 사용하지 않으며, composition(구성)을 통해 여러가지 상태 객체를 바꿔가면서 사용합니다.
     - 따라서 동일한 상황에 대해서 어떤 상태인지에 따라 다른 행동을 할 수 있습니다.
     - 상태를 사용하는 쪽은 구체적인 상태를 모르기 때문에 상태를 바꿀 수 있기 때문입니다.
 
-- 상태를 사용하는 객체의 현재 상태가 바뀌면 행동도 달라집니다.
-
-
-
-
----
-
-
-
-
-## Strategy Pattern & State Pattern
-
-- 두 pattern을 구현했을 때, class의 구성이 같지만, 용도가 다릅니다.
-
-| Strategy Pattern | State Pattern |
-| - | - |
-| `Context` 객체가 행동을 결정합니다. | `State` 객체가 행동을 결정합니다. `Context` 객체가 행동할 때는 상태 전환 규칙에 따라 결정된 상태의 행동을 수행합니다. |
-| 새로운 **algorithm**을 추가할 때 새로운 객체를 추가합니다. | 새로운 **상태**를 추가할 때 새로운 객체를 추가합니다. |
+- Context 객체의 현재 상태가 바뀌면 행동도 달라집니다.
 
 
 
@@ -76,6 +80,7 @@ class Context {
 }
 
 class State {
+    <<interface>>
     handle()
 }
 
@@ -87,9 +92,9 @@ class ConcreteStateB {
     handle()
 }
 
-Context --> State
-State <|-- ConcreteStateA
-State <|-- ConcreteStateB
+Context --* State
+State <|.. ConcreteStateA
+State <|.. ConcreteStateB
 
 note for Context "request() method는 state.handle()을 호출하여 상태 객체에게 작업을 맡깁니다.\nContext class 안에는 여러 가지 내부 상태가 들어있을 수 있습니다."
 note for State "모든 구상 상태 class에 대한 공통 interface를 정의합니다.\n모든 상태 class에서 같은 interface를 구현하기 때문에 바꿔가면서 쓸 수 있습니다."
