@@ -11,19 +11,35 @@ version: 2023-06-10
     - 마치 객체의 class가 바뀌는 것과 같은 결과를 얻을 수 있습니다.
     - 상황에 따라서 상태가 바뀔 때 사용합니다.
 
-- 각 상태를 별도의 class로 캡슐화합니다.
-    - 동일한 상황에 대해서 어떤 상태인지에 따라 다른 행동을 할 수 있도록 합니다.
-    - 나중에 변경시켜야 하는 내용을 국지화시킬 수 있습니다.
-    - 상태가 늘어남에 따라 class의 갯수가 늘어납니다.
+- 상태 전환은 상태 객체가 제어할 수도 있고, 상태를 사용하는 객체가 제어할 수도 있습니다.
 
-- `Context` 객체에서는 현재 상태를 나타내는 객체에게 행동을 위임합니다.
-    - composition(구성)을 통해 여러 상태 객체를 바꿔가면서 사용합니다.
-        - 상속을 사용하지 않습니다.
-    - 내부 상태가 바뀌면 행동이 달라집니다.
-        - 내부 상태를 바탕으로 여러 가지 서로 다른 행동을 사용할 수 있습니다.
-    - `Context` class에 정의해야 하는 `if`문을 없앨 수 있습니다.
 
-- 상태 전환은 `State` class로 제어할 수도 있고, `Context` class로 제어할 수도 있습니다.
+
+
+---
+
+
+
+
+## State Pattern이 동작하는 원리 : 상태의 추상화
+
+
+### 상태
+
+- 여러 상태를 추상화한 상태를 만듭니다.
+- 각 상태는 추상화된 상태를 구현합니다.
+    - 해당 상태일 때 해야할 행동을 구현합니다.
+
+
+### 상태를 사용하는 객체
+
+- 상태를 사용하는 객체는 현재 상태를 나타내는 객체에게 행동을 위임합니다.
+- 상태를 사용하는 객체는 추상화된 상태만을 알고 있습니다.
+    - 상속을 사용하지 않으며, composition(구성)을 통해 여러가지 상태 객체를 바꿔가면서 사용합니다.
+    - 따라서 동일한 상황에 대해서 어떤 상태인지에 따라 다른 행동을 할 수 있습니다.
+    - 상태를 사용하는 쪽은 구체적인 상태를 모르기 때문에 상태를 바꿀 수 있기 때문입니다.
+
+- 상태를 사용하는 객체의 현재 상태가 바뀌면 행동도 달라집니다.
 
 
 
@@ -35,7 +51,7 @@ version: 2023-06-10
 
 ## Strategy Pattern & State Pattern
 
-- 두 pattern의 class diagram은 같지만, 용도와 목적이 다릅니다.
+- 두 pattern을 구현했을 때, class의 구성이 같지만, 용도가 다릅니다.
 
 | Strategy Pattern | State Pattern |
 | - | - |
@@ -364,8 +380,8 @@ public class WrittenState implements State {
 
     public void reserveSending(LocalDateTime scheduledTime) {
         this.bill.scheduledTime = scheduledTime;
-        System.out.println(this.bill.scheduledTime + "에 발송이 예약되었습니다.");
         this.bill.state = this.bill.reservedState;
+        System.out.println(this.bill.scheduledTime + "에 발송이 예약되었습니다.");
     }
 
     public String toString() {
@@ -389,6 +405,7 @@ public class SentState implements State {
 
     public void destroy() {
         System.out.println(this + " 상태의 청구서를 파기했습니다.");
+        this.bill.state = this.bill.destroyedState;
     }
 
     public String toString() {
@@ -409,14 +426,15 @@ public class ReservedState implements State {
 
     public void send() {
         if (LocalDateTime.now().isAfter(this.bill.scheduledTime)) {
-            System.out.println("예약 발송 성공했습니다.");
             this.bill.state = this.bill.sentState;
+            System.out.println("예약 발송 성공했습니다.");
         } else {
             System.out.println("아직 발송 예정 시각 전입니다.");
         }
     }
 
     public void destroy() {
+        this.bill.state = this.bill.destroyedState;
         System.out.println(this + " 상태의 청구서를 파기했습니다.");
     }
 
@@ -435,9 +453,8 @@ public class PayedState implements State {
     }
 
     public void cancelPayment() {
-        System.out.println("결제가 취소되었습니다.");
-
         this.bill.state = this.bill.paymentCanceledState;
+        System.out.println("결제가 취소되었습니다.");
     }
 
     public String toString() {
@@ -498,18 +515,14 @@ public class Bill {
         this.amount = amount;
     }
 
-    private void setState(int state) {
-        this.state = state;
-    }
-
     public void send() {
         if (this.state == WRITTEN) {
+            this.state = SENT;
             System.out.println("발송 성공했습니다.");
-            this.setState(SENT);
         } else if (this.state == RESERVED) {
             if (LocalDateTime.now().isAfter(scheduledTime)) {
+                this.state = SENT;
                 System.out.println("예약 발송 성공했습니다.");
-                this.setState(SENT);
             } else {
                 System.out.println("아직 발송 예정 시각 전입니다.");
             }
@@ -521,8 +534,8 @@ public class Bill {
     public void reserveSending(LocalDateTime scheduledTime) {
         if (this.state == WRITTEN) {
             this.scheduledTime = scheduledTime;
+            this.state = RESERVED;
             System.out.println(scheduledTime + "에 발송이 예약되었습니다.");
-            this.setState(RESERVED);
         } else {
             System.out.println(getStateName() + " 상태의 청구서는 발송 예약할 수 없습니다.");
         }
@@ -530,8 +543,8 @@ public class Bill {
 
     public void pay() {
         if (this.state == SENT) {
+            this.state = PAYED;
             System.out.println("결제되었습니다.");
-            this.setState(PAYED);
         } else {
             System.out.println(getStateName() + " 상태의 청구서는 결제할 수 없습니다.");
         }
@@ -539,8 +552,8 @@ public class Bill {
 
     public void cancelPayment() {
         if (this.state == PAYED) {
+            this.state = PAYMENT_CANCELED;
             System.out.println("결제가 취소되었습니다.");
-            this.setState(PAYMENT_CANCELED);
         } else {
             System.out.println(getStateName() + " 상태의 청구서는 결제 취소할 수 없습니다.");
         }
@@ -548,8 +561,8 @@ public class Bill {
 
     public void destroy() {
         if (this.state == RESERVED || this.state == PAYMENT_CANCELED) {
+            this.state = DESTROYED;
             System.out.println(getStateName() + " 상태의 청구서를 파기했습니다.");
-            this.setState(DESTROYED);
         } else {
             System.out.println(getStateName() + " 상태의 청구서는 파기할 수 없습니다.");
         }
