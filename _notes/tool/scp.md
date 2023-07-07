@@ -18,7 +18,7 @@ version: 2023-04-03
 ## 사용법
 
 ```sh
-scp [option] [file_path] [target_path]
+scp [option] [source] [destination]
 ```
 
 | Option | 설명 |
