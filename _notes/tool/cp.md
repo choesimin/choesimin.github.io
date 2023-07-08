@@ -1,6 +1,6 @@
 ---
 layout: note
-title: cp - Linux Terminal에서 File 복사하기
+title: cp - Linux에서 File 복사하기
 version: 2023-07-08
 ---
 
