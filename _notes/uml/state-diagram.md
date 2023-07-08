@@ -130,42 +130,50 @@ if --> state4 : 조건 2
 ## Example
 
 
-### 집
+### 자동차
 
 - 행동과 조건은 필요에 따라 생략할 수 있습니다.
 
 ```mermaid
 ---
-title: 행동을 작성하기
+title: 행동 작성하기
 ---
 
 stateDiagram-v2
 direction LR
 
-state "문 열림" as opened
-state "문 닫힘" as closed
+state "정지함" as still
+state "움직이는 중" as moving
+state "충돌함" as crash
 
-[*] --> opened : 들어가기
-opened --> closed : 문 닫기
-closed --> opened : 문 열기
-closed --> [*] : 2층 가기
+[*] --> still
+still --> [*]
+
+still --> moving : 운전하기
+moving --> still : 운전하기
+moving --> crash : 운전하기
+crash --> [*]
 ```
 
 ```mermaid
 ---
-title: 행동을 생략하기
+title: 행동 생략하기
 ---
 
 stateDiagram-v2
 direction LR
 
-state "문 열림" as opened
-state "문 닫힘" as closed
+state "정지함" as still
+state "움직이는 중" as moving
+state "충돌함" as crash
 
-[*] --> opened
-opened --> closed
-closed --> opened
-closed --> [*]
+[*] --> still
+still --> [*]
+
+still --> moving
+moving --> still
+moving --> crash
+crash --> [*]
 ```
 
 

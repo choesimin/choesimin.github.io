@@ -45,7 +45,7 @@ scp [option] [source] [destination]
 
 ```sh
 scp [option] [local_file_path] [remote_id]@[remote_ip]:[remote_path]
-scp testfile2 root@192.168.159.129:/tmp/testclient
+scp test_file root@192.168.159.129:/tmp/test_client
 ```
 
 
@@ -53,7 +53,7 @@ scp testfile2 root@192.168.159.129:/tmp/testclient
 
 ```sh
 scp [option] [local_file_1_path] [local_file_2_path] [remote_id]@[remote_ip]:[remote_path]
-scp tesfile1 testfile2 root@192.168.159.129:/tmp/testclient
+scp tes_file_1 test_file_2 root@192.168.159.129:/tmp/test_client
 ```
 
 
@@ -61,7 +61,7 @@ scp tesfile1 testfile2 root@192.168.159.129:/tmp/testclient
 
 ```sh
 scp -r [option] [local_directory_path] [remote_id]@[remote_ip]:[remote_path]
-scp -r testgogo root@192.168.159.129:/tmp/testclient
+scp -r test_directory root@192.168.159.129:/tmp/test_client
 ```
 - `-r` option을 사용합니다.
 
@@ -79,14 +79,14 @@ scp -r testgogo root@192.168.159.129:/tmp/testclient
 
 ```sh
 scp [option] [remote_id]@[remote_ip]:[remote_file_path] [local_path] 
-scp root@192.168.159.129:/tmp/testclient/testfile2 /tmp
+scp root@192.168.159.129:/tmp/test_client/test_file /tmp
 ```
 
 ### 복수의 File을 원격지에서 가져오기
 
 ```sh
 scp [option] [remote_id]@[remote_ip]:"[remote_file_1_path] [remote_file_2_path]" [local_path]
-scp root@192.168.159.129:"/tmp/testclient/testfile2 /tmp/testclient/testfile3" /tmp
+scp root@192.168.159.129:"/tmp/test_client/test_file_1 /tmp/test_client/test_file_2" /tmp
 ```
 - 원격지의 file 경로들을 큰 따옴표("")로 묶어줘야 합니다.
 
@@ -95,7 +95,7 @@ scp root@192.168.159.129:"/tmp/testclient/testfile2 /tmp/testclient/testfile3" /
 
 ```sh
 scp -r [option] [remote_id]@[remote_ip]:[remote_directory_path] [local_path]
-scp -r root@192.168.159.129:/tmp/testclient/testgogo /tmp
+scp -r root@192.168.159.129:/tmp/test_client/test_directory /tmp
 ```
 - `-r` option을 사용합니다.
 
