@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Markdown - 글머리 작성하기
-version: 2023-04-09
+date: 2023-04-09
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Git - 형상 관리 도구
-version: 2023-04-06
+date: 2023-04-06
 ---
 
 

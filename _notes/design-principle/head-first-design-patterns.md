@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Head First Design Patterns - Design 원칙
-version: 2023-06-04
+date: 2023-06-04
 ---
 
 

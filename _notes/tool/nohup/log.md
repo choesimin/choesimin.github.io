@@ -1,7 +1,7 @@
 ---
 layout: note
 title: nohup - Log 쌓기
-version: 2023-04-05
+date: 2023-04-05
 ---
 
 

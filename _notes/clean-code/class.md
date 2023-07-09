@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Clean Code - Class
-version: 2023-04-19
+date: 2023-04-19
 ---
 
 

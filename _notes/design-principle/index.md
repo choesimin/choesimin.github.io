@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Design Principle
-version: 2023-06-06
+date: 2023-06-06
 ---
 
 

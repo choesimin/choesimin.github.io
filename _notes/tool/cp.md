@@ -1,7 +1,7 @@
 ---
 layout: note
 title: cp - Linux에서 File 복사하기
-version: 2023-07-08
+date: 2023-07-08
 ---
 
 

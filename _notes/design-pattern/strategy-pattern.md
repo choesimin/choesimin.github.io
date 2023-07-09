@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Strategy Pattern - 전략적으로 행동 바꾸기
-version: 2023-07-03
+date: 2023-07-03
 ---
 
 

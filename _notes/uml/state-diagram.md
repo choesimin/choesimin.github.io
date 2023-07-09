@@ -1,7 +1,7 @@
 ---
 layout: note
 title: State Diagram - 상태의 변화를 분석하기
-version: 2023-06-19
+date: 2023-06-19
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Clean Code - 주석
-version: 2023-04-18
+date: 2023-04-18
 ---
 
 

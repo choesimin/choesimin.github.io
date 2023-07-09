@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Clean Code - 객체와 자료구조
-version: 2023-04-19
+date: 2023-04-19
 ---
 
 

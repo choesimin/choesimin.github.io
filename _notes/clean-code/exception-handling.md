@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Clean Code - 오류 처리
-version: 2023-04-19
+date: 2023-04-19
 ---
 
 

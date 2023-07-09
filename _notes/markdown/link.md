@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Markdown - 외부 Link 달기
-version: 2023-04-09
+date: 2023-04-09
 ---
 
 

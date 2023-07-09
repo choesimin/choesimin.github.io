@@ -1,7 +1,7 @@
 ---
 layout: note
 title: tail - File의 마지막 부분 출력하기
-version: 2023-04-03
+date: 2023-04-03
 ---
 
 

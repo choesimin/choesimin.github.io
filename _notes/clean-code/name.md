@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Clean Code - 이름 짓기
-version: 2023-04-19
+date: 2023-04-19
 ---
 
 

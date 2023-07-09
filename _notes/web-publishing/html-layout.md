@@ -1,7 +1,7 @@
 ---
 layout: note
 title: HTML Layout - 구조 설계
-version: 2023-05-11
+date: 2023-05-11
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Mermaid - Markdown 문서에 Diagram 그리기
-version: 2023-04-09
+date: 2023-04-09
 ---
 
 

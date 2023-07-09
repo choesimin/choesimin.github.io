@@ -1,7 +1,7 @@
 ---
 layout: note
 title: State Pattern - 상태에 따라 행동 바꾸기
-version: 2023-06-10
+date: 2023-06-10
 ---
 
 

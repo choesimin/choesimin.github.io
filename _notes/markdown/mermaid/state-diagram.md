@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Mermaid - State Diagram
-version: 2023-07-02
+date: 2023-07-02
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 layout: note
 title: SOLID - 객체 지향 설계
-version: 2023-06-06
+date: 2023-06-06
 ---
 
 

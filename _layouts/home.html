@@ -31,7 +31,7 @@ layout: base
         anchor.href = index.url;
         listItem.appendChild(anchor);
         var span = document.createElement("span");
-        span.innerHTML = index.version;
+        span.innerHTML = index.date;
         listItem.appendChild(span);
       } else {
         listItem.innerHTML = node.name + " (Must add category's index file)";
@@ -51,7 +51,7 @@ layout: base
       anchor.href = node.url;
       listItem.appendChild(anchor);
       var span = document.createElement("span");
-      span.innerHTML = node.version;
+      span.innerHTML = node.date;
       listItem.appendChild(span);
       list.appendChild(listItem);
     }
@@ -99,7 +99,7 @@ layout: base
   function makeNode(page) {
     var leaf = {
       name: page.title,
-      version: page.version,
+      date: page.date,
       url: page.url,
       isIndex: page.name === "index"
     }
@@ -133,7 +133,7 @@ layout: base
         category: id.slice(2, id.length - 1),
         name: id[id.length - 1],
         title: "{{ note.title }}",
-        version: "{{ note.version }}",
+        date: "{{ note.date | date: "%Y-%m-%d" }}",
         url: "{{ note.url | relative_url }}",
       });
     {% endfor %}

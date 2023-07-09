@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Markdown - 수평선 그리기
-version: 2023-04-09
+date: 2023-04-09
 ---
 
 

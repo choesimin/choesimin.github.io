@@ -1,7 +1,7 @@
 ---
 layout: note
 title: ls - 목록 출력하기
-version: 2023-04-04
+date: 2023-04-04
 ---
 
 

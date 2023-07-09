@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Clean Code - 함수
-version: 2023-04-20
+date: 2023-04-20
 ---
 
 

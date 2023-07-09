@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Design Pattern
-version: 2023-06-04
+date: 2023-06-04
 ---
 
 

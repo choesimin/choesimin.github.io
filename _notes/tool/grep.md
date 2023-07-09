@@ -1,7 +1,7 @@
 ---
 layout: note
 title: grep - 문자열 검색하기
-version: 2023-04-03
+date: 2023-04-03
 ---
 
 

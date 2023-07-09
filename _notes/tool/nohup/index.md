@@ -1,7 +1,7 @@
 ---
 layout: note
 title: nohup - Background에서 Program 실행시키기
-version: 2023-04-05
+date: 2023-04-05
 ---
 
 
