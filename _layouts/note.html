@@ -2,10 +2,11 @@
 layout: base
 ---
 
-<h1 class="title">{{ page.title }}</h1> 
-<p class="date">version : {{ page.date | date: "%Y-%m-%d" }}</p>
-
-{{ content }}
+<article>
+    <h1 class="title">{{ page.title }}</h1> 
+    <p class="date">version : {{ page.date | date: "%Y-%m-%d" }}</p>
+    {{ content }}
+</article>
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/hybrid.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
@@ -16,8 +17,5 @@ layout: base
     mermaid.initialize({ startOnLoad: false, theme: 'dark' });
     await mermaid.run({ querySelector: '.language-mermaid' });
 </script>
-
-
-
 
 <link rel="stylesheet" href="{{ '/assets/css/note.css' | relative_url }}">
