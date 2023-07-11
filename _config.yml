@@ -1,6 +1,9 @@
-name: 시민이
-description: 두 번째 뇌
-email: choesimin961009@gmail.com
+title: 시민이
+description: 개발 정보를 기록합니다.
+
+author:
+  name: 최시민
+  email: choesimin961009@gmail.com
 
 collections:
   notes:

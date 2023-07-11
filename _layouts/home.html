@@ -2,6 +2,15 @@
 layout: base
 ---
 
+<article class="intro">
+  <h1>{{ site.title }}의 개발 정보</h1>
+</article>
+
+<article class="list"></article>
+
+
+
+
 <script>
 
   var pages = getPages();
@@ -13,7 +22,7 @@ layout: base
 
   list.removeChild(list.querySelector("li"));
   list.querySelector("ul").className = "root";
-  document.querySelector("main").innerHTML = list.innerHTML;
+  document.querySelector("article.list").innerHTML = list.innerHTML;
 
 
 
