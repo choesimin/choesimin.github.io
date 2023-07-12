@@ -84,14 +84,28 @@ nav {
 
 nav a.logo img {
     width: 65px;
+    transition: 0.2s;
+}
+
+nav a.logo img:hover {
+    width: 75px;
+    transition: 0.2s;
 }
 
 nav a.about {
     float: right;
     padding: 10px;
-    font-size: 30px;
     font-weight: bolder;
     text-decoration-line: none;
+    font-size: 30px;
+    color: white;
+    transition: 0.2s;
+}
+
+nav a.about:hover {
+    font-size: 38px;
+    color: white;
+    transition: 0.2s;
 }
 
 footer {
