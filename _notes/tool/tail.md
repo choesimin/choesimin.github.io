@@ -42,6 +42,7 @@ tail [option] [file_name]
 ```sh
 tail -f mylog.log | grep 192.168.15.86
 ```
+
 - mylog file을 실시간으로 access하고 IP address가 192.168.42.12인 행만 추출합니다.
 
 
@@ -50,6 +51,7 @@ tail -f mylog.log | grep 192.168.15.86
 ```sh
 tail mylog1.log mylog2.log
 ```
+
 - 각 file의 마지막 부분을 확일할 수 있습니다.
 
 

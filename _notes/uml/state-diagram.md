@@ -113,7 +113,7 @@ if --> state4 : 조건 2
 - 하나의 State Diagram은 하나의 객체에 대한 상태를 정의해야 합니다.
 
 
-### Black Hole State
+### Black Hole State 주의하기
 
 - 들어오는 전이만 있고 나가는 전이가 없는 경우 Black Hole 상태가 됩니다.
 - Black Hole 상태가 있으면, 객체가 종료 상태에 이르지 못하고 무한 loop를 수행하게 됩니다.

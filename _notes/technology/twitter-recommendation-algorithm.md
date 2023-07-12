@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Twitter의 Tweet 추천 Algorighm
+title: Tweet 추천 Algorighm
 date: 2023-04-16
 ---
 

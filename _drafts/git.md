@@ -1,7 +1,7 @@
 ---
 layout: note
-title: Git - 명령어
-version: 2023-04-06
+title: Git - 명령어 총 정리
+version: 2023-07-12
 ---
 
 
@@ -9,21 +9,29 @@ version: 2023-04-06
 
 ## `git init`
 
-- `.git`이라는 하위 directory를 만듭니다.
-- 저장소에 필요한 skeleton(뼈대) file이 들어있습니다.
+- 명령어를 실행한 곳에 `.git`이라는 하위 directory를 만듭니다.
+- `.git`에는 저장소에 필요한 skeleton(뼈대) file이 들어있습니다.
 
 
 
 
 ## `git add`
 
+```sh
+git add [file_name]
+git add [file_name]
+```
+
 - staging area에 file을 추가합니다.
 - file의 상태가 `Modified`에서 `Staged`로 변합니다.
 
 | Option | 설명 |
 | - | - |
-| --interactive, -i | 대화형 mode로 추가합니다. |
-| --patch, -p | file의 일부분만 추가합니다. |
+| -A | 대화형 mode로 추가합니다. |
+| --interactive | 대화형 mode로 추가합니다. |
+| -i | `--interactive` option과 같습니다. |
+| --patch | file의 일부분만 추가합니다. |
+| -p | `-p` option과 같습니다. |
 
 
 
@@ -411,25 +419,15 @@ version: 2023-04-06
 |--continue|충돌이 발생한 경우, 충돌을 해결한 뒤 계속 진행하기|
 |--abort|충돌이 발생한 경우, cherry-pick하기 이전으로 돌아가기|
 
----
 
-# Git remote 저장소가 없다고 나올 때 대처
 
-- 증상
-    ```sh
-    # git pull origin master
 
-    remote: The project you were looking for could not be found
-    fatal: repository '~~~~' not found
-    ```
-- 해결법
-    ```sh
-    git credential-cache exit
-    ```
 
 ---
+
+
+
 
 # Reference
 
-- [https://git-scm.com/book/ko/v2](https://git-scm.com/book/ko/v2)
-- (https://yanacoding.tistory.com/4)[https://yanacoding.tistory.com/4]
+- <https://git-scm.com/book/ko/v2>
