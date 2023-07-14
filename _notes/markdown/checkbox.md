@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Markdown - Check Box
+title: Markdown - Check Box 만들기
 date: 2023-04-09
 ---
 
