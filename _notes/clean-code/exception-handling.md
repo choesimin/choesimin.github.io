@@ -382,4 +382,4 @@ if (s != null) {
 
 # Reference
 
-- Clean Code - Robert C. Martin
+- Clean Code (도서) - Robert C. Martin

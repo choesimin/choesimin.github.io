@@ -87,6 +87,6 @@ class나 module을 변경할 이유는 하나여야 한다.
 
 # Reference
 
-- Clean Code - Robert C. Martin
+- Clean Code (도서) - Robert C. Martin
 - <https://www.oracle.com/java/technologies/javase/codeconventions-fileorganization.html#1852>
 

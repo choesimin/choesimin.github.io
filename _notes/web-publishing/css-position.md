@@ -59,7 +59,7 @@ date: 2023-05-13
 - 요소를 일반적인 문서 흐름에서 제거하고, page layout에 공간도 배정하지 않습니다.
 - viewport의 초기 Containing Block을 기준으로 삼아 배치합니다.
     - viewport : 현재 화면에 보여지고 있는 다각형(보통 직사각형)의 영역입니다.
-        - web browser에서는 현재 창에서 문서를 볼 수 있는 부분을 말합니다.
+        - Web browser에서는 현재 창에서 문서를 볼 수 있는 부분을 말합니다.
             - viewport 바깥의 content는 scroll 하기 전엔 보이지 않습니다.
     - 최종 위치는 `top`, `right`, `bottom`, `left`이 지정합니다.
     - 요소의 조상 중 하나가 `transform`, `perspective`, `filter` 속성 중 어느 하나라도 `none`이 아니라면, viewport 대신 그 조상을 Containing Block으로 삼습니다.

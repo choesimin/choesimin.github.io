@@ -10,7 +10,7 @@ date: 2023-05-17
 ## `display` 속성
 
 - HTML의 모든 요소는 각각의 `display` 속성값을 가지고 있습니다.
-- `display` 속성은 HTML 요소를 web browser에 어떻게 보여줄지 결정하는 속성입니다.
+- `display` 속성은 HTML 요소를 Web browser에 어떻게 보여줄지 결정하는 속성입니다.
 
 
 ### `block`과 `inline`

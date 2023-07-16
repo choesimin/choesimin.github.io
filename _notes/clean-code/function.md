@@ -174,4 +174,4 @@ code를 읽으면서 짐작했던 기능을 각 routine이 그대로 수행한�
 
 # Reference
 
-- Clean Code - Robert C. Martin
+- Clean Code (도서) - Robert C. Martin

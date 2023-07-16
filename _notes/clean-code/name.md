@@ -152,5 +152,4 @@ date: 2023-04-19
 
 # Reference
 
-- Clean Code - Robert C. Martin
-
+- Clean Code (도서) - Robert C. Martin
