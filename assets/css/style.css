@@ -82,15 +82,43 @@ nav {
     margin: 0 auto;
 }
 
-nav a.logo img {
-    width: 65px;
+nav a.logo {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+nav a.logo span {
+    position: absolute;
+    display: inline-block;
+    height: 30px;
+    width: 15px;
+    border: 4px solid white;
+    box-sizing: border-box;
     transition: 0.2s;
 }
 
-nav a.logo img:hover {
-    width: 75px;
-    transition: 0.2s;
+nav a.logo span.s {
+    border-bottom-color: transparent;
 }
+
+nav a.logo span.m {
+    left: 20px;
+}
+
+nav a.logo span.n {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    left: 40px;
+}
+
+nav a.logo span.i {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    left: 45px;
+}
+
 
 nav a.about {
     float: right;
@@ -107,6 +135,9 @@ nav a.about:hover {
     color: white;
     transition: 0.2s;
 }
+
+
+
 
 footer {
     text-align: center;
