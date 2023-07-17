@@ -73,7 +73,7 @@ date: 2023-07-16
 
 - Cloud Service는 사용자와 Vender가 관리하는 영역에 따라서 **Packaged Software(On-premise)**, **IaaS(Infrastructure as a Service)**, **PaaS(Plarform as a Service)**, **SaaS(Software as a Service)**로 나뉩니다.
 
-| 관리 영역 | Packaged Software | Iaas | Paas | Saas |
+| 관리 영역 | Packaged Software | IaaS | PaaS | SaaS |
 | - | - | - | - | - |
 | Applications | User | User | User | Vender |
 | Data | User | User | User | Vender |

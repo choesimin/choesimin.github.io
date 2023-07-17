@@ -14,14 +14,14 @@ date: 2023-04-06
 
 
 
-## Vim의 mode
+## Vim의 Mode
 
 | Mode | 설명 |
 | - | - |
 | Command Mode | 명령을 수행됩니다. |
 | Command Line Mode | 화면 하단에 colon(`:`) prompt에 명령 문장을 입력하거나, slash(`/`) prompt에 단어를 입력합니다. |
 | Insert Mode or Edit Mode | 문서의 내용을 작성합니다. |
-| Visual Mode | 선택합니다. |
+| Visual Mode | 문자열을 선택합니다. |
 
 
 
@@ -35,7 +35,9 @@ date: 2023-04-06
 
 | 명령어 | 설명 |
 | - | - |
-| `/[keyword]` | 문자열을 검색합니다. |
+| `/[keyword]` | 문자열을 위에서 아래로 검색합니다. |
+| `?[keyword]` | 문자열을 아래에서 위로 검색합니다. |
+| `n` | 다음 검색 결과로 넘어갑니다. |
 
 
 
