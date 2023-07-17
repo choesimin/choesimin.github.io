@@ -83,16 +83,17 @@ nav {
 }
 
 nav a.logo {
-    position: absolute;
-    top: 10px;
-    left: 15px;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 nav a.logo span {
-    position: absolute;
     display: inline-block;
     height: 30px;
     width: 15px;
+    margin-right: 5px;
     border: 4px solid white;
     box-sizing: border-box;
     transition: 0.2s;
@@ -102,21 +103,21 @@ nav a.logo span.s {
     border-bottom-color: transparent;
 }
 
-nav a.logo span.m {
-    left: 20px;
-}
-
 nav a.logo span.n {
     border-top-color: transparent;
     border-right-color: transparent;
-    left: 40px;
 }
 
 nav a.logo span.i {
     border-top-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
-    left: 45px;
+    margin-left: -20px;
+    margin-right: 0;
+}
+
+nav a.logo:hover span.i {
+    margin-left: -15px;
 }
 
 
@@ -131,9 +132,9 @@ nav a.about {
 }
 
 nav a.about:hover {
-    font-size: 38px;
     color: white;
     transition: 0.2s;
+    transform: rotate(15deg);
 }
 
 
