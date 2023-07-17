@@ -95,4 +95,4 @@ date: 2023-07-16
 
 # Reference
 
-- 강의 | AWS Cloud 핵심 Service 활용 및 ECS EKS 개발 환경 구축 | 이한기
+- AWS Cloud 핵심 Service 활용 및 ECS EKS 개발 환경 구축 (강의) - 이한기
