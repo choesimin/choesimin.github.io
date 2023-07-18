@@ -8,4 +8,23 @@
     </main>
     {%- include footer.html -%}
   </body>
+
+  <script>
+    var logo = document.getElementsByTagName('nav')[0].getElementsByClassName('logo')[0]
+    var logoI = logo.getElementsByClassName('i')[0];
+
+    logo.addEventListener('mouseover', function(e) {
+      logoI.className += ' hover';
+    });
+    logo.addEventListener('mouseout', function(e) {
+      logoI.classList.remove('hover');
+    });
+
+    window.onload = function() {
+      logoI.className += ' hover';
+      setTimeout(function() {
+        logoI.classList.remove('hover');
+      }, 400);
+    }
+  </script>
 </html>

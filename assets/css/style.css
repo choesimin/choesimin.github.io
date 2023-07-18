@@ -116,7 +116,7 @@ nav a.logo span.i {
     margin-right: 0;
 }
 
-nav a.logo:hover span.i {
+nav a.logo span.i.hover {
     margin-left: -15px;
 }
 
