@@ -84,9 +84,10 @@ nav {
 
 nav a.logo {
     display: inline-block;
-    text-decoration: none;
+    width: 60px;
     margin-top: 10px;
     margin-left: 10px;
+    text-decoration: none;
 }
 
 nav a.logo span {
