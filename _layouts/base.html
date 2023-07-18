@@ -21,10 +21,12 @@
     });
 
     window.onload = function() {
-      logoI.className += ' hover';
+      setTimeout(function() {
+        logoI.className += ' hover';
+      }, 400);
       setTimeout(function() {
         logoI.classList.remove('hover');
-      }, 400);
+      }, 800);
     }
   </script>
 </html>
