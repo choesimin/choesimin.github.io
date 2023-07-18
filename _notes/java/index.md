@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Java
-date: 2023-07-15
+date: 2023-07-18
 ---
 
 
@@ -70,3 +70,52 @@ date: 2023-07-15
 
 
 
+
+---
+
+
+
+
+## Java Program의 실행
+
+1. Java로 code(`.java` file)를 작성합니다.
+2. Java compiler(`javac`)로 compile하여 bytecode(`.class` file)를 만듭니다.
+3. Java class loader로 bytecode를 JVM Runtime Data Area에 loading합니다.
+4. load된 bytecode를 실행 장비에 설치된 JVM(Java Virtual Machine)에 가져갑니다.
+5. 장비가 Java program 실행을 요청할 때마다 JVM이 bytecode를 기계어로 해석하여 실행합니다.
+
+```mermaid
+flowchart TB
+
+subgraph compile_env [Compile Time 환경]
+    file[.java : Java class file]
+    compiler[Java compiler]
+    bytecode[.class : Java bytecode]
+end
+subgraph rumtime_env[Rumtime 환경]
+    loader[Java class loader]
+    library[Java class library file]
+    subgraph jvm[JVM : Java virtual machine]
+        interpreter[Java interpreter]
+        jit[JIT compiler]
+        system[Runtime system]
+    end
+    os[OS]
+    hardware[Hardware]
+end
+
+file --> compiler --> bytecode --> loader --> interpreter & jit --> system --> os --> hardware
+library --> loader
+```
+
+
+
+
+---
+
+
+
+
+# Reference
+
+- <https://coding-factory.tistory.com/827>
