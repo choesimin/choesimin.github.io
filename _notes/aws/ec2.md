@@ -31,7 +31,7 @@ date: 2023-07-16
     - 접속 시, local PC에 저장해둔 Privte Key를 사용합니다.
 
 ```mermaid
-flowchart
+flowchart TD
 
 local[My Local PC]
 internet(((Internet)))

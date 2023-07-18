@@ -11,16 +11,10 @@ date: 2023-04-06
 ---
 title: 수정하고 싶은 상황
 ---
-
 gitGraph
-
-commit
-commit
 commit
 commit
 commit id: "수정하고 싶은 Commit" type: HIGHLIGHT
-commit
-commit
 commit
 ```
 
