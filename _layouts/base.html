@@ -12,21 +12,9 @@
   <script>
     var logo = document.getElementsByTagName('nav')[0].getElementsByClassName('logo')[0]
     var logoI = logo.getElementsByClassName('i')[0];
-
-    logo.addEventListener('mouseover', function(e) {
-      logoI.className += ' hover';
-    });
-    logo.addEventListener('mouseout', function(e) {
-      logoI.classList.remove('hover');
-    });
-
-    window.onload = function() {
-      setTimeout(function() {
-        logoI.className += ' hover';
-      }, 400);
-      setTimeout(function() {
-        logoI.classList.remove('hover');
-      }, 800);
-    }
+    setTimeout(() => logoI.className += ' hover', 400);
+    setTimeout(() => logoI.classList.remove('hover'), 800);
+    logo.addEventListener('mouseover', (e) => logoI.className += ' hover');
+    logo.addEventListener('mouseout', (e) => logoI.classList.remove('hover'));
   </script>
 </html>
