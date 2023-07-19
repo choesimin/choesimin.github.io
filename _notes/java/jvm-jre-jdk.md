@@ -53,6 +53,15 @@ JDK는 JRE를 포함하고, JRE는 JVM을 포함합니다.
 
 ### JDK의 종류
 
+```mermaid
+mindmap
+    root((JDK))
+        Java SE
+        Java EE
+        Java ME
+        Jakarta EE
+```
+
 - Java SE는 Java의 기본 규격입니다.
 - 사용 목적에 따라 Java SE를 기준으로 기능을 더하거나 뺀 특수 목적 edition이 있습니다.
     - e.g., Java EE, Java ME.
@@ -66,6 +75,14 @@ JDK는 JRE를 포함하고, JRE는 JVM을 포함합니다.
 #### Java EE : Java Platform, Enterprise Edition
 
 - Java SE에 WAS(Web Application Server)에서 동작하는 기능을 추가한 platform입니다.
+
+
+#### Jakarta EE : Jakarta, Enterprise Edition
+
+- Jakarta EE는 Java EE의 새로운 version입니다.
+
+- Jakarta EE는 Java EE의 상위 version이지만, 서로 호환되지 않습니다.
+    - Jakarta EE로 옮겨가려면 migration이 필요합니다.
 
 
 #### Java ME : Java Platform, Micro Edition
@@ -115,8 +132,13 @@ JDK는 JRE를 포함하고, JRE는 JVM을 포함합니다.
     - platform(OS, hardware)마다 실행을 위한 기계어는 다르기 때문에 JVM도 다릅니다.
         - e.g., macOS의 JVM과 Linux의 JVM은 서로 다릅니다.
 
+- e.g., C언어의 compiler는 platform에 종속되지만, Java의 compiler는 종속되지 않습니다.
+    - C언어는 compiler가 종속되기 때문에 실행 file도 종속됩니다.
+    - Java는 compiler가 종속되지 않기 때문에 실행 file(`.class`)도 종속되지 않습니다.
+        - JVM이 환경에 맞게 실행 file을 그때그때 변환하여 사용합니다.
 
-#### Java 실행 과정
+
+### Java 실행 과정
 
 - JVM이 platform에 따라 변하는 부분을 맡습니다.
 
@@ -150,7 +172,7 @@ windows_vm --> windows_run
 ```
 
 
-#### C 언어 실행 과정
+### C언어 실행 과정
 
 - compiler가 platform에 따라 변하는 부분을 맡습니다.
 
