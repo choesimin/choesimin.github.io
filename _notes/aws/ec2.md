@@ -31,7 +31,7 @@ date: 2023-07-16
     - 접속 시, local PC에 저장해둔 Privte Key를 사용합니다.
 
 ```mermaid
-flowchart TD
+flowchart LR
 
 local[My Local PC]
 internet(((Internet)))
@@ -54,7 +54,7 @@ subgraph aws[AWS 망]
 end
 
 local --> |Private Key| internet
-internet <-.-> |Internet gateway| vpc
+internet <--> |VPC의\nInternet gateway| vpc
 instance <--> volume
 ```
 
@@ -105,9 +105,12 @@ instance <--> volume
 
 ## Instance에 연결하기
 
+- `ssh` 명령어에 `-i` option을 주어 접속할 수 있습니다.
+    - `-i` option을 추가하면, key file로 접속 인증을 받을 수 있습니다.
+
 ```sh
 ssh -i [private_key] [user_name]@[public_ip]
-ssh -i ./my-key ec2-user@3.38.246.115
+ssh -i ./my-key.pem ec2-user@3.38.246.115
 ```
 
 
