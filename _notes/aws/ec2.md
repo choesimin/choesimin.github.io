@@ -206,6 +206,7 @@ chmod 400 my-key.pem
             - Security group 규칙을 추가해야 합니다.
             - Web server를 만드는 것이라면, Inbound 규칙에 `HTTP`, `HTTPS`를 Source 유형 `Anyware`로 추가합니다.
             - `ping` test를 위해 Inbound 규칙에 `모든 ICMP`를 Source 유형 `Anyware`로 추가합니다.
+                -  `ping` 명령은 ICMP(Internet Control Message Protocol)을 통해 동작하기 때문입니다.
 
 6. Storage를 설정합니다.
     - 용량과 종류를 선택하고 새로운 volumn을 추가합니다.
