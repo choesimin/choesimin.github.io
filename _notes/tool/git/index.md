@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Git - 형상 관리 도구
+title: Git - Source Code Version 관리하기
 date: 2023-04-06
 ---
 
