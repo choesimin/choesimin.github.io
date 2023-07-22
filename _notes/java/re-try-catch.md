@@ -75,9 +75,9 @@ for (int tryCount = 0; tryCount < limitCount; tryCount++) {
 
 ### 재귀 함수를 사용하여 재시도 논리 구현하기
 
-- 재귀 함수의 사용은 피하는 편이 좋지만, 특정 상황에서는 유용하게 활용할 수 있습니다.
-    - 재귀 함수는 일반적으로 반복문 비해 memory를 더 많이 사용합니다.
-    - 그러나 재귀 함수를 사용하여 가독성이나 생산성이 크게 좋아진다면 사용을 고려해 볼 수 있습니다.
+- 재귀 함수는 보통 사용하지 않는 편이 좋지만, 특정 상황에서는 유용하게 활용할 수 있습니다.
+    - 재귀 함수는 일반적으로 반복문에 비해 memory를 더 많이 사용합니다.
+    - 재귀 함수를 사용하여 가독성이나 생산성이 크게 좋아진다면 사용을 고려해 볼 수 있습니다.
 
 ```java
 /* 선언부 */
@@ -88,11 +88,8 @@ void trySomething(int tryCount, int limitCount) {
     } catch (SomeException e) {
         handleException();
 
-        if (tryCount < limitCount) {
-            trySomething(tryCount, limitCount);
-        } else {
-            break;
-        }
+        if (tryCount < limitCount) trySomething(tryCount, limitCount);
+        else break;
     }
 }
 

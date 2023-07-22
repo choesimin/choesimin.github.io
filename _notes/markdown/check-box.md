@@ -1,7 +1,7 @@
 ---
 layout: note
 title: Markdown - Check Box 만들기
-date: 2023-04-09
+date: 2023-07-22
 ---
 
 
@@ -10,14 +10,14 @@ date: 2023-04-09
 ## 문법
 
 ```
-- [ ] Item 1
-- [x] Item 2
-- [X] Item 3
+- [ ] 하나
+- [x] 둘
+- [X] 셋
 ```
 
 
 ## 결과
 
-- [ ] Item 1
-- [x] Item 2
-- [X] Item 3
+- [ ] 하나
+- [x] 둘
+- [X] 셋
