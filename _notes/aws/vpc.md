@@ -25,7 +25,7 @@ date: 2023-07-18
 
 
 
-## Custom VPC 설정하는 법
+## Custom VPC 설정하는 과정
 
 
 ### 1. VPC 만들기
@@ -44,9 +44,9 @@ date: 2023-07-18
 
 ## 3. Internet gateway 만들기
 
-- VPC를 새로 만들었다면 Internet gateway도 하나 생성 해야 합니다.
+- VPC를 새로 만들었다면 Internet gateway도 생성해야 합니다.
     - VPC 하나에 Internet gateway 하나를 1대1로 연결해야 하기 때문입니다.
-- Internet gateway는 생성 후에 VPC에 연결해야 사용할 수 있습니다.
+    - Internet gateway는 VPC에 연결해야 사용할 수 있습니다.
 
 
 ## 4. Routing table 만들기
