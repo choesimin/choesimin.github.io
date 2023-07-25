@@ -21,7 +21,7 @@ tail [option] [file_name]
 ```
 
 | Option | 설명 |
-| - | - |
+| --- | --- |
 | -f | tail을 종료하지 않고 file의 update 내용을 실시간으로 계속 출력합니다. |
 | -n [line_number] | file의 마지막 줄부터 지정한 line 수까지의 내용을 출력합니다. |
 | -c [byte_number] | file의 마지막부터 지정한 byte만큼의 내용을 출력합니다. |

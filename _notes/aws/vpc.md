@@ -17,6 +17,14 @@ date: 2023-07-18
         - 그러나 custom VPC를 만들어 사용하는 것이 일반적으로 더 낫습니다.
     - 기본 VPC의 전체 network 주소 범위는 `172.31.0.0`부터 `172.31.255.255`까지입니다.
 
+- VPC는 일반적으로 보안을 위해 AWS resource 간의 허용을 최소화하고, 네트워크를 손쉽게 group으로 구성하기 위해 사용합니다.
+
+|  | VPC 관련 Service |
+| --- | --- |
+| VPC Peering | 독립적인 VPC간의 network 통신을 가능하게 합니다. |
+| AWS Diarect Connect | 기존의 On-premise와 VPC를 연결합니다. |
+| VPC FLow Logs | VPC에서 발생하는 log를 기록합니다. |
+
 
 
 

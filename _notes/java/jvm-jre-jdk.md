@@ -8,7 +8,7 @@ date: 2023-07-17
 
 
 | Name | Full Name | 번역 |
-| - | - | - |
+| --- | --- | --- |
 | JDK | Java Development Kit | Java 개발 도구 |
 | JRE | Java Runtime Environment | Java 실행 환경 |
 | JVM | Java Virtual Machine | Java 가상 기계 |

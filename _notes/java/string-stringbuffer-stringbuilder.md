@@ -10,7 +10,7 @@ date: 2023-07-17
 - Java의 String, StringBuffer, StringBuilder class는 모두 문자열을 나타내는 자료형입니다.
 
 | String | StringBuffer | StringBuilder |
-| - | - | - |
+| --- | --- | --- |
 | **Immutable** Class | **Mutable** Class | **Mutable** Class |
 | **조회 연산**에 강합니다. | **문자열 연산**에 강합니다. | **문자열 연산**에 강합니다. |
 | **Thread Safe**합니다. | **Thread Safe**합니다. | **Non Thread Safe**하지 않습니다. |

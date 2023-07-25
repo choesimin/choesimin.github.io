@@ -179,7 +179,7 @@ mixer ----> result
 ##### Top 5 Community
 
 | Community | 사용자 수 |
-| - | - |
+| --- | --- |
 | POP | 332,000,000 |
 | NEWS | 293,000,000 |
 | SOCCER | 191,000,000 |

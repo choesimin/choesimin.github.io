@@ -29,7 +29,7 @@ scp [option] [source...] [destination]
 ### Option
 
 | Option | 설명 |
-| - | - |
+| --- | --- |
 | -a | 원본 file의 속성, link 정보도 함께 복사합니다. |
 | -p | 원본 file의 소유자, group, 권한, 시간 정보를 그대로 복사합니다. |
 | -f | 복사 위치에 file이 존재하는 경우 덮어씁니다. |

@@ -23,7 +23,7 @@ grep [option] [pattern] [file_name]
 ## grep option
 
 | Option | 설명 |
-| - | - |
+| --- | --- |
 | -c | 일치하는 행의 수를 출력합니다. |
 | -i | 대소문자를 구별하지 않습니다. |
 | -v | 일치하지 않는 행만 출력합니다. |
@@ -42,7 +42,7 @@ grep [option] [pattern] [file_name]
 ## grep의 종류
 
 | 명령어 | 설명 | 정규표현식 사용 가능 여부 |
-| - | - | - |
+| --- | --- | --- |
 | grep | 다중 pattern 검색 | O |
 | egrep | 정규표현식 pattern 검색 (`grep -E`와 동일) | O |
 | fgrep | 문자열 pattern 검색 (`grep -F`와 동일) | X |

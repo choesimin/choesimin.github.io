@@ -22,7 +22,7 @@ ls [optoin] [directory]
 ```
 
 | Option |  | 설명 |
-| - | - | - |
+| --- | --- | --- |
 | -a | all | 경로안의 모든 file을 출력합니다. 숨겨진 file, directory까지 보여줍니다. |
 | -l | long | 자세한 내용을 출력합니다. (권한, 포함된 file 수, file size, 소유자, group, 수정일자, file 이름 등) |
 | -r | reverse | 출력 결과를 내림차순으로 정렬합니다. default option은 alphabet 순서 입니다. |

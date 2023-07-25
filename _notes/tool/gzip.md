@@ -21,7 +21,7 @@ gzip [option] [file_name]
 ```
 
 | Option | 설명 |
-| - | - |
+| --- | --- |
 |  | option이 없으면 압축합니다. |
 | -[number] | 1부터 9까지의 숫자입니다. 1이 가장 빠르고 압축률이 가장 낮습니다. |
 | -c | 압축 결과를 출력하고 원본 file은 그대로 둡니다. |
@@ -63,7 +63,7 @@ gzip -cv **[common_file_name_string]**.gz | grep [search_keyword]
 - `tar` : file들을 모을 수는 없지만 압축할 수 있습니다.
 
 | 기능 | `tar` | `gzip` |
-| - | - | - |
+| --- | --- | --- |
 | file들 하나로 모으기 | O | X |
 | 압축하기 | X | O |
 

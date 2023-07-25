@@ -59,7 +59,7 @@ instance <--> volume
 ```
 
 | 구성 | 설명 |
-| - | - |
+| --- | --- |
 | AWS 망 | AWS 기능을 사용할 수 있는 망입니다. |
 | Region | service 지역입니다. data center들이 있는 곳을 의미합니다. 서울 region은 `ap-northeast-2`라는 id로 구분됩니다. |
 | Availability zone (AZ) | 가용 영역입니다. 한 region에 여러 개의 가용 영역을 포함됩니다. 하나의 가용 영역은 하나의 data center를 의미합니다. 서울에는 총 4개의 가용 영역이 있으며, `ap-northeast-2a`, `ap-northeast-2b`, `ap-northeast-2c`, `ap-northeast-2d`라는 id로 구분됩니다. |

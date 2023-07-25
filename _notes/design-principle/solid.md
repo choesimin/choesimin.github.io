@@ -10,7 +10,7 @@ date: 2023-06-06
 - SOLID는 객체지향의 특징을 잘 살릴 수 있는 설계의 특징 5가지입니다.
 
 | 약어 | 이름 | 설명 |
-| - | - | - |
+| --- | --- | --- |
 | SRP | Single Responsibility Principle | 단일 책임 원칙 |
 | OCP | Open Closed Principle | 개방 폐쇄 원칙 |
 | LSP | Liskov Substitution Principle | Liskov 치환 원칙 |
@@ -108,7 +108,7 @@ client가 자신이 이용하지 않는 method에 의존하지 않아야 합니�
 ```
 
 | 고수준 Module | 저수준 Module |
-| - | - |
+| --- | --- |
 | 의미있는 기능을 제공하는 module | 고수준 module을 구현하기 위해 필요한 하위 기능의 실제 구현체 |
 
 - DIP는 다형성을 이용한 DI(Dependency Injection, 의존성 주입)를 통해 구현 가능합니다.

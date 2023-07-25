@@ -181,7 +181,7 @@ void sendFinishTalk() throws SendFailException {
 ### Checked Exception & Unchecked Exception
 
 | Checked Exception | Unchecked Exception |
-| - | - |
+| --- | --- |
 | 확인된 예외 | 미확인된 예외 |
 | compile 단계에서 확인하는 예외입니다. | 실행 단계에서 확인하는 예외입니다. |
 | 반드시 예외 처리(`try-catch` or `throw`)를 해줘야 합니다. | 예외 처리를 강제하지 않습니다. |
@@ -224,7 +224,7 @@ void sendFinishTalk() throws SendFailException {
     - 외부 library와 program 사이의 의존성이 낮아집니다.
 
 | Good | Bad |
-| - | - |
+| --- | --- |
 | 외부 library를 사용하는 class를 wrapper class로 한 번 감싼 뒤 이 class에 대한 예외를 처리하기 | 외부 library가 던질 모든 예외를 catch로 구분하여 예외를 처리하기 |
 
 
@@ -349,7 +349,7 @@ if (employees != null) {
 - Java8 이상을 사용한다면, `Optional`객체를 사용합니다.
 
 | Null 처리를 위한 Optional의 함수 | 설명 |
-| - | - |
+| --- | --- |
 | `orElse()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 값을 반환합니다. |
 | `orElseGet()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 Lambda 표현식의 결괏값을 반환합니다. |
 | `orElseThrow()` | 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 예외를 발생시킵니다. |

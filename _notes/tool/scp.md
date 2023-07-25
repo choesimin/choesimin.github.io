@@ -22,7 +22,7 @@ scp [option] [source] [destination]
 ```
 
 | Option | 설명 |
-| - | - |
+| --- | --- |
 | -r | directory 내의 모든 file/directory를 복사합니다. |
 | -p | 복사할 때, 원본 권한 속성을 유지합니다. |
 | -P [port_number] | port 번호를 지정하여 복사합니다. |

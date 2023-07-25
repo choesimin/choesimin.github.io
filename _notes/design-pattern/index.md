@@ -55,7 +55,7 @@ A solution to a problem in a context.
 - design pattern은 context, problem, solution으로 구성됩니다.
 
 | Iterator Pattern | 예시 |
-| - | - |
+| --- | --- |
 | Context | 다수의 object collection을 가지고 있다. |
 | Problem | collection의 구현을 밖으로 드러내지 않고 object들을 처리하고 싶다. |
 | Solution | 별도의 class에 iteration을 캡슐화한다. |
@@ -103,7 +103,7 @@ A solution to a problem in a context.
 ### 생성 & 구조 & 행위
 
 | 생성 Pattern | 구조 Pattern | 행위 Pattern |
-| - | - | - |
+| --- | --- | --- |
 | Builder | Bridge | Mediator |
 | Prototype | Decorator | Interpreter |
 | Factory Method | Facade | Iterator |
@@ -141,7 +141,7 @@ A solution to a problem in a context.
 ### Class & Object
 
 | Class Pattern | Object Pattern |
-| - | - |
+| --- | --- |
 | Template Method | Strategy |
 | Factory Method | Observer |
 | Adaptor | Decorator |

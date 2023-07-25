@@ -74,7 +74,7 @@ class `Class with back quote !@#`
 - `<<`와 `>>`를 사용합니다.
 
 | 종류 | 문법 |
-| - | - |
+| --- | --- |
 | interface class | `<<Interface>>` |
 | abstract class | `<<Abstract>>` |
 | service class | `<<Service>>` |
@@ -239,7 +239,7 @@ class Class {
 - 변수와 함수 앞에 접근 제한자 기호를 붙일 수 있습니다.
 
 | Code | 접근 제한자 |
-| - | - |
+| --- | --- |
 | `+` | Public |
 | `-` | Private |
 | `#` | Protected |

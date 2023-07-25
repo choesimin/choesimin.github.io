@@ -73,7 +73,7 @@ direction [start_direction][end_direction]
 ```
 
 | Code | 화살표의 방향 |
-| - | - |
+| --- | --- |
 | `direction TB` | 상 -> 하 |
 | `direction BT` | 하 -> 상 |
 | `direction LR` | 좌 -> 우 |

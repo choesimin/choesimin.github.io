@@ -22,7 +22,7 @@ date: 2023-05-11
 ## Layout을 위한 요소 : Sementic & Non-Sementic
 
 | Semantic Element | Non-Semantic Element |
-| - | - |
+| --- | --- |
 | `<form>`, `<table>`, `<img>` 등과 같이 그 내용을 분명히 정의해 줍니다. | `<div>`, `<span>` 등과 같이 그 내용에 대해 아무것도 알려주지 않는 요소입니다. |
 
 
