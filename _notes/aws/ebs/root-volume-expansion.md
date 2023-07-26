@@ -8,6 +8,7 @@ date: 2023-07-23
 
 
 - EC2 Instance의 root volume을 늘릴 수 있습니다.
+- root volume은 additional volume과 달리 확장하고 나면 다시 줄일 수 없습니다.
 
 
 
@@ -23,8 +24,6 @@ date: 2023-07-23
 
 
 ### 1. Volume 확장하기
-
-- root volume은 확장하고 나면 줄일 수 없습니다.
 
 1. root volume을 선택하고 작업(`Actions`)의 volume 수정(`Modify volume`)을 눌러 확장을 시작합니다.
 2. 용량을 확장합니다.

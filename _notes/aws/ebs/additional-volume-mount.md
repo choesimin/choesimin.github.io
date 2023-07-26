@@ -7,12 +7,12 @@ date: 2023-07-23
 
 
 
-- EC2 Instance에 EBS Volume을 추가할 수 있습니다.
-    - 새 volume을 만들어 mount합니다.
-    - EBS Volume을 늘리는 것은 On-premise 장비에 disk를 추가하는 것과 동일합니다.
-        - e.g., Windows OS에 HDD나 SSD를 추가하여 D drive, E drive를 추가합니다.
+- EBS의 새로운 Volume을 만들어 EC2 Instance에 추가(mount)할 수 있습니다.
 
-- EBS는 On-premise와 달리 장비를 종료하지 않고 운영 중에 storage를 증설할 수 있습니다.
+- EBS Volume을 늘리는 것은 On-premise 장비에 disk를 추가하는 것과 동일합니다.
+    - e.g., Windows OS에 HDD나 SSD를 추가하여 D drive, E drive를 추가합니다.
+
+- EBS는 장비를 종료하지 않고 Volume(storage)을 증설할 수 있기 때문에, On-premise보다 저장 공간 운영이 더 유연합니다.
 
 
 

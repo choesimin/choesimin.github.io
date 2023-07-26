@@ -25,3 +25,21 @@ p.date {
 ul {
     padding-left: 20px;
 }
+
+ul li {
+    list-style: '· ';
+}
+
+ul.index {
+    background-color: #222222;
+    padding: 20px;
+}
+
+ul.index li {
+    list-style: inside;
+}
+
+ul.index li a {
+    display: block;
+    text-decoration: none;
+}

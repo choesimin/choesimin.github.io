@@ -30,7 +30,7 @@ date: 2023-07-16
 
 ### 2. Instance 유형 선택
 
-- CPU, Memory(RAM), AMI을 선택합니다.
+- CPU, Memory(RAM), AMI(운영 체제)을 선택합니다.
 - 사용 목적에 맞게 CPU 갯수와 Memory 용량을 선택합니다.
 - AMI(Amazon Machine Image)는 운영 체제를 의미합니다.
     - 실제 업무에는 가장 최신 version의 OS보다는 최신 바로 전의 검증된 version을 사용하는 것을 권장합니다.

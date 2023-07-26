@@ -3,10 +3,32 @@ layout: base
 ---
 
 <article>
+    <ul class="index"></ul>
     <h1 class="title">{{ page.title }}</h1> 
     <p class="date">version : {{ page.date | date: "%Y-%m-%d" }}</p>
     {{ content }}
 </article>
+
+<script>
+    const index = document.getElementsByClassName('index')[0];
+    const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+
+    for (let i = 0; i < headers.length; i++) {
+        const header =  headers[i];
+
+        const anchor = document.createElement('a');
+        anchor.innerHTML = header.innerHTML;
+        anchor.href = '#' + header.id;
+
+        const item = document.createElement('li');
+        item.appendChild(anchor);
+        item.style.marginLeft = (parseInt(header.tagName.replace('H', '')) - 1) * 15 + 'px';
+
+        index.appendChild(item);
+
+        console.log(parseInt(header.tagName.replace('H', '')));
+    }
+</script>
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/hybrid.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>

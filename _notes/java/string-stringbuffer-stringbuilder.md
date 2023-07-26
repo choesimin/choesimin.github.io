@@ -24,7 +24,7 @@ date: 2023-07-17
 
 
 
-## Mutable Class : 변하는 StringBuffer와 StringBuilder
+## StringBuffer & StringBuilder : Mutable Class
 
 - StringBuffer와 StringBuilder는 mutable class입니다.
     - mutable(변하는) class는 instance를 생성한 후에도 instance의 내용을 수정할 수 있습니다.
@@ -53,10 +53,10 @@ date: 2023-07-17
 
 
 
-## Immutable Class : 불변하는 String
+## String : Immutable(불변하는) Class
 
 - String은 immutable class입니다.
-    - immutable(불변하는) class는 instance를 생성한 후에는 instance의 내용을 수정할 수 없습니다.
+    - immutable class는 instance를 생성한 후에는 instance의 내용을 수정할 수 없습니다.
 
 - 조회 연산에서 다른 문자열 class보다 성능이 좋습니다.
 
