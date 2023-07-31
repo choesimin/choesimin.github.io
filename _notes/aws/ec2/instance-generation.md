@@ -77,13 +77,36 @@ date: 2023-07-16
     - e.g., `gp`는 General Purpost를 의미합니다.
 
 
-### 6. (Optional) 고급 세부 정보 설정
+### 6. (Optional) 고급 세부 정보(Advanced details) 설정
 
-- `User data` 설정 항목에 Instance를 가동할 때 실행할 script를 지정할 수도 있습니다.
-    - e.g., `yum install -y httpd`.
+#### `User data` 설정
+
+- Instance를 기동할 때 실행할 script를 지정할 수 있습니다.
+
+```sh
+#!/bin/bash
+# CentOS, Amazon Linux
+yum install -y httpd
+systemctl enable --now httpd
+echo "<h1>web01</h1>" > /var/www/html/index.html
+```
+
+```sh
+#!/bin/bash
+# Ubuntu, Debian
+apt update
+apt install -y apache2
+echo "<h1>web02</h1>" > /var/www/html/index.html
+```
+
+### 7. Instance의 갯수 설정
+
+- 현재 설정으로 생성할 Intance의 갯수를 설정합니다.
+- network 설정이 같기 때문에 여러 개의 Instance를 만들어도 같은 가용 영역에 생성됩니다.
+- 만약 가용성을 위해 Instance들을 서로 다른 가용 영역에 나누어 만들고 싶다면, 갯수를 1로 설정하고 network 설정을 다르게 하여 여러 번 생성해야 합니다.
 
 
-### 7. Instance 최종 생성
+### 8. Instance 최종 생성
 
 - 만약 Free tier Instance 생성에 실패했다면, 선택한 Subnet이 Free tier를 지원하는 Subnet인지 확인합니다.
     - e.g., seoul region의 경우, Free tier는 'a'와 'c'로 끝나는 Subnet만 사용할 수 있습니다.
