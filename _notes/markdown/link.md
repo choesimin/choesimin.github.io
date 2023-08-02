@@ -11,7 +11,7 @@ date: 2023-04-09
 
 ```
 [Google](https://google.com)   
-[Google](https://google.com, "google link")   
+[Google](https://google.com "google link")   
 <https://google.com>
 ```
 
@@ -19,5 +19,5 @@ date: 2023-04-09
 ## 결과
 
 [Google](https://google.com)   
-[Google](https://google.com, "google link")   
+[Google](https://google.com "google link")   
 <https://google.com>
