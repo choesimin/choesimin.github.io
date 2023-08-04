@@ -14,11 +14,6 @@ p {
     margin: 0;
 }
 
-p.index_title {
-    font-size: 30px;
-    font-family: monospace;
-}
-
 p.date {
     font-size: 17px;
     opacity: 0.5;
