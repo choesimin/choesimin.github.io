@@ -1,6 +1,6 @@
 ---
 layout: note
-title: MySQL - table과 columne의 주석 조회하기
+title: MySQL Comment - Table과 Column의 주석 조회하기
 date: 2023-07-30
 ---
 
@@ -12,6 +12,11 @@ date: 2023-07-30
 
 
 
+---
+
+
+
+
 ## Table Comment 조회하기
 
 ```sql
@@ -19,8 +24,6 @@ SELECT table_name, table_comment
 FROM information_schema.tables
 WHERE table_schema = [db_name] AND table_name = [table_name];
 ```
-
-
 
 
 ## Column Comment 조회하기

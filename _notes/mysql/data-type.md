@@ -1,6 +1,6 @@
 ---
 layout: note
-title: MySQL - 자료형
+title: MySQL Data - 자료형
 date: 2023-07-27
 ---
 
