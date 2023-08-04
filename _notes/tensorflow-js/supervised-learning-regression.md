@@ -7,8 +7,6 @@ date: 2023-08-04
 
 
 
-## 지도 학습의 회귀
-
 - 예측하고 싶은 종속 변수가 숫자일 때, 지도 학습의 회귀를 사용할 수 있습니다.
 
 
@@ -34,7 +32,7 @@ date: 2023-08-04
 
 - TensorFlow.js는 JavaScript를 실행할 수 있는 환경(Web browser, Node.js)에서 사용할 수 있습니다.
 
-#### Web Browser Import
+#### 1.1. Web Browser Import
 
 ```html
 <html>
@@ -44,7 +42,7 @@ date: 2023-08-04
 </html>
 ```
 
-#### Node.js Import
+#### 1.2. Node.js Import
 
 ```sh
 npm install @tensorflow/tfjs-node
@@ -59,7 +57,7 @@ const tf = require('@tensorflow/tfjs')
 
 - 원인 data(독립 변수 X)와 결과 data(종속 변수 Y)가 필요하며, 학습할 수 있을 정도로 충분해야 합니다.
 
-#### 과거의 Data를 배열로 준비하기
+#### 2.1. 과거의 Data를 배열로 준비하기
 
 - 학습에 사용할 과거의 data를 2차원 배열 형태로 준비합니다.
     - 변수가 한 개일 때는 1차원 배열로 표현할 수도 있습니다.
@@ -98,7 +96,7 @@ var trainY = [
 ];
 ```
 
-#### 배열 Data를 Tensor로 변환하기
+#### 2.2. 배열 Data를 Tensor로 변환하기
 
 - TensorFlow는 Tensor 형태의 data를 사용합니다.
 - 따라서 배열 data를 Tensor로 변환하는 과정이 필요합니다.
@@ -111,7 +109,7 @@ var trainTensorY = tf.tensor(trainY);
 
 ### 3. Model 정의하기
 
-#### Layer 정의하기
+#### 3.1 Layer 정의하기
 
 - input layer, output layer, hidden layer를 정의합니다.
 - input layer의 `shape`에는 독립 변수의 갯수를 입력합니다.
@@ -139,7 +137,7 @@ var hiddenLayer2 = tf.layers.dense({units: 12, activation: 'relu'}).apply(hidden
 var outputLayer = tf.layers.dense({units: 2}).apply(hiddenLayer2);
 ```
 
-#### Model Compile하기
+#### 3.2. Model Compile하기
 
 - 정의한 layer로 model을 compile합니다.
 
@@ -154,7 +152,7 @@ model.compile(compileParam);
 
 - 준비한 학습 data로 model을 학습(fit)시킵니다.
 
-#### 학습 인자 설정하기
+#### 4.1. 학습 인자 설정하기
 
 - 인자의 `epochs`는 학습을 반복할 횟수를 의미합니다.
 
@@ -178,7 +176,7 @@ var fitParam = {
 };
 ```
 
-#### 학습시키기
+#### 4.2. 학습시키기
 
 - 학습을 위해 준비한 data와 설정한 학습 인자로 model을 학습시킵니다.
 
@@ -186,7 +184,7 @@ var fitParam = {
 model.fit(trainTensorX, trainTensorY, fitParam);
 ```
 
-#### 학습이 완료된 Model 저장하기
+#### 4.3. 학습이 완료된 Model 저장하기
 
 - `save` 함수를 이용하여 학습이 완료된 model을 저장할 수 있습니다.
 
@@ -202,14 +200,14 @@ model.save('localstorage://sample');
 
 ### 5. Model 이용하기
 
-#### 기존 Data를 이용하여 학습이 잘 되었는지 확인하기
+#### 5.1. 기존 Data를 이용하여 학습이 잘 되었는지 확인하기
 
 ```js
 var predictTensorY = model.predict(trainTensorX);
 predictTensorY.print();
 ```
 
-#### 새로운 Data를 입력하여 Model 이용하기
+#### 5.2. 새로운 Data를 입력하여 Model 이용하기
 
 - 학습 data를 만들 때와 마찬가지로, 배열로 표현된 새로운 data를 Tensor로 변환하여 사용합니다.
 
@@ -221,7 +219,7 @@ var predictTensorY = model.predict(predictTensorX);
 predictTensorY.print();
 ```
 
-#### 저장해 둔 Model 이용하기
+#### 5.3. 저장해 둔 Model 이용하기
 
 ```js
 var predictX = [[18], [19]];    // or [18, 19]
