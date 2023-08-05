@@ -530,7 +530,7 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 
 
 
-## 분류 예제 1. 독립 변수와 종속 변수가 여러 개
+## 분류 예제 1
 
 - 실제로는 학습 data가 훨씬 많아야 합니다.
 
@@ -580,6 +580,49 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
             predictTensorY.print();
         });
     </script>
+</body>
+</html>
+```
+
+
+
+
+## 분류 예제 2
+
+```html
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js"></script>
+</head>
+<body>
+<script>
+    dfd.read_csv('https://raw.githubusercontent.com/blackdew/tensorflow1/master/csv/iris.csv').then(function(data) {
+        var encoder = new dfd.OneHotEncoder();
+
+        var trainX = data.loc({columns: ['꽃잎길이', '꽃잎폭', '꽃받침길이', '꽃받침폭']});
+        var trainY = encoder.fit(data['품종']);
+
+        var inputLayer = tf.input({shape: [4]});
+        var hiddenLayer = tf.layers.dense({units: 4, activation:'relu'}).apply(inputLayer);
+        var outputLayer = tf.layers.dense({units: 3, activation:'softmax'}).apply(hiddenLayer);
+
+        var model = tf.model({inputs: inputLayer, outputs:outputLayer });
+        var compileParam = {optimizer: tf.train.adam(), loss: 'categoricalCrossentropy', metrics: ['accuracy']};
+        model.compile(compileParam);
+
+        var fitParam = {
+          epochs: 500,
+          callbacks:{onEpochEnd: function(epoch, logs) {console.log('epoch', epoch, logs);}}
+        };
+        model.fit(trainX.tensor, trainY.tensor, fitParam).then(function(result) {
+            var predictY = new dfd.DataFrame(model.predict(trainX.tensor));
+            predictY.print();
+            trainY.print();
+        });
+    });
+</script>
 </body>
 </html>
 ```
