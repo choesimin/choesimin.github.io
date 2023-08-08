@@ -7,10 +7,21 @@ date: 2023-08-04
 
 
 
-- TensorFlow.js를 사용하면 JavaScript언어로 TensorFlow 기능을 이용할 수 있습니다.
+- TensorFlow.js는 TensorFlow(Python machine learning library)의 기능을 제공하는 JavaScript library입니다.
+
+
+
+
+---
+
+
+
+
+## TensorFlow.js로 지도 학습 구현하기
 
 - 예측하고 싶은 종속 변수가 숫자일 때, 지도 학습의 회귀(regression)를 이용합니다.
 - 예측하고 싶은 종속 변수가 분류 형태일 때, 지도 학습의 분류(classification)를 이용합니다.
+
 - TensorFlow.js 지도 학습 구현은 크게 다섯 개의 과정으로 구분할 수 있습니다.
     1. TensorFlow.js를 Import합니다.
     2. 학습 Data를 준비합니다.
@@ -306,7 +317,7 @@ predictTensorY.print();
 ```
 
 
-### 5.3. 저장해 둔 Model 이용하기
+### 5.3. 저장해 둔 Model 사용하기
 
 ```js
 var predictX = [[18], [19]];    // or [18, 19]
@@ -471,9 +482,12 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 ```
 
 
-## 회위 예제 4. Model을 저장하고, 저장한 Model을 사용하기
+## 회귀 예제 4. Model을 저장하고, 저장한 Model을 사용하기
 
 - Web browser의 localstorage에 저장합니다.
+
+
+### Model을 학습시키고 저장하기
 
 ```html
 <!DOCTYPE html>
@@ -509,6 +523,8 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 </body>
 </html>
 ```
+
+### Model을 사용하기
 
 ```html
 <!DOCTYPE html>
