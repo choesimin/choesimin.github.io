@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Tweeter가 추천 Tweet을 고르는 법
+title: Tweeter가 Tweet을 추천하는 법
 date: 2023-04-16
 ---
 

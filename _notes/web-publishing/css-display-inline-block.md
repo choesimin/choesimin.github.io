@@ -1,6 +1,6 @@
 ---
 layout: note
-title: CSS Display - block과 inline
+title: CSS Display - block, inline, inline-block
 date: 2023-05-17
 ---
 

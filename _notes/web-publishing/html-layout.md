@@ -1,6 +1,6 @@
 ---
 layout: note
-title: HTML Layout - 구조 설계
+title: HTML Layout - 화면 구조 설계하기
 date: 2023-05-11
 ---
 

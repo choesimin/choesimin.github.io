@@ -1,6 +1,6 @@
 ---
 layout: note
-title: SOLID - 객체 지향 설계
+title: SOLID - 객체 지향 설계의 5원칙
 date: 2023-06-06
 ---
 

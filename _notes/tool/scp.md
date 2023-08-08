@@ -1,6 +1,6 @@
 ---
 layout: note
-title: scp - File을 원격으로 전송하기
+title: scp - Terminal에서 File을 원격으로 전송하기
 date: 2023-04-03
 ---
 

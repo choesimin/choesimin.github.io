@@ -1,6 +1,6 @@
 ---
 layout: note
-title: CSS Position - 요소의 위치를 결정하기
+title: CSS Position - 요소 배치하기
 date: 2023-05-13
 ---
 

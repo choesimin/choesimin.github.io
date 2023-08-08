@@ -1,13 +1,11 @@
 ---
 layout: note
-title: Clean Code - Class
+title: Clean Code - Class 작게 만들기
 date: 2023-04-19
 ---
 
 
 
-
-## Class 작게 만들기
 
 ```txt
 class나 module을 변경할 이유는 하나여야 한다.

@@ -1,6 +1,6 @@
 ---
 layout: note
-title: State Diagram - 상태의 변화를 분석하기
+title: State Diagram - 객체의 상태 변화 시각화하기
 date: 2023-06-19
 ---
 

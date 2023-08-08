@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Clean Code - 형식 맞추기
+title: Clean Code - 읽기 좋은 Code Formatting
 date: 2023-04-19
 ---
 

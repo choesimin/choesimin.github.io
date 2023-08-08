@@ -1,6 +1,6 @@
 ---
 layout: note
-title: nohup - Log 쌓기
+title: nohup - Log를 원하는 형식으로 쌓기
 date: 2023-04-05
 ---
 

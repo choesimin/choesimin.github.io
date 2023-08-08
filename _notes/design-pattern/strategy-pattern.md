@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Strategy Pattern - 전략적으로 행동 바꾸기
+title: Strategy Pattern - 상황에 맞추어 객체의 행동 바꾸기
 date: 2023-07-03
 ---
 

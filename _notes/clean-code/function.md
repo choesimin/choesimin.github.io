@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Clean Code - 함수
+title: Clean Code - 함수 작게 만들기
 date: 2023-04-20
 ---
 

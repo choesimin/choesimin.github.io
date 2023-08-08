@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Vim - Linux에서 Text 편집하기
+title: Vim - Mouse 없이 Coding하기
 date: 2023-07-20
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Mermaid - State Diagram
+title: Mermaid Syntax - Markdown 문서에 State Diagram 그리기
 date: 2023-07-02
 ---
 

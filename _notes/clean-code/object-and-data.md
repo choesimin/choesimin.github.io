@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Clean Code - 객체와 자료구조
+title: Clean Code - 객체와 자료구조를 구분하여 사용하기
 date: 2023-04-19
 ---
 

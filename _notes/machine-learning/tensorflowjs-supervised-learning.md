@@ -1,6 +1,6 @@
 ---
 layout: note
-title: TensorFlow.js - JavaScript에서 지도 학습 구현하기
+title: TensorFlow.js - JavaScript로 지도 학습 구현하기
 date: 2023-08-04
 ---
 
