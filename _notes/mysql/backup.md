@@ -180,7 +180,7 @@ passowrd : 123456
 
 | Option | Short Option | 설명 |
 | - | - | - |
-| `--default-character-set=[charset_name]` |  | 기본 charset을 설정합니다. 기본 값은 `utf8`입니다. |
+| `--default-character-set=[charset]` |  | 기본 charset을 설정합니다. 기본 값은 `utf8`입니다. |
 | `--no-set-names` | `-N` | `--set-names` option을 disable합니다. |
 | `--set-charset` |  | `SET NAMES default_charset`을 기술합니다. |
 | `--help` | `-?` | 도움말을 출력합니다. |

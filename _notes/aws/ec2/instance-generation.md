@@ -50,10 +50,11 @@ date: 2023-07-16
 
 1. VPC를 설정합니다.
     - 기본 VPC를 사용해도 됩니다.
-    - 이전에 기본 VPC를 삭제했다면, VPC 설정 console로 들어가 기본 VPC를 생성할 수 있습니다.
+    - 이전에 기본 VPC를 삭제했다면, VPC 설정 console로 들어가 기본 VPC를 다시 생성할 수 있습니다.
 
 2. Subnet을 설정합니다.
-    - AZ(Availability Zone, 가용 영역)에 대한 Subnet을 선택합니다.
+    - AZ(Availability Zone, 가용 영역)에 대한 Subnet을 지정합니다.
+    - Web server를 위한 Instance라면 외부 접속을 허용해야 하기 때문에 Public Subnet을 선택합니다.
 
 3. Public IP 자동 할당 여부를 설정합니다.
     - 활성화하면 공인 IP를 생성할 Instance에 자동으로 할당할 수 있습니다.
@@ -88,7 +89,7 @@ date: 2023-07-16
 # CentOS, Amazon Linux
 yum install -y httpd
 systemctl enable --now httpd
-echo "<h1>web01</h1>" > /var/www/html/index.html
+echo "<h1>Hello, EC2.</h1>" > /var/www/html/index.html
 ```
 
 ```sh
@@ -96,7 +97,7 @@ echo "<h1>web01</h1>" > /var/www/html/index.html
 # Ubuntu, Debian
 apt update
 apt install -y apache2
-echo "<h1>web02</h1>" > /var/www/html/index.html
+echo "<h1>Hello, EC2.</h1>" > /var/www/html/index.html
 ```
 
 ### 7. Instance의 갯수 설정

@@ -1,11 +1,13 @@
 ---
 layout: note
-title: TensorFlow.js - 지도 학습(회귀, 분류) 구현하기
+title: TensorFlow.js - JavaScript에서 지도 학습 구현하기
 date: 2023-08-04
 ---
 
 
 
+
+- TensorFlow.js를 사용하면 JavaScript언어로 TensorFlow 기능을 이용할 수 있습니다.
 
 - 예측하고 싶은 종속 변수가 숫자일 때, 지도 학습의 회귀(regression)를 이용합니다.
 - 예측하고 싶은 종속 변수가 분류 형태일 때, 지도 학습의 분류(classification)를 이용합니다.
@@ -15,8 +17,10 @@ date: 2023-08-04
     3. Model의 모양을 정의합니다.
     4. Data로 Model을 학습(fit)시킵니다.
     5. Model을 이용합니다.
-- 회귀와 분류 모두 결국 독립 변수와 종속 변수의 관계를 정의하는 것이기 때문에, 학습 단계가 동일합니다.
-    - 다만, 분류의 종속 변수는 One-Hot Encoding하여 사용해야 합니다.
+
+- 회귀와 분류는 모두 지도 학습에 속하기 때문에 학습 단계가 동일합니다.
+    - 회귀의 종속 변수는 sequential한 숫자입니다.
+    - 분류의 종속 변수는 One-Hot Encoding하여 사용해야 합니다.
 
 
 
@@ -64,6 +68,8 @@ const tf = require('@tensorflow/tfjs')
 
 - 원인 data(독립 변수 `x`)와 결과 data(종속 변수 `y`)가 필요하며, 학습할 수 있을 정도로 충분해야 합니다.
 - 분류 학습을 위한 종속 변수는 One-Hot Encoding하여 준비합니다.
+    - One-Hot Encoding은 Danfo.js의 data 변환 기능을 사용하는 것을 권장합니다.
+        - Danfo.js는 TensorFlow.js와 호환성이 좋은 고성능 data structure를 제공하는 library입니다.
 
 
 ### 2.1. 학습 Data를 배열로 준비하기
@@ -143,9 +149,9 @@ var trainTensorY = tf.tensor(trainY);
 
 ### 3.1 Layer 정의하기
 
-- input layer, output layer, hidden layer를 정의합니다.
-- input layer의 `shape`에는 독립 변수의 갯수를 입력합니다.
-- output layer의 `units`에는 종속 변수의 갯수를 입력합니다.
+- 입력층(input layer), 출력층(output layer), 은닉층(hidden layer)을 정의합니다.
+- 입력층의 `shape`에는 독립 변수의 갯수를 입력합니다.
+- 출력층의 `units`에는 종속 변수의 갯수를 입력합니다.
 
 #### 3.1.1. 회귀와 분류의 공통적인 Layer 정의
 
@@ -162,7 +168,7 @@ var outputLayer = tf.layers.dense({units: 2}).apply(inputLayer);
 ```
 
 ```js
-// 깊은 학습(deep learning)을 하고 싶다면, input layer와 output layer의 사이에 hidden layer를 추가합니다.
+// 깊은 학습(deep learning)을 하고 싶다면, 입력층과 출력층의 사이에 은닉층를 추가합니다.
 var inputLayer = tf.input({shape: [12]});
 var hiddenLayer1 = tf.layers.dense({units: 12, activation: 'relu'}).apply(inputLayer);
 var hiddenLayer2 = tf.layers.dense({units: 12, activation: 'relu'}).apply(hiddenLayer1);
@@ -171,7 +177,7 @@ var outputLayer = tf.layers.dense({units: 2}).apply(hiddenLayer2);
 
 #### 3.1.2. 분류를 구현할 때의 추가적인 Parameter
 
-- 분류를 위한 output layer에는 parameter에 `activation: 'softmax'`를 추가합니다.
+- 분류를 위한 출력층에는 parameter에 `activation: 'softmax'`를 추가합니다.
 
 ```js
 var outputLayer = tf.layers.dense({units: 3, activation: 'softmax'}).apply(inputLayer);
@@ -180,7 +186,7 @@ var outputLayer = tf.layers.dense({units: 3, activation: 'softmax'}).apply(input
 
 ### 3.2. Model Compile하기
 
-- input layer와 output layer로 model을 정의하고, 정의한 model을 compile합니다.
+- 입력층과 출력층으로 model을 정의하고, 정의한 model을 compile합니다.
 - model을 compile할 때 compile parameter가 필요한데, 회귀와 분류의 설정값이 서로 다릅니다.
 
 #### 3.2.1. 회귀 Model Compile하기
@@ -414,6 +420,8 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 
 ## 회귀 예제 3. 독립 변수와 종속 변수가 여러 개일 때 깊은 학습(deep learning)
 
+- 실제로는 학습 data가 훨씬 많아야 합니다.
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -530,7 +538,7 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 
 
 
-## 분류 예제 1
+## 분류 예제 1. 3개의 범주로 분류하기
 
 - 실제로는 학습 data가 훨씬 많아야 합니다.
 
@@ -585,9 +593,9 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 ```
 
 
+## 분류 예제 2 : Danfo.js를 사용하여 분류하기
 
-
-## 분류 예제 2
+- Danfo.js를 사용하여 분류를 위한 data 전처리를 쉽게 할 수 있습니다.
 
 ```html
 <html>

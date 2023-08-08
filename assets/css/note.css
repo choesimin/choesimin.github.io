@@ -22,12 +22,8 @@ p.date {
 
 
 
-ul {
+ol, ul {
     padding-left: 20px;
-}
-
-ul li {
-    list-style: '· ';
 }
 
 ul.index {
