@@ -39,3 +39,13 @@ ul.index li {
 ul.index li a {
     text-decoration: none;
 }
+
+
+
+
+code {
+    background-color: #222222;
+    border: 1px solid #333333;
+    padding: 1px 3px;
+    border-radius: 3px;
+}
