@@ -17,12 +17,12 @@ date: 2023-04-09
 
 
 
-## 방법 1. `<pre><code>`
+## 방법 1. Code Tag(`<pre><code> </code></pre>`)로 감싸기
 
 
 ### 문법
 
-```
+```txt
 <pre>
 <code>
 main( ) {
@@ -36,14 +36,10 @@ main( ) {
 
 ### 결과
 
-<pre>
-<code>
-main( ) {
+<pre><code>main( ) {
     puts("Hello, world!");
     return 0;
-}
-</code>
-</pre>
+}</code></pre>
 
 
 
@@ -53,21 +49,17 @@ main( ) {
 
 
 
-## 방법 2. \`\`\` (code block code)
+## 방법 2. Code Block Code(\`\`\` \`\`\`)로 감싸기
 
 
 ### 문법
 
-<pre>
-<code>
-```
+<pre><code class='language-plaintext'>```
 main( ) {
     puts("Hello, world!");
     return 0;
 }
-```
-</code>
-</pre>
+```</code></pre>
 
 
 ### 결과

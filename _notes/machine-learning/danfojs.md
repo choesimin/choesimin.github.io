@@ -42,7 +42,7 @@ date: 2023-08-09
 ### Data 집계 기능
 
 - Group 연산(split-apply-combine)을 지원합니다.
-    - `split-apply-combine` : 쪼개고-적용하고-합치기.
+    - split-apply-combine : 쪼개고-적용하고-합치기.
 - GroupBy 기능을 사용하여 집계한 통계 자료로 data를 직관적으로 분석할 수 있습니다.
 
 
@@ -79,7 +79,11 @@ date: 2023-08-09
 - `Series` 객체는 하나의 column을 가진 1차원 배열을 Danfo.js의 자료형으로 변환한 것입니다.
 
 ```js
-var series = new dfd.Series(['row1', 'row2', 'row3']);
+var series = new dfd.Series([
+    'row1',
+    'row2',
+    'row3'
+]);
 ```
 
 

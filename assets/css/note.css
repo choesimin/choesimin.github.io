@@ -27,7 +27,7 @@ ol, ul {
 }
 
 ul.index {
-    background-color: #222222;
+    background-color: var(--background-highlight-color);
     padding: 20px;
     margin-bottom: 100px;
 }
@@ -44,8 +44,5 @@ ul.index li a {
 
 
 code {
-    background-color: #222222;
-    border: 1px solid #333333;
-    padding: 1px 3px;
-    border-radius: 3px;
+    color: var(--code-highlight-color);
 }

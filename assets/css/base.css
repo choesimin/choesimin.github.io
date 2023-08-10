@@ -1,10 +1,12 @@
 :root {
-    --background-color: #111111;
+    --background-color: #111;
+    --background-highlight-color: #222;
 
-    --color: #cccccc;
-    --highlight-color: #ffcc00;
+    --color: #ccc;
+    --highlight-color: #fd0;
+    --code-highlight-color: #bdf;
 
-    --table-border-color: #444444;
+    --table-border-color: #444;
 }
 
 
@@ -139,7 +141,7 @@ nav a.about {
     transition: 0.2s;
 }
 
-nav a.about:hover {
+nav a.about.hover {
     color: white;
     transition: 0.2s;
     transform: rotate(15deg);
