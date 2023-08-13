@@ -1,16 +1,18 @@
 ---
 layout: note
-title: Amazon S3
+title: Amazon S3 - 저렴한 대용량 저장소
 date: 2023-08-06
 ---
+
 
 
 
 ## S3 : Simple Storage Service
 
 - Amazon의 Cloud 객체 저장 service입니다.
-- S3는 data를 외부에 공개하는 것에 대해 보수적입니다.
-    - data의 외부 접근 혀용엔 항상 경고 문구가 있습니다.
+
+- S3는 data를 외부에 공개하는 것에 대해 보수적이기 때문입니다.
+    - 따라서 file의 외부 접근을 혀용할 때는 항상 경고 문구가 표시되고, 사용자는 이에 동의해야 합니다.
 
 
 

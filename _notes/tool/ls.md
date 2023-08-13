@@ -1,6 +1,6 @@
 ---
 layout: note
-title: ls - Terminal에서 목록 출력하기File 
+title: ls - Terminal에서 File 목록 출력하기
 date: 2023-04-04
 ---
 

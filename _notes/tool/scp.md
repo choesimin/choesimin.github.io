@@ -53,7 +53,7 @@ scp test_file root@192.168.159.129:/tmp/test_client
 
 ```sh
 scp [option] [local_file_1_path] [local_file_2_path] [remote_id]@[remote_ip]:[remote_path]
-scp tes_file_1 test_file_2 root@192.168.159.129:/tmp/test_client
+scp test_file_1 test_file_2 root@192.168.159.129:/tmp/test_client
 ```
 
 
