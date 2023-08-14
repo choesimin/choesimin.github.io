@@ -6,7 +6,11 @@ author:
   email: choesimin961009@gmail.com
 
 collections:
+  pages:
+    output: true
   notes:
+    output: true
+  arts:
     output: true
 
 plugins:

@@ -2,7 +2,13 @@
 layout: base
 ---
 
-<article class="list"></article>
+<!-- <article class="arts">
+  {% for art in site.arts %}
+    <a href="{{ art.url | relative_url }}">{{ art.title }}</a>
+  {% endfor %}
+</article> -->
+
+<article class="notes"></article>
 
 
 
@@ -18,7 +24,7 @@ layout: base
 
   list.removeChild(list.querySelector("li"));
   list.querySelector("ul").className = "root";
-  document.querySelector("article.list").innerHTML = list.innerHTML;
+  document.querySelector("article.notes").innerHTML = list.innerHTML;
 
 
 
