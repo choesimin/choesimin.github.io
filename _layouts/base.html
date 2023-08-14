@@ -10,25 +10,26 @@
   </body>
 
   <script>
-    var logo = document.getElementsByTagName('nav')[0].getElementsByClassName('logo')[0]
+    var logo = document.getElementsByTagName('nav')[0].getElementsByClassName('logo')[0];
     var logoI = logo.getElementsByClassName('i')[0];
+    logo.addEventListener('mouseover', (e) => addHoverClass(logoI));
+    logo.addEventListener('mouseout', (e) => removeHoverClass(logoI));
+    setTimeout(() => addHoverClass(logoI), 400);
+    setTimeout(() => removeHoverClass(logoI), 800);
 
-    var about = document.getElementsByTagName('nav')[0].getElementsByClassName('about')[0]
-
-
-    setTimeout(() => {
-      logoI.className += ' hover';
-      about.className += ' hover';
-    }, 400);
-    setTimeout(() => {
-      logoI.classList.remove('hover')
-      about.classList.remove('hover')
-  }, 800);
-
-    logo.addEventListener('mouseover', (e) => logoI.className += ' hover');
-    logo.addEventListener('mouseout', (e) => logoI.classList.remove('hover'));
-
+    var about = document.getElementsByTagName('nav')[0].getElementsByClassName('about')[0];
     about.addEventListener('mouseover', (e) => about.className += ' hover');
     about.addEventListener('mouseout', (e) => about.classList.remove('hover'));
+    setTimeout(() => addHoverClass(about), 400);
+    setTimeout(() => removeHoverClass(about), 600);
+    setTimeout(() => addHoverClass(about), 700);
+    setTimeout(() => removeHoverClass(about), 800);
+
+    function addHoverClass(element) {
+      element.className += ' hover'
+    }
+    function removeHoverClass(element) {
+      element.classList.remove('hover');
+    }
   </script>
 </html>

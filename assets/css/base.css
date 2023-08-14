@@ -134,17 +134,17 @@ nav a.logo span.i.hover {
 nav a.about {
     float: right;
     padding: 10px;
-    font-weight: bolder;
     text-decoration-line: none;
     font-size: 30px;
     color: white;
     transition: 0.2s;
+    transform: rotate(80deg);
 }
 
 nav a.about.hover {
     color: white;
     transition: 0.2s;
-    transform: rotate(15deg);
+    transform: rotate(60deg);
 }
 
 
