@@ -1,6 +1,6 @@
 ---
 layout: note
-title: HTML Canvas - Browser에 Pixel로 그림 그리기
+title: HTML Canvas - Pixel로 그림 그리기
 date: 2023-08-15
 ---
 
