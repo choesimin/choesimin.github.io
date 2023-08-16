@@ -19,3 +19,13 @@ ul.root li > span {
     margin-left: 10px;
     opacity: 0.5;
 }
+
+
+
+
+article.arts {
+    padding-bottom: 50px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
