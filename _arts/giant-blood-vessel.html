@@ -7,53 +7,49 @@ title: 거대 혈관
 
 <head>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
         html,
         body {
+            margin: 0;
+            padding: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
 
-        canvas {
-            display: block;
+        div {
+            position: absolute;
+            height: 100%;
         }
     </style>
 </head>
 
 <body>
-    <canvas id="canvas"></canvas>
     <script>
-        const xSize = 8;
-        const ySize = 5;
+        const body = document.body;
+        let divisions = [];
 
-        var canvas = document.getElementById('canvas');
-        window.addEventListener('resize', resizeCanvas, false);
-        resizeCanvas();
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            draw();
-        }
+        draw();
 
         function draw() {
-            const context = canvas.getContext("2d");
-            for (let y = 0; y < Math.ceil(window.innerHeight / ySize); y++) {
-                for (let x = 0; x < Math.ceil(window.innerWidth / xSize); x++) {
-                    context.fillStyle = getRed();
-                    context.fillRect(x * xSize, y * ySize, (x + 1) * xSize, (y + 1) * ySize);
-                }
-            }
-            setTimeout(draw, 50);
+            setDivisions();
+            setColor();
+            setInterval(setColor, 50);
         }
 
-        function getRed() {
-            const random = Math.random();
-            return "rgba(" + Math.floor(random * 256) + ", 0, 0," + random / 10 + ")";
+        function setDivisions() {
+            for (let x = 0; x < window.innerWidth; x++) {
+                const division = document.createElement('div');
+                division.style.width = '1px';
+                division.style.left = x + 'px';
+                body.append(division);
+                divisions.push(division);
+            }
+        }
+
+        function setColor() {
+            for (let i = 0; i < divisions.length; i++) {
+                divisions[i].style.backgroundColor = '#' + Math.round(Math.random() * 0xff).toString(16) + '0000';
+            }
         }
     </script>
 </body>
