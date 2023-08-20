@@ -25,7 +25,9 @@ ul.root li > span {
 
 article.arts {
     padding-bottom: 50px;
-    font-size: 20px;
-    color: white;
     text-align: center;
+}
+
+article.arts a img {
+    width: 60px;
 }

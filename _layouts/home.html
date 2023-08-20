@@ -4,7 +4,7 @@ layout: base
 
 <article class="arts">
   {% for art in site.arts %}
-    <a href="{{ art.url | relative_url }}">{{ art.title }}</a>
+    <a href="{{ art.url | relative_url }}"><img src="{{ art.url | replace: 'html', 'svg' }}" alt="Art Thumbnail"></a>
   {% endfor %}
 </article>
 
