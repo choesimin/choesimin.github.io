@@ -11,10 +11,9 @@ date: 2023-08-18
 
 - SVG는 **2차원 Vector Graphic** 또는 **Vector와 Raster가 혼합된 Graphic**을 서술하기 위한 언어입니다.
 - SVG은 기본적으로 XML 문법으로 작성하며, HTML 문서에서 사용할 때는 HTML 문법(`<svg>`)을 사용합니다.
-
-- SVG는 CSS로 꾸밀 수 있습니다.
-- SVG로 작성한 그림은 상호 작용(interactive)이 가능하고 동적(dynamic)입니다.
-    - e.g., 특정 event에 반응하는 animation을 적용할 수 있습니다.
+- SVG를 HTML 문서에서 사용할 때는, CSS로 꾸미거나 JavaScript로 동적 효과를 줄 수도 있습니다.
+    - SVG로 작성한 그림은 상호 작용(interactive)이 가능하고 동적(dynamic)입니다.
+        - e.g., 특정 event에 반응하는 animation을 적용할 수 있습니다.
 
 
 ### SVG의 3가지 Graphic 객체
@@ -42,10 +41,10 @@ date: 2023-08-18
 ## Web 접근성을 높이는 SVG
 
 - 그림(image), 소리(sound), 문자(text), 상호 작용(interaction) 등의 매체(multimedia)는 사용자가 이해하기 쉽게 정보를 간소화하고 분명하게 만들어 전달하기 때문에 그 자체로 접근성이 좋습니다.
-- 그러나 그림이나 문자 같은 rendered contents는 비가시적 장치(non-visual device) 사용자에 대한 접근성이 매우 떨어집니다.
+- 그러나 그림이나 문자 같은 그려진 내용(rendered contents)는 비가시적 장치(non-visual device) 사용자에 대한 접근성이 매우 떨어집니다.
     - e.g., 시각 장애인과 같이 audio 장치만 사용할 수 있는 환경의 사용자는 그림으로부터 정보를 얻을 수 없습니다.
 - 따라서 Web 개발자와 contents 작성자는 원본과 동일한 수준의 대안(alternative equivalent)을 제공하여 정보를 전달받을 수 있도록 해야 합니다.
-- SVG는 alternative equivalent로써 여러 가지 metadata를 포함하고 있기 때문에, SVG의 사용은 접근성을 높이는 데에 도움이 됩니다.
+- SVG는 alternative equivalent로써 여러 가지 metadata를 포함하고 있기 때문에, SVG의 사용은 접근성을 높입니다.
 
 
 ### SVG의 특징 1 : Vector Graphic
@@ -57,11 +56,9 @@ date: 2023-08-18
 - SVG는 Vector graphic이기 때문에 수만배 확대하여도 깨지지 않습니다.
 - 시력이 낮은 사용자가 화면을 확대해도 선명한 image를 그대로 볼 수 있습니다.
     - pixel 기반의 image는 확대했을 때, 계단이 생기거나 선명도가 떨어집니다.
+- 아래의 SVG로 그린 원을 크게 확대해도 선명함이 유지됩니다.
 
 <svg><circle cx="40" cy="20" r="20" fill="red"></circle></svg>
-
-- 위의 SVG로 그린 원을 크게 확대해도 테두리의 선명함이 유지됩니다.
-
 
 #### 구조적인(Structured) SVG
 
@@ -87,7 +84,7 @@ date: 2023-08-18
 
 #### 자유롭게 꾸밀 수 있는(Stylable) SVG
 
-- XML로 작성된 모든 Markup 문서는 CSS와 XSL style sheet를 사용하여 꾸밀 수 있으며, 따라서 SVG도 style 수정이 가능합니다.
+- XML로 작성된 모든 markup 문서는 CSS와 XSL style sheet를 사용하여 꾸밀 수 있으며, 따라서 SVG도 style 수정이 가능합니다.
     - CSS를 사용할 수 있기 때문에 CSS에 정의된 수많은 style 속성을 사용하여 SVG를 꾸밀 수 있습니다.
     - 저시력(low vision), 색맹(color deficiencies) 등 보조 기술(assistive technology)이 필요한 사용자를 위한 CSS Style을 SVG Image에도 그대로 적용할 수 있습니다.
 
@@ -98,12 +95,12 @@ date: 2023-08-18
 
 #### 다른 XML 언어와 호환 가능한 SVG
 
-- HTML과 같이 다른 XML 언어로 작성된 문서에 SVG 문서를 포함하는 것이 가능합니다.
+- 다른 XML 언어로 작성된 문서에 SVG 문서를 포함하는 것이 가능합니다.
+- 반대로 SVG 문서가 다른 XML 언어로 작성된 markup을 포함하는 것도 가능합니다.
+- markup 언어를 섞어 쓸 수 있기 때문에, 문서의 각 부분에 가장 적합한 markup 언어를 사용할 수 있으며, 이는 접근성을 높이는 요소입니다.
+    - e.g., HTML 문서에서 SVG를 사용하여 도형과 문자를 그릴 수 있습니다.
+    - e.g., MathML 문서에서 SVG를 사용하여 방정식을 배치하고 graph를 그릴 수 있습니다.
 
-- SVG documents may be included in documents written in other XML languages, and may also include markup from other XML languages.
-- Mixing markup language can increase accessibility because authors may use the markup language most suited to each part of a document (refer to the Web Content Accessibility Guidelines 1.0 [WCAG10], Guideline 3).
-- For instance, a MathML document could use SVG for both laying out equations and drawing graphs of those equations.
-- In examples below, we show how to describe SVG components and their relationships by embedding RDF metadata and SMIL markup in the SVG.
 
 
 
