@@ -56,11 +56,12 @@ date: 2023-08-18
 - SVG는 Vector graphic이기 때문에 수만배 확대하여도 깨지지 않습니다.
 - 시력이 낮은 사용자가 화면을 확대해도 선명한 image를 그대로 볼 수 있습니다.
     - pixel 기반의 image는 확대했을 때, 계단이 생기거나 선명도가 떨어집니다.
-- 아래의 SVG로 그린 원을 크게 확대해도 선명함이 유지됩니다.
 
-<svg><circle cx="40" cy="20" r="20" fill="red"></circle></svg>
+<svg width="100" height="100"><circle cx="50" cy="50" r="50" fill="white"></circle></svg>
 
-#### 구조적인(Structured) SVG
+- 위의 SVG로 그린 원을 크게 확대해도 선명함이 유지됩니다.
+
+#### 구조(Structure)를 가지는 SVG
 
 - SVG는 구조 정보(structural information)를 가지고 있습니다.
 
@@ -68,7 +69,7 @@ date: 2023-08-18
 | - | - | - |
 | Image의 요소 | Vector | Pixel |
 | 그리는 방법 | 여러 개의 vector graphic component를 만들고 component들을 조합하여 하나의 SVG를 그립니다. | 각 pixel에 색상값을 설정하여 PNG를 그립니다. |
-| 구조적 정보(structural information)의 유무 | SVG는 구조적 정보를 가지고 있습니다.<br>SVG를 구성하는 vector graphic component들의 역할과 배치, vector graphic component를 구성하는 path, color 등의 정보로 전체 image의 구조적 특징을 설명할 수 있습니다. | PNG는 구조적 정보를 가지고 있지 않습니다.<br>각 좌표의 pixel이 어떤 색상값을 가졌는지만 알 수 있으며, pixel들의 색상값만으로는 구조적인 특징을 설명할 수 없습니다. |
+| 구조 정보의 유무 | SVG는 구조 정보를 가지고 있습니다.<br>SVG를 구성하는 vector graphic component들의 역할과 배치, vector graphic component를 구성하는 path, color 등의 정보로 전체 image의 구조적인 특징을 설명할 수 있습니다. | PNG는 구조 정보를 가지고 있지 않습니다.<br>각 좌표의 pixel이 어떤 색상값을 가졌는지만 알 수 있으며, pixel들의 색상값만으로는 구조적인 특징을 설명할 수 없습니다. |
 
 
 ### SVG의 특징 2 : XML
