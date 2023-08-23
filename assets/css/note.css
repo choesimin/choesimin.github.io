@@ -1,5 +1,11 @@
 h1, h2, h3, h4, h5, h6 {
-    margin-top: 50px;
+    color: var(--bright-color);
+}
+h1, h2, h3 {
+    margin-top: 60px;
+}
+h4, h5, h6 {
+    margin-top: 40px;
 }
 
 h1.title {

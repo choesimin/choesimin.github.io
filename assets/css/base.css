@@ -3,6 +3,7 @@
     --background-highlight-color: #222;
 
     --color: #ccc;
+    --bright-color: white;
     --highlight-color: #fd0;
     --code-highlight-color: #bdf;
 
@@ -136,13 +137,13 @@ nav a.about {
     padding: 10px;
     text-decoration-line: none;
     font-size: 30px;
-    color: white;
+    color: var(--bright-color);
     transition: 0.2s;
     transform: rotate(80deg);
 }
 
 nav a.about.hover {
-    color: white;
+    color: var(--bright-color);
     transition: 0.2s;
     transform: rotate(60deg);
 }
