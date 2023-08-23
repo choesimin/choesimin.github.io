@@ -1,16 +1,16 @@
 ---
 layout: note
-title: HTML SVG - Vector로 그림 그리기
+title: SVG - Website의 접근성을 높이는 방법
 date: 2023-08-18
 ---
 
 
 
 
-## SVG : Scalable Vector Graphics
+## Scalable Vector Graphics
 
-- SVG는 **2차원 Vector Graphic** 또는 **Vector와 Raster가 혼합된 Graphic**을 서술하기 위한 언어입니다.
-- SVG은 기본적으로 XML 문법으로 작성하며, HTML 문서에서 사용할 때는 HTML 문법(`<svg>`)을 사용합니다.
+- SVG(Scalable Vector Graphics)는 **2차원 Vector Graphic** 또는 **Vector와 Raster가 혼합된 Graphic**을 서술하기 위한 언어입니다.
+- SVG은 기본적으로 XML 문법으로 작성하며, HTML 문서에서 사용할 때는 HTML 문법(`<svg>`)에 맞춰 사용합니다.
 - SVG를 HTML 문서에서 사용할 때는, CSS로 꾸미거나 JavaScript로 동적 효과를 줄 수도 있습니다.
     - SVG로 작성한 그림은 상호 작용(interactive)이 가능하고 동적(dynamic)입니다.
         - e.g., 특정 event에 반응하는 animation을 적용할 수 있습니다.
@@ -51,7 +51,7 @@ date: 2023-08-18
 
 - SVG는 vector로 그려지며, 따라서 raster image(pixel image)의 단점을 가지지 않습니다.
 
-#### 확대에 용이한(Scalable) SVG
+#### 확대해도 깨지지 않는(Scalable) SVG
 
 - SVG는 Vector graphic이기 때문에 수만배 확대하여도 깨지지 않습니다.
 - 시력이 낮은 사용자가 화면을 확대해도 선명한 image를 그대로 볼 수 있습니다.
