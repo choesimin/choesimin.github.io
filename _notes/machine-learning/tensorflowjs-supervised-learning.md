@@ -638,7 +638,7 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 
         var fitParam = {
           epochs: 500,
-          callbacks:{onEpochEnd: function(epoch, logs) {console.log('epoch', epoch, logs);}}
+          callbacks: {onEpochEnd: function(epoch, logs) {console.log('epoch', epoch, logs);}}
         };
         model.fit(trainX.tensor, trainY.tensor, fitParam).then(function(result) {
             var predictY = new dfd.DataFrame(model.predict(trainX.tensor));

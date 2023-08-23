@@ -1,22 +1,21 @@
 ---
 layout: note
-title: gzip - 단일 File 압축하기
-date: 2023-04-02
+title: gzip, gunzip - File을 압축하고 해제하기
+date: 2023-08-23
 ---
 
 
 
 
-## gzip : gunzip
+## `gzip` : 압축하기
 
 - 단일 file/stream 무손실 data 압축 utility입니다.
-- 압축 file의 접미사는 `.gz`입니다. 
+- 압축이 완료된 file의 접미사는 `.gz`입니다. 
 
 
-## 사용법
+### `gzip` 사용법
 
 ```sh
-gunzip [option] [file_name]
 gzip [option] [file_name]
 ```
 
@@ -35,7 +34,7 @@ gzip [option] [file_name]
 | -V | version을 출력합니다. |
 
 
-## 압축하기
+### Example : 압축하기
 
 ```sh
 gzip [file_name]
@@ -43,21 +42,63 @@ gzip -9v [file_name]    # 가장 높은 압축률로 정보를 출력하며 압�
 ```
 
 
-## 압축 해제하기
+
+
+---
+
+
+
+
+## `gunzip` : 압축 해제하기
+
+- `gunzip` 명령어를 사용하여 `gzip`으로 압축한 file(`.gz`)을 해제할 수 있습니다.
+    - 또는 `gzip` 명령어에 `-d` option을 주어 압축을 해제할 수도 있습니다.
+
+
+### `gunzip` 사용법
 
 ```sh
+gzip [option] [file_name]
+```
+
+
+### Example : 압축 해제하기
+
+```sh
+gunzip [gz_file_name]
 gzip -d [gz_file_name]
 ```
 
 
-## 여러 .gz file에서 특정 단어를 검색하기
+
+
+---
+
+
+
+
+## 여러 개의 `.gz` file에서 특정 단어를 검색하기
+
+- `gzip` 명령어와 `grep` 명령어를 함께 사용하거나, `zgrep` 명령어를 사용하여 압축된 file 내의 문자열을 검색할 수 있습니다.
+    - `gzip -c`는 `zcat`과 동일하게 동작합니다.
+    - `zgrep` 명령어는 압축 file에 대한 `grep` 명령어입니다.
 
 ```sh
 gzip -cv **[common_file_name_string]**.gz | grep [search_keyword]
+zgrep [search_keyword] *[common_file_name_string]*.gz
 ```
 
+- 검색 문자열에 띄어쓰기가 포함되어 있다면, 문자열을 쌍따옴표(`"`)로 감쌉니다.
 
-## `gzip`과 `tar`
+
+
+
+---
+
+
+
+
+## 헷갈리기 쉬운 `gzip`과 `tar`의 차이
 
 - `gzip` : 여러 file들을 하나로 모으되 압축은 하지 않습니다.
 - `tar` : file들을 모을 수는 없지만 압축할 수 있습니다.
