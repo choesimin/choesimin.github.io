@@ -1,6 +1,6 @@
 ---
 layout: note
-title: SVG - Website의 접근성을 높이는 방법
+title: SVG - Website의 접근성을 높이는 Image
 date: 2023-08-18
 ---
 
