@@ -18,6 +18,7 @@ layout: art
         div {
             position: absolute;
             height: 100%;
+            transition: 4s;
         }
     </style>
 </head>
@@ -32,7 +33,7 @@ layout: art
         function draw() {
             setDivisions();
             setColor();
-            setInterval(setColor, 50);
+            setInterval(setColor, 500);
         }
 
         function setDivisions() {
