@@ -70,6 +70,7 @@ date: 2023-08-24
 - `viewbox ⊂ viewport` : viewbox의 설정은 viewport 영역 안에서 이루어집니다.
     - viewport는 틀(frame)을 정하고, viewbox는 그 안의 세부 사항(detail)을 정합니다.
     - viewport가 얼마만큼의 영역을 보여줄지 정한다면, viewbox는 보여지는 영역을 어떻게 보여줄지 결정합니다.
+    - viewbox의 값을 설정하는 것은 viewport에 mapping되는 공간을 명시하는 것입니다.
 
 - viewbox를 설정하여 view 영역(box)을 이동(pan)하고, 확대/축소(zoom)할 수 있습니다.
 - viewbox는 `viewBox` 속성값 parameter 4개(`x`, `y`, `width`, `height`)를 순서대로 지정하여 설정합니다.
