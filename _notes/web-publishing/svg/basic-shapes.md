@@ -29,12 +29,12 @@ date: 2023-08-28
 
 ```html
 <svg>
-    <rect width="200" height="100" fill="#bbddff" />
+    <rect width="200" height="100" fill="#ffffff" />
 </svg>
 ```
 
 <svg height="100">
-    <rect width="200" height="100" fill="#bbddff" />
+    <rect width="200" height="100" fill="#ffffff" />
 </svg>
 
 
@@ -44,12 +44,12 @@ date: 2023-08-28
 
 ```html
 <svg>
-    <rect width="200" height="100" fill="#bbddff" rx="20" ry="20" />
+    <rect width="200" height="100" fill="#ffffff" rx="20" ry="20" />
 </svg>
 ```
 
 <svg height="100">
-    <rect width="200" height="100" fill="#bbddff" rx="20" ry="20" />
+    <rect width="200" height="100" fill="#ffffff" rx="20" ry="20" />
 </svg>
 
 
@@ -59,12 +59,12 @@ date: 2023-08-28
 
 ```html
 <svg>
-    <rect width="200" height="100" fill="#bbddff" x="100" y="50" />
+    <rect width="200" height="100" fill="#ffffff" x="100" y="50" />
 </svg>
 ```
 
 <svg>
-    <rect width="200" height="100" fill="#bbddff" x="100" y="50" />
+    <rect width="200" height="100" fill="#ffffff" x="100" y="50" />
 </svg>
 
 
@@ -82,12 +82,12 @@ date: 2023-08-28
 
 ```html
 <svg>
-    <circle cx="50" cy="50" r="50" fill="#bbddff" />
+    <circle cx="50" cy="50" r="50" fill="#ffffff" />
 </svg>
 ```
 
 <svg height="100">
-    <circle cx="50" cy="50" r="50" fill="#bbddff" />
+    <circle cx="50" cy="50" r="50" fill="#ffffff" />
 </svg>
 
 
@@ -99,12 +99,12 @@ date: 2023-08-28
 
 ```html
 <svg>
-    <circle cx="60" cy="60" r="50" fill="none" stroke="#bbddff" stroke-width="20" />
+    <circle cx="60" cy="60" r="50" fill="none" stroke="#ffffff" stroke-width="20" />
 </svg>
 ```
 
 <svg height="120">
-    <circle cx="60" cy="60" r="50" fill="none" stroke="#bbddff" stroke-width="20" />
+    <circle cx="60" cy="60" r="50" fill="none" stroke="#ffffff" stroke-width="20" />
 </svg>
 
 
@@ -122,12 +122,12 @@ date: 2023-08-28
 
 ```html
 <svg>
-    <ellipse cx="100" cy="50" rx="100" ry="50" fill="#bbddff" />
+    <ellipse cx="100" cy="50" rx="100" ry="50" fill="#ffffff" />
 </svg>
 ```
 
 <svg height="100">
-    <ellipse cx="100" cy="50" rx="100" ry="50" fill="#bbddff" />
+    <ellipse cx="100" cy="50" rx="100" ry="50" fill="#ffffff" />
 </svg>
 
 
@@ -137,12 +137,12 @@ date: 2023-08-28
 
 ```html
 <svg>
-    <ellipse cx="110" cy="60" rx="100" ry="50" fill="none" stroke="#bbddff" stroke-width="20" />
+    <ellipse cx="110" cy="60" rx="100" ry="50" fill="none" stroke="#ffffff" stroke-width="20" />
 </svg>
 ```
 
 <svg height="120">
-    <ellipse cx="110" cy="60" rx="100" ry="50" fill="none" stroke="#bbddff" stroke-width="20" />
+    <ellipse cx="110" cy="60" rx="100" ry="50" fill="none" stroke="#ffffff" stroke-width="20" />
 </svg>
 
 
@@ -160,12 +160,12 @@ date: 2023-08-28
 
 ```html
 <svg>
-    <line x1="50" y1="50" x2="200" y2="100" stroke="#bbddff" stroke-width="5" />
+    <line x1="50" y1="50" x2="200" y2="100" stroke="#ffffff" stroke-width="5" />
 </svg>
 ```
 
 <svg>
-    <line x1="50" y1="50" x2="200" y2="100" stroke="#bbddff" stroke-width="5" />
+    <line x1="50" y1="50" x2="200" y2="100" stroke="#ffffff" stroke-width="5" />
 </svg>
 
 
@@ -184,7 +184,7 @@ date: 2023-08-28
     - e.g., `x1,y1 x2,y2 x3,y3`
 
 <svg>
-  <polyline points="0,0 30,30 30,60 60,60 60,90 90,90 120,120" fill="none" stroke="#bbddff" stroke-width="5" />
+  <polyline points="0,0 30,30 30,60 60,60 60,90 90,90 120,120" fill="none" stroke="#ffffff" stroke-width="5" />
 </svg>
 
 
@@ -201,11 +201,11 @@ date: 2023-08-28
 
 ```html
 <svg>
-  <polygon points="50,5 100,5 125,30 125,80 100,105 50,105 25,80 25,30" fill="#bbddff" />
+  <polygon points="50,5 100,5 125,30 125,80 100,105 50,105 25,80 25,30" fill="#ffffff" />
 </svg>
 ```
 <svg height="105">
-  <polygon points="50,5 100,5 125,30 125,80 100,105 50,105 25,80 25,30" fill="#bbddff" />
+  <polygon points="50,5 100,5 125,30 125,80 100,105 50,105 25,80 25,30" fill="#ffffff" />
 </svg>
 
 
