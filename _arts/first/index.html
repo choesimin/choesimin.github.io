@@ -18,6 +18,7 @@ layout: art
 
         div {
             position: absolute;
+            width: 1px;
             height: 100%;
             transition: 4s;
         }
@@ -29,18 +30,13 @@ layout: art
         const body = document.body;
         let divisions = [];
 
-        draw();
-
-        function draw() {
-            setDivisions();
-            setColor();
-            setInterval(setColor, 500);
-        }
+        setDivisions();
+        setColor();
+        setInterval(setColor, 500);
 
         function setDivisions() {
             for (let x = 0; x < window.innerWidth; x++) {
                 const division = document.createElement('div');
-                division.style.width = '1px';
                 division.style.left = x + 'px';
                 body.append(division);
                 divisions.push(division);
