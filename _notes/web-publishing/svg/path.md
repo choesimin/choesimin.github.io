@@ -70,6 +70,15 @@ date: 2023-08-29
 | `H`, `h` | 수평선 | 현재 위치에서 수평선을 그립니다.<br>y 좌표값만 설정하며, 그려진 선은 다음 위치의 x 좌표값까지 이어집니다. |
 | `V`, `v` | 수직선 | 현재 위치에서 수직선을 그립니다.<br>x 좌표값만 설정하며, 그려진 선은 다음 위치의 y 좌표값까지 이어집니다. |
 
+<svg height="100">
+    <path d="
+        M 10,10
+        H 50
+        L 90,50
+        V 90
+    " fill="none" stroke="red" stroke-width="5" />
+</svg>
+
 ```html
 <svg>
     <path d="
@@ -77,18 +86,9 @@ date: 2023-08-29
         H 50
         L 90,50
         V 90
-    " fill="none" stroke="red" stroke-width="5">
+    " fill="none" stroke="red" stroke-width="5" />
 </svg>
 ```
-
-<svg height="100">
-    <path d="
-        M 10,10
-        H 50
-        L 90,50
-        V 90
-    " fill="none" stroke="red" stroke-width="5">
-</svg>
 
 
 ### Path 닫기 (closePath)
@@ -99,6 +99,16 @@ date: 2023-08-29
     - closePath 명령을 사용하면 시작 위치(moveTo)로 path가 이어져 지정할 좌표값이 없기 때문입니다.
     - 따라서 Alphabet의 대소문자(절대 좌표, 상태 좌표)도 구분하지 않으며, 대소문자의 역할이 동일합니다.
 
+<svg height="100">
+    <path d="
+        M 10,10
+        H 50
+        L 90,50
+        V 90
+        z
+    " fill="blue" stroke="red" stroke-width="5" />
+</svg>
+
 ```html
 <svg>
     <path d="
@@ -107,19 +117,9 @@ date: 2023-08-29
         L 90,50
         V 90
         z
-    " fill="none" stroke="red" stroke-width="5">
+    " fill="blue" stroke="red" stroke-width="5" />
 </svg>
 ```
-
-<svg height="100">
-    <path d="
-        M 10,10
-        H 50
-        L 90,50
-        V 90
-        z
-    " fill="white" stroke="red" stroke-width="5">
-</svg>
 
 
 
