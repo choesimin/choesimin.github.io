@@ -1,0 +1,18 @@
+#intro {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: var(--background-highlight-color);
+    box-sizing: border-box;
+}
+
+#intro aside {
+    max-width: 25%;
+    flex-basis: 25%;
+}
+
+#intro section {
+    width: 75%;
+    flex-basis: 75%;
+}

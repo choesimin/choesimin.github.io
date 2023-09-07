@@ -52,6 +52,13 @@ hr {
 
 
 
+div.clear-both {
+    clear: both;
+}
+
+
+
+
 table {
     border-top: 1px solid var(--table-border-color);
     border-collapse: collapse;
