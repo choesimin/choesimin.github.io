@@ -1,14 +1,13 @@
 ---
-layout: base
+layout: page
 ---
 
-<article class="arts">
-  {% for art in site.arts %}
-    <a href="{{ art.url | relative_url }}"><img src="{{ art.url | replace: 'html', 'svg' }}" alt="Art Thumbnail"></a>
-  {% endfor %}
-</article>
 
-<article class="notes"></article>
+
+
+<h1>Notes</h1>
+<h3>지식을 기록합니다.</h3>
+<article id="notes"></article>
 
 
 
@@ -24,7 +23,7 @@ layout: base
 
   list.removeChild(list.querySelector("li"));
   list.querySelector("ul").className = "root";
-  document.querySelector("article.notes").innerHTML = list.innerHTML;
+  document.getElementById("notes").innerHTML = list.innerHTML;
 
 
 
@@ -157,4 +156,4 @@ layout: base
 
 
 
-<link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/notes.css' | relative_url }}">

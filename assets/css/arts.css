@@ -1,0 +1,12 @@
+article {
+    margin: 100px 0;
+}
+
+article a img {
+    width: 200px;
+    filter: grayscale(0.3);
+}
+
+article a img:hover {
+    filter: grayscale(0);
+}

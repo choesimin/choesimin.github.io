@@ -1,13 +1,13 @@
 :root {
-    --background-color: #111;
-    --background-highlight-color: #222;
+    --background-color: #111111;
+    --background-highlight-color: #222222;
 
-    --color: #ccc;
-    --bright-color: #ddd;
-    --highlight-color: #fd0;
-    --code-highlight-color: #bdf;
+    --color: #cccccc;
+    --code-color: #bbddff;
+    --bright-color: #dddddd;
+    --highlight-color: #ffffff;
 
-    --table-border-color: #444;
+    --table-border-color: #444444;
 }
 
 
@@ -15,7 +15,7 @@
 html {
     scroll-behavior: smooth;
 }
-  
+
 
 
 
@@ -57,13 +57,15 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     border-bottom: 1px solid var(--table-border-color);
     border-left: 1px solid var(--table-border-color);
     padding: 5px 10px;
 }
 
-th:first-child, td:first-child {
+th:first-child,
+td:first-child {
     border-left: none;
 }
 
@@ -90,13 +92,12 @@ nav {
     right: 0;
     max-width: 1400px;
     margin: 0 auto;
+    padding: 10px;
 }
 
 nav a.logo {
     display: inline-block;
     width: 60px;
-    margin-top: 10px;
-    margin-left: 10px;
     text-decoration: none;
 }
 
@@ -105,7 +106,7 @@ nav a.logo span {
     height: 30px;
     width: 15px;
     margin-right: 5px;
-    border: 4px solid white;
+    border: 4px solid var(--highlight-color);
     box-sizing: border-box;
     transition: 0.2s;
 }
@@ -132,20 +133,19 @@ nav a.logo span.i.hover {
 }
 
 
-nav a.about {
+nav a.page {
     float: right;
-    padding: 10px;
-    text-decoration-line: none;
-    font-size: 30px;
-    color: var(--bright-color);
-    transition: 0.2s;
-    transform: rotate(80deg);
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
 }
 
-nav a.about.hover {
-    color: var(--bright-color);
-    transition: 0.2s;
-    transform: rotate(60deg);
+nav a.page svg {
+    fill: var(--bright-color);
+}
+
+nav a.page svg:hover {
+    fill: var(--highlight-color);
 }
 
 

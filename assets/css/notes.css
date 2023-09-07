@@ -20,22 +20,3 @@ ul.root li > span {
     margin-left: 10px;
     opacity: 0.5;
 }
-
-
-
-
-article.arts {
-    padding-bottom: 50px;
-    text-align: center;
-}
-
-article.arts a img {
-    width: 100px;
-    filter: grayscale(1);
-    transition: 0.5s;
-}
-
-article.arts a img:hover {
-    filter: grayscale(0);
-    transition: 0.5s;
-}
