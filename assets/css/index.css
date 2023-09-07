@@ -1,18 +1,29 @@
-#intro {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 20px;
-    background-color: var(--background-highlight-color);
-    box-sizing: border-box;
+main {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
 }
 
-#intro aside {
-    max-width: 25%;
-    flex-basis: 25%;
+#wallpaper {
+    position:fixed;
+    z-index: -1;
+    width: 100%;
 }
 
-#intro section {
-    width: 75%;
-    flex-basis: 75%;
+#wallpaper img {
+    width: 100%;
+}
+
+#wallpaper h1 {
+    position: absolute;
+    margin: 0;
+    bottom: 10px;
+    right: 20px;
+    color: var(--background-color);
+}
+
+
+#wrapper {
+    margin-top: 200px;
+    background-color: var(--background-color);
 }
