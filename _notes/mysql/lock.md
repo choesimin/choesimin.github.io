@@ -31,10 +31,10 @@ SHOW PROCESSLIST;
 
 | Id | User | Host | db | Command | Time | State | Info |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 228 | root | simini.org:41544 | my_db | Sleep | 1039 |  | null |
-| 847 | root | simini.org:42226 | my_db | Sleep | 1039 |  | null |
-| 888 | root | simini.org:51182 | my_db | Sleep | 1039 |  | null |
-| 938 | root | simini.org:51182 | my_db | Query | 28031 | starting | UPDATE my_table SET my_column = 'my_value'; |
+| 228 | root | seoulsimin.com:41544 | my_db | Sleep | 1039 |  | null |
+| 847 | root | seoulsimin.com:42226 | my_db | Sleep | 1039 |  | null |
+| 888 | root | seoulsimin.com:51182 | my_db | Sleep | 1039 |  | null |
+| 938 | root | seoulsimin.com:51182 | my_db | Query | 28031 | starting | UPDATE my_table SET my_column = 'my_value'; |
 
 - `Command` column이 `Query`인 항목을 확인합니다.
     - `Query`는 SQL 명령문을 처리하는 process입니다.

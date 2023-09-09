@@ -4,7 +4,7 @@ layout: base
 
 <article>
     <h1 class="title">{{ page.title }}</h1> 
-    <p class="date">version : {{ page.date | date: "%Y-%m-%d" }}</p>
+    <p class="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
     <ul class="index"></ul>
     {{ content }}
 </article>

@@ -1,11 +1,11 @@
 Gem::Specification.new do |spec|
-  spec.name     = "simini"
+  spec.name     = "simin"
   spec.version  = "0.0.0"
   spec.authors  = ["Choe Simin"]
   spec.email    = ["choesimin961009@gmail.com"]
 
-  spec.summary  = "Simini custom theme"
-  spec.homepage = "https://github.com/siminee"
+  spec.summary  = "tech blog custom theme"
+  spec.homepage = "https://github.com/choesimin"
   spec.license  = "MIT"
 
   spec.metadata["plugin_type"] = "theme"

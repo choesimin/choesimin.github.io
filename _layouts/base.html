@@ -15,31 +15,11 @@
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a class="logo" href="{{ '/' | relative_url }}">
-        <span class="s"></span><span class="m"></span><span class="n"></span><span class="i"></span>
-      </a>
-      <a class="page" href="{{ '/pages/arts' | relative_url }}">
-        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M425.705,86.587A238.427,238.427,0,0,0,256,16.292c-63.856,0-123.95,21.059-169.212,59.3C41.14,114.154,16,165.544,16,220.292c0,52.418,23.319,102.223,65.663,140.24,41.8,37.534,98.163,60.027,158.7,63.335a8.039,8.039,0,0,1,7.64,7.987V471.7a24.019,24.019,0,0,0,24.054,24q.873,0,1.747-.064a240.007,240.007,0,0,0,151.9-409.055ZM120,208a40,40,0,1,1,40-40A40,40,0,0,1,120,208Zm112-64a40,40,0,1,1,40-40A40,40,0,0,1,232,144Zm80-8a40,40,0,1,1,40,40A40,40,0,0,1,312,136Zm96,152a40,40,0,1,1,40-40A40,40,0,0,1,408,288Z" />
-        </svg>
-      </a>
-      <a class="page" href="{{ '/pages/posts' | relative_url }}">
-        <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M17,3.2c2.4-0.8,4.6,1.4,3.8,3.8c-0.3,0.9-1,1.6-1.9,1.9c-2.4,0.8-4.6-1.4-3.8-3.8   C15.4,4.1,16.1,3.4,17,3.2z M31.1,13.5h-8.1c-0.2,0-0.4,0.2-0.4,0.4v18.6c0,0.2-0.2,0.4-0.4,0.4h-2.1c-0.2,0-0.4-0.2-0.4-0.4v-8.1   c0-0.2-0.2-0.4-0.4-0.4h-2.1c-0.2,0-0.4,0.2-0.4,0.4v8.1c0,0.2-0.2,0.4-0.4,0.4h-2.1c-0.2,0-0.4-0.2-0.4-0.4V13.9   c0-0.2-0.2-0.4-0.4-0.4H4.9c-0.2,0-0.4-0.2-0.4-0.4v-2.1c0-0.2,0.2-0.4,0.4-0.4h26.1c0.2,0,0.4,0.2,0.4,0.4v2.1   C31.5,13.3,31.3,13.5,31.1,13.5z" />
-        </svg>
-      </a>
-      <a class="page" href="{{ '/pages/notes' | relative_url }}">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M17.5,8C16.1,8,15,6.9,15,5.5V2c0-0.6-0.4-1-1-1H6C3.8,1,2,2.8,2,5v14c0,2.2,1.8,4,4,4h12c2.2,0,4-1.8,4-4V9    c0-0.6-0.4-1-1-1H17.5z M14,17H8c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1h6c0.6,0,1,0.4,1,1C15,16.6,14.6,17,14,17z M16,13H8    c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1h8c0.6,0,1,0.4,1,1C17,12.6,16.6,13,16,13z" />
-        </svg>
-      </a>
-    </nav>
-  </header>
+  <nav>
+    <a id="logo" href="{{ '/' | relative_url }}">
+      <span id="seo">서</span><span id="ul">울</span><span id="si">시</span><span id="min">민</span>
+    </a>
+  </nav>
   <main>
     {{ content }}
   </main>
@@ -50,12 +30,16 @@
 </body>
 
 <script>
-  var logo = document.getElementsByTagName('nav')[0].getElementsByClassName('logo')[0];
-  var logoI = logo.getElementsByClassName('i')[0];
-  logo.addEventListener('mouseover', (e) => addHoverClass(logoI));
-  logo.addEventListener('mouseout', (e) => removeHoverClass(logoI));
-  setTimeout(() => addHoverClass(logoI), 400);
-  setTimeout(() => removeHoverClass(logoI), 800);
+  const logo = document.getElementById('logo');
+  const words = logo.children;
+
+  for (let i = 0; i < words.length; i++) {
+    logo.addEventListener('mouseover', (e) => addHoverClass(words[i]));
+    logo.addEventListener('mouseout', (e) => removeHoverClass(words[i]));
+    setTimeout(() => addHoverClass(words[i]), 100 + 100 * i);
+    setTimeout(() => removeHoverClass(words[i]), 300 + 100 * i);
+  }
+
 
   function addHoverClass(element) {
     element.className += ' hover'

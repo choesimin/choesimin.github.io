@@ -1,6 +1,19 @@
-a {
-    display: block;
-    font-size: 50px;
-    text-decoration: none;
-    text-align: center;
+#notes a {
+    text-decoration-line: none;
+}
+
+#notes ul {
+    list-style: none;
+    padding-left: 16px;
+}
+
+#notes ul.root > li {
+    margin-top: 40px;
+    font-size: 24px;
+}
+
+#notes ul.root li > span {
+    font-size: 12px;
+    margin-left: 10px;
+    opacity: 0.5;
 }
