@@ -1,11 +1,3 @@
-@font-face {
-    src: url('../fonts/logo.ttf');
-    font-family: 'logo';
-}
-
-
-
-
 :root {
     --background-color: #111111;
     --background-highlight-color: #222222;
@@ -106,7 +98,7 @@ nav {
 a#logo {
     text-decoration: none;
     font-size: 30px;
-    font-family: 'logo';
+    font-weight: bold;
 }
 
 a#logo span {
@@ -115,7 +107,7 @@ a#logo span {
 }
 
 a#logo span.hover {
-    transform: rotate(20deg);
+    transform: rotate(15deg);
 }
 
 
