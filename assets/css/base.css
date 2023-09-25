@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'SeoulNamsanM';
+    src: url(../font/SeoulNamsan/SeoulNamsanM.ttf);
+}
+
+@font-face {
+    font-family: 'SeoulNamsanLongB';
+    src: url(../font/SeoulNamsanLong/SeoulNamsanLongB.ttf);
+}
+
+
+
 :root {
     --background-color: #111111;
     --background-highlight-color: #222222;
@@ -25,7 +37,7 @@ body {
 
     background-color: var(--background-color);
 
-    font-family: Arial, sans-serif;
+    font-family: 'SeoulNamsanM';
     color: var(--color);
 }
 
@@ -96,18 +108,10 @@ nav {
 }
 
 a#logo {
+    font-family: 'SeoulNamsanLongB';
     text-decoration: none;
     font-size: 30px;
     font-weight: bold;
-}
-
-a#logo span {
-    display: inline-block;
-    transition: all ease 0.5s;
-}
-
-a#logo span.hover {
-    transform: rotate(15deg);
 }
 
 
