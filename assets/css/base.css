@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'SeoulNamsanM';
-    src: url(../font/SeoulNamsan/SeoulNamsanM.ttf);
+    src: url(../font/SeoulNamsanM.ttf);
 }
 
 @font-face {
-    font-family: 'SeoulNamsanLongB';
-    src: url(../font/SeoulNamsanLong/SeoulNamsanLongB.ttf);
+    font-family: 'SeoulLongNamsanB';
+    src: url(../font/SeoulLongNamsanB.ttf);
 }
 
 
@@ -108,7 +108,7 @@ nav {
 }
 
 a#logo {
-    font-family: 'SeoulNamsanLongB';
+    font-family: 'SeoulLongNamsanB';
     text-decoration: none;
     font-size: 30px;
     font-weight: bold;
