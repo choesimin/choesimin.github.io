@@ -1,7 +1,7 @@
 ---
 layout: note
-title: Singleton Pattern - 오직 하나의 Intance만 만들어 사용하기
-date: 2023-06-10
+title: Singleton Pattern - 하나의 객체만 만들어 공용으로 사용하기
+date: 2023-11-01
 ---
 
 
@@ -22,7 +22,7 @@ date: 2023-06-10
     - 생성자가 private하기 때문에, instance가 필요하면 반드시 singleton class를 거치게 됩니다.
 
 
-## `Singleton class`와 `모든 함수와 변수가 static으로 선언된 class`의 비교
+## 'Singleton class'와 '모든 함수와 변수가 static으로 선언된 class'의 비교
 
 - Singleton class는 결과적으로 '모든 method와 변수가 static으로 선언된 class'와 같으나, Singleton class가 더 낫습니다.
 - '모든 method와 변수가 static으로 선언된 class'는 필요한 내용이 class에 다 들어있고, 복잡한 초기화가 필요 없는 경우에만 사용할 수 있습니다.
@@ -30,7 +30,7 @@ date: 2023-06-10
     - 초기화 순서와 관련된 bug는 찾아내기 어렵고 복잡미묘하기 때문에, 차라리 singleton을 만드는 것이 낫습니다.
 
 
-## `Singleton 객체`와 `전역 변수`의 비교
+## 'Singleton 객체'와 '전역 변수'의 비교
 
 ### 전역 변수의 단점 (Singleton 객체와 비교했을 때)
 
