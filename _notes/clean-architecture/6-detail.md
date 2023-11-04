@@ -1,7 +1,7 @@
 ---
-layout: note
-title: Clean Architecture Chapter 6 - 세부사항
-date: 2023-11-02
+# layout: note
+# title: Clean Architecture Chapter 6 - 세부사항
+# date: 2023-11-02
 ---
 
 

@@ -1,7 +1,7 @@
 ---
-layout: note
-title: Clean Architecture Chapter 3 - 설계 원칙
-date: 2023-11-02
+# layout: note
+# title: Clean Architecture - SOLID 원칙
+# date: 2023-11-04
 ---
 
 
