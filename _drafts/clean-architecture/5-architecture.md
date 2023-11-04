@@ -1,7 +1,7 @@
 ---
-# layout: note
-# title: Clean Architecture Chapter 5 - 아키텍처
-# date: 2023-11-02
+layout: note
+title: Clean Architecture Chapter 5 - 아키텍처
+date: 2023-11-02
 ---
 
 

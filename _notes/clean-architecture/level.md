@@ -1,7 +1,7 @@
 ---
-# layout: note
-# title: Clean Architecture - 고수준과 저수준을 구분하기
-# date: 2023-11-04
+layout: note
+title: Clean Architecture - 고수준과 저수준을 구분하기
+date: 2023-11-04
 ---
 
 

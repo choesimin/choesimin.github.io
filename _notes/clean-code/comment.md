@@ -39,7 +39,7 @@ date: 2023-04-18
 if (employee.isEligibleForFullBenefits()) { ... }
 ```
 
-### Bade Code
+### Bad Code
 
 ```java
 // 직원에게 복지 혜택을 받을 자격이 있는지 검사한다.

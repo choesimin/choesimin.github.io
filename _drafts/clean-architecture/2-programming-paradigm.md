@@ -1,7 +1,7 @@
 ---
-# layout: note
-# title: Clean Architecture Chapter 2 - 프로그래밍 페러다임
-# date: 2023-11-02
+layout: note
+title: Clean Architecture Chapter 2 - 프로그래밍 페러다임
+date: 2023-11-02
 ---
 
 
