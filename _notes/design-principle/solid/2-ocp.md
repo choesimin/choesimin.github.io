@@ -122,7 +122,7 @@ public class Main {
 ```
 
 
-### Example : 개방 폐쇄 원칙을 적용한 경우
+### Example : 개방 폐쇄 원칙을 준수한 경우
 
 ```mermaid
 classDiagram

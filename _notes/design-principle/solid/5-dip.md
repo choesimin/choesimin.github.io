@@ -7,7 +7,6 @@ date: 2023-11-05
 
 
 
-
 ## DIP (Dependency Inversion Principle) : 의존 관계 역전 원칙
 
 ```txt

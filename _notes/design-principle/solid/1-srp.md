@@ -6,6 +6,7 @@ date: 2023-11-05
 
 
 
+
 ## SRP (Single Responsibility Principle) : 단일 책임 원칙
 
 ```txt
@@ -118,7 +119,7 @@ class Employee {
 ```
 
 
-### Example : 단일 책임 원칙을 적용한 경우 (Facade Pattern 적용)
+### Example : 단일 책임 원칙을 준수한 경우 (Facade Pattern 적용)
 
 - 단인 책임 원칙은 각 책임(기능 담당)에 맞게 class를 분리하여 구성하는 것으로 적용할 수 있습니다.
 
@@ -301,4 +302,5 @@ class Transaction
 
 - <https://ko.wikipedia.org/wiki/SOLID_(객체_지향_설계)>
 - <https://inpa.tistory.com/entry/OOP-💠-아주-쉽게-이해하는-SRP-단일-책임-원칙>
+- <https://mangkyu.tistory.com/274>
 - <https://gmlwjd9405.github.io/2018/07/05/oop-solid.html>
