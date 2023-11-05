@@ -1,7 +1,7 @@
 ---
 layout: note
-title: Clean Architecture - 객체 지향 설계 원칙(SOLID) 따르기
-date: 2023-11-04
+title: Clean Architecture - 객체 지향적으로 Architecture를 설계하기
+date: 2023-11-05
 ---
 
 
@@ -183,6 +183,22 @@ OO란 결국 다형성을 통해 의존성 방향을 제어할 수 있도록 하
 
 ## SOLID 원칙
 
+```txt
+좋은 software system은 clean code로부터 시작한다.
+좋은 벽돌을 사용하지 않으면 building architecture가 좋고 나쁨은 그리 큰 의미가 없는 것과 같다.
+```
+
+- 좋은 code 없이는 좋은 architecture도 없습니다.
+- SOLID 원칙은 좋은 code를 짜는 데에 도움이 됩니다.
+
+- SOLID 원칙은 함수와 data 구조를 class로 배치하는 방법과 class들을 서로 결합하는 방법을 설명해줍니다.
+    - 'class'는 단순히 함수와 data의 집합을 의미합니다.
+
+- SOLID 원칙의 목적은 중간 수준의 software 구조를 **변경에 유연**하고, **이해하기 쉽게** 하고, 많은 software system에서 사용되는 **component의 기반이 되도록** 하는 데에 있습니다.
+    - '중간 수준'이란 code보다 상위 수준인 module과 component의 내부를 의미합니다.
+        - 'module'은 source code(하나의 class) 수준을, 'component'는 배포 가능한 가장 작은 단위를 의미합니다.
+
+
 
 
 ## 7장. SRP : Single Responsibility Principle : 단일 책임 원칙
@@ -197,6 +213,11 @@ OO란 결국 다형성을 통해 의존성 방향을 제어할 수 있도록 하
     2. 병합
         - 서로 다른 team에 속했을 개발자가 작업했을 때 변경 사항이 충돌하는 경우
 - data와 method를 구분하고 퍼사드(Facade) pattern으로 해결
+
+
+
+
+
 
 
 ## 8장. OCP : Open-Closed Pinciple : 개방-폐쇄 원칙
