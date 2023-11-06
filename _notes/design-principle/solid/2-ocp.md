@@ -50,7 +50,7 @@ Software 개체(class, module 등)는 확장에는 열려 있어야 하고, 변�
 
 
 
-## 개방 폐쇄 원칙 적용하기 : 추상화 설계
+## Example : OCP 적용해보기 (추상화 설계)
 
 - OCP를 적용하기 위해서는 적절한 추상화 class를 구성하고, 이를 상속하여 확장시키는 관계로 구성해야 합니다.
     1. 변경(확장)될 것과 변하지 않을 것을 엄격히 구분합니다.
@@ -58,7 +58,7 @@ Software 개체(class, module 등)는 확장에는 열려 있어야 하고, 변�
     3. 구현체가 아닌 정의한 추상화에 의존하도록 코드를 작성합니다.
 
 
-### Example : 개방 폐쇄 원칙을 위반한 경우
+### 적용 전
 
 - 개나 고양이 등의 동물 객체(`Animal`)를 만들고, `HelloAnimal` class의 `hello()` method를 실행하면, `Animal.type`을 구분하여 울음소리를 출력하는 program입니다.
 
@@ -122,7 +122,7 @@ public class Main {
 ```
 
 
-### Example : 개방 폐쇄 원칙을 준수한 경우
+### 적용 후
 
 ```mermaid
 classDiagram
@@ -206,7 +206,7 @@ public class Main {
 
 
 
-## 개방 폐쇄 원칙 적용 주의점
+## OCP 적용 주의 사항
 
 - 확장에는 열려 있고 변경에는 닫혀 있도록 하기 위해서는 추상화를 잘 설계해야 합니다.
 - 그리고 추상화(abstract class, interface)를 정의할 때는 여러가지 경우의 수에 대한 고려와 예측이 필요합니다.

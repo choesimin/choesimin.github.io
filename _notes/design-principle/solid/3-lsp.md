@@ -73,10 +73,10 @@ void modify(Collection data){
 
 
 
-## Liskov 치환 원칙 적용하기
+## Example : LSP 적용해보기
 
 
-### Example : Liskov 치환 원칙을 위반한 경우
+### 적용 전
 
 - `Rectangle`은 직사각형을 구현한 객체입니다.
     - 너비와 높이를 지정하고 반환할 수 있으며, 지정된 값을 통해 자신의 넓이를 계산할 수 있습니다.
@@ -153,7 +153,7 @@ public class Main {
 ```
 
 
-### Example : Liskov 치환 원칙을 준수한 경우
+### 적용 후
 
 - 직사각형과 정사각형은 상속의 관계가 성립되기 어렵습니다.
 - 따라서 정사각형(`Square`)이 직사각형(`Rectangle`)를 상속받지 않고, 더 상위 개념인 사각형 객체(`Shape`)를 상속받도록 수정하여, Liskov 치환 원칙의 영향에서 벗어납니다.
@@ -224,7 +224,7 @@ public class Main {
 
 
 
-## Liskov 치환 원칙 적용 주의점
+## LSP 적용 주의 사항
 
 - LSP 원칙의 핵심은 상속(inheritance)입니다.
     - 다형성의 특징을 이용하기 위해 상위 class type으로 객체를 선언하여 하위 class의 instance를 받으면, upcasting된 상태에서 부모의 method를 사용해도 의도한대로만 수행되어야 한다는 원칙입니다.
