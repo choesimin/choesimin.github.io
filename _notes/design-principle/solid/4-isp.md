@@ -115,7 +115,7 @@ IPets <|.. Rabbit
 
 
 
-## Example : ISP 적용해보기
+## ISP 적용해보기
 
 
 ### 적용 전

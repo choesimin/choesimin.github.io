@@ -49,7 +49,7 @@ date: 2023-11-05
 
 
 
-## Example : SRP 적용해보기 (Facade Pattern)
+## SRP 적용해보기 (Facade Pattern)
 
 - 단일 책임 원칙을 적용하는 대표적인 방법으로 Facade Pattern이 있습니다.
 

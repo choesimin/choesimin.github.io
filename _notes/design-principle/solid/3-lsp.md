@@ -73,7 +73,7 @@ void modify(Collection data){
 
 
 
-## Example : LSP 적용해보기
+## LSP 적용해보기
 
 
 ### 적용 전
