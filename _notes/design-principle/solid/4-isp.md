@@ -131,6 +131,44 @@ IPets <|.. Rabbit
 
 - 필요하지도 않은 기능을 어쩔 수 없이 구현해야 하기 때문에, 이는 ISP를 위반합니다.
 
+```mermaid
+classDiagram
+
+class ISmartPhone {
+    <<Interface>>
+    call(String) void
+    message(String, String) void
+    wirelessCharge() void
+    AR() void
+    biometrics() void
+}
+
+class GalaxyS8 {
+    call(String) void
+    message(String, String) void
+    wirelessCharge() void
+    AR() void
+    biometrics() void
+}
+class GalaxyS20 {
+    call(String) void
+    message(String, String) void
+    wirelessCharge() void
+    AR() void
+    biometrics() void
+}
+class GalaxyS21 {
+    call(String) void
+    message(String, String) void
+    wirelessCharge() void
+    AR() void
+    biometrics() void
+}
+
+ISmartPhone <|.. GalaxyS8
+ISmartPhone <|.. GalaxyS20
+ISmartPhone <|.. GalaxyS21
+```
 
 ```java
 interface ISmartPhone {
@@ -217,6 +255,45 @@ class GalaxyS8 implements ISmartPhone {
 - 각각의 기능에 맞게 interface를 잘게 분리합니다.
 - 그리고 해당 스마트폰에 지원되는 기능(interface)만을 구현(`implements`)합니다.
 
+```mermaid
+classDiagram
+
+class IPhone {
+    <<Interface>>
+    call(String) void
+    message(String, String) void
+}
+class WirelessChargable {
+    <<Interface>>
+    wirelessCharge() void
+}
+class ARable {
+    <<Interface>>
+    AR() void
+}
+class Biometricsable {
+    <<Interface>>
+    biometrics() void
+}
+class GalaxyS21 {
+    call(String) void
+    message(String, String) void
+    wirelessCharge() void
+    AR() void
+    biometrics() void
+}
+class GalaxyS8 {
+    call(String) void
+    message(String, String) void
+}
+
+IPhone <|.. GalaxyS8
+IPhone <|.. GalaxyS21
+WirelessChargable <|.. GalaxyS21
+ARable <|.. GalaxyS21
+Biometricsable <|.. GalaxyS21
+```
+
 ```java
 interface IPhone {
     void call(String number);    // 통화
@@ -270,8 +347,8 @@ class GalaxyS8 implements IPhone {
 }
 ```
 
-    
-    
+
+
 
 ---
 
