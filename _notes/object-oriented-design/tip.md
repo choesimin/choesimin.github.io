@@ -1,17 +1,7 @@
 ---
 layout: note
-title: Design Principle
+title: 객체 지향 설계를 하기 위한 간단한 Tip
 date: 2023-06-06
----
-
-
-
-
-- 객체 지향 programming을 위한 원칙입니다.
-
-
-
-
 ---
 
 
