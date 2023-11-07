@@ -1,45 +1,55 @@
 ---
 layout: note
-title: Clean Architecture - 객체 지향적으로 Architecture를 설계하기
+title: Clean Architecture - 객체 지향적으로 설계하기
 date: 2023-11-05
 ---
 
 
 
+
 ## 객체 지향적으로 Architecture를 설계하기
 
-- 좋은 architecture를 만드는 일은 객체 지향(Object-Oriented, OO) 설계 원칙을 이해하고 응용하는 데에서 출발합니다.
+```txt
+좋은 architecture를 만드는 일은 객체 지향(Object-Oriented, OO) 설계 원칙을 이해하고 응용하는 데에서 출발합니다.
+```
 
-- OO란?
-    - 다형성을 이용하여 전체 system의 모든 source code 의존성에 대한 절대적인 제어 권한을 획득할 수 있는 능력
-    - OO를 사용하면 Plugin Architect를 구성할 수 있음
-        - 고수준의 정책을 포함하는 module은 저수준의 세부사항을 포함하는 module에 대해 독립성을 보장할 수 있음
-        - 저수준의 세부사항은 중요도가 낮은 plugin module로 만들고, 고수준의 정책을 포함하는 module과는 독립적으로 개발하고 배포할 수 있음
+### 객체 지향(OO, Object-Oriented)이란?
 
-- 다형성
-    - 언제 어디서든 Plugin Architecture를 사용할 수 있게 해줌
-    - 의존성 역전 (dependency inversion)
-        - 원래(ex. C)는 source code의 의존성 방향은 반드시 제어흐름(flow of control)을 따르게 됨
-            1. main 함수가 고수준 함수 호출
-            2. 고수준 함수가 중간 수준 함수 호출
-            3. 중간 수준 함수가 저수준 함수 호출
-        - OO 언어는 다형성을 안전하고 편리하게 제공하므로 source code 의존성을 어디에서든 역전시킬 수 있음
-            - source code 사이에 interface를 사용하여 제어흐름을 반대로 함
-            - 즉, source code의 제어흐름과 의존성 방향에 대해 제한받지 않고 원하는 대로 설정할 수 있음
+- "객체 지향"이란 다형성을 이용하여 전체 system의 모든 source code 의존성에 대한 절대적인 제어 권한을 획득할 수 있는 능력입니다.
+- OO를 사용하면 다형성을 통해 언제 어디서든 Plugin Architect를 구성할 수 있습니다.
+    - 고수준의 정책을 포함하는 module은 저수준의 세부사항을 포함하는 module에 대해 독립성을 보장할 수 있습니다.
+    - 저수준의 세부사항은 중요도가 낮은 plugin module로 만들고, 고수준의 정책을 포함하는 module과는 독립적으로 개발하고 배포할 수 있습니다.
 
-- OO에 대한 잘못된 설명
-    - `Data와 함수의 조합`
-        - o.f()가 f(o)와 다르다는 의미를 내포하기 때문에 정확한 설명이 아님
-    - `실제 세계를 modeling하는 새로운 방법`
-        - 의도가 불분명하며, 정의가 모호함
-    - `OO는 캡슐화(encapsulation), 상속(inheritance), 다형성(polymorphism) 이 세가지 개념을 적절하게 조합한 것`
-        - 캡슐화 : C언어에서도 완벽한 캡슐화가 가능함 (data 구조와 함수를 header file에 선언하고 구현 file에서 구현)
-            - 오히려 C++, C#, Java 등에서 완전한 캡슐화가 깨짐
-                - C++ : compiler가 class의 instance 크기를 알아야 하기 때문에 class의 member 변수를 해당 class의 header file에 선언해야 함
-                - C#, Java : 아예 header와 구현체를 분리하는 방식을 버렸음(class 선언과 정의를 구분하는 것이 불가능함)
-        - 상속 : OO로 넘어와서 더 편리해지긴 했지만, C에서도 가능한 기법이었음
-        - 다형성 : C에서 함수를 가리키는 pointer를 응용해 구현할 수 있었지만, OO는 이를 더 편리하고 안전하게 사용할 수 있게 해줌 (함수 pointer는 위험함)
-            - OO에서 가장 중요한 부분 : 다형성을 통해 제어흐름을 간접적으로 전환하는 규칙을 부과함
+- OO는 결국 **다형성을 통해 의존성 방향을 제어**할 수 있도록 하는 것이며, 의존성의 방향은 architecture 설계에 매우 중요합니다.
+
+
+### 의존성 역전
+
+- 원래(ex. C)는 source code의 의존성 방향은 반드시 제어흐름(flow of control)을 따르게 됨
+    1. main 함수가 고수준 함수 호출
+    2. 고수준 함수가 중간 수준 함수 호출
+    3. 중간 수준 함수가 저수준 함수 호출
+- OO 언어는 다형성을 안전하고 편리하게 제공하므로 source code 의존성을 어디에서든 역전시킬 수 있음
+    - source code 사이에 interface를 사용하여 제어흐름을 반대로 함
+    - 즉, source code의 제어흐름과 의존성 방향에 대해 제한받지 않고 원하는 대로 설정할 수 있음
+
+
+#### 객체 지향에 대한 잘못된 설명
+
+- `Data와 함수의 조합`
+    - o.f()가 f(o)와 다르다는 의미를 내포하기 때문에 정확한 설명이 아님
+
+- `실제 세계를 modeling하는 새로운 방법`
+    - 의도가 불분명하며, 정의가 모호함
+
+- `OO는 캡슐화(encapsulation), 상속(inheritance), 다형성(polymorphism) 이 세가지 개념을 적절하게 조합한 것`
+    - 캡슐화 : C언어에서도 완벽한 캡슐화가 가능함 (data 구조와 함수를 header file에 선언하고 구현 file에서 구현)
+        - 오히려 C++, C#, Java 등에서 완전한 캡슐화가 깨짐
+            - C++ : compiler가 class의 instance 크기를 알아야 하기 때문에 class의 member 변수를 해당 class의 header file에 선언해야 함
+            - C#, Java : 아예 header와 구현체를 분리하는 방식을 버렸음(class 선언과 정의를 구분하는 것이 불가능함)
+    - 상속 : OO로 넘어와서 더 편리해지긴 했지만, C에서도 가능한 기법이었음
+    - 다형성 : C에서 함수를 가리키는 pointer를 응용해 구현할 수 있었지만, OO는 이를 더 편리하고 안전하게 사용할 수 있게 해줌 (함수 pointer는 위험함)
+        - OO에서 가장 중요한 부분 : 다형성을 통해 제어흐름을 간접적으로 전환하는 규칙을 부과함
 
 
 
@@ -142,37 +152,6 @@ OO 언어가 다형성을 안전하고 편리하게 제공한다는 사실은 �
  
  
  
-[ 결론 ]
-
-OO란 다형성을 이용해 전체 시스템의 모든 소스 코드 의존성에 대한 절대적인 권한을 획득할 수 있는 능력임
-OO를 사용하면 아키텍트는 플러그인 아키텍처를 구성할 수 있고, 고수준의 정책을 포함하는 모듈이 저수준의 세부사항을 포함하는 모듈에 대해 독립성을 보장할 수 있음
-저수준의 세부사항은 중요도가 낮은 플러그인 모듈로 만고, 고수준의 정책을 포함하는 모듈과는 독립적으로 개발하고 배포할 수 있음
-OO란 결국 다형성을 통해 의존성 방향을 제어할 수 있도록 하는 것이라고 설명해준다. 그만큼 의존성 방향은 중요하다.
- 
- 
-
-
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -288,3 +267,4 @@ S type의 객체 o1 각각에 대응하는 T type 객체 o2가 있고, T type을
 
 - Clean Architecture (도서) - Robert C. Martin
 - <https://mangkyu.tistory.com/272>
+- <https://mangkyu.tistory.com/274>

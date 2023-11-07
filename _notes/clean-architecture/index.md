@@ -96,7 +96,7 @@ structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program
 
 ##### Eisenhower Matrix
 
-|  | **긴급한 일** | **긴급하지 않은 일** |
+|  | 긴급한 일 | 긴급하지 않은 일 |
 | --- | --- | --- |
 | **중요한 일** | 1 | 2 |
 | **중요하지 않은 일** | 3 | 4 |
@@ -129,3 +129,4 @@ structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program
 
 - Clean Architecture (도서) - Robert C. Martin
 - <https://mangkyu.tistory.com/271>
+- <https://daryeou.tistory.com/280>
