@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Clean Architecture - 객체 지향적으로 설계하기
+title: Clean Architecture - 객체 지향적(OO)으로 설계하기
 date: 2023-11-05
 ---
 
@@ -111,38 +111,76 @@ date: 2023-11-05
 
 ### Interface 분리 원칙 (ISP, Interface Segregation Principle)
 
+- ISP는 **큰 덩어리의 interface들을 구체적이고 작은 단위들로 분리**시킴으로써, **client들이 꼭 필요한 method들만 이용**할 수 있도록 합니다.
+
 - software 설계자는 사용하지 않은 것에 의존하지 않아야 합니다.
-    - 일반적으로 필요 이상으로 많은 걸 포함하는 모듈에 의존하는 것은 해롭습니다.
-    - 소스 코드 의존성의 경우에는 불필요한 재컴파일과 재배포가 강제됨
-    - 이는 더 고수준인 아키텍처 수준에서도 마찬가지 상황이 발생함
+    - 일반적으로 필요 이상으로 많은 것을 포함하는 module에 의존하는 것은 해롭습니다.
+    - source code의 의존성이 높다면, 변경 사항이 생길 때 불필요한 compile과 배포를 해야만 합니다.
+    - 더 고수준인 architecture도 마찬가지입니다.
+
+#### Architecture 입장에서 ISP를 어기는 경우
+
+```mermaid
+flowchart LR
+
+s[System]
+f[Framework]
+d[Database]
+
+s -->|의존| f -->|의존| d
+```
+
+- System을 구축중인 architect가 Framework를 도입하길 원하고, 개발자는 Database를 반드시 사용해야 하는 상황입니다.
+    - 따라서 System는 Framework에 의존하며, Framework는 다시 Database에 의존하는 상황입니다.
+
+- Database에 기능이 추가됩니다.
+    - Framework와 System에는 불필요한 기능입니다.
+    - 이 기능은 Database에 포함되고, Framework와 System은 직간접적으로 Database에 의존하고 있습니다.
+    - 그래서 **Database 내부가 변경되면 Framework를 재배포**해야 할 수 있고, **Framework를 재배포하기 때문에 System까지 재배포**해야 할 가능성이 있습니다.
+
+- 또한 Database 내부의 기능 중 Framework와 System에서 불필요한 기능에 문제가 발생해도 Framework와 System이 영향을 받게 됩니다.
 
 
 ### 의존성 역전 원칙 (DIP, Dependenvy Inversion Principle)
 
-```txt
-고수준 정책을 구현하는 code는 저수준 세부사항을 구현하는 code에 절대로 의존해서는 안 된다. 대신 세부사항이 정책에 의존해야 한다.
-```
+- DIP는 **고수준 정책을 구현하는 code는 저수준 세부사항을 구현하는 code에 의존해서는 안 된다**는 원칙입니다.
+
+- DIP는 architecture diagram에서 가장 눈에 잘 띄는 원칙입니다.
+    - 의존성은 더 추상적인 entity가 있는 쪽으로만 향해야하며, 이 규칙을 의존성 규칙(Dependency Rule)이라 부릅니다.
+
+
+“의존성이 극대화된 시스템”이란 소스 코드 의존성이 추상에 의존하며 구체에는 의존하지 않는 시스템임
+하지만 소프트웨어 시스템이라면 구체적인 많은 장치에 반드시 의존하므로, 이를 규칙으로 보는 것은 비현실적임
+
+자바의 String은 구체 클래스이며, 이를 추상화시키려는 의도는 현실성이 없음.
+String 구체 클래스에 대한 소스 코드 의존성은 벗어날 수 없고, 벗어나서도 안됨.
+String 클래스는 매우 안정적임. String 클래스가 변경되는 일은 거의 없으며, 있더라도 엄격하게 통제됨
+프로그래머와 아키텍트는 String 클래스에 변경이 자주 발생하리라고 염려할 필요가 없음
+
+
+따라서 DIP를 논할 때 운영체제나 플랫폼과 같이 안정성이 보장된 환경에 대해서는 무시함
+의존하지 않도록 피하고자 하는 것은 변동성이 큰 구체적인 요소(우리가 개발 중이라서 자주 변경될 수 밖에 없는 모듈들)임
+
+
+
+- interface는 구현체보다 변경 가능성이 적으며 architect는 interface의 변동성을 낮추기 위해서 노력해야 함
+- 안정된 software architecture란?
+    - 변동성이 큰 구현체에 의존하는 일은 지양함
+    - 안정된 추상 interface에 의존하는 것을 선호함
+
+인터페이스에 변경이 생기면 구현체들도 수정해야 하지만, 구현체들에 변경이 생기더라도 인터페이스는 대부분 변경될 필요가 없음
+인터페이스는 구현체보다 변동성이 낮으며, 뛰어난 소프트웨어 설계자와 아키텍트라면 인터페이스의 변동성을 낮추려고 노력함
+인터페이스를 변경하지 않고도 구현체에 기능을 추가할 수 있는 방법을 찾기 위해 노력하며, 이는 소프트웨어 설계의 기본임
+즉, 안정된 아키텍처란 변동성이 큰 구현체에 의존하는 일은 지양하고, 안정된 추상 인터페이스를 선호하는 아키텍처라는 뜻임
+
+
+
+#### DIP로 안정된 Architecture 만들기
+
+
 - 유연성이 극대화된 system : 의존성이 추상(abstraction)에 의존하며 구체(concretion)에는 의존하지 않는 system
     - Java같은 정적 type 언어에서 이 말은 use, import, include 구문은 오직 interface나 추상 class 같은 추상적인 선언만을 참조해야 한다는 뜻
         - 구체적인 요소에 의존할 수는 있지만 변동성이 큰(volatile) 구체적인 요소에는 절대로 의존해서는 안 됨
-
-- 안정된 추상화
-    - interface는 구현체보다 변경 가능성이 적으며 architect는 interface의 변동성을 낮추기 위해서 노력해야 함
-    - 안정된 software architecture란?
-        - 변동성이 큰 구현체에 의존하는 일은 지양함
-        - 안정된 추상 interface에 의존하는 것을 선호함
-    - 방법
-        1. 변동성이 큰 구체 class를 참조하지 않기
-            - 대신 추상 팩토리(Abstract Factory)를 사용하기
-        2. 변동성이 큰 구체 class로부터 파생하지 않기
-            - 상속은 아주 신중하기 사용하기
-                - 상속은 source code의 모든 관계 중 가장 강력하고 뻣뻣하기 때문에 변경하기 어려움
-        3. 구체 함수를 override하지 않기
-            - 대체로 구체 함수는 source code 의존성을 필요로 함
-                - 구체 함수를 override하면 이러한 의존성을 제거할 수 없게 됨 (의존성을 상속받게 되는 셈)
-            - 차라리 추상 함수로 선언하고 구현체들에서 각잔의 용도에 맞게 구현하는 것이 나음
-        4. 구체적이며 변동성이 크다면 그 이름을 언급하지 않기
-            - DIP 원칙을 다른 방식으로 풀어쓴 말
 
 
 
