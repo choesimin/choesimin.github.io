@@ -65,10 +65,27 @@ tail -f mylog.log | grep 192.168.15.86
 ```
 
 
-### 특정 file에서 문자열 여러 개 찾기
+### 특정 file에서 여러 개의 문자열 찾기
 
 ```sh
-cat mylog.txt | grep 'Apple' | grep 'Banana'
+cat file.txt | grep "A\|B"
+```
+
+```sh
+cat file.txt | egrep "(A|B)"
+```
+
+```sh
+str_a="1st string"
+str_b="2nd string"
+cat file.txt | grep "$str_a\|$str_b"
+```
+
+
+### 특정 file에서 문자열을 찾고, 그 결과에서 다시 문자열 찾기
+
+```sh
+cat mylog.txt | grep 'Apple' | grep 'Juice'
 ```
 
 
@@ -123,3 +140,4 @@ grep [aA]pple [file_name]
 # Reference
 
 - <https://coding-factory.tistory.com/802>
+- <https://systemdesigner.tistory.com/51>
