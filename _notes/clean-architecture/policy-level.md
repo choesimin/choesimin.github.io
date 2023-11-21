@@ -1,13 +1,15 @@
 ---
 layout: note
-title: Clean Architecture - 고수준과 저수준을 구분하기
+title: Clean Architecture - 고수준 정책과 저수준 정책을 구분하기
 date: 2023-11-04
 ---
 
 
 
 
-- **수준(level)**은 **입출력까지의 거리**를 의미합니다.
+## 정책 수준 (Policy Level)
+
+- 수준은 **입출력까지의 거리**를 의미합니다.
 
 - 모든 source code 의존성이 고수준 정책을 향한다면, 변경의 영향도를 줄일 수 있습니다.
     - system의 최저 수준에서 중요하지 않지만 긴급한 변경이 발생하더라도, 보다 높은 위치의 중요한 수준에 미치는 영향이 거의 없게 됩니다.
@@ -25,7 +27,7 @@ date: 2023-11-04
 
 
 
-## Architecture와 Design
+## Architecture와 Design의 정책 수준
 
 | Architecture | Design |
 | --- | --- |
