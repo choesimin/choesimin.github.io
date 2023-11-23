@@ -67,6 +67,7 @@ hr {
 table {
     border-top: 1px solid var(--table-border-color);
     border-collapse: collapse;
+    word-break: break-all;
 }
 
 th,
