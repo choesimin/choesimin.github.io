@@ -19,28 +19,8 @@
   </main>
   <footer>
     <hr>
-    <p>(C) {{ "now" | date: "%Y" }}. {{ site.author.name }}. All rights reserved.</p>
+    <p>(C) {{ "now" | date: "%Y" }}. {{ site.author.name }} all rights reserved.</p>
   </footer>
 </body>
-
-<script>
-  const logo = document.getElementById('logo');
-  const words = logo.children;
-
-  for (let i = 0; i < words.length; i++) {
-    logo.addEventListener('mouseover', (e) => addHoverClass(words[i]));
-    logo.addEventListener('mouseout', (e) => removeHoverClass(words[i]));
-    setTimeout(() => addHoverClass(words[i]), 100 + 100 * i);
-    setTimeout(() => removeHoverClass(words[i]), 400 + 100 * i);
-  }
-
-
-  function addHoverClass(element) {
-    element.className += ' hover'
-  }
-  function removeHoverClass(element) {
-    element.classList.remove('hover');
-  }
-</script>
 
 </html>

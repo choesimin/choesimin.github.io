@@ -124,20 +124,6 @@ class Loan {
 
 
 
-<!-- ## Example : Entity와 UseCase
-
-
-이와 관련해서는 실제 코드로 살펴보는 것이 좋다. 링크를 따라 가면 퀴즈를 발송하는 유즈케이스 class가 있고, 그 안에서 Domain 객체인 Member나 UnsentQuizzes 등이 호출되는 것을 볼 수 있다. 이렇게 빈 파라미터의 입력과 int 타입의 반환, 그리고 그 안에서 Domain 객체들이 상호 작용하는 system의 작동을 기술한 것이 바로 UseCase이다. 무책임하게 UserService와 같이 거대한 서비스 객체를 만드는 것 보다는 의미있게 UseCase 단위로 class를 나누는 것이 테스트하기도 편리하고 가독성도 좋아지고, 코드 찾기도 쉬워지는 등의 장점이 있다. UserService만 봐서는 어떠한 business 로직을 처리하는지 알 수 없다
-
-- https://github.com/MangKyu/interview-hexagonal/blob/dev/src/main/java/com/mangkyu/employment/interview/app/quiz/application/SendQuizService.java
-
-
-
---- -->
-
-
-
-
 # Reference
 
 - Clean Architecture (도서) - Robert C. Martin
