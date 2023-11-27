@@ -1,9 +1,28 @@
 ---
 layout: note
-title: Clean Architecture - Business Logic 구현하기
-date: 2023-11-22
+title: Clean Architecture - 정책과 세부 사항
+date: 2023-11-02
 ---
 
+
+
+
+## Policy (정책)
+
+- software system이란 정책을 기술한 것이며, **정책은 모든 업무 규칙(business logic)과 절차(process)를 구체화합니다.**
+    - 하나의 정책은 이 정책을 서술하는 여러 개의 작은 정책들로 쪼갤 수 있습니다.
+    - system의 본질적인 가치는 세부 사항이 아닌 정책에 있습니다.
+
+- software architecture 개발에는 **정책을 신중하게 분리**하고, **정책이 변경되는 양상에 따라 정책을 재편성**하는 일도 포함됩니다.
+
+- 단일 책임 원칙(SRP)과 공통 폐쇄 원칙(CCP)에 따르면, **동일한 이유로 동일한 시점에 변경되는 정책은 함께 묶여야 합니다.**
+    - 동일한 이유로 동일한 시점에 변경되는 정책은 동일한 수준에 위치하며, 동일한 component에 속합니다.
+    - 다른 이유 혹은 다른 시점에 변경되는 정책은 다른 수준에 위치하며, 다른 component로 분리합니다.
+
+
+
+
+---
 
 
 
@@ -16,19 +35,12 @@ date: 2023-11-22
 - e.g., 대출에 일정 비율의 이자를 부과한다는 사실은 은행이 돈을 버는 업무 규칙이며, 대출 잔액이나 이자율 등은 업무 data입니다.
 
 
-
-
----
-
-
-
-
-## 업무 규칙 구현에 필요한 세 가지 요소
+### 업무 규칙 구현에 필요한 세 가지 요소
 
 - 업무 규칙을 구현할 때는 **Entity**, **UseCase**, **Request/Response Model**이 필요합니다.
 
 
-### Entity
+#### Entity
 
 - Entity는 **핵심 업무 규칙과 핵심 업무 data를 객체로 만든 것**입니다.
     - 사업에 중요한 **핵심 업무 규칙**과 핵심 업무 규칙이 요구하는 **핵심 업무 data**는 본질적으로 결합되어 있으므로 객체로 만들기 좋은 후보입니다.
@@ -48,7 +60,7 @@ date: 2023-11-22
     - JPA Entity는 DB와 mapping되는 영속성 Entity이므로 핵심 업무 규칙을 가지는 Domain Entity의 개념과는 다릅니다.
         - 하지만 JPA Entity가 업무 규칙을 가져 Domain Entity 역할까지 가질 수도 있습니다.
 
-#### Entity Example
+##### Entity Example
 
 - 대출을 의미하는 Loan Entity는 3가지 핵심 업무 data를 포함하며, 3가지 핵심 업무 규칙을 interface로 제공합니다.
 
@@ -66,7 +78,7 @@ class Loan {
 ```
 
 
-### UseCase
+#### UseCase
 
 - UseCase는 **application에 특화된 업무 규칙을 설명**하며, 사용자와 Entity 사이의 상호 작용을 규정합니다.
     - 사용자가 제공해야 하는 입력, 사용자에게 보여줄 출력, 그리고 해당 출력을 생성하기 위한 처리 단계를 기술합니다.
@@ -79,7 +91,7 @@ class Loan {
     - 자동화된 system으로 동작을 정의하고 제약하는 업무 규칙도 존재하며, 이를 UseCase라고 합니다.
     - UseCase는 Entity 내의 핵심 업무 규칙과는 반대되는 성격을 가집니다.
 
-#### UseCase와 Entity의 의존성 방향
+##### UseCase와 Entity의 의존성 방향
 
 - UseCase와 entity의 의존성 방향은 DIP(의존성 역전 원칙)를 준수합니다.
     - UseCase는 Entity에 의존하는 반면, Entity는 UseCase에 의존하지 않습니다.
@@ -87,7 +99,7 @@ class Loan {
     - UseCase는 단일 application에 특화되어 있으며, system의 입/출력에 보다 가깝게 위치하기 때문에 저수준입니다.
     - Entity는 다양한 application에서 사용될 수 있도록 일반화한 것이며, 입/출력에서 더 멀리 떨어져 있으므로 고수준입니다.
 
-#### UseCase Example
+##### UseCase Example
 
 - 신규 대출을 위한 신상 정보를 수집하는 UseCase입니다.
 
@@ -103,7 +115,7 @@ class Loan {
 ```
 
 
-### Request/Response Model
+#### Request/Response Model
 
 - Request/Response Model은 system의 가장 저수준 영역에서 **사용자나 다른 component와 통신할 때의 입/출력 형식을 변환하고 제어**합니다.
 
