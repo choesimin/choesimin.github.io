@@ -1,13 +1,11 @@
 ---
 layout: note
-title: Clean Architecture - 경계의 종류
+title: Clean Architecture - 다양한 형태의 경계들
 date: 2023-11-28
 ---
 
 
 
-
-## 경계의 종류
 
 - system architecture는 software component와 그 component를 분리하는 경계에 의해 정의되며, 경계는 다양한 형태로 나타납니다.
 
