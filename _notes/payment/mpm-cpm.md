@@ -1,6 +1,6 @@
 ---
 layout: note
-title: MPM과 CPM
+title: 결제 주체에 따라 나뉘는 결제 방식 (MPM, CPM)
 date: 2023-11-02
 ---
 

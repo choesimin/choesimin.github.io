@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Fintech - 금융 기술
+title: Fintech (금융 기술)
 date: 2023-11-02
 ---
 

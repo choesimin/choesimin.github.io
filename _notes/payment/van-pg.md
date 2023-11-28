@@ -1,6 +1,6 @@
 ---
 layout: note
-title: VAN & PG
+title: 결제 대행사의 종류 (VAN, PG)
 date: 2023-11-02
 ---
 

@@ -1,13 +1,11 @@
 ---
 layout: note
-title: Clean Architecture - 세부 사항
+title: Clean Architecture - 세부 사항 (Detail)
 date: 2023-11-02
 ---
 
 
 
-
-## Detail (세부 사항)
 
 - 세부 사항은 사용자, 개발자, 외부 system이 **정책과 소통할 때 필요**하며, 정책이 갖는 행위에는 영향을 미치지 않습니다.
 
