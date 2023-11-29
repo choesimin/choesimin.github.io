@@ -114,9 +114,9 @@ class Loan {
     - 입력 data, 출력 data, UseCase가 상호 작용하는 Entity에 대한 참조 data 등의 data 요소를 포함합니다.
         - 이를 통해 사용자와 entity 사이의 상호 작용을 규정합니다.
 
-#### UseCase와 Entity의 의존성 방향
+#### UseCase와 Entity 사이의 의존성
 
-- UseCase와 entity의 의존성 방향은 DIP(의존성 역전 원칙)를 준수합니다.
+- UseCase와 Entity의 의존성 방향은 DIP(의존성 역전 원칙)를 준수합니다.
     - UseCase는 Entity에 의존하는 반면, Entity는 UseCase에 의존하지 않습니다.
 - 고수준인 Entity는 저수준인 UseCase에 대해 알지 못하지만, 저수준인 UseCase는 고수준인 Entity를 알고 있습니다.
     - UseCase는 단일 application에 특화되어 있으며, system의 입/출력에 보다 가깝게 위치하기 때문에 저수준입니다.

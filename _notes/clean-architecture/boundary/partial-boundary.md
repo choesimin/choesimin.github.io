@@ -11,9 +11,7 @@ date: 2023-11-28
     - 쌍방향의 다형적 boundary interface, Input과 Output을 위한 데이터 구조를 만들어야 합니다.
     - 또한 두 영역을 독립적으로 compile하고 배포할 수 있는 component로 격리하는 데에 필요한 모든 의존성을 관리해야 합니다.
 
-- Agile 기법 관점에서는 'YAGNI(You are not going to need it)' 원칙을 위배하는 선행적인 설계(architecture 경계를 완벽히 하는 것)는 좋지 않습니다.
-
-- architecture의 선행적인 설계가 필요할지도 모르겠다는 생각이 든다면, 부분적 경계(partial boundary)를 구현해 볼 수 있습니다.
+- 그럼에도 architecture의 선행적인 설계가 필요할지도 모르겠다는 생각이 든다면, 부분적 경계(partial boundary)를 구현해 볼 수 있습니다.
     - 무조건 원칙에 맞추어 양방향 interface를 만들어서 경계를 완벽하게 구분해야 하는 것은 아닙니다.
     - 상황에 맞추어 architecture 경계가 언제, 어디에 존재해야 할지, 그 경계를 완벽하게 혹은 부분적으로 구현할지를 결정해야 합니다.
 
@@ -33,7 +31,7 @@ date: 2023-11-28
 
 ### 1. 단일 배포
 
-- 단일 배포는 source code에서는 완벽한 경계를 구현하지만, 단일 component로 컴파일해서 배포하는 것입니다.
+- 단일 배포는 source code에서는 완벽한 경계를 구현하지만, 단일 component로 compile해서 배포하는 것입니다.
     - 독립적으로 compile 및 배포가 가능한 component로 만들고, 단일 component에 그대로 모아둡니다.
 
 - 이렇게 하면 code는 간단해지지 않지만, component 간 의존성 관리와 version 관리를 하지 않아도 됩니다.

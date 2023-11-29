@@ -82,10 +82,10 @@ date: 2023-11-02
 - framework는 세부 사항으로 남겨 두어야 합니다.
     - architecture는 system을 이야기해야 하며, system에 적용된 framework에 대해 얘기해서는 안 됩니다.
         - 어떻게 해야 architecture를 UseCase에 중점을 둔 채 그대로 보존할 수 있을지를 생각해야 합니다.
-        - 새로 합류한 programmer는 system이 어떻게 전달될 지 알지 못한 상태에서도 system의 모든 UseCase를 이해할 수 있어야 합니다.
+        - 새로 합류한 programmer는 system이 어떻게 전달될지 알지 못한 상태에서도 system의 모든 UseCase를 이해할 수 있어야 합니다.
 
 - framework를 사용할 수는 있지만 결합해서는 안 되고, 적당히 거리를 두어야 합니다.
-    - framework는 강력하고 유용하며 업무 규칙과 결합되기 쉽지만, 한번 결합하면 그 관계를 깨기가 매우 어렵습니다.
+    - framework는 강력하고 유용하며, 그래서 업무 규칙과 결합되기 쉽지만, 한번 결합하면 그 관계를 깨기가 매우 어렵습니다.
     - 이후에 기술적인 이유 등으로 framework는 변경될 수 있기 때문에, 세부 사항으로 취급해야 합니다.
 
 - framework를 architecture의 바깥쪽 원에 속하는 세부 사항으로 취급하고, architecture의 중심부로 들어오지 못하게 해야 합니다.
