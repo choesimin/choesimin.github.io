@@ -28,7 +28,7 @@ date: 2023-07-27
 ### Bit
 
 | Data Type | Byte | 설명 |
-| - | - | - | - |
+| --- | --- | --- | --- |
 | BIT(n) | n/8 | 1Bit에서 64Bit까지 `b'0000'`과 같은 방식으로 표현합니다. `n`을 생략하면 `BIT(1)`로 정의합니다. |
 
 
@@ -157,7 +157,7 @@ date: 2023-07-27
 | Data Type | Byte | 설명 |
 | - | - | - |
 | GEOMETRY | N/A | 공간 data 형식입니다. 선, 점 및 다각형 같은 공간 data 개체를 저장합니다. |
-| JSON | 8 | JSON 문서를 저장하며, 배열도 지원합니다. |
+| JSON | 1 ~ 4294967295 | JSON 문서를 저장하며, 배열도 지원합니다. JSON Object를 parsing(type conversion)해야 하기 때문에, DB에 부하가 있을 수 있습니다. `LONGTEXT`와 크기가 같으며, 대안으로 문자 형식을 사용할 수 있습니다. |
 
 ```sql
 -- Json Table 생성
