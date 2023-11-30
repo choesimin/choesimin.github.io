@@ -1,6 +1,6 @@
 ---
 layout: note
-title: React - 표준화된 Template 사용하기 (CRA)
+title: React - Project 시작 Template 사용하기 (CRA)
 date: 2023-11-30
 ---
 
@@ -9,14 +9,16 @@ date: 2023-11-30
 
 ## CRA (Create React App)
 
-- CRA([create-react-app](https://github.com/facebook/create-react-app))는 Facebook에서 제공하는 React Boilerplate code입니다.
+- CRA([create-react-app](https://github.com/facebook/create-react-app))는 **Facebook에서 제공하는 React Boilerplate code**입니다.
     - Boilerplate code란 변경 programming에서 자주 반복되는 작업이나 pattern에 대한 일종의 표준화된 code를 의미합니다.
 
-- CRA를 사용하면 초기 환경 설정 과정을 생략하면서, 안정적으로 설정된 package로 project를 시작할 수 있습니다.
+- CRA를 사용하면 초기 환경 설정 과정을 생략하면서, 안정적으로 설정된 source code를 가지고 project 를 시작할 수 있습니다.
 
-- CRA로 만들어진 project 내에는 사용하지 않을 code와 file도 있기 때문에, 생성 후엔 사용할 code 기준으로 정리하는 것이 좋습니다.
+- CRA로 만들어진 project 내에는 사용하지 않을 code와 file도 있기 때문에, 생성 후엔 정리하는 것이 좋습니다.
     1. 필요 없는 file을 삭제합니다.
     2. 삭제한 file을 import하는 code를 import하지 않도록 수정합니다.
+    3. source folder(`/src`) 내의 구조를 사용하기 편한 구조로 수정합니다.
+        - e.g., components, hooks, pages, ...
 
 
 ## CRA 사용 방법
@@ -54,16 +56,21 @@ my-app
     ├── index.js
     ├── logo.svg
     └── serviceWorker.js
-    └── setupTests.js
 ```
 
-| Filder | 설명 |
+| Folder | 설명 |
 | --- | --- |
-|  |  |
+| `public` | 정적(static) file들이 위치합니다.<br>image, CSS, HTML, JS와 같이 내용이 고정되어 있어서, 별도 처리 없이 file 내용을 그대로 보여줄 수 있는 file들이 저장됩니다. |
+| `src` | React application의 주요 개발 영역입니다.<br>application을 구성하는 주요 code file들이 위치합니다.<br>project 구조의 일부로써, application의 구현과 기능을 정의하는 데에 사용됩니다.<br>주로 component, module, resource 등이 포함됩니다. |
 
 | File | 설명 |
 | --- | --- |
-|  |  |
+| `public/index.html` | Web site의 **기본 page**로 사용됩니다.<br>처음 접속할 때, 자동으로 load되어 화면에 표시됩니다. |
+| `public/menifest.json` | PWA((Progressive Web Apps))에 필수적으로 포함되어야하는 file입니다.<br>PWA란 Web과 Native App이 가진 단점을 개선하는 새로운 형태의 Web app을 의미합니다. |
+| `src/App.js` | application의 **main component**입니다. `public/index.html`에 rendering할 내용을 정의합니다. |
+| `src/App.css` | application에서 사용할 CSS Style을 정의합니다.<br>`App.js`에서 이 file을 import하여 style을 적용할 수 있습니다. |
+| `src/App.test.js` | `App.js`의 test code입니다. |
+| `src/index.js` | application을 실행하는 **main program**입니다.<br>Web pack에서 aplication의 시작점(entry point)이 되는 file입니다.<br>application의 초기 설정 및 loading 절차를 담당합니다. |
 
 
 
@@ -86,5 +93,6 @@ my-app
 
 # Reference
 
-- <https://github.com/facebook/create-react-app>
-- <https://ljh86029926.gitbook.io/coding-apple-react/1/create-reactapp-using-cra-5min>
+- <https://ljh86029926.gitbook.io/coding-apple-react>
+- <https://sugoring-it.tistory.com/149>
+- <https://velog.io/@khw970421/React-%ED%8C%8C%EC%9D%BC%EB%93%A4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-index.js-App.js-index.html>
