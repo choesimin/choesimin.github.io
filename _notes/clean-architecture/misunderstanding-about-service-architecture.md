@@ -1,15 +1,17 @@
 ---
 layout: note
-title: Clean Architecture - Service Architecture의 오해
+title: Clean Architecture - Service Architecture에 대한 오해
 date: 2023-11-29
 ---
 
 
 
 
-- **Service 지향 Architecture**와 **MicroService architecture**는 큰 인기를 끌고 있습니다.
+## Service Architecture
+
+- **Service 지향 Architecture**와 **MicroService Architecture**가 큰 인기를 끌고 있습니다.
     - Service 지향 Architecture(SOA, Service Oriented Architecture)는 대규모 computer system을 구축할 때의 개념으로, 업무 상의 일 처리에 해당하는 software 기능을 service로 판단하여 그 service를 network 상에 연동하여 system 전체를 구축해 나가는 방법론입니다.
-    - MicroService는 application을 느슨하게 결합된 service의 모임으로 구조화하는 service 지향 architecture(SOA) style의 일종인 software 개발 기법입니다.
+    - MicroService Architecture는 application을 느슨하게 결합된 service의 모임으로 구조화하는 service 지향 architecture(SOA) style의 일종인 software 개발 기법입니다.
 
 - service를 사용하면, 상호 결합이 철저하게 분리되고 개발과 배포 독립성을 지원하는 것처럼 보이지만, 이는 일부만 맞는 말입니다.
 - 단순히 application의 행위를 분리할 뿐인 service라면 값비싼 함수 호출에 불과하며, architecture 관점에서 꼭 중요하다고 볼 수 없습니다.
@@ -17,9 +19,15 @@ date: 2023-11-29
         - service를 사용한다는 사실만으로는 본질적으로 architecture에 해당하지 않습니다.
     - architecture 관점에서 중요한 service도 있지만, 중요하지 않은 service도 존재하는데, architecture가 관심을 갖는 service는 architecture 관점에서 중요한 service입니다.
 
+
+### 결합 분리의 오류
+
 - system을 service들로 분리함으로써, **service 사이의 결합이 무조건적으로 분리되는 것은 아닙니다.**
     - 각 service는 각자 다른 process에서 실행되므로, service는 개별 변수 수준에서는 각각 결합이 분리됩니다.
     - 하지만 **network 상의 공유 자원** 때문에 결합될 가능성이 여전히 존재하며, **서로 공유하는 data에 의해 강력하게 결합**됩니다.
+
+
+### 개발 및 배포 독립성의 오류
 
 - service를 사용함으로써, **개발 및 배포 독립성을 무조건적으로 가질 수는 없습니다.**
     - 전담 팀이 service를 소유하고, 작성하고, 유지보수하고, 운영하게 되기 때문에, 개발 및 배포 독립성이 유지된다고 생각할 수 있습니다.
