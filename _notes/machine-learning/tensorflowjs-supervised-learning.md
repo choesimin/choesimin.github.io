@@ -243,7 +243,7 @@ model.compile(compileParam);
 ### 4.1. 학습 Parameter 설정하기
 
 | Parameter | 설명 |
-| - | - |
+| --- | --- |
 | epochs | 학습의 반복 횟수입니다.<br>값을 반드시 지정해야 합니다. |
 | callbacks | 학습에 대한 추가적인 행동(callback function)를 정의하며, 행동이 필요하지 않다면 `callbacks`은 학습 parameter에서 제외해도 됩니다.<br>epoch가 끝난 시점(`onEpochEnd`)에 `log`를 출력하여, 학습 상태를 실시간으로 확인할 수 있습니다. |
 

@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Mermaid Syntax - Markdown 문서에 Class Diagram 그리기
+title: Mermaid.js - Markdown 문서에 Class Diagram 그리기
 date: 2023-04-09
 ---
 

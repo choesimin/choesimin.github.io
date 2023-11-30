@@ -31,7 +31,7 @@ date: 2023-08-15
 - Canvas 요소는 container이기 때문에, 높이와 너비에 대한 속성만 가집니다.
 
 | 속성 | 설명 |
-| - | - |
+| --- | --- |
 | height | 높이를 pixel 단위로 명시합니다. 기본값은 `150px`입니다. |
 | width | 너비를 pixel 단위로 명시합니다. 기본값은 `300px`입니다. |
 
@@ -99,7 +99,7 @@ date: 2023-08-15
 ### 도형의 색상 정하기 : 모든 도형 공통
 
 | Context 함수 | 설명 |
-| - | - |
+| --- | --- |
 | `fillStyle = "color"` | 도형을 채울 색상을 설정합니다.<br>색상값만을 사용(`rgb`)할 수도 있고, 투명도까지 명시(`rgba`)할 수도 있습니다. |
 
 ```js
@@ -116,7 +116,7 @@ context.fillStyle = "rgba(255, 0, 0, 0.7)";
 - gradient는 선형 방향과 원형 방향으로 설정할 수 있습니다.
 
 | Gradient 함수 | 설명 |
-| - | - |
+| --- | --- |
 | `createLinearGradient(startX, startY, endX, endY)` | 선형 gradient를 그리기 시작할 시작 위치와 종료 위치의 좌표를 설정합니다. |
 | `createRadialGradient(startX, startY, startRadius, endX, endY, endRadius)` | 원형 gradient를 그리기 시작할 큰 원의 중심 좌표, 반지름과 gradient가 끝날 작은 원의 중심 좌표, 반지름을 설정합니다. |
 | `addColorStop(point, color)` | gradient의 색을 설정합니다.<br>시작점인 0에서부터 종료점인 1까지 다양한 색을 지정할 수 있습니다. |
@@ -144,7 +144,7 @@ context.fillRect(0, 0, 300, 300);
 ### 사각형 그리기
 
 | Context 함수 | 설명 |
-| - | - |
+| --- | --- |
 | `fillRect(x, y, width, height)` | 사각형을 그리기 시작할 시작점의 x, y 좌표와 사각형의 너비, 높이를 설정합니다. |
 | `strokeRect(x, y, width, height)` | 사각형 영역에 테두리를 그릴 때 사용합니다. |
 | `clearRect(x, y, width, height)` | 지정된 사각형 영역을 투명하게 만듭니다. |
@@ -160,7 +160,7 @@ context.clearRect(30, 30, 150, 50);
 ### 선 그리기
 
 | Context 함수 | 설명 |
-| - | - |
+| --- | --- |
 | `moveTo(x, y)` | 선이 시작될 좌표를 설정합니다. |
 | `lineTo(x, y)` | 선이 끝나는 좌표를 설정합니다.<br>`lineTo()` 함수를 연속적으로 사용할 때의 시작 위치는 이전 선 그리기가 끝난 위치로 자동 설정됩니다. |
 | `stroke()` | 선 그리기를 시작합니다. |
@@ -188,7 +188,7 @@ context.stroke();
 ### 원 그리기
 
 | Context 함수 | 설명 |
-| - | - |
+| --- | --- |
 | `beginPath()` | 원 그리기를 시작합니다. |
 | `arc(x, y, radius, startAngle, endAngle)` | 원의 중심 좌표와 반지름, 원을 그리기 시작할 시작 위치와 종료 위치의 좌표, 그리는 방향 등을 설정합니다. |
 | `closePath()` | 원 그리기를 마칩니다. |
@@ -213,7 +213,7 @@ context.stroke();
 ### 문자 그리기
 
 | Context 함수 | 설명 |
-| - | - |
+| --- | --- |
 | `font = "fontSize fontFamily"` | 문자의 크기와 font를 설정합니다. |
 | `fillText(text, x, y)` | 문자의 내용과 문자를 그리기 시작할 시작 위치의 좌표를 설정합니다. |
 | `strokeText(text, x, y)` | 테두리만 있는 문자를 그릴 때 사용합니다. |

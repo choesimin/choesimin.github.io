@@ -87,7 +87,7 @@ Comment: Users and global privileges
 ```
 
 | 항목 | 설명 |
-| - | - |
+| --- | --- |
 | Name | table 이름 |
 | Engine | table의 storage engine |
 | Row_format | record format. MyISAM table은 Dynamic(동적), Fixed(고정), Compressed(압축)의 형식을 취할 수 있음. Dynamic record는 VARCHAR 또는 BLOB과 같은 column을 갖기 때문에 길이가 다양함. 항상 크기가 같은 Fixed record는 CHAR 이나 INTEGER처럼 길이가 변하지 않고 고정된 column으로 구성됨 |

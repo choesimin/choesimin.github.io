@@ -10,7 +10,7 @@ date: 2023-07-31
 ## Security Group과 Network ACL
 
 | Security Group | Network ACL |
-| - | - |
+| --- | --- |
 | Security Group. | Network Access Contorl List. |
 | 설정이 비교적 간단하며, 설정에 대한 접근성이 좋습니다. EC2와 VPC 등 여러 곳에서 설정 interface로 진입할 수 있습니다. | 설정이 비교적 까다로우며, VPC로만 설정 interface에 진입할 수 있습니다. |
 | Instance level에서 운영됩니다. Instance level은 Subnet level의 하위 level이기 때문에 Subnet level에서 막았다면, Instance level에서도 접근할 수 없습니다. | Subnet level에서 운영됩니다. Subnet level은 Instance level보다 상위 level입니다. |

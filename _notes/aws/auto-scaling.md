@@ -11,7 +11,7 @@ date: 2023-07-30
     - CloudWatch가 현재 상황을 지표와 비교하여, Instance의 갯수를 자동으로 조정합니다.
 
 | Scale Out/In | Scale Up/Down |
-| - | - |
+| --- | --- |
 | 수평적인 확장과 축소입니다. server의 수를 조정합니다. | 수직적인 확장과 축소입니다. server의 성능을 조정합니다. |
 
 

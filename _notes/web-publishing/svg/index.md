@@ -29,7 +29,7 @@ date: 2023-08-26
 - SVG는 세 가지 유형의 Graphic 객체를 제공합니다.
 
 | Graphic Object | 설명 |
-| - | - |
+| --- | --- |
 | Vector Graphic Shape | 직선과 곡선으로 이루어진 도형을 표현합니다. |
 | Image | 그림, 사진을 표현합니다. |
 | Text | 문자를 표현합니다. |

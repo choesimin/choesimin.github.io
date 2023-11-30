@@ -42,7 +42,7 @@ date: 2023-08-20
 - SVG는 구조 정보(structural information)를 가지고 있습니다.
 
 |  | SVG | PNG |
-| - | - | - |
+| --- | --- | --- |
 | Image의 요소 | Vector | Pixel |
 | 그리는 방법 | 여러 개의 vector graphic component를 만들고 component들을 조합하여 하나의 SVG를 그립니다. | 각 pixel에 색상값을 설정하여 PNG를 그립니다. |
 | 구조 정보의 유무 | SVG는 구조 정보를 가지고 있습니다.<br>SVG를 구성하는 vector graphic component들의 역할과 배치, vector graphic component를 구성하는 path, color 등의 정보로 전체 image의 구조적인 특징을 설명할 수 있습니다. | PNG는 구조 정보를 가지고 있지 않습니다.<br>각 좌표의 pixel이 어떤 색상값을 가졌는지만 알 수 있으며, pixel들의 색상값만으로는 구조적인 특징을 설명할 수 없습니다. |

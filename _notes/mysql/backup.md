@@ -98,7 +98,7 @@ passowrd : 123456
 ### Access Option
 
 | Option | Short Option | 설명 |
-| - | - | - |
+| --- | --- | --- |
 | `G-host=[host_name]` | `-h [host_name]` | 접속하려는 server의 host 정보를 입력합니다. 가본 값은 localhost입니다. |
 | `--password=[password]` | `-p [password]` | 접속하려는 server의 user password를 입력합니다. |
 | `--port=[port_number]` | `-P [port_number]` | 접속하려는 server의 port를 지정합니다. |
@@ -109,7 +109,7 @@ passowrd : 123456
 ### Data Option
 
 | Option | Short Option | 설명 |
-| - | - | - |
+| --- | --- | --- |
 | `--events` | `-E` | dump file에 event 관련 정보도 저장합니다. |
 | `--ignore-table=[db_name].[table_name]` |  | backup하지 않을 table을 명시합니다. 여러 번 사용하여 여러 table을 제외할 수 있습니다. |
 | `--no-data` | `-d` | data를 입력하지 않습니다.<br>`CREATE` 구문을 전부 제외합니다. |
@@ -128,7 +128,7 @@ passowrd : 123456
 ### Performance Option
 
 | Option | Short Option | 설명 |
-| - | - | - |
+| --- | --- | --- |
 | `--delayes-insert` |  | transaction을 지원하지 않는 table(MyISAM)을 위한 지원 option입니다.<br>`INSERT` 대신 `INSERT_DELAYED`를 사용하여 dump file을 작성합니다. |
 | `--disable-keys` | `-K` | table의 `INSERT` 구문을 작성할 때 `/*!40000 ALTER TABLES tbl_name DISABLE KEYS */;`, `/*!40000 ALTER TABLE tbl_name ENABLE KETS */;`를 추가하여 작성합니다.<br>key에 대한 제약 사항을 검사하지 않도록 해 loading을 더 빠르게 할 수 있게 합니다.<br>nonunique index를 사용하는 MyISAM table에 효과가 좋습니다. |
 | `--extended-insert` | `-e` | 여러 data를 한 문장의 `INSERT` 구문으로 insert하도록 구문을 작성합니다. |
@@ -141,7 +141,7 @@ passowrd : 123456
 ### Transaction Option
 
 | Option | Short Option | 설명 |
-| - | - | - |
+| --- | --- | --- |
 | `--add-locks` |  | dump 작성 시, 각 table의 앞 뒤에 `LOCK TABLES` 구문과 `UNLOCK TABLES` 구문을 삽입합니다.<br>reload 성능을 향상시킵니다. |
 | `--flush-logs` | `-F` | dump 작업을 시작하기 전에 MySQL의 log file들을 flush합니다.<br>이 option은 `RELOAD` 권한이 있어야 실행할 수 있습니다.<br>`--all-databases` option과 같이 사용하는 경우, 각 database를 dump할 때마다 flush가 일어납니다.<br>`--lock-all-tables`, `--master-data`, `--single-transaction` option과 같이 실행하는 경우, 정확히 같은 시점에 flush와 dump가 일어납니다. |
 | `--flush-privileges` |  | database를 dump한 후, dump file에 `FLUSH PRIVILEGES` 구문을 추가합니다. |
@@ -156,7 +156,7 @@ passowrd : 123456
 ### Output Format Option
 
 | Option | Short Option | 설명 |
-| - | - | - |
+| --- | --- | --- |
 | `--compact` |  | `--skip-add-drop-table`, `--skip-add-locks`, `--skip-comments`, `--skip-disable-keys`, `--skip-set-charset` option들을 enable합니다. |
 | `--compatible=[name]` |  | 다른 DBMS(postgresql, oracle, mssql, db2, maxdb), 옛날 version의 MySQL(mysql323, mysql40), 또는 `ANSI`, `NO_KEY_OPTIONS`, `NO_TABLE_OPTIONS`, `NO_FIELD_OPTIONS`에 맞게 dump file을 만들고자 하는 경우 사용합니다.<br>여러 값들을 comma로 구분하여 입력할 수 있습니다.<br>이 option을 사용함으로서 호환성이 보장되는 것은 아니지만, 호환성을 높일 수는 있습니다. |
 | `--complete-insert` | `-c` | `INSERT` 구문 작성시 column 이름을 전부 포함하여 작성합니다. |
@@ -168,7 +168,7 @@ passowrd : 123456
 
 
 | Option  | 설명 |
-| - | - |
+| --- | --- |
 | `--master-data=[value]` | dump 받은 file이 '어느 binary log의 위치까지 사용한 것인지'를 dump file 안에 `CHANGE MASTER` 구문의 형태로 작성합니다.<br>`value`에는 `1`(comment로 남지 않습니다.) 또는 `2`(comment로 남습니다.)를 지정할 수 있으며, 기본 값은 `1`입니다.<br>이 option은 `RELOAD` 권한을 가지고 있어야 하고, binary log는 enable되어 있어야 합니다.<br>만약 binary log를 enable하지 않고 사용하면 오류가 발생합니다.<br>자동으로 `--lock-tables` option을 disable합니다.<br>원래는 `--single-transaction` option을 사용하면 `--lock-all-tables` option이 disable되지만, 이 option을 사용했을 때에는 `--single-transaction` option을 사용하더라도 `--lock-all-tables`가 enable됩니다.<br>dump를 시작할 때, 아주 짧은 시간 동안 global read lock이 발생합니다. |
 | `--delete-master-logs` | master server인 경우, dump받은 후 binary log는 모두 삭제합니다.<br>자동으로 `--master-data` option을 enable합니다. |
 | `--dump-slave=[value]` | `--master-data` option과 비슷하지만, 다른 slave server를 만들기 위해 slave server를 dump한다는 점이 다릅니다.<br>`CHANGE MASTER TO` 구문을 dump file에 추가합니다. |
@@ -179,7 +179,7 @@ passowrd : 123456
 ### Etc Option
 
 | Option | Short Option | 설명 |
-| - | - | - |
+| --- | --- | --- |
 | `--default-character-set=[charset]` |  | 기본 charset을 설정합니다. 기본 값은 `utf8`입니다. |
 | `--no-set-names` | `-N` | `--set-names` option을 disable합니다. |
 | `--set-charset` |  | `SET NAMES default_charset`을 기술합니다. |
@@ -195,7 +195,7 @@ passowrd : 123456
 ### Option Variable
 
 | Variable | 설명 |
-| - | - |
+| --- | --- |
 | `max_allowed_packet` | client와 server 사이의 buffer의 max size를 결정하는 variable입니다. MySQL과 `mysqldump`에도 적용됩니다.<br>dump시에 큰 data를 받아야 하는 경우, 이 variable의 값을 크게 늘려줘야 합니다. |
 | `net_buffer_length` | client와 server 사이 buffer의 initial size를 결정하는 variable입니다.<br>여러 data를 하나의 `INSERT` 구문으로 작성하고자 하는 경우 늘려줘야 합니다. |
 
