@@ -20,7 +20,7 @@
     --bright-color: #dddddd;
     --highlight-color: #ffffff;
 
-    --table-border-color: #444444;
+    --border-color: #444444;
 }
 
 
@@ -64,15 +64,15 @@ hr {
 
 
 table {
-    border-top: 1px solid var(--table-border-color);
+    border-top: 1px solid var(--border-color);
     border-collapse: collapse;
     word-break: break-all;
 }
 
 th,
 td {
-    border-bottom: 1px solid var(--table-border-color);
-    border-left: 1px solid var(--table-border-color);
+    border-bottom: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
     padding: 5px 10px;
 }
 
@@ -112,6 +112,25 @@ nav {
     text-decoration: none;
     font-size: 30px;
     font-weight: bold;
+}
+
+#searchInput {
+    float: right;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--color);
+}
+
+#searchResult {
+    margin: 100px 0;
+}
+#searchResult li {
+    margin: 5px 0;
+    list-style: none;
+}
+#searchResult li a {
+    text-decoration: none;
 }
 
 

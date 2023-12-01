@@ -13,8 +13,10 @@
 <body>
   <nav>
     <a id="logo" href="{{ '/' | relative_url }}">Home</a>
+    <input id="searchInput" type="text" placeholder="Search" oninput="window.scrollTo(0,0);">
   </nav>
   <main>
+    <div id="searchResult"></div>
     {{ content }}
   </main>
   <footer>
@@ -22,5 +24,15 @@
     <p>(C) {{ "now" | date: "%Y" }}. {{ site.author.name }} all rights reserved.</p>
   </footer>
 </body>
+
+<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+<script>
+  var sjs = SimpleJekyllSearch({
+    searchInput: document.getElementById('searchInput'),
+    resultsContainer: document.getElementById('searchResult'),
+    json: '/search.json',
+    searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
+  });
+</script>
 
 </html>
