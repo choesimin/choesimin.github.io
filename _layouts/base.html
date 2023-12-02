@@ -3,17 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
   <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}">
-
   {% seo %}
 </head>
 
 <body>
   <nav>
-    <a id="logo" href="{{ '/' | relative_url }}">Home</a>
-    <input id="searchInput" type="text" placeholder="Search" oninput="window.scrollTo(0,0);">
+    <a id="home" href="{{ '/' | relative_url }}"><img src="{{ '/assets/icon/home.svg' | relative_url }}"></a>
+    <input id="searchInput" type="text" placeholder="제목, 내용, 날짜" oninput="window.scrollTo(0,0);">
+    <a id="search" onclick="toggleSearchInput()"><img src="{{ '/assets/icon/search.svg' | relative_url }}"></a>
   </nav>
   <main>
     <div id="searchResult"></div>
@@ -33,6 +32,16 @@
     json: '/search.json',
     searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
   });
+
+  function toggleSearchInput() {
+    var searchInput = document.getElementById('searchInput');
+    if (getComputedStyle(searchInput).display == 'none') {
+      searchInput.style.display = 'block';
+      searchInput.focus();
+    } else {
+      searchInput.style.display = 'none';
+    }
+  }
 </script>
 
 </html>
