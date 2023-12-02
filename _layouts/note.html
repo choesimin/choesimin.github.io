@@ -5,7 +5,7 @@ layout: base
 <article>
     <h1 class="title">{{ page.title }}</h1> 
     <p class="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
-    <ul class="index"></ul>
+    <ul id="index"></ul>
     {{ content }}
     <div id="stamp">
         <img src="{{ '/assets/image/stamp.png' | relative_url }}">
@@ -13,7 +13,7 @@ layout: base
 </article>
 
 <script>
-    const index = document.getElementsByClassName('index')[0];
+    const index = document.getElementById('index');
     const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
 
     for (let i = 0; i < headers.length; i++) {

@@ -32,17 +32,17 @@ ol, ul {
     padding-left: 20px;
 }
 
-ul.index {
+ul#index {
     background-color: var(--background-highlight-color);
     padding: 20px;
     margin-bottom: 100px;
 }
 
-ul.index li {
+ul#index li {
     list-style: inside;
 }
 
-ul.index li a {
+ul#index li a {
     text-decoration: none;
 }
 

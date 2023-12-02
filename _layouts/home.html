@@ -6,7 +6,6 @@ layout: base
 
 <br>
 <p id="intro">{{ site.description }}</p>
-
 <br>
 <article id="notes"></article>
 
@@ -14,7 +13,6 @@ layout: base
 
 
 <script>
-
   var pages = getPages();
   var nodes = makeNodes(pages);
   var root = groupNodes(nodes);
@@ -25,8 +23,6 @@ layout: base
   list.removeChild(list.querySelector("li"));
   list.querySelector("ul").className = "root";
   document.getElementById("notes").innerHTML = list.innerHTML;
-
-
 
 
   function makeList(node, list) {
@@ -69,8 +65,6 @@ layout: base
   }
 
 
-
-
   function groupNodes(nodes) {
     var root = {name: "root"};
     root.children = nodes;
@@ -98,8 +92,6 @@ layout: base
 
     return node;
   }
-
-
 
 
   function makeNodes(pages) {
@@ -132,8 +124,6 @@ layout: base
   }
 
 
-
-
   function getPages() {
     var pages = [];
 
@@ -151,7 +141,6 @@ layout: base
 
     return pages;
   }
-
 </script>
 
 
