@@ -7,6 +7,9 @@ layout: base
     <p class="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
     <ul class="index"></ul>
     {{ content }}
+    <div id="stamp">
+        <img src="{{ '/assets/image/stamp.png' | relative_url }}">
+    </div>
 </article>
 
 <script>

@@ -52,3 +52,15 @@ ul.index li a {
 code {
     color: var(--code-color);
 }
+
+
+
+#stamp {
+    margin-top : 150px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#stamp img {
+    width: 100px;
+}

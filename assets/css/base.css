@@ -3,11 +3,6 @@
     src: url(../font/SeoulNamsanM.ttf);
 }
 
-@font-face {
-    font-family: 'SeoulLongNamsanB';
-    src: url(../font/SeoulLongNamsanB.ttf);
-}
-
 
 
 
@@ -123,21 +118,12 @@ nav {
     padding: 10px;
 }
 
-#home img {
-    height: 30px;
+#home img, #search img {
+    height: 35px;
     opacity: 0.8;
 }
 
-#home img:hover {
-    opacity: 1;
-}
-
-#search img {
-    height: 30px;
-    opacity: 0.8;
-}
-
-#search img:hover {
+#home img:hover, #search img:hover {
     opacity: 1;
 }
 
