@@ -15,7 +15,8 @@ normal
 _single underscore_   
 **double asterisk**   
 __double underscore__   
-~~double tilde~~
+~~double tilde~~   
+<u>underline tag</u>
 ```
 
 
@@ -26,4 +27,5 @@ normal
 _single underscore_   
 **double asterisk**   
 __double underscore__   
-~~double tilde~~
+~~double tilde~~   
+<u>underline tag</u>
