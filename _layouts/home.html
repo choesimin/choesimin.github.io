@@ -7,9 +7,10 @@ layout: base
 <br>
 <p id="intro">{{ site.description }}</p>
 <br>
+<br>
+<div id="index"></div>
+<br>
 <article id="notes"></article>
-
-
 
 
 <script>
@@ -25,6 +26,19 @@ layout: base
   document.getElementById("notes").innerHTML = list.innerHTML;
 
 
+  var index = document.getElementById('index');
+  list.querySelector(".root").childNodes.forEach(category => {
+    if (category.tagName === 'LI') {
+      var categoryName = category.querySelector('a').innerHTML;
+
+      var categoryIndex = document.createElement('a');
+      categoryIndex.href = '#' + convertNameToId(categoryName);
+      categoryIndex.innerHTML = categoryName;
+      index.appendChild(categoryIndex);
+    }
+  });
+
+
   function makeList(node, list) {
     var listItem = document.createElement("li");
 
@@ -33,6 +47,8 @@ layout: base
       node.children = node.children.filter(child => !child.isIndex);
 
       if (index != undefined) {
+        listItem.id = convertNameToId(index.name);
+
         var anchor = document.createElement("a");
         anchor.innerHTML = index.name;
         anchor.href = index.url;
@@ -41,7 +57,7 @@ layout: base
         span.innerHTML = index.date;
         listItem.appendChild(span);
       } else {
-        listItem.innerHTML = node.name + " (Must add category's index file)";
+        listItem.innerHTML = node.name + " (You must add category index file)";
       }
       list.appendChild(listItem);
 
@@ -66,7 +82,7 @@ layout: base
 
 
   function groupNodes(nodes) {
-    var root = {name: "root"};
+    var root = { name: "root" };
     root.children = nodes;
 
     return groupNode(root);
@@ -128,18 +144,23 @@ layout: base
     var pages = [];
 
     {% for note in site.notes %}
-      var id = "{{ note.id }}".split("/");
+    var id = "{{ note.id }}".split("/");
 
-      pages.push({
-        category: id.slice(2, id.length - 1),
-        name: id[id.length - 1],
-        title: "{{ note.title }}",
-        date: "{{ note.date | date: '%Y-%m-%d' }}",
-        url: "{{ note.url | relative_url }}",
-      });
+    pages.push({
+      category: id.slice(2, id.length - 1),
+      name: id[id.length - 1],
+      title: "{{ note.title }}",
+      date: "{{ note.date | date: '%Y-%m-%d' }}",
+      url: "{{ note.url | relative_url }}",
+    });
     {% endfor %}
 
     return pages;
+  }
+
+
+  function convertNameToId(name) {
+    return name.replace(/[^a-zA-Z0-9가-힣]/g, "-").toLowerCase();
   }
 </script>
 

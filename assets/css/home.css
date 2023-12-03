@@ -2,6 +2,18 @@
     text-align: center;
 }
 
+#index {
+    background-color: var(--background-highlight-color);
+    text-align: center;
+    padding: 30px 10px;
+}
+
+#index a {
+    display: inline-block;
+    text-decoration-line: none;
+    padding: 5px 20px;
+}
+
 #notes a {
     text-decoration-line: none;
 }
