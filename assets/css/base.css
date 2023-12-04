@@ -112,25 +112,31 @@ nav {
     right: 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: top;
     max-width: 1400px;
     margin: 0 auto;
     padding: 10px;
 }
 
-#home img, #search img {
-    height: 35px;
+#logo img, #search img {
     opacity: 0.8;
 }
 
-#home img:hover, #search img:hover {
+#logo img:hover, #search img:hover {
     opacity: 1;
+}
+
+#logo img {
+    height: 60px;
+}
+
+#search img, #searchInput {
+    height: 35px;
 }
 
 #searchInput {
     display: none;
     margin: 0 auto;
-    padding: 5px;
     width: 60%;
     background-color: transparent;
     border-style: sold;
@@ -142,7 +148,8 @@ nav {
 }
 
 #searchResult {
-    margin: 100px 0;
+    margin: 50px 0;
+    text-align: center;
 }
 
 #searchResult li {

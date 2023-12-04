@@ -31,7 +31,7 @@ npm start
 
 - `npx`는 `npm` registry에 올라가 있는 package를 쉽게 설지차고 관리할 수 있도록 도와주는 CLI 도구입니다.
     - `npm`을 통해 설치하는 모든 종류의 Node.js 기반 file들을 간단하게 설치하고 실행할 수 있게 돕습니다.
-    - 5.2.0 version 이상의 `npm`에서 사용할 수 있습니다.
+    - `npx`는 5.2.0 version 이상의 `npm`에서 사용할 수 있습니다.
 
 
 ## CRA 초기 Project 구조
@@ -58,30 +58,31 @@ my-app
     └── serviceWorker.js
 ```
 
-| Folder | 설명 |
-| --- | --- |
-| `public` | 정적(static) file들이 위치합니다.<br>image, CSS, HTML, JS와 같이 내용이 고정되어 있어서, 별도 처리 없이 file 내용을 그대로 보여줄 수 있는 file들이 저장됩니다. |
-| `src` | React application의 주요 개발 영역입니다.<br>application을 구성하는 주요 code file들이 위치합니다.<br>project 구조의 일부로써, application의 구현과 기능을 정의하는 데에 사용됩니다.<br>주로 component, module, resource 등이 포함됩니다. |
+
+### `public` Folder
+
+- 정적(static) file들이 위치합니다.
+- image, CSS, HTML, JavaScript file처럼 내용이 고정되어 있어서, 별도의 처리 없이 file 내용을 그대로 보여줄 수 있는 file들이 저장됩니다.
 
 | File | 설명 |
 | --- | --- |
-| `public/index.html` | Web site의 **기본 page**로 사용됩니다.<br>처음 접속할 때, 자동으로 load되어 화면에 표시됩니다. |
-| `public/menifest.json` | PWA((Progressive Web Apps))에 필수적으로 포함되어야하는 file입니다.<br>PWA란 Web과 Native App이 가진 단점을 개선하는 새로운 형태의 Web app을 의미합니다. |
-| `src/App.js` | application의 **main component**입니다. `public/index.html`에 rendering할 내용을 정의합니다. |
-| `src/App.css` | application에서 사용할 CSS Style을 정의합니다.<br>`App.js`에서 이 file을 import하여 style을 적용할 수 있습니다. |
-| `src/App.test.js` | `App.js`의 test code입니다. |
-| `src/index.js` | application을 실행하는 **main program**입니다.<br>Web pack에서 aplication의 시작점(entry point)이 되는 file입니다.<br>application의 초기 설정 및 loading 절차를 담당합니다. |
+| `index.html` | Web site의 **기본 page**로 사용됩니다.<br>처음 접속할 때, 자동으로 load되어 화면에 표시됩니다. |
+| `menifest.json` | PWA((Progressive Web Apps))에 필수적으로 포함되어야하는 file입니다.<br>PWA란 Web과 Native App이 가진 단점을 개선하는 새로운 형태의 Web app을 의미합니다. |
 
 
+### `src` Folder
 
+- React application의 주요 개발 영역입니다.
+- application을 구성하는 주요 code file들이 위치합니다.
+- project 구조의 일부로써, application의 구현과 기능을 정의하는 데에 사용됩니다.
+- 주로 component, module, resource 등이 포함됩니다.
 
-
-
-
-
-- 
-
-
+| File | 설명 |
+| --- | --- |
+| `App.js` | application의 **main component**입니다. `public/index.html`에 rendering할 내용을 정의합니다. |
+| `App.css` | application에서 사용할 CSS Style을 정의합니다.<br>`App.js`에서 이 file을 import하여 style을 적용할 수 있습니다. |
+| `App.test.js` | `App.js`의 test code입니다. |
+| `index.js` | Web pack에서 aplication의 시작점(entry point)이 되는 file입니다.<br>application을 실행하는 **main program**으로, application의 초기 설정 및 loading 절차를 담당합니다. |
 
 
 
@@ -93,6 +94,4 @@ my-app
 
 # Reference
 
-- <https://ljh86029926.gitbook.io/coding-apple-react>
 - <https://sugoring-it.tistory.com/149>
-- <https://velog.io/@khw970421/React-%ED%8C%8C%EC%9D%BC%EB%93%A4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-index.js-App.js-index.html>
