@@ -75,7 +75,7 @@ application
     - domain의 흐름을 파악하기 어렵습니다.
         - 하나의 package 안에 여러 domain들이 섞여 있습니다.
         - domain의 흐름을 보고 싶을 때, 모든 계층 package를 봐야 합니다.
-    - domain과 관련된 spec이나 기능을 변경할 때, 여러 package에서 변경이 일어납니다.
+    - domain과 관련된 Spec이나 기능을 변경할 때, 여러 package에서 변경이 일어납니다.
 
 2. UseCase(사용자의 행위) 표현이 어렵습니다.
     - 규모가 커지면, UseCase별로 class를 분리할 때가 있습니다.
@@ -133,7 +133,7 @@ application
 1. domain별 응집도가 높습니다.
     - domain의 흐름을 파악하기 쉽습니다.
         - domain의 흐름을 보고 싶을 때, package 하나만 보면 됩니다.
-    - domain과 관련된 spec이나 기능을 변경할 때, 해당 domain package 내에서만 변경이 일어납니다.
+    - domain과 관련된 Spec이나 기능을 변경할 때, 해당 domain package 내에서만 변경이 일어납니다.
 
 2. UseCase별로 세분화해서 표현이 가능합니다.
     - domain별로 package가 나뉘기 때문에 domain의 UseCase를 분리하기 쉽습니다.
@@ -145,11 +145,7 @@ application
 1. application의 전반적인 흐름을 한눈에 파악하기 어렵습니다.
     - 흐름을 파악하기 위해 여러 package를 확인해야 할 경우가 많습니다.
 
-2. 순환 참조 문제가 발생할 수 있습니다.
-    - domain이 다른 domain의 기능을 사용해야할 때가 있으며, 이는 다른 domain 입장에서도 마찬가지입니다.
-    - domain이 서로의 기능을 가용하기 위해 의존하게 되면 순환 참조 문제가 발생하게 됩니다.
-
-3. class의 domain 분류 기준이 개발자마다 다를 수 있습니다.
+2. class의 domain 분류 기준이 개발자마다 다를 수 있습니다.
     - class의 역할이 확실히 특정한 domain에 속한다면 해당 domain package에 포함시키면 됩니다.
     - 그러나 class의 역할이 domain으로 정확히 나뉘기 애매한 경우, 개발자마다 다른 기준으로 다른 package에 위치시키게 됩니다.
         - e.g., Welcome page를 mapping하는 controller를 어느 domain package에 위치시킬지 개발자마다 다르게 생각할 수 있습니다.
@@ -165,64 +161,132 @@ application
 
 ## Package 구조 설계 예시 : 청구/결제 Service
 
-- package 구조에는 정해진 답이 없으며, 상황에 알맞게 구성하는 것이 가장 좋습니다.
+
+### 상황 가정
+
+- 청구와 결제 기능이 main이 되는 monolithic project입니다.
+- 관계형 database와 MySQL을 사용합니다.
 
 
-- web
-    - bill
-        - ...
-    - manager
-        - ...
-    - admin
-        - ...
-    - landing
-        - ...
+### Package 구조
 
-- domain
-    - merchant
-    - customer
-    - user
-    - bill
-    - payment
-    - gift
-    - point
+- `web`은 `domain`의 기능을 사용할 수 있습니다.
+    - 반대로, `domain`은 `web`의 기능을 사용할 수 없습니다.
 
-- global
-    - exception
-    - aspect
-        - ErrorExceptionControllerAdvice
-        - BusinessExceptionControllerAdvice
-    - auth
-    - config
-    - util
-        - KakaotalkUtil
-        - SlackUtil
-        - GmailUtil
+- `controller`는 `service`와 `mapper`를 사용할 수 있습니다.
+- `service`와 `mapper`를 사용할 수 있습니다.
 
+```txt
+application
+│
+├── domain
+│   ├── payment
+│   │   ├── controller
+│   │   │   ├── PaymentController
+│   │   │   └── dto
+│   │   │       ├── PaymentRequest
+│   │   │       ├── PaymentResponse
+│   │   │       ├── PaymentCancelRequest
+│   │   │       └── PaymentCancelResponse
+│   │   ├── service
+│   │   │   ├── PaymentService
+│   │   │   ├── PaymentCancelService
+│   │   │   ├── entity
+│   │   │   │   ├── Payment
+│   │   │   │   └── PaymentCancel
+│   │   │   ├── dto
+│   │   │   │   ├── PaymentDto
+│   │   │   │   ├── PaymentCancelDto
+│   │   │   │   └── rest
+│   │   │   │       ├── PaymentApprovalRequest
+│   │   │   │       ├── PaymentApprovalResponse
+│   │   │   │       ├── PaymentCancelApprovalRequest
+│   │   │   │       └── PaymentCancelApprovalResponse
+│   │   │   └── enumeration
+│   │   │       ├── PaymentType
+│   │   │       └── PayerType
+│   │   └── mapper
+│   │       ├── BillMapper
+│   │       ├── PaymentLedgerMapper
+│   │       ├── PayMethodMapper
+│   │       ├── vo
+│   │       │   ├── BillVo
+│   │       │   ├── PaymentLedgerVo
+│   │       │   └── PayMethodVo
+│   │       ├── dto
+│   │       │   └── PaymentLedgerInsertParameter
+│   │       └── enumeration
+│   │           ├── BillType
+│   │           └── PaymentLedgerState
+│   ├── bill
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   ├── merchant
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   ├── customer
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   ├── login
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   ├── gift
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   ├── point
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   └── message
+│       └── service
+│           ├── KakaotalkService
+│           ├── SlackService
+│           └── GmailService
+│
+├── web
+│   ├── manager
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   ├── bill
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   ├── admin
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   ├── receipt
+│   │   ├── controller
+│   │   ├── service
+│   │   └── mapper
+│   └── landing
+│       ├── controller
+│       ├── service
+│       └── mapper
+│
+└── global
+    ├── aspect
+    │   ├── ErrorExceptionControllerAdvice
+    │   └── BusinessExceptionControllerAdvice
+    ├── exception
+    │   ├── CommonErrorException
+    │   └── CommonBusinessException
+    ├── auth
+    │   └── TokenAuthenticationService
+    ├── util
+    │   ├── JsonUtil
+    │   ├── DateUtil
+    │   └── EncryptionUtil
+    └── property
+        └── ExtraServiceProperty
+```
 
-
-
-
-
-
-
-ㄴsrc/main/java/com/example/demo
-	ㄴ DemoApplication.java
-    ㄴ domain
-    	ㄴ user
-          ㄴ controller
-          ㄴ service
-          ㄴ repository
-          ㄴ domain
-        ㄴ post
-          ㄴ controller
-          ㄴ service
-          ㄴ repository
-          ㄴ domain
-    ㄴ global
-    	ㄴ auth
-        ㄴ common
-        ㄴ config
 
 
 
