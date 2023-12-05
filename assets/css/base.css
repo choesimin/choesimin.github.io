@@ -93,8 +93,8 @@ td:first-child {
 
 
 main {
-    margin: 50px auto;
-    padding: 10px;
+    margin: 0 auto;
+    padding: 50px 10px;
     max-width: 800px;
 
     line-height: 2;

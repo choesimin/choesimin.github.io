@@ -41,7 +41,7 @@ date: 2023-07-18
 
 ### 객체 지향 Programming 언어
 
-- Java는 OOP (Object-Oriented Programming)에 적합한 언어입니다.
+- Java는 OOP(Object-Oriented Programming)에 적합한 언어입니다.
 - 객체 지향적으로 개발하면 직관적으로 code를 분석할 수 있어 유지 보수가 쉬워집니다.
 
 
