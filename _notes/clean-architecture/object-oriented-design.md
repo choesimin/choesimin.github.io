@@ -139,7 +139,7 @@ s -->|의존| f -->|의존| d
 - 또한 Database 내부의 기능 중 Framework와 System에서 불필요한 기능에 문제가 발생해도 Framework와 System이 영향을 받게 됩니다.
 
 
-### 의존성 역전 원칙 (DIP, Dependenvy Inversion Principle)
+### 의존 관계 역전 원칙 (DIP, Dependency Inversion Principle)
 
 - DIP는 **고수준 정책을 구현하는 code는 저수준 세부사항을 구현하는 code에 의존해서는 안 된다**는 원칙입니다.
 
@@ -157,16 +157,15 @@ s -->|의존| f -->|의존| d
 
 #### DIP 위반이 허용되는 경우
 
-- 의존성은 구체가 아닌 추상에 의존해야 하지만, software system이라면 구체적인 많은 장치에 반드시 의존하게 됩니다.
-- 이는 DIP를 위반하는 것이지만, 경우에 따라서 위반을 허용하기도 합니다.
-    - DIP를 모든 곳에서 지키는 것은 비현실적입니다.
+- 원래 component, module, 객체는 구체가 아닌 추상에 의존해야 하지만, software system이라면 구체적인 많은 장치에 반드시 의존하게 됩니다.
+- 이는 DIP를 위반하는 것이지만, DIP를 모든 곳에서 지키는 것은 비현실적이며, 경우에 따라서 위반을 허용하기도 합니다.
 
 - e.g., Java의 `String` class는 구체 class이며, 이를 추상화시키려는 의도는 현실성이 없습니다.
     - String 구체 class에 대한 source code 의존성은 벗어날 수 없고, 벗어나서도 안 됩니다.
     - String class는 매우 안정적이며, 변경되는 일은 거의 없습니다.
         - 변경이 있더라도 엄격하게 통제됩니다.
     - programmer와 architect는 String class에 변경이 자주 발생하리라고 염려할 필요가 없습니다.
-    - 따라서 Java의 `String` class는 개발자들의 암묵적 합의에 의해서 DIP를 위반이 허용됩니다.
+    - 따라서 Java의 `String` class는 **개발자들의 암묵적 합의에 의해서 DIP를 위반이 허용**됩니다.
 
 - `String` class 같이, DIP를 논할 때 운영 체제나 platform과 같이 **안정성이 보장된 환경**에 대해서는 무시합니다.
 - DIP를 지켜서 의존하지 않도록 피해야 하는 것은 변동성이 큰 구체적인 요소(개발 중이라서 자주 변경될 수 밖에 없는 module들)입니다.

@@ -161,23 +161,8 @@ application
 
 ## Package 구조 설계 예시 : 청구/결제 Service
 
-
-### 상황 가정
-
 - 청구와 결제 기능이 main이 되는 monolithic project입니다.
 - 관계형 database와 MySQL을 사용합니다.
-
-
-### Package 구조
-
-- `web`은 `domain`의 기능을 사용할 수 있습니다.
-    - 반대로, `domain`은 `web`의 기능을 사용할 수 없습니다.
-
-- `controller`는 `service`와 `mapper`를 사용할 수 있습니다.
-- `service`와 `mapper`를 사용할 수 있습니다.
-
-
-
 
 ```txt
 application
@@ -289,6 +274,36 @@ application
     └── property
         └── ExtraServiceProperty
 ```
+
+<!-- - 기본적으로 Domain Package Architecture를 따릅니다.
+    - domain 이름이 package 이름이 됩니다.
+
+- `domain`, `web` package 내의 다른 domain 기능을 사용하는 일은 지양합니다.
+    - domain이 서로 의존하는 순환 참조가 발생하지 않도록 하기 위함입니다.
+    - e.g., bill이 payment의 기능을 사용하고 payment가 bill의 기능을 사용하면, 순환 참조 문제가 발생합니다.
+
+| package | 설명 |
+| --- | --- |
+| controller | request와 response를 처리합니다. |
+| service | UseCase입니다. |
+
+- `service`는 UseCase입니다.
+- `service` 안의 `entity`는 Entity입니다.
+- `controller`는 `service`와 `mapper`에 의존합니다.
+- `service`는 `mapper`에 의존합니다.
+    - 이는 DIP(의존 관계 역전 원칙)를 위반하는 것이나, 개발 편의와 효율을 위해 허용합니다.
+    - service가 mapper를 의존
+    - 원래 component, module, object는 구체가 아닌 추상에 의존해야 합니다.
+
+- `web`은 `domain`의 기능을 사용할 수 있습니다.
+    - 반대로, `domain`은 `web`의 기능을 사용할 수 없습니다.
+
+- `controller`는 `service`와 `mapper`를 사용할 수 있습니다.
+- `service`와 `mapper`를 사용할 수 있습니다.
+
+ -->
+
+
 
 
 
