@@ -148,8 +148,9 @@ application
 2. class의 domain 분류 기준이 개발자마다 다를 수 있습니다.
     - class의 역할이 확실히 특정한 domain에 속한다면 해당 domain package에 포함시키면 됩니다.
     - 그러나 class의 역할이 domain으로 정확히 나뉘기 애매한 경우, 개발자마다 다른 기준으로 다른 package에 위치시키게 됩니다.
-        - e.g., Welcome page를 mapping하는 controller를 어느 domain package에 위치시킬지 개발자마다 다르게 생각할 수 있습니다.
+        - e.g., '청구서 결제' 기능을 어떤 개발자는 '청구서'로 분류하고, 어떤 개발자는 '결제'로 분류할 수 있습니다.
     - 이후에 다른 개발자가 class의 위치가 자신이 예상하는 package와 다를 때, 해당 class를 찾기가 어렵습니다.
+    - 따라서 내부적으로 합의된 domain 분류 기준이 있어야 합니다.
 
 
 
@@ -161,30 +162,62 @@ application
 
 ## Package 구조 설계 예시 : 청구/결제 Service
 
-- 청구와 결제 기능이 main이 되는 monolithic project입니다.
-- 관계형 database와 MySQL을 사용합니다.
-
 ```txt
 application
 │
 ├── domain
+│   ├── bill
+│   │   ├── controller
+│   │   │   ├── BillController
+│   │   │   └── dto
+│   │   │       ├── BillSearchRequest
+│   │   │       ├── BillSendRequest
+│   │   │       ├── BillDestroyRequest
+│   │   │       └── BillSearchResponse
+│   │   ├── service
+│   │   │   ├── BillSearchService
+│   │   │   ├── BillSendService
+│   │   │   ├── BillDestroyService
+│   │   │   ├── entity
+│   │   │   │   ├── Bill
+│   │   │   │   ├── BillSend
+│   │   │   │   └── PaymentCancel
+│   │   │   └── dto
+│   │   │       ├── BillDestroyDto
+│   │   │       └── rest
+│   │   │           ├── SmsBillSendRequest
+│   │   │           ├── SmsBillSendResponse
+│   │   │           ├── KakaotalkBillSendRequest
+│   │   │           └── KakaotalkBillSendResponse
+│   │   └── mapper
+│   │       ├── BillMapper
+│   │       ├── MemberMapper
+│   │       ├── CustomerMapper
+│   │       ├── dto
+│   │       │   ├── BillInsertParameter
+│   │       │   ├── BillUpdateParameter
+│   │       │   ├── BillSearchParameter
+│   │       │   ├── BillSearchResult
+│   │       │   ├── BillEntity
+│   │       │   ├── MemberEntity
+│   │       │   └── CustomerEntity
+│   │       └── enumeration
+│   │           ├── BillType
+│   │           └── BillState
 │   ├── payment
 │   │   ├── controller
 │   │   │   ├── PaymentController
-│   │   │   └── dto
+│   │   │   └── request
 │   │   │       ├── PaymentRequest
-│   │   │       ├── PaymentResponse
-│   │   │       ├── PaymentCancelRequest
-│   │   │       └── PaymentCancelResponse
+│   │   │       └── PaymentCancelRequest
 │   │   ├── service
 │   │   │   ├── PaymentService
 │   │   │   ├── PaymentCancelService
 │   │   │   ├── entity
+│   │   │   │   ├── Bill
 │   │   │   │   ├── Payment
 │   │   │   │   └── PaymentCancel
 │   │   │   ├── dto
-│   │   │   │   ├── PaymentDto
-│   │   │   │   ├── PaymentCancelDto
 │   │   │   │   └── rest
 │   │   │   │       ├── PaymentApprovalRequest
 │   │   │   │       ├── PaymentApprovalResponse
@@ -198,50 +231,46 @@ application
 │   │       ├── PaymentLedgerMapper
 │   │       ├── PayMethodMapper
 │   │       ├── vo
-│   │       │   ├── BillVo
-│   │       │   ├── PaymentLedgerVo
-│   │       │   └── PayMethodVo
 │   │       ├── dto
-│   │       │   └── PaymentLedgerInsertParameter
+│   │       │   ├── PaymentLedgerInsertParameter
+│   │       │   ├── BillEntity
+│   │       │   ├── PaymentLedgerEntity
+│   │       │   └── PayMethodEntity
 │   │       └── enumeration
 │   │           ├── BillType
+│   │           ├── BillState
 │   │           └── PaymentLedgerState
-│   ├── bill
+│   ├── member
 │   │   ├── controller
 │   │   ├── service
-│   │   └── mapper
-│   ├── merchant
-│   │   ├── controller
-│   │   ├── service
-│   │   └── mapper
-│   ├── customer
-│   │   ├── controller
-│   │   ├── service
-│   │   └── mapper
-│   ├── login
-│   │   ├── controller
-│   │   ├── service
-│   │   └── mapper
-│   ├── gift
-│   │   ├── controller
-│   │   ├── service
-│   │   └── mapper
-│   ├── point
-│   │   ├── controller
-│   │   ├── service
-│   │   └── mapper
-│   └── message
-│       └── service
-│           ├── KakaotalkService
-│           ├── SlackService
-│           └── GmailService
+│   │   ├── mapper
+│   │   ├── registration
+│   │   │   ├── controller
+│   │   │   ├── service
+│   │   │   └── mapper
+│   │   ├── login
+│   │   │   ├── controller
+│   │   │   ├── service
+│   │   │   └── mapper
+│   │   ├── store
+│   │   │   ├── controller
+│   │   │   ├── service
+│   │   │   └── mapper
+│   │   └── point
+│   │       ├── controller
+│   │       ├── service
+│   │       └── mapper
+│   └── customer
+│       ├── controller
+│       ├── service
+│       └── mapper
 │
-├── web
-│   ├── manager
+│── web
+│   ├── bill
 │   │   ├── controller
 │   │   ├── service
 │   │   └── mapper
-│   ├── bill
+│   ├── store
 │   │   ├── controller
 │   │   ├── service
 │   │   └── mapper
@@ -266,21 +295,27 @@ application
     │   ├── CommonErrorException
     │   └── CommonBusinessException
     ├── auth
-    │   └── TokenAuthenticationService
+    │   └── TokenAuthenticationManager
     ├── util
     │   ├── JsonUtil
     │   ├── DateUtil
+    │   ├── EncryptionUtil
     │   └── EncryptionUtil
     └── property
         └── ExtraServiceProperty
 ```
 
-<!-- - 기본적으로 Domain Package Architecture를 따릅니다.
+- 청구서를 관리하고, 발송하고, 결제하는 service입니다.
+- monolithic project이며, Spring framework, 관계형 database, MyBatis을 사용합니다.
+
+
+### `domain` Package
+
+- 기본적으로 Domain Package Architecture를 따릅니다.
     - domain 이름이 package 이름이 됩니다.
 
-- `domain`, `web` package 내의 다른 domain 기능을 사용하는 일은 지양합니다.
-    - domain이 서로 의존하는 순환 참조가 발생하지 않도록 하기 위함입니다.
-    - e.g., bill이 payment의 기능을 사용하고 payment가 bill의 기능을 사용하면, 순환 참조 문제가 발생합니다.
+- `global` package 내의 기능을 사용할 수 있고, `web` package의 기능은 사용할 수 없습니다.
+    - `web` package는 특수한 상황에 대한 기능이기 때문에, domain이 알아서는 안 됩니다.
 
 | package | 설명 |
 | --- | --- |
@@ -300,10 +335,6 @@ application
 
 - `controller`는 `service`와 `mapper`를 사용할 수 있습니다.
 - `service`와 `mapper`를 사용할 수 있습니다.
-
- -->
-
-
 
 
 

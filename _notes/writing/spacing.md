@@ -1,6 +1,6 @@
 ---
 layout: note
-title: 개발자의 글쓰기 - 장애 보고서 쓰기
+title: 올바른 띄어쓰기를 위한 Tip
 date: 2023-12-07
 ---
 
