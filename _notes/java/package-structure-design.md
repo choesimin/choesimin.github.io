@@ -242,24 +242,14 @@ application
 │   │           └── PaymentLedgerState
 │   ├── member
 │   │   ├── controller
+│   │   │   ├── MemberController
+│   │   │   ├── MemberLoginController
+│   │   │   ├── MemberPointController
+│   │   │   └── request
+│   │   │       ├── PaymentRequest
+│   │   │       └── PaymentCancelRequest
 │   │   ├── service
-│   │   ├── mapper
-│   │   ├── registration
-│   │   │   ├── controller
-│   │   │   ├── service
-│   │   │   └── mapper
-│   │   ├── login
-│   │   │   ├── controller
-│   │   │   ├── service
-│   │   │   └── mapper
-│   │   ├── store
-│   │   │   ├── controller
-│   │   │   ├── service
-│   │   │   └── mapper
-│   │   └── point
-│   │       ├── controller
-│   │       ├── service
-│   │       └── mapper
+│   │   └── mapper
 │   └── customer
 │       ├── controller
 │       ├── service
@@ -300,41 +290,11 @@ application
     │   ├── JsonUtil
     │   ├── DateUtil
     │   ├── EncryptionUtil
-    │   └── EncryptionUtil
+    │   ├── SmsUtil
+    │   └── KakaotalkUtil
     └── property
         └── ExtraServiceProperty
 ```
-
-- 청구서를 관리하고, 발송하고, 결제하는 service입니다.
-- monolithic project이며, Spring framework, 관계형 database, MyBatis을 사용합니다.
-
-
-### `domain` Package
-
-- 기본적으로 Domain Package Architecture를 따릅니다.
-    - domain 이름이 package 이름이 됩니다.
-
-- `global` package 내의 기능을 사용할 수 있고, `web` package의 기능은 사용할 수 없습니다.
-    - `web` package는 특수한 상황에 대한 기능이기 때문에, domain이 알아서는 안 됩니다.
-
-| package | 설명 |
-| --- | --- |
-| controller | request와 response를 처리합니다. |
-| service | UseCase입니다. |
-
-- `service`는 UseCase입니다.
-- `service` 안의 `entity`는 Entity입니다.
-- `controller`는 `service`와 `mapper`에 의존합니다.
-- `service`는 `mapper`에 의존합니다.
-    - 이는 DIP(의존 관계 역전 원칙)를 위반하는 것이나, 개발 편의와 효율을 위해 허용합니다.
-    - service가 mapper를 의존
-    - 원래 component, module, object는 구체가 아닌 추상에 의존해야 합니다.
-
-- `web`은 `domain`의 기능을 사용할 수 있습니다.
-    - 반대로, `domain`은 `web`의 기능을 사용할 수 없습니다.
-
-- `controller`는 `service`와 `mapper`를 사용할 수 있습니다.
-- `service`와 `mapper`를 사용할 수 있습니다.
 
 
 
