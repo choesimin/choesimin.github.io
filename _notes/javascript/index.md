@@ -6,44 +6,23 @@ date: 2023-12-13
 
 
 
+- JavaScript는 browser interface를 만들 때 가장 널리 사용되는 scripting 또는 programming 언어입니다.
+    - JavaScript를 사용하여 정적인 web page에 동적인 기능을 추가할 수 있습니다.
+        - HTML, CSS로 정보를 표시(정적)하고, JavaScript로 복잡한 기능(동적)을 구현합니다.
+        - 실시간으로 변경되는 contents를 만들고, multimedia를 제어하고, image에 animation을 적용하는 등의 모든 작업을 수행할 수 있습니다.
+    - JavaScript만으로 HTML, CSS code를 완전히 대체할 수도 있습니다.
 
-- JavaScript는 웹 페이지에서 복잡한 기능을 구현할 수 있는 스크립팅 또는 프로그래밍 언어입니다.
+- JavaScript로 작성한 프로그램은 'script'라고 부릅니다.
+    - script는 web page의 HTML 안에 작성할 수 있으며, web page를 불러올 때 script가 자동으로 실행됩니다.
+    - script는 특별한 준비나 compile 없이 보통의 문자 형태로 작성할 수 있고, 실행도 할 수 있습니다.
 
+- JavaScript는 HTML, CSS와 함께 표준 web 기술에 속합니다.
+    - Internet Explorer, Chrome, Safari, FireFox, Opera 등 모든 주요 browser에서 JavaScript를 기본 언어로 지원합니다.
+    - HTML은 문단, 제목, data 표를 정의하거나 page에 image와 동영상을 삽입하는 등, web contents를 구성하고 의미를 부여하는 데 사용하는 MarkUp 언어입니다.
+    - CSS는 배경색과 글꼴을 설정하고 contents를 여러 열에 배치하는 등, HTML contents에 style을 적용하는 데에 사용하는 style 규칙 언어입니다.
 
-- JavaScript는 HTML, CSS와 함께 표준 웹 기술에 속합니다.
-    - HTML은 문단, 제목, 데이터 표를 정의하거나 페이지에 이미지와 동영상을 삽입하는 등 웹 콘텐츠를 구성하고 의미를 부여하는 데 사용하는 마크업 언어입니다.
-    - CSS는 배경색과 글꼴을 설정하고 콘텐츠를 여러 열에 배치하는 등 HTML 콘텐츠에 스타일을 적용하는 데 사용하는 스타일 규칙 언어입니다.
-
-
-- 자바스크립트를 사용하여 정적인 웹페이지를 동적인 기능을 추가할 수 있습니다.
-    - 웹 페이지가 단순히 정적인 정보를 표시하는 것 이상으로 시의적절한 콘텐츠 업데이트, 대화형 지도, 애니메이션 2D/3D 그래픽, 스크롤링 비디오 주크박스 등을 표시할 때마다 JavaScript가 관련되어 있을 가능성이 높습니다.
-
-
-- 자바스크립트는 브라우저에서만 쓸 목적으로 고안된 언어이지만, 지금은 다양한 환경에서 쓰이고 있습니다.
-오늘날 자바스크립트는 브라우저 환경에서 가장 널리 사용되는 언어로 자리매김하였습니다. HTML/CSS와 완전한 통합이 가능합니다.
-
-
-- 자바스크립트로 작성한 프로그램을 스크립트(script) 라고 부릅니다. 스크립트는 웹페이지의 HTML 안에 작성할 수 있는데, 웹페이지를 불러올 때 스크립트가 자동으로 실행됩니다.
-    - 스크립트는 특별한 준비나 컴파일 없이 보통의 문자 형태로 작성할 수 있고, 실행도 할 수 있습니다.
-
-
-
-- JavaScript는 동적으로 변경되는 콘텐츠를 만들고, 멀티미디어를 제어하고, 이미지에 애니메이션을 적용하는 등 거의 모든 작업을 수행할 수 있는 스크립팅 언어입니다.
-    - (모든 것이 가능한 것은 아니지만 몇 줄의 JavaScript 코드로 달성할 수 있는 것은 놀랍습니다.)
-
-
-
-- 강점
-    자바스크립트엔 다양한 장점이 있지만 여기선 세 가지만 언급해 보도록 하겠습니다.
-
-    HTML/CSS와 완전히 통합할 수 있음
-    간단한 일은 간단하게 처리할 수 있게 해줌
-    모든 주요 브라우저에서 기본 언어로 지원합니다.
-    이 세 가지 모두를 지원하는 브라우저 연관 기술은 자바스크립트뿐입니다.
-
-    이런 특징 때문에 자바스크립트는 브라우저 인터페이스를 만들 때 가장 널리 사용되고 있습니다.
-
-    이 외에도 자바스크립트를 이용해 서버나 모바일 앱 등을 만드는 것도 가능합니다.
+- JavaScript는 browser에서만 쓸 목적으로 고안된 언어이지만, 지금은 다양한 환경에서 쓰이고 있습니다.
+    - JavaScript를 이용해 server나 mobile app 등을 만드는 것도 가능합니다.
 
 
 
@@ -55,25 +34,44 @@ date: 2023-12-13
 
 ## JavaScript의 특징
 
-### JavaScript는 동적인 언어입니다.
 
-- 동적이라는 단어는 웹 페이지/웹 앱의 디스플레이를 업데이트하여 상황에 따라 다른 내용을 표시하고 필요에 따라 새 콘텐츠를 생성하는 기능을 의미합니다. 서버 사이드 코드는 데이터베이스에서 데이터를 가져오는 등 서버에서 새 콘텐츠를 동적으로 생성하는 반면, 클라이언트 사이드 JavaScript는 새 HTML 표를 생성하고 서버에서 요청한 데이터로 채운 다음 사용자에게 표시되는 웹 페이지에 테이블을 표시하는 등 클라이언트 브라우저 내부에서 새 콘텐츠를 동적으로 생성합니다. 두 가지 맥락에서 의미는 약간 다르지만 서로 연관되어 있으며 일반적으로 두 가지 접근 방식(서버와 클라이언트 사이드)이 함께 작동합니다.
+### 동적인 언어
 
-- 동적으로 바뀌는 내용이 없는 웹 페이지를 정적인 페이지라고 하며, 항상 동일한 콘텐츠만 표시합니다.
+- '동적'이라는 단어는 web page/app의 화면을 갱신하여 상황에 따라 다른 내용을 표시하고, 필요에 따라 새 contents를 생성하는 기능을 의미합니다.
+    - 동적으로 바뀌는 내용이 없는 web page를 정적인 page라고 하며, 항상 동일한 내용만 표시합니다.
+
+- server-side에서 JavaScript는 server에서 새 contents를 동적으로 생성합니다.
+    - e.g., database에서 data를 가져와 새로운 자료구조 또는 객체를 생성합니다.
+- client-side에서 JavaScript는 browser 내부에서 새 contents를 동적으로 생성합니다.
+    - e.g., 새 HTML table을 생성하고, server에서 요청한 data로 채운 다음, web page에 table을 표시합니다.
 
 
-### JavaScript는 가볍고, 인터프리터를 사용하는 프로그래밍 언어입니다.
+### Interpreter 언어
 
-- 웹 브라우저는 JavaScript 코드를 원문 텍스트 형식으로 입력받아 실행합니다. 기술적인 측면으로 따지자면, 대부분의 모던 JavaScript 인터프리터들은 실제 성능 향상을 위해 JIT 컴파일(just-in-time 컴파일)이라는 기술을 사용하는데, 스크립트의 실행과 동시에 소스 코드를 더 빠르게 실행할 수 있는 이진 형태로 변환하여 최대한 높은 실행 속도를 얻는 방법입니다. 하지만 컴파일이 미리 처리되는 것이 아니라 런타임에 처리되기 때문에 JavaScript는 여전히 인터프리터 언어로 분류됩니다.
-- 인터프리터를 사용하는 언어에서는 코드가 위에서 아래로 실행되고 코드 실행 결과가 즉시 반환됩니다. 브라우저에서 코드를 실행하기 전에 코드를 다른 형태로 변환할 필요가 없습니다. 코드는 프로그래머에게 친숙한 텍스트 형식으로 수신되어 바로 처리됩니다.
+- JavaScript는 interpreter를 사용하는 가벼운 programming 언어입니다.
+    - web browser는 JavaScript code를 원문 text 형식으로 입력받아 실행합니다.
+    - interpreter 언어이기 때문에, code가 위에서 아래로 실행되고 code 실행 결과가 즉시 반환됩니다.
+        - browser에서 code를 실행하기 전에 code를 다른 형태로 변환(compile)할 필요가 없습니다.
+
+- 현대의 JavaScript interpreter들은 성능 향상을 위해 JIT compile(just-in-time compile)이라는 기술을 사용합니다.
+    - JIT compile은 script의 실행과 동시에 source code를 더 빠르게 실행할 수 있는 이진 형태로 변환(compile)하여 최대한 높은 실행 속도를 얻는 방법입니다.
+    - 하지만 compile이 미리 처리되는 것이 아니라 runtime에 처리되기 때문에, JavaScript는 여전히 interpreter 언어로 분류됩니다.
 
 
-### JavaScript는 client side code 뿐만 아니라 server side code로도 사용할 수 있습니다.
+### 높은 범용성 (Client-Side, Server-Side)
 
-자바스크립트는 브라우저뿐만 아니라 서버에서도 실행할 수 있습니다. 이 외에도 자바스크립트 엔진(JavaScript engine)이라 불리는 특별한 프로그램이 들어 있는 모든 디바이스에서도 동작합니다.
+- JavaScript는 browser뿐만 아니라 server에서도 실행할 수 있습니다.
+    - server 외에도 JavaScript engine이 탑재된 모든 device에서 동작합니다.
 
-웹 개발의 맥락에서 서버 사이드 코드와 클라이언트 사이드 코드를 들어봤을 것입니다. 클라이언트 사이드 코드는 사용자의 컴퓨터에서 실행되는 코드로, 웹 페이지를 볼 때 페이지의 클라이언트 측 코드가 다운로드된 후 실행되어 브라우저에 표시됩니다. 이 과정에서 다루는 것은, 정확히는 클라이언트 사이드 JavaScript입니다.
-반대로 서버 사이드 코드는 서버에서 실행되고 그 결과가 다운로드되어 브라우저에 표시됩니다. 인기 있는 서버 사이드 웹 언어로는 PHP, Python, Ruby, ASP.NET, 그리고 JavaScript가 있습니다! JavaScript는 브라우저 뿐만 아니라, 많은 사람들이 사용하는 Node.js 환경처럼 서버 사이드 언어로도 사용할 수 있습니다. 서버 사이드 JavaScript에 관해서는 동적 웹 사이트 – 서버 사이드 프로그래밍 과정에서 더 알아보세요.
+- client-side code는 사용자의 장비에서 실행되는 code입니다.
+    - 사용자의 장비에 source code를 사용자 측에서 실행하여 browser에 표시합니다.
+        - source code는 사용자의 장비에 download 받습니다.
+
+- server-side code는 server에서 실행되는 code입니다.
+    - server에서 source code를 실행하고, 그 결과를 사용자 측에서 받아 browser에 표시합니다.
+        - source code는 server에 있습니다.
+    - e.g., Node.js를 사용하여 server application을 만들 수 있습니다.
+
 
 
 
@@ -84,31 +82,27 @@ date: 2023-12-13
 
 ## JavaScript 표준
 
-1996년에 넷스케이프(Netscape)는 자바스크립트를 국제 표준안으로 만들기 위해 ECMA(European Computer Manufacturers Association)에 제출한다. 그 결과, ECMA는 ECMAScript라는 새로운 표준을 제정하였고, 그 첫 번째 버전인 ECMA-262를 1997년에 공표한다.
+- 1996년 11월, Netscape Communications는 JavaScript를 국제 표준안으로 만들기 위해 ECMA(European Computer Manufacturers Association) International에 제출합니다.
+    - 여러 회사에서 다른 기능이 탑재된 browser를 만들면서, browser에 따라 web page가 동작하거나 동작하지 않는 cross browsing issue가 발생하기 시작한 시점입니다.
+    - JavaScript의 파편화를 방지하고, 모든 browser에서 동일하게 동작하는 표준화된 JavaScript를 정의하기 위해 Netscape가 ECMA에 요청했습니다.
 
-ECMAScript는 자바스크립트뿐만 아니라 마이크로소프트의 JScript나 어도비의 액션스크립트도 따르는 국제 표준이 된다.
+- 1997년 7월, ECMA는 ECMAScript라는 새로운 표준을 제정하였고, ECMA-262라는 JavaScript 초판(ECMAScript 1) 명세(specification)를 공표합니다.
+    - 상표권 문제로 JavaScript는 ECMAScript로 명명되었습니다.
 
-현재 자바스크립트의 최신 표준은 2015년에 발표된 ECMAScript 6이다.
+- 특히, 2015년에 공개된 ECMAScript 6(ECMAScript 2015)에서는 큰 변화가 있었습니다.
+    - 범용 programming 언어로서 갖추어야 할 let/const keyword, 화살표 함수, class, module 등과 같은 기능들이 도입되었습니다.
 
-2. 자바스크립트의 파편화와 표준화
-    1996년 8월, 마이크로소프트는 자바스크립트의 파생 버전인 “JScript”를 Internet Explorer 3.0에 탑재하였다. 그런데 문제는 JScript와 자바스크립트가 표준화되지 못하고 적당히 호환되었다는 것이다. 즉, 자사 브라우저의 시장 점유율을 점유하기 위해 자사 브라우저에서만 동작하는 기능을 경쟁적으로 추가하기 시작했다는 것이다. 이로 인해 브라우저에 따라 웹 페이지가 정상 동작하지 않는 크로스 브라우징 이슈가 발생하기 시작했고 모든 브라우저에서 동작하는 웹 페이지를 개발하는 것은 무척 어려워졌다.
+| Version | 출시년도 | 특징 |
+| --- | --- | --- |
+| ES1 | 1997 | 초판. |
+| ES2 | 1998 | ISO/IEC 16262 국제 표준과 동일한 규격을 적용. |
+| ES3 | 1999 | 정규 표현식, `try-catch` 예외 처리. |
+| ES5 | 2009 | HTML5와 함께 출현한 표준안.<br>JSON, strict mode, 접근자 property(`getter`, `setter`), 향상된 배열 조작 기능(`forEach`, `map`, `filter`, `reduce`, `some`, `every`). |
+| ES6 (ECMAScript 2015) | 2015 | `let`, `const`, `class`, 화살표 함수(arrow function), template literal, destructuring 할당, spread 문법, rest parameter, `Symbol`, `Promise`, `Map`/`Set`, iterator/generator, module import/export. |
+| ES7 (ECMAScript 2016) | 2016 | 지수(`**`) 연산자, `Array.prototype.includes`, `String.prototype.includes`. |
+| ES8 (ECMAScript 2017) | 2017 | async/await, Object 정적 method(`Object.values`, `Object.entries`, `Object.getOwnPropertyDescriptors`). |
+| ES9 (ECMAScript 2018) | 2018 | Object Rest/Spread property. |
 
-    이에 자바스크립트의 파편화를 방지하고 모든 브라우저에서 동일하게 동작하는 표준화된 자바스크립트에 대한 필요성이 제기되기 시작했다. 이를 위해 1996년 11월, 넷스케이프 커뮤니케이션즈는 컴퓨터 시스템의 표준을 관리하는 비영리 표준화 기구인 ECMA 인터내셔널에 자바스크립트의 표준화를 요청하였다.
-
-    1997년 7월, ECMA-262라 불리는 표준화된 자바스크립트 초판(ECMAScript 1)의 명세(specification)가 완성되었고 상표권 문제로 자바스크립트는 ECMAScript로 명명되었다. 이후 1999년 ECMAScript 3(ES3)이 공개되었고 10년 만인 2009년 출시된 ECMAScript 5(ES5)는 HTML5와 함께 출현한 표준안이다.
-
-    2015년 ECMAScript 6(ECMAScript 2015)가 공개되었고 범용 프로그래밍 언어로서 갖추어야 할 let/const 키워드, 화살표 함수, 클래스, 모듈 등과 같은 기능들을 대거 도입하는 큰 변화가 있었다. ES6 이후의 버전업은 작은 기능의 추가 레벨로 매년 공개할 것으로 예고되었다. ECMAScript 버전별 특징은 아래와 같다.
-
-    버전	출시년도	특징
-    ES1	1997	초판
-    ES2	1998	ISO/IEC 16262 국제 표준과 동일한 규격을 적용
-    ES3	1999	정규 표현식, try…catch 예외 처리
-    ES5	2009	HTML5와 함께 출현한 표준안. JSON, strict mode, 접근자 프로퍼티(getter, setter), 향상된 배열 조작 기능(forEach, map, filter, reduce, some, every)
-    ES6 (ECMAScript 2015)	2015	let, const, class, 화살표 함수, 템플릿 리터럴, 디스트럭처링 할당, spread 문법, rest 파라미터, Symbol, Promise, Map/Set, iterator/generator, module import/export
-    ES7 (ECMAScript 2016)	2016	지수(**) 연산자, Array.prototype.includes, String.prototype.includes
-    ES8 (ECMAScript 2017)	2017	async/await, Object 정적 메소드(Object.values, Object.entries, Object.getOwnPropertyDescriptors)
-    ES9 (ECMAScript 2018)	2018	Object Rest/Spread 프로퍼티
-    
 
 
 
@@ -119,100 +113,138 @@ ECMAScript는 자바스크립트뿐만 아니라 마이크로소프트의 JScrip
 
 ## JavaScript와 Browser
 
-### JavaScript가 Browser에서 할 수 있는 일
+- JavaScript는 '안전한' programming 언어입니다.
+    - memory나 CPU 같은 저수준 영역의 조작을 허용하지 않습니다.
+    - browser를 대상으로 만든 언어이기 때문에, 저수준 영역에 접근이 필요하지 않습니다.
 
-모던 자바스크립트는 ‘안전한’ 프로그래밍 언어입니다. 메모리나 CPU 같은 저수준 영역의 조작을 허용하지 않습니다. 애초에 이러한 접근이 필요치 않은 브라우저를 대상으로 만든 언어이기 때문이죠.
+- JavaScript의 능력은 실행 환경에 크게 영향을 받습니다.
+    - browser 환경에선 web page 조작, client와 server의 상호 작용에 관한 모든 일을 할 수 있습니다.
+    - Node.js 환경에선 임의의 file을 읽거나 쓰고, network 요청을 수행하는 함수를 지원합니다.
 
-자바스크립트의 능력은 실행 환경에 상당한 영향을 받습니다. Node.js 환경에선 임의의 파일을 읽거나 쓰고, 네트워크 요청을 수행하는 함수를 지원합니다.
 
-브라우저 환경에선 웹페이지 조작, 클라이언트와 서버의 상호작용에 관한 모든 일을 할 수 있습니다.
+### Browser에서 가능한 것들
 
-브라우저에서 자바스크립트로 할 수 있는 일은 다음과 같습니다.
+1. page에 새로운 HTML을 추가하거나, 기존 HTML, 혹은 style 수정합니다.
+2. mouse click이나 pointer의 움직임, keyboard의 key 눌림 등과 같은 사용자 행동에 반응합니다.
+3. network를 통해 원격 server에 요청을 보내거나, file을 download, upload합니다.
+    - AJAX나 COMET과 같은 기술 사용합니다.
+4. cookie를 가져오거나 설정합니다.
+5. 사용자에게 질문하거나 message 보여줍니다.
+6. client-side에 data를 저장합니다.
+    - e.g., local storage.
 
-페이지에 새로운 HTML을 추가하거나 기존 HTML, 혹은 스타일 수정하기
-마우스 클릭이나 포인터의 움직임, 키보드 키 눌림 등과 같은 사용자 행동에 반응하기
-네트워크를 통해 원격 서버에 요청을 보내거나, 파일 다운로드, 업로드하기(AJAX나 COMET과 같은 기술 사용)
-쿠키를 가져오거나 설정하기. 사용자에게 질문을 건네거나 메시지 보여주기
-클라이언트 측에 데이터 저장하기(로컬 스토리지)
 
-### JavaScript가 Browser에서 할 수 없는 일
+### Browser에서 제약받는 것들
 
-브라우저는 보안을 위해 자바스크립트의 기능에 제약을 걸어놓았습니다. 이런 제약은 악성 웹페이지가 개인 정보에 접근하거나 사용자의 데이터를 손상하는 것을 막기 위해 만들어졌습니다.
+- browser는 보안을 위해 JavaScript의 기능에 제약을 걸어 놓았습니다.
+    - 이런 제약은 악성 web page가 개인 정보에 접근하거나 사용자의 data를 손상하는 것을 막기 위해 만들어졌습니다.
 
-몇 가지 제약사항을 소개해 드리겠습니다.
+1. web page 내 script는 disk에 저장된 임의의 file을 읽거나 쓰고, 복사하거나 실행할 때 제약을 받을 수 있습니다.
+    - 운영 체제가 지원하는 기능을 browser가 직접 사용하지 못하게 막아 두었기 때문입니다.
+    - modern browser를 사용하면 file을 다룰 수는 있지만 접근이 제한됩니다.
+        - 사용자가 browser 창에 file을 '끌어다 두거나(drag & drop)', `<input>` tag를 통해 file을 선택할 때와 같이, 특정 상황에서만 file 접근을 허용합니다.
 
-웹페이지 내 스크립트는 디스크에 저장된 임의의 파일을 읽거나 쓰고, 복사하거나 실행할 때 제약을 받을 수 있습니다. 운영체제가 지원하는 기능을 브라우저가 직접 쓰지 못하게 막혀있기 때문입니다.
+2. camera나 mike 같은 device와 상호 작용하려면 사용자의 명시적인 허가가 있어야 합니다.
+    - JavaScript가 활성화된 page라도 사용자 몰래 web camera를 작동시켜 수집한 정보를 국가안보국(NSA)과 같은 곳에 몰래 전송할 수 없습니다.
+    - browser에서 사용자가 허용 설정을 해주어야 사용할 수 있습니다.
 
-모던 브라우저를 사용하면 파일을 다룰 순 있습니다. 하지만 접근은 제한되어 있습니다. 사용자가 브라우저 창에 파일을 ‘끌어다 두거나’ <input> 태그를 통해 파일을 선택할 때와 같이 특정 상황에서만 파일 접근을 허용합니다.
-
-카메라나 마이크 같은 디바이스와 상호 작용하려면 사용자의 명시적인 허가가 있어야 합니다. 자바스크립트가 활성화된 페이지라도 사용자 몰래 웹 카메라를 작동 시켜 수집한 정보를 국가안보국(NSA)과 같은 곳에 몰래 전송할 수 없습니다.
-
-브라우저 내 탭과 창은 대개 서로의 정보를 알 수 없습니다. 그런데 자바스크립트를 사용해 한 창에서 다른 창을 열 때는 예외가 적용됩니다. 하지만 이 경우에도 도메인이나 프로토콜, 포트가 다르다면 페이지에 접근할 수 없습니다.
-
-이런 제약사항을 '동일 출처 정책(Same Origin Policy)'이라 부릅니다. 이 정책을 피하려면 두 페이지는 데이터 교환에 동의해야 하고, 동의와 관련된 특수한 자바스크립트 코드를 포함하고 있어야 합니다. 자세한 사항은 추후 학습하도록 하겠습니다.
-
-다시 한번 강조하지만, 이런 제약사항은 사용자의 보안을 위해 만들어졌습니다. http://anysite.com에서 받아온 페이지가 http://gmail.com에서 받아온 페이지 상의 정보에 접근해 중요한 개인정보를 훔치는 걸 막기 위함입니다.
-
-자바스크립트를 이용하면 페이지를 생성한 서버와 쉽게 정보를 주고받을 수 있습니다. 하지만 타 사이트나 도메인에서 데이터를 받아오는 건 불가능합니다. 가능하다 할지라도 원격 서버에서 명확히 승인을 해줘야 합니다(HTTP 헤더 등을 이용). 이 역시 보안을 위해 만들어진 제약사항입니다.
+3. browser 내의 tab과 창(window)은 대개 서로의 정보를 알 수 없습니다.
+    - JavaScript를 사용해 한 창에서 다른 창을 열 때는 예외가 적용되어 page의 정보에 접근할 수 있습니다.
+    - 하지만 JavaScript를 사용해 창을 열었다고 하더라도, domain, protocol, port가 다르다면 다른 page에 접근할 수 없습니다.
+        - 이런 제약사항을 '동일 출처 정책(Same Origin Policy)'이라고 합니다.
+        - 동일 출처 정책을 피하려면 두 page는 data 교환에 동의해야 하고, 동의와 관련된 특수한 JavaScript code를 포함하고 있어야 합니다.
+        - 이 제약사항은 사용자의 보안을 위해 만들어졌습니다.
+            - 'http://anysite.com'에서 받아온 page가 'http://gmail.com'에서 받아온 page 상의 정보에 접근해 중요한 개인정보를 훔치는 걸 막기 위함입니다.
+    - JavaScript를 이용하면 page를 생성한 server와 쉽게 정보를 주고받을 수 있지만, 다른 site나 domain에서 data를 받아오는 건 불가능합니다.
+        - 통신을 가능하게 하려면, HTTP header 등을 이용하여 원격 server에서 명확히 승인해 줘야 합니다.
+        - 이 제약사항 역시 사용자의 보안을 위해 만들어졌습니다.
 
 
 
 
 ---
-
 
 
 
 
 ## JavaScript의 API
 
-하지만 더욱 흥미로운 것은 클라이언트 측 JavaScript 언어 위에 구축된 기능입니다. 애플리케이션 프로그래밍 인터페이스(API)라고 부르는 이 기능들은 JavaScript 코드에서 사용할 수 있는 강력한 마법을 추가로 제공합니다.
-
-API는 개발자가 구현하기 어렵거나 불가능한 프로그램을 구현할 수 있도록 미리 만들어서 제공하는 것입니다. 기성품 가구 키트로 집을 짓는 것과 동일한 방식으로 프로그래밍할 수 있습니다. 직접 디자인을 구상하고, 올바른 목재를 찾고, 모든 패널을 올바른 크기와 모양으로 자르고, 올바른 크기의 나사를 찾아서 책장을 만드는 것보다 기성품 패널을 나사로 고정하여 책장을 만드는 것이 훨씬 쉽습니다.
+- API(Application Programming Interface)는 client 측 JavaScript 언어 위에 미리 구현한 기능을 개발자에게 제공합니다.
+    - API는 개발자가 구현하기 어렵거나 구현이 불가능한 program을 쉽게 만들 수 있게 해줍니다.
+    - e.g., 기성품 가구 제작 kit로 가구를 만드는 것과 같은 방식으로 개발할 수 있습니다.
+        - 직접 설계하고, 목재를 찾고, 자르고, 나사를 박아서 책장을 만드는 것보다, 기성품을 조립하여 책장을 만드는 것이 훨씬 쉽습니다.
 
 
 ### Browser API
 
-브라우저 API는 웹 브라우저에 내장되어 있으며, 주변 컴퓨터 환경의 데이터를 노출하거나 유용한 복잡한 작업을 수행할 수 있습니다.
+- Browser API는 web browser에 내장되어 있습니다.
 
-DOM (Document Object Model) API를 사용하면 HTML과 CSS를 조작하여 HTML을 생성, 제거 및 변경하고 페이지에 새 스타일을 동적으로 적용하는 등의 작업을 수행할 수 있습니다. 예를 들어 페이지에 팝업 창이 나타나거나 새로운 콘텐츠가 표시될 때마다(위의 간단한 데모에서 보았듯이) DOM이 작동하는 것입니다.
-Geolocation API로 지리정보를 가져올 수 있습니다. 이것이 Google 지도가 사용자의 위치를 찾아 지도에 표시하는 방법입니다.
-Canvas와 WebGL API를 사용하면 애니메이션 2D 및 3D 그래픽을 만들 수 있습니다. 두 웹 기술을 사용해서 만들 수 있는 놀라운 결과를 엿보려면 Chrome Experiments와 webglsamples를 방문하세요.
-HTMLMediaElement와 WebRTC를 포함하는 오디오와 비디오 API (en-US)를 사용하면 웹 페이지에서 바로 오디오 및 비디오를 재생하거나 웹 카메라에서 비디오를 가져와 다른 사람의 컴퓨터에 표시하는 등 멀티미디어로 정말 흥미로운 작업을 할 수 있습니다. (간단한 스냅샷 데모를 방문해서 감을 잡아보세요.)
+1. DOM(Document Object Model) API를 사용하면 HTML과 CSS를 동적으로 조작할 수 있습니다.
+    - 실시간으로 HTML을 생성/제거/변경합니다.
+    - 실시간으로 style을 적용합니다.
+    - e.g., page에 경고 창을 띄우거나, 새로운 정보를 page 전환 없이 표시합니다.
+
+2. Geolocation API로 지리 정보를 가져올 수 있습니다.
+
+3. Canvas와 WebGL API를 사용하면 animation과 2D/3D graphic을 만들 수 있습니다.
+
+4. Audio와 Video API(HTMLMediaElement, WebRTC)를 사용하면 멀티미디어로 다양한 작업을 할 수 있습니다.
+    - web page에서 바로 audio 및 video를 재생합니다.
+    - web camera에서 video를 가져와 다른 사람의 computer에 표시합니다.
 
 
-### Third Party API
+### Third-Party API
 
-서드파티 API는 기본적으로 브라우저에 내장되어 있지 않으며, 일반적으로 웹 어딘가에서 해당 코드와 정보를 가져와야 합니다.
+-  Third-Party API는 기본적으로 browser에 내장되어 있지 않으며, 일반적으로 web 어딘가에서 해당 code와 정보를 가져와야 합니다.
 
-Twitter API로 여러분의 최신 트윗을 웹 사이트가 보여주도록 구현할 수 있습니다.
-Google 지도 API와 OpenStreetMap API로 웹 사이트에 지도를 삽입하고, 지도 관련 기능을 추가할 수 있습니다.
+1. Twitter API로 최신 Tweet을 web site가 보여주도록 구현할 수 있습니다.
+
+2. Google 지도 API와 OpenStreetMap API로 web site에 지도를 삽입하고, 지도 관련 기능을 추가할 수 있습니다.
 
 
 
 
 ---
+
 
 
 
 ## JavaScript를 구동하는 다양한 Engine
 
-브라우저엔 '자바스크립트 가상 머신’이라 불리는 엔진이 내장되어 있습니다.
+- browser엔 'JavaScript Virtual Machine’이라 불리는 engine이 내장되어 있습니다.
+- engine의 종류는 다양하며, engine마다 특유의 code name이 있습니다.
 
-엔진의 종류는 다양한데, 엔진마다 특유의 코드네임이 있습니다. 아래처럼 말이죠.
+| Engine | 사용하는 Browser |
+| --- | --- |
+| V8 | Chrome, Opera |
+| SpiderMonkey | Firefox |
+| SquirrelFish | Safari |
+| Trident, Chakra | Internet Explorer |
+| ChakraCore | Microsoft Edge |
 
-V8 – Chrome과 Opera에서 쓰입니다.
-SpiderMonkey – Firefox에서 쓰입니다.
-IE는 버전에 따라 'Trident’나 'Chakra’라 불리는 엔진을 사용합니다. 'ChakraCore’는 Microsoft Edge에 사용되며, 'SquirrelFish’는 Safari에 사용됩니다.
 
+```mermaid
+---
+title : Engine의 동작 과정
+---
+flowchart LR
 
-엔진은 어떻게 동작하나요?
-엔진이 어떻게 동작하는지 이해하려면 상당한 시간을 쏟아부어야 합니다. 하지만 기본 원리는 다음과 같이 간단합니다.
+parse[1. Parse Script]
+compile[2. Compile]
+run[3. Run]
 
-엔진(브라우저라면 내장 엔진)이 스크립트를 읽습니다(파싱).
-읽어 들인 스크립트를 기계어로 전환합니다(컴파일).
-기계어로 전환된 코드가 실행됩니다. 기계어로 전환되었기 때문에 실행 속도가 빠릅니다.
-엔진은 프로세스 각 단계마다 최적화를 진행합니다. 심지어 컴파일이 끝나고 실행 중인 코드를 감시하면서, 이 코드로 흘러가는 데이터를 분석하고, 분석 결과를 토대로 기계어로 전환된 코드를 다시 최적화하기도 합니다. 이런 과정을 거치면 스크립트 실행 속도는 더욱 더 빨라집니다.
+parse --> compile --> run
+```
+
+1. parsing : engineo이 script를 읽습니다.
+    - browser라면 engine은 내장 engine입니다.
+2. compile : 읽어 들인 script를 기계어로 전환합니다.
+3. run : 기계어로 전환된 code를 실행합니다.
+    - 기계어로 전환되었기 때문에 실행 속도가 빠릅니다.
+
+- engine은 process 각 단계마다 최적화를 진행합니다.
+    - compile이 끝나고 실행 중인 code를 감시하면서, 이 code로 흘러가는 data를 분석하고, 분석 결과를 토대로 기계어로 전환된 code를 다시 최적화하기도 합니다.
+    - 최적화 과정을 거치면서 script 실행 속도는 더욱 더 빨라집니다.
 
 
 
@@ -221,39 +253,23 @@ IE는 버전에 따라 'Trident’나 'Chakra’라 불리는 엔진을 사용�
 
 
 
-## JavaScript에서 기원한 언어들
+## JavaScript로 변환이 가능한 다른 언어들
 
-자바스크립트로 '트랜스파일’할 수 있는 언어는 많습니다. 각 언어마다 고유한 기능을 제공하죠. 자바스크립트에 숙달한 뒤에 이 언어들을 살펴볼 것을 추천드립니다.
+- browser에서 실행하기 전에 JavaScript로 변환(transpile)할 수 있는 새로운 언어들이 만들어졌습니다.
+    - 각 언어마다 고유한 기능을 제공하며, project의 요구사항에 맞추어 선택하면 됩니다.
 
+1. CoffeeScript는 JavaScript를 위한 'syntactic sugar’입니다.
+    - 짧은 문법을 도입하여 명료하고 이해하기 쉬운 code를 작성할 수 있습니다.
+    - Ruby 개발자들이 선호합니다.
 
+2. TypeScript는 개발을 단순화하고 복잡한 system을 지원하려는 목적으로 '자료형의 명시화(strict data typing)'에 집중해 만든 언어입니다.
+    - Microsoft가 개발하였습니다.
 
+3. Flow는 TypeScript처럼 자료형을 강제하지만, TypeScript와는 다른 방식을 사용합니다.
+    - Facebook이 개발하였습니다.
 
-자바스크립트 문법은 모든 사람의 요구를 충족시키진 못합니다. 사람마다 각기 다른 기능을 원하기 때문이죠.
-프로젝트마다 요구사항이 천차만별이기 때문에 이는 당연한 현상입니다.
-이로 인해 근래엔 브라우저에서 실행 되기 전에 자바스크립트로 트랜스파일(transpile, 변환) 할 수 있는 새로운 언어들이 많이 등장했습니다.
-최신 툴을 사용하면 트랜스파일을 빠르고 명확하게 수행할 수 있습니다. 최신도구는 자바스크립트 이외의 언어로 작성한 코드를 ‘보이지 않는 곳에서’ 자바스크립트로 자동 변환해줍니다.
-자바스크립트로 트랜스파일이 가능한 언어 몇 가지를 소개해 드리겠습니다.
-
-CoffeeScript는 자바스크립트를 위한 'syntactic sugar’입니다. 짧은 문법을 도입하여 명료하고 이해하기 쉬운 코드를 작성할 수 있습니다. Ruby 개발자들이 좋아합니다.
-TypeScript는 개발을 단순화 하고 복잡한 시스템을 지원하려는 목적으로 '자료형의 명시화(strict data typing)'에 집중해 만든 언어입니다. Microsoft가 개발하였습니다.
-Flow 역시 자료형을 강제하는데, TypeScript와는 다른 방식을 사용합니다. Facebook이 개발하였습니다.
-Dart는 모바일 앱과 같이 브라우저가 아닌 환경에서 동작하는 고유의 엔진을 가진 독자적 언어입니다. Google이 개발하였습니다.
-이 외에도 자바스크립트로 트랜스파일 할 수 있는 언어는 다양합니다. 개발 언어로 이런 언어 중 하나를 택한다고 하더라도 자신이 무엇을 하고 있는지 이해하려면 결국엔 자바스크립트를 알아야 합니다.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+4. Dart는 mobile app과 같이 browser가 아닌 환경에서 동작하는 고유의 engine을 가진 독자적 언어입니다.
+    - Google이 개발하였습니다.
 
 
 
@@ -285,7 +301,7 @@ js 함수 선언과 함수 표현식 30
 화살표 함수 34
 화상표 함수 this 37
 
-바벨 자바스크립트 컴파일링 도구 37
+바벨 JavaScript compile링 도구 37
 
 구조분해 39
 
@@ -309,7 +325,7 @@ es6 모듈
 고차함수 57
 js에선 함수가 일급시민이기 때문에 함수형 프로그래밍으루지원한다
 변수에 객체에 배열에 인자에 반환값에 함수를 넣을 수 있음
-함수를 일반적인 데이터와 마찬가지로 취급함
+함수를 일반적인 data와 마찬가지로 취급함
 
 함수형이란? 58
 
@@ -318,7 +334,7 @@ js에선 함수가 일급시민이기 때문에 함수형 프로그래밍으루�
 리액트는 선언적이다 63
 
 함수형 프로그래밍이란 64
-    불변성 순수성(순수함수) 데이터변환 고차함수(커링) 재귀 합성(체이닝, compose 함수 만들기) ~ 90
+    불변성 순수성(순수함수) data변환 고차함수(커링) 재귀 합성(체이닝, compose 함수 만들기) ~ 90
 -->
 
 
