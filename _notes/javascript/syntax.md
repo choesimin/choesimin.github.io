@@ -7,15 +7,7 @@ date: 2023-12-12
 
 
 
-
-
-
-
-
-
-
-<!-- 
-# 자료형
+## 자료형
 
 ### 문자형
 
@@ -67,7 +59,7 @@ console.log(typeof undefined);    // "undefined"
 
 ---
 
-# alert, prompt, confirm
+## alert, prompt, confirm
 
 ### alert
 
@@ -97,7 +89,7 @@ console.log(isAdult);    // true or false
 
 ---
 
-# 형변환
+## 형변환
 
 ```javascript
 const mathScore = prompt("Math Score");    // "90" 문자형으로 받음
@@ -127,7 +119,7 @@ console.log(result);    // 4540
 
 ---
 
-# 기본 연산자
+## 기본 연산자
 
 - + : 더하기
 - - : 빼기
@@ -155,7 +147,7 @@ num %= 5;    // num = num % 5;
 
 ---
 
-# 증가 연산자, 감소 연산자
+## 증가 연산자, 감소 연산자
 
 ```javascript
 let a = 10;
@@ -177,7 +169,7 @@ console.log(d_result);    // 9
 
 ---
 
-# 비교 연산자
+## 비교 연산자
 
 - <, >, <=, >=, ==, !=
   - =을 하나 쓰는 것은 할당 연산자이므로 == 사용
@@ -197,7 +189,7 @@ console.log(d_result);    // 9
 
 ---
 
-# 조건문 : if, else
+## 조건문 : if, else
 
 ```javascript
 const age = 30;
@@ -213,7 +205,7 @@ if (age > 19) {
 
 ---
 
-# 논리 연산자
+## 논리 연산자
 
 - || : OR
   ```javascript
@@ -281,7 +273,7 @@ if (age > 19) {
 
 ---
 
-# 반복문
+## 반복문
 
 ### for
 
@@ -339,7 +331,7 @@ do {
 
 ---
 
-# switch
+## switch
 
 - 각 case마다 break로 탈출하지 않으면 이후의 모든 case를 실행함
 ```javascript
@@ -378,11 +370,12 @@ if (평가 == A) {
       break;
     default :
       console.log('no fruit');
+  }
   ```
 
 ---
 
-# 함수 (함수 선언문)
+## 함수 (함수 선언문)
 
 - 한 번에 한 작업에 집중
 - 읽기 쉽고 어떤 동작인지 알 수 있게 naming
@@ -461,7 +454,7 @@ console.log(result_nothing);    // undefined
 
 ---
 
-# 함수 표현식, 화살표 함수(arrow function)
+## 함수 표현식, 화살표 함수(arrow function)
 
 ### 함수 선언문 vs 함수 표현식
 
@@ -519,7 +512,7 @@ let showError = () => {
 
 ---
 
-# Object (객체)
+## Object (객체)
 
 ```javascript
 // 선언
@@ -598,7 +591,7 @@ for (let key in superman) {
 
 ---
 
-# Object - method, this
+## Object - method, this
 
 ### method : 객체 property로 할당된 함수
 
@@ -657,7 +650,7 @@ girl.sayHello();    // "Hello, I'm Jane"
 
 ---
 
-# Array (배열)
+## Array (배열)
 
 - 순서가 있는 list 
   ```javascript
@@ -738,7 +731,7 @@ girl.sayHello();    // "Hello, I'm Jane"
 
 ---
 
-# 변수
+## 변수
 
 ### var
 
@@ -878,7 +871,7 @@ girl.sayHello();    // "Hello, I'm Jane"
 
 ---
 
-# 생성자 함수
+## 생성자 함수
 
 ```javascript
 function User(name, age) {
@@ -1045,7 +1038,7 @@ const obj = makeObj('나이', 33);    // 어떤 것이 key가 될 지 모르는 
 
 ---
 
-# Symbol : 유일한 식별자
+## Symbol : 유일한 식별자
 
 ```javascript
 const a = Symbol();    // new를 붙이지 않음
@@ -1430,7 +1423,7 @@ for (let key in user) {
 
 ---
 
-# Array methods (배열 method)
+## Array methods (배열 method)
 
 - arr.splice(n, m) : 특정 요소 지움
   - n : 시작
@@ -1759,7 +1752,7 @@ for (let key in user) {
 
 ---
 
-# 구조 분해 할당 (destructuring assignment)
+## 구조 분해 할당 (destructuring assignment)
 
 - 배열이나 객체의 속성을 분해해서 그 값을 변수에 담을 수 있게 하는 표현식
 
@@ -1869,7 +1862,7 @@ console.log(age);    // 30
 
 ---
 
-# 나머지 매개변수(rest parameters), 전개 구문(spread syntax)
+## 나머지 매개변수(rest parameters), 전개 구문(spread syntax)
 
 ### 나머지 매개변수 (rest parameters)
 
@@ -2029,7 +2022,7 @@ console.log(user3);
 
 ---
 
-# Closure
+## Closure
 
 - 함수와 lexical 환경의 조합
 - 함수가 생성될 당시으 외부 변수를 기억
@@ -2136,7 +2129,7 @@ console.log(add3(2));
 
 ---
 
-# setTimeout / setInterval
+## setTimeout / setInterval
 
 ### setTimeout
 
@@ -2362,7 +2355,7 @@ bound_fn();    // "Hello, Mike"
 
 ---
 
-# 상속, prototype
+## 상속, prototype
 
 ```javascript
 const user = {
@@ -2602,7 +2595,7 @@ console.log(z4.constructor === Bmw);    // false
 
 ---
 
-# Class
+## Class
 
 - ES6에 추가된 spec
 
@@ -2769,7 +2762,7 @@ console.log(z4.stop());
 
 ---
 
-# Promise
+## Promise
 
 ### 예시
 
@@ -3042,7 +3035,7 @@ pr.then(
 
 ---
 
-# async, await
+## async, await
 
 - async, await를 사용하면 promise의 then method를 chain 형식으로 호출하는 것보다 가독성이 좋아짐
 
@@ -3160,7 +3153,7 @@ order();
 
 ---
 
-# Generator
+## Generator
 
 - 함수의 실행을 중간에 멈췄다가 재개할 수 있는 기능
   - 다른 작업을 하다가 다시 돌아와서 next()해주면 진행이 멈췄던 부분부터 이어서 실행
@@ -3385,7 +3378,7 @@ function* gen2() {
 
 console.log(...gen2());    // "Hello, W o r l d !"
 ```
- -->
+
 
 
 
