@@ -625,6 +625,6 @@ public class PopcornPopper {
 
 
 
-# Reference
+## Reference
 
 - Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra

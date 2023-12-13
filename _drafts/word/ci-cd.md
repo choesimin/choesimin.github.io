@@ -67,7 +67,7 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 
 - https://www.redhat.com/ko/topics/devops/what-is-ci-cd
     - CI/CD

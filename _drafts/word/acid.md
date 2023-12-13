@@ -41,7 +41,7 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 
 - https://ko.wikipedia.org/wiki/ACID
 - https://covenant.tistory.com/85

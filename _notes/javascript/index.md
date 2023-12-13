@@ -244,7 +244,7 @@ IE는 버전에 따라 'Trident’나 'Chakra’라 불리는 엔진을 사용�
 
 
 
-# Reference
+## Reference
 
 - <https://ko.javascript.info/intro>
 - <https://developer.mozilla.org/ko/docs/Learn/JavaScript/First_steps/What_is_JavaScript>

@@ -88,7 +88,7 @@ block : 새 줄에서 시작하며 브라우저 전체 폭을 차지한다
 
 
 
-# Reference
+## Reference
 
 - <http://www.tcpschool.com/css/css_position_display>
 - <https://ofcourse.kr/css-course/display-속성>

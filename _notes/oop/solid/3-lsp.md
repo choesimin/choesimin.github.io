@@ -244,7 +244,7 @@ public class Main {
 
 
 
-# Reference
+## Reference
 
 - <https://inpa.tistory.com/entry/OOP-%F0%9F%92%A0-%EC%95%84%EC%A3%BC-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8A%94-LSP-%EB%A6%AC%EC%8A%A4%EC%BD%94%ED%94%84-%EC%B9%98%ED%99%98-%EC%9B%90%EC%B9%99>
 - <https://blog.itcode.dev/posts/2021/08/15/liskov-subsitution-principle>

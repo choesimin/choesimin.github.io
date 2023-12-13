@@ -189,7 +189,7 @@ select id, name, json_extract(jsoncol, '$.a') FROM testschema.jsontable;
 
 
 
-# Reference
+## Reference
 
 - <https://spiderwebcoding.tistory.com/5>
 - <https://inpa.tistory.com/entry/MYSQL-%F0%9F%93%9A-%EC%9E%90%EB%A3%8C%ED%98%95-%ED%83%80%EC%9E%85-%EC%A2%85%EB%A5%98-%EC%A0%95%EB%A6%AC>

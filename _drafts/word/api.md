@@ -51,7 +51,7 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 
 - https://www.redhat.com/ko/topics/api/what-are-application-programming-interfaces
 - http://blog.wishket.com/api란-쉽게-설명-그린클라이언트/

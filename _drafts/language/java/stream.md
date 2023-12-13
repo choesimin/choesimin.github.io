@@ -223,7 +223,7 @@ Stream<String> concat = Stream.concat(stream1, stream2);
 
 ---
 
-# Reference
+## Reference
 
 - https://futurecreator.github.io/2018/08/26/java-8-streams/
 - https://futurecreator.github.io/2018/08/26/java-8-streams-advanced/

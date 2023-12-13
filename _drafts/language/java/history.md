@@ -190,7 +190,7 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 
 - Practical 모던 자바 - 장윤기
     - 1장 자바의 발전 과정

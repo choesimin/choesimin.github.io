@@ -342,7 +342,7 @@ A solution to a problem in a context.
 
 
 
-# Reference
+## Reference
 
 - Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
 - <https://jw92.tistory.com/11>

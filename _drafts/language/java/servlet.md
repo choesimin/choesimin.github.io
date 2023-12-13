@@ -88,6 +88,6 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 
 - https://mangkyu.tistory.com/14

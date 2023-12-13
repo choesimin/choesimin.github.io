@@ -25,6 +25,6 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 
 - https://ko.wikipedia.org/wiki/%EC%8A%A4%EB%A0%88%EB%93%9C_%EC%95%88%EC%A0%84

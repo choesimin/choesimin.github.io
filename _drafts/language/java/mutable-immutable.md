@@ -116,6 +116,6 @@ public AbstractStringBuilder append(String str) {
 
 ---
 
-# Reference
+## Reference
 
 - https://limkydev.tistory.com/68

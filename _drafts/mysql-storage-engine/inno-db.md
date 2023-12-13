@@ -66,7 +66,7 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 
 - https://nomadlee.com/mysql-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%97%94%EC%A7%84-%EC%A2%85%EB%A5%98-%EB%B0%8F-%ED%8A%B9%EC%A7%95/
 - https://kchanguk.tistory.com/133

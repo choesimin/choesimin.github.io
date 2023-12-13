@@ -174,6 +174,6 @@ class Class
 
 
 
-# Reference
+## Reference
 
 - <https://mermaid.js.org/intro/>

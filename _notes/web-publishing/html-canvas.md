@@ -233,7 +233,7 @@ context.strokeText("HTML5", 80, 150);
 
 
 
-# Reference
+## Reference
 
 - <http://www.tcpschool.com/html-tags/canvas>
 - <http://www.tcpschool.com/html/html5_graphic_canvas>

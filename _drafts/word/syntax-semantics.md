@@ -49,7 +49,7 @@ layout: note
 
 --- 
 
-# Reference
+## Reference
 
 - https://forgottenknowledge.tistory.com/entry/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%96%B8%EC%96%B4%EB%A1%A0-%EA%B0%95%EC%9D%98-4%ED%99%94-%EA%B5%AC%EB%AC%B8%EB%A1%A0%EA%B3%BC-%EC%9D%98%EB%AF%B8%EB%A1%A0
     - 구문론 & 의미론

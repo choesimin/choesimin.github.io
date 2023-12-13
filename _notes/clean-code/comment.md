@@ -149,7 +149,7 @@ if ((employee.flags & HOURLY_FLAG) && (employee.age > 65)) { ... }
 
 
 
-# Reference
+## Reference
 
 - Clean Code (도서) - Robert C. Martin
 - 개발자의 글쓰기 (도서) - 김철수

@@ -59,7 +59,7 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 
 - https://docs.oracle.com/cd/E19823-01/819-1552/jndi.html
 - https://technet.tmaxsoft.com/upload/download/online/jeus/pver-20170202-000001/server/chapter_jndi.html

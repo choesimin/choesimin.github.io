@@ -55,7 +55,7 @@ layout: note
 
 ---
 
-# References
+## References
 
 - https://ko.wikipedia.org/wiki/%EC%9B%B9_%EC%84%9C%EB%B2%84
 - https://developer.mozilla.org/ko/docs/Learn/Common_questions/What_is_a_web_server

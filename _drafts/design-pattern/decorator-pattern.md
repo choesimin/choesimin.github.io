@@ -367,6 +367,6 @@ public class Whip extends CondimentDecorator {
 
 ---
 
-# Reference
+## Reference
 
 - Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra

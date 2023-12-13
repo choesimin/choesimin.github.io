@@ -379,6 +379,6 @@ public class ForecastDisplay implements Observer, DisplayElement {
 
 ---
 
-# Reference
+## Reference
 
 - Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra

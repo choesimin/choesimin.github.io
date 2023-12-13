@@ -473,7 +473,7 @@ public class FakeQuack implements QuackBehavior {
 
 
 
-# Reference
+## Reference
 
 - Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
 - <https://gmlwjd9405.github.io/2018/07/06/strategy-pattern.html>

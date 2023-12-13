@@ -1195,6 +1195,6 @@ public class GumballMachine {
 
 
 
-# Reference
+## Reference
 
 - Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra

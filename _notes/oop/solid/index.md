@@ -35,7 +35,7 @@ date: 2023-11-05
 
 
 
-# Reference
+## Reference
 
 - <https://ko.wikipedia.org/wiki/SOLID_(객체_지향_설계)>
 - <https://inpa.tistory.com/entry/OOP-💠-객체-지향-설계의-5가지-원칙-SOLID>

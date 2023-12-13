@@ -42,7 +42,7 @@ date: 2023-11-02
 
 
 
-# Reference
+## Reference
 
 - https://blesswisdom.tistory.com/entry/신용카드의-매입사와-발급사
     - 매입사 vs 발급사

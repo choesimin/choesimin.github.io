@@ -349,7 +349,7 @@ System.out.println(Color.BLUE.calc());
 
 ---
 
-# Reference
+## Reference
 
 - https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html
     - 공식 문서

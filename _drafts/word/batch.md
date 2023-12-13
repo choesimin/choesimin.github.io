@@ -26,7 +26,7 @@ layout: note
 
 ---
 
-# References
+## References
 
 - https://hyeonukdev.github.io/2020/05/10/Engineer_Information_Processing/ch15_서버프로그램구현/배치프로그램구현/배치프로그램/
 - https://limkydev.tistory.com/140

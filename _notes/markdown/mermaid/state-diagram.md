@@ -206,6 +206,6 @@ if --> Next2 : Condition 2
 
 
 
-# Reference
+## Reference
 
 - <https://mermaid.js.org/syntax/stateDiagram.html>

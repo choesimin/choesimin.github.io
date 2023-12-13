@@ -102,7 +102,7 @@ layout: note
 
 ---
 
-# Reference
+## Reference
 - https://hzoou.tistory.com/64
 - https://itlaw.wikia.org/wiki/Database_vendor
 - https://ss-o.tistory.com/132

@@ -259,6 +259,6 @@ public class PepperoniPizza extends Pizza {
 
 
 
-# Reference
+## Reference
 
 - Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra

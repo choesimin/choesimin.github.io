@@ -3375,7 +3375,7 @@ console.log(...gen2());    // "Hello, W o r l d !"
 
 ---
 
-# Reference
+## Reference
 
 - https://www.youtube.com/watch?v=KF6t61yuPCY
   - '자바스크립트 기초 강좌 : 100분 완성' - Youtube 코딩앙마
