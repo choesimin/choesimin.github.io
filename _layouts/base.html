@@ -16,8 +16,8 @@
     <a id="logo" href="{{ '/' | relative_url }}"><img /></a>
     <input id="searchInput" type="text" placeholder="제목, 내용, 날짜" oninput="window.scrollTo(0,0);">
     <div>
-      <a id="search" onclick="toggleSearch()"><img /></a>
-      <a id="theme" onclick="toggleTheme()"><img /></a>
+      <a id="theme" onclick="toggleTheme()"><img></a>
+      <a id="search" onclick="toggleSearch()"><img></a>
     </div>
   </nav>
   <div id="searchResult"></div>
@@ -80,14 +80,14 @@
   function setLightTheme() {
     document.body.style.setProperty('--background-color', '#eeeeee');
     document.body.style.setProperty('--background-highlight-color', '#dddddd');
-    document.body.style.setProperty('--color', '#222222');
-    document.body.style.setProperty('--code-color', '#005e5e');
+    document.body.style.setProperty('--color', '#111111');
+    document.body.style.setProperty('--code-color', '#880000');
     document.body.style.setProperty('--highlight-color', '#000000');
     document.body.style.setProperty('--border-color', '#aaaaaa');
 
     document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/black.png' | relative_url }}";
+    document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/moon/black.svg' | relative_url }}";
     document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/black.svg' | relative_url }}";
-    document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/black.svg' | relative_url }}";
 
     hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css';
     hljs.highlightAll();
@@ -104,8 +104,8 @@
     document.body.style.setProperty('--border-color', '#444444');
 
     document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/white.png' | relative_url }}";
-    document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/white.svg' | relative_url }}";
     document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
+    document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/white.svg' | relative_url }}";
 
     hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/hybrid.min.css';
     hljs.highlightAll();
@@ -114,13 +114,24 @@
   }
 
   async function renderMermaid(theme) {
-    await mermaid.initialize({
+    mermaid.initialize({
       theme: theme,
       securityLevel: "loose",
       startOnLoad: false
     });
     await mermaid.run({ querySelector: '.language-mermaid' });
   }
+
+  // const drawDiagram = async function () {
+  //   element = document.querySelector('#graphDiv');
+  //   const graphDefinition = 'graph TB\na-->b';
+  //   const { svg, bindFunctions } = await mermaid.render('graphDiv', graphDefinition);
+  //   element.innerHTML = svg;
+  //   // This can also be written as `bindFunctions?.(element);` using the `?` shorthand.
+  //   if (bindFunctions) {
+  //     bindFunctions(element);
+  //   }
+  // };
 </script>
 
 </html>

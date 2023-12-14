@@ -73,7 +73,7 @@ crontab [option]
 # 매분 '/home/test.sh' file을 실행합니다.
 * * * * * /home/test.sh
 
-# 매주 일요일 오전 2시 00분에 `/home/test.sh' file을 실행합니다.
+# 매주 일요일 오전 2시 00분에 '/home/test.sh' file을 실행합니다.
 0 2 * * 0 /home/test.sh
 
 # 매일 오전 2시, 오후 2시에 '/home/test.sh' file을 실행합니다.

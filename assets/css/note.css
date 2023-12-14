@@ -32,6 +32,20 @@ ol, ul {
     padding-left: 20px;
 }
 
+li {
+    list-style: none;
+}    
+
+
+article > ul:not(#index) {
+    padding-left: 0;
+}
+
+article > ul:not(#index) > li {
+    margin-bottom: 20px;
+}
+
+
 ul#index {
     background-color: var(--background-highlight-color);
     padding: 20px;

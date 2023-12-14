@@ -64,7 +64,7 @@ date: 2023-11-05
 
 - `Employee` class는 회계팀, 인사팀, 기술팀이 사용하는 여러가지 기능을 가지고 있습니다.
 
-- 만약 회계팀에서 급여를 계산하는 기존의 방식을 새로 변경하여, 초과 근무 시간을 계산하는 메서드 `calculateExtraHour()`의 algorithm 을 변경하면, 인사팀에서 사용하는 `reportHours()` method에도 영향을 주게 됩니다.
+- 만약 회계팀에서 급여를 계산하는 기존의 방식을 새로 변경하여, 초과 근무 시간을 계산하는 메서드 `calculateExtraHour()`의 algorithm을 변경하면, 인사팀에서 사용하는 `reportHours()` method에도 영향을 주게 됩니다.
     - method를 공유해서 사용하기 때문입니다.
     - **SRP에 위배되는 상황**입니다.
 
