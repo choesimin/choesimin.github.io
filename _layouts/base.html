@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
   <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}">
   {% seo %}
 </head>
@@ -30,7 +31,14 @@
 </body>
 
 <script>
-  var sjs = SimpleJekyllSearch({
+  let hljsStyle = document.createElement('link');
+  hljsStyle.rel = 'stylesheet';
+  document.head.appendChild(hljsStyle);
+
+  setTheme();
+
+
+  SimpleJekyllSearch({
     searchInput: document.getElementById('searchInput'),
     resultsContainer: document.getElementById('searchResult'),
     json: '/search.json',
@@ -49,13 +57,6 @@
       searchResult.style.display = 'none';
     }
   }
-
-
-  let hljsStyle = document.createElement('link');
-  hljsStyle.rel = 'stylesheet';
-  document.head.appendChild(hljsStyle);
-
-  setTheme();
 
   function setTheme() {
     if (localStorage.getItem('theme') === 'light') {
@@ -90,6 +91,8 @@
 
     hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css';
     hljs.highlightAll();
+
+    renderMermaid('neutral');
   }
 
   function setDarkTheme() {
@@ -106,13 +109,18 @@
 
     hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/hybrid.min.css';
     hljs.highlightAll();
-  }
-</script>
 
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: false, theme: 'dark' });    // white
-  await mermaid.run({ querySelector: '.language-mermaid' });
+    renderMermaid('dark');
+  }
+
+  async function renderMermaid(theme) {
+    await mermaid.initialize({
+      theme: theme,
+      securityLevel: "loose",
+      startOnLoad: false
+    });
+    await mermaid.run({ querySelector: '.language-mermaid' });
+  }
 </script>
 
 </html>
