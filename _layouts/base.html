@@ -4,15 +4,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
   <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}">
   {% seo %}
 </head>
 
 <body>
   <nav>
-    <a id="logo" href="{{ '/' | relative_url }}"><img src="{{ '/assets/image/stamp/white.png' | relative_url }}"></a>
+    <a id="logo" href="{{ '/' | relative_url }}"><img /></a>
     <input id="searchInput" type="text" placeholder="제목, 내용, 날짜" oninput="window.scrollTo(0,0);">
-    <a id="search" onclick="toggleSearch()"><img src="{{ '/assets/icon/search.svg' | relative_url }}"></a>
+    <div>
+      <a id="search" onclick="toggleSearch()"><img /></a>
+      <a id="theme" onclick="toggleTheme()"><img /></a>
+    </div>
   </nav>
   <div id="searchResult"></div>
   <main>
@@ -24,7 +29,6 @@
   </footer>
 </body>
 
-<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
 <script>
   var sjs = SimpleJekyllSearch({
     searchInput: document.getElementById('searchInput'),
@@ -45,6 +49,70 @@
       searchResult.style.display = 'none';
     }
   }
+
+
+  let hljsStyle = document.createElement('link');
+  hljsStyle.rel = 'stylesheet';
+  document.head.appendChild(hljsStyle);
+
+  setTheme();
+
+  function setTheme() {
+    if (localStorage.getItem('theme') === 'light') {
+      setLightTheme();
+    } else if (localStorage.getItem('theme') === 'dark') {
+      setDarkTheme();
+    } else {
+      localStorage.setItem('theme', 'light');
+      setLightTheme();
+    }
+  }
+
+  function toggleTheme() {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'light') localStorage.setItem('theme', 'dark');
+    else localStorage.setItem('theme', 'light');
+
+    setTheme();
+  }
+
+  function setLightTheme() {
+    document.body.style.setProperty('--background-color', '#eeeeee');
+    document.body.style.setProperty('--background-highlight-color', '#dddddd');
+    document.body.style.setProperty('--color', '#222222');
+    document.body.style.setProperty('--code-color', '#005e5e');
+    document.body.style.setProperty('--highlight-color', '#000000');
+    document.body.style.setProperty('--border-color', '#aaaaaa');
+
+    document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/black.png' | relative_url }}";
+    document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/black.svg' | relative_url }}";
+    document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/black.svg' | relative_url }}";
+
+    hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css';
+    hljs.highlightAll();
+  }
+
+  function setDarkTheme() {
+    document.body.style.setProperty('--background-color', '#111111');
+    document.body.style.setProperty('--background-highlight-color', '#222222');
+    document.body.style.setProperty('--color', '#cccccc');
+    document.body.style.setProperty('--code-color', '#bbddff');
+    document.body.style.setProperty('--highlight-color', '#ffffff');
+    document.body.style.setProperty('--border-color', '#444444');
+
+    document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/white.png' | relative_url }}";
+    document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/white.svg' | relative_url }}";
+    document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
+
+    hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/hybrid.min.css';
+    hljs.highlightAll();
+  }
+</script>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false, theme: 'dark' });    // white
+  await mermaid.run({ querySelector: '.language-mermaid' });
 </script>
 
 </html>

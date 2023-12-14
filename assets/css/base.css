@@ -6,21 +6,6 @@
 
 
 
-:root {
-    --background-color: #111111;
-    --background-highlight-color: #222222;
-
-    --color: #cccccc;
-    --code-color: #bbddff;
-    --bright-color: #dddddd;
-    --highlight-color: #ffffff;
-
-    --border-color: #444444;
-}
-
-
-
-
 html {
     scroll-behavior: smooth;
 }
@@ -118,11 +103,15 @@ nav {
     padding: 10px;
 }
 
-#logo img, #search img {
+#logo img,
+#search img,
+#theme img {
     opacity: 0.8;
 }
 
-#logo img:hover, #search img:hover {
+#logo img:hover,
+#search img:hover,
+#theme img:hover {
     opacity: 1;
 }
 
@@ -130,7 +119,9 @@ nav {
     height: 60px;
 }
 
-#search img, #searchInput {
+#search img,
+#theme img,
+#searchInput {
     height: 35px;
 }
 
@@ -142,7 +133,7 @@ nav {
     border-style: sold;
     border-color: var(--border-color);
     border-width: 0 0 1px;
-    color: var(--bright-color);
+    color: var(--highlight-color);
     font-size: 0.9rem;
     text-align: center;
 }
