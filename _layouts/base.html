@@ -116,22 +116,11 @@
   async function renderMermaid(theme) {
     mermaid.initialize({
       theme: theme,
-      securityLevel: "loose",
-      startOnLoad: false
+      startOnLoad: false,
+      securityLevel: 'loose',
     });
     await mermaid.run({ querySelector: '.language-mermaid' });
   }
-
-  // const drawDiagram = async function () {
-  //   element = document.querySelector('#graphDiv');
-  //   const graphDefinition = 'graph TB\na-->b';
-  //   const { svg, bindFunctions } = await mermaid.render('graphDiv', graphDefinition);
-  //   element.innerHTML = svg;
-  //   // This can also be written as `bindFunctions?.(element);` using the `?` shorthand.
-  //   if (bindFunctions) {
-  //     bindFunctions(element);
-  //   }
-  // };
 </script>
 
 </html>
