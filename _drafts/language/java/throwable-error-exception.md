@@ -94,7 +94,7 @@ public void add(User user) throws DuplicateUserIdException, SQLException {
     try {
         // ...생략
     } catch(SQLException e) {
-        if(e.getErrorCode() == MysqlErrorNumbers.ER_DUP_ENTRY) {
+        if (e.getErrorCode() == MysqlErrorNumbers.ER_DUP_ENTRY) {
             throw DuplicateUserIdException();
         }
         else throw e;

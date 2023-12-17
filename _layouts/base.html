@@ -75,6 +75,7 @@
     else localStorage.setItem('theme', 'light');
 
     setTheme();
+    if (document.querySelector('.language-mermaid') !== null) location.reload(true);
   }
 
   function setLightTheme() {
@@ -89,7 +90,7 @@
     document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/moon/black.svg' | relative_url }}";
     document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/black.svg' | relative_url }}";
 
-    hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css';
+    hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css';
     hljs.highlightAll();
 
     renderMermaid('neutral');
@@ -107,7 +108,7 @@
     document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
     document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/white.svg' | relative_url }}";
 
-    hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/hybrid.min.css';
+    hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css';
     hljs.highlightAll();
 
     renderMermaid('dark');

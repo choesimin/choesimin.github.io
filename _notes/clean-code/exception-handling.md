@@ -322,12 +322,12 @@ Collections.emptyList();    // []
 
 ```java
 List<Employee> employees = getEmployees();
-for(Employee e : employees) {
+for (Employee e : employees) {
     totalPay += e.getPay();
 }
 
 public List<Employee> getEmployees() {
-    if( .. there are no employees .. ) {
+    if ( .. there are no employees .. ) {
         return Collections.emptyList();
     }
 }
@@ -338,7 +338,7 @@ public List<Employee> getEmployees() {
 ```java
 List<Employee> employees = getEmployees();
 if (employees != null) {
-    for(Employee e : employees) {
+    for (Employee e : employees) {
         totalPay += e.getPay();
     }
 }

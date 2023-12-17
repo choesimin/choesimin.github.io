@@ -91,9 +91,9 @@ class Animal {
 // 동물 유형을 받아, 각 동물에 맞춰 울음 소리를 내도록 하는 class module
 class HelloAnimal {
     void hello(Animal animal) {
-        if(animal.type.equals("Cat")) {
+        if (animal.type.equals("Cat")) {
             System.out.println("냐옹");
-        } else if(animal.type.equals("Dog")) {
+        } else if (animal.type.equals("Dog")) {
             System.out.println("멍멍");
         }
         // else if (animal.type.equals("Sheep")) {

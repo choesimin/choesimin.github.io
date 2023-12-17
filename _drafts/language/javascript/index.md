@@ -843,7 +843,7 @@ girl.sayHello();    // "Hello, I'm Jane"
   ```javascript
   const age = 30;
 
-  if(age > 19) {
+  if (age > 19) {
     var txt = '성인';
   }
 
