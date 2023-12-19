@@ -32,16 +32,16 @@ ol, ul {
     padding-left: 20px;
 }
 
-li {
+ul li {
     list-style: none;
 }    
 
 
-article > ul:not(#index) {
+article > ul:not(#index), ol > li > ul {
     padding-left: 0;
 }
 
-article > ul:not(#index) > li {
+article > ol > li, article > ul:not(#index) > li {
     margin-bottom: 20px;
 }
 

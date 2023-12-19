@@ -35,7 +35,7 @@ date: 2023-08-24
 ### Viewport 크기가 Graphic 크기에 딱 맞을 때
 
 <svg width="100" height="100">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html
@@ -48,7 +48,7 @@ date: 2023-08-24
 ### Viewport 크기가 Graphic 크기보다 작을 때
 
 <svg width="70" height="70">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html
@@ -102,7 +102,7 @@ date: 2023-08-24
 #### Viewbox를 오른쪽으로 이동시키기
 
 <svg width="100" height="100" viewBox="30 0 100 100">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html
@@ -114,7 +114,7 @@ date: 2023-08-24
 #### Viewbox를 왼쪽으로 이동시키기
 
 <svg width="100" height="100" viewBox="-30 0 100 100">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html
@@ -126,7 +126,7 @@ date: 2023-08-24
 #### Viewbox 아래쪽으로 이동시키기
 
 <svg width="100" height="100" viewBox="0 30 100 100">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html
@@ -138,7 +138,7 @@ date: 2023-08-24
 #### Viewbox 위쪽으로 이동시키기
 
 <svg width="100" height="100" viewBox="0 -30 100 100">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html
@@ -161,19 +161,19 @@ date: 2023-08-24
 #### 기존 Viewbox
 
 <svg width="100" height="100" viewBox="0 0 100 100">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html
 <svg width="100" height="100" viewBox="0 0 100 100">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 ```
 
 #### Viewbox 확대하기
 
 <svg width="100" height="100" viewBox="0 0 130 130">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html
@@ -185,7 +185,7 @@ date: 2023-08-24
 #### Viewbox 축소하기
 
 <svg width="100" height="100" viewBox="0 0 70 70">
-    <circle cx="50" cy="50" r="50" fill="white"></circle>
+    <circle cx="50" cy="50" r="50" fill="gray"></circle>
 </svg>
 
 ```html

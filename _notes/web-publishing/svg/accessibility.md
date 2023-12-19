@@ -32,7 +32,7 @@ date: 2023-08-20
 - 시력이 낮은 사용자가 화면을 확대해도 선명한 image를 그대로 볼 수 있습니다.
     - pixel 기반의 image는 확대했을 때, 계단이 생기거나 선명도가 떨어집니다.
 
-<svg width="100" height="100"><circle cx="50" cy="50" r="50" fill="white"></circle></svg>
+<svg width="100" height="100"><circle cx="50" cy="50" r="50" fill="gray"></circle></svg>
 
 - 위의 SVG로 그린 원을 크게 확대해도 선명함이 유지됩니다.
 
