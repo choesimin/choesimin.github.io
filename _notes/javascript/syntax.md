@@ -7,55 +7,59 @@ date: 2023-12-12
 
 
 
-## 자료형
 
-### 문자형
 
-```javascript
-const name = "Mike";
-const age = 30;
+<!-- 
+javascript 호이스팅이란?
+템플릿 문자열 28
+const let var 차이 (호이그팅 여부) 26
+js 함수 선언과 함수 표현식 30
 
-const name1 = "Mike"
-const name2 = 'Mike'
-const name3 = `Mike`
+디폴트 파라미터 33
 
-const message1 = `My name is ${name}`;
-const message2 = `I am ${30+1} years old`;
+화살표 함수 34
+화상표 함수 this 37
 
-console.log(message1);    // "My name is Mike"
-console.log(message2);    // "I am 31 years old"
-```
+바벨 JavaScript compile링 도구 37
 
-### 숫자형
+구조분해 39
 
-```javascript
-const x = 1/0;
-console.log(x);    // Infinity
+배열 구조분해 41
 
-const name = "Mike";
-const y = name/2;
-console.log(y);    // NaN (Not a Number)
-```
+갹체 리터럴 개선 (구조분해의ㅜ반대) 42
 
-### null & undefined
+객체 메서드 정의 방법
+스프레드 연산자
 
-```javascript
-let age;    // or 'let age = null'
-console.log(age);
-```
+js promise 46
 
-### typeof 연산자
 
-```javascript
-cont name = "Mike";
+js 클래스
 
-console.log(typeof 3);    // "number"
-console.log(typeof name);    // "string"
-console.log(typeof true);    // "boolean"
-console.log(typeof "xxx");    // "string"
-console.log(typeof null);    // "object" 엄밀히 따지면 null은 object형이 아님
-console.log(typeof undefined);    // "undefined"
-```
+es6 모듈
+커먼 js
+
+함수형 프로그래밍 (람다 계산법) 57
+
+고차함수 57
+js에선 함수가 일급시민이기 때문에 함수형 프로그래밍으루지원한다
+변수에 객체에 배열에 인자에 반환값에 함수를 넣을 수 있음
+함수를 일반적인 data와 마찬가지로 취급함
+
+함수형이란? 58
+
+
+선언적 프로그래밍과 명령형 프로그래밍 61
+리액트는 선언적이다 63
+
+함수형 프로그래밍이란 64
+    불변성 순수성(순수함수) data변환 고차함수(커링) 재귀 합성(체이닝, compose 함수 만들기) ~ 90
+-->
+
+
+
+
+
 
 ---
 
