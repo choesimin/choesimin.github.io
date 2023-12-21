@@ -1,14 +1,34 @@
 ---
 layout: note
-title: JavaScript 자료형
+title: JavaScript 원시 자료형
 date: 2023-12-19
 ---
 
 
 
 
-- JavaScript는 **동적 type이 있는 동적 언어**입니다.
-    - JavaScript의 변수는 어떤 특정 type과 연결되지 않으며, 모든 type의 값으로 할당/재할당할 수 있습니다.
+- JavaScript에서 원시 값(primitive, 또는 원시 자료형)이란 **객체가 아니면서 method 또는 속성도 가지지 않는 data**입니다.
+    - 보통 원시 자료형은 언어 구현체의 가장 저수준 단계에서 표현됩니다.
+
+- 모든 원시 값은 **불변**하여 변형할 수 없으며, 언어에서는 원시 값을 변경하는 기능을 제공하지 않습니다.
+    - 원시 값을 할당한 변수의 값이 변하는 것과 혼동해서는 안 됩니다.
+    - 변수에는 새로운 값을 다시 할당할 수 있지만, 이미 생성한 원시 값 자체는 변형할 수 없습니다.
+        - 객체, 배열, 함수는 원시 값에 속하지 않기 때문에 변형할 수 있습니다.
+
+- 원시 값에는 7가지의 종류가 있습니다.
+    1. `string`
+    2. `number`
+    3. `bigint`
+    4. `boolean`
+    5. `undefined`
+    6. `symbol`
+    7. `null`
+
+
+
+
+---
+
 
 
 
@@ -77,4 +97,5 @@ console.log(typeof undefined);    // "undefined"
 
 ## Reference
 
+- <https://developer.mozilla.org/ko/docs/Glossary/Primitive>
 - <https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures>

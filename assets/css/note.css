@@ -46,6 +46,8 @@ article > ol > li, article > ul:not(#index) > li {
 }
 
 
+
+
 ul#index {
     background-color: var(--background-highlight-color);
     padding: 20px;
@@ -63,9 +65,20 @@ ul#index li a {
 
 
 
-code {
-    color: var(--code-color);
+code.hljs {
+    border: 1px solid var(--border-color);
 }
+
+code.language-plaintext:not(.hljs) {
+    display: inline-block;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    line-height: 1;
+    padding: 2px 4px;
+    transform: translateY(-1px);
+    background-color: var(--background-highlight-color);
+}
+
 
 
 
