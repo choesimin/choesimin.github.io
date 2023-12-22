@@ -9,7 +9,7 @@ date: 2023-04-09
 
 ## 문법
 
-```
+```txt
 [Google](https://google.com)   
 [Google](https://google.com "google link")   
 <https://google.com>

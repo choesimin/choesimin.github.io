@@ -64,7 +64,7 @@ date: 2023-08-20
 
 - SVG는 XML application이기 때문에 plain text로 작성됩니다.
 - text 기반이기 때문에 작성자는 text editor나 XML 작성 도구를 사용하여 image를 쉽게 수정할 수 있습니다.
-    - Web design tool들은 대부분 이 text editor에 기능을 추가한 것이며, 이는 어떤 design tool에서든 SVG의 수정이 가능하다는 것을 의미합니다.
+    - Web design tool들은 대부분이 text editor에 기능을 추가한 것이며, 이는 어떤 design tool에서든 SVG의 수정이 가능하다는 것을 의미합니다.
     - SVG editor나 SVG plugin을 사용하면 SVG를 더 쉽게 수정할 수 있습니다.
 
 

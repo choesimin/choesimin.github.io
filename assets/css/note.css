@@ -32,19 +32,6 @@ ol, ul {
     padding-left: 20px;
 }
 
-ul li {
-    list-style: none;
-}    
-
-
-article > ul:not(#index), ol > li > ul {
-    padding-left: 0;
-}
-
-article > ol > li, article > ul:not(#index) > li {
-    margin-bottom: 20px;
-}
-
 
 
 
@@ -76,6 +63,13 @@ code.language-plaintext:not(.hljs) {
     line-height: 1;
     padding: 2px 4px;
     transform: translateY(-1px);
+    background-color: var(--background-highlight-color);
+}
+
+blockquote {
+    margin: 0;
+    padding: 4px 20px;
+    border-left: 5px solid var(--border-color);
     background-color: var(--background-highlight-color);
 }
 
