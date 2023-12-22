@@ -57,13 +57,7 @@ code.hljs {
 }
 
 code.language-plaintext:not(.hljs) {
-    display: inline-block;
-    border: 1px solid var(--border-color);
-    border-radius: 2px;
-    line-height: 1;
-    padding: 2px 4px;
-    transform: translateY(-1px);
-    background-color: var(--background-highlight-color);
+    color: var(--code-color);
 }
 
 blockquote {

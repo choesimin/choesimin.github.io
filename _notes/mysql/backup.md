@@ -166,7 +166,6 @@ passowrd : 123456
 
 ### Replication Option
 
-
 | Option  | 설명 |
 | --- | --- |
 | `--master-data=[value]` | dump 받은 file이 '어느 binary log의 위치까지 사용한 것인지'를 dump file 안에 `CHANGE MASTER` 구문의 형태로 작성합니다.<br>`value`에는 `1`(comment로 남지 않습니다.) 또는 `2`(comment로 남습니다.)를 지정할 수 있으며, 기본 값은 `1`입니다.<br>이 option은 `RELOAD` 권한을 가지고 있어야 하고, binary log는 enable되어 있어야 합니다.<br>만약 binary log를 enable하지 않고 사용하면 오류가 발생합니다.<br>자동으로 `--lock-tables` option을 disable합니다.<br>원래는 `--single-transaction` option을 사용하면 `--lock-all-tables` option이 disable되지만, 이 option을 사용했을 때에는 `--single-transaction` option을 사용하더라도 `--lock-all-tables`가 enable됩니다.<br>dump를 시작할 때, 아주 짧은 시간 동안 global read lock이 발생합니다. |
