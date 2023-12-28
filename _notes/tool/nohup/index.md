@@ -17,7 +17,7 @@ date: 2023-04-05
 
 ## 사용법
 
-```
+```sh
 nohup [program_command]
 ```
 

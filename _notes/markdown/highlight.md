@@ -9,7 +9,7 @@ date: 2023-04-09
 
 ## 문법
 
-```
+```txt
 normal   
 *single asterisk*   
 _single underscore_   
