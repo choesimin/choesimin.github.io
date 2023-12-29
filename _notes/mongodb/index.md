@@ -25,22 +25,31 @@ date: 2023-12-26
 ## MongoDB의 구조 : Database, Collection, Document
 
 ```mermaid
-flowchart
+flowchart TD
 
 subgraph database[Database]
-    subgraph collection1[Collection 1]
-        subgraph document1[Document 1]
-            subgraph field[Field 1]
-                key1[Key 1]
-                value2[Value 2]
-            end
+    subgraph collection1[Collection]
+        subgraph document1[Document]
+            field1[Key-Value]
+            field2[Key-Value]
         end
-        subgraph document2[Document 2]
+        subgraph document2[Document]
+            field3[Key-Value]
         end
     end
-    subgraph collection2[Collection 2]
-    end
-    subgraph collection3[Collection 3]
+    subgraph collection2[Collection]
+        subgraph document3[Document]
+            field4[Key-Value]
+            field5[Key-Value]
+            field6[Key-Value]
+        end
+        subgraph document4[Document]
+            field7[Key-Value]
+        end
+        subgraph document5[Document]
+            field8[Key-Value]
+            field9[Key-Value]
+        end
     end
 end
 ```
@@ -70,8 +79,11 @@ end
 
 - 필드는 다큐먼트 내에서의 데이터를 나타냅니다.
 - 필드는 이름과 값(key-value) 쌍으로 이루어진 데이터 단위입니다.
-    - 필드는 다큐먼트 내에서 고유한 이름(key)을 가지고 있으며, 필드의 이름(key)은 해당 필드를 식별하는 데에 사용됩니다.
-    - key에 연결되는 field의 값(value)은 다양한 데이터 유형일 수 있습니다.
+
+| Field의 구성 요소 | 설명 |
+| --- | --- |
+| Key | 필드의 고유한 이름이며, 해당 필드를 식별하는 데에 사용됩니다. |
+| Value | key에 연결되는 값이며, 다양한 데이터 유형일 수 있습니다. |
 
 
 
@@ -91,7 +103,7 @@ end
 - MongoDB는 JSON 형태의 BSON(Binary JSON) 문서를 저장합니다.
 - 각 문서는 key-value 쌍의 집합으로 이루어져 있으며, 이러한 문서들을 collection에 저장합니다.
 
-- 문서 지향적이기 때문에 가지는 **schema-free**하고, **query가 유연**합니다.
+- **Query가 유연**하다는 점과 **Schema-Free**하다는 점은 MongoDB가 문서 지향적이기 때문에 가지는 두 가지 특징입니다.
 
 #### Schema-Free
 
