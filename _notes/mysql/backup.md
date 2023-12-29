@@ -64,7 +64,7 @@ mysqldump [option] [database_name] [table_name_1] [table_name_2] [table_name_3] 
 ### DB 복원하기
 
 ```sh
-mysql -u [user_id] -p [password] [database_name_to_restore] < [backup_database].sql
+mysql -u [user_id] -p [database_name_to_restore] < [backup_database].sql
 
 # example
 mysql -u test_user -p test_db < backup_test_db.sql
@@ -75,10 +75,10 @@ passowrd : 123456
 ### Table 복원하기
 
 ```sh
-mysql -u [user_id] -p [password] [database_name_to_restore] < [backup_table].sql
+mysql -u [user_id] -p [database_name_to_restore] < [backup_table].sql
 
 # example
-mysql -u test_user -p 123456 test_db < backup_test_table.sql
+mysql -u test_user -p test_db < backup_test_table.sql
 passowrd : 123456
 ```
 
@@ -133,7 +133,7 @@ passowrd : 123456
 | `--disable-keys` | `-K` | table의 `INSERT` 구문을 작성할 때 `/*!40000 ALTER TABLES tbl_name DISABLE KEYS */;`, `/*!40000 ALTER TABLE tbl_name ENABLE KETS */;`를 추가하여 작성합니다.<br>key에 대한 제약 사항을 검사하지 않도록 해 loading을 더 빠르게 할 수 있게 합니다.<br>nonunique index를 사용하는 MyISAM table에 효과가 좋습니다. |
 | `--extended-insert` | `-e` | 여러 data를 한 문장의 `INSERT` 구문으로 insert하도록 구문을 작성합니다. |
 | `--insert-ignore` |  | dump file 작성 시, `INSERT` 대신에 `INSERT IGNORE` 구문을 작성합니다. |
-| `--quick` | `-q` | `mysqldump` 실행 시 data를 memory에 loading하지 않고, 직접 읽어서 작성합니다..<br>성능을 향상 시킬 수 있습니다. |
+| `--quick` | `-q` | `mysqldump` 실행 시 data를 memory에 loading하지 않고, 직접 읽어서 작성합니다.<br>성능을 향상 시킬 수 있습니다. |
 | `--opt` |  | `-add-drop-table`, `--add-locks`, `--create-options`, `--disable-keys`, `--extended-insert`, `--lock-tables`, `--quick`, `--set-charset`의 기능을 하는 option입니다.<br>일반적으로 많이 사용하는 option들을 모아 놓은 것입니다.<br>default option이기 때문에 명시하지 않아도 사용됩니다. |
 | `--skip-opt` |  | `--opt` option을 사용하고 싶지 않은 경우 사용합니다. |
 
@@ -169,10 +169,10 @@ passowrd : 123456
 | Option  | 설명 |
 | --- | --- |
 | `--master-data=[value]` | dump 받은 file이 '어느 binary log의 위치까지 사용한 것인지'를 dump file 안에 `CHANGE MASTER` 구문의 형태로 작성합니다.<br>`value`에는 `1`(comment로 남지 않습니다.) 또는 `2`(comment로 남습니다.)를 지정할 수 있으며, 기본 값은 `1`입니다.<br>이 option은 `RELOAD` 권한을 가지고 있어야 하고, binary log는 enable되어 있어야 합니다.<br>만약 binary log를 enable하지 않고 사용하면 오류가 발생합니다.<br>자동으로 `--lock-tables` option을 disable합니다.<br>원래는 `--single-transaction` option을 사용하면 `--lock-all-tables` option이 disable되지만, 이 option을 사용했을 때에는 `--single-transaction` option을 사용하더라도 `--lock-all-tables`가 enable됩니다.<br>dump를 시작할 때, 아주 짧은 시간 동안 global read lock이 발생합니다. |
-| `--delete-master-logs` | master server인 경우, dump받은 후 binary log는 모두 삭제합니다.<br>자동으로 `--master-data` option을 enable합니다. |
+| `--delete-master-logs` | master server인 경우, dump 받은 후 binary log는 모두 삭제합니다.<br>자동으로 `--master-data` option을 enable합니다. |
 | `--dump-slave=[value]` | `--master-data` option과 비슷하지만, 다른 slave server를 만들기 위해 slave server를 dump한다는 점이 다릅니다.<br>`CHANGE MASTER TO` 구문을 dump file에 추가합니다. |
 | `--apply-slave-statements` | `--dump-slave` option으로 dump하는 경우에 `STOP SLAVE`, `CHANGE MASTER TO`, `START SLAVE` 구문을 같이 작성하게 합니다. |
-| `--set-qtid-purqed=[value]` | GTID(Global Transaction ID) 정보를 dump file에 `SET @@global.gtid purged` 구문으로 작성합니다.<br>`value`에는 `OFF`, `ON`, `AUTO` 중 하나가 지정할 수 있으며, 기본 값은 `AUTO`입니다.<br>`OFF` : Add no SET statement to the output.<br>`ON` : Add a SET statement to the output. An error occurs if GTIDs are not enabled on the server.<br>`AUTO` : Add a SET statement to the output if GTIDs are enabled on the server. |
+| `--set-qtid-purged=[value]` | GTID(Global Transaction ID) 정보를 dump file에 `SET @@global.gtid purged` 구문으로 작성합니다.<br>`value`에는 `OFF`, `ON`, `AUTO` 중 하나가 지정할 수 있으며, 기본 값은 `AUTO`입니다.<br>`OFF` : Add no SET statement to the output.<br>`ON` : Add a SET statement to the output. An error occurs if GTIDs are not enabled on the server.<br>`AUTO` : Add a SET statement to the output if GTIDs are enabled on the server. |
 
 
 ### Etc Option
