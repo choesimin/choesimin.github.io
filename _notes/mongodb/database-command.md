@@ -1,6 +1,6 @@
 ---
 layout: note
-title: MongoDB - Database 기본 명령어 (조회, 사용, 삭제)
+title: MongoDB - Database 명령어 (조회, 생성, 사용, 삭제)
 date: 2023-12-30
 ---
 
@@ -33,13 +33,14 @@ db.status()
 
 
 
-## Database 사용
+## Database 생성 및 사용
 
 ```sql
 use database_name
 ```
 
-- database가 이미 **있으면 사용**하고, **없으면 생성**합니다.
+- database가 **없으면 생성**하고, 이미 **있으면 사용**합니다.
+    - 생성하는 경우, 생성 후 자동으로 사용까지 합니다.
 - `use`를 통해 생성한 database는 그 안에 최소 한 개의 document가 있어야 `show dbs` 명령어를 통해 확인할 수 있습니다.
 
 
