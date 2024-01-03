@@ -2,8 +2,11 @@
 layout: base
 ---
 
+
+<div id="progressBar"></div>
+
 <article>
-    <h1 class="title">{{ page.title }}</h1> 
+    <h1 class="title">{{ page.title }}</h1>
     <p class="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
     <ul id="index"></ul>
     {{ content }}
@@ -17,7 +20,7 @@ layout: base
     const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
 
     for (let i = 0; i < headers.length; i++) {
-        const header =  headers[i];
+        const header = headers[i];
 
         const anchor = document.createElement('a');
         anchor.innerHTML = header.innerHTML;
@@ -29,6 +32,13 @@ layout: base
 
         index.appendChild(item);
     }
+
+    window.onscroll = function () {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+    };
 </script>
 
 <link rel="stylesheet" href="{{ '/assets/css/note.css' | relative_url }}">

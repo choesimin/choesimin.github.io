@@ -1,16 +1,39 @@
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--highlight-color);
 }
-h1, h2, h3 {
+
+h1,
+h2,
+h3 {
     margin-top: 60px;
 }
-h4, h5, h6 {
+
+h4,
+h5,
+h6 {
     margin-top: 40px;
 }
 
 h1.title {
     line-height: 1;
     margin-bottom: 0px;
+}
+
+
+
+
+#progressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color);
 }
 
 
@@ -28,7 +51,8 @@ p.date {
 
 
 
-ol, ul {
+ol,
+ul {
     padding-left: 20px;
 }
 
@@ -71,7 +95,7 @@ blockquote {
 
 
 #stamp {
-    margin-top : 150px;
+    margin-top: 150px;
     display: flex;
     justify-content: flex-end;
 }
