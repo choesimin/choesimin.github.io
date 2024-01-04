@@ -1,6 +1,6 @@
 ---
 layout: note
-title: MongoDB - Collection 명령어 (조회, 생성, 삭제)
+title: MongoDB Collection 명령어 (조회, 생성, 삭제)
 date: 2024-01-02
 ---
 
