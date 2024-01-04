@@ -24,30 +24,27 @@ date: 2023-07-03
 
 
 
-## 장단점
+## 장점
 
-
-### 장점
-
-#### Code 중복이 줄어듬
+### Code 중복이 줄어듦
 
 - algorithm마다 사용되는 code의 중복을 방지할 수 있습니다.
     - algorithm의 변경 부분만 concrete strategy로 빼내어 구현했기 때문입니다.
 
-#### 전략 확장이 용이함
+### 전략 확장이 용이함
 
 - 새로운 전략을 추가하더라도 기존 code를 변경하지 않습니다.
 - 새로운 algorithm을 추가하려면 새로운 객체를 추가하면 됩니다.
 
-#### Runtime에 전략 결정과 교체가 가능함
+### Runtime에 전략 결정과 교체가 가능함
 
 - 상속 대신 구성(composition)을 사용하기 때문에 runtime에 strategy(algorithm)를 변경할 수 있습니다.
     - client가 strategy interface에 의존하고 있기 때문에 strategy 구현체를 교체하기 쉽습니다.
 
 
-### 단점
+## 단점
 
-#### 복잡도 증가
+### 복잡도 증가
 
 - algorithm이 늘어날 수록 객체도 무한히 늘어납니다.
     - logic이 늘어날 때마다 구현체 class가 늘어납니다.
@@ -56,7 +53,7 @@ date: 2023-07-03
     - 한 눈에 들어오는 짧은 code에서는 Strategy Pattern을 사용하는 것이 오히려 가독성을 떨어뜨립니다.
     - e.g., 분기가 2개인 경우에는 if-else를 사용하는 것이 더 나을 수 있습니다.
 
-#### Client가 구체적인 전략(concrete strategy)에 대해 알고 있어야 함
+### Client가 구체적인 전략(concrete strategy)에 대해 알고 있어야 함
 
 - client는 모든 algorithm에 대한 성능과 효율을 알고 있어야 합니다.
     - client가 자신이 사용할 전략 객체를 직접 결정하기 때문입니다.
@@ -350,7 +347,7 @@ public class RedHeadDuck extends Duck {
 public class RubberDuck extends Duck {
     public RubberDuck() {
         flyBehavior = new FlyNoWay();
-        //quackBehavior = new Squeak();
+        // quackBehavior = new Squeak();
         quackBehavior = () -> System.out.println("Squeak");
     }
     
