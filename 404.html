@@ -1,10 +1,23 @@
-<div style="text-align: center; font-family: monospace; margin: 100px 0;">
-    <h1>404</h1>
-    <p>존재하지 않는 문서입니다.</p>
+---
+layout: base
+---
+
+<div style="text-align: center; margin: 100px 0;">
+    <h1 style="font-size: 40px">404</h1>
+    <p style="font-size: 20px">존재하지 않는 문서입니다.<br><b id="remainSecond"></b>초 뒤, 메인 페이지로 이동합니다.</p>
 </div>
 
 <script>
+    const secondViewer = document.getElementById('remainSecond');
+    let second = 3;
+    secondViewer.innerText = second;
+
+    setInterval(() => {
+        second = second - 1;
+        secondViewer.innerText = second;
+    }, 1000);
+
     setTimeout(function () {
         window.location.href = "/";
-    }, 2000);
+    }, second * 1000);
 </script>

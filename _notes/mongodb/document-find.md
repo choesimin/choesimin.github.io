@@ -1,6 +1,6 @@
 ---
 layout: note
-title: MongoDB Document 조회 명령어 (find)
+title: MongoDB Document 조회 (find)
 date: 2024-01-03
 ---
 
@@ -16,8 +16,8 @@ db.collection.findOne();
 
 | 명령어 | 설명 |
 | --- | --- |
-| `find` | document 목록을 조회합니다. |
-| `findOne` | document 단건을 조회합니다.<br>`find` method로 찾은 것 중에 첫번째 것을 선택(`find()[0]`)한 것과 같습니다. |
+| [`find`](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/) | document 목록을 조회합니다. |
+| [`findOne`](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOne/) | document 단건을 조회합니다.<br>`find` method로 찾은 것 중에 첫 번째 것을 선택(`find()[0]`)한 것과 같습니다. |
 
 
 
@@ -27,12 +27,12 @@ db.collection.findOne();
 
 
 
-## 검색 (첫번째 인자)
+## 검색 (첫 번째 인자)
 
 - 특정 조건으로 검색한 결과를 조회할 수 있습니다.
     - SQL의 `WHERE`과 같습니다.
 
-- 조회 method(`find`, `findOne`)의 **첫번째 인자**에 검색 조건을 명시합니다.
+- 조회 method(`find`, `findOne`)의 **첫 번째 인자**에 검색 조건을 명시합니다.
     - 검색 조건으로 검색어, 논리 연산자, 졍규 표현식, JavaScript 표현식(expression) 등을 사용할 수 있습니다.
 
 
@@ -94,24 +94,24 @@ db.monsters.find({
 });
 
 // hits >= 50
-db.book.find({
+db.books.find({
     'hits': {$gte: 50}
 })
 
 // 40 < hits < 70
-db.book.find({
+db.books.find({
     'hits': {$gt: 40, $lt: 70}
 });
 
 // name == ('A' or 'B')
-db.book.find({
+db.books.find({
     'name': {
         $in: ['A', 'B']
     }
 })
 
 // (name == 'A') or (hits == 50)
-db.book.find({
+db.books.find({
     $or: [
         {'name': 'A'},
         {'hits': 50}
@@ -119,7 +119,7 @@ db.book.find({
 });
 
 // (hits < 50) and (name == 'B')
-db.book.find({
+db.books.find({
     $and: [
         {'hits': {$lte: 50}}, 
         {'name': 'B'}
@@ -134,8 +134,8 @@ db.book.find({
 
 ```js
 // name에서 a 또는 b를 정규 표현식으로 검색 ('i' option으로 대소문자 무시)
-db.book.find({'name': /a|b/i});
-db.book.find({'name': {$regex: /a|b/, $options: 'i'}});
+db.books.find({'name': /a|b/i});
+db.books.find({'name': {$regex: /a|b/, $options: 'i'}});
 ```
 
 
@@ -145,11 +145,11 @@ db.book.find({'name': {$regex: /a|b/, $options: 'i'}});
 - 조건에 `this`를 함께 작성해야 합니다.
 
 ```js
-db.book.find({$where: "this.name == 'A'"})
+db.books.find({$where: "this.name == 'A'"})
 
 // '$where'을 사용하여 조건을 더 간단하게 표현할 수 있습니다.
-db.book.find({$or: [{name: 'A'}, {hits: {$lte: 50}}]});    // 정규 표현식
-db.book.find({$where: "this.name == 'A' || this.hits <= 50"});    // JavaScript 표현식
+db.books.find({$or: [{name: 'A'}, {hits: {$lte: 50}}]});    // 정규 표현식
+db.books.find({$where: "this.name == 'A' || this.hits <= 50"});    // JavaScript 표현식
 ```
 
 
@@ -160,7 +160,7 @@ db.book.find({$where: "this.name == 'A' || this.hits <= 50"});    // JavaScript 
 
 
 
-## Projection (두번째 인자)
+## Projection (두 번째 인자)
 
 - projection은 query를 실행할 때 **특정 field를 선택하거나 제외하기 위해 사용하는 기능**입니다.
     - document에서 필요한 data만 추출할 수 있으며, 불필요한 data는 제외됩니다.
@@ -169,7 +169,7 @@ db.book.find({$where: "this.name == 'A' || this.hits <= 50"});    // JavaScript 
         - e.g., 게시글 목록에서 내용까지 모두 불러오면 용량이 매우 크지만, 제목만 불러오면 data를 아낄 수 있습니다.
     - projection을 사용함으로써 더 빠르고 효율적인 query를 실행할 수 있으며, application의 성능을 개선할 수 있습니다.
 
-- 조회 method(`find`, `findOne`)의 **두번째 인자**에 조회할 field를 명시합니다.
+- 조회 method(`find`, `findOne`)의 **두 번째 인자**에 조회할 field를 명시합니다.
     - `0`이나 `false`를 지정하면 제외하고, `1`이나 `true`를 지정하면 포함합니다.
 
 - **projection을 지정하지 않으면**, 기본적으로 모든 field가 결과에 포함됩니다.
@@ -209,10 +209,10 @@ db.collection.find().sort({field: value});    // value : 1 또는 -1
 
 ```js
 // hits를 오름차순으로 정렬해서 조회
-db.book.find().sort({"hits": 1});
+db.books.find().sort({"hits": 1});
 
 // hits를 내림차순으로 정렬해서 조회
-db.book.find().sort({"hits": -1});
+db.books.find().sort({"hits": -1});
 ```
 
 

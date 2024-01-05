@@ -1,6 +1,6 @@
 ---
 layout: note
-title: MongoDB Document 생성 명령어 (insert)
+title: MongoDB Document 생성 (insert)
 date: 2024-01-03
 ---
 
@@ -17,9 +17,9 @@ db.collection.insertMany([{/*document*/}, {/*document*/}, {/*document*/}, {/*doc
 
 | 명령어 | 설명 |
 | --- | --- |
-| `insert` | **단일 또는 다수의 document를 입력할 때 사용**합니다.<br>만일 collection이 존재하지 않는다면, 자동으로 collection을 생성하고 document를 insert합니다. |
-| `insertOne` | **단일 document를 입력할 때 사용**합니다. |
-| `insertMany` | **다수의 document를 입력할 때 사용**합니다. |
+| [`insert`](https://www.mongodb.com/docs/manual/reference/method/db.collection.insert/) | **단일 또는 다수의 document를 입력할 때 사용**합니다.<br>만일 collection이 존재하지 않는다면, 자동으로 collection을 생성하고 document를 insert합니다. |
+| [`insertOne`](https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/) | **단일 document를 입력할 때 사용**합니다. |
+| [`insertMany`](https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/) | **다수의 document를 입력할 때 사용**합니다. |
 
 ```js
 db.book.insert({"name":"abc"});

@@ -1,15 +1,15 @@
 ---
 layout: note
+title: Facade Pattern - 하나의 객체만 만들어 공용으로 사용하기
+date: 9999-01-01
 ---
 
-# Facade Pattern
 
-```
-어떤 sub system의 일련의 interface에 대한 통합된 interface를 제공합니다. Facade에서 고수준 interface를 정의하기 때문에 sub system을 더 쉽게 사용할 수 있습니다.
-```
+- Facade Pattern은 sub system의 일련의 interface에 대한 통합된 interface를 제공합니다.
+- Facade에서 고수준 interface를 정의하기 때문에 sub system을 더 쉽게 사용할 수 있습니다.
 
-- 다른 pattern보다 단순한 편임
-    - 복잡한 추상화의 단계가 필요 없음
+- 다른 pattern보다 단순한 편입니다.
+    - 복잡한 추상화의 단계가 필요 없습니다.
 
 - 단순화된 interface를 통해서 sub system을 더 쉽게 사용할 수 있도록 하기 위해 사용됨
     - client와 sub system이 서로 긴밀하게 연결되지 않아도 되게 함

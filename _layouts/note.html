@@ -23,7 +23,7 @@ layout: base
         const header = headers[i];
 
         const anchor = document.createElement('a');
-        anchor.innerHTML = header.innerHTML;
+        anchor.innerHTML = header.innerText;
         anchor.href = '#' + header.id;
 
         const item = document.createElement('li');
