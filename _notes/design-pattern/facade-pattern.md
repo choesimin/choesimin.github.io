@@ -1,28 +1,33 @@
 ---
 layout: note
 title: Facade Pattern - 하나의 객체만 만들어 공용으로 사용하기
-date: 9999-01-01
+date: 2024-01-06
 ---
 
 
 - Facade Pattern은 sub system의 일련의 interface에 대한 통합된 interface를 제공합니다.
 - Facade에서 고수준 interface를 정의하기 때문에 sub system을 더 쉽게 사용할 수 있습니다.
 
-- 다른 pattern보다 단순한 편입니다.
-    - 복잡한 추상화의 단계가 필요 없습니다.
+- 복잡한 추상화의 단계가 필요 없기 때문에 **다른 pattern보다 단순한 편**입니다.
 
-- 단순화된 interface를 통해서 sub system을 더 쉽게 사용할 수 있도록 하기 위해 사용됨
-    - client와 sub system이 서로 긴밀하게 연결되지 않아도 되게 함
+- Facade Pattern은 단순화된 interface를 통해서 sub system을 더 쉽게 사용할 수 있도록 합니다.
+    - client와 sub system이 서로 긴밀하게 연결되지 않아도 됩니다.
 
-- sub system class들을 캡슐화하지 않음
-    - 따라서 sub system에 직접 접근할 수 있음
-        - sub system class의 기능을 직접 사용하는 것이 가능함
-    - 단순화된 interface를 제공하면서도, client에서 필요로 한다면 system의 모든 기능을 사용할 수 있게 해줌
+- sub system class들을 캡슐화하지 않습니다.
+    - 따라서 sub system에 직접 접근할 수 있고, sub system class의 기능을 직접 사용하는 것이 가능합니다.
+    - 단순화된 interface를 제공하면서도, client에서 필요로 한다면 system의 모든 기능을 사용할 수 있게 합니다.
 
-- Adapter Pattern & Facade Pattern
-    - 두 pattern 모두 interface를 바꿔주고, 여러 개의 class를 감쌀 수 있음
-    - Adapter Pattern은 interface를 변경해서 client에서 필요로하는 interface로 적응시키기 위한 용도
-    - Facade Pattern은 어떤 sub system에 대한 간단한 interface를 제공하기 위한 용도
+
+## Adapter Pattern과 Facade Pattern의 비교
+
+- 두 pattern 모두 interface를 바꿔주고, 여러 개의 class를 감쌀 수 있습니다.
+- Adapter Pattern은 interface를 변경해서 client에서 필요로 하는 interface로 적응시키기 위한 용도입니다.
+- Facade Pattern은 어떤 sub system에 대한 간단한 interface를 제공하기 위한 용도입니다.
+
+
+
+
+---
 
 
 
@@ -49,10 +54,11 @@ SubSystem3 -- SubSystem1
 SubSystem3 -- SubSystem4
 SubSystem4 -- SubSystem1
 
-Client .. Client : Facade 덕분에 기능을 사용하기가 쉬워짐
-Facade .. Facade : 더 사용하기 편한 통합 interface
-SubSystem1 .. SubSystem1 : 복잡한 sub system
+note for Client "Client는 Facade 덕분에 기능을 사용하기가 쉬워졌습니다."
+note for Facade "더 사용하기 편한 통합 interface입니다."
+note for SubSystem1 "복잡한 sub system 입니다."
 ```
+
 
 
 
@@ -61,15 +67,10 @@ SubSystem1 .. SubSystem1 : 복잡한 sub system
 
 
 
-# Example : Home theater
+## Example : Home theater
 
 
-
-
-## Class Diagram
-
-
-
+### Class Diagram
 
 ```mermaid
 classDiagram
@@ -177,35 +178,31 @@ DvdPlayer --> Amplifier
 Projector --> DvdPlayer
 
 
-Client .. Client : HomeTheaterFacade 하나만 바라봄.
-HomeTheaterFacade .. HomeTheaterFacade : Client 대신 \n모든 sub system 구성요소를 관리해 줌. \n덕분에 Client는 단순하면서 유연해질 수 있음.
-Amplifier .. Amplifier : sub system에서도 \n최소 지식 원칙을 지키는 것이 좋음. \n서로 얽혀 있는 것이 많아져서 \nsystem이 너무 복잡한 것 같으면 \nsub system에 Facade를 더 추가하는 것도 생각해야 함.
+note for Client "HomeTheaterFacade 하나만 바라봅니다."
+note for HomeTheaterFacade "Client 대신 모든 sub system 구성 요소를 관리해 줍니다.\n덕분에 Client는 단순하면서 유연해질 수 있습니다."
+note for Amplifier "sub system에서도 최소 지식 원칙을 지키는 것이 좋습니다.\n서로 얽혀 있는 것이 많아져서 system이 너무 복잡한 것 같으면,\nsub system에 Facade를 더 추가하는 것도 생각해보아야 합니다."
 ```
 
 
-## Code
+### Code
 
-- 영화 보는 복잡한 과정을 Client가 맡지 않고 Facade가 맡으
+- 영화 보는 복잡한 과정을 Client가 맡지 않고, Facade가 맡습니다.
 
-1. popcorn 기계 켜기
-2. popcorn 튀기기 시작하기
-3. 전등을 어둡게 조절하기
-4. screen 내리기
-5. projector 켜기
-6. projector로 DVD 신호가 입력되도록 하기
-7. projector를 wide screen mode로 전환하기
-8. amp 켜기
-9. amp 입력을 DVD로 전환하기
-10. amp를 surround 음향 mode로 전환하기
-11. amp volume을 중간(5)으로 설정하기
-12. DVD player 켜기
-13. DVD 재생하기
+1. popcorn 기계 켜기.
+2. popcorn 튀기기 시작하기.
+3. 전등을 어둡게 조절하기.
+4. screen 내리기.
+5. projector 켜기.
+6. projector로 DVD 신호가 입력되도록 하기.
+7. projector를 wide screen mode로 전환하기.
+8. amp 켜기.
+9. amp 입력을 DVD로 전환하기.
+10. amp를 surround 음향 mode로 전환하기.
+11. amp volume을 중간(5)으로 설정하기.
+12. DVD player 켜기.
+13. DVD 재생하기.
 
-
-
-
-
-### Client
+#### Client
 
 ```java
 public class HomeTheaterTestDrive {
@@ -229,10 +226,7 @@ public class HomeTheaterTestDrive {
 }
 ```
 
-
-
-
-### Facade
+#### Facade
 
 ```java
 public class HomeTheaterFacade {
@@ -307,10 +301,7 @@ public class HomeTheaterFacade {
 }
 ```
 
-
-
-
-### Sub System
+#### Sub System
 
 ```java
 public class Amplifier {
