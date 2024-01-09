@@ -60,3 +60,4 @@ date: 2024-01-06
 - 현대시작법 (도서) - 오규원
 - <https://m.cafe.daum.net/jaybe/4oMt/141?listURI=%2Fjaybe%2F4oMt>
 - <http://www.artnstudy.com/n_lecture/note/나의_첫_번째_글쓰기_수업_01.pdf>
+- <https://encykorea.aks.ac.kr/Article/E0048128>
