@@ -77,9 +77,9 @@ timeline
 | 명령어 | 설명 |
 | --- | --- |
 | `i` | Insert Mode로 진입합니다. 문자의 앞에 삽입 cursor가 위치합니다. |
-| `shift` + `i` | Insert Mode로 진입합니다. 문장의 앞에 삽입 cursor가 위치합니다. |
+| `shift` + `i` | Insert Mode로 진입합니다. 현재 line의 맨 앞에 삽입 cursor가 위치합니다. |
 | `a` | Insert Mode로 진입합니다. 문자의 뒤에 삽입 cursor가 위치합니다. |
-| `shift` + `a` | Insert Mode로 진입합니다. 문장의 뒤에 삽입 cursor가 위치합니다. |
+| `shift` + `a` | Insert Mode로 진입합니다. 현재 line의 맨 뒤에 삽입 cursor가 위치합니다. |
 | `o` | cursor의 아래에 새로운 line을 만들고, Insert Mode로 진입합니다. |
 | `shift` + `o` | cursor의 위에 새로운 line을 만들고, Insert Mode로 진입합니다. |
 | `s` | 선택한 문자를 삭제하고, Insert Mode로 진입합니다. |
@@ -100,6 +100,7 @@ timeline
 | `/[keyword]` | 문자열을 위에서 아래로 검색합니다. |
 | `?[keyword]` | 문자열을 아래에서 위로 검색합니다. |
 | `n` | 다음 검색 결과로 넘어갑니다. |
+| `shift` + `n` | 이전 검색 결과로 넘어갑니다. |
 
 
 
@@ -138,7 +139,7 @@ timeline
 | 명령어 | 설명 |
 | --- | --- |
 | `0` | line의 왼쪽 끝(맨 앞)으로 이동합니다. |
-| `shift` + `4` | line의 오른쪽 끝(맨 뒤)으로 이동합니다. |
+| `$` (`shift` + `4`) | line의 오른쪽 끝(맨 뒤)으로 이동합니다. |
 
 
 ### Cursor를 현재 화면 기준으로 이동시키기
@@ -157,7 +158,7 @@ timeline
 
 
 
-## 화면 이동하기
+## 화면 이동시키기
 
 | 명령어 | 설명 |
 | --- | --- |

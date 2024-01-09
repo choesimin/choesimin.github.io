@@ -32,7 +32,7 @@ h1.title {
     top: 0;
     left: 0;
     width: 0%;
-    height: 2px;
+    height: 3px;
     background-color: var(--color);
 }
 
