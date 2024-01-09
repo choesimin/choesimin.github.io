@@ -172,7 +172,7 @@ void sendFinishTalk() throws SendFailException {
 ## Unchecked Exception을 사용하기
 
 - checked exception은 개방-폐쇄 원칙(OCP, Open-Closed Principle)을 위반합니다.
-    - 모든 함수가 최하위 함수에서 던지는 예외를 알아야 하기 때문에 캡슐화가 깨집니다.
+    - 모든 함수가 최하위 함수에서 던지는 예외를 알아야 하기 때문에 encapsulation가 깨집니다.
         - method에서 checked exception를 던지고 `catch` block이 상위 단계에 있다면, 그 사이의 모든 method가 해당 exception을 정의해야 합니다.
         - 하위 단계에서 code를 수정하면, 상위 단계 method 선언부를 전부 고쳐야 합니다.
             - module과 관련된 code가 바뀌지 않았더라도, 선언부가 바뀌었으므로 module을 다시 build하고 배포해야 합니다.

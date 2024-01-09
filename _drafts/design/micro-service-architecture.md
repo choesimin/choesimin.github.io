@@ -121,7 +121,7 @@ layout: note
 
 ### 동적이고 분산되어 있는 MicroService
 
-- 성공적인 MicroService 구현체들은 logic과 data를 service의 내부로 캡슐화함
+- 성공적인 MicroService 구현체들은 logic과 data를 service의 내부로 encapsulation함
 - 통상적인 system과는 다른 특징
     - data 및 logic의 분산
     - 탈중앙화된 관리 체계

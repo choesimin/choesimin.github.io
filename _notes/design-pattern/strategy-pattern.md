@@ -8,7 +8,7 @@ date: 2023-07-03
 
 
 - State Pattern을 이용하면 algorithm을 상황에 따라 변경해가며 사용할 수 있습니다.
-    - 동일한 목적을 지닌 algorithm group을 정의하고 각각을 캡슐화하여 group 내의 algorithm을 교환해서 사용할 수 있도록 합니다.
+    - 동일한 목적을 지닌 algorithm group을 정의하고 각각을 encapsulation하여 group 내의 algorithm을 교환해서 사용할 수 있도록 합니다.
     - algorithm을 사용하는 client에서 algorithm을 분리하기 때문에 독립적으로 algorithm을 변경할 수 있습니다.
 
 - 같은 목적을 가진 class들의 algorithm을 상황에 따라 교체해야 하는 경우, Strategy Pattern을 사용하면 좋습니다.
@@ -123,7 +123,7 @@ ConcreteStrategyB ->> Client : return result
 
 ## Example : 오리 Class
 
-- client에서는 **나는 행동**과 **꽥꽥거리는 행동** 모두에 대해서 캡슐화된 algorithm group을 **활용**합니다.
+- client에서는 **나는 행동**과 **꽥꽥거리는 행동** 모두에 대해서 encapsulation된 algorithm group을 **활용**합니다.
     - client는 `setter`로 행동 변수를 설정하고 `perform` 함수를 사용하면 됩니다.
         - e.g., `setFlyBehavior()` -> `performFly()`
 

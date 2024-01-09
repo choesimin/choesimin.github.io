@@ -1,18 +1,18 @@
 ---
 layout: note
-title: Factory Pattern - 객체 생성을 캡슐화하기
+title: Factory Pattern - 객체 생성을 encapsulation하기
 version: 2023-05-18
 ---
 
 
 
 
-## Factory Pattern - 객체 생성을 캡슐화하기
+## Factory Pattern - 객체 생성을 encapsulation하기
 
-- Factory Pattern은 객체를 생성하는 부분을 캡슐화합니다.
+- Factory Pattern은 객체를 생성하는 부분을 encapsulation합니다.
     - 객체 생성을 처리하는 class를 **factory**라고 부릅니다.
 
-- 객체 생성하는 작업을 한 class에 캡슐화시켜 놓으면, 구현을 변경해야 하는 경우에 factory class 하나만 고치면 됩니다.
+- 객체 생성하는 작업을 한 class에 encapsulation시켜 놓으면, 구현을 변경해야 하는 경우에 factory class 하나만 고치면 됩니다.
     - code에서 중복되는 내용을 제거할 수 있습니다.
 
 - Factory Pattern에는 Factory Method Pattern과 Abstract Factory Pattern이 있습니다.
@@ -28,7 +28,7 @@ version: 2023-05-18
 ## Factory Method Pattern & Abstract Factory Pattern
 
 - 두 pattern 모두 application을 특정 구현으로부터 분리시키는 역할을 합니다.
-    - 객체 생성을 캡슐화해서 application의 결합을 느슨하게 만들고, 특정 구현에 덜 의존하도록 합니다.
+    - 객체 생성을 encapsulation해서 application의 결합을 느슨하게 만들고, 특정 구현에 덜 의존하도록 합니다.
 
 - 두 pattern은 객체를 만드는 방법에 차이가 있습니다.
 

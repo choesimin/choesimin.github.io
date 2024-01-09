@@ -140,7 +140,7 @@ date: 2023-11-02
     ```
     component는 안정된 정도만큼만 추상화되어야 한다.
     ```
-    - 고수준 정책을 캡슐화하는 software는 반드시 안정된 component(I=0)에 위치해야 함
+    - 고수준 정책을 encapsulation하는 software는 반드시 안정된 component(I=0)에 위치해야 함
         - 업무 logic, architecture에는 변동성이 없기 때문
         - 하지만 고수준 정책을 안정된 component에 위치시키면 그 정책을 포함하는 source code는 수정하기 어려워짐
             - 이로 인해 system 전체 architecture가 유연성을 잃게 됨

@@ -5,14 +5,14 @@ layout: note
 # Command Pattern
 
 ```
-Command Pattern을 이용하면 요구 사항을 객체로 캡슐화할 수 있으며, 매개변수를 써서 여러가지 다른 요구 사항을 집어넣을 수도 있습니다. 또한 요청 내역을 Queue에 저장하거나 log로 기록할 수도 있으며, 작업취소 기능도 지원 가능합니다.
+Command Pattern을 이용하면 요구 사항을 객체로 encapsulation할 수 있으며, 매개변수를 써서 여러가지 다른 요구 사항을 집어넣을 수도 있습니다. 또한 요청 내역을 Queue에 저장하거나 log로 기록할 수도 있으며, 작업취소 기능도 지원 가능합니다.
 ```
 
 - 요청을 하는 객체와 그 요청을 수행하는 객체를 분리시킬 수 있음
     - 분리시키는 과정의 중심에는 Command 객체가 있음
-        - Command 객체는 행동이 들어있는 Receiver를 캡슐화 함
-    - method 호출의 캡슐화
-        - 일련의 행동을 특정 Receiver하고 연결시킴으로써 요구 사항을 캡슐화함
+        - Command 객체는 행동이 들어있는 Receiver를 encapsulation 함
+    - method 호출의 encapsulation
+        - 일련의 행동을 특정 Receiver하고 연결시킴으로써 요구 사항을 encapsulation함
         - 행동과 Receiver를 한 객체에 집어넣고, execute()라는 method하나만 외부에 공개하는 방법을 사용함
         - 외부에서는 execute() method를 호출하면 요구 사항이 처리된다는 것만 알 수 있음
             - 어떤 객체가 Receiver 역할을 하는지, 그 Receiver에서 실제로 어떤 일을 하는지 알 수 없음
@@ -39,7 +39,7 @@ Command Pattern을 이용하면 요구 사항을 객체로 캡슐화할 수 있�
     - Command 객체
         - Receiver에 전달할 일련의 행동으로 구성됨 (행동 + Receiver에 대한 정보)
         - execute() : Command 객체에서 제공하는 유일한 method
-            - 행동을 캡슐화함
+            - 행동을 encapsulation함
             - Receiver에 있는 특정 행동을 처리하기 위한 method를 호출하기 위한 method
             ```java
             public void execute {

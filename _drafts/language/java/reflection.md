@@ -43,7 +43,7 @@ layout: note
 2. Security Restrictions
     - Reflection은 security manager과 함께 실행될 때, runtime permission이 필요함
     - Applet같은 보안이 제한된 환경에서 주의해야 함
-3. Exposure of Internals : 캡슐화를 저해할 수 있음
+3. Exposure of Internals : encapsulation를 저해할 수 있음
     - Reflection은 private한 property, method에 access할 수 있음
         - 'Field.setAccessible()' method를 true로 지정하면 외부에 공개되지 않는 private member도 접근과 조작이 가능함
     - Reflection을 사용하지 않은 code에서는 작동하지 않는 code를 수행할 수 있게 됨

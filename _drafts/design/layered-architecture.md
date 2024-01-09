@@ -73,10 +73,10 @@ layout: note
     - 대신 Service Layer가 Domain model 및 Presentation Layer 사이에서 Domain 기능들을 응용하는 logic을 관장함
         - Service Layer는 transaction 및 Domain model의 기능(business logic) 간의 순서 만을 보장해햐 함
         - 핵심 business logic은 Domain model의 책임임
-- Domain model을 캡슐화하는 역할
+- Domain model을 encapsulation하는 역할
     - 핵심 business logic을 가진 Domain model을 View, Controller 등 표현 계층에 노출시키는 것은 보안 등 여러 단점이 존재함
     - Service Layer가 표현 계층에게 직접적인 Domain model을 반환하지 않고, DTO 등을 반환하면 표현 계층과 Domain model과의 강결합 의존성을 끊을 수 있음
-        - 즉, Service Layer는 Domain model을 캡슐화하여 보호하는 역할도 겸함
+        - 즉, Service Layer는 Domain model을 encapsulation하여 보호하는 역할도 겸함
         - 단일 책임 원칙을 지킬 수 있으며 유지 보수가 수월해짐
 
 ## Business Layer

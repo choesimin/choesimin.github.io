@@ -58,7 +58,7 @@ A solution to a problem in a context.
 | --- | --- |
 | Context | 다수의 object collection을 가지고 있다. |
 | Problem | collection의 구현을 밖으로 드러내지 않고 object들을 처리하고 싶다. |
-| Solution | 별도의 class에 iteration을 캡슐화한다. |
+| Solution | 별도의 class에 iteration을 encapsulation한다. |
 
 
 ### 1. Context
@@ -121,7 +121,7 @@ A solution to a problem in a context.
 - 객체 생성에 관련된 pattern입니다.
     - 객체 instance 생성을 위한 pattern입니다.
     - client와 그 client에서 생성해야 할 instance 사이의 연결을 끊습니다.
-- 객체의 생성과 조합을 캡슐화해 특정 객체가 생성되거나 변경되어도 program 구조에 영향을 크게 받지 않도록 유연성을 제공합니다.
+- 객체의 생성과 조합을 encapsulation해 특정 객체가 생성되거나 변경되어도 program 구조에 영향을 크게 받지 않도록 유연성을 제공합니다.
 
 #### 구조(Structural) Pattern
 
@@ -281,7 +281,7 @@ A solution to a problem in a context.
 #### Interpreter Pattern
 
 - 언어의 다양한 해석(구문을 나누고 그 분리된 구문의 해석)을 맡는 class를 각각 작성하여, 여러 형태의 언어 구문을 해석할 수 있게 합니다.
-- 문법 자체를 캡슐화하여 사용합니다.
+- 문법 자체를 encapsulation하여 사용합니다.
 
 #### Iterator Pattern
 
@@ -290,7 +290,7 @@ A solution to a problem in a context.
 
 #### Template Method Pattern
 
-- 어떤 작업을 처리하는 일부분을 sub class로 캡슐화해서, 전체 일을 수행하는 구조는 바꾸지 않고 특정 단계에서 수행하는 내역을 바꿉니다.
+- 어떤 작업을 처리하는 일부분을 sub class로 encapsulation해서, 전체 일을 수행하는 구조는 바꾸지 않고 특정 단계에서 수행하는 내역을 바꿉니다.
     - 상위 class(abstract class)는 추상 method로 기능의 골격을 제공합니다.
     - 하위 class(concrete class)의 method에서 세부 처리를 구체화합니다.
 
@@ -303,7 +303,7 @@ A solution to a problem in a context.
 
 - 객체의 상태에 따라 행위 내용을 변경합니다.
     - 객체 상태에 따라 다르게 처리할 수 있습니다.
-    - 객체 상태를 캡슐화한 class를 참조합니다.
+    - 객체 상태를 encapsulation한 class를 참조합니다.
     - 행위 변경 시 원시 code의 수정을 최소화할 수 있기 때문에 유지보수가 편해집니다.
 
 #### Visitor Pattern
@@ -313,14 +313,14 @@ A solution to a problem in a context.
 
 #### Command Pattern
 
-- 실행될 기능을 캡슐화하여, 주어진 여러 기능을 실행할 수 있는 재사용성이 높은 class를 설계합니다.
-    - 요구사항을 객체로 캡슐화합니다.
+- 실행될 기능을 encapsulation하여, 주어진 여러 기능을 실행할 수 있는 재사용성이 높은 class를 설계합니다.
+    - 요구사항을 객체로 encapsulation합니다.
 - 하나의 abstract class에 method를 만들어 각 명령이 들어오면 그에 맞는 sub class가 선택되어 실행됩니다.
 
 #### Strategy Pattern
 
-- algorithm group을 정의하고(abstract class), algorithm들을 각각 하나의 class로 캡슐화한 다음, 필요할 때 서로 교환해서 사용합니다.
-- 행위 객체를 class로 캡슐화해 동적으로 행위를 자유롭게 변환합니다.
+- algorithm group을 정의하고(abstract class), algorithm들을 각각 하나의 class로 encapsulation한 다음, 필요할 때 서로 교환해서 사용합니다.
+- 행위 객체를 class로 encapsulation해 동적으로 행위를 자유롭게 변환합니다.
 
 #### Memento Pattern
 

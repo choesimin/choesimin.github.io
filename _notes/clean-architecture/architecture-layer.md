@@ -29,7 +29,7 @@ date: 2023-11-28
 ## 의존성 규칙
 
 - source code 의존성은 항상 내부 계층을 향하며, 내부로 이동할수록 추상화와 정책의 수준이 높아집니다.
-    - 가장 외부에 있는 계층은 저수준의 세부 사항이며, 내부로 이동할수록 점점 더 추상화되고 더 높은 수준의 정책들을 캡슐화합니다.
+    - 가장 외부에 있는 계층은 저수준의 세부 사항이며, 내부로 이동할수록 점점 더 추상화되고 더 높은 수준의 정책들을 encapsulation합니다.
     - 가장 내부 계층은 가장 범용적이며, 높은 수준의 정책을 가지고 있습니다.
 
 - 외부 계층에 위치한 어떤 것도 내부 계층에 영향을 주지 않아야 합니다.
@@ -67,7 +67,7 @@ enterprise_business_logic
 
 ### Enterprise 업무 규칙 계층 : Entity
 
-- Entity는 전사적인 핵심 업무 규칙을 캡슐화하며, method를 갖는 객체일 수도, data와 함수의 집합일 수도 있습니다.
+- Entity는 전사적인 핵심 업무 규칙을 encapsulation하며, method를 갖는 객체일 수도, data와 함수의 집합일 수도 있습니다.
     - 다양한 application에서 재사용만 가능하다면 형태는 중요하지 않습니다.
 
 - 특정 application에 어떠한 변경이 필요하더라도 Entity에는 영향을 주면 안 됩니다.
@@ -77,7 +77,7 @@ enterprise_business_logic
 
 ### Application 업무 규칙 계층 : UseCase
 
-- UseCase는 application에 특화된 업무 규칙을 포함하며, system의 모든 UseCase를 캡슐화하고 구현합니다.
+- UseCase는 application에 특화된 업무 규칙을 포함하며, system의 모든 UseCase를 encapsulation하고 구현합니다.
 
 - UseCase는 Entity로 들어오고 나가는 data 흐름을 조정합니다.
     - 또한 Entity가 자신의 핵심 업무 규칙을 사용해서 UseCase의 목적을 달성하도록 이끕니다.
