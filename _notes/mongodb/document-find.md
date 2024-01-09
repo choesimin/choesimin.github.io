@@ -32,7 +32,7 @@ db.collection.findOne();
 - 특정 조건으로 검색한 결과를 조회할 수 있습니다.
     - SQL의 `WHERE`과 같습니다.
 
-- 조회 method(`find`, `findOne`)의 **첫 번째 인자**에 검색 조건을 명시합니다.
+- 조회 method(`find`, `findOne`)의 **첫 번째 인자**에 검색 조건을 query 연산자로 명시합니다.
     - 검색 조건으로 검색어, 논리 연산자, 졍규 표현식, JavaScript 표현식(expression) 등을 사용할 수 있습니다.
 
 

@@ -21,7 +21,40 @@ date: 2023-09-06
 
 
 
-## 1. Slow Query 확인하기
+## Lock 정보 조회하기
+
+```sql
+-- Process 목록 확인
+SHOW PROCESSLIST;
+
+-- Lock 조회
+SELECT * FROM information_schema.INNODB_LOCKS;
+SELECT * FROM information_schema.INNODB_LOCK_WAITS;
+SELECT * FROM information_schema.INNODB_TRX;
+
+-- Lock 걸린 시간 확인
+SELECT
+    trx_mysql_thread_id,
+    trx_started,
+    UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(CONVERT_TZ(trx_started, 'UTC', 'Asia/Seoul')) AS diff
+FROM information_schema.INNODB_TRX;
+
+-- 현재 사용 중인(table이 잠금 상태에 있거나, 하나 이상의 clinet에 의해 쿼리 작업 중인) table 나열
+SHOW OPEN TABLES WHERE in_use > 0;
+```
+
+
+
+
+---
+
+
+
+
+## Lock 해제하기
+
+
+### 1. Slow Query 확인하기
 
 - 먼저 process list를 조회하여, 연결되어 있는 process들을 확인합니다.
 
@@ -42,10 +75,10 @@ SHOW PROCESSLIST;
 
 - 조회 결과의 `Command` column이 `Sleep`인 항목은 신경쓰지 않아도 됩니다.
     - `Sleep`은 일반적으로 connection pool을 설정한 server에서 만든 connection입니다.
-    - lock이 아닌 `Too many connections` 오류의 경우에는 `Sleep` connection이 원인이 되기도 하지만, slow query와는 관련 없기 때문에 확인하지 않습니다.
+    - lock이 아닌 `Too many connections` 오류의 경우에는 `Sleep` connection이 원인이 되기도 하지만, slow query와는 관련이 없기 때문에 확인하지 않습니다.
 
 
-## 2. InnoDB Transaction 확인하기
+### 2. InnoDB Transaction 확인하기
 
 - slow query가 원인이 아니라면 transaction을 확인해봅니다.
 
@@ -62,14 +95,17 @@ SELECT * FROM information_schema.INNODB_TRX;
 ```
 
 
-## 3. Process 삭제하기
+### 3. Process 삭제하기
 
 - `kill` 명령어에 이전 과정에서 확인한 process의 id를 입력하여 process를 강제로 죽입니다.
 - process가 중간에 죽으면 원자성이 깨지는 문제가 생길 수 있기 때문에, `kill` 명령어는 상황에 맞춰 사용합니다.
 
 ```sql
--- kill [process_id];
-kill 938;
+-- client connection 종료
+kill 938;    -- kill [process_id];
+
+-- 실행하고 있는 query만 종료
+kill query 938;    -- kill query [process_id];
 ```
 
 
