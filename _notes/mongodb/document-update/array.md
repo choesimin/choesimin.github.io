@@ -1,55 +1,15 @@
 ---
 layout: note
-title: MongoDB Document의 배열 조작
-date: 9999-01-01
+title: MongoDB Document의 배열 수정 연산자
+date: 2024-01-09
 ---
 
 
 
 
-<h1>작성 중</h1>
+- field의 data가 배열인 경우, 일반적인 수정 연산자(`$set`) 대신 **배열 수정 연산자**를 사용하여 수정합니다.
+    - MongoDB에서는 배열이 많이 쓰이기 때문에, 배열과 관련된 연산자가 많습니다.
 
-
-
-
-
-## 배열 값 추가/삭제 : `$push`, `$pull`
-
-```js
-db.collection.update(
-    {field: value},
-    {$push: {field: value}}    // 배열 값 추가
-);
-
-db.collection.update(
-    {field: value},
-    {$pull: {field: value}}    // 배열 값 제거
-);
-```
-
-- field의 data가 배열인 경우, `$set` 대신 `$push`와 `$pull` keyword를 사용하여 배열 data를 조작합니다.
-    - `$push`로 배열 data를 추가합니다.
-    - `$pull`로 배열 data를 제거합니다.
-
-```js
-// 'category' field에 'science'라는 배열 값 추가
-db.books.update({
-    name: 'F'
-}, {
-    $push: {
-        category: 'science'
-    }
-});
-
-// 'category' field에서 'science'라는 배열 값 제거
-db.books.update({
-    name: 'F'
-}, {
-    $pull: {
-    	category: 'science'
-    }
-});
-```
 
 
 
@@ -57,7 +17,101 @@ db.books.update({
 
 
 
-## Reference
 
-- <https://www.zerocho.com/category/MongoDB/post/57a46d287c4a5115004e97eb>
-- <https://inpa.tistory.com/entry/MONGO-📚-배열-수정-연산자>
+## `$` : 배열 내의 특정 요소 지정하기
+
+- `$`는 배열의 특정 요소를 지정하기 위한 용도로 사용됩니다.
+    - 검색한 값의 위치를 기억할 수 있습니다.
+
+- MongoDB에서 단독으로 사용되는 `$` 기호는 위치 연산자(positional operator)를 의미하며, 배열 내의 특정 요소를 수정할 때 사용됩니다.
+    - 주로 `find` query의 일부로 배열 내의 요소를 찾고, 이 요소에 대한 업데이트를 수행할 때 사용됩니다.
+
+- `$` 기호는 배열 내에서 동적 위치를 참조하는 데 유용하지만, 그것이 참조하는 것은 항상 `find` 부분의 쿼리에 의해 결정되는 첫 번째 일치하는 요소입니다.
+- 이 때문에, 배열의 특정 위치나 여러 요소를 업데이트하려면 다른 연산자나 접근 방식을 사용해야 합니다.
+
+1. **문서 내의 배열에서 첫 번째 일치하는 요소를 업데이트**: 
+   - 예를 들어, `db.collection.update({ "array.field": value }, { "$set": { "array.$.field": newValue } })`를 사용하면, `array` 내에서 `field`가 `value`와 일치하는 첫 번째 요소의 `field`를 `newValue`로 업데이트합니다.
+
+2. **중첩 배열에서 첫 번째 일치하는 요소를 업데이트**:
+   - 중첩된 배열의 경우에도 `$` 기호는 첫 번째 일치하는 요소에 적용됩니다
+   - 예를 들어, `db.collection.update({ "array.subarray.field": value }, { "$set": { "array.$.subarray.$.field": newValue } })`와 같은 쿼리는 동작하지 않습니다.
+   - 이는 MongoDB가 `$`를 하나의 배열 레벨에서만 인식하기 때문입니다.
+
+
+
+```js
+// 원래 [1,2,3]이었던 'list'라는 field의 배열 값을 [1,5,3]으로 수정 (두 번째 요소 수정)
+db.zero.update({list: 2}, {'list.$': 5});    // 수정 결과 : [1, 5, 3]
+```
+
+- $ 기호는 배열 내의 요소를 업데이트할 때 사용됩니다.
+    - 예를 들어, 특정 조건을 만족하는 배열 내 첫 번째 요소를 업데이트하는 데 사용할 수 있습니다.
+    - 예를 들어, update 명령에서 $set과 함께 사용될 때, $는 쿼리 조건에 일치하는 배열의 첫 번째 요소를 나타냅니다.
+
+```javascript
+// array 배열 내에서 field 값이 value와 일치하는 첫 번째 요소의 field를 newValue로 업데이트합니다.
+db.collection.update({ "array.field": value }, { "$set": { "array.$.field": newValue } });
+```
+
+
+
+
+
+
+---
+
+
+
+
+## 요소 추가와 관련된 연산자
+
+
+
+### `$push` : 배열의 끝에 요소 추가
+
+합니다. 예를 들어, `{ $push: { field: value } }` 형식을 사용합니다.
+
+
+
+### `$addToSet` : 요소의 중복 방지 추가
+
+- 값이 배열에 존재하지 않는 경우에만 요소를 배열에 추가합니다. 
+
+
+### `$each` : 여러 요소를 배열에 추가할 때 사용
+
+`$push` 및 `$addToSet`와 함께 사용되며,
+
+
+
+### `$slice` : 배열의 크기 제한
+
+`$push`와 함께 사용되어 
+
+
+
+
+### `$sort` : 배열 내의 요소 정렬
+
+- `$push`와 함께 사용되며, 예를 들어 `{ $push: { field: { $each: [], $sort: 1 } } }` 형식으로 사용됩니다.
+
+
+
+
+### `$position` : 배열의 특정 위치에 요소 추가
+
+- `$push`와 함께 사용되어
+
+
+
+
+
+
+2. **`$pop`**: 배열에서 요소를 제거합니다. `{ $pop: { field: 1 } }`는 배열의 마지막 요소를 제거하고, `{ $pop: { field: -1 } }`는 첫 번째 요소를 제거합니다.
+
+4. **`$pull`**: 조건과 일치하는 모든 요소를 배열에서 제거합니다. 예를 들어, `{ $pull: { field: value } }` 형식으로 사용됩니다.
+
+5. **`$pullAll`**: 지정된 여러 값을 배열에서 제거합니다.
+
+
+
