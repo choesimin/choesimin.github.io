@@ -1,38 +1,41 @@
 ---
 layout: note
+title: Observer Pattern - 객체 상태 변화에 대한 알림 받기
+date: 2024-01-10
 ---
 
-# Observer Pattern
 
-```
-Observer Pattern에서는 한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 객체들한테 연락이 가고 자동으로 내용이 갱신되는 방식으로 일대다(one-to-many) 의존성을 정의합니다.
-```
-- 일련의 객체들 사이에서 일대다 관계를 정의함
-- 한 객체의 상태가 변경되면 그 객체에 의존하는 모든 객체에 연락이 감
 
-- 뭔가 중요한 일이 일어났을 때 객체들한테 새 소식을 알려줄 수 있는 pattern
-- 객체 쪽에서는 계속해서 정보를 받을지 여부를 실행 중에 결정할 수 있음
 
-- observer pattern에서 변하는 것은 'subject의 상태'와 'observer의 개수, 형식' 뿐임
-    - 이 바뀌는 부분을 분리시켜 subject를 바꾸지 않고도 subject의 상태에 의존하는 객체들을 바꿀 수 있음
-        - 바뀌는 부분과 바뀌지 않는 부분의 분리
+- Observer Pattern은 객체의 상태 변화를 관찰하는 객체들에게 자동으로 알리는 방식으로, 객체 간의 결합도를 낮추고 상호 작용을 관리하는 design pattern입니다.
 
-## Subject & Observer
+- Observer Pattern에서는 한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 모든 객체들한테 연락이 가고, 자동으로 내용이 갱신되는 방식으로 작동합니다.
+    - 따라서, 객체들 사이에서 일대다(one-to-many) 의존성을 정의하게 됩니다.
 
-- Subject
-    - data의 주인
-    - observer pattern에서 상태를 저장하고 지배함
-    - 구성(composition)을 활용하여 observer들을 관리함
-        - subject와 observer 사이의 관계는 상속이 아니라 구성에 의해서 이루어짐
+- Observer Pattern에서 변하는 것은 'subject의 상태'와 'observer의 개수, 형식' 뿐입니다.
+    - 변하는 부분을 변하지 않는 부분으로부터 분리시켜서, subject를 바꾸지 않고도 subject의 상태에 의존하는 객체들을 바꿀 수 있습니다.
+    - subject와 observer 사이의 관계는 상속이 아니라 구성에 의해서 이루어집니다.
 
-- Observer
-    - observer가 또 다른 객체의 subject가 될 수도 있음
-    - data의 주인이 subject이기 때문에 의존성을 가짐
+- **Subject는 data의 주인**입니다.
+    - Observer Pattern에서 상태를 저장하고 지배합니다.
+    - 구성(composition)을 활용하여 observer들을 관리합니다.
 
-### 예시 : 신문 구독
+- **Observer는 관찰자**입니다.
+    - data의 주인은 subject이기 때문에 subject에게 의존성을 가집니다.
+    - observer가 또 다른 객체의 subject가 될 수도 있습니다.
+    - observer는 계속해서 정보를 받을지 여부를 실행 중에 결정할 수 있습니다.
 
-- 구독자(observer)가 신문 구독(observer 등록)을 하면 출판사(subject)는 구독자(observer)에게 신문(data)을 보내줌
-- 구독자(observer)가 신문 구독을 해지(observer 해제)하면 출판사(subject)는 더 이상 구독자(observer)에게 신문(data)을 보내지 않음
+- observer와 subject의 관계 예시로 '신문 구독'을 들 수 있습니다.
+    - 구독자(observer)가 신문을 구독(observer 등록)을 하면, 출판사(subject)는 구독자(observer)에게 신문(data)을 보내줍니다.
+    - 구독자(observer)가 신문 구독을 해지(observer 해제)하면, 출판사(subject)는 더 이상 구독자(observer)에게 신문(data)을 보내지 않습니다.
+
+
+
+
+---
+
+
+
 
 ## Class Diagram
 
@@ -52,9 +55,9 @@ class Observer {
 }
 
 class ConcreteSubject {
-    registerObserver() ...
-    removeObserver() ...
-    notifyObserver() ...
+    registerObserver()
+    removeObserver()
+    notifyObserver()
 
     getState()
     setState()
@@ -62,7 +65,7 @@ class ConcreteSubject {
 
 class ConcreteObserver {
     update()
-    etc() : 기타 observer용 method
+    etc()
 }
 
 Subject <|.. ConcreteSubject
@@ -70,55 +73,75 @@ Observer <|.. ConcreteObserver
 
 Subject --> Observer : observer
 ConcreteObserver --> ConcreteSubject : subject
+
+note for ConcreteObserver "구현한 observer에서 사용할\n기타 method들을 추가할 수도 있습니다."
 ```
 
-
-## observer parttern의 느슨한 결합(loose coupling)
-
-- '두 객체가 느슨하게 결합되어 있다' == '그 둘이 상호작용을 하긴 하지만 서로에 대해 잘 모른다'
-
-- observer pattern에서는 subject와 obserer가 느슨하게 결합되어 있는 객체 design을 제공함
-    1. subject가 observer에 대해서 아는 것은 observer가 특정 interface(observer interface)를 구현한다는 것 뿐임
-        - observer의 구상 class가 무엇인지, observer가 무엇을 하는지 등에 대해서는 알 필요가 없음
-    2. observer는 언제든지 새로 추가할 수 있음
-        - subject는 observer interface를 구현하는 객체의 목록에만 의존하기 때문에 언제든지 새로운 observer를 추가할 수 있음
-        - 실행 중에 한 observer를 다른 observer로 바꿔도 됨
-            - 이렇게 해도 subject 객체는 계속해서 data를 보낼 수 있음
-        - 또한, obsever를 아무때나 제거해도 됨
-    3. 새로운 형식의 observer를 추가하려고 할 때도 subject를 전혀 변경할 필요가 없음
-        - 새로운 class에서 observer interface를 구현하고 observer로 등록하기만 하면 됨
-        - observer interface만 구현한다면 어떤 객체든지 연락을 하기 때문
-    4. subject와 observer는 서로 독립적으로 재사용할 수 있음
-        - subject와 observer를 다른 용도로 활용할 일이 있다고 해도 손쉽게 재사용할 수 있음
-        - 서로 단단하게 결합되어 있지 않기 때문
-    5. subject나 observer가 바뀌더라도 서로한테 영향을 미치지 않음
-        - 서로 느슨하게 결합되어 있기 때문에 subject 또는 observer interface를 구현한다는 조건만 만족된다면 변경에 의한 문제는 발생하지 않음
 
 
 
 ---
 
-# Example : 기상 monitoring application
 
-## 이 system을 구성하는 세 요소
 
-1. 기상 station : 실제 기상 정보를 수집하는 장비
-    - sensor(온도, 습도, 압력)로부터 측정값을 수집함
-2. WeatherData 객체 : 기상 station으로부터 오는 data를 추적하는 객체
-    - 기상 station 장비 자체로부터 data를 가져올 수 있음
-    - 모든 상태를 가지고 있음
-3. Display : 사용자에게 현재 기상 조건을 보여주는 display
-    - 현재 조건(온도, 습도, 압력) 화면
-    - 기상 통계 화면
-    - 기상 예보 화면
+
+## Observer Parttern의 느슨한 결합
+
+- observer pattern에서는 subject와 obserer가 느슨하게 결합되어 있는 객체 design을 제공합니다.
+    - "두 객체가 느슨하게 결합(loose coupling)되어 있다."는 말은 "그 둘이 상호 작용을 하긴 하지만 서로에 대해 잘 모른다"는 말과 같습니다.
+
+1. subject가 observer에 대해서 아는 것은 observer가 특정 interface(observer interface)를 구현한다는 것 뿐입니다.
+    - observer의 concrete class가 무엇인지, observer가 무엇을 하는지 등에 대해서는 알 필요가 없습니다.
+
+2. observer는 언제든지 새로 추가할 수 있습니다.
+    - subject는 observer interface를 구현하는 객체의 목록에만 의존하기 때문에 언제든지 새로운 observer를 추가할 수 있습니다.
+    - 실행 중에 observer를 다른 observer로 바꿔도 됩니다.
+        - 이렇게 해도 subject 객체는 계속해서 data를 보낼 수 있습니다.
+    - 또한, obsever를 아무때나 제거해도 됩니다.
+
+3. 새로운 형식의 observer를 추가하려고 할 때도 subject를 전혀 변경할 필요가 없습니다.
+    - 새로운 class에서 observer interface를 구현하고 observer로 등록하기만 하면 됩니다.
+    - observer interface만 구현한다면 어떤 객체든지 연락을 하기 때문입니다.
+
+4. subject와 observer는 서로 독립적으로 재사용할 수 있습니다.
+    - subject와 observer를 다른 용도로 활용할 일이 있다고 해도, 쉽게 재사용할 수 있습니다.
+    - 서로 단단하게 결합되어 있지 않기 때문입니다.
+
+5. subject나 observer가 바뀌더라도 서로한테 영향을 미치지 않습니다.
+    - 서로 느슨하게 결합되어 있기 때문에 subject 또는 observer interface를 구현한다는 조건만 만족된다면 변경에 의한 문제는 발생하지 않습니다.
+
+
+
+
+---
+
+
+
+
+## Example : Weather Monitoring Application
+
+- System은 세 가지 요소로 구성됩니다.
+
+1. **기상 Station** : 실제 기상 정보를 수집하는 장비.
+    - sensor(온도, 습도, 압력)로부터 측정값을 수집합니다.
+
+2. **WeatherData 객체** : 기상 station으로부터 오는 data를 추적하는 객체.
+    - 기상 station 장비 자체로부터 data를 가져올 수 있습니다.
+    - 모든 상태를 가지고 있습니다.
+
+3. **Display** : 사용자에게 현재 기상 조건을 보여주는 display.
+    - 현재 조건(온도, 습도, 압력) 화면.
+    - 기상 통계 화면.
+    - 기상 예보 화면.
     - ...
 
-## 관계
+- WeatherData 객체가 subject이고, Display가 observer입니다.
+    - WeatherData class의 상태가 바뀌면 Display에 알려줍니다.
+    - WeatherData와 Display는 일대다 관계입니다.
+    - `WeatherData : Display = subject : observer = 1 : N` 관계입니다.
 
-- WeatherData : Display = Subject : Observer = 1 : N
-    - WeatherData class의 상태가 바뀌면 Display에 알려줘야 함
 
-## Class Diagram
+### Class Diagram
 
 ```mermaid
 classDiagram
@@ -139,9 +162,9 @@ class DisplayElement {
 }
 
 class WeatherData {
-    registerObserver() ...
-    removeObserver() ...
-    notifyObserver() ...
+    registerObserver()
+    removeObserver()
+    notifyObserver()
 
     getTemperature()
     getHumidity()
@@ -151,19 +174,19 @@ class WeatherData {
 
 class CurrentConditionsDisplay {
     update()
-    display() : 현재 측정값을 화면에 표시
+    display()
 }
 class StatisticsDisplay {
     update()
-    display() : 평균/최저/최고 수치 표시
+    display()
 }
 class ForecastDisplay {
     update()
-    display() : 기상 예보 표시
+    display()
 }
 class ThirdPartyDisplay {
     update()
-    display() : 측정값을 바탕으로 다른 내용 표시
+    display()
 }
 
 Subject <|.. WeatherData
@@ -183,11 +206,17 @@ WeatherData <-- CurrentConditionsDisplay : subject
 WeatherData <-- StatisticsDisplay : subject
 WeatherData <-- ForecastDisplay : subject
 WeatherData <-- ThirdPartyDisplay : subject
+
+note for CurrentConditionsDisplay "현재 측정값을 화면에 표시합니다."
+note for StatisticsDisplay "평균/최저/최고 수치를 표시합니다."
+note for ForecastDisplay "기상 예보를 표시합니다."
+note for ThirdPartyDisplay "측정값을 바탕으로 다른 내용을 표시합니다."
 ```
 
-## Code
 
-### Main
+### Code
+
+#### Main
 
 ```java
 public class WeatherStation {
@@ -210,7 +239,7 @@ public class WeatherStation {
 }
 ```
 
-### Interface
+#### Interface
 
 ```java
 public interface Subject {
@@ -232,7 +261,7 @@ public interface DisplayElement {
 }
 ```
 
-### Subject Interface 구현
+#### Subject Interface 구현
 
 ```java
 public class WeatherData implements Subject {
@@ -285,7 +314,7 @@ public class WeatherData implements Subject {
 }
 ```
 
-### Display 구현
+#### Display 구현
 
 ```java
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
@@ -377,8 +406,14 @@ public class ForecastDisplay implements Observer, DisplayElement {
 }
 ```
 
+
+
+
 ---
+
+
+
 
 ## Reference
 
-- Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
