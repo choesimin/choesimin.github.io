@@ -18,7 +18,7 @@ date: 2023-07-08
 ### 사용법
 
 ```sh
-scp [option] [source...] [destination]
+cp [option] [source...] [destination]
 ```
 
 - `source`는 복사할 대상이 되는 원본 file이며, 여러 개의 인자를 넣어 여러 file을 복사할 수도 있습니다.

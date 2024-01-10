@@ -1,8 +1,11 @@
 ---
 layout: note
+title: Decorator Pattern
+date: 2024-01-10
 ---
 
-# Decorator Pattern
+
+
 
 ```
 Decorator Pattern에서는 객체에 추가적인 요건을 동적으로 첨가한다. decorator는 sub class를 만드는 것을 통해서 기능을 유연하게 확장할 수 있는 방법을 제공한다.
@@ -365,8 +368,13 @@ public class Whip extends CondimentDecorator {
 ```
 
 
+
+
 ---
+
+
+
 
 ## Reference
 
-- Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
