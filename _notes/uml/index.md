@@ -7,7 +7,7 @@ date: 2023-07-02
 
 
 
-## UML : Unified Modeling Language
+## Unified Modeling Language
 
 - UML은 **표준화된(Unified) 모형을 만드는(Modeling) 언어(Language)**를 의미합니다.
     - program 설계를 표현하기 위해 사용하는, 주로 그림으로 된 표기법입니다.
