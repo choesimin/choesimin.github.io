@@ -152,7 +152,7 @@ date: 2023-08-24
 
 - `viewBox` 속성의 `width`, `height` parameter를 설정하여 viewbox를 확대하고 축소시킬 수 있습니다.
 
-- viewport의 크기가 정해진 상테에서, 내부 graphic 요소의 view 영역(viewbox) 크기를 다시 정함으로써, viewbox가 확대되거나 축소됩니다.
+- viewport의 크기가 정해진 상태에서, 내부 graphic 요소의 view 영역(viewbox) 크기를 다시 정함으로써, viewbox가 확대되거나 축소됩니다.
 
 - viewbox를 확대하면, 내부의 graphic 요소는 상대적으로 작아집니다.
 - viewbox를 축소하면, 내부의 graphic 요소는 상대적으로 커집니다.

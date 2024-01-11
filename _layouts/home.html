@@ -6,8 +6,8 @@ layout: base
 
 <br>
 <section id="intro">
-  <h1>{{ site.title }}</h1>
-  <p>{{ site.description }}</p>
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
 </section>
 <br>
 <br>
@@ -17,161 +17,161 @@ layout: base
 
 
 <script>
-  // var allUrlString = '';
-  // {% for note in site.notes %}
-  //   allUrlString = allUrlString + "{{ site.url }}" + "{{ note.url }}" + '\n';
-  // {% endfor %}
-  // console.log(allUrlString);
+    const intro = document.getElementById('intro');
+    const title = intro.getElementsByTagName('h1')[0];
+    const description = intro.getElementsByTagName('p')[0];
 
-  
-  var pages = getPages();
-  var nodes = makeNodes(pages);
-  var root = groupNodes(nodes);
+    type(title, title.innerText, 120);
+    type(description, description.innerText);
 
-  var list = document.createElement("ul");
-  makeList(root, list);
+    var pages = getPages();
+    var nodes = makeNodes(pages);
+    var root = groupNodes(nodes);
 
-  list.removeChild(list.querySelector("li"));
-  list.querySelector("ul").className = "root";
-  document.getElementById("notes").innerHTML = list.innerHTML;
+    var list = document.createElement("ul");
+    makeList(root, list);
 
-
-  var index = document.getElementById('index');
-  list.querySelector(".root").childNodes.forEach(category => {
-    if (category.tagName === 'LI') {
-      var categoryName = category.querySelector('a').innerHTML;
-
-      var categoryIndex = document.createElement('a');
-      categoryIndex.href = '#' + convertNameToId(categoryName);
-      categoryIndex.innerHTML = categoryName;
-      index.appendChild(categoryIndex);
-    }
-  });
+    list.removeChild(list.querySelector("li"));
+    list.querySelector("ul").className = "root";
+    document.getElementById("notes").innerHTML = list.innerHTML;
 
 
-  function makeList(node, list) {
-    var listItem = document.createElement("li");
+    var index = document.getElementById('index');
+    list.querySelector(".root").childNodes.forEach(category => {
+        if (category.tagName === 'LI') {
+            var categoryName = category.querySelector('a').innerHTML;
 
-    if (node.children != undefined) {
-      var index = node.children.filter(child => child.isIndex)[0];
-      node.children = node.children.filter(child => !child.isIndex);
-
-      if (index != undefined) {
-        listItem.id = convertNameToId(index.name);
-
-        var anchor = document.createElement("a");
-        anchor.innerHTML = index.name;
-        anchor.href = index.url;
-        listItem.appendChild(anchor);
-        var span = document.createElement("span");
-        span.innerHTML = index.date;
-        listItem.appendChild(span);
-      } else {
-        listItem.innerHTML = node.name + " (You must add category index file)";
-      }
-      list.appendChild(listItem);
-
-      var childList = document.createElement("ul");
-      for (var i = 0; i < node.children.length; i++) {
-        makeList(node.children[i], childList);
-      }
-
-      list.appendChild(childList);
-
-    } else {
-      var anchor = document.createElement("a");
-      anchor.innerHTML = node.name;
-      anchor.href = node.url;
-      listItem.appendChild(anchor);
-      var span = document.createElement("span");
-      span.innerHTML = node.date;
-      listItem.appendChild(span);
-      list.appendChild(listItem);
-    }
-  }
-
-
-  function groupNodes(nodes) {
-    var root = { name: "root" };
-    root.children = nodes;
-
-    return groupNode(root);
-  }
-
-  function groupNode(node) {
-    var categories = Array.from(new Set(node.children.filter(child => child.children != undefined).map(child => child.name)));
-
-    for (var i = 0; i < categories.length; i++) {
-      var category = categories[i];
-      var groupedNode = {
-        name: category,
-        children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
-      };
-
-      node.children = node.children.filter(child => child.name != category);
-      node.children.push(groupedNode);
-
-      if (groupedNode.children != undefined) {
-        groupNode(groupedNode);
-      }
-    }
-
-    return node;
-  }
-
-
-  function makeNodes(pages) {
-    var nodes = pages.map(page => makeNode(page));
-    return nodes;
-  }
-
-  function makeNode(page) {
-    var leaf = {
-      name: page.title,
-      date: page.date,
-      url: page.url,
-      isIndex: page.name === "index"
-    }
-    return makeMultiDepthNode(page.category, leaf, 1);
-  }
-
-  function makeMultiDepthNode(category, child, indent) {
-    var node = {
-      name: category[category.length - indent],
-      children: [child]
-    };
-
-    while (indent < category.length) {
-      indent++;
-      return makeMultiDepthNode(category, node, indent);
-    }
-
-    return node;
-  }
-
-
-  function getPages() {
-    var pages = [];
-
-    {% for note in site.notes %}
-    var id = "{{ note.id }}".split("/");
-
-    pages.push({
-      category: id.slice(2, id.length - 1),
-      name: id[id.length - 1],
-      title: "{{ note.title }}",
-      date: "{{ note.date | date: '%Y-%m-%d' }}",
-      url: "{{ note.url | relative_url }}",
+            var categoryIndex = document.createElement('a');
+            categoryIndex.href = '#' + convertNameToId(categoryName);
+            categoryIndex.innerHTML = categoryName;
+            index.appendChild(categoryIndex);
+        }
     });
-    {% endfor %}
-
-    return pages;
-  }
 
 
-  function convertNameToId(name) {
-    return name.replace(/[^a-zA-Z0-9가-힣]/g, "-").toLowerCase();
-  }
+    function makeList(node, list) {
+        var listItem = document.createElement("li");
+
+        if (node.children != undefined) {
+            var index = node.children.filter(child => child.isIndex)[0];
+            node.children = node.children.filter(child => !child.isIndex);
+
+            if (index != undefined) {
+                listItem.id = convertNameToId(index.name);
+
+                var anchor = document.createElement("a");
+                anchor.innerHTML = index.name;
+                anchor.href = index.url;
+                listItem.appendChild(anchor);
+                var span = document.createElement("span");
+                span.innerHTML = index.date;
+                listItem.appendChild(span);
+            } else {
+                listItem.innerHTML = node.name + " (You must add category index file)";
+            }
+            list.appendChild(listItem);
+
+            var childList = document.createElement("ul");
+            for (var i = 0; i < node.children.length; i++) {
+                makeList(node.children[i], childList);
+            }
+
+            list.appendChild(childList);
+
+        } else {
+            var anchor = document.createElement("a");
+            anchor.innerHTML = node.name;
+            anchor.href = node.url;
+            listItem.appendChild(anchor);
+            var span = document.createElement("span");
+            span.innerHTML = node.date;
+            listItem.appendChild(span);
+            list.appendChild(listItem);
+        }
+    }
+
+
+    function groupNodes(nodes) {
+        var root = { name: "root" };
+        root.children = nodes;
+
+        return groupNode(root);
+    }
+
+    function groupNode(node) {
+        var categories = Array.from(new Set(node.children.filter(child => child.children != undefined).map(child => child.name)));
+
+        for (var i = 0; i < categories.length; i++) {
+            var category = categories[i];
+            var groupedNode = {
+                name: category,
+                children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
+            };
+
+            node.children = node.children.filter(child => child.name != category);
+            node.children.push(groupedNode);
+
+            if (groupedNode.children != undefined) {
+                groupNode(groupedNode);
+            }
+        }
+
+        return node;
+    }
+
+
+    function makeNodes(pages) {
+        var nodes = pages.map(page => makeNode(page));
+        return nodes;
+    }
+
+    function makeNode(page) {
+        var leaf = {
+            name: page.title,
+            date: page.date,
+            url: page.url,
+            isIndex: page.name === "index"
+        }
+        return makeMultiDepthNode(page.category, leaf, 1);
+    }
+
+    function makeMultiDepthNode(category, child, indent) {
+        var node = {
+            name: category[category.length - indent],
+            children: [child]
+        };
+
+        while (indent < category.length) {
+            indent++;
+            return makeMultiDepthNode(category, node, indent);
+        }
+
+        return node;
+    }
+
+
+    function getPages() {
+        var pages = [];
+
+        {% for note in site.notes %}
+        var id = "{{ note.id }}".split("/");
+
+        pages.push({
+            category: id.slice(2, id.length - 1),
+            name: id[id.length - 1],
+            title: "{{ note.title }}",
+            date: "{{ note.date | date: '%Y-%m-%d' }}",
+            url: "{{ note.url | relative_url }}",
+        });
+        {% endfor %}
+
+        return pages;
+    }
+
+
+    function convertNameToId(name) {
+        return name.replace(/[^a-zA-Z0-9가-힣]/g, "-").toLowerCase();
+    }
 </script>
 
 

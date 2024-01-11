@@ -19,62 +19,14 @@ h6 {
     margin-top: 40px;
 }
 
-h1.title {
-    line-height: 1;
-    margin-bottom: 0px;
-}
-
-
-
-
-#progressBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background-color: var(--color);
-}
-
-
-
-
 p {
     margin: 0;
 }
-
-p.date {
-    font-size: 17px;
-    opacity: 0.5;
-}
-
-
-
 
 ol,
 ul {
     padding-left: 20px;
 }
-
-
-
-
-ul#index {
-    background-color: var(--background-highlight-color);
-    padding: 20px;
-    margin-bottom: 100px;
-}
-
-ul#index li {
-    list-style: inside;
-}
-
-ul#index li a {
-    text-decoration: none;
-}
-
-
-
 
 code.hljs {
     border: 1px solid var(--border-color);
@@ -91,8 +43,40 @@ blockquote {
     background-color: var(--background-highlight-color);
 }
 
+#progressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: var(--color);
+}
 
+#title {
+    margin-bottom: 0px;
+    line-height: 1;
+    text-align: center;
+}
 
+#date {
+    font-size: 17px;
+    opacity: 0.5;
+    text-align: center;
+}
+
+#index {
+    background-color: var(--background-highlight-color);
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+#index li {
+    list-style: inside;
+}
+
+#index li a {
+    text-decoration: none;
+}
 
 #stamp {
     margin-top: 150px;

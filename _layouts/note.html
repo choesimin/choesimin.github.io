@@ -6,8 +6,8 @@ layout: base
 <div id="progressBar"></div>
 
 <article>
-    <h1 class="title">{{ page.title }}</h1>
-    <p class="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
+    <h1 id="title">{{ page.title }}</h1>
+    <p id="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
     <ul id="index"></ul>
     {{ content }}
     <div id="stamp">
@@ -16,6 +16,12 @@ layout: base
 </article>
 
 <script>
+    const title = document.getElementById('title');
+    type(title, title.innerText);
+
+    const date = document.getElementById('date');
+    type(date, date.innerText, 80);
+
     const index = document.getElementById('index');
     const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
 
@@ -37,7 +43,7 @@ layout: base
         var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         var scrolled = (winScroll / height) * 100;
-        document.getElementById("progressBar").style.width = scrolled + "%";
+        document.getElementById('progressBar').style.width = scrolled + "%";
     };
 </script>
 

@@ -17,7 +17,9 @@ date: 2023-04-09
 
 
 
-## 방법 1. Code Tag(`<pre><code> </code></pre>`)로 감싸기
+## 방법 1. Code Tag로 감싸기
+
+- `<pre><code> </code></pre>`를 사용합니다.
 
 
 ### 문법
@@ -49,7 +51,9 @@ main( ) {
 
 
 
-## 방법 2. Code Block Code(\`\`\` \`\`\`)로 감싸기
+## 방법 2. Code Block Code로 감싸기
+
+- \`\`\` \`\`\`를 사용합니다.
 
 
 ### 문법

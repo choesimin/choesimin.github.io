@@ -12,17 +12,17 @@ date: 2024-01-11
 - **`async` 함수 선언 없이 `await`를 사용하는 방법**으로 '즉시 실행 함수'가 있습니다.
     - **즉시 실행 함수(Immediately Invoked Function Expression, IIFE)**는 함수를 정의하는 동시에 실행하는 방식입니다.
 
-- 함수 선언과 호출 과정을 생략할 수 있기 때문에, 간단한 비동기 작업이 필요한 node program을 만들 때 유용합니다.
+- 함수 선언과 호출 과정을 생략할 수 있기 때문에, 비동기 작업이 필요한 간단한 node program을 만들 때 유용합니다.
 
 ```js
 (async function() {
-    await someAsyncFunction();    // 비동기 작업
+    await someAsyncFunction();
 })();
 ```
 
 ```js
 (async () => {
-    await someAsyncFunction();    // 비동기 작업
+    await someAsyncFunction();
 })();
 ```
 

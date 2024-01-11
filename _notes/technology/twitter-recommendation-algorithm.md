@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Twitter가 Tweet을 추천하는 법
+title: Tweet 추천 Algorithm
 date: 2023-04-16
 ---
 
@@ -176,9 +176,7 @@ mixer ----> result
         - 따라서 "'어떤 사용자'와 '어떤 tweet'이 '어떤 community'에 속해있는지"는 tweet의 관심사를 분류하는 데에 중요한 정보로 활용할 수 있습니다.
         - Twitter에는 이미 145,000개의 community들이 있으며, 3주마다 새로운 community들이 update됩니다.
 
-##### Top 5 Community
-
-| Community | 사용자 수 |
+| Top 5 Community | 사용자 수 |
 | --- | --- |
 | POP | 332,000,000 |
 | NEWS | 293,000,000 |

@@ -2,126 +2,190 @@
 <html lang="ko">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
-  <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}">
-  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  {% seo %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+    <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}">
+    <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    {% seo %}
+
+    <script>
+        String.prototype.toKorChars = function () {
+            var cCho = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'],
+                cJung = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'],
+                cJong = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'],
+                cho, jung, jong;
+            var str = this,
+                cnt = str.length,
+                chars = [],
+                cCode;
+            for (var i = 0; i < cnt; i++) {
+                cCode = str.charCodeAt(i);
+                if (cCode == 32) {
+                    chars.push(" ");
+                    continue;
+                }
+                if (cCode < 0xAC00 || cCode > 0xD7A3) {
+                    chars.push(str.charAt(i));
+                    continue;
+                }
+                cCode = str.charCodeAt(i) - 0xAC00;
+
+                jong = cCode % 28;
+                jung = ((cCode - jong) / 28) % 21
+                cho = (((cCode - jong) / 28) - jung) / 21
+
+                chars.push(cCho[cho]);
+                chars.push(String.fromCharCode(44032 + (cho * 588) + (jung * 28)));
+                if (cJong[jong] !== '') {
+                    chars.push(String.fromCharCode(44032 + (cho * 588) + (jung * 28) + jong));
+                }
+            }
+            return chars;
+        }
+
+        function type(element, text, interval = 50) {
+            let charUnits = [];
+
+            text = text.split('');
+            for (let i = 0; i < text.length; i++) {
+                charUnits[i] = text[i].toKorChars();
+            }
+
+            let charIndex = 0;
+            let unitIndex = 0;
+
+            text = '';
+            let typing = setInterval(function () {
+                if (charIndex <= charUnits.length - 1) {
+                    element.innerText = text + charUnits[charIndex][unitIndex];
+                    unitIndex++;
+                    if (unitIndex === charUnits[charIndex].length) {
+                        text += charUnits[charIndex][unitIndex - 1];
+                        charIndex++;
+                        unitIndex = 0;
+                    }
+                } else {
+                    clearInterval(typing);
+                    return;
+                }
+            }, interval);
+        }
+    </script>
 </head>
 
 <body>
-  <nav>
-    <a id="logo" href="{{ '/' | relative_url }}"><img /></a>
-    <input id="searchInput" type="text" placeholder="제목, 내용, 날짜" oninput="window.scrollTo(0,0);">
-    <div>
-      <a id="theme" onclick="toggleTheme()"><img></a>
-      <a id="search" onclick="toggleSearch()"><img></a>
-    </div>
-  </nav>
-  <div id="searchResult"></div>
-  <main>
-    {{ content }}
-  </main>
-  <footer>
-    <hr>
-    <p>(C) {{ "now" | date: "%Y" }}. {{ site.author.name }} all rights reserved.</p>
-  </footer>
+    <nav>
+        <a id="logo" href="{{ '/' | relative_url }}"><img /></a>
+        <input id="searchInput" type="text" placeholder="제목, 내용, 날짜" oninput="window.scrollTo(0,0);">
+        <div>
+            <a id="theme" onclick="toggleTheme()"><img></a>
+            <a id="search" onclick="toggleSearch()"><img></a>
+        </div>
+    </nav>
+    <div id="searchResult"></div>
+    <main>
+        {{ content }}
+    </main>
+    <footer>
+        <hr>
+        <p>(C) {{ "now" | date: "%Y" }}. {{ site.author.name }} all rights reserved.</p>
+    </footer>
 </body>
 
 <script>
-  let hljsStyle = document.createElement('link');
-  hljsStyle.rel = 'stylesheet';
-  document.head.appendChild(hljsStyle);
-
-  setTheme();
-
-
-  SimpleJekyllSearch({
-    searchInput: document.getElementById('searchInput'),
-    resultsContainer: document.getElementById('searchResult'),
-    json: '/search.json',
-    searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
-  });
-
-  function toggleSearch() {
-    var searchInput = document.getElementById('searchInput');
-    var searchResult = document.getElementById('searchResult');
-    if (getComputedStyle(searchInput).display === 'none' || getComputedStyle(searchResult).display === 'none') {
-      searchInput.style.display = 'block';
-      searchResult.style.display = 'block';
-      searchInput.focus();
-    } else {
-      searchInput.style.display = 'none';
-      searchResult.style.display = 'none';
-    }
-  }
-
-  function setTheme() {
-    if (localStorage.getItem('theme') === 'light') {
-      setLightTheme();
-    } else if (localStorage.getItem('theme') === 'dark') {
-      setDarkTheme();
-    } else {
-      localStorage.setItem('theme', 'light');
-      setLightTheme();
-    }
-  }
-
-  function toggleTheme() {
-    const theme = localStorage.getItem('theme');
-    if (theme === 'light') localStorage.setItem('theme', 'dark');
-    else localStorage.setItem('theme', 'light');
+    let hljsStyle = document.createElement('link');
+    hljsStyle.rel = 'stylesheet';
+    document.head.appendChild(hljsStyle);
 
     setTheme();
-    if (document.querySelector('.language-mermaid') !== null) location.reload(true);
-  }
 
-  function setLightTheme() {
-    document.body.style.setProperty('--background-color', '#eeeeee');
-    document.body.style.setProperty('--background-highlight-color', '#dddddd');
-    document.body.style.setProperty('--color', '#111111');
-    document.body.style.setProperty('--code-color', '#880000');
-    document.body.style.setProperty('--highlight-color', '#000000');
-    document.body.style.setProperty('--border-color', '#aaaaaa');
 
-    document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/black.png' | relative_url }}";
-    document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/moon/black.svg' | relative_url }}";
-    document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/black.svg' | relative_url }}";
-
-    hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css';
-    hljs.highlightAll();
-
-    renderMermaid('neutral');
-  }
-
-  function setDarkTheme() {
-    document.body.style.setProperty('--background-color', '#111111');
-    document.body.style.setProperty('--background-highlight-color', '#222222');
-    document.body.style.setProperty('--color', '#cccccc');
-    document.body.style.setProperty('--code-color', '#bbddff');
-    document.body.style.setProperty('--highlight-color', '#ffffff');
-    document.body.style.setProperty('--border-color', '#444444');
-
-    document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/white.png' | relative_url }}";
-    document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
-    document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/white.svg' | relative_url }}";
-
-    hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css';
-    hljs.highlightAll();
-
-    renderMermaid('dark');
-  }
-
-  async function renderMermaid(theme) {
-    mermaid.initialize({
-      theme: theme,
-      startOnLoad: false,
-      securityLevel: 'loose',
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('searchInput'),
+        resultsContainer: document.getElementById('searchResult'),
+        json: '/search.json',
+        searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
     });
-    await mermaid.run({ querySelector: '.language-mermaid' });
-  }
+
+    function toggleSearch() {
+        var searchInput = document.getElementById('searchInput');
+        var searchResult = document.getElementById('searchResult');
+        if (getComputedStyle(searchInput).display === 'none' || getComputedStyle(searchResult).display === 'none') {
+            searchInput.style.display = 'block';
+            searchResult.style.display = 'block';
+            searchInput.focus();
+        } else {
+            searchInput.style.display = 'none';
+            searchResult.style.display = 'none';
+        }
+    }
+
+    function setTheme() {
+        if (localStorage.getItem('theme') === 'light') {
+            setLightTheme();
+        } else if (localStorage.getItem('theme') === 'dark') {
+            setDarkTheme();
+        } else {
+            localStorage.setItem('theme', 'light');
+            setLightTheme();
+        }
+    }
+
+    function toggleTheme() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light') localStorage.setItem('theme', 'dark');
+        else localStorage.setItem('theme', 'light');
+
+        setTheme();
+        if (document.querySelector('.language-mermaid') !== null) location.reload(true);
+    }
+
+    function setLightTheme() {
+        document.body.style.setProperty('--background-color', '#eeeeee');
+        document.body.style.setProperty('--background-highlight-color', '#dddddd');
+        document.body.style.setProperty('--color', '#111111');
+        document.body.style.setProperty('--code-color', '#880000');
+        document.body.style.setProperty('--highlight-color', '#000000');
+        document.body.style.setProperty('--border-color', '#aaaaaa');
+
+        document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/black.png' | relative_url }}";
+        document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/moon/black.svg' | relative_url }}";
+        document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/black.svg' | relative_url }}";
+
+        hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css';
+        hljs.highlightAll();
+
+        renderMermaid('neutral');
+    }
+
+    function setDarkTheme() {
+        document.body.style.setProperty('--background-color', '#111111');
+        document.body.style.setProperty('--background-highlight-color', '#222222');
+        document.body.style.setProperty('--color', '#cccccc');
+        document.body.style.setProperty('--code-color', '#bbddff');
+        document.body.style.setProperty('--highlight-color', '#ffffff');
+        document.body.style.setProperty('--border-color', '#444444');
+
+        document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/white.png' | relative_url }}";
+        document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
+        document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/white.svg' | relative_url }}";
+
+        hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css';
+        hljs.highlightAll();
+
+        renderMermaid('dark');
+    }
+
+    async function renderMermaid(theme) {
+        mermaid.initialize({
+            theme: theme,
+            startOnLoad: false,
+            securityLevel: 'loose',
+        });
+        await mermaid.run({ querySelector: '.language-mermaid' });
+    }
 </script>
 
 </html>
