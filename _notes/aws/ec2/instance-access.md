@@ -26,3 +26,15 @@ ssh -i ./my-key.pem ec2-user@3.38.246.115
 chmod 400 [private_key]
 chmod 400 my-key.pem
 ```
+
+
+
+
+---
+
+
+
+
+## Reference
+
+- <https://www.youtube.com/watch?v=fytZgsmGwk8>
