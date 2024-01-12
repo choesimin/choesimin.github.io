@@ -13,7 +13,7 @@ date: 2023-07-17
 | --- | --- | --- |
 | **Immutable** Class | **Mutable** Class | **Mutable** Class |
 | **조회 연산**에 강합니다. | **문자열 연산**에 강합니다. | **문자열 연산**에 강합니다. |
-| **Thread Safe**합니다. | **Thread Safe**합니다. | **Non Thread Safe**하지 않습니다. |
+| **Thread Safe**합니다. | **Thread Safe**합니다. | **Non Thread Safe**합니다. |
 | **문자열 연산이 적고 조회 연산이 많은 환경**에 적합합니다. | **문자열 연산이 많은 multi thread 환경**에서 적합합니다. | **문자열 연산이 많은 single thread 환경**에서 적합합니다. 또는 **동기화가 필요하지 않은 multi thread 환경**에서 적합니다. |
 
 
