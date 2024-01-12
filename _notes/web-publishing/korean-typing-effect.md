@@ -17,6 +17,28 @@ date: 2024-01-11
 
 
 
+---
+
+
+
+
+## 함수 호출부
+
+```html
+<div id="target"></div>
+
+<script>
+    const target = document.getElementById('target');
+    const text = '한글은 초성 중성 종성이 분리되어 차례대로 입력됩니다.\nEnglish is normally typed.';
+
+    type(target, text);
+    type(target, text, 100);    // 입력 속도 직접 설정 (높을수록 느리고, 낮을수록 빠름)
+</script>
+```
+
+
+
+
 ## 함수 선언부
 
 ```js
@@ -82,24 +104,6 @@ function type(element, text, interval = 50) {
     }, interval);
 }
 ```
-
-
-
-
-## 함수 호출부
-
-```html
-<div id="target"></div>
-
-<script>
-    const target = document.getElementById('target');
-    const text = '한글은 초성 중성 종성이 분리되어 차례대로 입력됩니다.\nEnglish is normally typed.';
-
-    type(target, text);
-    type(target, text, 100);    // 입력 속도 직접 설정 (높을수록 느리고, 낮을수록 빠름)
-</script>
-```
-
 
 
 
