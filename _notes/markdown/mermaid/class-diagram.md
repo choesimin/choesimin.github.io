@@ -75,10 +75,10 @@ class `Class with back quote !@#`
 
 | 종류 | 문법 |
 | --- | --- |
-| interface class | `<<Interface>>` |
-| abstract class | `<<Abstract>>` |
-| service class | `<<Service>>` |
-| enum | `<<Enumeration>>` |
+| interface class | `<<interface>>` |
+| abstract class | `<<abstract>>` |
+| service class | `<<service>>` |
+| enum | `<<enumeration>>` |
 | custom annotation | `<<custom>>` |
 
 
@@ -86,10 +86,10 @@ class `Class with back quote !@#`
 classDiagram
 
 class Class
-<<Interface>> Class
+<<interface>> Class
 
 class BracketClass {
-    <<Interface>>
+    <<interface>>
 }
 ```
 
@@ -97,10 +97,10 @@ class BracketClass {
 classDiagram
 
 class Class
-<<Interface>> Class
+<<interface>> Class
 
 class BracketClass {
-    <<Interface>>
+    <<interface>>
 }
 ```
 

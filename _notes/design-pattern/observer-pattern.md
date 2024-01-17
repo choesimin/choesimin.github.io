@@ -18,7 +18,7 @@ date: 2024-01-10
 
 - **Subject는 data의 주인**입니다.
     - Observer Pattern에서 상태를 저장하고 지배합니다.
-    - 구성(composition)을 활용하여 observer들을 관리합니다.
+    - 합성(composition)을 활용하여 observer들을 관리합니다.
 
 - **Observer는 관찰자**입니다.
     - data의 주인은 subject이기 때문에 subject에게 의존성을 가집니다.

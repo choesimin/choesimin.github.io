@@ -46,7 +46,7 @@ Business Rules <-- DB : ---- Boundary ----
 ```mermaid
 classDiagram
 Business Rules --> Database Interface
-<<Interface>> Database Interface
+<<interface>> Database Interface
 Database Interface <-- Database Access : ---- Boundary ----
 Database Access --> Database
 ```

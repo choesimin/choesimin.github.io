@@ -38,7 +38,7 @@ date: 2023-07-03
 
 ### Runtime에 전략 결정과 교체가 가능함
 
-- 상속 대신 구성(composition)을 사용하기 때문에 runtime에 strategy(algorithm)를 변경할 수 있습니다.
+- 상속 대신 합성(composition)을 사용하기 때문에 runtime에 strategy(algorithm)를 변경할 수 있습니다.
     - client가 strategy interface에 의존하고 있기 때문에 strategy 구현체를 교체하기 쉽습니다.
 
 

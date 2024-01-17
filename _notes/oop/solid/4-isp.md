@@ -54,7 +54,7 @@ client가 자신이 이용하지 않는 method에 의존하지 않아야 합니�
 classDiagram
 
 class IPets {
-    <<Interface>>
+    <<interface>>
     isFriendly()
     getName()
     bark()
@@ -82,16 +82,16 @@ IPets <|.. Cat
 classDiagram
 
 class IPets {
-    <<Interface>>
+    <<interface>>
     isFriendly()
     getName()
 }
 class IPetDogs {
-    <<Interface>>
+    <<interface>>
     bark()
 }
 class IPetCats {
-    <<Interface>>
+    <<interface>>
     meow()
     purr()
 }
@@ -135,7 +135,7 @@ IPets <|.. Rabbit
 classDiagram
 
 class ISmartPhone {
-    <<Interface>>
+    <<interface>>
     call(String) void
     message(String, String) void
     wirelessCharge() void
@@ -259,20 +259,20 @@ class GalaxyS8 implements ISmartPhone {
 classDiagram
 
 class IPhone {
-    <<Interface>>
+    <<interface>>
     call(String) void
     message(String, String) void
 }
 class WirelessChargable {
-    <<Interface>>
+    <<interface>>
     wirelessCharge() void
 }
 class ARable {
-    <<Interface>>
+    <<interface>>
     AR() void
 }
 class Biometricsable {
-    <<Interface>>
+    <<interface>>
     biometrics() void
 }
 class GalaxyS21 {
@@ -371,7 +371,7 @@ class GalaxyS8 implements IPhone {
 classDiagram
 
 class 게시판 {
-    <<Interface>>
+    <<interface>>
     글쓰기()
     읽기()
     수정()

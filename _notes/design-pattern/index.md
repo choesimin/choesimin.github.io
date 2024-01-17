@@ -126,7 +126,7 @@ A solution to a problem in a context.
 #### 구조(Structural) Pattern
 
 - class나 객체를 조합해 더 큰 구조를 만드는 pattern입니다.
-    - composition(구성)을 통해서 더 큰 구조를 만듭니다.
+    - composition(합성)을 통해서 더 큰 구조를 만듭니다.
 
 - 구조 pattern의 예시.
     - 서로 다른 interface를 지닌 2개의 객체를 묶어 단일 interface를 제공하기.

@@ -88,10 +88,10 @@ direction LR
 
 class Application
 class Service {
-    <<Interface>>
+    <<interface>>
 }
 class ServiceFactory {
-    <<Interface>>
+    <<interface>>
     makeSvc()
 }
 class ServiceFactoryImpl {
@@ -287,7 +287,7 @@ class Character {
 classDiagram
 
 class Weaponable {
-    <<Interface>>
+    <<interface>>
 }
 class OneHandSword
 class TwoHandSword
