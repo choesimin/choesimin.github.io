@@ -108,7 +108,7 @@ abstract class Decorator implements Component {
     }
 
     public void operation() {
-        wrappee.operation();
+        wrappedObj.operation();
     }
 }
 
@@ -240,7 +240,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
     - 모든 객체가 공통 interface를 따르기 때문에, client code는 모든 객체를 같은 방식으로 다룰 수 있습니다.
 
 - 상속을 통해 sub class를 만들어 객체의 동작을 확장하는 것이 어색하거나 불가능할 때, Decorator Pattern을 사용합니다.
-    - 많은 programming 언어에는 class의 추가 확장을 방지하는 데 사용할 수 있는 final keyword가 있습니다.
+    - 많은 programming 언어에는 class의 추가 확장을 방지하는 데 사용할 수 있는 `final` keyword가 있습니다.
     - final class의 경우 기존 행동들을 재사용할 수 있는 유일한 방법은 Decorator Pattern을 사용하여 class를 자체 wrapper로 감싸는 것입니다.
 
 
@@ -254,7 +254,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
     - 새로운 sub class를 만드는 방식(compile time에 결정)을 사용하지 않고도 객체의 행동을 확장할 수 있기 때문입니다.
 
 - 단일 책임 원칙(SRP)을 준수하게 됩니다.
-    - 다양한 행동들의 여러 변형들을 구현하는 monolithic class를 여러 개의 작은 class들로 나눌 수 있습니다.
+    - 다양한 행동들의 여러 변형들을 구현하는 monolithic class를 여러 개의 작은 decorator class들로 나눌 수 있습니다.
     - 각 decorator class가 고유의 책임을 가집니다.
 
 - 개방 폐쇄 원칙(OCP)을 준수하게 됩니다.
@@ -275,8 +275,8 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
         - e.g., `new A(new B(new C(new D())));`
     - 이 문제는 Factory Pattern과 Builder Pattern로 해결할 수 있습니다.
 
-- decorator의 행동이 decorator decorator 내의 순서에 의존하지 않는 방식으로 decorator를 구현하기가 어렵습니다.
-    - 객체에 어느 decorator를 먼저 decorating 하느냐에 따라 decorator stack 순서가 결정지어 집니다.
+- decorator의 행동이 decorator 내의 순서에 의존하지 않는 방식으로 decorator를 구현하기가 어렵습니다.
+    - 객체에 어느 decorator를 먼저 decorating 하느냐에 따라 decorator stack 순서가 결정됩니다.
 
 
 
@@ -505,7 +505,7 @@ public class Decaf extends Beverage {
 }
 ```
 
-### ConcreteDecorator Class : 첨가물 구현
+#### ConcreteDecorator Class : 첨가물 구현
 
 ```java
 public class Milk extends CondimentDecorator {
