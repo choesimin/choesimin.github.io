@@ -61,7 +61,7 @@ date: 2023-11-02
 #### Application 성능과 Database
 
 - application의 성능은 architecture의 관심사입니다.
-- 하지만 data 저장소의 측면에서는 완전히 encapsulation하여 업무 규칙과 분리할 수 있는 관심사입니다.
+- 하지만 data 저장소의 측면에서는 완전히 캡슐화(encapsulation)하여 업무 규칙과 분리할 수 있는 관심사입니다.
     - data 저장소에서 data를 빠르게 넣고 뺄 수 있어야 하는 것은 맞지만, 이는 저수준의 관심사입니다.
     - 저수준의 data 접근 mechanism 단에서 다룰 수 있고, 성능은 전반적인 architecture와는 관련이 없습니다.
 

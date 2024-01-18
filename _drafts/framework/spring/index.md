@@ -51,7 +51,7 @@ layout: note
     - 효율적인 유지보수가 가능 + 재활용성 극대화
 - History
     - OOP(Object Oriented Programming) 방식은 대부분의 software 개발 process에서 사용됨
-    - 객체지향 원칙에 따라 관심사가 같은 data를 한 곳에 모아 분리하고 낮은 결합도를 갖게하여 독립적이고 유연한 모듈로 encapsulation하는 것을 일컬음
+    - 객체지향 원칙에 따라 관심사가 같은 data를 한 곳에 모아 분리하고 낮은 결합도를 갖게하여 독립적이고 유연한 모듈로 캡슐화(encapsulation)하는 것을 일컬음
     - 이 과정에서 중복 code가 많아지고, 이는 가독성, 확장성, 유지보수성을 떨어뜨림
     - 이 문제를 보완하기 위해 나온 것이 AOP
 

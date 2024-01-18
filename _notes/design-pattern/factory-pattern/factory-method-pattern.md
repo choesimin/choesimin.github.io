@@ -14,7 +14,7 @@ Factory Method Pattern에서는 객체를 생성하기 위한 interface를 정�
 Factory Method Pattern을 이용하면 class의 instance를 만드는 일을 sub class에게 맡길 수 있습니다.
 ```
 
-- 구상 형식의 instance를 만드는 작업을 encapsulation할 수 있음
+- 구상 형식의 instance를 만드는 작업을 캡슐화(encapsulation)할 수 있음
     - client 입장에서는 '객체 instance를 만들 때 필요한 concrete class'가 아닌 'interface'만 필요로 하게 됨
         - 구현이 아닌 interface를 바탕으로 programming을 할 수 있음
         - 유연성, 확장성이 좋아짐
@@ -27,7 +27,7 @@ Factory Method Pattern을 이용하면 class의 instance를 만드는 일을 sub
 ### Factory Method
 
 - factory method는 객체 생성을 처리함
-- factory method를 이용하면 객체를 생성하는 작업을 sub class에 encapsulation시킬 수 있음
+- factory method를 이용하면 객체를 생성하는 작업을 sub class에 캡슐화(encapsulation)시킬 수 있음
     - super class에 있는 client code와 sub class에 있는 객체 생성 code를 분리시킬 수 있음
 ```java
 abstract Product factoryMethod(String type)

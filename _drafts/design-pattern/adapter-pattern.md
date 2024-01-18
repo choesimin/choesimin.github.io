@@ -25,7 +25,7 @@ Adapter -->|translatedRequest| Adaptee
     - Client와 구현된 interface를 분리시킬 수 있음
         - Client를 특정 구현이 아닌 interface에 연결 시키기 때문
         - Target interface만 제대로 지킨다면, 나중에 다른 구현을 추가하는 것도 가능함
-    - 나중에 interface가 바뀌더라도 변경 내역은 Adapter에 encapsulation되기 때문에 Client는 바뀔 필요가 없음
+    - 나중에 interface가 바뀌더라도 변경 내역은 Adapter에 캡슐화(encapsulation)되기 때문에 Client는 바뀔 필요가 없음
 
 - Client에서 Adapter를 사용하는 방법
     1. Client에서 Target interface를 사용하여 method를 호출함으로써 Adapter에 요청을 함

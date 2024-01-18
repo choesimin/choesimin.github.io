@@ -11,7 +11,7 @@ date: 2024-01-10
 - Facade Pattern은 단순화된 interface(고수준 interface)를 통해서 subsystem을 더 쉽게 사용할 수 있도록 합니다.
     - 통합 interface가 중간에 위치하기 때문에 client와 subsystem이 서로 긴밀하게 연결되지 않아도 됩니다.
 
-- Facade Pattern에서는 subsystem class들을 encapsulation하지 않습니다.
+- Facade Pattern에서는 subsystem class들을 캡슐화(encapsulation)하지 않습니다.
     - 따라서 subsystem에 직접 접근할 수 있고, subsystem class의 기능을 직접 사용하는 것이 가능합니다.
     - 단순화된 interface를 제공하면서도, client에서 필요로 한다면 system의 모든 기능을 사용할 수 있게 합니다.
     - 복잡한 추상화의 단계가 필요 없어서 **다른 pattern보다 단순한 편**입니다.

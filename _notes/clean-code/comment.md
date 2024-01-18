@@ -1,155 +1,279 @@
----
-layout: note
-title: Clean Code - 주석 사용하지 않기
-date: 2023-04-18
----
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Git - Source Code Version 관리하기 | 기술시민</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Git - Source Code Version 관리하기" />
+<meta name="author" content="최시민" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Git : DVSC(Distributed Version Control System)" />
+<meta property="og:description" content="Git : DVSC(Distributed Version Control System)" />
+<link rel="canonical" href="http://localhost:4000/notes/tool/git/" />
+<meta property="og:url" content="http://localhost:4000/notes/tool/git/" />
+<meta property="og:site_name" content="기술시민" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-04-06T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Git - Source Code Version 관리하기" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"최시민"},"dateModified":"2023-04-06T00:00:00+09:00","datePublished":"2023-04-06T00:00:00+09:00","description":"Git : DVSC(Distributed Version Control System)","headline":"Git - Source Code Version 관리하기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/notes/tool/git/"},"url":"http://localhost:4000/notes/tool/git/"}</script>
+<!-- End Jekyll SEO tag -->
 
 
+    <script>
+        String.prototype.toKorChars = function () {
+            var cCho = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'],
+                cJung = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'],
+                cJong = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'],
+                cho, jung, jong;
+            var str = this,
+                cnt = str.length,
+                chars = [],
+                cCode;
+            for (var i = 0; i < cnt; i++) {
+                cCode = str.charCodeAt(i);
+                if (cCode == 32) {
+                    chars.push(" ");
+                    continue;
+                }
+                if (cCode < 0xAC00 || cCode > 0xD7A3) {
+                    chars.push(str.charAt(i));
+                    continue;
+                }
+                cCode = str.charCodeAt(i) - 0xAC00;
+
+                jong = cCode % 28;
+                jung = ((cCode - jong) / 28) % 21
+                cho = (((cCode - jong) / 28) - jung) / 21
+
+                chars.push(cCho[cho]);
+                chars.push(String.fromCharCode(44032 + (cho * 588) + (jung * 28)));
+                if (cJong[jong] !== '') {
+                    chars.push(String.fromCharCode(44032 + (cho * 588) + (jung * 28) + jong));
+                }
+            }
+            return chars;
+        }
+
+        function type(element, text, interval = 50) {
+            let charUnits = [];
+
+            text = text.split('');
+            for (let i = 0; i < text.length; i++) {
+                charUnits[i] = text[i].toKorChars();
+            }
+
+            let charIndex = 0;
+            let unitIndex = 0;
+
+            text = '';
+            let typing = setInterval(function () {
+                if (charIndex <= charUnits.length - 1) {
+                    element.innerText = text + charUnits[charIndex][unitIndex];
+                    unitIndex++;
+                    if (unitIndex === charUnits[charIndex].length) {
+                        text += charUnits[charIndex][unitIndex - 1];
+                        charIndex++;
+                        unitIndex = 0;
+                    }
+                } else {
+                    clearInterval(typing);
+                    return;
+                }
+            }, interval);
+        }
+    </script>
+</head>
+
+<body>
+    <nav>
+        <a id="logo" href="/"><img /></a>
+        <input id="searchInput" type="text" placeholder="제목, 내용, 날짜" oninput="window.scrollTo(0,0);">
+        <div>
+            <a id="theme" onclick="toggleTheme()"><img></a>
+            <a id="search" onclick="toggleSearch()"><img></a>
+        </div>
+    </nav>
+    <div id="searchResult"></div>
+    <main>
+        <div id="progressBar"></div>
+
+<article>
+    <h1 id="title">Git - Source Code Version 관리하기</h1>
+    <p id="date">2023년 4월  6일</p>
+    <ul id="index"></ul>
+    <h2 id="git--dvscdistributed-version-control-system">Git : DVSC(Distributed Version Control System)</h2>
+
+<ul>
+  <li>분산 Version 관리 System입니다.
+    <ul>
+      <li>여러 명의 사용자들 간의 file에 대한 작업을 조율하는 데에 사용됩니다.</li>
+    </ul>
+  </li>
+  <li>주로, 여러 명의 개발자가 하나의 software를 개발할 때, source code를 관리하기 위해 사용합니다.</li>
+</ul>
+
+<h2 id="git의-장점">Git의 장점</h2>
+
+<ul>
+  <li>internet 연결이 되지 않은 곳에서도 개발을 진행할 수 있습니다.</li>
+  <li>중앙 저장소가 삭제되어도 복구가 가능합니다.
+    <ul>
+      <li>local 저장소에도 source가 저장되어 있기 때문입니다.</li>
+    </ul>
+  </li>
+  <li>여러 개발자들이 병렬 개발하기 좋습니다.
+    <ul>
+      <li>각 개발자들은 자신의 branch에서 개발한 뒤, main branch에 merge합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+    <div id="stamp">
+        <img src="/assets/image/stamp/original.png">
+    </div>
+</article>
+
+<script>
+    const title = document.getElementById('title');
+    type(title, title.innerText);
+
+    const date = document.getElementById('date');
+    type(date, date.innerText, 80);
+
+    const index = document.getElementById('index');
+    const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+
+    for (let i = 0; i < headers.length; i++) {
+        const header = headers[i];
+
+        const anchor = document.createElement('a');
+        anchor.innerHTML = header.innerText;
+        anchor.href = '#' + header.id;
+
+        const item = document.createElement('li');
+        item.appendChild(anchor);
+        item.style.marginLeft = (parseInt(header.tagName.replace('H', '')) - 1) * 15 + 'px';
+
+        index.appendChild(item);
+    }
+
+    window.onscroll = function () {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById('progressBar').style.width = scrolled + "%";
+    };
+</script>
+
+<link rel="stylesheet" href="/assets/css/note.css">
+    </main>
+    <footer>
+        <hr>
+        <p>(C) 2024. 최시민 all rights reserved.</p>
+    </footer>
+</body>
+
+<script>
+    let hljsStyle = document.createElement('link');
+    hljsStyle.rel = 'stylesheet';
+    document.head.appendChild(hljsStyle);
+
+    setTheme();
 
 
-## 주석은 필요악
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('searchInput'),
+        resultsContainer: document.getElementById('searchResult'),
+        json: '/search.json',
+        searchResultTemplate: `<li><a href="http://localhost:4000{url}">{title}</a></li>`
+    });
 
-- 좋은 code는 **표현력이 풍부하고 깔끔하며 주석이 거의 없는 code**입니다.
-    - 복잡하고 어수선하며 주석이 많이 달린 code는 나쁜 code입니다.
+    function toggleSearch() {
+        var searchInput = document.getElementById('searchInput');
+        var searchResult = document.getElementById('searchResult');
+        if (getComputedStyle(searchInput).display === 'none' || getComputedStyle(searchResult).display === 'none') {
+            searchInput.style.display = 'block';
+            searchResult.style.display = 'block';
+            searchInput.focus();
+        } else {
+            searchInput.style.display = 'none';
+            searchResult.style.display = 'none';
+        }
+    }
 
-- 주석은 code로 의도를 표현하지 못해서 사용하게 됩니다.
-    - 현대 programming 언어들은 그 자체로 표현력이 풍부합니다.
-    - programming 언어를 치밀하게 사용해 의도를 표현할 능력이 있다면, 주석은 필요하지 않습니다.
+    function setTheme() {
+        if (localStorage.getItem('theme') === 'light') {
+            setLightTheme();
+        } else if (localStorage.getItem('theme') === 'dark') {
+            setDarkTheme();
+        } else {
+            localStorage.setItem('theme', 'light');
+            setLightTheme();
+        }
+    }
 
-- 주석은 나쁜 code를 보완하지 않습니다.
-    - code가 알아보기 어렵다면 주석을 달기보단, code를 깨끗하게 만드는 것이 낫습니다.
+    function toggleTheme() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light') localStorage.setItem('theme', 'dark');
+        else localStorage.setItem('theme', 'light');
 
-- 주석은 code의 변화를 따라가지 못합니다.
-    - 주석은 오래될수록 code에서 멀어집니다.
-    - 하나의 잘못된 주석으로 개발자의 신뢰를 잃으면, 다른 주석도 더는 믿을 수 없게 됩니다.
+        setTheme();
+        if (document.querySelector('.language-mermaid') !== null) location.reload(true);
+    }
 
-- 주석도 code입니다.
-    - 잘못된 code는 debugging으로 바로잡을 수 있습니다.
-    - 그러나 잘못된 주석은 개발자가 신경쓰지 않으면 바로잡을 수 없습니다.
-        - IDE에 주석을 debugging하는 기능은 없습니다.
-    - 따라서 불필요한 주석은 없애고, 꼭 필요한 주석은 code라고 생각하고 관리해야 합니다.
+    function setLightTheme() {
+        document.body.style.setProperty('--background-color', '#eeeeee');
+        document.body.style.setProperty('--background-highlight-color', '#dddddd');
+        document.body.style.setProperty('--color', '#111111');
+        document.body.style.setProperty('--code-color', '#880000');
+        document.body.style.setProperty('--highlight-color', '#000000');
+        document.body.style.setProperty('--border-color', '#aaaaaa');
 
-```java
-/* 좋은 예 */
-if (employee.isEligibleForFullBenefits()) { ... }
+        document.getElementById('logo').getElementsByTagName('img')[0].src = "/assets/image/stamp/black.png";
+        document.getElementById('theme').getElementsByTagName('img')[0].src = "/assets/icon/moon/black.svg";
+        document.getElementById('search').getElementsByTagName('img')[0].src = "/assets/icon/magnifier/black.svg";
 
-/* 안 좋은 예 */
-// 직원에게 복지 혜택을 받을 자격이 있는지 검사한다.
-if ((employee.flags & HOURLY_FLAG) && (employee.age > 65)) { ... }
-```
+        hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css';
+        hljs.highlightAll();
 
+        renderMermaid('neutral');
+    }
 
+    function setDarkTheme() {
+        document.body.style.setProperty('--background-color', '#111111');
+        document.body.style.setProperty('--background-highlight-color', '#222222');
+        document.body.style.setProperty('--color', '#cccccc');
+        document.body.style.setProperty('--code-color', '#bbddff');
+        document.body.style.setProperty('--highlight-color', '#ffffff');
+        document.body.style.setProperty('--border-color', '#444444');
 
+        document.getElementById('logo').getElementsByTagName('img')[0].src = "/assets/image/stamp/white.png";
+        document.getElementById('theme').getElementsByTagName('img')[0].src = "/assets/icon/sun/white.svg";
+        document.getElementById('search').getElementsByTagName('img')[0].src = "/assets/icon/magnifier/white.svg";
 
----
+        hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css';
+        hljs.highlightAll();
 
+        renderMermaid('dark');
+    }
 
+    async function renderMermaid(theme) {
+        mermaid.initialize({
+            theme: theme,
+            startOnLoad: false,
+            securityLevel: 'loose',
+        });
+        await mermaid.run({ querySelector: '.language-mermaid' });
+    }
+</script>
 
-
-## 주석이 필요하거나 유익한 경우
-
-1. 법적인 주석.
-    - e.g., 저작권 정보, 소유권 정보 등.
-
-2. 정보를 제공하는 주석.
-
-3. 의도를 설명하는 주석.
-    - 의도도 code로 표현하는 것이 가장 좋습니다.
-    - code로 개발자의 의도를 전부 전달하기 어려운 경우가 있습니다.
-    - 이럴 때는 code는 의미를, 주석은 의도를 표현하도록 합니다.
-
-4. 의미를 명료하게 밝히는 주석.
-    - 인수나 반환값이 표준 library 또는 변경하지 못하는 code에 속한다면, 주석으로 의미를 밝혀줍니다.
-
-5. 결과를 경고하는 주석.
-
-6. TODO 주석.
-    - 앞으로 할 일을 `// TODO` 주석으로 남겨두면, 잊지 않고 작업할 수 있습니다.
-    - 그러나 `TODO`가 너무 많은 code는 바람직하지 않습니다.
-        - 주기적으로 `TODO` 주석을 점검하고, 없애도 괜찮은 주석은 지웁니다.
-
-7. 중요성을 강조하는 주석.
-    - 자칫 대수롭지 않다고 여길 수도 있는 부분의 중요성을 강조하기 위해서 사용하기도 합니다.
-
-8. 공개 API의 Javadocs.
-    - 공개 API는 설명이 필요합니다.
-
-
-
-
----
-
-
-
-
-## 나쁜 주석
-
-
-1. 대다수 주석.
-    - 주석은 좋은 경우가 거의 없습니다.
-    - e.g., 허술한 code를 지탱하는 주석, 엉성한 code의 변명, 미숙한 결정을 합리화하는 주석 등.
-
-2. 주절거리는 주석.
-    - 주석은 독자와 소통해야 합니다.
-    - 작성자 뿐만 아니라 다른 사람에게도 의미가 있어야 합니다.
-        - 다른 code를 뒤져봐야만 의미를 알 수 있다면, 나쁜 주석입니다.
-
-3. 같은 이야기를 중복하는 주석.
-    - code를 지저분하고 정신없게 만듭니다.
-
-4. 오해할 여지가 있는 주석.
-
-5. 의무적으로 다는 주석.
-    - 모든 함수에 Javadocs를 달거나 모든 변수에 주석을 달아야 한다는 규칙은 쓸모 없습니다.
-        - code를 헷갈리게 만듭니다.
-        - 거짓말할 가능성을 높입니다.
-        - 잘못된 정보를 제공할 여지를 만듭니다.
-
-6. 있으나 마나 한 주석.
-    - 주석은 새로운 정보를 제공해야 합니다.
-        - 당연한 사실을 언급할 필요는 없습니다.
-
-7. 함수나 변수로 충분히 표현할 수 있는 주석.
-
-8. 닫는 괄호에 다는 주석.
-    - 중첩이 심하고 장황한 함수라면 의미가 있을지도 모르지만, 작고 encapsulation된 함수에는 잡음이 됩니다.
-    - 닫는 괄호에 주석을 달아야 한다면, 함수를 줄이는 시도를 하는 것이 더 낫습니다.
-    - e.g., `try`, `while`의 닫는 괄호 뒤에 `// try`, `// while` 주석을 다는 것.
-
-9. 공로를 돌리거나 작성자를 표시하는 주석.
-    - source code management system(ex. git)은 누가 언제 무엇을 추가했는지 알려줍니다.
-
-10. 주석으로 처리한 code.
-    - 주석으로 처리된 code는 다른 사람이 지우기 주저하게 됩니다.
-        - 이유가 있고 중요해서 남겨놓았다고 생각합니다.
-
-11. 전역 정보.
-    - 주석을 달아야 한다면 근처에 있는 code에만 기술해야 합니다.
-    - code 일부에 주석을 달면서 system의 전반적인 정보를 기술해서는 안 됩니다.
-
-12. 너무 많은 정보.
-    - 독자에게 불필요하고 불가사의한 정보는 오히려 혼란을 줄 수 있습니다.
-
-13. 모호한 관계.
-    - '주석'과 '주석이 설명하는 code' 사이의 관계가 명백해야 합니다.
-
-14. 함수 header.
-    - 짧고 한 가지만 수행하며 이름을 잘 붙인 함수가 좋은 함수입니다.
-    - 주석으로 header를 추가한 함수는 나쁜 함수입니다.
-
-15. 비공개 code의 Javadocs.
-    - 공개하지 않을 code라면 Javadocs는 유용하지 않습니다.
-    - Javadocs 주석이 요구하는 형식으로 인해 보기 싫고 산만해집니다.
-
-
-
-
----
-
-
-
-
-## Reference
-
-- Clean Code (도서) - Robert C. Martin
-- 개발자의 글쓰기 (도서) - 김철수
+</html>

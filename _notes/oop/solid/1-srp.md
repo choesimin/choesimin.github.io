@@ -19,7 +19,7 @@ date: 2023-11-05
     - '책임'은 '기능 담당'을 의미합니다.
 
 - 하나의 class는 하나의 기능만을 담당하여 하나의 책임을 수행하는데 집중해야 합니다.
-    - 또한 class는 그 책임을 완전히 encapsulation해야 합니다.
+    - 또한 class는 그 책임을 완전히 캡슐화(encapsulation)해야 합니다.
 
 - SRP는 **다른 설계 원칙들을 적용하는 기초**가 되기도 합니다.
 
@@ -132,7 +132,7 @@ class Employee {
 - 만일 변경 사항이 생겨도 각각의 분리된 class에서만 수정하면 되기 때문에, `EmployeeFacade` class는 수정하지 않아도 됩니다.
     - e.g., 회계팀에서 초과 근무 시간 계산 방법이 변경되었다고 하면, `PayCalculator` class의 `calculateExtraHour()` method를 수정하면 되며, 이 수정은 `HourReporter` class에는 전혀 영향을 주지 않습니다.
 
-- 또한, Facade Pattern을 적용하여 encapsulation(정보 은닉)합니다.
+- 또한, Facade Pattern을 적용하여 캡슐화(정보 은닉)합니다.
     - client(class를 사용하는 입장)는 `PayCalculator`, `HourReporter`, `EmployeeSaver` class가 어떤식으로 구성되어 있는지 알 필요 없이 `EmployeeFacade` class의 method만 사용하면 되기 때문입니다.
 
 

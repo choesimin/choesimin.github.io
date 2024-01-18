@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Abstract Factory Pattern - 구성을 이용한 Factory Pattern
+title: Abstract Factory Pattern - 합성을 이용한 Factory Pattern
 version: 2023-05-23
 ---
 
