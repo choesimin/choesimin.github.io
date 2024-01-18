@@ -18,9 +18,13 @@ layout: pt
 
 
 
-# 예시 : 옷 입기
+# Decorator Pattern의 다양한 예시들
 
 ![옷 입기](https://refactoring.guru/images/patterns/content/decorator/decorator-comic-1.png?id%253D80d95baacbfb91f5bcdbdc7814b0c64d)
+<br>
+<br>
+<br>
+![라이플 조립](https://sourcemaking.com/files/v2/content/patterns/Decorator_example-2x.png)
 
 
 
@@ -196,7 +200,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
 
 
 
-# 사용해야 할 때
+# Decorator Pattern을 사용해야 할 때
 
 1. 객체 책임과 행동이 상황에 따라 동적으로 빈번하게 추가/삭제되는 경우
 2. 객체의 결합을 통해 기능이 생성될 수 있는 경우
@@ -211,7 +215,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
 
 
 
-# 장점
+# Decorator Pattern의 장점
 
 1. 자식 클래스를 만드는 방식보다 더 유연한 기능을 확장
 2. 여러 decorator로 감싸서 여러 행동들을 합성할 수 있음
@@ -228,7 +232,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
 
 
 
-# 단점
+# Decorator Pattern의 단점
 
 1. 추가한 기능들 중 일부를 제거하기 어려움
 2. decorator를 너무 많이 사용하면 코드가 필요 이상으로 복잡해짐
@@ -330,7 +334,7 @@ CondimentDecorator <|-- Whip
 
 
 
-
+<!-- 
 ## Main
 
 ```java
@@ -516,6 +520,27 @@ public class Whip extends CondimentDecorator {
     }
 }
 ```
+
+
+
+
+---
+ -->
+
+
+
+# Java I/O : Decorator Pattern? Adaptor Pattern?
+
+- 호환 작업도 일종의 **부가 기능 추가**를 통한 효과를 얻는 것
+
+```java
+BufferedReader br = new BufferedReader(new FileReader(new File("test.txt")));
+```
+
+- `new FileReader(new File("test.txt"))` = ConcreteComponent
+- `Reader.class` = Component
+- `BufferedReader.class` = ConcreteDecorator
+
 
 
 
