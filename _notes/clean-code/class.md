@@ -26,7 +26,7 @@ class나 module을 변경할 이유는 하나여야 한다.
 
 
 
-## Class와 응집도(cohesion)
+## Class와 응집도(Cohesion)
 
 - "응집도가 높다."는 "class에 속한 method와 변수가 서로 의존하며 논리적인 단위로 묶인다."는 말과 같습니다.
 

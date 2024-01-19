@@ -29,14 +29,14 @@ Don’t reinvent the wheel.
 
 
 
-## Pattern : 일반화하기
+## Pattern = 일반화하기
 
 ```txt
 A solution to a problem in a context.
 특정 상황(Context)에서 주어진 문제(Problem)에 대한 해결책(Solution).
 ```
 
-- 설계 문제와 해결책의 유사점을 일반화한 것입니다.
+- pattern은 설계 문제와 해결책의 유사점을 일반화한 것입니다.
     - 각기 다른 software module이나 기능을 가진 다양한 응용 software system를 개발할 때, 서로 간에 공통되는 설계 문제가 존재하며, 이를 처리하는 해결책 사이에도 공통점이 있습니다.
 
 - pattern은 공통의 언어를 만들어주며 팀원 사이의 의사소통을 원활하게 해줍니다.

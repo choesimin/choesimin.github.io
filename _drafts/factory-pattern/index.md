@@ -1,24 +1,35 @@
 ---
 layout: note
-title: Simple Factory - Factory Pattern의 기본 개념
-version: 2023-05-23
+title: Simple Factory Pattern - 가장 간단한 방식으로 객체 생성을 캡슐화하기
+version: 2024-01-19
 ---
 
 
 
 
-## Simple Factory
-
 - Simple Factory는 design pattern은 아니지만 Factory Pattern의 기본이 되는 개념입니다.
 
+- Simple Factory는 객체를 생성하는 부분을 캡슐화(encapsulation)합니다.
+    - 객체 생성을 처리하는 class를 **factory**라고 부릅니다.
 
-### Static Factory
+- 객체 생성하는 작업을 한 class에 캡슐화(encapsulation)시켜 놓으면, 구현을 변경해야 하는 경우에 factory class 하나만 고치면 됩니다.
+    - 객체 생성을 캡슐화(encapsulation)해서 application의 결합을 느슨하게 만들고, 특정 구현에 덜 의존하도록 합니다.
+    - 또한 code에서 중복되는 내용을 제거할 수 있습니다.
 
+- Simple Factory로부터 두 Factory Pattern(Factory Method Pattern, Abstract Factory Pattern)이 파생됩니다.
+    - Factory Method Pattern은 상속(inheritance)을 통해서 객체를 생성합니다.
+    - Abstract Factory Pattern은 합성(composition)을 통해서 객체를 생성합니다.
+
+
+
+
+### Static Factory Method
+
+- Static Factory Method는 
 - Simple Factory를 static method로 정의하는 기법입니다.
 
-| 장점 | 단점 |
-| - | - |
-| 객체를 생성하기 위한 method를 실행시키기 위해서 객체의 instance를 만들지 않아도 됩니다. | sub class를 만들어서 객체 생성 method의 행동을 변경시킬 수 없습니다. |
+- 장점 : 객체를 생성하기 위한 method를 실행시키기 위해서 객체의 instance를 만들지 않아도 됩니다.
+- 단점 : sub class를 만들어서 객체 생성 method의 행동을 변경시킬 수 없습니다.
 
 
 ### Interface로 개발하기
@@ -27,7 +38,7 @@ version: 2023-05-23
 - Simple Factory는 interface에 맞춰서 개발할 수 있게 해줍니다.
 
 | Interface로 개발하기 | Concrete Class로 개발하기 |
-| - | - |
+| --- | --- |
 | 변경 가능성이 있는 부분이 분리되어 있습니다. | 변경 가능성이 있는 부분이 분리되어 있지 않습니다. |
 | 다형성 덕분에 어떤 class든 특정 interface만 구현하면 사용할 수 있습니다. | 나중에 code를 수정해야 할 가능성이 높아지고 유연성이 떨어집니다. |
 
@@ -262,3 +273,5 @@ public class PepperoniPizza extends Pizza {
 ## Reference
 
 - Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- <https://refactoring.guru/ko/design-patterns/factory-comparison>
+- <https://tecoble.techcourse.co.kr/post/2020-05-26-static-factory-method/>

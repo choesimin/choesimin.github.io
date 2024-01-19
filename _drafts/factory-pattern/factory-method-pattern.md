@@ -24,6 +24,17 @@ Factory Method Pattern을 이용하면 class의 instance를 만드는 일을 sub
     - sub class에서는 factory method를 구현하여 객체를 생산함
 
 
+- Factory Method Pattern은 상속(inheritance)을 통해서 객체를 만듭니다.
+    - sub class를 통해서 객체를 만듭니다.
+
+- Factory Method Pattern은 client와 concrete 형식을 분리시킵니다.
+    - client에서는 자신이 사용할 추상 형식만 알면 되고, concrete 형식은 sub class에서 처리합니다.
+
+- Factory Method Pattern은 'client code'와 'instance를 만들어야 할 concrete class'를 분리시켜야 할 때 활용합니다.
+    - 어떤 concrete class가 필요할지 미리 알 수 없는 경우에도 유용합니다.
+        - sub class를 만들고 factory method를 구현하기만 하면 되기 때문입니다.
+
+
 ### Factory Method
 
 - factory method는 객체 생성을 처리함

@@ -5,6 +5,8 @@ date: 2024-01-10
 ---
 
 
+
+
 - Facade Pattern은 subsystem의 일련의 interface(저수준)에 대한 **통합 interface**(고수준)를 제공합니다.
     - 고수준의 interface가 저수준 interface를 통합하기 때문에, 고수준 interface를 통합 interface라고 부릅니다.
 
@@ -52,13 +54,11 @@ SubSystem2 -- SubSystem4
 SubSystem3 -- SubSystem1
 SubSystem3 -- SubSystem4
 SubSystem4 -- SubSystem1
-
-note for Client "Client는 Facade 덕분에 기능을 사용하기가 쉬워졌습니다."
-note for Facade "더 사용하기 편한 통합 interface입니다."
-note for SubSystem1 "복잡한 sub system 입니다."
 ```
 
-
+- `Client` : Client는 Facade 덕분에 기능을 사용하기가 쉬워졌습니다.
+- `Facade` : 더 사용하기 편한 통합 interface입니다.
+- `SubSystem` : 복잡한 subsystem 입니다.
 
 
 ---
@@ -175,12 +175,18 @@ Tuner --> Amplifier
 CdPlayer --> Amplifier
 DvdPlayer --> Amplifier
 Projector --> DvdPlayer
-
-
-note for Client "HomeTheaterFacade 하나만 바라봅니다."
-note for HomeTheaterFacade "Client 대신 모든 sub system 구성 요소를 관리해 줍니다.\n덕분에 Client는 단순하면서 유연해질 수 있습니다."
-note for Amplifier "sub system에서도 최소 지식 원칙을 지키는 것이 좋습니다.\n서로 얽혀 있는 것이 많아져서 system이 너무 복잡한 것 같으면,\nsub system에 Facade를 더 추가하는 것도 생각해보아야 합니다."
 ```
+
+- `Client`
+    - `HomeTheaterFacade`하나만 바라봅니다.
+
+- `HomeTheaterFacade`
+    - Client 대신 모든 subsystem 구성 요소를 관리해 줍니다.
+    - 덕분에 Client는 단순하면서 유연해질 수 있습니다.
+
+- `Amplifier`
+    - subsystem에서도 최소 지식 원칙을 지키는 것이 좋습니다.
+    - 서로 얽혀 있는 것이 많아져서 system이 너무 복잡한 것 같으면, subsystem에 Facade를 더 추가하는 것도 생각해보아야 합니다.
 
 
 ### Code
@@ -300,7 +306,7 @@ public class HomeTheaterFacade {
 }
 ```
 
-#### Sub System
+#### SubSystem
 
 ```java
 public class Amplifier {

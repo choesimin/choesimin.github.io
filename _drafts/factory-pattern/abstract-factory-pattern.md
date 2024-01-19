@@ -18,6 +18,22 @@ Abstract Factory Pattern에서는 interface를 이용하여 서로 연관된, �
     - client는 실제로 어떤 제품이 생산되는지는 전혀 알 필요가 없습니다.
     - client와 factory에서 생산되는 제품을 분리시킬 수 있습니다.
 
+- Abstract Factory Pattern은 합성(Composition)을 통해서 객체를 만듭니다.
+
+- Abstract Factory Pattern은 제품군을 만들기 위한 추상 형식을 제공합니다.
+    - 제품이 생산되는 방법은 이 추상 형식의 sub class에서 정의합니다.
+    - 일련의 연관된 제품을 하나로 묶을 수 있습니다.
+
+- 제품군에 제품을 추가하거나 하는 식으로 관련된 제품들을 확대해야 하는 경우에는 interface를 수정해야만 합니다.
+    - interface를 바꾸게 되면 모든 sub class의 interface를 바꿔야 하므로 좋지 않음
+
+- Factory Method Pattern을 쓸 때와 마찬가지로 'client code'와 'client에서 사용하는 실제 concrete 제품'이 분리됩니다.
+
+- concrete factory를 구현할 때 factory method를 사용하기도 합니다.
+    - 이는 Factory Method Pattern과는 다르게 제품을 생산하기 위한 용도로 쓰입니다.
+- client에서 제품군(서로 연관된 일련의 제품들)을 만들어야 할 때 활용하기
+
+
 
 
 
