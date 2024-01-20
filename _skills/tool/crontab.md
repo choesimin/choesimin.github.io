@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: crontab - Task Scheduler로 주기적인 작업 관리하기
 date: 2023-09-23
 ---

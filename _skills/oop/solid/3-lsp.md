@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: LSP - Liskov 치환 원칙
 date: 2023-11-05
 ---

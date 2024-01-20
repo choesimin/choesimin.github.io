@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 결제 대행사 - VAN, PG
 date: 2023-11-02
 ---

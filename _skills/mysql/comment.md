@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MySQL Comment - Table과 Column의 주석 조회하기
 date: 2023-07-30
 ---

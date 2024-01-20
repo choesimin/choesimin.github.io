@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MySQL View - 가상 Table을 만들어 명령문에 연결하기
 date: 2023-08-04
 ---

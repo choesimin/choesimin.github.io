@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - 불변성 유지하기
 date: 2023-11-16
 ---

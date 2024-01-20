@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Facade Pattern - 복잡한 Subsystem에 대한 단순한 Interface 제공하기
 date: 2024-01-10
 ---

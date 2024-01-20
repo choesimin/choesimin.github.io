@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MongoDB
 date: 2023-12-29
 ---

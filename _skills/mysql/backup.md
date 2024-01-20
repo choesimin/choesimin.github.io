@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MySQL Backup - Data를 Backup하고 복원하기
 date: 2023-08-04
 ---

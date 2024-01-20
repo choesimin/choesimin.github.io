@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: State Pattern - 객체의 상태에 따라 행동 바꾸기
 date: 2023-06-10
 ---

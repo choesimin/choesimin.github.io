@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - 정책 (Policy)
 date: 2023-11-02
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Code
 date: 2023-04-18
 ---

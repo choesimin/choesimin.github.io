@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Decorator Pattern - 객체의 기능을 동적으로 확장하기
 date: 2024-01-17
 ---

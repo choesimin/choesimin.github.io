@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Code - 함수
 date: 2023-04-20
 ---

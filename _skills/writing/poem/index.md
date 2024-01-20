@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 시 창작 이론
 date: 2024-01-06
 ---

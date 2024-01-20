@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: AWS AutoScaling - 부하에 따라 Instance 갯수를 자동으로 조정하기
 date: 2023-07-30
 ---

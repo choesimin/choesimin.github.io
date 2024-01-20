@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon EC2 - Cloud Virtual Machine
 date: 2023-07-16
 ---

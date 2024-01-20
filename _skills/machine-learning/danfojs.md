@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Danfo.js - JavaScript에서 Pandas Library 사용하기
 date: 2023-08-09
 ---

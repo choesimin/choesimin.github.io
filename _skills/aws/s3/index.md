@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon S3 - 저렴한 대용량 저장소
 date: 2023-08-06
 ---

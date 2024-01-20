@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Mermaid.js - Markdown 문서에 State Diagram 그리기
 date: 2023-07-02
 ---

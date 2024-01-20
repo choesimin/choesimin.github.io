@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 간단한 띄어쓰기 원칙
 date: 2023-12-07
 ---

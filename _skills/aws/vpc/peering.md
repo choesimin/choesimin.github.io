@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon VPC Peering - VPC끼리 연결하기
 date: 2023-07-16
 ---

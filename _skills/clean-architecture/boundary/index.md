@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - Architecture 경계
 date: 2023-11-28
 ---

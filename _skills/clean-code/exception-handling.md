@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Code - 오류를 잘 처리하는 법
 date: 2023-04-19
 ---

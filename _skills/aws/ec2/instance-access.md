@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon EC2 - Instance에 접속하기
 date: 2023-07-16
 ---

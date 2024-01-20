@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 전표
 date: 2023-11-02
 ---

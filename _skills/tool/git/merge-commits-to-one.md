@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Git - 여러 Commit들을 하나로 합치기
 date: 2023-04-06
 ---

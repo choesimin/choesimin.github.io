@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon EC2 - Instance 생성하기
 date: 2023-07-16
 ---

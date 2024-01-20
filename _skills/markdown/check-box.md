@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Markdown - Check Box 만들기
 date: 2023-07-22
 ---

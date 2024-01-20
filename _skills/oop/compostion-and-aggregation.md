@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: OOP - 합성 관계와 집합 관계
 date: 2024-01-16
 ---

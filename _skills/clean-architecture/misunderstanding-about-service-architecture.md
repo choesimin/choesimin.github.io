@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - Service Architecture에 대한 오해
 date: 2023-11-29
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MySQL Query 작성/실행 순서
 date: 2023-11-23
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Code - 주석 사용하지 않기
 date: 2023-04-18
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: SRP - 단일 책임 원칙
 date: 2023-11-05
 ---

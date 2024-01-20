@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 카드 결제의 과정 (인증, 승인, 매입)
 date: 2023-11-02
 ---

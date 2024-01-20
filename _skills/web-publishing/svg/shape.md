@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: SVG - 기본 도형 그리기
 date: 2023-08-28
 ---

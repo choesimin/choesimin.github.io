@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Markdown - 외부 Link 달기
 date: 2023-04-09
 ---

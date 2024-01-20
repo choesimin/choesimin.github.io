@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon IAM - 사용자의 접근 권한 제어하기
 date: 2023-07-23
 ---

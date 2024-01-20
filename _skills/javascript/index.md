@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: JavaScript
 date: 2023-12-13
 ---

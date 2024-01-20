@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Homebrew - Package 설치하기
 date: 2023-04-01
 ---

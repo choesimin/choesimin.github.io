@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Markdown - 목록 만들기
 date: 2023-04-09
 ---

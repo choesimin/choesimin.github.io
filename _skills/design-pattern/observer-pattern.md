@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Observer Pattern - 객체 상태 변화에 대한 알림 받기
 date: 2024-01-10
 ---

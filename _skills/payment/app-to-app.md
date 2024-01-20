@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: App to App 결제
 date: 2024-01-10
 ---

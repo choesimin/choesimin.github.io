@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MySQL Lock - DB Lock 조회 및 해제하기
 date: 2023-09-06
 ---

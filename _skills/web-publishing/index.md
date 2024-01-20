@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Web Publishing
 date: 2023-05-08
 ---

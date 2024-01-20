@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Code - 읽기 좋은 Code Formatting
 date: 2023-04-19
 ---

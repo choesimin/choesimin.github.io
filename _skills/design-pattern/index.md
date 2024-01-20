@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Design Pattern
 date: 2023-06-04
 ---

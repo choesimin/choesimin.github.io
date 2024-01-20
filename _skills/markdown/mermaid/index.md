@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Mermaid.js - Markdown 문서에 Diagram 그리기
 date: 2023-04-09
 ---

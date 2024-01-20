@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon NAT Gateway - Private Instance의 Internet 연결 제어하기
 date: 2023-08-06
 ---

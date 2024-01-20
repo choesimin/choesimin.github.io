@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MongoDB Document 조회 (find)
 date: 2024-01-03
 ---

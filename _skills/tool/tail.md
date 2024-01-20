@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: tail - File의 마지막 부분 출력하기
 date: 2023-04-03
 ---

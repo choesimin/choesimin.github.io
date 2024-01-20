@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Java - 실패하면 재시도하는 2가지 방법
 date: 2023-07-20
 ---

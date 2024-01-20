@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: OOP
 date: 2023-11-07
 ---

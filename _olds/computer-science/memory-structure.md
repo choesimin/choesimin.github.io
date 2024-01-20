@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Memory 구조
 version: 2023-05-08
 ---

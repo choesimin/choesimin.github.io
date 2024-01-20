@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Java - Package 구조 설계 Guide
 date: 2023-12-05
 ---

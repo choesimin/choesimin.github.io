@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Java - JDK, JRE, 그리고 JVM
 date: 2023-07-17
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Git - Source Code Version 관리하기
 date: 2023-04-06
 ---

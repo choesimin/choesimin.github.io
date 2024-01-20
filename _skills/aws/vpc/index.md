@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon VPC - 격리된 가상 Network
 date: 2023-07-18
 ---

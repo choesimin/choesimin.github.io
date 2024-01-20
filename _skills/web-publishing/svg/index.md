@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: SVG - Vector 기반 Image
 date: 2023-08-26
 ---

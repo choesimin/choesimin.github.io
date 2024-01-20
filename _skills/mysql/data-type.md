@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MySQL Data Type - 자료형
 date: 2023-07-27
 ---

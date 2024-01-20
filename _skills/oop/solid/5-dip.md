@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: DIP - 의존 관계 역전 원칙
 date: 2023-11-05
 ---

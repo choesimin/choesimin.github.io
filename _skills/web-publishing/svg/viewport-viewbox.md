@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: SVG - Viewport와 Viewbox
 date: 2023-08-24
 ---

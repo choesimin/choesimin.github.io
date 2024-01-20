@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: SVG - Website 접근성을 높이는 SVG
 date: 2023-08-20
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: SVG - Path 도형 그리기
 date: 2023-08-29
 ---

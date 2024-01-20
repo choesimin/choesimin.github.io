@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - 세부 사항 (Detail)
 date: 2023-11-02
 ---

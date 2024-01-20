@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture Chapter 4 - 컴포넌트 원칙
 date: 2023-11-02
 ---

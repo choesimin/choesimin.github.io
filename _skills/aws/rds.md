@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon RDS - 완전 관리형 RDB 사용하기
 date: 2023-07-23
 ---

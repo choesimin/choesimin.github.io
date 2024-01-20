@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: SOLID - 객체지향 설계의 5원칙
 date: 2023-11-05
 ---

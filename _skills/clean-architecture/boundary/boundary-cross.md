@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - 경계 횡단하기
 date: 2023-11-28
 ---

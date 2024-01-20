@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: gzip, gunzip - File을 압축하고 해제하기
 date: 2023-08-23
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - Architecture 계층 분리하기
 date: 2023-11-28
 ---

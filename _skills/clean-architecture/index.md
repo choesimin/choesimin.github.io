@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture
 date: 2023-11-02
 ---

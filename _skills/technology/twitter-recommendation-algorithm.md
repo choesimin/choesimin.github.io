@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Tweet 추천 Algorithm
 date: 2023-04-16
 ---

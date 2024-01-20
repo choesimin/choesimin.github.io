@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Java
 date: 2023-07-18
 ---

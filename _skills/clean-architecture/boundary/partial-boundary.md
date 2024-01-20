@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - 부분적 경계(Partial Boundary) 구축하기
 date: 2023-11-28
 ---

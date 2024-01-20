@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Programming Tool
 date: 2023-04-01
 ---

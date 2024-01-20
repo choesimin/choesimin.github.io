@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: OCP - 개방 폐쇄 원칙
 date: 2023-11-05
 ---

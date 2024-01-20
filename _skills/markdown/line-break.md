@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Markdown - 줄 바꾸기
 date: 2023-04-09
 ---

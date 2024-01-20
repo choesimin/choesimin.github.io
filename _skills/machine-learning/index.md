@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Machine Learning
 date: 2023-08-08
 ---

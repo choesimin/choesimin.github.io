@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 매입사와 발급사 (국내 카드사 구분)
 date: 2023-12-29
 ---

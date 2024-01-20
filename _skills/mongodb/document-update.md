@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MongoDB Document 수정 (update)
 date: 2024-01-05
 ---

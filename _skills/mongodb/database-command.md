@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MongoDB Database 명령어 (조회, 생성, 사용, 삭제)
 date: 2023-12-30
 ---

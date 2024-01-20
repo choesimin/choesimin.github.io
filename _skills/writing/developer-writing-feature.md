@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 개발자의 글쓰기 특징 - 정확성, 간결성, 가독성
 date: 2023-12-03
 ---

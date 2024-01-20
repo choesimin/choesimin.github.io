@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 객체 지향 설계를 하기 위한 간단한 Tip
 date: 2023-06-06
 ---

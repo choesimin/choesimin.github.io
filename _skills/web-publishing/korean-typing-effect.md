@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: HTML 한글 Typing 효과 직접 만들기 (JavaScript)
 date: 2024-01-11
 ---

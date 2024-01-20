@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MongoDB Document 생성 (insert)
 date: 2024-01-03
 ---

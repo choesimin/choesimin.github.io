@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: HTML Canvas - Pixel로 그림 그리기
 date: 2023-08-15
 ---

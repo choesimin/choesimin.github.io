@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: CSS Display - block, inline, inline-block
 date: 2023-05-17
 ---

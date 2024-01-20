@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - 경계 구축 비용
 date: 2023-11-30
 ---

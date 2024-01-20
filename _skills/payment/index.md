@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Payment
 date: 2023-12-30
 ---

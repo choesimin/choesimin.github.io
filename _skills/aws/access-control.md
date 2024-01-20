@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: AWS Instance에 대한 접근을 제어하는 방법 - Security group, Network ACL
 date: 2023-07-31
 ---

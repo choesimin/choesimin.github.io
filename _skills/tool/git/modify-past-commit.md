@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Git - 과거의 Commit만 수정하는 방법
 date: 2023-04-06
 ---

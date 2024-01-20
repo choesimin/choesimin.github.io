@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: State Diagram - 객체의 상태 변화 시각화하기
 date: 2023-06-19
 ---

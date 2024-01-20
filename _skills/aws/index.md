@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: AWS
 date: 2023-07-16
 ---

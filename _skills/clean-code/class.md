@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Code - Class 작게 만들기
 date: 2023-04-19
 ---

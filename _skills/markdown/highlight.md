@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Markdown - 문자열 강조하기
 date: 2023-04-09
 ---

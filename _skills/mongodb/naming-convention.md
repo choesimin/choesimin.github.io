@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MongoDB Naming 관습 (Database, Collection, Field)
 date: 2024-01-16
 ---

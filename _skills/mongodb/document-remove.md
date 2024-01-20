@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: MongoDB Document 삭제 (remove)
 date: 2024-01-03
 ---

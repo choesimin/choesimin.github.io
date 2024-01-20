@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Code - 좋은 이름 짓기
 date: 2023-04-19
 ---

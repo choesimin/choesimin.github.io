@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Homebrew - macOS에서 Package 관리하기
 date: 2023-04-01
 ---

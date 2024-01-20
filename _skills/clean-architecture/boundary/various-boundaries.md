@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - 다양한 형태의 경계들
 date: 2023-11-28
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: grep - File에서 문자열 검색하기
 date: 2023-04-03
 ---

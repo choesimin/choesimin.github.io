@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Singleton Pattern - 하나의 객체만 만들어 공용으로 사용하기
 date: 2023-11-01
 ---

@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: CSS Position - 요소 배치하기
 date: 2023-05-13
 ---

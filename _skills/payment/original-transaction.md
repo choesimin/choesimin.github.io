@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 원거래
 date: 2023-11-02
 ---

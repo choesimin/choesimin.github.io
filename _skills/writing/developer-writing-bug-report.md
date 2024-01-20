@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 개발자의 글쓰기 - 장애 보고서 쓰기
 date: 2023-12-07
 ---

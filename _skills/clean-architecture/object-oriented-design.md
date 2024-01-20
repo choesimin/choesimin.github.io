@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Clean Architecture - 객체 지향적으로 설계하기
 date: 2023-11-05
 ---

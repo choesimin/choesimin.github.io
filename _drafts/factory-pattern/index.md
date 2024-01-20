@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Simple Factory Pattern - 가장 간단한 방식으로 객체 생성을 캡슐화하기
 version: 2024-01-19
 ---

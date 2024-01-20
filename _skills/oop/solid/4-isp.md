@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: ISP - Interface 분리 원칙
 date: 2023-11-05
 ---

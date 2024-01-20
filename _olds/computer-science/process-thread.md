@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Process와 Thread
 version: 2023-05-08
 ---

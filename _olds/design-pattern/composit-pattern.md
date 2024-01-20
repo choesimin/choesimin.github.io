@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 ---
 
 # Composite Pattern

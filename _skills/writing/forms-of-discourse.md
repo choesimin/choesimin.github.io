@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: 언술 형식 - 설명 논증 묘사 서사
 date: 2024-01-06
 ---

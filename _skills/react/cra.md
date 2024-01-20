@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: React - Project 시작 Template 사용하기 (CRA)
 date: 2023-11-30
 ---

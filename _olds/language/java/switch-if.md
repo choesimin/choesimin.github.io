@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 ---
 
 # switch case와 if else

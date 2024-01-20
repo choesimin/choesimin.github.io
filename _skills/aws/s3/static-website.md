@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Amazon S3 - S3로 정적 Website 구축하기
 date: 2023-08-13
 ---

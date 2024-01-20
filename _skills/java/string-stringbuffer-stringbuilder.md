@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: Java - String, StringBuffer, StringBuilder
 date: 2023-07-17
 ---

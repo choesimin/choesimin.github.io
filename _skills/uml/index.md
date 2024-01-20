@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: UML
 date: 2023-07-02
 ---

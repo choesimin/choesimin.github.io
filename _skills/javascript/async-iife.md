@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: JavaScript - Async 함수 선언 없이 Await 바로 사용하기
 date: 2024-01-11
 ---

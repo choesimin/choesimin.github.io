@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: skill
 title: cp - Linux에서 File 복사하기
 date: 2023-07-08
 ---
