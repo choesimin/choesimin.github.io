@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
-    <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/skill-base.css' | relative_url }}">
     <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
@@ -77,7 +77,7 @@
 
 <body>
     <nav>
-        <a id="logo" href="{{ '/' | relative_url }}"><img /></a>
+        <a id="logo" href="{{ '/skills' | relative_url }}"><img /></a>
         <input id="searchInput" type="text" placeholder="제목, 내용, 날짜" oninput="window.scrollTo(0,0);">
         <div>
             <a id="theme" onclick="toggleTheme()"><img></a>
@@ -105,7 +105,7 @@
     SimpleJekyllSearch({
         searchInput: document.getElementById('searchInput'),
         resultsContainer: document.getElementById('searchResult'),
-        json: '/search.json',
+        json: '/assets/json/skill-search.json',
         searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
     });
 
@@ -150,7 +150,7 @@
         document.body.style.setProperty('--highlight-color', '#000000');
         document.body.style.setProperty('--border-color', '#aaaaaa');
 
-        document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/black.png' | relative_url }}";
+        document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/skill-stamp/black.png' | relative_url }}";
         document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/moon/black.svg' | relative_url }}";
         document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/black.svg' | relative_url }}";
 
@@ -168,7 +168,7 @@
         document.body.style.setProperty('--highlight-color', '#ffffff');
         document.body.style.setProperty('--border-color', '#444444');
 
-        document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/stamp/white.png' | relative_url }}";
+        document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/image/skill-stamp/white.png' | relative_url }}";
         document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
         document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/white.svg' | relative_url }}";
 
