@@ -1,3 +1,223 @@
----
-layout: skill-list
----
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>시민을 소개합니다.</title>
+    <style>
+        @font-face {
+            font-family: 'SeoulNamsanB';
+            src: url(/assets/font/SeoulNamsanB.ttf);
+        }
+
+        @font-face {
+            font-family: 'SeoulHangangM';
+            src: url(/assets/font/SeoulHangangM.ttf);
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'SeoulHangangM';
+            word-break: keep-all;
+        }
+
+        #intro {
+            width: 100vw;
+            height: 100vh;
+            background-image: url(/assets/img/home/intro.jpg);
+            text-align: center;
+            color: white;
+            font-family: 'SeoulNamsanB';
+        }
+
+        #intro h1 {
+            padding-top: 50vh;
+        }
+
+        #intro h1 strong {
+            font-size: 60px;
+        }
+
+        #intro h1 span {
+            font-size: 40px;
+        }
+
+        #story {
+            background-image: url(/assets/img/home/story.jpg);
+        }
+
+        #skill {
+            background-image: url(/assets/img/home/skill.jpg);
+        }
+
+        #graphic {
+            background-image: url(/assets/img/home/graphic.jpg);
+        }
+
+
+        .bg {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        .bg a {
+            display: inline-block;
+            margin: 180px 20px;
+            padding: 30px;
+            border: 4px solid black;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: black;
+            font-size: 35px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .bg a:hover {
+            box-shadow: 0 0 30px 0px black;
+        }
+
+        .desc {
+            padding-top: 300px;
+            padding-bottom: 100px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="intro" class="bg">
+        <h1><strong></strong><span></span></h1>
+    </div>
+
+    <div class="desc">
+        <h1>이야기</h1>
+        <p>dddddddddddddddddddddddddddddd</p>
+    </div>
+    <div id="story" class="bg">
+        <a href="https://brunch.co.kr/@simin" target="_blank">이야기 보러가기</a>
+    </div>
+
+    <div class="desc">
+        <h1>기술</h1>
+        <br>
+        <p>대학 시절, 자율주행 대회를 준비하기 위해 잠깐 배워봤던 프로그래밍은</p>
+        <p>이젠 손에 익은 기술이 되어 제 삶을 지탱합니다.</p>
+        <br>
+        <p>무에서 유를 만들어내는 개발은 멋진 일입니다.</p>
+        <p>더 나은 개발자가 되길 바라며, 고민하고, 공부하고, 새로운 것에 도전합니다.</p>
+        <br>
+        <p>공부하며 정리한 내용들을 기술 블로그에 공유합니다.</p>
+    </div>
+    <div id="skill" class="bg">
+        <a href="/skills" target="_blank">기술 보러가기</a>
+    </div>
+
+    <div class="desc">
+        <h1>창작</h1>
+        <br>
+        <p>창작을 즐기며, 그 중 시 쓰기는 제가 가장 사랑하는 활동입니다.</p>
+        <p>바라보고 느끼는 모든 것을 원하는 방식으로 표현합니다.</p>
+    </div>
+    <div id="graphic" class="bg">
+        <a href="/graphics" target="_blank">작품 보러가기</a>
+    </div>
+    <div class="desc">
+        <h2>Contact</h2>
+        <p><b>Email</b> choesimin961009@gmail.com</p>
+        <p><b>GitHub</b> https://github.com/choesimin</p>
+    </div>
+
+
+    <script>
+        const isMobile = () => {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        };
+
+        if (isMobile()) {
+            for (bg of document.getElementsByClassName('bg')) {
+                bg.style.backgroundAttachment = 'scroll';
+            }
+        }
+
+
+        String.prototype.toKorChars = function () {
+            var cCho = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'],
+                cJung = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'],
+                cJong = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'], cho, jung, jong;
+            var str = this,
+                cnt = str.length,
+                chars = [],
+                cCode;
+            for (var i = 0; i < cnt; i++) {
+                cCode = str.charCodeAt(i);
+                if (cCode == 32) {
+                    chars.push(" ");
+                    continue;
+                }
+                if (cCode < 0xAC00 || cCode > 0xD7A3) {
+                    chars.push(str.charAt(i)); continue;
+                }
+                cCode = str.charCodeAt(i) - 0xAC00;
+
+                jong = cCode % 28;
+                jung = ((cCode - jong) / 28) % 21
+                cho = (((cCode - jong) / 28) - jung) / 21
+
+                chars.push(cCho[cho]);
+                chars.push(String.fromCharCode(44032 + (cho * 588) + (jung * 28)));
+                if (cJong[jong] !== '') {
+                    chars.push(String.fromCharCode(44032 + (cho * 588) + (jung * 28) + jong));
+                }
+            }
+            return chars;
+        }
+
+        function type(element, text, interval) {
+            let charUnits = [];
+
+            text = text.split('');
+            for (let i = 0; i < text.length; i++) {
+                charUnits[i] = text[i].toKorChars();
+            }
+
+            let charIndex = 0;
+            let unitIndex = 0;
+
+            text = '';
+            let typing = setInterval(function () {
+                if (charIndex <= charUnits.length - 1) {
+                    element.innerText = text + charUnits[charIndex][unitIndex];
+                    unitIndex++;
+                    if (unitIndex === charUnits[charIndex].length) {
+                        text += charUnits[charIndex][unitIndex - 1];
+                        charIndex++;
+                        unitIndex = 0;
+                    }
+                } else {
+                    clearInterval(typing);
+                    return;
+                }
+            }, interval);
+        }
+
+        const intro = document.getElementById('intro').getElementsByTagName('h1')[0];
+        setTimeout(() => type(intro.getElementsByTagName('strong')[0], '시민', 100), 200);
+        setTimeout(() => type(intro.getElementsByTagName('span')[0], '을 소개합니다.', 100), 900);
+    </script>
+
+</body>
+
+</html>
