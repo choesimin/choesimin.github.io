@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: "Noto Sans KR", sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        a:hover {
+            background-color: white;
+            color: black;
+        }
+
+        a p.date {
+            font-size: 0.8rem;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        const list = [
+            {
+                title: "혈관",
+                desc: "혈기와 살기.<br>당신에게 흐르는 건 무엇인가요?",
+                date: "2023-12-10",
+                link: "./blood-vessel/index.html"
+            },
+            {
+                title: "예민한 파도",
+                desc: "만지지 마세요.<br>이 아이는 예민합니다.",
+                date: "2023-12-24",
+                link: "./sensitive-wave/index.html"
+            }
+        ];
+
+        document.body.innerHTML = list.map((item, index) => {
+            return `<a href="${item.link}">
+                <h1>${item.title}</h1>
+                <p>${item.desc}</p>
+                <p class='date'>${item.date}</p>
+            </a>`
+        }).join("");
+    </script>
+</body>
+
+</html>
