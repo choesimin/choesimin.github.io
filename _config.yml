@@ -6,7 +6,7 @@ author:
   email: choesimin961009@gmail.com
 
 collections:
-  notes:
+  skills:
     output: true
 
 plugins:

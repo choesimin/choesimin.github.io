@@ -13,7 +13,7 @@ layout: base
 <br>
 <div id="index"></div>
 <br>
-<article id="notes"></article>
+<article id="skills"></article>
 
 
 <script>
@@ -33,7 +33,7 @@ layout: base
 
     list.removeChild(list.querySelector("li"));
     list.querySelector("ul").className = "root";
-    document.getElementById("notes").innerHTML = list.innerHTML;
+    document.getElementById("skills").innerHTML = list.innerHTML;
 
 
     var index = document.getElementById('index');
@@ -153,15 +153,15 @@ layout: base
     function getPages() {
         var pages = [];
 
-        {% for note in site.notes %}
-        var id = "{{ note.id }}".split("/");
+        {% for skill in site.skills %}
+        var id = "{{ skill.id }}".split("/");
 
         pages.push({
             category: id.slice(2, id.length - 1),
             name: id[id.length - 1],
-            title: "{{ note.title }}",
-            date: "{{ note.date | date: '%Y-%m-%d' }}",
-            url: "{{ note.url | relative_url }}",
+            title: "{{ skill.title }}",
+            date: "{{ skill.date | date: '%Y-%m-%d' }}",
+            url: "{{ skill.url | relative_url }}",
         });
         {% endfor %}
 

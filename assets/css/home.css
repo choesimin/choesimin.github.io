@@ -16,21 +16,21 @@
 }
 
 
-#notes a {
+#skills a {
     text-decoration-line: none;
 }
 
-#notes ul {
+#skills ul {
     list-style: none;
     padding-left: 16px;
 }
 
-#notes ul.root > li {
+#skills ul.root > li {
     margin-top: 40px;
     font-size: 24px;
 }
 
-#notes ul.root li > span {
+#skills ul.root li > span {
     font-size: 12px;
     margin-left: 10px;
     opacity: 0.5;
