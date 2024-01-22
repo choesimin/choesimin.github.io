@@ -25,155 +25,139 @@
         body {
             font-family: 'SeoulHangangM';
             word-break: keep-all;
-        }
-
-        #intro {
-            width: 100vw;
-            height: 100vh;
-            background-image: url(/assets/img/home/intro.jpg);
             text-align: center;
-            color: white;
-            font-family: 'SeoulNamsanB';
         }
 
-        #intro h1 {
-            padding-top: 50vh;
+        .container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
         }
 
-        #intro h1 strong {
-            font-size: 50px;
+        .bg-wrap {
+            clip: rect(0, auto, auto, 0);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
-        #intro h1 span {
-            font-size: 35px;
+        .bg {
+            position: fixed;
+            display: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            z-index: -1;
+        }
+        
+        .desc {
+            
         }
 
-        #story {
+        #intro .bg {
+            background-image: url(/assets/img/home/intro.jpg);
+        }
+
+        #story .bg {
             background-image: url(/assets/img/home/story.jpg);
         }
 
-        #skill {
+        #skill .bg {
             background-image: url(/assets/img/home/skill.jpg);
         }
 
-        #graphic {
+        #graphic .bg {
             background-image: url(/assets/img/home/graphic.jpg);
         }
 
-        /* https://parklego.tistory.com/entry/스크롤-해도-배경-이미지는-고정하기 */
-        /* https://blog.naver.com/teeny__/222165707571 */
-        .bg {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            text-align: center;
-        }
-
-        .bg a {
-            display: inline-block;
-            margin: 200px 20px;
-            padding: 25px 30px;
-            border: 4px solid black;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: black;
-            font-size: 30px;
-            text-decoration: none;
-            transition: all 250ms ease;
-        }
-
-        .bg a:hover {
-            box-shadow: 0 0 30px 0px black;
-        }
-
-        .desc {
-            padding-top: 300px;
-            padding-bottom: 100px;
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 18px;
-            text-align: center;
-            line-height: 2;
+        #contact .bg {
+            background-image: url(/assets/img/home/intro.jpg);
         }
     </style>
 </head>
 
 <body>
-    <div id="intro" class="bg">
-        <h1><strong></strong><span></span></h1>
+    <div id="intro" class="container">
+        <div class="bg-wrap">
+            <div class="bg">
+                <h1><strong></strong><span></span></h1>
+            </div>
+        </div>
     </div>
-
-    <div class="desc">
+    <div id="story" class="container">
+        <div class="bg-wrap">
+            <div class="bg">
+            </div>
+        </div>
         <h1>이야기</h1>
         <p>
             카카오 브런치에 글을 쓰고 있습니다.<br>
-            오감으로 느끼는 세상을 저의 방식으로 적어 냅니다.<br>
+            오감으로 느낀 세상을 저의 방식으로 적어 냅니다.<br>
             <br>
             감정의 표현으로 이루어진 목적없는 글이 대부분이지만,<br>
             저의 이야기가 궁금하다면 보러 오세요.
         </p>
-    </div>
-    <div id="story" class="bg">
         <a href="https://brunch.co.kr/@simin" target="_blank">이야기 보러가기</a>
     </div>
-
-    <div class="desc">
-        <h1>기술</h1>
-        <p>
-            하나 둘 조심스레 익힌 기술들은<br>
-            어느새 제 생활을 지탱하고 있습니다.<br>
-            <br>
-            아는 것은 강화하여 깊이를 더하고<br>
-            모르는 것은 익혀서 새로운 일에 도전하려 합니다.<br>
-            <br>
-            기술은 발견과 기록을 반복하며 발전하기에<br>
-            저 또한 성장하고자 공부한 것들을 기록합니다.<br>
-            <br>
-            프로그래밍에 관련된 기술을 주로 다루지만<br>
-            기술과 관련된 것이라면 무엇이든 적습니다.
-        </p>
+    <div id="skill" class="container">
+        <div class="bg-wrap">
+            <div class="bg"></div>
+            <div class="desc">
+                <h1>기술</h1>
+                <p>
+                    하나 둘 조심스레 익힌 기술들은<br>
+                    어느새 제 생활을 지탱하고 있습니다.<br>
+                    <br>
+                    아는 것은 강화하여 깊이를 더하고<br>
+                    모르는 것은 익혀서 새로운 일에 도전하려 합니다.<br>
+                    <br>
+                    기술은 발견과 기록을 반복하며 발전하기에<br>
+                    저 또한 성장하고자 공부한 것들을 기록합니다.<br>
+                    <br>
+                    프로그래밍에 관련된 기술을 주로 다루지만<br>
+                    기술과 관련된 것이라면 무엇이든 적습니다.
+                </p>
+                <a href="/skills" target="_blank">기술 보러가기</a>
+            </div>
+        </div>
     </div>
-    <div id="skill" class="bg">
-        <a href="/skills" target="_blank">기술 보러가기</a>
+    <div id="graphic" class="container">
+        <div class="bg-wrap">
+            <div class="bg"></div>
+            <div class="desc">
+                <h1>그래픽</h1>
+                <p>
+                    사용자와 상호작용하는 웹 상의 그래픽에 관심이 있습니다.<br>
+                    <br>
+                    화면 개발이 서툴러서 전문적이지는 않지만<br>
+                    공부하는 과정에서 만든 재밌는 그래픽을 공유합니다.<br>
+                    가벼운 마음으로 구경하러 오세요.
+                </p>
+                <a href="/graphics" target="_blank">그래픽 보러가기</a>
+            </div>
+        </div>
     </div>
-
-    <div class="desc">
-        <h1>그래픽</h1>
-        <p>
-            사용자와 상호작용하는 웹 상의 그래픽에 관심이 있습니다.<br>
-            <br>
-            화면 개발이 서툴러서 전문적이지는 않지만<br>
-            공부하는 과정에서 만든 재밌는 그래픽을 공유합니다.<br>
-            가벼운 마음으로 구경하러 오세요.
-        </p>
+    <div id="contact" class="container">
+        <div class="bg-wrap">
+            <div class="bg"></div>
+            <div class="desc">
+                <h2>Contact</h2>
+                <p><b>Email</b> choesimin961009@gmail.com</p>
+                <p><b>GitHub</b> https://github.com/choesimin</p>
+            </div>
+        </div>
     </div>
-    <div id="graphic" class="bg">
-        <a href="/graphics" target="_blank">그래픽 보러가기</a>
-    </div>
-    <div class="desc">
-        <h2>Contact</h2>
-        <p><b>Email</b> choesimin961009@gmail.com</p>
-        <p><b>GitHub</b> https://github.com/choesimin</p>
-    </div>
-
 
     <script>
-        const isMobile = () => {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        };
-
-        if (isMobile()) {
-            for (bg of document.getElementsByClassName('bg')) {
-                bg.style.backgroundAttachment = 'scroll';
-            }
-        }
-
         const intro = document.getElementById('intro').getElementsByTagName('h1')[0];
         setTimeout(() => type(intro.getElementsByTagName('strong')[0], '시민', 100), 200);
         setTimeout(() => type(intro.getElementsByTagName('span')[0], '을 소개합니다.', 80), 800);
     </script>
-
 </body>
 
 </html>
