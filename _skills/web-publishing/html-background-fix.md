@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: HTML 화면 Scroll 시 배경 Image를 고정하는 2가지 방법 (background-attach fixed)
+title: HTML background-attach fixed 속성 (여러 배경 Image를 중첩하여 고정하기)
 date: 2024-01-22
 ---
 
@@ -8,9 +8,11 @@ date: 2024-01-22
 
 
 
-- 화면을 scroll할 때, 뒷 배경 image를 고정시키기 위해 2가지 방법을 사용할 수 있습니다.
+- 화면을 scroll할 때, 여러 개의 배경 image를 중첩하여 고정시키기 위해 2가지 방법을 사용할 수 있습니다.
     1. `background-attach: fixed` 사용하기.
     2. 배경 Layer를 따로 나누어서 적용하기.
+
+- 두 방법 모두 Safari에서는 제대로 동작하지 않기 때문에 활용성이 떨어지지만, 독특한 시각적 효과를 줄 수 있습니다.
 
 
 
@@ -20,7 +22,7 @@ date: 2024-01-22
 
 
 
-## `background-attach: fixed` : 권장하지 않는 방법
+## `background-attach: fixed`
 
 - CSS 속성 중 하나인 `background-attach` 속성은 web page의 CSS에서 배경 image가 어떻게 scroll되어야 하는지를 지정합니다.
 - 그러나 이 속성에 `fixed` 값을 주어 사용하는 것은 권장하지 않습니다.
@@ -71,7 +73,8 @@ body {
 
 ## 배경 Layer 직접 나누기
 
-- 배경 layer를 따로 나누어 적용하는 방식은 구현 방법이 좀 더 복잡하지만, `background-attach: fixed`를 사용했을 때 발생하는 문제를 모두 해결합니다.
+- 배경 layer를 따로 나누어 적용하는 방식은 구현 방법이 좀 더 복잡합니다.
+- 하지만 `background-attach: fixed`를 사용했을 때 발생하는 mobile에서 동작하지 않는 문제를 해결합니다.
 
 ```html
 <div class="container first">

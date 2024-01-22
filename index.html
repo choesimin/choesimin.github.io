@@ -8,11 +8,6 @@
     <script src="/assets/js/typing-effect.js"></script>
     <style>
         @font-face {
-            font-family: 'SeoulNamsanB';
-            src: url(/assets/font/SeoulNamsanB.ttf);
-        }
-
-        @font-face {
             font-family: 'SeoulHangangM';
             src: url(/assets/font/SeoulHangangM.ttf);
         }
@@ -22,136 +17,78 @@
             margin: 0;
         }
 
-        body {
+        main {
             font-family: 'SeoulHangangM';
-            word-break: keep-all;
-            text-align: center;
+            background-image: linear-gradient(#000000, #ffffff);
         }
 
-        .container {
+        section {
             width: 100%;
             height: 100vh;
-            position: relative;
+            text-align: center;
+            word-break: keep-all;
+            scroll-snap-align: start;
         }
 
-        .bg-wrap {
-            clip: rect(0, auto, auto, 0);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .bg {
-            position: fixed;
-            display: block;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center center;
-            z-index: -1;
-        }
-        
-        .desc {
-            
-        }
-
-        #intro .bg {
-            background-image: url(/assets/img/home/intro.jpg);
-        }
-
-        #story .bg {
-            background-image: url(/assets/img/home/story.jpg);
-        }
-
-        #skill .bg {
-            background-image: url(/assets/img/home/skill.jpg);
-        }
-
-        #graphic .bg {
-            background-image: url(/assets/img/home/graphic.jpg);
-        }
-
-        #contact .bg {
-            background-image: url(/assets/img/home/intro.jpg);
+        #contact {
+            height: 300px;
         }
     </style>
 </head>
 
 <body>
-    <div id="intro" class="container">
-        <div class="bg-wrap">
-            <div class="bg">
-                <h1><strong></strong><span></span></h1>
-            </div>
-        </div>
-    </div>
-    <div id="story" class="container">
-        <div class="bg-wrap">
-            <div class="bg">
-            </div>
-        </div>
-        <h1>이야기</h1>
-        <p>
-            카카오 브런치에 글을 쓰고 있습니다.<br>
-            오감으로 느낀 세상을 저의 방식으로 적어 냅니다.<br>
-            <br>
-            감정의 표현으로 이루어진 목적없는 글이 대부분이지만,<br>
-            저의 이야기가 궁금하다면 보러 오세요.
-        </p>
-        <a href="https://brunch.co.kr/@simin" target="_blank">이야기 보러가기</a>
-    </div>
-    <div id="skill" class="container">
-        <div class="bg-wrap">
-            <div class="bg"></div>
-            <div class="desc">
-                <h1>기술</h1>
-                <p>
-                    하나 둘 조심스레 익힌 기술들은<br>
-                    어느새 제 생활을 지탱하고 있습니다.<br>
-                    <br>
-                    아는 것은 강화하여 깊이를 더하고<br>
-                    모르는 것은 익혀서 새로운 일에 도전하려 합니다.<br>
-                    <br>
-                    기술은 발견과 기록을 반복하며 발전하기에<br>
-                    저 또한 성장하고자 공부한 것들을 기록합니다.<br>
-                    <br>
-                    프로그래밍에 관련된 기술을 주로 다루지만<br>
-                    기술과 관련된 것이라면 무엇이든 적습니다.
-                </p>
-                <a href="/skills" target="_blank">기술 보러가기</a>
-            </div>
-        </div>
-    </div>
-    <div id="graphic" class="container">
-        <div class="bg-wrap">
-            <div class="bg"></div>
-            <div class="desc">
-                <h1>그래픽</h1>
-                <p>
-                    사용자와 상호작용하는 웹 상의 그래픽에 관심이 있습니다.<br>
-                    <br>
-                    화면 개발이 서툴러서 전문적이지는 않지만<br>
-                    공부하는 과정에서 만든 재밌는 그래픽을 공유합니다.<br>
-                    가벼운 마음으로 구경하러 오세요.
-                </p>
-                <a href="/graphics" target="_blank">그래픽 보러가기</a>
-            </div>
-        </div>
-    </div>
-    <div id="contact" class="container">
-        <div class="bg-wrap">
-            <div class="bg"></div>
-            <div class="desc">
-                <h2>Contact</h2>
-                <p><b>Email</b> choesimin961009@gmail.com</p>
-                <p><b>GitHub</b> https://github.com/choesimin</p>
-            </div>
-        </div>
-    </div>
+    <main>
+        <section id="intro">
+            <h1><strong></strong><span></span></h1>
+        </section>
+
+        <section id="story">
+            <h2>이야기</h2>
+            <p>
+                카카오 브런치에 글을 쓰고 있습니다.<br>
+                오감으로 느낀 세상을 저의 방식으로 적어 냅니다.<br>
+                <br>
+                감정의 표현으로 이루어진 목적없는 글이 대부분이지만,<br>
+                저의 이야기가 궁금하다면 보러 오세요.
+            </p>
+            <a href="https://brunch.co.kr/@simin" target="_blank">이야기 보러가기</a>
+        </section>
+
+        <section id="skill">
+            <h2>기술</h2>
+            <p>
+                하나 둘 조심스레 익힌 기술들은<br>
+                어느새 제 생활을 지탱하고 있습니다.<br>
+                <br>
+                아는 것은 강화하여 깊이를 더하고<br>
+                모르는 것은 익혀서 새로운 일에 도전하려 합니다.<br>
+                <br>
+                기술은 발견과 기록을 반복하며 발전하기에<br>
+                저 또한 성장하고자 공부한 것들을 기록합니다.<br>
+                <br>
+                프로그래밍에 관련된 기술을 주로 다루지만<br>
+                기술과 관련된 것이라면 무엇이든 적습니다.
+            </p>
+            <a href="/skills" target="_blank">기술 보러가기</a>
+        </section>
+
+        <section id="graphic">
+            <h2>그래픽</h2>
+            <p>
+                사용자와 상호작용하는 웹 상의 그래픽에 관심을 가지고 있습니다.<br>
+                <br>
+                화면 개발이 서툴러서 전문적이지는 않지만<br>
+                공부하는 과정에서 만든 재밌는 그래픽 작업물들을 공유합니다.
+            </p>
+            <a href="/graphics" target="_blank">그래픽 보러가기</a>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p><b>Email :</b> choesimin961009@gmail.com</p>
+            <p><b>GitHub</b> https://github.com/choesimin</p>
+        </section>
+    </main>
 
     <script>
         const intro = document.getElementById('intro').getElementsByTagName('h1')[0];
