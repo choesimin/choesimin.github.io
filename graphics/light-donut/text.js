@@ -1,6 +1,5 @@
 export class Text {
     constructor() {
-
         this.canvas = document.createElement('canvas');
         // this.canvas.style.position = 'absolute';
         // this.canvas.style.left = '0';
@@ -16,7 +15,7 @@ export class Text {
 
         const myText = str;
         const fontWidth = 700;
-        const fontSize = 800;
+        const fontSize = stageWidth > stageHeight ? stageHeight : stageWidth;
         const fontName = 'Hind';
 
         this.ctx.clearRect(0, 0, stageWidth, stageHeight);
@@ -27,7 +26,7 @@ export class Text {
         this.ctx.fillText(
             myText,
             (stageWidth - fontPos.width) / 2,
-            fontPos.actualBoundingBoxAscent + fontPos.actualBoundingBoxLeft + ((stageHeight - fontSize) / 2)
+            fontPos.actualBoundingBoxAscent + fontPos.actualBoundingBoxDescent + ((stageHeight - fontSize) / 2)
         );
 
         return this.dotPos(density, stageWidth, stageHeight);
