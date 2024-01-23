@@ -1,4 +1,6 @@
-class WaveGroup {
+import { Wave } from './wave.js';
+
+export class WaveGroup {
     constructor(speed) {
         this.speed = speed;
         this.totalWaves = 3;

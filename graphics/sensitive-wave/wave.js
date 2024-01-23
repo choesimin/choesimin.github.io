@@ -1,4 +1,6 @@
-class Wave {
+import { Point } from './point.js';
+
+export class Wave {
     constructor(index, totalPoints, speed, color) {
         this.index = index;
         this.totalPoints = totalPoints;

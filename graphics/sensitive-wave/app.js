@@ -1,3 +1,5 @@
+import { WaveGroup } from './wavegroup.js';
+
 class App {
     constructor() {
         const initialSpeed = 0.005;
@@ -65,3 +67,7 @@ class App {
         this.waveGroup.setSpeed(speed);
     }
 }
+
+window.onload = () => {
+    new App();
+};

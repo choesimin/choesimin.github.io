@@ -19,6 +19,10 @@
             color: white;
             text-align: center;
         }
+        
+        hr {
+            border-top: 1px solid white;
+        }
 
 
         a {
@@ -46,26 +50,32 @@
     <script>
         const list = [
             {
-                title: "혈관",
-                desc: "혈기와 살기.<br>당신에게 흐르는 건 무엇인가요?",
+                title: "벽에 혈관이 있다",
+                desc: "벽에 혈관이 있습니다.<br>이 방은 누구를 품기 위해 있는 걸까요?<br>당신은 이 방에 계속 머물수는 없습니다.<br>당신은 수많은 손님 중 하나일 뿐입니다.",
                 date: "2023-12-10",
                 link: "./blood-vessel/index.html"
             },
             {
                 title: "예민한 파도",
-                desc: "만지지 마세요.<br>이 아이는 예민합니다.",
+                desc: "모든 지식은 그에게 도움이 되지 않습니다.<br>단지 혼자 있고 싶을 뿐입니다.<br>그를 건드리지 마세요.<br>도움을 주려는 것은 화를 돋굴 뿐입니다.<br>화를 내도 딱히 해될 건 없지만요.",
                 date: "2023-12-24",
                 link: "./sensitive-wave/index.html"
-            }
+            },
+            {
+                title: "빛 도넛",
+                desc: "빛으로 만든 도넛은 먹어도 먹어도 배가 고픕니다.<br>그리고 먹어도 먹어도 사라지지 않습니다.",
+                date: "2024-01-23",
+                link: "./light-donut/index.html"
+            },
         ];
 
-        document.body.innerHTML = list.map((item, index) => {
+        document.body.innerHTML = list.map(item => {
             return `<a href="${item.link}">
                 <h1>${item.title}</h1>
                 <p>${item.desc}</p>
                 <p class='date'>${item.date}</p>
             </a>`
-        }).join("");
+        }).join("<hr>");
     </script>
 </body>
 
