@@ -19,19 +19,49 @@
 
         main {
             font-family: 'SeoulHangangM';
-            background-image: linear-gradient(#000000, #ffffff);
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
         }
 
         section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             width: 100%;
             height: 100vh;
+            scroll-snap-align: start;
             text-align: center;
             word-break: keep-all;
-            scroll-snap-align: start;
+            background-color: black;
+            color: white;
         }
 
-        #contact {
-            height: 300px;
+        hr {
+            border-top: 1px solid white;
+        }
+
+        section p {
+            margin: 40px 10px;
+        }
+
+        section a {
+            display: inline-block;
+            width: auto;
+            margin: 0 auto;
+            padding: 20px 30px;
+            border: 1px solid white;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        section a:hover {
+            color: black;
+            background-color: white;
+        }
+
+        #intro strong {
+            font-size: larger;
         }
     </style>
 </head>
@@ -42,58 +72,64 @@
             <h1><strong></strong><span></span></h1>
         </section>
 
+        <hr>
+
         <section id="story">
             <h2>이야기</h2>
             <p>
                 카카오 브런치에 글을 쓰고 있습니다.<br>
                 오감으로 느낀 세상을 저의 방식으로 적어 냅니다.<br>
                 <br>
-                감정의 표현으로 이루어진 목적없는 글이 대부분이지만,<br>
-                저의 이야기가 궁금하다면 보러 오세요.
+                감정의 표현으로 이루어진 목적없는 글이 대부분이지만,
+                <br>저의 일상이 궁금하다면 보러 오세요.
             </p>
             <a href="https://brunch.co.kr/@simin" target="_blank">이야기 보러가기</a>
         </section>
 
+        <hr>
+
         <section id="skill">
             <h2>기술</h2>
             <p>
-                하나 둘 조심스레 익힌 기술들은<br>
-                어느새 제 생활을 지탱하고 있습니다.<br>
+                하나 둘 조심스레 익힌 기술들은 어느새 삶을 지탱하고 있습니다.<br>
                 <br>
-                아는 것은 강화하여 깊이를 더하고<br>
-                모르는 것은 익혀서 새로운 일에 도전하려 합니다.<br>
+                아는 것에 깊이를 더하고 모르는 것을 새로 익혀서<br>
+                더 멋진 일에 도전하려 합니다.<br>
                 <br>
-                기술은 발견과 기록을 반복하며 발전하기에<br>
+                기술은 발견과 기록을 반복하며 발전합니다.<br>
                 저 또한 성장하고자 공부한 것들을 기록합니다.<br>
                 <br>
-                프로그래밍에 관련된 기술을 주로 다루지만<br>
-                기술과 관련된 것이라면 무엇이든 적습니다.
+                기술과 관련된 것이라면 무엇이든 적습니다.<br>
+                주로 프로그래밍에 관련된 기술을 다루고 있습니다.
             </p>
             <a href="/skills" target="_blank">기술 보러가기</a>
         </section>
+
+        <hr>
 
         <section id="graphic">
             <h2>그래픽</h2>
             <p>
                 사용자와 상호작용하는 웹 상의 그래픽에 관심을 가지고 있습니다.<br>
+                공부 과정에서 만든 재밌는 그래픽 작업물을 공유합니다.<br>
                 <br>
-                화면 개발이 서툴러서 전문적이지는 않지만<br>
-                공부하는 과정에서 만든 재밌는 그래픽 작업물들을 공유합니다.
+                크롬 브라우저로 관람하는 것을 권장드립니다.
             </p>
             <a href="/graphics" target="_blank">그래픽 보러가기</a>
         </section>
 
+        <hr>
+
         <section id="contact">
             <h2>Contact</h2>
-            <p><b>Email :</b> choesimin961009@gmail.com</p>
-            <p><b>GitHub</b> https://github.com/choesimin</p>
+            <p>choesimin961009@gmail.com (최시민)</p>
         </section>
     </main>
 
     <script>
         const intro = document.getElementById('intro').getElementsByTagName('h1')[0];
         setTimeout(() => type(intro.getElementsByTagName('strong')[0], '시민', 100), 200);
-        setTimeout(() => type(intro.getElementsByTagName('span')[0], '을 소개합니다.', 80), 800);
+        setTimeout(() => type(intro.getElementsByTagName('span')[0], '을 소개합니다.', 80), 1000);
     </script>
 </body>
 

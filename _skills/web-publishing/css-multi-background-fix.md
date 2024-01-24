@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: HTML background-attach fixed 속성 (여러 배경 Image를 중첩하여 고정하기)
+title: CSS background-attach fixed 속성 (여러 개의 배경 Image를 중첩하여 고정하기)
 date: 2024-01-22
 ---
 
