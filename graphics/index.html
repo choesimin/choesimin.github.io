@@ -19,7 +19,7 @@
             color: white;
             text-align: center;
         }
-        
+
         hr {
             border-top: 1px solid white;
         }
@@ -50,20 +50,20 @@
     <script>
         const list = [
             {
-                title: "벽에 혈관이 있다",
-                desc: "벽에 혈관이 있습니다.<br>이 방은 누구를 품기 위해 있는 걸까요?<br>당신은 이 방에 계속 머물수는 없습니다.<br>당신은 수많은 손님 중 하나일 뿐입니다.",
+                title: "혈관 벽",
+                desc: "벽에 혈관이 있습니다.<br>누구의 방일까요?<br>주인이 언제 돌아올지는 알 수 없습니다.",
                 date: "2023-12-10",
                 link: "./blood-vessel/index.html"
             },
             {
                 title: "예민한 파도",
-                desc: "모든 지식은 그에게 도움이 되지 않습니다.<br>단지 혼자 있고 싶을 뿐입니다.<br>그를 건드리지 마세요.<br>도움을 주려는 것은 화를 돋굴 뿐입니다.<br>화를 내도 딱히 해될 건 없지만요.",
+                desc: "모든 이로운 것들은 그에게 도움되지 않습니다.<br>단지 혼자 있고 싶을 뿐입니다.<br>어떤 이유에서든 건드리지 마세요.<br>화를 돋굴 뿐입니다.<br>딱히 해될 건 없지만요.",
                 date: "2023-12-24",
                 link: "./sensitive-wave/index.html"
             },
             {
                 title: "빛 도넛",
-                desc: "빛으로 만든 도넛은 아무리 먹어도 배부르지도 사라지지도 않습니다.",
+                desc: "빛으로 구운 도넛은 아무리 먹어도 배부르지 않습니다.",
                 date: "2024-01-23",
                 link: "./light-doughnut/index.html"
             },
@@ -71,11 +71,11 @@
 
         document.body.innerHTML = list.map(item => {
             return `<a href="${item.link}">
-                <h1>${item.title}</h1>
+                <h2>${item.title}</h2>
                 <p>${item.desc}</p>
                 <p class='date'>${item.date}</p>
             </a>`
-        }).join("<hr>");
+        }).join("");
     </script>
 </body>
 
