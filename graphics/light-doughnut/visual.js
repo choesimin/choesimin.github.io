@@ -18,7 +18,7 @@ export class Visual {
     }
 
     show(stageWidth, stageHeight) {
-        this.pos = this.text.setText('O', 20, stageWidth, stageHeight);
+        this.pos = this.text.setText('o', 20, stageWidth, stageHeight);
         this.posTotal = this.pos.length - 1;
     }
 
