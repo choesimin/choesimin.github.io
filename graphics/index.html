@@ -24,7 +24,6 @@
             border-top: 1px solid white;
         }
 
-
         a {
             display: block;
             text-decoration: none;
@@ -46,30 +45,33 @@
 </head>
 
 <body>
-
     <script>
-        const list = [
+        document.body.innerHTML = [
             {
-                title: "혈관 벽",
-                desc: "벽에 혈관이 있습니다.<br>누구의 방일까요?<br>주인이 언제 돌아올지는 알 수 없습니다.",
+                title: "혈관",
+                desc: "어쩌다 혈관 속으로 들어오게 되었을까요.<br>누구의 혈관 속일까요.<br>여기 흐르는 것은 무엇일까요.",
                 date: "2023-12-10",
                 link: "./blood-vessel/index.html"
             },
             {
                 title: "예민한 파도",
-                desc: "모든 이로운 것들은 그에게 도움되지 않습니다.<br>단지 혼자 있고 싶을 뿐입니다.<br>어떤 이유에서든 건드리지 마세요.<br>화를 돋굴 뿐입니다.<br>딱히 해될 건 없지만요.",
+                desc: "그를 건드리지 마세요.<br>화를 돋굴 뿐입니다.<br>해될 것은 없지만요.",
                 date: "2023-12-24",
                 link: "./sensitive-wave/index.html"
             },
             {
                 title: "빛 도넛",
-                desc: "빛으로 구운 도넛은 아무리 먹어도 배부르지 않습니다.",
+                desc: "빛으로 구운 도넛입니다.<br>먹어도 먹어도 배부르지 않습니다.",
                 date: "2024-01-23",
                 link: "./light-doughnut/index.html"
             },
-        ];
-
-        document.body.innerHTML = list.map(item => {
+            {
+                title: "구토",
+                desc: "멀미가 너무 심합니다.<br>구토감이 올라옵니다.",
+                date: "2024-01-28",
+                link: "./vomit/index.html"
+            },
+        ].map(item => {
             return `<a href="${item.link}">
                 <h2>${item.title}</h2>
                 <p>${item.desc}</p>
