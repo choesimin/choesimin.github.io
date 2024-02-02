@@ -157,7 +157,7 @@ date: 2023-07-27
 | Data Type | Byte | 설명 |
 | --- | --- | --- |
 | GEOMETRY | N/A | 공간 data 형식입니다. 선, 점 및 다각형 같은 공간 data 개체를 저장합니다. |
-| JSON | 1 ~ 4294967295 | JSON 문서를 저장하며, 배열도 지원합니다. JSON Object를 parsing(type conversion)해야 하기 때문에, DB에 부하가 있을 수 있습니다. `LONGTEXT`와 크기가 같으며, 대안으로 문자 형식을 사용할 수 있습니다. |
+| JSON | 1 ~ 4294967295 | JSON 문서를 저장하며, 배열도 지원합니다. JSON Object를 parsing(type conversion)해야 하기 때문에 DB에 부하가 있을 수 있습니다. `LONGTEXT`와 크기가 같으며, 성능은 문자 형식이 더 좋기 때문에 대안으로 문자 형식을 사용할 수 있습니다.<br>JSON data의 특정 field만 접근이 가능해야 한 경우, JSON data의 특정 field(고정 길이)만 자주 갱신하는 경우, JSON data의 특정 field로 index 생성이 필요한 경우에 사용합니다. |
 
 ```sql
 -- Json Table 생성
@@ -193,3 +193,4 @@ select id, name, json_extract(jsoncol, '$.a') FROM testschema.jsontable;
 
 - <https://spiderwebcoding.tistory.com/5>
 - <https://inpa.tistory.com/entry/MYSQL-%F0%9F%93%9A-%EC%9E%90%EB%A3%8C%ED%98%95-%ED%83%80%EC%9E%85-%EC%A2%85%EB%A5%98-%EC%A0%95%EB%A6%AC>
+- <https://medium.com/daangn/json-vs-text-c2c1448b8b1f>
