@@ -1,77 +1,37 @@
 <!DOCTYPE html>
 <html>
 
-<head lang="ko">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-        * {
-            -ms-user-select: none;
-            -moz-user-select: -moz-none;
-            -khtml-user-select: none;
-            -webkit-user-select: none;
-            user-select: none;
-        }
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE-edge, chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
+  <style>
+    * {
+      outline: 0;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            background-color: black;
-            overflow: hidden;
-        }
+    html {
+      width: 100%;
+      height: 100%;
+    }
 
-        div {
-            position: absolute;
-            width: 1px;
-            height: 100%;
-        }
-    </style>
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 
 <body>
-    <script>
-        let divisions = [];
-        setDivisions();
-
-        let interval;
-        setColor();
-        startInterval();
-
-        document.addEventListener('contextmenu', (event) => event.preventDefault());
-        document.addEventListener('mousedown', () => pauseInterval());
-        document.addEventListener('touchstart', () => pauseInterval());
-        document.addEventListener('mouseup', () => startInterval());
-        document.addEventListener('touchend', () => startInterval());
-
-
-        function startInterval() {
-            interval = setInterval(setColor, 60);
-        }
-
-        function pauseInterval() {
-            clearInterval(interval);
-        }
-
-        function setDivisions() {
-            for (let x = 0; x < window.innerWidth; x++) {
-                const division = document.createElement('div');
-                division.style.left = x + 'px';
-                document.body.append(division);
-                divisions.push(division);
-            }
-        }
-
-        function setColor() {
-            for (let i = 0; i < divisions.length; i++) {
-                divisions[i].style.backgroundColor = '#' + Math.round(Math.random() * 0xff).toString(16) + '0000';
-            }
-        }
-    </script>
+  <script type="module" src="app.js"></script>
 </body>
 
 </html>
