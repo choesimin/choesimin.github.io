@@ -7,8 +7,151 @@ date: 2024-02-06
 
 
 
+
+- Command Pattern은 실행될 기능 또는 작업을 캡슐화(encapsulation)하여, **기능의 실행을 요구하는 호출자(invoker)**와 **기능을 실행하는 수신자(Receiver)** 간의 결합을 느슨하게 만들기 위해 사용됩니다.
+- Command Pattern을 적용하면 명령을 쉽게 추가하거나 변경할 수 있으며, 실행 취소(undo), 재실행, queuing, logging 등 다양한 기능을 구현할 수 있습니다.
+
+
+
+
+---
+
+
+
+
+## Class 구조
+
+```mermaid
+classDiagram
+
+class Client
+
+class Invoker {
+    setCommand()
+}
+
+class Command {
+    <<Interface>>
+    execute()
+}
+
+class ConcreteCommand {
+    execute()
+}
+
+class Receiver {
+    action()
+}
+
+Client --> ConcreteCommand
+Client --> Receiver
+Invoker --> Command
+Command <|-- ConcreteCommand
+ConcreteCommand --> Receiver
+```
+
+- `Client` : ConcreteCommand를 생성하고 Receiver를 설정합니다.
+    - note for Client "ConcreteCommand를 생성하고 Receiver를 설정합니다."
+
+- `Invoker` : 명령을 실행하고자 하는 객체(호출자)입니다.
+    - 이 객체는 커맨드 객체를 받아와 실행 메서드를 호출합니다.
+    - 이 때, 호출자는 어떤 구체적인 명령을 실행할지 알 필요가 없으며, 커맨드 객체의 인터페이스만 이해하면 됩니다.
+    - note for Invoker "명령이 들어있습니다. \nexecute() method를 호출함으로써 command 객체에 특정 작업을 수행해 달라는 요구를 합니다."
+
+- `Command` : 실제 실행되어야 할 작업을 캡슐화하는 interface 또는 abstract class입니다.
+    - 이 인터페이스는 실행 메서드를 정의하며, 구체적인 명령 클래스들이 이를 구현합니다.
+    -  Receiver에 특정 작업을 처리하라는 지시를 전달함
+    - note for Command "모든 command 객체에서 구현해야 하는 interface입니다.\n모든 명령은 execute() method 호출을 통해 수행됩니다."
+
+- `ConcreteCommand` : Command 인터페이스를 구현한 실제 명령 클래스입니다.
+    - 명령을 수행하기 위한 필요한 정보와 작업을 포함하며, 실제로 명령을 수행하는 로직을 가지고 있습니다.
+    - `extute()` method 내에서는 `receiver.action()`을 실행합니다.
+    - note for ConcreteCommand "특정 행동과 Receiver 사이를 연결해 줍니다.\nInvoker에서 execute() 호출을 통해 요청하면 ConcreteCommand 객체에서 Receiver에 있는 method를 호출함으로써 그 작업을 처리합니다."
+
+- `Receiver` : 명령을 실제로 수행하는 객체(수신자)입니다.
+    - 명령 객체가 수행되면, 이 객체가 작업을 실행하고 결과를 반환합니다.
+    - note for Receiver "요구 사항을 수행하기 위해 어떤 일을 처리해야 하는지 알고 있는 객체입니다."
+
+```java
+public class Client {
+    public static void main(String[] args) {
+        Receiver receiver = new Receiver();
+
+        Command command = new ConcreteCommand(receiver);
+        Invoker invoker = new Invoker(command);
+        invoker.invoke();
+
+        // 다른 concreteCommand 객체를 set하여 동적으로 명령을 바꿔 수행할 수 있습니다.
+        // Command otherCommand = new ConcreteCommand(receiver);
+        // invoker.setCommand(otherCommand);
+        // invoker.invoke();
+    }
+}
+```
+
+```java
+public class Invoker {
+    private Command command;
+
+    public Invoker(Command command) {
+        setCommand(command);
+    }
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public void invoke() {
+        command.execute();
+    }
+}
+```
+
+```java
+public interface Command {
+    public abstract void execute();
+}
+```
+
+```java
+public class ConcreteCommand implements Command {
+    private Receiver receiver;
+
+    public ConcreteCommand(Receiver receiver) {
+        this.receiver = receiver;
+    }
+
+    public void execute() {
+        receiver.action();
+    }
+}
+```
+
+```java
+public class Receiver {
+    public void action() {
+        System.out.println("Action");
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - Command Pattern을 이용하면 요구 사항을 객체로 캡슐화(encapsulation)할 수 있고, 매개변수를 써서 여러가지 다른 요구 사항을 집어넣을 수도 있습니다.
-    - 또한 요청 내역을 queue에 저장하거나 log로 기록할 수 있으며, 작업을 취소하는 기능(undo)도 지원할 수 있습니다.
 
 - 요청을 하는 객체와 그 요청을 수행하는 객체를 분리시킬 수 있음
     - 분리시키는 과정의 중심에는 Command 객체가 있음
@@ -28,6 +171,7 @@ date: 2024-02-06
     - Macro Command에서도 작업취소 기능을 지원할 수 있음
 
 - Command Pattern을 활용하여 log 및 trasaction system을 구현하는 것도 가능함
+
 
 
 
@@ -68,52 +212,19 @@ date: 2024-02-06
 
 
 
-## Class Diagram
 
-```mermaid
-classDiagram
+---
 
-class Client
-
-class Invoker {
-    setCommand()
-}
-
-class Command {
-    <<Interface>>
-    execute() Receiver에 특정 작업을 처리하라는 지시를 전달함
-    undo()
-}
-
-class ConcreteCommand {
-    execute() : receiver.action()
-    undo()
-}
-
-class Receiver {
-    action()
-}
-
-
-Client --> ConcreteCommand
-Client --> Receiver
-
-Invoker --> Command
-
-Command <|-- ConcreteCommand
-ConcreteCommand --> Receiver
-
-
-Client .. Client : ConcreteCommand를 생성하고 \nReceiver를 설정함.
-Invoker .. Invoker : 명령이 들어있음. \nexecute() method를 호출함으로써 \ncommand 객체에 특정 작업을 수행해 달라는\n 요구를 하게 됨.
-Command .. Command : 모든 command 객체에서 구현해야 하는 interface. \n모든 명령은 execute() method 호출을 통해 수행됨.
-ConcreteCommand .. ConcreteCommand : 특정 행동과 Receiver 사이를 연결해 줌. \nInvoker에서 execute() 호출을 통해 요청하면 \nConcreteCommand 객체에서 \nReceiver에 있는 method를 호출함으로써 \n그 작업을 처리함.
-Receiver .. Receiver : 요구 사항을 수행하기 위해 \n어떤 일을 처리해야 하는지 \n알고 있는 객체
-```
 
 
 
 ## Command Pattern 활용
+
+- Command Pattern의 활용 예시
+    1. 요청의 큐잉 또는 로깅 : 사용자의 요청을 객체로 캡슐화하여 나중에 실행하거나 로깅하는데 사용할 수 있습니다.
+    2. 실행 취소 기능 : 사용자의 명령을 객체로 만들고, 나중에 실행 취소할 수 있는 기능을 제공할 때 유용합니다.
+    3. 작업 순서 및 스케줄링 : 여러 개의 작업을 순서대로 실행하거나 특정 시간에 실행하고자 할 때 사용됩니다.
+
 
 ### 요청을 queue에 저장하기
 
@@ -124,26 +235,30 @@ Receiver .. Receiver : 요구 사항을 수행하기 위해 \n어떤 일을 처�
 
 ### 요청을 log에 기록하기 (복구 기능)
 
-- Command Pattern에 store()와 load()라는 method를 추가하여 복구 기능을 구현할 수 있음
-    ```mermaid
-    classDiagram
+- Command Pattern에 store()와 load()라는 method를 추가하여 복구 기능을 구현할 수 있습니다.
 
-    class Command {
-        <<interface>>
-        execute()
-        undo()
-        store()
-        load()
-    }
-    ```
+```mermaid
+classDiagram
+
+class Command {
+    <<interface>>
+    execute()
+    undo()
+    store()
+    load()
+}
+```
 
 - data가 변경될 때마다 매번 저장할 수 없는 방대한 자료구조를 다루는 application의 복구 방식
     - 명령을 실행하면서 checkpoint 이후의 실행 history를 disk에 기록함
         - 마지막 checkpoint 이후로 한 모든 작업 저장함
     - system down 되었을 경우, checkpoint에 최근 수행한 작업을 다시 적용하면 복구할 수 있음
         - ex) Spread Sheet
-    - 이 기술을 사용하여 Transaction의 commit/rollback을 구현할 수 있음
-        - 모든 작업이 완벽하게 처리되도록 하거나, 그렇지 않으면 아무 것도 처리되지 않게 하는 것
+    - 이 기술을 사용하여 transaction의 commit/rollback을 구현할 수 있습니다.
+        - transaction : 모든 작업이 완벽하게 처리되도록 하거나, 그렇지 않으면 아무 것도 처리되지 않게 하는 것입니다.
+
+
+
 
 
 
@@ -153,12 +268,9 @@ Receiver .. Receiver : 요구 사항을 수행하기 위해 \n어떤 일을 처�
 
 
 
-# Example : Remote Controller
+## Example : Remote Controller
 
-
-## 전제
-
-```
+```txt
 [remote controller]
     {slot1}
         (on button)
@@ -177,7 +289,7 @@ Receiver .. Receiver : 요구 사항을 수행하기 위해 \n어떤 일을 처�
 - programming이 가능한 slot이 있음
 - 각 slot에 원하는 제품을 연결할 수 있음
 - 각 slot에는 on/off button이 있으며, 이 button을 가지고 조작할 수 있음
-- unto button을 눌러 마지막으로 누른 button에 대한 명령을 취소할 수 있음
+- undo button을 눌러 마지막으로 누른 button에 대한 명령을 취소할 수 있음
 
 
 
@@ -324,7 +436,7 @@ public class RemoteControl {
         offCommands = new Command[7];
  
         Command noCommand = new NoCommand();
-        for(int i=0;i<7;i++) {
+        for (int i = 0; i < 7; i++) {
             onCommands[i] = noCommand;
             offCommands[i] = noCommand;
         }

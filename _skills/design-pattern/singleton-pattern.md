@@ -65,7 +65,7 @@ date: 2023-11-01
 
 
 
-## Class Diagram
+## Class 구조
 
 ```mermaid
 classDiagram
