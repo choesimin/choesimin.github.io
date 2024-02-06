@@ -1,12 +1,14 @@
 ---
 layout: skill
+title: Command Pattern - 
+date: 2024-02-06
 ---
 
-# Command Pattern
 
-```
-Command Pattern을 이용하면 요구 사항을 객체로 캡슐화(encapsulation)할 수 있으며, 매개변수를 써서 여러가지 다른 요구 사항을 집어넣을 수도 있습니다. 또한 요청 내역을 Queue에 저장하거나 log로 기록할 수도 있으며, 작업취소 기능도 지원 가능합니다.
-```
+
+
+- Command Pattern을 이용하면 요구 사항을 객체로 캡슐화(encapsulation)할 수 있고, 매개변수를 써서 여러가지 다른 요구 사항을 집어넣을 수도 있습니다.
+    - 또한 요청 내역을 queue에 저장하거나 log로 기록할 수 있으며, 작업을 취소하는 기능(undo)도 지원할 수 있습니다.
 
 - 요청을 하는 객체와 그 요청을 수행하는 객체를 분리시킬 수 있음
     - 분리시키는 과정의 중심에는 Command 객체가 있음
