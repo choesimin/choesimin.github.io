@@ -1,29 +1,28 @@
 ---
 layout: skill
-title: Facade Pattern - 복잡한 Subsystem에 대한 단순한 Interface 제공하기
+title: Facade Pattern - 복잡한 System의 정면(facade)만 보여주기
 date: 2024-01-10
 ---
 
 
+- Facade Pattern은 **복잡한 system에 대한 단순한 interface를 제공**하는 pattern입니다.
+    - facade는 '건물의 정면'을 의미하는 단어입니다.
+    - facade object는 자신의 뒤 편에 존재하는 subsystem들의 복잡한 기능들을 통합하여, 간략화된 기능(interface)를 client에게 제공합니다.
 
-
-- Facade Pattern은 subsystem의 일련의 interface(저수준)에 대한 **통합 interface**(고수준)를 제공합니다.
+- Facade Pattern은 **저수준 interface(subsystem)들을 통합하여 고수준 interface를 제공**합니다.
     - 고수준의 interface가 저수준 interface를 통합하기 때문에, 고수준 interface를 통합 interface라고 부릅니다.
-
-- Facade Pattern은 단순화된 interface(고수준 interface)를 통해서 subsystem을 더 쉽게 사용할 수 있도록 합니다.
-    - 통합 interface가 중간에 위치하기 때문에 client와 subsystem이 서로 긴밀하게 연결되지 않아도 됩니다.
+    - 저수준 interface보다 더 단순화된 고수준 interface를 제공함으로써, client가 subsystem을 더 쉽게 사용할 수 있도록 합니다.
+        - 통합 interface가 중간에 위치하기 때문에 client와 subsystem이 서로 긴밀하게 연결되지 않아도 됩니다.
 
 - Facade Pattern에서는 subsystem class들을 캡슐화(encapsulation)하지 않습니다.
     - 따라서 subsystem에 직접 접근할 수 있고, subsystem class의 기능을 직접 사용하는 것이 가능합니다.
     - 단순화된 interface를 제공하면서도, client에서 필요로 한다면 system의 모든 기능을 사용할 수 있게 합니다.
     - 복잡한 추상화의 단계가 필요 없어서 **다른 pattern보다 단순한 편**입니다.
 
-
-## Adapter Pattern과 Facade Pattern의 비교
-
-- 두 pattern 모두 interface를 바꿔주고, 여러 개의 class를 감쌀 수 있습니다.
-- Adapter Pattern은 interface를 변경해서 client에서 필요로 하는 interface로 적응시키기 위한 용도입니다.
-- Facade Pattern은 어떤 subsystem에 대한 간단한 interface를 제공하기 위한 용도입니다.
+- Facade Pattern은 Adapter Pattern의 구조와 비슷하지만, 용도가 다르기 때문에 다른 pattenr으로 구분됩니다.
+    - 두 pattern 모두 interface를 바꿔주고, 여러 개의 class를 감쌀 수 있습니다.
+    - Adapter Pattern은 interface를 변경해서 client에서 필요로 하는 interface로 적응시키기 위한 용도입니다.
+    - Facade Pattern은 어떤 subsystem에 대한 간단한 interface를 제공하기 위한 용도입니다.
 
 
 
@@ -33,7 +32,7 @@ date: 2024-01-10
 
 
 
-## Class Diagram
+## Class 구조
 
 ```mermaid
 classDiagram
@@ -58,7 +57,7 @@ SubSystem4 -- SubSystem1
 
 - `Client` : Client는 Facade 덕분에 기능을 사용하기가 쉬워졌습니다.
 - `Facade` : 더 사용하기 편한 통합 interface입니다.
-- `SubSystem` : 복잡한 subsystem 입니다.
+- `SubSystem` : 복잡한 하위 system 입니다.
 
 
 ---
