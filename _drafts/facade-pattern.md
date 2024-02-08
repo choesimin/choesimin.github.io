@@ -1,8 +1,10 @@
 ---
 layout: skill
 title: Facade Pattern - 복잡한 System의 정면(facade)만 보여주기
-date: 2024-01-10
+date: 2024-02-08
 ---
+
+
 
 
 - Facade Pattern은 **복잡한 system에 대한 단순한 interface를 제공**하는 pattern입니다.
@@ -10,16 +12,16 @@ date: 2024-01-10
     - facade object는 자신의 뒤 편에 존재하는 subsystem들의 복잡한 기능들을 통합하여, 간략화된 기능(interface)를 client에게 제공합니다.
 
 - Facade Pattern은 **저수준 interface(subsystem)들을 통합하여 고수준 interface를 제공**합니다.
-    - 고수준의 interface가 저수준 interface를 통합하기 때문에, 고수준 interface를 통합 interface라고 부릅니다.
-    - 저수준 interface보다 더 단순화된 고수준 interface를 제공함으로써, client가 subsystem을 더 쉽게 사용할 수 있도록 합니다.
+    - 고수준의 interface가 저수준 interface들을 통합하기 때문에, 고수준 interface를 통합 interface라고 부릅니다.
+    - 저수준 interface보다 더 단순화된 고수준 interface를 제공함으로써, client가 subsystem의 기능을 더 쉽게 사용할 수 있도록 합니다.
         - 통합 interface가 중간에 위치하기 때문에 client와 subsystem이 서로 긴밀하게 연결되지 않아도 됩니다.
 
 - Facade Pattern에서는 subsystem class들을 캡슐화(encapsulation)하지 않습니다.
-    - 따라서 subsystem에 직접 접근할 수 있고, subsystem class의 기능을 직접 사용하는 것이 가능합니다.
-    - 단순화된 interface를 제공하면서도, client에서 필요로 한다면 system의 모든 기능을 사용할 수 있게 합니다.
-    - 복잡한 추상화의 단계가 필요 없어서 **다른 pattern보다 단순한 편**입니다.
+    - facade object로 단순화된 interface를 제공하면서도, client에서 필요로 한다면 subsystem의 모든 기능을 사용할 수 있게 합니다.
+        - client가 subsystem class에 접근하여 기능을 직접 사용하는 것이 가능합니다.
+    - Facade Pattern는 복잡한 추상화의 단계가 필요 없어서 **다른 pattern보다 단순한 편**입니다.
 
-- Facade Pattern은 Adapter Pattern의 구조와 비슷하지만, 용도가 다르기 때문에 다른 pattenr으로 구분됩니다.
+- Facade Pattern은 Adapter Pattern의 구조와 비슷하지만, 용도가 다르기 때문에 다른 pattern으로 구분됩니다.
     - 두 pattern 모두 interface를 바꿔주고, 여러 개의 class를 감쌀 수 있습니다.
     - Adapter Pattern은 interface를 변경해서 client에서 필요로 하는 interface로 적응시키기 위한 용도입니다.
     - Facade Pattern은 어떤 subsystem에 대한 간단한 interface를 제공하기 위한 용도입니다.
@@ -37,22 +39,12 @@ date: 2024-01-10
 ```mermaid
 classDiagram
 
-class Client
-class Facade
-class SubSystem1
-class SubSystem2
-class SubSystem3
-class SubSystem4
-
 Client --> Facade
-
-Facade -- SubSystem1
-Facade -- SubSystem2
-SubSystem2 -- SubSystem3
-SubSystem2 -- SubSystem4
-SubSystem3 -- SubSystem1
-SubSystem3 -- SubSystem4
-SubSystem4 -- SubSystem1
+Facade --> SubSystem1
+Facade --> SubSystem2
+Facade --> SubSystem3
+Facade --> SubSystem4
+Facade --> SubSystem5
 ```
 
 - `Client` : Client는 Facade 덕분에 기능을 사용하기가 쉬워졌습니다.
@@ -60,12 +52,103 @@ SubSystem4 -- SubSystem1
 - `SubSystem` : 복잡한 하위 system 입니다.
 
 
+
+
 ---
 
 
 
 
-## Example : Home theater
+
+## Example : File Reader
+
+
+- `FileFacade` class가 facade의 역할을 수행합니다.
+    - `readFile`과 `writeFile` method를 제공하여 file 입출력을 단순화합니다.
+    - 내부에서 복잡한 file 입출력 관련 class를 사용하며, 이를 캡슐화하여 간단한 interface를 제공합니다.
+
+- client code(`Main` class)에서는 file 입출력과 관련된 복잡한 내용을 알 필요가 없으며, 단순히 `FileFacade` class의 interface를 사용하여 file 입출력을 수행할 수 있습니다.
+    - `FileFacade` class의 instance를 생성하고, `writeFile` method와 `readFile` method를 사용하여 file 내용을 읽고 씁니다.
+
+```mermaid
+classDiagram
+
+class Main {
+    main(Stirng []) void
+}
+
+class FileFacade {
+    readFile(String) String
+    writeFile(String, String) void
+}
+
+Main --> FileFacade
+FileFacade --> BufferedReader
+FileFacade --> FileReader
+FileFacade --> BufferedWriter
+FileFacade --> FileWriter
+FileFacade --> StringBuilder
+```
+
+
+### Facade
+
+```java
+class FileFacade {
+    public String readFile(String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(System.lineSeparator());
+            }
+            return stringBuilder.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void writeFile(String fileName, String content) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            writer.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+### Client
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        FileFacade fileFacade = new FileFacade();
+        String fileName = "test.txt";
+        String content = "Hello, World!";
+
+        // 파일 쓰기
+        fileFacade.writeFile(fileName, content);
+
+        // 파일 읽기
+        String readContent = fileFacade.readFile(fileName);
+        System.out.println(readContent);
+    }
+}
+```
+
+
+
+
+---
+
+
+
+
+## Example : Home Theater
 
 
 ### Class Diagram
@@ -113,8 +196,8 @@ class CdPlayer {
     off()
     eject()
     pause()
-    play()
-    play()
+    play(String)
+    play(int)
     stop()
 }
 
@@ -124,8 +207,8 @@ class DvdPlayer {
     off()
     eject()
     pause()
-    play()
-    play()
+    play(String)
+    play(int)
     setSurroundAudio()
     setTwoChannelAudio()
     stop()
@@ -137,6 +220,18 @@ class Projector {
     off()
     tvMode()
     wideScreenMode()
+}
+
+class StreamingPlayer {
+    amplifier
+    on()
+    off()
+    play(String)
+    play(int)
+    stop()
+    pause()
+    setTwoChannelAudio()
+    setSurroundAudio()
 }
 
 class Screen {
@@ -157,23 +252,15 @@ class TheaterLights {
 }
 
 Client --> HomeTheaterFacade
-
-HomeTheaterFacade .. Amplifier
-HomeTheaterFacade .. Tuner
-HomeTheaterFacade .. CdPlayer
-HomeTheaterFacade .. DvdPlayer
-HomeTheaterFacade .. Projector
-HomeTheaterFacade .. Screen
-HomeTheaterFacade .. PopcornPopper
-HomeTheaterFacade .. TheaterLights
-
-Amplifier --> Tuner
-Amplifier --> DvdPlayer
-Amplifier --> CdPlayer
-Tuner --> Amplifier
-CdPlayer --> Amplifier
-DvdPlayer --> Amplifier
-Projector --> DvdPlayer
+HomeTheaterFacade --> Amplifier
+HomeTheaterFacade --> StreamingPlayer
+HomeTheaterFacade --> Tuner
+HomeTheaterFacade --> CdPlayer
+HomeTheaterFacade --> DvdPlayer
+HomeTheaterFacade --> Projector
+HomeTheaterFacade --> Screen
+HomeTheaterFacade --> PopcornPopper
+HomeTheaterFacade --> TheaterLights
 ```
 
 - `Client`
@@ -185,12 +272,12 @@ Projector --> DvdPlayer
 
 - `Amplifier`
     - subsystem에서도 최소 지식 원칙을 지키는 것이 좋습니다.
-    - 서로 얽혀 있는 것이 많아져서 system이 너무 복잡한 것 같으면, subsystem에 Facade를 더 추가하는 것도 생각해보아야 합니다.
+    - 서로 얽혀 있는 것이 많아져서 system이 너무 복잡한 것 같으면, subsystem에 Facade를 더 추가하는 것도 생각해 보아야 합니다.
 
 
 ### Code
 
-- 영화 보는 복잡한 과정을 Client가 맡지 않고, Facade가 맡습니다.
+- 영화 보는 복잡한 과정을 client가 맡지 않고, facade가 맡습니다.
 
 1. popcorn 기계 켜기.
 2. popcorn 튀기기 시작하기.
@@ -220,9 +307,7 @@ public class HomeTheaterTestDrive {
         Screen screen = new Screen("Theater Screen");
         PopcornPopper popper = new PopcornPopper("Popcorn Popper");
  
-        HomeTheaterFacade homeTheater = 
-                new HomeTheaterFacade(amp, tuner, player, 
-                        projector, screen, lights, popper);
+        HomeTheaterFacade homeTheater = new HomeTheaterFacade(amp, tuner, player, projector, screen, lights, popper);
  
         homeTheater.watchMovie("Raiders of the Lost Ark");
         homeTheater.endMovie();
@@ -243,13 +328,15 @@ public class HomeTheaterFacade {
     Screen screen;
     PopcornPopper popper;
  
-    public HomeTheaterFacade(Amplifier amp, 
-                 Tuner tuner, 
-                 StreamingPlayer player, 
-                 Projector projector, 
-                 Screen screen,
-                 TheaterLights lights,
-                 PopcornPopper popper) {
+    public HomeTheaterFacade(
+        Amplifier amp, 
+        Tuner tuner, 
+        StreamingPlayer player, 
+        Projector projector, 
+        Screen screen,
+        TheaterLights lights,
+        PopcornPopper popper
+    ) {
  
         this.amp = amp;
         this.tuner = tuner;
@@ -623,3 +710,4 @@ public class PopcornPopper {
 ## Reference
 
 - Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- <https://shan0325.tistory.com/23>
