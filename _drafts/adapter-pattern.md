@@ -1,28 +1,38 @@
 ---
 layout: skill
+title: Adapter Pattern - 복잡한 System의 정면(facade)만 보여주기
+date: 2024-02-08
 ---
 
-# Adapter Pattern
 
-```
-한 class의 interface를 client에서 사용하고자 하는 다른 interface로 변환합니다. Adapter를 이용하면 interface 호환성 문제 때문에 같이 쓸 수 없는 class들을 연결해서 쓸 수 있습니다.
-```
+
+
+- Adapter Pattern은 class의 interface를 client에서 사용하고자 하는 다른 interface로 변환합니다.
+    - adapter를 이용하면 interface 호환성 문제 때문에 같이 쓸 수 없는 class들을 연결해서 쓸 수 있습니다.
+    - 기존의 클래스 인터페이스를 사용자가 기대하는 다른 인터페이스로 변환시켜, 인터페이스 호환성 문제 없이 서로 다른 클래스들을 결합하여 사용할 수 있도록 합니다.
+
+- 'adaptee'는 호환성 작업이 끝난 interface를 사용하는 class입니다.
+    - adapter를 가운데 두고 client와 정반대 위치에 있습니다.
+
+
+
+
+
+
 
 ```mermaid
 flowchart LR
 
-Client[Client]
-Adapter[Adapter]
-Adaptee[Adaptee]
+Client
+Adapter
+Adaptee
 
 Client -->|request| Adapter
 Adapter -->|translatedRequest| Adaptee
 ```
 
-- Adaptee : Adapter를 가운데 두고, Client와 정반대 위치에 있는 것
-
-- interface를 변환해주는 Adapter를 만들어, 호환되지 않는 interface를 사용하는 Client를 그대로 활용할 수 있음
-    - Client와 구현된 interface를 분리시킬 수 있음
+- interface를 변환해주는 adapter를 만들어, 호환되지 않는 interface를 사용하는 client를 그대로 활용할 수 있습니다.
+    - client와 구현된 interface를 분리시킬 수 있음
         - Client를 특정 구현이 아닌 interface에 연결 시키기 때문
         - Target interface만 제대로 지킨다면, 나중에 다른 구현을 추가하는 것도 가능함
     - 나중에 interface가 바뀌더라도 변경 내역은 Adapter에 캡슐화(encapsulation)되기 때문에 Client는 바뀔 필요가 없음
