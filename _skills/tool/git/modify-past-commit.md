@@ -38,13 +38,16 @@ commit
 
 ### 1. `git log`
 
-- 변경하려는 commit의 바로 이전 commit의 hash 값을 확인합니다.
+- 변경하려는 commit의 hash 값을 확인합니다.
 
 
-### 2. `git rebase -i [past_commit_hash]`
+### 2. `git rebase -i [commit_hash]~1`
 
-- rebase할 때, `i` option으로 rebase interface에 진입할 수 있습니다.
-- 수정하고 싶은 commit의 keyword를 `pick`에서 `edit`으로 수정하고, rebase interface에서 나옵니다.
+- rebase의 `i` option으로 rebase interface에 진입할 수 있습니다.
+    - rebase interface에 진입할 때 수정 대상인 과거의 commit이 나오게 하려면, 대상 바로 이전의 commit hash 값을 인자에 넣어야 합니다.
+    - 따라서 commit의 hash 값 뒤에 `~1`을 추가하여 '이전 commit'의 hash값을 가져옵니다.
+
+- rebase interface에서 수정하고 싶은 commit의 keyword를 `pick`에서 `edit`으로 수정하고, `:wq`(Vim을 사용하는 경우)로 나옵니다.
 
 
 ### 3. File 수정

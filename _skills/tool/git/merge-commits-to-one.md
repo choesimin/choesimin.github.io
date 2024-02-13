@@ -29,20 +29,23 @@ git log
 
 - 합칠 commit들의 범위를 확인합니다.
 - `rebase` 명령에 사용할 두 개의 hash 값을 기억해둡니다.
-    - 시작 hash (`commit_hash_before_start_commit`) : 처음 commit의 바로 전 commit의 hash.
-    - 종료 hash (`end_commit_hash`) : 마지막 commit의 hash.
+    - 시작 hash (`begin_commit_hash`) : 합칠 commit들 중 첫 commit의 hash 값.
+    - 종료 hash (`end_commit_hash`) : 합칠 commit들 중 마지막 commit의 hash 값.
 
 
 ### 2. Rebase 하기
 
 ```sh
-git rebase -i [commit_hash_before_start_commit] [end_commit_hash]
+git rebase -i [begin_commit_hash]~1 [end_commit_hash]
 
-# 종료 Commit을 입력하지 않으면, 자동으로 현재 위치한 Commit이 지정됩니다.
-git rebase -i [commit_hash_before_start_commit]
+# 마지막 commit(end_commit_hash)을 입력하지 않으면, 자동으로 마지막 commit이 현재 위치한 commit으로 지정됩니다.
+git rebase -i [begin_commit_hash]~1
 ```
 
-- rebase할 때, `-i` option으로 rebase interface에 진입할 수 있습니다.
+- rebase의 `i` option으로 rebase interface에 진입할 수 있습니다.
+    - rebase interface에 진입할 때 합칠 commit들이 모두 나오게 하려면, 시작 commit 바로 이전의 commit hash 값을 인자에 넣어야 합니다.
+    - 따라서 commit의 hash 값 뒤에 `~1`을 추가하여 '시작 commit의 이전 commit'의 hash 값을 가져옵니다.
+
 - 가장 위에 위치한 첫 commit의 keyword는 그대로 `pick`으로 남겨두고, 나머지 commit들의 keyword를 `pick`에서 `squash`로 수정합니다.
 
 ```txt
@@ -52,6 +55,7 @@ squash qpalbk3 Commit3
 ```
 
 - 수정이 끝나면 rebase interface에서 나옵니다.
+    - Vim을 사용하는 경우는 `:wq`로 편진을 종료할 수 있습니다.
 
 
 ### 3. Commit Messsage 정하기
