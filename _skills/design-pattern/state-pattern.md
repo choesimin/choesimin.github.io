@@ -220,10 +220,7 @@ State <|.. DestroyedState
 ```
 
 
-### Code
-
-
-#### Test Code
+### Test Code
 
 ```java
 import java.time.LocalDateTime;
@@ -281,7 +278,7 @@ public class BillTest {
 }
 ```
 
-#### Context
+### Context
 
 ```java
 import java.time.LocalDateTime;
@@ -338,7 +335,7 @@ public class Bill {
 }
 ```
 
-#### State
+### State
 
 ```java
 import java.time.LocalDateTime;
@@ -496,7 +493,7 @@ public class DestroyedState implements State {
 }
 ```
 
-#### Context without State Pattern
+### Context without State Pattern
 
 ```java
 import java.time.LocalDateTime;
@@ -720,12 +717,7 @@ note for State "모든 상태 class에서 사용하는 interface입니다.\nmeth
 ```
 
 
-
-
-### Code
-
-
-#### Test Code
+### Test Code
 
 ```java
 public class GumballMachineTestDrive {
@@ -773,7 +765,7 @@ public class GumballMachineTestDrive {
 ```
 
 
-#### Context
+### Context
 
 ```java
 public class GumballMachine {
@@ -874,7 +866,7 @@ public class GumballMachine {
 ```
 
 
-#### State
+### State
 
 ```java
 public interface State {
@@ -1079,7 +1071,7 @@ public class WinnerState implements State {
 }
 ```
 
-#### Context without State Pattern
+### Context without State Pattern
 
 ```java
 public class GumballMachine {

@@ -149,9 +149,6 @@ public class Main {
 
 ## Example : Home Theater
 
-
-### Class Diagram
-
 ```mermaid
 classDiagram
 
@@ -274,25 +271,22 @@ HomeTheaterFacade --> TheaterLights
     - 서로 얽혀 있는 것이 많아져서 system이 너무 복잡한 것 같으면, subsystem에 Facade를 더 추가하는 것도 생각해 보아야 합니다.
 
 
-### Code
-
 - 영화 보는 복잡한 과정을 client가 맡지 않고, facade가 맡습니다.
+    1. popcorn 기계 켜기.
+    2. popcorn 튀기기 시작하기.
+    3. 전등을 어둡게 조절하기.
+    4. screen 내리기.
+    5. projector 켜기.
+    6. projector로 DVD 신호가 입력되도록 하기.
+    7. projector를 wide screen mode로 전환하기.
+    8. amp 켜기.
+    9. amp 입력을 DVD로 전환하기.
+    10. amp를 surround 음향 mode로 전환하기.
+    11. amp volume을 중간(5)으로 설정하기.
+    12. DVD player 켜기.
+    13. DVD 재생하기.
 
-1. popcorn 기계 켜기.
-2. popcorn 튀기기 시작하기.
-3. 전등을 어둡게 조절하기.
-4. screen 내리기.
-5. projector 켜기.
-6. projector로 DVD 신호가 입력되도록 하기.
-7. projector를 wide screen mode로 전환하기.
-8. amp 켜기.
-9. amp 입력을 DVD로 전환하기.
-10. amp를 surround 음향 mode로 전환하기.
-11. amp volume을 중간(5)으로 설정하기.
-12. DVD player 켜기.
-13. DVD 재생하기.
-
-#### Client
+### Client
 
 ```java
 public class HomeTheaterTestDrive {

@@ -238,10 +238,7 @@ QuackBehavior <|.. FakeQuack
 ```
 
 
-### Code
-
-
-#### Main
+### Main
 
 ```java
 public class MiniDuckSimulator {
@@ -283,7 +280,7 @@ public class MiniDuckSimulator {
 ```
 
 
-#### Client
+### Client
 
 ```java
 public abstract class Duck {
@@ -389,7 +386,7 @@ public class ModelDuck extends Duck {
 ```
 
 
-#### Strategy : 나는 행동
+### Strategy : 나는 행동
 
 ```java
 public interface FlyBehavior {
@@ -422,7 +419,7 @@ public class FlyRocketPowered implements FlyBehavior {
 ```
 
 
-#### Strategy : 꽥꽥거리는 행동
+### Strategy : 꽥꽥거리는 행동
 
 ```java
 public interface QuackBehavior {

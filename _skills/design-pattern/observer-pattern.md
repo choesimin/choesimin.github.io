@@ -214,9 +214,7 @@ note for ThirdPartyDisplay "측정값을 바탕으로 다른 내용을 표시합
 ```
 
 
-### Code
-
-#### Main
+### Main
 
 ```java
 public class WeatherStation {
@@ -239,7 +237,7 @@ public class WeatherStation {
 }
 ```
 
-#### Interface
+### Interface
 
 ```java
 public interface Subject {
@@ -261,7 +259,7 @@ public interface DisplayElement {
 }
 ```
 
-#### Subject Interface 구현
+### Subject Interface 구현
 
 ```java
 public class WeatherData implements Subject {
@@ -314,7 +312,7 @@ public class WeatherData implements Subject {
 }
 ```
 
-#### Display 구현
+### Display 구현
 
 ```java
 public class CurrentConditionsDisplay implements Observer, DisplayElement {

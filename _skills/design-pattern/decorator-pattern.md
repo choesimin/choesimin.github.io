@@ -391,9 +391,7 @@ CondimentDecorator <|-- Whip
 ```
 
 
-### Code
-
-#### Main
+### Main
 
 ```java
 public class StarbuzzCoffee {
@@ -418,7 +416,7 @@ public class StarbuzzCoffee {
 }
 ```
 
-#### Component Class : 음료(beverage)를 나타내는 추상 Class
+### Component Class : 음료(beverage)를 나타내는 추상 Class
 
 ```java
 public abstract class Beverage {
@@ -442,7 +440,7 @@ public abstract class Beverage {
 }
 ```
 
-#### Decorator Class : 첨가물(condiment)을 나타내는 추상 Class
+### Decorator Class : 첨가물(condiment)을 나타내는 추상 Class
 
 ```java
 public abstract class CondimentDecorator extends Beverage {
@@ -455,7 +453,7 @@ public abstract class CondimentDecorator extends Beverage {
 }
 ```
 
-#### ConcreteComponent Class : 음료 구현
+### ConcreteComponent Class : 음료 구현
 
 ```java
 public class HouseBlend extends Beverage {
@@ -505,7 +503,7 @@ public class Decaf extends Beverage {
 }
 ```
 
-#### ConcreteDecorator Class : 첨가물 구현
+### ConcreteDecorator Class : 첨가물 구현
 
 ```java
 public class Milk extends CondimentDecorator {

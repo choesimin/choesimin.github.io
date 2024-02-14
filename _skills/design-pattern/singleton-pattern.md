@@ -283,8 +283,6 @@ public class SingletonClient {
     - 따라서 instance가 하나만 있어야 합니다.
 
 
-### Code
-
 ```java
 public class ChocolateBoiler {
     private boolean empty;
