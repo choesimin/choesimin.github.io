@@ -10,6 +10,8 @@ date: 2024-02-14
 - Adapter Pattern은 **서로 다른 interface를 가지는 두 객체를 연결**하여 사용할 수 있도록 하는 design pattern입니다.
     - interface가 호환되지 않아서 함께 동작할 수 없는 class들을 함께 사용할 수 있도록 변환합니다.
     - e.g., 원래 객체와 호환되지 않는 외부 library나 API를 사용해야 하는 경우, Adapter Pattern을 적용하면 기존 code를 재사용하면서 외부 library나 API를 사용할 수 있습니다.
+        - 한국에서 쓰던 220V 기기들을 Voltage Power Adapter를 사용하여 110V를 쓰는 곳에 가서도 그대로 쓸 수 있는 것과 비슷합니다.
+        - Adapter Pattern에서도 Adapter처럼 변환하는 역할을 하는 class를 새로 만들어야 합니다.
 
 ```mermaid
 flowchart LR
@@ -117,7 +119,7 @@ deactivate Client
     - e.g., 기존 system, 외부 system, third party library 등이 Adaptee에 해당됩니다.
 
 
-### Object Adapter
+### Object Adapter : 합성을 이용해 구현한 Adapter
 
 ```mermaid
 classDiagram
@@ -187,7 +189,7 @@ class Adaptee {
 ```
 
 
-### Class Adapter
+### Class Adapter : 상속을 이용해 구현한 Adapter
 
 ```mermaid
 classDiagram
@@ -260,7 +262,10 @@ class Adaptee {
 ## Example : 오리 Adapter로 감싼 칠면조
 
 - 오리처럼 걷고 꽥꽥거린다면, 반드시 오리가 아니라 오리 Adapter로 감싼 칠면조일 수도 있습니다.
+    - 또, 그 반대일 수도 있습니다.
+
 - 이 예제는 `Duck`을 `Turkey`로, `Turkey`를 `Duck`으로, `Duck`을 `Dron`으로 변환합니다.
+
 
 ### Client
 
@@ -452,3 +457,4 @@ public class SuperDrone implements Drone {
 - Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
 - <https://inpa.tistory.com/entry/GOF-💠-어댑터Adaptor-패턴-제대로-배워보자>
 - <https://yaboong.github.io/design-pattern/2018/10/15/adapter-pattern>
+- <https://refactoring.guru/ko/design-patterns/adapter>
