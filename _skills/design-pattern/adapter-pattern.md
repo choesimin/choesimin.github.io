@@ -7,11 +7,16 @@ date: 2024-02-14
 
 
 
+- 사용해야 하는 interface가 현재의 system과 호환되지 않는다고 해서 꼭 현재의 system을 변경해야 하는 것은 아닙니다.
+
 - Adapter Pattern은 **서로 다른 interface를 가지는 두 객체를 연결**하여 사용할 수 있도록 하는 design pattern입니다.
     - interface가 호환되지 않아서 함께 동작할 수 없는 class들을 함께 사용할 수 있도록 변환합니다.
     - e.g., 원래 객체와 호환되지 않는 외부 library나 API를 사용해야 하는 경우, Adapter Pattern을 적용하면 기존 code를 재사용하면서 외부 library나 API를 사용할 수 있습니다.
         - 한국에서 쓰던 220V 기기들을 Voltage Power Adapter를 사용하여 110V를 쓰는 곳에 가서도 그대로 쓸 수 있는 것과 비슷합니다.
         - Adapter Pattern에서도 Adapter처럼 변환하는 역할을 하는 class를 새로 만들어야 합니다.
+
+- Adapter Pattern은 Wrapper Pattern이라고도 합니다.
+    - Adapter가 legacy interface를 감싸서 새로운 interface로 변환하기 때문입니다.
 
 ```mermaid
 flowchart LR
@@ -37,9 +42,6 @@ adapter -->|변환된 요청| adaptee
         - Client가 사용하는 interface(Target interface)만 제대로 지킨다면, 나중에 다른 구현을 추가하는 것도 가능합니다.
     - 나중에 interface가 바뀌더라도 변경할 부분은 Adapter에 캡슐화(encapsulation)되어 있기 때문에 Client는 바뀔 필요가 없습니다.
     - 여러 interface를 모두 지원하는 Adapter를 Two Way Adapter(다중 Adapter)라고 부릅니다.
-
-- Adapter Pattern은 Wrapper Pattern이라고도 합니다.
-    - Adapter가 legacy interface를 감싸서 새로운 interface로 변환하기 때문입니다.
 
 - MVC design pattern에서도 Adapter Pattern이 사용됩니다.
     - MVC  design pattern에서는 Model과 View 사이에 Controller를 두어 Model과 View를 연결합니다.
@@ -175,7 +177,7 @@ class Adapter implements Target {
     }
 
     public void request(int data) {
-        adaptee.specificRequest(data);    // Adapter의 method가 호출되면, Adaptee의 method를 호출하도록 '위임'합니다.
+        adaptee.specificRequest(data);    // Adapter의 method가 호출되면, Adaptee의 method를 호출하도록 위임합니다.
     }
 }
 ```
@@ -238,7 +240,7 @@ interface Target {
 ```java
 class Adapter extends Adaptee implements Target {
     public void request(int data) {
-        specificRequest(data);    // Adapter의 method가 호출되면, '상속'받은 부모 class인 Adaptee의 method를 호출합니다.
+        specificRequest(data);    // Adapter의 method가 호출되면, 상속받은 부모 class인 Adaptee의 method를 호출합니다.
     }
 }
 ```
@@ -250,6 +252,70 @@ class Adaptee {
     }
 }
 ```
+
+
+
+
+---
+
+
+
+
+## Example : Java의 InputStreamReader
+
+- JDK의 `InputStreamReader`는 Adapter Pattern의 대표적인 예시입니다.
+- console에서 입력을 받을 때, `InputStreamReader`를 사용하여 `BufferedReader`와 `System.in`을 연결할 수 있습니다.
+
+```java
+// Client Code
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+// BufferedReader의 생성자 parameter는 Reader
+public BufferedReader(Reader in) {
+    this(in, defaultCharBufferSize);
+}
+
+// System.in가 반환하는 자료형은 InputStream
+public final static InputStream in = null;
+```
+
+- `BufferedReader`의 생성자는 parameter로 `Reader` type을 받습니다.
+    - 그래서 `BufferedReader`는 `InputStream` type을 반환하는 `System.in`을 바로 사용할 수 없습니다.
+        - `InputStream`은 byte stream을 읽어 들이고, `BufferedReader`는 character input stream을 읽어 들입니다.
+    - `BufferedReader`와 `System.in`는 호환되지 않습니다.
+
+- 호환되지 않는 `BufferedReader`와 `System.in` 사이에 `InputStreamReader`를 두어 호환성을 맞출 수 있습니다.
+    - `InputStreamReader`는 `InputStream` type을 `Reader` type으로 변환하여, `BufferedReader`가 `System.in`을 간접적으로 사용할 수 있게 합니다.
+
+```mermaid
+classDiagram
+
+class Readable {
+    <<interface>>
+}
+class Reader {
+    <<abstract>>
+}
+class BufferedReader
+class InputStreamReader
+class System
+
+Readable <|.. Reader
+Reader <|-- BufferedReader : extends
+Reader <|-- InputStreamReader : extends
+InputStreamReader --> System
+```
+
+- `BufferedReader` class와 `InputStreamReader` class 둘 다 `Reader` type으로 참조(reference)할 수 있습니다.
+    - 두 class 모두 `Reader` class를 상속받았기 때문입니다.
+        - `Reader` class는 `Readable` interface를 구현한 추상 class입니다.
+
+- `InputStreamReader` class는 `InputStream` type(`System.in`의 반환 type)을 받을 수 있는 생성자를 가지고 있습니다.
+    - 따라서 instance를 생성할 때 `System.in`을 parameter로 받아서, `BufferedReader` class에 사용할 수 있는 형태로 변환하는 것이 가능합니다.
+
+- 변환이 완료된 `InputStreamReader` instance를 최종적으로 `BufferedReader` class에서 사용합니다.
+
+- Adapter Pattern에서 `InputStreamReader` class는 Adapter, `System.in`는 Adaptee, `Reader`는 Target interface입니다.
 
 
 
