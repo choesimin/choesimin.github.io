@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: Machine Learning
+title: 기계 학습 (Machine Learning)
 date: 2023-08-08
 ---
 
@@ -22,6 +22,7 @@ date: 2023-08-08
 
 
 ---
+
 
 
 

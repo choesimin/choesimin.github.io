@@ -1,15 +1,16 @@
 ---
 layout: skill
-title: Git - Source Code Version 관리하기
+title: Git
 date: 2023-04-06
 ---
 
 
 
 
-## Git : DVSC(Distributed Version Control System)
+## Git
 
-- 분산 Version 관리 System입니다.
+- 
+- 분산 Version 관리 System(DVSC, Distributed Version Control System)입니다.
     - 여러 명의 사용자들 간의 file에 대한 작업을 조율하는 데에 사용됩니다.
 - 주로, 여러 명의 개발자가 하나의 software를 개발할 때, source code를 관리하기 위해 사용합니다.
 
