@@ -60,7 +60,7 @@ adapter -->|변환된 요청| adaptee
 - 그러나 목적에 차이가 있기 때문에 다른 pattern으로 분류되어 있습니다.
     - Adapter Pattern는 한 interface를 다른 interface로 변환하는 것이 목적입니다.
     - Decorator Pattern은 interface는 바꾸지 않고 책임(기능)만 추가하는 것이 목적입니다.
-    - Facade Pattern는 interface를 간단하게 바꾸는 것이 목적입니다.
+    - Facade Pattern는 interface를 단순하게 바꾸는 것이 목적입니다.
 
 
 

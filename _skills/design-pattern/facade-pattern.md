@@ -24,7 +24,7 @@ date: 2024-02-08
 - Facade Pattern은 Adapter Pattern의 구조와 비슷하지만, 용도가 다르기 때문에 다른 pattern으로 구분됩니다.
     - 두 pattern 모두 interface를 바꿔주고, 여러 개의 class를 감쌀 수 있습니다.
     - Adapter Pattern은 interface를 변경해서 client에서 필요로 하는 interface로 적응시키기 위한 용도입니다.
-    - Facade Pattern은 어떤 subsystem에 대한 간단한 interface를 제공하기 위한 용도입니다.
+    - Facade Pattern은 어떤 subsystem에 대한 단순한 interface를 제공하기 위한 용도입니다.
 
 
 
@@ -64,7 +64,7 @@ Facade --> SubSystem5
 
 - `FileFacade` class가 facade의 역할을 수행합니다.
     - `readFile`과 `writeFile` method를 제공하여 file 입출력을 단순화합니다.
-    - 내부에서 복잡한 file 입출력 관련 class를 사용하며, 이를 캡슐화하여 간단한 interface를 제공합니다.
+    - 내부에서 복잡한 file 입출력 관련 class를 사용하며, 이를 캡슐화(encapsulation)하여 단순한 interface를 제공합니다.
 
 - client code(`Main` class)에서는 file 입출력과 관련된 복잡한 내용을 알 필요가 없으며, 단순히 `FileFacade` class의 interface를 사용하여 file 입출력을 수행할 수 있습니다.
     - `FileFacade` class의 instance를 생성하고, `writeFile` method와 `readFile` method를 사용하여 file 내용을 읽고 씁니다.
@@ -129,10 +129,10 @@ public class Main {
         String fileName = "test.txt";
         String content = "Hello, World!";
 
-        // 파일 쓰기
+        // File 쓰기
         fileFacade.writeFile(fileName, content);
 
-        // 파일 읽기
+        // File 읽기
         String readContent = fileFacade.readFile(fileName);
         System.out.println(readContent);
     }
