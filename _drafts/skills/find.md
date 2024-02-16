@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: Linux find 명령어 - 
+title: Linux find 명령어 - File/Directory 검색하기
 date: 2024-02-15
 ---
 
@@ -27,6 +27,7 @@ find [path...] [expression...]
 - `find` 명령어는 인자로 '경로(path)'와 '표현식(expression)'을 받습니다.
 
 - **경로(path)**는 검색할 directory를 의미합니다.
+    - directory 내의 모든 하위 directory와 file을 검색합니다.
     - 절대 경로와 상대 경로 모두 사용 가능합니다.
     - 여러 경로를 지정하여 한 번에 여러 directory를 검색할 수도 있습니다.
     - 대부분의 Linux는 경로 인자 값을 생략한다면 현재 위치(`.`)를 입력받은 것으로 간주하지만, Unix는 경로를 입력받지 않으면 명령어가 실행되지 않습니다.
@@ -53,19 +54,22 @@ find [path...] [expression...]
 
 ### 검색 : 일반
 
-1. `-name "[file_name]"` : 주어진 이름의 파일이나 디렉터리를 찾습니다.
-    - 가장 많이 쓰이는 표현식입니다.
+1. `-name "[name]"` : `[name]`의 이름을 가진 file과 directory를 찾습니다.
+    - 가장 많이 쓰이는 표현식이며, `[name]`에는 정규 표현식(regular expression)을 사용할 수 있습니다.
     - e.g., `find . -name "*.txt"`
         - 현재 디렉터리 이하의 모든 디렉터리에서 '.txt'로 끝나는 파일 및 디렉터리를 모두 찾습니다.
 
-2. `-iname "[file_name]"` : 대소문자를 구별 안하고 이름으로만 찾을 때
+2. `-iname "[name]"` : `-name` 표현식과 기능이 동일하며, 대소문자를 구별하지 않습니다.
+    - `i`는 'insensitive'의 약자입니다.
     - e.g., `find . -iname "*.txt"`
-    - 'Insensitive'의 약자입니다.
 
-3. `-type [option]` : 지정한 파일 유형을 찾는다.
-    - 파일만 찾고 싶을 때 또는 디렉터리만 찾고 싶을 경우가 많다.
-    - d: 디렉터리, f: 일반 파일, l: 링크 파일, b: 블록 디바이스, c: 캐릭터 디바이스, p:파이프 디바이스, s:소켓 파일
-    - 주로 -type f 옵션이나 -type d 옵션을 많이 쓴다
+3. `-type [option]` : 특정 option(`[option]`)을 지정하여 file 유형으로 찾습니다.
+    - file 유형에 대한 여러가지 option이 있습니다.
+        - directory option : `d`(directory).
+        - file option : `f`(normal file), `l`(link file), `s`(soket file).
+        - device option : `b`(block device), `c`(character device), `p`(pipe device).
+    - 주로 file만 찾거나 directory만 찾기 위해 `f`와 `d` option을 사용합니다.
+    - e.g., `find . -type f`, `find . -type d`, `find . -type f -name "*.txt"`.
 
 
 ### 검색 : 소유자 & 권한
