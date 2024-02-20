@@ -177,16 +177,32 @@ message_sync_queue --> recipient
 
 
 
-## Client와 Chatting Server 간의 연결 유지하기
+## Client <-> Chatting Server : 연결 유지하기
 
-- 송신 client가 수신 client에게 전달할 message를 chatting server에 보낼 때에는 client가 server에게 요청하는 것이기 때문에 일반적인 HTTP Protocol을 사용합니다.
-    - 대부분의 client/server application에서 요청을 보내는 것은 client입니다.
-    - client가 server와의 통신을 위한 연결을 생성할 때 일반적으로 HTTP Protocol을 사용하여 통신합니다.
+- HTTP는 **client가 연결을 만드는 Protocol**이며, 가장 대중적인 통신 방식입니다.
+    - 대부분의 client/server application에서 요청을 보내는 쪽은 client이기 때문입니다.
 
-- 그러나 수신 client가 message를 전달받을 때는 server가 client와의 요청해야 하기 때문에, 일반적인 HTTP Protocol?????????????????????????
+- 따라서 송신 client가 message를 chatting server에 보낼 때에는 일반적인 HTTP Protocol을 사용할 수 있습니다.
+    - 송신 client가 연결을 만들어 server에게 요청하기 때문입니다.
+
+- 그러나 HTTP Protocol은 server에서 수신 client로 message를 보내는 데에는 쉽게 쓰일 수 없습니다.
+    - **chatting server가 임의 시점에 수신 client와의 연결을 생성**해야 하기 때문입니다.
+        - 이는 client가 server와의 연결을 만드는 일반적인 HTTP Protocol 사용 방식과 차이가 있습니다.
+
+- server가 수신 client에 message를 보내기 위해서 임의 시점에 server가 연결을 만들 수 있는 방법엔 크게 3가지가 있습니다.
+    1. Polling : 주기적으로 server에 data를 요청하는 방식.
+    2. Long Polling : server에 새로운 data가 생길 때까지 요청을 유지하는 방식.
+    3. WebSocket : 양방향 통신을 가능하게 하는 protocol로, 실시간 data 교환에 최적화되어 있음.
 
 
-### Polling
+### 1. Polling
+
+- Polling은 **client가 정해진 시간 간격으로 server에게 최신 data를 요청**하여 상태를 동기화하는 기법입니다.
+
+- Polling은 구현이 간단하지만, **server에 불필요한 부하**를 줄 수 있고, **data을 실시간으로 갱신하는 데에 한계**가 있습니다.
+    - Polling 주기를 짧게 하여 요청을 자주할수록, network 통신 비용이 올라갑니다.
+        - 또한 동기화할 필요가 없는 경우에도 요청하기 때문에, server 자원이 불필요하게 낭비됩니다.
+    - Polling의 주기를 길게 하는 경우, 실시간성에 위배됩니다.
 
 ```mermaid
 sequenceDiagram
@@ -208,7 +224,26 @@ end
 ```
 
 
-### Long Polling
+### 2. Long Polling
+
+- Long Polling은 Polling의 한계를 극복하기 위한 방법입니다.
+- 클라이언트가 서버에 요청을 보낼 때, 서버는 새로운 데이터가 있을 때까지 요청을 보류하고, 새로운 데이터가 생기면 그제서야 응답을 반환합니다.
+- 만약 타임아웃이 발생하면, 클라이언트는 즉시 새로운 요청을 보냅니다.
+- 이 방식은 데이터가 존재할 때만 통신을 하므로 일반 Polling보다 효율적이지만, 여전히 지연 시간이 발생할 수 있습니다.
+
+
+
+
+- 폴링이 여러가지 면에서 비효율적이라 고안된 방식이 롱 폴링이다.
+- 롱 폴링의 경우 클라이언트는 새 메시지가 반환되거나 타임아웃될 때까지 연결을 유지한다.
+- 클라이언트가 새 메시지를 받으면 기존 연결을 종료하고 서버에 새로운 요청을 보내어 모든 절차를 다시 시작한다.
+
+- 이 방식에는 몇가지 단점이 있다.
+    - 서버 입장에서 클라이언트가 연결을 해제했는지 아닌지를 알 좋은 방법이 없다.
+    - 메시지를 많이 받지 않는 클라이언트도 타임아웃이 일어날 때마다 주기적으로 서버에 접속하니, 여전히 비효율적이다.
+
+
+
 
 ```mermaid
 sequenceDiagram
@@ -231,7 +266,23 @@ end
 ```
 
 
-### Web Socket
+### 3. WebSocket
+
+
+- WebSocket은 클라이언트와 서버 간에 양방향 통신 채널을 제공하는 고급 프로토콜입니다.
+- 한 번의 핸드셰이크를 통해 연결이 맺어진 후, 클라이언트와 서버는 연결이 끊어질 때까지 지속적으로 데이터를 주고받을 수 있습니다.
+- WebSocket은 실시간 애플리케이션에 적합하며, 게임, 채팅 애플리케이션, 실시간 거래 플랫폼 등 다양한 분야에서 사용됩니다.
+- 이 방식은 효율적인 데이터 교환을 가능하게 하며, Polling이나 Long Polling에 비해 서버 부하와 지연 시간을 크게 줄일 수 있습니다.
+
+
+- 웹 소켓은 서버가 클라이언트에게 비동기 메시지를 보낼 때 가장 널리 사용하는 기술이다.
+
+- 웹 소켓 연결은 클라이언트가 시작하며, 처음에는 HTTP 연결로 시작하지만 특정 핸드셰이크 절차를 거친 뒤 웹소켓 연결로 업그레이드된다.
+    - 이렇게 한번 연결된 연결은 영구적이며, 양방향 통신이 가능하다.
+    - 또한 웹 소켓은 HTTP 프로토콜이 사용하는 기본 포트번호를 그대로 사용하기에, 방화벽이 있는 환경에서도 일반적으로 잘 동작한다.
+
+- 웹 소켓의 경우 양방향 통신이 가능하기에, 메시지를 수신하는 데서만 사용하는 것이 아닌 메시지를 전송하는데서도 사용할 수 있다.
+    - 이는 메시지를 보낼 때나 받을 때나 같은 프로토콜을 사용할 수 있게 되므로, 구현이 단순해지고 직관적이게 된다.
 
 ```mermaid
 sequenceDiagram
@@ -241,7 +292,10 @@ participant s as Server
 
 c ->> s : HTTP HandShake
 s ->> c : ACK(acknowledgement)
-c --> s : Message 양방향 전송
+
+loop 새 Message가 있을 때마다
+    c --> s : Message 양방향 전송
+end
 ```
 
 
