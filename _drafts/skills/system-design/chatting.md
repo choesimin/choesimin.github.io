@@ -11,13 +11,15 @@ date: 2024-02-19
     - chatting은 크게 1:1 chatting, group chatting으로 나뉩니다.
     - 대표적인 text chatting service로 KakaoTalk, Line, Slack, Facebook messenger 등이 있습니다.
 
-- chatting system의 server는 **chatting server**와 **API server**로 이루어집니다.
-    1. chatting server는 'client 간의 통신'과 'message 저장'을 위해 존재합니다.
-        - 이 중 client 간의 통신을 위한 client-server 간의 연결 유지는 상태 유지(stateful) service입니다.
-    2. API server는 'login', '회원 가입', '사용자 profile 표시', 'service 탐색' 등의 무상태(stateless) service를 위해 존재합니다.
-        - service 탐색(discovery)은 client가 접속할 chatting server의 DNS Hostname을 client에게 알려주는 역할을 합니다.
-
-- message push 알림 등의 추가적인 기능은 제 3자(third-party) service를 사용합니다.
+- chatting system은 Chatting Service, API Service, Third-Party Service로 이루어집니다.
+    1. Chatting Service는 'client 간의 통신'과 'message 저장' 등의 기능을 제공합니다.
+        - 이 중 client 간의 통신을 위해 client와 server 사이의 연결을 유지하는 것은 상태 유지(stateful) service입니다.
+    2. API Service는 'Login', '회원 가입', '사용자 Profile 표시', 'Service 탐색' 등의 무상태(stateless) service 기능을 제공합니다.
+        - Service 탐색(service discovery)은 client가 접속할 chatting server의 DNS hostname을 client에게 알려주는 역할을 합니다.
+            - client의 geographical location(위치), server의 capacity(용량) 등을 기준으로 client에게 가장 적합한 chatting server를 추천해줍니다.
+            - client는 해당 chatting server에 연결되어 message를 송수신합니다.
+    3. Third-Party Service는 'message push 알림' 등의 추가적인 기능을 제공합니다.
+        - 수신자가 미접속 중일 때 message에 대해 push 알림을 보내야 합니다.
 
 ```mermaid
 ---
@@ -56,6 +58,9 @@ subgraph third_party[Third Party : 제 3자 Service 연동]
 end
 ```
 
+- 이 글은 Chatting Service 설계에 대해 설명합니다.
+    - API Service는 일반적인 Web Application과 같고, Third-Party Service는 기능을 연동하여 사용하기만 하면 됩니다.
+
 
 
 
@@ -92,7 +97,7 @@ chatting_server_2[Chatting Server 2]
 message_sync_queue>Message 동기화 Queue]
 
 key_value_storage[(Key-Value 저장소)]
-id_generator[ID 생성기]
+id_generator[Message ID 생성기]
 push_notification_service[Push 알림 Service]
 
 if_online{수신 Client\n접속 여부}
@@ -177,7 +182,7 @@ message_sync_queue --> recipient
 
 
 
-## Client <-> Chatting Server : 연결 유지하기
+## Client ~ Chatting Server : 연결 유지하기
 
 - **HTTP**는 Request/Response 기반의 Stateless Protocol이며, **client가 server와의 연결을 생성하는** 가장 대중적인 통신 방식입니다.
     - 대부분의 client/server application은 **client가 server에 요청을 보내고 server가 응답**하는 단방향의 HTTP 통신으로도 충분합니다.
@@ -196,6 +201,8 @@ message_sync_queue --> recipient
     1. Polling : 주기적으로 server에 data를 요청하는 방식.
     2. Long Polling : server에 새로운 data가 생길 때까지 요청을 유지하는 방식.
     3. WebSocket : 양방향 통신을 가능하게 하는 protocol로, 실시간 data 교환에 최적화되어 있음.
+
+- chatting server과 client 간의 통신에는 **WebSocket Protocol을 권장**합니다.
 
 
 ### 1. Polling
@@ -259,12 +266,14 @@ end
     - **connection timeout이 발생하면** client는 즉시 새로운 요청을 보내어 연결을 유지합니다.
 
 - Long Polling은 data가 존재할 때만 통신을 하므로 일반 Polling보다 효율적이지만, 몇 가지 단점이 있습니다.
-    1. server 입장에서는 client가 연결을 해제했는지 해제하지 않았는지 알 수 있는 방법이 없습니다.
+    1. message를 보내는 client와 수신하는 client가 같은 chatting server에 접속하게 되지 않을 수도 있습니다.
+        - load balancing을 위해 round robin algorithm을 사용하는 경우, message를 받은 server는 해당 message를 수신할 client와의 Long Polling 연결을 가지고 있지 않은 server일 수도 있습니다.
+    2. server 입장에서는 client가 연결을 해제했는지 해제하지 않았는지 알 수 있는 방법이 없습니다.
         - HTTP을 사용하기 때문에 연결의 주체가 client이기 때문입니다.
-    2. message를 많이 받지 않는 client도 timeout이 일어날 때마다 주기적으로 서버에 접속하기 때문에, 여전히 비효율적입니다.
+    3. message를 많이 받지 않는 client도 timeout이 일어날 때마다 주기적으로 서버에 접속하기 때문에, 여전히 비효율적입니다.
 
 
-### 3. WebSocket
+### 3. WebSocket (권장)
 
 ```mermaid
 sequenceDiagram
@@ -280,49 +289,30 @@ loop 새 Message가 있을 때마다
 end
 ```
 
-- WebSocket은 **server와 client 간에 양방향 통신(Full-Duplex)을 가능하게 하는 통신 Protocol**로, Socket Connection을 유지해서 지속적으로 data를 주고받을 수 있습니다.
-    - Socket Connection은 Handshake를 통해 맺어지고, 연결이 끊어질 때까지 유지됩니다.
-    - 전통적인 HTTP 기반 통신 방식에 비해 서버 부하와 지연 시간을 크게 줄일 수 있으며, 주로 Real-Time(실시간) Web Application을 구현하기 위해 사용됩니다.
-        - HTTP 통신을 사용하는 Polling이나 Long Polling보다 양방향 data 교환에 있어서 더 효율적입니다.
+- WebSocket은 **server와 client 간에 양방향 통신(Full-Duplex)을 가능하게 하는 통신 Protocol**로, 연결(connection)을 유지해서 지속적으로 data를 주고받을 수 있습니다.
+    - **WebSocket의 연결은 영구적**이기 때문에, message를 전송할 때 매번 새롭게 연결을 맺을 필요가 없어 빠르고 효율적입니다.
+    - WebSocket 연결은 client의 HTTP 요청을 통해 시작되며, 특정 **Handshake 절차를 거쳐 HTTP 연결이 WebSocket 연결로 upgrade**됩니다.
+        - HTTP 연결은 처음 접속 확립에만 사용되고, 일정 시간이 지나면 자동으로 끊어집니다.
+    - WebSocket 연결 후의 통신은 독자적인 WebSocket Protocol로만 이루어집니다.
 
-- WebSocket Protocol은 TCP Socket과 이름만 유사할 뿐 browser의 Socket이며, HTTP와 동일한 Application Layer(application 계층)에 위치합니다.
+- WebSocket은 전통적인 HTTP 기반 통신 방식에 비해 server 부하와 지연 시간을 크게 줄일 수 있으며, 주로 **Real-Time(실시간) Web Application을 구현하기 위해 사용**됩니다.
+    - WebSocket Protocol의 header는 HTTP의 header보다 작고 가벼워서, 더 비용(overhead)으로 통신할 수 있습니다.
+    - HTTP 통신을 사용하는 **Polling이나 Long Polling보다 WebSocket이 양방향 data 교환에 있어서 더 효율적**입니다.
+
+- WebSocket은 **상태 유지(Stateful) 통신을 제공**하며, 한 번 연결되면 해당 connection line을 사용하여 양방향으로 data를 주고받을 수 있습니다.
+    - 기존의 HTTP 통신은 client가 server에 요청을 보내고 server가 응답하는 단방향 통신이었으며, 이는 상태를 유지하지 않는(Stateless) 특성 때문에 연속된 data의 실시간 update에 한계가 있었습니다.
+
+- WebSocket은 **HTTP가 사용하는 기본 port number(80 or 443)를 그대로 사용**하기 때문에, 방화벽이 있는 환경에서도 문제 없이 동작합니다.
+    - 평문 message 전송 방식이므로, SSL/TLS 보안 계층으로 암호화해야 data 탈취를 방지할 수 있습니다.
+
+- 양방향 통신이 가능하기에, **수신 client 뿐만 아니라 송신 client에서도 사용**할 수 있습니다.
+    - data의 송신과 수신에 connection을 각각 맺을 필요가 없어, 하나의 connection으로 data를 송신하고 수신할 수 있습니다.
+    - message를 보낼 때와 받을 때 모두 같은 Protocol을 사용할 수 있게 되므로, 구현이 단순하고 직관적이게 됩니다.
+
+- WebSocket Protocol은 TCP Socket과 이름만 유사할 뿐 browser의 Socket이며, HTTP와 동일한 Application Layer(Application 계층)에 위치합니다.
     - 또한 TCP의 양방향 전이중 통신을 사용하기 때문에 Transport Layer(전송 계층)에 의존하고 있기도 합니다.
 
-- WebSocket은 상태 유지(Stateful) 통신을 제공하며, 한 번 연결되면 해당 connection line을 사용하여 양방향으로 데이터를 주고받을 수 있습니다.
-    - 기존의 HTTP 통신은 클라이언트가 서버에 요청을 보내고 서버가 응답하는 단방향 통신이었으며, 이는 상태를 유지하지 않는(Stateless) 특성 때문에 연속된 data의 실시간 update에 한계가 있었습니다.
-    
-- 웹소켓 연결은 처음에는 클라이언트가 HTTP 연결을 통해 시작되며, 특정 Handshake 절차를 거쳐 WebSocket 연결로 upgrade됩니다.
-    - WebSocket Protocol은 접속 확립에 HTTP를 사용하지만, 그 후의 통신은 WebSocket 독자적인 프로토콜로 이루어집니다.
-    - 만약 연결이 정상적으로 이루어 진다면 서버와 클라이언트 간에 WebSocket연결이 이루어지고 일정 시간이 지나면 HTTP연결은 자동으로 끊어집니다.
-    - 웹소켓(Web Socket) 프로토콜은 HTTP와는 다른 통신 프로토콜로 웹 서버와 웹 브라우저가 서로 실시간 메시지를 교환하는 데에 사용된다.
-    - 웹소켓 연결을 맺기 위한 첫 번째 핸드셰이크를 주고받은 이후 지속적으로 연결이 유지되는 것이 특징이며, 매번 메시지 전송 시에 새롭게 연결을 맺을 필요가 없어 빠르고 효율적이다. 
-        - 이렇게 한번 연결된 연결은 영구적이며, 양방향 통신이 가능하다.
-        - 또한 웹 소켓은 HTTP 프로토콜이 사용하는 기본 포트번호를 그대로 사용하기에, 방화벽이 있는 환경에서도 일반적으로 잘 동작한다.
-
-- 이 과정을 통해 얻어지는 연결은 영구적이며, 양방향 통신을 가능하게 합니다.
-- 또한, 웹소켓은 HTTP와 같은 포트(80 혹은 443)를 사용하기 때문에, 방화벽이 있는 환경에서도 문제없이 동작합니다.
-    - 그리고 평문 메시지 전송 방식이므로, SSL/TLS 보안 계층으로 암호화되어야 데이터 탈취를 방지할 수 있다. 
-
-- 웹소켓 프로토콜은 HTTP와 다르게 독자적인 프로토콜로 통신하며, 헤더가 상당히 작아 오버헤드가 적다는 특징을 가집니다.
-- 이러한 특성은 장시간 동안의 연결을 전제로 하기 때문에, 연결된 상태에서는 클라이언트나 서버로부터 언제든지 데이터 송신이 가능하며, 데이터의 송수신에 별도의 연결 설정이 필요 없습니다.
-- 이는 양방향 통신, 실시간 네트워킹을 가능하게 하며, 통신의 효율성과 속도를 크게 개선합니다.
-- 더불어 데이터의 송신과 수신에 각각 커넥션을 맺을 필요가 없어 하나의 커넥션으로 데이터를 송수신 할 수 있다. 
-
-- 웹소켓은 현재 인터넷 환경, 특히 HTML5에서 큰 역할을 하며, 웹소켓을 지원하는 브라우저는 이 프로토콜을 통해 서버와 실시간으로 통신할 수 있습니다.
-- W3C와 IETF에 의해 표준화된 이 기술은 웹 개발에서 중요한 위치를 차지하고 있으며, 실시간 데이터 교환의 필요성이 점점 증가함에 따라 그 중요성이 더욱 커지고 있습니다.
-
-- 웹 소켓의 경우 양방향 통신이 가능하기에, 메시지를 수신하는 데서만 사용하는 것이 아닌 메시지를 전송하는데서도 사용할 수 있다.
-    - 이는 메시지를 보낼 때나 받을 때나 같은 프로토콜을 사용할 수 있게 되므로, 구현이 단순해지고 직관적이게 된다.
-
-
-
-
-
-
-
-
-    - HTTP 사용시 필요없이 발생되는 HTTP와 TCP연결 트래픽을 피할 수 있다.
-
+- 유의할 점은 WebSocket 연결은 항구적으로 유지되어야 하기 때문에, server 측에서 연결 관리를 효율적으로 해야 한다는 점입니다.
 
 
 
@@ -332,10 +322,10 @@ end
 
 
 
-## Database 설계
+## Chatting Message 저장소 설계
 
-
-### Database 종류
+- chatting 이력(history)은 key-value 저장소(store)에 보관합니다.
+    - system에 접속한 사용자는 이전 chatting 이력을 전부 볼 수 있어야 하기 때문입니다.
 
 
 ### Data Model
