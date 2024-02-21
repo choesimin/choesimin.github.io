@@ -86,7 +86,7 @@ end
 | --- | --- |
 | 장애 내용 | 사용자 결제 불가 (10:00 ~ 11:00, 1시간) |
 | 장애 영향 | 장애 중 결제 시도 100건 -> 1시간 후 결제 비율 10% (평균 50%) |
-| 장애 원인 | server 쪽 결제 module 변셩 시 module interface의 함수를 수정했으나,<br>front에서는 기존 함수를 호출하여 오류 발생 |
+| 장애 원인 | server 쪽 결제 module 변경 시 module interface의 함수를 수정했으나,<br>front에서는 기존 함수를 호출하여 오류 발생 |
 | 조치 상황 | server 쪽의 바뀐 함수를 호출하도록 front code 수정 |
 | 조치 결과 | 결제 기능 정상 작동 |
 | 핵심 원인 | server 쪽과 front 쪽 communication 단절 |

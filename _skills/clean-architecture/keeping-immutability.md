@@ -78,7 +78,7 @@ date: 2023-11-16
 (pringln (take 25 (map (fm [x] (* x x)) (range))))
 ```
 
-### 객체 지향 언어 : 불변셩을 유지하지 못하는 경우
+### 객체 지향 언어 : 불변성을 유지하지 못하는 경우
 
 - Java program은 가변 변수(mutable variable)를 사용합니다.
 - 가변 변수는 program 실행 중에 상태가 변할 수 있습니다.
