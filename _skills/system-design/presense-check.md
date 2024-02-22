@@ -42,7 +42,7 @@ user <-->|1. WebSocket Connection| server -->|2. Update User to Online| store
 {
     "user_id": {
         "status": "online",    // online으로 갱신
-        "last_active_at": "2024-02-21 10:21:39",    // timestamp
+        "last_active_at": "2024-02-21 10:21:39",    // 현재 시간으로 갱신
     }
 }
 ```
@@ -61,6 +61,15 @@ presense_server[접속 상태 Server]
 store[(Key-Value 저장소)]
 
 user -->|1. Logout| api_server --> presense_server -->|2. Update User to Offline| store
+```
+
+```json
+{
+    "user_id": {
+        "status": "offline",    // offline으로 갱신
+        "last_active_at": "2024-02-21 10:21:39",    // 갱신하지 않음
+    }
+}
 ```
 
 

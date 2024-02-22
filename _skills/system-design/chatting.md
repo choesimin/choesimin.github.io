@@ -12,13 +12,13 @@ date: 2024-02-22
     - 대표적인 text chatting service로 KakaoTalk, Line, Slack, Facebook messenger 등이 있습니다.
 
 - chatting system은 Chatting Service, API Service, Third-Party Service로 이루어집니다.
-    1. Chatting Service는 'client 간의 통신'과 'message 저장' 등의 기능을 제공합니다.
-        - 이 중 client 간의 통신을 위해 client와 server 사이의 연결을 유지하는 것은 상태 유지(stateful) service입니다.
-    2. API Service는 'Login/Logout', '회원 가입', '사용자 Profile 표시', 'Service 탐색' 등의 무상태(stateless) service 기능을 제공합니다.
+    1. **Chatting Service**는 'client 간의 통신'과 'message 저장' 등의 기능을 제공합니다.
+        - 이 중 client 간의 통신은 실시간 data 교환을 위해 client와 server 사이의 연결을 유지하기 때문에 **상태 유지(stateful) service**입니다.
+    2. **API Service**는 'Login/Logout', '회원 가입', '사용자 Profile 표시', 'Service 탐색' 등의 무상태(stateless) service 기능을 제공합니다.
         - Service 탐색(service discovery)은 client가 접속할 chatting server의 DNS hostname을 client에게 알려주는 역할을 합니다.
             - client의 geographical location(위치), server의 capacity(용량) 등을 기준으로 client에게 가장 적합한 chatting server를 추천해줍니다.
             - client는 해당 chatting server에 연결되어 message를 송수신합니다.
-    3. Third-Party Service는 'message push 알림' 등의 추가적인 기능을 제공합니다.
+    3. **Third-Party Service**는 'message push 알림' 등의 추가적인 기능을 제공합니다.
         - 수신자가 미접속 중일 때 message에 대해 push 알림을 보내야 합니다.
 
 ```mermaid
@@ -201,8 +201,10 @@ message_sync_queue --> recipient
 - 따라서 송신 client가 message를 chatting server에 보낼 때에는 일반적인 HTTP 통신을 사용할 수 있습니다.
     - 송신 client가 server에게 요청하는 것이기 때문에 일반적인 application과 비슷합니다.
 
-- 그러나 "**client가 server로부터 message를 수신**하는 것(server에서 수신 client로 message를 전송하는 것)"은 **일반적인 HTTP 통신만으로 구현할 수 없습니다.**
+- 그러나 **수신 client와 server와의 관계는 일반적인 HTTP 통신만으로 구현할 수 없습니다.**
     - HTTP 통신의 '상태를 유지하지 않는(Stateless) 특성' 때문에 연속된 data의 실시간 갱신에 한계가 있기 때문입니다.
+        - 수신 client는 server로부터 message를 실시간으로 수신합니다.
+            - = server에서 수신 client로 message를 실시간으로 전송합니다.
     - 새로운 message 송신 요청을 받으면, chatting server는 임의 시점에 **수신 client에게 상태 변경(data update)을 요청**해야 합니다.
         - 이는 client가 server에 요청하던 **일반적인 HTTP의 통신 방향에 반대되는 요청**입니다.
 
