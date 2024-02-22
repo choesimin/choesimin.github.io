@@ -114,15 +114,25 @@ if_online -->|미접속| push_notification_service
 chatting_server_2 -->|6| recipient
 ```
 
-1. `송신 Client`가 `Chatting Server 1`로 message를 전송합니다.
-2. `Chatting Server 1`은 `ID 생성기`를 사용해 'message ID'를 결정합니다.
-3. 해당 message를 `Message 동기화 Queue`로 전송합니다.
+1. **`송신 Client`가 `Chatting Server 1`로 message를 전송합니다.**
+
+2. **`Chatting Server 1`은 `ID 생성기`를 사용해 'message ID'를 결정합니다.**
+    - `ID 생성기`는 sequencial하게(시간 순서대로) 채번된 식별값을 각 message에 순차적으로 배정하기 위해 사용합니다.
+        - message를 저장할 key-value 저장소에는 RDBMS의 `auto_increment`가 없습니다.
+    - 그리고 이런 식으로 ID를 생성하는 기능이 분리되어 있으면, service 확장을 위한 server 다중화 작업이 더 쉬워집니다.
+    - 하지만 message의 식별값을 만들기 위해 반드시 외부의 ID 생성 기능을 사용해야 하는 것은 아니기 때문에, `ID 생성기`를 통한 ID 생성은 필요에 따라 선택적으로 적용합니다.
+
+3. **해당 message를 `Message 동기화 Queue`로 전송합니다.**
     - `Message 동기화 Queue`는 message 수신함과 비슷합니다.
-4. message를 `Key-Value 저장소`에 보관합니다.
-5. `수신 Client`의 접속 여부에 따라 message 전송 방식을 결정하고 처리합니다.
+    - message 수신에 관련된 server와 service는 `Message 동기화 Queue`만 바라보면 됩니다.
+
+4. **message를 `Key-Value 저장소`에 보관합니다.**
+
+5. **`수신 Client`의 접속 여부에 따라 message 전송 방식을 결정하고 처리합니다.**
     - `수신 Client`가 접속 중인 경우, `수신 Client`가 사용 중인 `Chatting Server 2`로 message를 전송합니다.
     - `수신 Client`가 접속 중이 아닌 경우, `Push 알림 Service`로 message를 전송합니다.
-6. `수신 Client`와 `Chatting Server 2` 사이에 연결된 WebSocket을 통해 message를 전송합니다.
+
+6. **`수신 Client`와 `Chatting Server 2` 사이에 연결된 WebSocket을 통해 message를 전송합니다.**
 
 
 ### Group Chatting Message 처리 흐름
@@ -191,17 +201,20 @@ message_sync_queue --> recipient
 - 따라서 송신 client가 message를 chatting server에 보낼 때에는 일반적인 HTTP 통신을 사용할 수 있습니다.
     - 송신 client가 server에게 요청하는 것이기 때문에 일반적인 application과 비슷합니다.
 
-- 그러나 **server에서 수신 client로 message를 전송**하는 것은 일반적인 HTTP 통신만으로 구현할 수 없습니다.
-    - HTTP 통신의 상태를 유지하지 않는(Stateless) 특성 때문에 연속된 data의 실시간 갱신에 한계가 있기 때문입니다.
-    - 새로운 message 송신 요청을 받으면, **chatting server는 임의 시점에 수신 client에게 상태 변경(data update)을 요청**해야 합니다.
-        - 이는 client가 server에 요청하던 일반적인 HTTP 사용 방식과 차이가 있습니다.
-    - server가 수많은 client 중 임의의 client를 찾아서 요청하는 것은 어렵고 비효율적이기 때문에, **client가 server에 요청하면 client와 server 간의 network 연결(connection)을 끊지 않고 유지하는 방식을 사용**합니다.
-        - server는 client와 server 사이에 유지되고 있는 connection을 통해 원하는 시점에 client에게 data를 전달할 수 있습니다.
+- 그러나 "**client가 server로부터 message를 수신**하는 것(server에서 수신 client로 message를 전송하는 것)"은 **일반적인 HTTP 통신만으로 구현할 수 없습니다.**
+    - HTTP 통신의 '상태를 유지하지 않는(Stateless) 특성' 때문에 연속된 data의 실시간 갱신에 한계가 있기 때문입니다.
+    - 새로운 message 송신 요청을 받으면, chatting server는 임의 시점에 **수신 client에게 상태 변경(data update)을 요청**해야 합니다.
+        - 이는 client가 server에 요청하던 **일반적인 HTTP의 통신 방향에 반대되는 요청**입니다.
+
+- 이를 해결하기 위해 client와 server 간의 **network 연결(connection)을 끊지 않고 유지하는 방식**(WebSocket)을 사용합니다.
+    - 또는 실제로 연결은 끊어지지만, **지속적으로 요청하여 끊어지지 않은 것처럼 보이게 하는 기법**(Polling, Long Polling)을 사용합니다.
+    - server는 client와 server 사이에 유지되고 있는 connection line을 통해 원하는 시점에 client에게 data를 전달할 수 있습니다.
+        - server가 수많은 client 중 특정 client를 찾아서 연결을 만들고 요청하는 것은 어렵고 비효율적입니다.
 
 - server가 수신 client에 message를 보내기 위해서 client와 server 간의 연결을 유지할  임의 시점에 server가 연결을 만들 수 있는 방법엔 크게 3가지가 있습니다.
-    1. Polling : 주기적으로 server에 data를 요청하는 방식.
-    2. Long Polling : server에 새로운 data가 생길 때까지 요청을 유지하는 방식.
-    3. WebSocket : 양방향 통신을 가능하게 하는 protocol로, 실시간 data 교환에 최적화되어 있음.
+    1. Polling : 주기적으로 server에 data를 요청하는 방식입니다.
+    2. Long Polling : server에 새로운 data가 생길 때까지 요청을 유지하는 방식입니다.
+    3. WebSocket : 양방향 통신을 가능하게 하는 protocol로, 실시간 data 교환에 최적화되어 있습니다.
 
 - chatting server과 client 간의 통신에는 **WebSocket Protocol을 권장**합니다.
 
@@ -231,7 +244,7 @@ end
     - HTTP를 사용합니다.
 
 - Polling은 구현이 간단하지만, **server에 불필요한 부하**를 줄 수 있고, **data을 실시간으로 갱신하는 데에 한계**가 있습니다.
-    - Polling 주기를 짧게 하여 요청을 자주할수록, network 통신 비용이 올라갑니다.
+    - Polling 주기를 짧게 하여 요청을 자주 할수록, network 통신 비용이 올라갑니다.
         - 또한 동기화할 필요가 없는 경우에도 요청하기 때문에, server 자원이 불필요하게 낭비됩니다.
     - Polling의 주기를 길게 하는 경우, 실시간성에 위배됩니다.
 
@@ -247,7 +260,7 @@ participant s as Server
 loop 연결을 종료할 때마다 실행
     c ->> s : 새 Message가 있습니까?
     activate s
-    note over c, s : 새 Message 대기
+    note over c, s : 새 Message 대기<br>.<br>.<br>.
     alt 예
         s -->> c : 새 Message 반환
     else TimeOut
@@ -258,7 +271,7 @@ loop 연결을 종료할 때마다 실행
 end
 ```
 
-- Long Polling은 Polling의 효율성, 실시간성에 대한 한계를 극복하기 위한 방법입니다.
+- Long Polling은 **Polling의 효율성, 실시간성에 대한 한계를 극복하기 위한 방법**입니다.
     - 일반 Polling과 마찬가지로 HTTP를 사용합니다.
 
 - Long Polling 방식에서 client는 **새 message가 반환되거나 timeout될 때까지 연결을 유지**합니다.
@@ -267,11 +280,9 @@ end
     - **connection timeout이 발생하면** client는 즉시 새로운 요청을 보내어 연결을 유지합니다.
 
 - Long Polling은 data가 존재할 때만 통신을 하므로 일반 Polling보다 효율적이지만, 몇 가지 단점이 있습니다.
-    1. message를 보내는 client와 수신하는 client가 같은 chatting server에 접속하게 되지 않을 수도 있습니다.
-        - load balancing을 위해 round robin algorithm을 사용하는 경우, message를 받은 server는 해당 message를 수신할 client와의 Long Polling 연결을 가지고 있지 않은 server일 수도 있습니다.
-    2. server 입장에서는 client가 연결을 해제했는지 해제하지 않았는지 알 수 있는 방법이 없습니다.
+    1. server 입장에서는 client가 연결을 해제했는지 해제하지 않았는지 알 수 있는 방법이 없습니다.
         - HTTP을 사용하기 때문에 연결의 주체가 client이기 때문입니다.
-    3. message를 많이 받지 않는 client도 timeout이 일어날 때마다 주기적으로 서버에 접속하기 때문에, 여전히 비효율적입니다.
+    2. message를 많이 받지 않는 client도 timeout이 일어날 때마다 주기적으로 서버에 접속하기 때문에, 여전히 비효율적입니다.
 
 
 ### 3. WebSocket (권장)
@@ -283,15 +294,13 @@ actor c as Client
 participant s as Server
 
 c ->> s : HandShake
-s ->> c : HandShake
+s -->> c : HandShake
+
+note over c, s : Protocol Upgrade<br>(HTTP -> WebSocket)
 
 loop WebSocket 양방향 통신
-    s ->> c : Message
-    Note left of s : 수신 Message가 있을 때
-    opt
-        c ->> s : Message
-        Note right of c : Message 송신
-    end
+    s -) c : (수신 Message가 있을 때마다) Message 전달
+    c -) s : (Client의 Message 전송 요청) Message 송신
 end
 ```
 
@@ -321,8 +330,8 @@ end
 1. 사용자 Profile, 설정, 친구 목록 등의 **일반적인 data**는 안정성을 보장하는 **관계형 database**에 보관합니다.
 
 2. chatting system에 고유한 **chat history(대화 이력) data**는 **key-value 저장소**에 보관합니다.
-    - chatting 이력 저장소로는 **수평적 규모 확장**이 쉽고, **data 접근 지연 시간이 낮은** key-value 저장소가 적합합니다.
-        - chatting 이력은 data 양이 엄청나게 많습니다.
+    - chat history 저장소로는 **수평적 규모 확장**이 쉽고, **data 접근 지연 시간이 낮은** key-value 저장소가 적합합니다.
+        - chat history은 data 양이 엄청나게 많습니다.
             - e.g., Facebook, WhatsApp은 매일 600억 개의 message를 처리합니다.
         - 최근에 주고받은 message만 빈번하게 사용됩니다.
         - 검색, 언급(mention) 등의 기능으로 특정 message로 이동하는 무작위적인 data 접근이 많습니다.
@@ -380,13 +389,13 @@ group_message {
 ```sql
 -- 1:1 Chatting
 SELECT * FROM message
-WHERE message_id > @cur_max_message_id;
+WHERE message_id > [cur_max_message_id];
 
 -- Group Chatting
 SELECT * FROM group_message
-WHERE group_id = @group_id AND message_id > @cur_max_message_id;
+WHERE group_id = [group_id] AND message_id > [cur_max_message_id];
 
--- chatting 이력은 key-value 저장소에 보관하지만, 조회 예시는 가독성을 위해 query로 작성함
+-- chat history는 key-value 저장소에 보관하지만, 조회 예시는 가독성을 위해 query로 작성함
 ```
 
 1. 사용자의 단말기는 `cur_max_message_id`라는 **가장 최신 `message_id`를 추적하는 변수**를 유지 관리합니다.
