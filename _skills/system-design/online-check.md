@@ -33,7 +33,7 @@ flowchart LR
 
 user([사용자])
 server[[접속 상태 Server]]
-store([Key-Value 저장소])
+store[(Key-Value 저장소)]
 
 user <-->|WebSocket Connection| server --> store
 ```
