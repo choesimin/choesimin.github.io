@@ -1,7 +1,7 @@
 ---
 layout: skill
 title: Text Chatting System 설계
-date: 2024-02-19
+date: 2024-02-22
 ---
 
 
@@ -27,9 +27,18 @@ title : 전체 구조
 ---
 flowchart TD
 
-stateless -.- stateful -.- third_party
+stateful -.- stateless -.- third_party
 
-subgraph stateless[Stateless : 무상태]
+subgraph stateful[상태 유지 Chatting Service]
+    chatting[[Chatting Service]]
+    sender([송신 Client])
+    recipient([수신 Client])
+
+    chatting <-->|WebSocket| sender
+    chatting <-->|WebSocket| recipient
+end
+
+subgraph stateless[무상태 API Service]
     client([Client])
     lb[/Load Balancer\]
     auth[사용자 인증]
@@ -44,16 +53,7 @@ subgraph stateless[Stateless : 무상태]
     lb --> discovery
 end
 
-subgraph stateful[Stateful : 상태 유지]
-    chatting[[Chatting Service]]
-    sender([송신 Client])
-    recipient([수신 Client])
-
-    chatting <-->|WebSocket| sender
-    chatting <-->|WebSocket| recipient
-end
-
-subgraph third_party[Third Party : 제 3자 Service 연동]
+subgraph third_party[제 3자 Service 연동]
     push[Push 알림]
 end
 ```
@@ -96,7 +96,7 @@ chatting_server_1[Chatting Server 1]
 chatting_server_2[Chatting Server 2]
 message_sync_queue>Message 동기화 Queue]
 
-key_value_storage[(Key-Value 저장소)]
+key_value_store[(Key-Value 저장소)]
 id_generator[Message ID 생성기]
 push_notification_service[Push 알림 Service]
 
@@ -107,7 +107,7 @@ sender -->|1| chatting_server_1
 chatting_server_1 -->|2| id_generator
 id_generator --> chatting_server_1
 chatting_server_1 -->|3| message_sync_queue
-message_sync_queue -->|4| key_value_storage
+message_sync_queue -->|4| key_value_store
 message_sync_queue -->|5| if_online
 if_online -->|접속| chatting_server_2
 if_online -->|미접속| push_notification_service
@@ -117,6 +117,7 @@ chatting_server_2 -->|6| recipient
 1. `송신 Client`가 `Chatting Server 1`로 message를 전송합니다.
 2. `Chatting Server 1`은 `ID 생성기`를 사용해 'message ID'를 결정합니다.
 3. 해당 message를 `Message 동기화 Queue`로 전송합니다.
+    - `Message 동기화 Queue`는 message 수신함과 비슷합니다.
 4. message를 `Key-Value 저장소`에 보관합니다.
 5. `수신 Client`의 접속 여부에 따라 message 전송 방식을 결정하고 처리합니다.
     - `수신 Client`가 접속 중인 경우, `수신 Client`가 사용 중인 `Chatting Server 2`로 message를 전송합니다.
@@ -182,7 +183,7 @@ message_sync_queue --> recipient
 
 
 
-## Client ~ Chatting Server : 연결 유지하기
+## Client와 Chatting Server 간의 연결 유지하기
 
 - **HTTP**는 Request/Response 기반의 Stateless Protocol이며, **client가 server와의 연결을 생성하는** 가장 대중적인 통신 방식입니다.
     - 대부분의 client/server application은 **client가 server에 요청을 보내고 server가 응답**하는 단방향의 HTTP 통신으로도 충분합니다.
@@ -281,39 +282,30 @@ sequenceDiagram
 actor c as Client
 participant s as Server
 
-c ->> s : HTTP Handshake
-s ->> c : ACK(acknowledgement)
+c ->> s : HandShake
+s ->> c : HandShake
 
-loop 새 Message가 있을 때마다
-    c --> s : Message 양방향 전송
+loop WebSocket 양방향 통신
+    s ->> c : Message
+    Note left of s : 수신 Message가 있을 때
+    opt
+        c ->> s : Message
+        Note right of c : Message 송신
+    end
 end
 ```
 
-- WebSocket은 **server와 client 간에 양방향 통신(Full-Duplex)을 가능하게 하는 통신 Protocol**로, 연결(connection)을 유지해서 지속적으로 data를 주고받을 수 있습니다.
-    - **WebSocket의 연결은 영구적**이기 때문에, message를 전송할 때 매번 새롭게 연결을 맺을 필요가 없어 빠르고 효율적입니다.
-    - WebSocket 연결은 client의 HTTP 요청을 통해 시작되며, 특정 **Handshake 절차를 거쳐 HTTP 연결이 WebSocket 연결로 upgrade**됩니다.
-        - HTTP 연결은 처음 접속 확립에만 사용되고, 일정 시간이 지나면 자동으로 끊어집니다.
-    - WebSocket 연결 후의 통신은 독자적인 WebSocket Protocol로만 이루어집니다.
-
-- WebSocket은 전통적인 HTTP 기반 통신 방식에 비해 server 부하와 지연 시간을 크게 줄일 수 있으며, 주로 **Real-Time(실시간) Web Application을 구현하기 위해 사용**됩니다.
-    - WebSocket Protocol의 header는 HTTP의 header보다 작고 가벼워서, 더 비용(overhead)으로 통신할 수 있습니다.
-    - HTTP 통신을 사용하는 **Polling이나 Long Polling보다 WebSocket이 양방향 data 교환에 있어서 더 효율적**입니다.
+- WebSocket은 server와 client 간에 **양방향 통신**을 가능하게 하는 통신 Protocol로, 연결(connection)을 유지해서 지속적인 통신을 가능하게 합니다.
+    - WebSocket은 주로 **Real-Time(실시간) Web Application을 구현하기 위해 사용**됩니다.
 
 - WebSocket은 **상태 유지(Stateful) 통신을 제공**하며, 한 번 연결되면 해당 connection line을 사용하여 양방향으로 data를 주고받을 수 있습니다.
-    - 기존의 HTTP 통신은 client가 server에 요청을 보내고 server가 응답하는 단방향 통신이었으며, 이는 상태를 유지하지 않는(Stateless) 특성 때문에 연속된 data의 실시간 update에 한계가 있었습니다.
-
-- WebSocket은 **HTTP가 사용하는 기본 port number(80 or 443)를 그대로 사용**하기 때문에, 방화벽이 있는 환경에서도 문제 없이 동작합니다.
-    - 평문 message 전송 방식이므로, SSL/TLS 보안 계층으로 암호화해야 data 탈취를 방지할 수 있습니다.
+    - 양방향 data 교환에 있어서, **HTTP 통신(Polling, Long Polling)보다 WebSocket이 더 효율적**입니다.
+        - HTTP 통신은 client가 server에 요청을 보내고 server가 응답하는 단방향 통신이며, 상태를 유지하지 않는(Stateless) 특성 때문에 연속된 data의 실시간 update에 한계가 있습니다.
 
 - 양방향 통신이 가능하기에, **수신 client 뿐만 아니라 송신 client에서도 사용**할 수 있습니다.
     - data의 송신과 수신에 connection을 각각 맺을 필요가 없어, 하나의 connection으로 data를 송신하고 수신할 수 있습니다.
     - message를 보낼 때와 받을 때 모두 같은 Protocol을 사용할 수 있게 되므로, 구현이 단순하고 직관적이게 됩니다.
 
-- WebSocket Protocol은 TCP Socket과 이름만 유사할 뿐 browser의 Socket이며, HTTP와 동일한 Application Layer(Application 계층)에 위치합니다.
-    - 또한 TCP의 양방향 전이중 통신을 사용하기 때문에 Transport Layer(전송 계층)에 의존하고 있기도 합니다.
-
-- 유의할 점은 WebSocket 연결은 항구적으로 유지되어야 하기 때문에, server 측에서 연결 관리를 효율적으로 해야 한다는 점입니다.
-
 
 
 
@@ -322,28 +314,99 @@ end
 
 
 
-## Chatting Message 저장소 설계
+## Chatting System Database
 
-- chatting 이력(history)은 key-value 저장소(store)에 보관합니다.
-    - system에 접속한 사용자는 이전 chatting 이력을 전부 볼 수 있어야 하기 때문입니다.
+- chatting system의 data 형태는 2가지이며, data의 유형과 읽기/쓰기 연산 pattern을 기반으로 database를 결정합니다.
+
+1. 사용자 Profile, 설정, 친구 목록 등의 **일반적인 data**는 안정성을 보장하는 **관계형 database**에 보관합니다.
+
+2. chatting system에 고유한 **chat history(대화 이력) data**는 **key-value 저장소**에 보관합니다.
+    - chatting 이력 저장소로는 **수평적 규모 확장**이 쉽고, **data 접근 지연 시간이 낮은** key-value 저장소가 적합합니다.
+        - chatting 이력은 data 양이 엄청나게 많습니다.
+            - e.g., Facebook, WhatsApp은 매일 600억 개의 message를 처리합니다.
+        - 최근에 주고받은 message만 빈번하게 사용됩니다.
+        - 검색, 언급(mention) 등의 기능으로 특정 message로 이동하는 무작위적인 data 접근이 많습니다.
+        - 쓰기와 읽기가 1:1 비율입니다.
+    - 관계형 database는 index가 커지면 무작위적 접근을 처리하는 비용이 늘어나고, 'Long Tail'에 해당하는 data 조회에 한계가 있습니다.
+    - e.g., Facebook(Hbase), Discord(Cassandra) 등, 이미 많은 안정적인 chatting system이 key-value 저장소를 채택하였습니다. 
 
 
-### Data Model
+### Chatting Message Data Model
 
-#### Message의 식별값 : `message_id`
+```mermaid
+erDiagram
 
+message {
+    bigint message_id PK
+    bigint message_from
+    bigint message_to
+    text content
+    timestamp created_at
+}
+
+group_message {
+    bigint group_id PK
+    bigint message_id PK
+    bigint message_to
+    text content
+    timestamp created_at
+}
+```
+
+- 1:1 chatting(`message`)에서는 `message_id`를 Primary Key로 사용합니다.
+    - `message_id`는 message 순서를 쉽게 정할 수 있도록 하는 역할도 담당합니다.
+    - 서로 다른 두 message가 동시에 만들어질 수도 있기 때문에, `created_at`을 사용하여 message 순서를 정할 수는 없습니다.
+
+- group chatting(`group_message`)에서는 (`message_id`, `group_id`)의 복합 Key(Composite Key)를 Primary Key로 사용합니다.
+    - 'channel'은 'chatting group'을 의미합니다.
+    - `chennal_id`는 Partition Key로도 사용합니다.
+        - group chatting에 적용될 모든 질의는 특정 channel을 대상으로 할 것이기 때문입니다.
+
+
+#### `message_id` : Sequencial Primary Key
+
+- **message의 고유한 식별값**(`message_id`)은 정렬 가능해야 하며 **시간 순서와 일치**해야 합니다.
+    - message 조회 및 동기화 시의 편의를 위해 새로운 ID는 이전 ID보다 큰 값이어야 합니다.
+
+- RDBMS에서는 `auto_increment`가 대안이 될 수 있지만, NoSQL은 보통 해당 기능을 제공하지 않습니다.
+
+- 따라서 Snowflake 같은 전역적 64-bit 순서 번호 생성기(global sequence number generator)로 **시간 순서의 고유한 sequence를 발급받아 `message_id`에 사용**합니다.
+    - ID 유일성은 같은 group 안에서만 보증하면 충분하기 때문에, local sequence number generator(지역적 순서 번호 생성기)를 사용해도 됩니다.
+        - message 사이의 순서는 같은 channel, 혹은 같은 1:1 chatting session 안에서만 유지되면 충분합니다.
+
+
+#### 사용자 단말기에 없는 Message를 조회하여 동기화하기
+
+```sql
+-- 1:1 Chatting
+SELECT * FROM message
+WHERE message_id > @cur_max_message_id;
+
+-- Group Chatting
+SELECT * FROM group_message
+WHERE group_id = @group_id AND message_id > @cur_max_message_id;
+
+-- chatting 이력은 key-value 저장소에 보관하지만, 조회 예시는 가독성을 위해 query로 작성함
+```
+
+1. 사용자의 단말기는 `cur_max_message_id`라는 **가장 최신 `message_id`를 추적하는 변수**를 유지 관리합니다.
+    - 사용자 단말기는 Phone, Laptop 등의 client를 의미합니다.
+
+2. **client의 `cur_max_message_id` 값**과 **DB의 `message_id`** 값을 비교하여, 단말기에 없는 message를 key-value 저장소에서 조회합니다.
+    - `cur_max_message_id`보다 큰 `message_id`를 가진 message들을 조회합니다.
+    - e.g., `message_id > cur_max_message_id`.
+
+3. 조회 결과를 사용자의 단말기에 보관하고, `cur_max_message_id`를 최신 `message_id`로 갱신합니다.
 
 
 
 
 ---
-
-
 
 
 
 
 ## Reference
 
+- 가상 면접 사례로 배우는 대규모 시스템 설계 기초 (도서) - Alex Xu, 이병준
 - <https://jjingho.tistory.com/161>
-

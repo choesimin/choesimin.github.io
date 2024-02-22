@@ -33,7 +33,7 @@ layout: skill
         ```
     - ORDER BY 함수를 사용할 때 많이 사용함
         ```sql
-        ORDER BY $ {columnName}
+        ORDER BY ${columnName}
         ```
     - SQL Injection 같은 문제에 취약함
 
