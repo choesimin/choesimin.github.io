@@ -69,12 +69,17 @@ sequenceDiagram
 
 actor c as Client
 participant s as Server
+participant kv as Key-Value 저장소
 
 c ->> s : 박동 Event
-note right of s : 박동 Event 수신<br>online 상태
+note right of s : 박동 Event 수신<br>Online 상태
+s ->> kv : last_active_at update
+
 note left of c : 5초 대기
 c ->> s : 박동 Event
-note right of s : 박동 Event 수신<br>online 상태
+note right of s : 박동 Event 수신<br>Online 상태
+s ->> kv : last_active_at update
+
 note left of c : 5초 대기
 c ->> s : 박동 Event
 note left of c : 5초 대기
@@ -83,7 +88,8 @@ note left of c : 5초 대기
 note left of c : 5초 대기
 note left of c : 5초 대기
 note left of c : 5초 대기
-note right of s : 30초간 박동 Event 미수신<br>offline으로 상태 변경
+
+note right of s : 30초간 박동 Event 미수신<br>Offline으로 상태 변경
 ```
 
 
