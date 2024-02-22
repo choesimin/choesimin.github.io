@@ -85,9 +85,14 @@ user -->|1. Logout| api_server --> presense_server -->|2. Update User to Offline
 - internet 연결이 항상 안정적일 수 없기 때문에, 설계할 때에 접속 장애를 함께 고려해야 합니다.
     - 사용자의 internet 연결이 끊어지면 client와 server 사이에 맺어진 WebSocket 같은 지속성 연결도 끊어집니다.
 
-- 불안정한 연결을 보완하기 위해 **주기적으로 박동(heartbeat) event를 발생시키는 방법**을 사용합니다.
-    - **client**는 주기적으로 박동 event를 발생시켜 접속 상태 server로 전송합니다.
-    - **server**는 마지막 event를 받은 지 x초 이내에 또 다른 박동 event를 받는다면 접속 상태를 계속 online으로 유지합니다.
+- 접속 장애에 대응하는 간단한 방법은 "장애 시 사용자를 offline 상태로 표시하고, 연결이 복구되면 online 상태로 변경하는 것"입니다.
+    - 하지만 짧은 시간 동안 internet 연결이 끊어졌다 복구되는 일은 흔하기 때문에, 그때마다 사용자의 접속 상태를 변경하는 것은 지나칩니다.
+        - e.g., elevator를 타거나 차를 타고 tunnel을 지나가면 internet 연결이 잠시 끊어집니다.
+    - 이는 사용자 경험 측면에서도 바람직하지 않습니다.
+
+- 따라서 사용자 경험을 해치지 않으면서 접속 장애에 대응하기 위해, **박동 event(heartbeat event)**를 발생시키는 방법을 사용합니다.
+    1. **client**는 주기적으로 박동 event를 발생시켜 접속 상태 server로 전송합니다.
+    2. **server**는 마지막 event를 받은 지 x초 이내에 또 다른 박동 event를 받는다면 접속 상태를 계속 online으로 유지합니다.
         - **접속 상태 유지** 작업은 key-value 저장소에 보관된 사용자의 **`status`를 'online'으로, `last_active_at`를 현재 시간으로 갱신**하여 처리합니다.
         - 만약 server가 **시간 내에 박동 event를 받지 못한다면, 사용자의 `status`를 'offline'으로** 바꿉니다.
 
