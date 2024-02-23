@@ -132,6 +132,8 @@ chatting_server_2 -->|6| recipient
     - message 수신에 관련된 server와 service는 `Message 동기화 Queue`만 바라보면 됩니다.
 
 4. **message를 `Key-Value 저장소`에 보관합니다.**
+    - chatting message data는 빠르게 늘어나고 읽기/쓰기 작업이 빈번하기 때문에, data 조회/저장 속도와 확장성에 이점이 있는 key-value 저장소에 저장합니다.
+        - 관계형 database model을 사용하지 않는 NoSQL database는 확장성이 좋고, data를 key-value 형태로 저장하는 key-value 저장소는 data 접근이 빠릅니다.
 
 5. **`수신 Client`의 접속 여부에 따라 message 전송 방식을 결정하고 처리합니다.**
     - `수신 Client`가 접속 중인 경우, `수신 Client`가 사용 중인 `Chatting Server 2`로 message를 전송합니다.
@@ -397,7 +399,19 @@ group_message {
 
 #### 사용자 단말기에 없는 Message를 조회하여 동기화하기
 
+```js
+// MongoDB 예시
+
+// 1:1 Chatting
+db.message.find({"message_id": {"$gt": cur_max_message_id}}).sort({"message_id": 1});
+
+// Group Chatting
+db.group_message.find({"channel_id": channel_id, "message_id": {"$gt": cur_max_message_id}}).sort({"message_id": 1});
+```
+
 ```sql
+-- SQL 예시
+
 -- 1:1 Chatting
 SELECT * FROM message
 WHERE message_id > [cur_max_message_id]
@@ -407,8 +421,6 @@ ORDER BY message_id ASC;
 SELECT * FROM group_message
 WHERE channel_id = [channel_id] AND message_id > [cur_max_message_id]
 ORDER BY message_id ASC;
-
--- chat history는 key-value 저장소에 보관하지만, 조회 예시는 가독성을 위해 query로 작성함
 ```
 
 1. 사용자의 단말기는 `cur_max_message_id`라는 **가장 최신 `message_id`를 추적하는 변수**를 유지 관리합니다.
