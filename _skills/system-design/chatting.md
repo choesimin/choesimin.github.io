@@ -213,10 +213,10 @@ message_sync_queue --> recipient
     - server는 client와 server 사이에 유지되고 있는 connection line을 통해 원하는 시점에 client에게 data를 전달할 수 있습니다.
         - server가 수많은 client 중 특정 client를 찾아서 연결을 만들고 요청하는 것은 어렵고 비효율적입니다.
 
-- server가 수신 client에 message를 보내기 위해서 client와 server 간의 연결을 유지할  임의 시점에 server가 연결을 만들 수 있는 방법엔 크게 3가지가 있습니다.
-    1. Polling : 주기적으로 server에 data를 요청하는 방식입니다.
-    2. Long Polling : server에 새로운 data가 생길 때까지 요청을 유지하는 방식입니다.
-    3. WebSocket : 양방향 통신을 가능하게 하는 protocol로, 실시간 data 교환에 최적화되어 있습니다.
+- server와 client 간의 **양방향 통신을 가능하게 하는 방법**엔 크게 3가지가 있습니다.
+    1. **Polling** : 주기적으로 server에 data를 요청하는 방식입니다.
+    2. **Long Polling** : server에 새로운 data가 생길 때까지 요청을 유지하는 방식입니다.
+    3. **WebSocket** : 양방향 통신을 위한 protocol로, 실시간 data 교환에 최적화되어 있습니다.
 
 - chatting server과 client 간의 통신에는 **WebSocket Protocol을 권장**합니다.
 
@@ -391,11 +391,13 @@ group_message {
 ```sql
 -- 1:1 Chatting
 SELECT * FROM message
-WHERE message_id > [cur_max_message_id];
+WHERE message_id > [cur_max_message_id]
+ORDER BY message_id;
 
 -- Group Chatting
 SELECT * FROM group_message
-WHERE group_id = [group_id] AND message_id > [cur_max_message_id];
+WHERE group_id = [group_id] AND message_id > [cur_max_message_id]
+ORDER BY message_id;
 
 -- chat history는 key-value 저장소에 보관하지만, 조회 예시는 가독성을 위해 query로 작성함
 ```

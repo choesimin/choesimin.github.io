@@ -90,11 +90,10 @@ user -->|1. Logout| api_server --> presense_server -->|2. Update User to Offline
         - e.g., elevator를 타거나 차를 타고 tunnel을 지나가면 internet 연결이 잠시 끊어집니다.
     - 이는 사용자 경험 측면에서도 바람직하지 않습니다.
 
-- 따라서 사용자 경험을 해치지 않으면서 접속 장애에 대응하기 위해, **박동 event(heartbeat event)**를 발생시키는 방법을 사용합니다.
-    1. **client**는 주기적으로 박동 event를 발생시켜 접속 상태 server로 전송합니다.
-    2. **server**는 마지막 event를 받은 지 x초 이내에 또 다른 박동 event를 받는다면 접속 상태를 계속 online으로 유지합니다.
-        - **접속 상태 유지** 작업은 key-value 저장소에 보관된 사용자의 **`status`를 'online'으로, `last_active_at`를 현재 시간으로 갱신**하여 처리합니다.
-        - 만약 server가 **시간 내에 박동 event를 받지 못한다면, 사용자의 `status`를 'offline'으로** 바꿉니다.
+- 따라서 사용자 경험을 해치지 않으면서 접속 장애에 대응하기 위해, **박동 event를 발생시키는 방법**을 사용합니다.
+
+
+### 박동 Event (Heartbeat Event)
 
 ```mermaid
 sequenceDiagram
@@ -124,6 +123,14 @@ note left of c : 5초 대기
 note left of s : 30초간 박동 Event 미수신
 s ->> kv : Update to Offline
 ```
+
+1. **client**는 주기적으로 박동 event를 발생시켜 접속 상태 server로 전송합니다.
+
+2. **server**는 박동 event 수신 여부로 장애 여부를 판단하여 사용자의 접속 상태를 변경합니다.
+    - **online** : 마지막 event를 받은 지 x초 이내에 또 다른 박동 event를 받는다면 접속 상태를 계속 online으로 유지합니다.
+        - 접속 상태 유지 작업은 key-value 저장소에 보관된 사용자의 **`status`를 'online'으로, `last_active_at`를 현재 시간으로 갱신**하여 처리합니다.
+    - **offline** : 만약 server가 시간 내에 박동 event를 받지 못한다면, 사용자의 접속 상태를 offline으로 바꿉니다.
+        - key-value 저장소에 보관된 사용자의 **`status`를 'offline'으로 갱신**하여 처리합니다.
 
 
 
