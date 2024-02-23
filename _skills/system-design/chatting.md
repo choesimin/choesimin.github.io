@@ -34,7 +34,7 @@ subgraph stateless[API Service - 무상태]
     auth[사용자 인증]
     user[사용자 Profile 관리]
     group[Group 관리]
-    discovery[사용자에게 적합한\nChatting Server 탐색]
+    discovery[Service 탐색]
 
     client -->|HTTP| lb
     lb --> auth
