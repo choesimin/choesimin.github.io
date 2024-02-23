@@ -365,9 +365,9 @@ message {
 }
 
 group_message {
-    bigint group_id PK
+    bigint channel_id PK
     bigint message_id PK
-    bigint message_to
+    bigint message_from
     text content
     timestamp created_at
 }
@@ -377,7 +377,7 @@ group_message {
     - `message_id`는 message 순서를 쉽게 정할 수 있도록 하는 역할도 담당합니다.
     - 서로 다른 두 message가 동시에 만들어질 수도 있기 때문에, `created_at`을 사용하여 message 순서를 정할 수는 없습니다.
 
-- group chatting(`group_message`)에서는 (`message_id`, `group_id`)의 복합 Key(Composite Key)를 Primary Key로 사용합니다.
+- group chatting(`group_message`)에서는 (`channel_id`, `message_id`)의 복합 Key(Composite Key)를 Primary Key로 사용합니다.
     - 'channel'은 'chatting group'을 의미합니다.
     - `chennal_id`는 Partition Key로도 사용합니다.
         - group chatting에 적용될 모든 질의는 특정 channel을 대상으로 할 것이기 때문입니다.
@@ -401,12 +401,12 @@ group_message {
 -- 1:1 Chatting
 SELECT * FROM message
 WHERE message_id > [cur_max_message_id]
-ORDER BY message_id;
+ORDER BY message_id ASC;
 
 -- Group Chatting
 SELECT * FROM group_message
-WHERE group_id = [group_id] AND message_id > [cur_max_message_id]
-ORDER BY message_id;
+WHERE channel_id = [channel_id] AND message_id > [cur_max_message_id]
+ORDER BY message_id ASC;
 
 -- chat history는 key-value 저장소에 보관하지만, 조회 예시는 가독성을 위해 query로 작성함
 ```
