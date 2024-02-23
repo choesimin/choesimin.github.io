@@ -307,7 +307,11 @@ note over c, s : Protocol Upgrade<br>(HTTP -> WebSocket)
 
 loop WebSocket 양방향 통신
     s -) c : (수신 Message가 있을 때마다) Message 전달
+    activate c
+    activate s
     c -) s : (Client의 Message 전송 요청) Message 송신
+    deactivate c
+    deactivate s
 end
 ```
 
