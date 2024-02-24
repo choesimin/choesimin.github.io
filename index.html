@@ -77,16 +77,6 @@
             opacity: 0;
             transition: 1s;
         }
-
-        @keyframes appear {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 
@@ -167,7 +157,7 @@
 
                 setTimeout(() => type(introText, '을 소개합니다.', 100), 600);
                 setTimeout(() => {
-                    introArrow.style.animation = 'appear 1s forwards';
+                    introArrow.style.opacity = '1';
                     introArrow.style.bottom = '40px';
                 }, 2000);
             });
