@@ -1,3 +1,13 @@
+---
+layout: skill
+title: TypeScript의 장점
+date: 2024-02-24
+---
+
+
+
+
+
 
 
 
