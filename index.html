@@ -66,13 +66,15 @@
 
         #intro strong {
             font-size: larger;
+            opacity: 0;
+            transition: 1s;
         }
 
         #intro svg {
             position: absolute;
             left: 50%;
             transform: translate(-50%, 0%);
-            bottom: 80px;
+            bottom: 130px;
             width: 50px;
             opacity: 0;
             transition: 1s;
@@ -152,13 +154,15 @@
         window.onload = function () {
             requestAnimationFrame(function () {
                 const intro = document.getElementById('intro');
-                const introText = intro.getElementsByTagName('h1')[0].getElementsByTagName('span')[0];
+                const introText = intro.getElementsByTagName('h1')[0];
                 const introArrow = intro.getElementsByTagName('svg')[0];
 
-                setTimeout(() => type(introText, '을 소개합니다.', 100), 600);
+                introText.getElementsByTagName('strong')[0].style.opacity = '1';
+
+                setTimeout(() => type(introText.getElementsByTagName('span')[0], '을 소개합니다.', 120), 700);
                 setTimeout(() => {
                     introArrow.style.opacity = '1';
-                    introArrow.style.bottom = '40px';
+                    introArrow.style.bottom = '110px';
                 }, 2000);
             });
         };
