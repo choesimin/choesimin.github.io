@@ -45,10 +45,10 @@ sum('x', 'y');    // 'xy' (의도하지 않은 함수 사용 방법)
 ```
 
 - 함수의 의도는 2개의 number type 인수를 전달받아 합계를 반환하는 것입니다.
-    - 하지만 code에는 어떤 type의 인수를 전달해야 하는지, 어떤 type의 반환값을 return해야 하는지 명확하지 않습니다.
+    - 하지만 code에는 어떤 type의 인수를 전달해야 하는지, 어떤 type의 반환 값을 return해야 하는지 명확하지 않습니다.
 - 함수의 인자로 string type을 넣어도, JavaScript 문법상 어떠한 문제도 없으므로 JavaScript Engine은 그대로 실행합니다.
     - 이는 함수가 의도하지 않은 동작입니다.
-- 이러한 상황이 발생한 이유는 변수나 반환값의 type을 사전에 지정하지 않는 JavaScript의 Dynamic(동적) Typing에 의한 것입니다.
+- 이러한 상황이 발생한 이유는 변수나 반환 값의 type을 사전에 지정하지 않는 JavaScript의 Dynamic(동적) Typing에 의한 것입니다.
 
 #### TypeScript 예시 : Static Typing
 

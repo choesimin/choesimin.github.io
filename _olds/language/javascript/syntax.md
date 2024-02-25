@@ -43,7 +43,7 @@ es6 모듈
 
 고차함수 57
 js에선 함수가 일급시민이기 때문에 함수형 프로그래밍으루지원한다
-변수에 객체에 배열에 인자에 반환값에 함수를 넣을 수 있음
+변수에 객체에 배열에 인자에 반환 값에 함수를 넣을 수 있음
 함수를 일반적인 data와 마찬가지로 취급함
 
 함수형이란? 58
@@ -242,7 +242,7 @@ console.log(d_result);    // 9
 
 - <, >, <=, >=, ==, !=
   - =을 하나 쓰는 것은 할당 연산자이므로 == 사용
-- 반환값은 항상 Boolean
+- 반환 값은 항상 Boolean
   ```javascript
   console.log(10 > 5);    // true
   console.log(10 == 5);    // false
@@ -1864,7 +1864,7 @@ console.log(user3);    // "Jane"
   console.log(b);    // 2
   console.log(c);    // 5
   ```
-- 일부 반환값 무시
+- 일부 반환 값 무시
   ```javascript
   let [user1, , user2] = ['Mike', 'Tom', 'Jane', 'Tony'];
 
@@ -2193,7 +2193,7 @@ console.log(add3(2));
         - x와 y를 찾아야 함
           - y는 있음
           - x가 없으니 참조하는 '외부 lexical 환경'으로 가서 찾음
-  - makeAdder의 반환값이 되는 익명함수는 자신이 y를 가지고 있고 상위 함수인 makeAdder의 매개변수 x에 접근할 수 있음
+  - makeAdder의 반환 값이 되는 익명함수는 자신이 y를 가지고 있고 상위 함수인 makeAdder의 매개변수 x에 접근할 수 있음
     - add3 함수가 생성된 이후에도 변함없이 상위 함수를 호출할 때 사용했던 인수에 접근 가능 -> 이것을 closure라고 함
 
 ---
