@@ -192,7 +192,7 @@ console.log(foo);    // Foo {}
 
 
 
-## `readonly` Keyword
+## 읽기 전용 속성 (Readonly Property)
 
 - TypeScript class의 `readonly` keyword는 변수 할당 시의 `const` keyword와 유사합니다.
 - `readonly`가 선언된 class property는 선언 시 또는 생성자 내부에서만 값을 할당할 수 있습니다.
@@ -229,9 +229,17 @@ new Foo().log();
 
 
 
-## `static` Keyword
+## Static Member
+
+- TypeScript에서 **`static` keyword를 사용하여 class member를 정적으로 선언**할 수 있습니다.
+    - class member에는 method(함수)와 property(속성)가 있으며, 따라서 **static member도 static method와 static property로 나뉩니다.**
+
+
+### Static Method
 
 - JavaScript ES6의 class에서 `static` keyword는 class의 정적(static) method를 정의합니다.
+    - TypeScript에서도 JavaScript ES6와 동일한 방식으로 사용할 수 있습니다.
+
 - 정적 method는 class의 instance가 아닌 **class 이름으로 호출**하기 때문에, class의 instance를 생성하지 않아도 호출할 수 있습니다.
     - 정적 method는 `this`를 사용할 수 없으며, 정적 method 내부의 `this`는 class의 instance가 아닌 class 자신을 가리킵니다.
 
@@ -259,7 +267,7 @@ console.log(foo.staticMethod());    // Uncaught TypeError: foo.staticMethod is n
 ```
 
 
-### Static Class Property
+### Static Property
 
 - **TypeScript에서는 static keyword를 class property에도 사용**할 수 있습니다.
 - 정적 method와 마찬가지로, 정적 class property는 instance가 아닌 class 이름으로 호출하며, class의 instance를 생성하지 않아도 호출할 수 있습니다.
@@ -329,6 +337,91 @@ class Dog extends Animal {
 const myDog = new Dog();
 myDog.makeSound();
 myDog.move();
+```
+
+
+
+
+---
+
+
+
+
+## Interface 구현 (`implements`)
+
+- class는 `implements` keyword를 사용하여 특정 interface를 구현하겠다고 선언할 수 있습니다.
+    - class가 interface의 계약을 준수하도록 강제합니다.
+
+- class가 interface를 구현하는 경우, class는 interface에 정의된 모든 property와 method를 구현해야 합니다.
+
+```typescript
+interface Vehicle {
+    model: string;
+    year: number;
+    displayDetails(): void;
+}
+
+class Car implements Vehicle {
+    model: string;
+    year: number;
+
+    constructor(model: string, year: number) {
+        this.model = model;
+        this.year = year;
+    }
+
+    displayDetails() {
+        console.log(`Model: ${this.model}, Year: ${this.year}`);
+    }
+}
+
+const myCar = new Car("Hyundai Sonata", 2020);
+myCar.displayDetails();
+```
+
+- 하나 이상의 interface를 구현할 수도 있습니다.
+
+```typescript
+interface Chargeable {
+    batteryLevel: number;
+    charge(): void;
+}
+
+interface Connectable {
+    isConnected: boolean;
+    connect(): void;
+    disconnect(): void;
+}
+
+class Smartphone implements Chargeable, Connectable {
+    batteryLevel: number;
+    isConnected: boolean;
+
+    constructor(batteryLevel: number) {
+        this.batteryLevel = batteryLevel;
+        this.isConnected = false;
+    }
+
+    charge() {
+        this.batteryLevel = 100;
+        console.log("Smartphone 충전 완료");
+    }
+
+    connect() {
+        this.isConnected = true;
+        console.log("Smartphone 연결");
+    }
+
+    disconnect() {
+        this.isConnected = false;
+        console.log("Smartphone 연결 해제");
+    }
+}
+
+const myPhone = new Smartphone(50);
+myPhone.charge();
+myPhone.connect();
+myPhone.disconnect();
 ```
 
 
