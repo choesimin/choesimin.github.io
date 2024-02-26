@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: skill
 title: TypeScript - Interface
 date: 2024-02-26
 ---
