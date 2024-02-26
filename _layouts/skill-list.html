@@ -6,8 +6,8 @@ layout: skill-base
 
 <br>
 <section id="intro">
-    <h1>{{ site.title }}</h1>
-    <p>{{ site.description }}</p>
+    <h1></h1>
+    <p></p>
 </section>
 <br>
 <br>
@@ -21,8 +21,8 @@ layout: skill-base
     const title = intro.getElementsByTagName('h1')[0];
     const description = intro.getElementsByTagName('p')[0];
 
-    type(title, title.innerText, 120);
-    type(description, description.innerText);
+    type(title, "{{ site.title }}", 120);
+    type(description, "{{ site.description }}");
 
     var pages = getPages();
     var nodes = makeNodes(pages);
