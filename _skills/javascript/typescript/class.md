@@ -74,10 +74,10 @@ person.walk();    // Lee is walking
 
 
 
-## 접근 제한자
+## 접근 제한자 (Access Modifier)
 
 - TypeScript class는 class 기반 객체 지향 언어가 지원하는 접근 제한자 `public`, `private`, `protected`를 지원하며, 의미 또한 기본적으로 동일합니다.
-    - 접근 제한자(Access Modifier)는 class 내부의 property과 method의 접근성을 제어하는 keyword입니다.
+    - 접근 제한자는 class 내부의 property과 method의 접근성을 제어하는 keyword입니다.
     - 접근 제한자는 class를 사용하는 외부 code에서 class 내부의 특정 member에 접근할 수 있는지 여부를 결정합니다.
 
 | 접근 가능성 | public | protected | private |
@@ -292,9 +292,9 @@ console.log(foo2.instanceCounter);    // error TS2339: Property 'instanceCounter
 
 
 
-## 추상 Class
+## 추상 Class (Abstract Class)
 
-- 추상 class(abstract class)는 **하나 이상의 추상 method를 포함**하며, 일반 method도 포함할 수 있습니다.
+- 추상 class는 **하나 이상의 추상 method를 포함**하며, 일반 method도 포함할 수 있습니다.
     - 추상 method는 내용이 없이 method 이름과 type만이 선언된 method입니다.
 
 - 추상 class와 추상 method를 선언할 때는 `abstract` keyword를 사용합니다.
