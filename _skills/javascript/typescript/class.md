@@ -135,51 +135,53 @@ class Bar extends Foo {
 ### 생성자 Parameter에 접근 제한자 선언
 
 - 생성자(constructor) parameter에도 접근 제한자를 선언할 수 있습니다.
-- 이때 **접근 제한자가 사용된 생성자 파라미터는 암묵적으로 class property로 선언되고 생성자 내부에서 별도의 초기화가 없어도 암묵적으로 초기화가 수행된다.**
+- **접근 제한자가 사용된 생성자 parameter**는 **암묵적으로 class property로 선언**되고, 생성자 내부에서 별도의 초기화가 없어도 **암묵적으로 초기화가 수행**됩니다.
 
-이때 private 접근 제한자가 사용되면 class 내부에서만 참조 가능하고 public 접근 제한자가 사용되면 class 외부에서도 참조가 가능하다.
+
+#### 생성자 Parameter에 `private`, `public` 접근 제한자 선언
+
+- `private` 접근 제한자가 사용되면, class 내부에서만 참조 가능하고, `public` 접근 제한자가 사용되면 class 외부에서도 참조가 가능합니다.
 
 ```typescript
 class Foo {
-    /*
-    접근 제한자가 선언된 생성자 파라미터 x는 class property로 선언되고 지동으로 초기화된다.
-    public이 선언되었으므로 x는 class 외부에서도 참조가 가능하다.
-    */
+    // 접근 제한자가 선언된 생성자 parameter 'x'는 class property로 선언되고 지동으로 초기화됨
     constructor(public x: string) { }
 }
 
 const foo = new Foo('Hello');
 console.log(foo);    // Foo { x: 'Hello' }
-console.log(foo.x);    // Hello
 
+// public이 선언된 'foo.x'는 class 외부에서도 참조가 가능함
+console.log(foo.x);    // Hello
+```
+
+```typescript
 class Bar {
-    /*
-    접근 제한자가 선언된 생성자 파라미터 x는 멤버 변수로 선언되고 자동으로 초기화된다.
-    private이 선언되었으므로 x는 class 내부에서만 참조 가능하다.
-    */
+    // 접근 제한자가 선언된 생성자 parameter 'x'는 class property로 선언되고 지동으로 초기화됨
     constructor(private x: string) { }
 }
 
 const bar = new Bar('Hello');
+console.log(bar);    // Bar { x: 'Hello' }
 
-console.log(bar); // Bar { x: 'Hello' }
-
-// private이 선언된 bar.x는 class 내부에서만 참조 가능하다
-console.log(bar.x); // Property 'x' is private and only accessible within class 'Bar'.
+// private이 선언된 'bar.x'는 class 내부에서만 참조 가능함
+console.log(bar.x);    // Property 'x' is private and only accessible within class 'Bar'.
 ```
 
-만일 생성자 파라미터에 접근 제한자를 선언하지 않으면 생성자 파라미터는 생성자 내부에서만 유효한 지역 변수가 되어 생성자 외부에서 참조가 불가능하게 된다.
+#### 생성자 Parameter에 접근 제한자를 선언하지 않은 경우
+
+- 생성자 parameter에 접근 제한자를 선언하지 않으면, 생성자 parameter는 생성자 내부에서만 유효한 지역 변수가 되어, 생성자 외부에서 참조가 불가능합니다.
 
 ```typescript
 class Foo {
-    // x는 생성자 내부에서만 유효한 지역 변수이다.
+    // 'x'는 생성자 내부에서만 유효한 지역 변수임 (접근 제한자가 선언되지 않아 class property 선언과 초기화가 되지 않음)
     constructor(x: string) {
         console.log(x);
     }
 }
 
 const foo = new Foo('Hello');
-console.log(foo); // Foo {}
+console.log(foo);    // Foo {}
 ```
 
 
@@ -231,7 +233,7 @@ new Foo().log();
 
 - JavaScript ES6의 class에서 `static` keyword는 class의 정적(static) method를 정의합니다.
 - 정적 method는 class의 instance가 아닌 **class 이름으로 호출**하기 때문에, class의 instance를 생성하지 않아도 호출할 수 있습니다.
-    - 정적 method는 this를 사용할 수 없으며, 정적 method 내부의 this는 class의 instance가 아닌 class 자신을 가리킵니다.
+    - 정적 method는 `this`를 사용할 수 없으며, 정적 method 내부의 `this`는 class의 instance가 아닌 class 자신을 가리킵니다.
 
 ```javascript
 class Foo {
@@ -256,14 +258,18 @@ const foo = new Foo(123);
 console.log(foo.staticMethod());    // Uncaught TypeError: foo.staticMethod is not a function.
 ```
 
-**TypeScript에서는 static keyword를 class property에도 사용할 수 있다.** 정적 method와 마찬가지로 정적 class property는 instance가 아닌 class 이름으로 호출하며 class의 instance를 생성하지 않아도 호출할 수 있다.
+
+### Static Class Property
+
+- **TypeScript에서는 static keyword를 class property에도 사용**할 수 있습니다.
+- 정적 method와 마찬가지로, 정적 class property는 instance가 아닌 class 이름으로 호출하며, class의 instance를 생성하지 않아도 호출할 수 있습니다.
 
 ```typescript
 class Foo {
     // 생성된 instance의 갯수
     static instanceCounter = 0;
     constructor() {
-        // 생성자가 호출될 때마다 카운터를 1씩 증가시킨다.
+        // 생성자가 호출될 때마다 counter를 1씩 증가시킴
         Foo.instanceCounter++;
     }
 }
@@ -271,16 +277,34 @@ class Foo {
 var foo1 = new Foo();
 var foo2 = new Foo();
 
+// 정적 class property는 class 이름으로 호출함
 console.log(Foo.instanceCounter);    // 2
-console.log(foo2.instanceCounter); // error TS2339: Property 'instanceCounter' does not exist on type 'Foo'.
+
+// 정적 class property는 instance로 호출할 수 없음
+console.log(foo2.instanceCounter);    // error TS2339: Property 'instanceCounter' does not exist on type 'Foo'.
 ```
 
-## 추상 Class (abstract class)
 
-- 추상 class(abstract class)는 하나 이상의 추상 method를 포함하며 일반 method도 포함할 수 있다. 추상 method는 내용이 없이 method 이름과 타입만이 선언된 method를 말하며 선언할 때 abstract keyword를 사용한다. 추상 class를 정의할 때는 abstract keyword를 사용하며, 직접 instance를 생성할 수 없고 상속만을 위해 사용된다. 추상 class를 상속한 class는 추상 class의 추상 method를 반드시 구현하여야 한다.
 
-- [interface](./typescript-interface)는 모든 method가 추상 method이지만 추상 class는 하나 이상의 추상 method와 일반 method를 포함할 수 있다.
 
+---
+
+
+
+
+## 추상 Class
+
+- 추상 class(abstract class)는 **하나 이상의 추상 method를 포함**하며, 일반 method도 포함할 수 있습니다.
+    - 추상 method는 내용이 없이 method 이름과 type만이 선언된 method입니다.
+
+- 추상 class와 추상 method를 선언할 때는 `abstract` keyword를 사용합니다.
+
+- 추상 class는 직접 instance를 생성할 수 없고 상속만을 위해 사용됩니다.
+    - 추상 class를 상속한 class는 추상 class의 추상 method를 반드시 구현해야 합니다.
+
+- `interface` type은 추상 class와 비슷하지만, 일반 method를 선언할 수 없다는 점에서 추상 class와 다릅니다.
+    - `interface` type은 모든 method가 추상 method입니다.
+    - 추상 class는 하나 이상의 추상 method와 일반 method를 포함할 수 있습니다.
 
 ```typescript
 abstract class Animal {
@@ -292,12 +316,11 @@ abstract class Animal {
     }
 }
 
-// 직접 instance를 생성할 수 없다.
-// new Animal();
-// error TS2511: Cannot create an instance of the abstract class 'Animal'.
+// 직접 instance를 생성할 수 없음
+new Animal();    // error TS2511: Cannot create an instance of the abstract class 'Animal'.
 
 class Dog extends Animal {
-    // 추상 class를 상속한 class는 추상 class의 추상 method를 반드시 구현하여야 한다
+    // 추상 class를 상속한 class는 추상 class의 추상 method를 반드시 구현해야 함
     makeSound() {
         console.log('bowwow~~');
     }
