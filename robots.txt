@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+Allow: /skills
+Sitemap: https://www.simin.im/sitemap.xml
