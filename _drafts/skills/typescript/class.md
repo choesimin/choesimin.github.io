@@ -1,18 +1,8 @@
 ---
-layout: post
-title: TypeScript - <strong>Class</strong>
-subtitle: 클래스
-categories: typescript
-section: typescript
-seq: 12
-subseq: 4
-description: ES6에서 새롭게 도입된 클래스는 기존 프로토타입 기반 객체지향 언어보다 클래스 기반 언어에 익숙한 개발자가 보다 빠르게 학습할 수 있는 단순명료한 새로운 문법을 제시하고 있다. 하지만 클래스가 새로운 객체지향 모델을 제공하는 것은 아니다. 사실 클래스도 함수이고 기존 프로토타입 기반 패턴의 Syntactic sugar일 뿐이다. Typescript가 지원하는 클래스는 ECMAScript 6의 클래스와 상당히 유사하지만 몇가지 Typescript 고유 기능이 존재한다.
+layout: skill
+title: TypeScript - Class
+date: 2024-02-26
 ---
-
-* TOC
-{:toc}
-
-![typescript Logo](/img/typescript-logo.png)
 
 [ES6에서 새롭게 도입된 클래스](./es6-class)는 기존 프로토타입 기반 객체지향 언어보다 클래스 기반 언어에 익숙한 개발자가 보다 빠르게 학습할 수 있는 단순명료한 새로운 문법을 제시하고 있다. 하지만 클래스가 새로운 객체지향 모델을 제공하는 것은 아니다. 사실 클래스도 함수이고 기존 프로토타입 기반 패턴의 Syntactic sugar일 뿐이다. Typescript가 지원하는 클래스는 ECMAScript 6의 클래스와 상당히 유사하지만 몇 가지 Typescript만의 고유한 확장 기능이 있다.
 
@@ -23,14 +13,14 @@ description: ES6에서 새롭게 도입된 클래스는 기존 프로토타입 �
 ```javascript
 // person.js
 class Person {
-  constructor(name) {
-    // 클래스 프로퍼티의 선언과 초기화
-    this.name = name;
-  }
+    constructor(name) {
+        // 클래스 프로퍼티의 선언과 초기화
+        this.name = name;
+    }
 
-  walk() {
-    console.log(`${this.name} is walking.`);
-  }
+    walk() {
+        console.log(`${this.name} is walking.`);
+    }
 }
 ```
 
@@ -46,17 +36,17 @@ person.ts(8,25): error TS2339: Property 'name' does not exist on type 'Person'.
 ```typescript
 // person.ts
 class Person {
-  // 클래스 프로퍼티를 사전 선언하여야 한다
-  name: string;
+    // 클래스 프로퍼티를 사전 선언하여야 한다
+    name: string;
 
-  constructor(name: string) {
-    // 클래스 프로퍼티수에 값을 할당
-    this.name = name;
-  }
+    constructor(name: string) {
+        // 클래스 프로퍼티수에 값을 할당
+        this.name = name;
+    }
 
-  walk() {
-    console.log(`${this.name} is walking.`);
-  }
+    walk() {
+        console.log(`${this.name} is walking.`);
+    }
 }
 
 const person = new Person('Lee');
@@ -71,27 +61,27 @@ Typescript 클래스는 클래스 기반 객체 지향 언어가 지원하는 �
 
 접근 제한자를 선언한 프로퍼티와 메소드에 대한 접근 가능성은 아래와 같다.
 
-| 접근 가능성    | public  | protected | private
+| 접근 가능성        | public    | protected | private
 |:------------|:-------:|:---------:|:----------:
-| 클래스 내부    | ◯       | ◯         | ◯
-| 자식 클래스 내부| ◯       | ◯         | ✕
-| 클래스 인스턴스 | ◯       | ✕         | ✕
+| 클래스 내부        | ◯             | ◯                 | ◯
+| 자식 클래스 내부| ◯             | ◯                 | ✕
+| 클래스 인스턴스 | ◯             | ✕                 | ✕
 
 
 아래의 예제를 통해 접근 제한자가 선언된 프로퍼티로의 접근 가능성에 대해 살펴보자.
 
 ```typescript
 class Foo {
-  public x: string;
-  protected y: string;
-  private z: string;
+    public x: string;
+    protected y: string;
+    private z: string;
 
-  constructor(x: string, y: string, z: string) {
-    // public, protected, private 접근 제한자 모두 클래스 내부에서 참조 가능하다.
-    this.x = x;
-    this.y = y;
-    this.z = z;
-  }
+    constructor(x: string, y: string, z: string) {
+        // public, protected, private 접근 제한자 모두 클래스 내부에서 참조 가능하다.
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 }
 
 const foo = new Foo('x', 'y', 'z');
@@ -108,19 +98,19 @@ console.log(foo.z);
 // error TS2341: Property 'z' is private and only accessible within class 'Foo'.
 
 class Bar extends Foo {
-  constructor(x: string, y: string, z: string) {
-    super(x, y, z);
+    constructor(x: string, y: string, z: string) {
+        super(x, y, z);
 
-    // public 접근 제한자는 자식 클래스 내부에서 참조 가능하다.
-    console.log(this.x);
+        // public 접근 제한자는 자식 클래스 내부에서 참조 가능하다.
+        console.log(this.x);
 
-    // protected 접근 제한자는 자식 클래스 내부에서 참조 가능하다.
-    console.log(this.y);
+        // protected 접근 제한자는 자식 클래스 내부에서 참조 가능하다.
+        console.log(this.y);
 
-    // private 접근 제한자는 자식 클래스 내부에서 참조할 수 없다.
-    console.log(this.z);
-    // error TS2341: Property 'z' is private and only accessible within class 'Foo'.
-  }
+        // private 접근 제한자는 자식 클래스 내부에서 참조할 수 없다.
+        console.log(this.z);
+        // error TS2341: Property 'z' is private and only accessible within class 'Foo'.
+    }
 }
 ```
 
@@ -132,23 +122,23 @@ class Bar extends Foo {
 
 ```typescript
 class Foo {
-  /*
-  접근 제한자가 선언된 생성자 파라미터 x는 클래스 프로퍼티로 선언되고 지동으로 초기화된다.
-  public이 선언되었으므로 x는 클래스 외부에서도 참조가 가능하다.
-  */
-  constructor(public x: string) { }
+    /*
+    접근 제한자가 선언된 생성자 파라미터 x는 클래스 프로퍼티로 선언되고 지동으로 초기화된다.
+    public이 선언되었으므로 x는 클래스 외부에서도 참조가 가능하다.
+    */
+    constructor(public x: string) { }
 }
 
 const foo = new Foo('Hello');
-console.log(foo);   // Foo { x: 'Hello' }
+console.log(foo);     // Foo { x: 'Hello' }
 console.log(foo.x); // Hello
 
 class Bar {
-  /*
-  접근 제한자가 선언된 생성자 파라미터 x는 멤버 변수로 선언되고 자동으로 초기화된다.
-  private이 선언되었으므로 x는 클래스 내부에서만 참조 가능하다.
-  */
-  constructor(private x: string) { }
+    /*
+    접근 제한자가 선언된 생성자 파라미터 x는 멤버 변수로 선언되고 자동으로 초기화된다.
+    private이 선언되었으므로 x는 클래스 내부에서만 참조 가능하다.
+    */
+    constructor(private x: string) { }
 }
 
 const bar = new Bar('Hello');
@@ -163,10 +153,10 @@ console.log(bar.x); // Property 'x' is private and only accessible within class 
 
 ```typescript
 class Foo {
-  // x는 생성자 내부에서만 유효한 지역 변수이다.
-  constructor(x: string) {
-    console.log(x);
-  }
+    // x는 생성자 내부에서만 유효한 지역 변수이다.
+    constructor(x: string) {
+        console.log(x);
+    }
 }
 
 const foo = new Foo('Hello');
@@ -179,21 +169,21 @@ Typescript는 `readonly` 키워드를 사용할 수 있다. readonly가 선언�
 
 ```typescript
 class Foo {
-  private readonly MAX_LEN: number = 5;
-  private readonly MSG: string;
+    private readonly MAX_LEN: number = 5;
+    private readonly MSG: string;
 
-  constructor() {
-    this.MSG = 'hello';
-  }
+    constructor() {
+        this.MSG = 'hello';
+    }
 
-  log() {
-    // readonly가 선언된 프로퍼티는 재할당이 금지된다.
-    this.MAX_LEN = 10; // Cannot assign to 'MAX_LEN' because it is a constant or a read-only property.
-    this.MSG = 'Hi'; // Cannot assign to 'MSG' because it is a constant or a read-only property.
+    log() {
+        // readonly가 선언된 프로퍼티는 재할당이 금지된다.
+        this.MAX_LEN = 10; // Cannot assign to 'MAX_LEN' because it is a constant or a read-only property.
+        this.MSG = 'Hi'; // Cannot assign to 'MSG' because it is a constant or a read-only property.
 
-    console.log(`MAX_LEN: ${this.MAX_LEN}`); // MAX_LEN: 5
-    console.log(`MSG: ${this.MSG}`); // MSG: hello
-  }
+        console.log(`MAX_LEN: ${this.MAX_LEN}`); // MAX_LEN: 5
+        console.log(`MSG: ${this.MSG}`); // MSG: hello
+    }
 }
 
 new Foo().log();
@@ -205,21 +195,21 @@ ES6 클래스에서 static 키워드는 클래스의 정적(static) 메소드를
 
 ```javascript
 class Foo {
-  constructor(prop) {
-    this.prop = prop;
-  }
+    constructor(prop) {
+        this.prop = prop;
+    }
 
-  static staticMethod() {
-    /*
-    정적 메소드는 this를 사용할 수 없다.
-    정적 메소드 내부에서 this는 클래스의 인스턴스가 아닌 클래스 자신을 가리킨다.
-    */
-    return 'staticMethod';
-  }
+    static staticMethod() {
+        /*
+        정적 메소드는 this를 사용할 수 없다.
+        정적 메소드 내부에서 this는 클래스의 인스턴스가 아닌 클래스 자신을 가리킨다.
+        */
+        return 'staticMethod';
+    }
 
-  prototypeMethod() {
-    return this.prop;
-  }
+    prototypeMethod() {
+        return this.prop;
+    }
 }
 
 // 정적 메소드는 클래스 이름으로 호출한다.
@@ -234,18 +224,18 @@ console.log(foo.staticMethod()); // Uncaught TypeError: foo.staticMethod is not 
 
 ```typescript
 class Foo {
-  // 생성된 인스턴스의 갯수
-  static instanceCounter = 0;
-  constructor() {
-    // 생성자가 호출될 때마다 카운터를 1씩 증가시킨다.
-    Foo.instanceCounter++;
-  }
+    // 생성된 인스턴스의 갯수
+    static instanceCounter = 0;
+    constructor() {
+        // 생성자가 호출될 때마다 카운터를 1씩 증가시킨다.
+        Foo.instanceCounter++;
+    }
 }
 
 var foo1 = new Foo();
 var foo2 = new Foo();
 
-console.log(Foo.instanceCounter);  // 2
+console.log(Foo.instanceCounter);    // 2
 console.log(foo2.instanceCounter); // error TS2339: Property 'instanceCounter' does not exist on type 'Foo'.
 ```
 
@@ -255,12 +245,12 @@ console.log(foo2.instanceCounter); // error TS2339: Property 'instanceCounter' d
 
 ```typescript
 abstract class Animal {
-  // 추상 메소드
-  abstract makeSound(): void;
-  // 일반 메소드
-  move(): void {
-    console.log('roaming the earth...');
-  }
+    // 추상 메소드
+    abstract makeSound(): void;
+    // 일반 메소드
+    move(): void {
+        console.log('roaming the earth...');
+    }
 }
 
 // 직접 인스턴스를 생성할 수 없다.
@@ -268,10 +258,10 @@ abstract class Animal {
 // error TS2511: Cannot create an instance of the abstract class 'Animal'.
 
 class Dog extends Animal {
-  // 추상 클래스를 상속한 클래스는 추상 클래스의 추상 메소드를 반드시 구현하여야 한다
-  makeSound() {
-    console.log('bowwow~~');
-  }
+    // 추상 클래스를 상속한 클래스는 추상 클래스의 추상 메소드를 반드시 구현하여야 한다
+    makeSound() {
+        console.log('bowwow~~');
+    }
 }
 
 const myDog = new Dog();
