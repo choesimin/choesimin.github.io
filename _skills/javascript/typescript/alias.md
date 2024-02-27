@@ -96,7 +96,7 @@ type Point = {
 
 type User = {
     id: UserID;    // type alias를 type으로 지정
-    name: serName;    // type alias를 type으로 지정
+    name: UserName;    // type alias를 type으로 지정
     age: number;
 };
 ```
