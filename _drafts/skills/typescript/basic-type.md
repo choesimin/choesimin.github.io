@@ -14,7 +14,7 @@ date: 2024-02-27
 
 ```mermaid
 ---
-title : TypeScript의 Type Hierarchy (Type 상속 관계)
+title : Type Hierarchy (상속 관계)
 ---
 
 stateDiagram-v2
@@ -49,6 +49,26 @@ object --> Array
 Array --> tuple
 object --> Function\nDate\nError\nFunction\nMap\nPromise\nRegExp\nSet
 ```
+
+- TypeScript는 ES5, ES6의 Superset(상위 확장)이므로 **JavaScript의 type을 그대로 사용할 수 있습니다.**
+- JavaScript의 type 외에도, **TypeScript 고유의 type이 추가로 제공됩니다.**
+- **type은 소문자와 대문자를 구별**하며, **TypeScript가 기본 제공하는 type은 모두 소문자**입니다.
+
+| Type | JS | TS | 설명 |
+| --- | --- | --- | --- |
+| boolean | O | O | true/false 값 |
+| null | O | O | 값이 없다는 것을 명시함 |
+| undefined | O | O | 값을 할당하지 않은 변수의 초기값 |
+| number | O | O | 숫자 값 (정수, 실수, Infinity, NaN) |
+| string | O | O | 문자열 |
+| symbol | O | O | 고유하고 수정 불가능한 data type (주로 객체 속성들의 식별자로 사용함) |
+| object | O | O | 객체형 (참조형) |
+| array |  | O | 배열 |
+| tuple |  | O | 고정된 요소 수 만큼의 type을 미리 선언 후 배열을 표현 |
+| enum |  | O | 열거형 (숫자 값 집합에 이름을 지정한 것) |
+| any |  | O | 모든 type에 대응 가능한 type (type 추론할 수 없거나 type check가 필요 없는 변수에 사용함) |
+| void |  | O | 반환 값이 없는 함수의 반환 type |
+| never |  | O | 절대 발생하지 않는 값 |
 
 
 
@@ -97,5 +117,4 @@ object --> Function\nDate\nError\nFunction\nMap\nPromise\nRegExp\nSet
 
 ## Reference
 
-- <https://poiemaweb.com/typescript-typing>
 - <https://inpa.tistory.com/entry/TS-📘-타입스크립트-타입-선언-종류-💯-총정리>
