@@ -1,7 +1,7 @@
 ---
 layout: skill
 title: TypeScript - Type Alias
-date: 2024-02-26
+date: 2024-02-27
 ---
 
 
@@ -183,7 +183,7 @@ person.address = 'Seoul';    // Error
 
 1. primitive type에 새로운 이름(별칭)을 생성할 때.
 2. union type, tuple type, function type, 또는 더 복잡한 type을 정의할 때.
-3. 함수를 overload할 때.
+3. 함수를 overloading할 때.
 4. mapped type, 조건부(conditional) type, type guard, 또는 기타 고급(advanced) type 기능을 사용할 때.
 
 - interface로는 구현하기 어려운 **type alias만의 고급 기능**들이 있습니다.
