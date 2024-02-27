@@ -7,7 +7,7 @@ date: 2024-02-27
 
 
 
-## Type 추론 : Type 선언 생략하기
+## Type Inference
 
 - 만약 **type 선언을 생략하면, 값이 할당되는 과정에서 동적으로 type이 결정**되며, 이를 **type 추론(type inference)**이라 합니다.
 
@@ -22,7 +22,7 @@ foo = 'hi';    // error: Type '"hi"' is not assignable to type 'number'.
 - TypeScript는 정적 type 언어이므로, type 추론으로 type이 결정된 이후에 다른 type의 값을 할당하면 오류가 발생합니다.
 
 
-### Type 추론이 불가능한 경우 : `any`
+## Type 추론이 불가능한 경우 : `any`
 
 - type 선언을 생략하고 값도 할당하지 않아서 type을 추론할 수 없으면, 자동으로 `any` type이 됩니다.
 
@@ -50,4 +50,3 @@ console.log(typeof foo);    // boolean
 ## Reference
 
 - <https://poiemaweb.com/typescript-typing>
-- <https://inpa.tistory.com/entry/TS-📘-타입스크립트-타입-선언-종류-💯-총정리>
