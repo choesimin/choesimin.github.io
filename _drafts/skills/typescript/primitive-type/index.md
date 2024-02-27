@@ -7,7 +7,7 @@ date: 2024-02-27
 
 
 
-## TypeScript의 기본 Type
+## TypeScript의 Primitive Type
 
 - TypeScript는 정적 Type 언어이며, JavaScript에는 없는 여러 type들을 추가로 지원합니다.
     - TypeScript를 사용함으로써 개발자는 변수, 매개 변수, 반환 값 등의 type을 명시적으로 선언할 수 있어, code의 안정성을 높이고 bug를 미리 방지할 수 있습니다.
@@ -52,7 +52,7 @@ object --> Function\nDate\nError\nFunction\nMap\nPromise\nRegExp\nSet
 
 - TypeScript는 ES5, ES6의 Superset(상위 확장)이므로 **JavaScript의 type을 그대로 사용할 수 있습니다.**
 - JavaScript의 type 외에도, **TypeScript 고유의 type이 추가로 제공됩니다.**
-- **type은 소문자와 대문자를 구별**하며, **TypeScript가 기본 제공하는 type은 모두 소문자**입니다.
+- **type은 소문자와 대문자를 구별**하며, **TypeScript가 제공하는 기본 type은 모두 소문자**입니다.
 
 | Type | JS | TS | 설명 |
 | --- | --- | --- | --- |
