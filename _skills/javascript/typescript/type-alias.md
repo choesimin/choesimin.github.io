@@ -204,9 +204,11 @@ type Client = {
     name: string;
     address: string;
 }
+
 type Getters<T> = {
     [K in keyof T as `get${Capitalize<string & K>}`]:  () => T[K];
 };
+
 type clientType = Getters<Client>;
 // type clientType = {
 //     getName: () => string;
