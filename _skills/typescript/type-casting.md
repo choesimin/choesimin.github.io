@@ -11,7 +11,7 @@ date: 2024-02-28
 
 - type casting은 **변수의 type을 명시적으로 변환**하는 것입니다.
 
-- type casting을 사용하여 TypeScript compiler에게 변수의 type을 알려줄 수 있습니다.
+- type casting을 사용하여 compiler에게 변수의 type을 알려줄 수 있습니다.
     - TypeScript는 정적 type을 가지고 있어 compile time에 type 검사를 수행하지만, 때로는 개발자가 특정 변수의 type에 대해 더 잘 알고 있을 때가 있습니다.
 
 - type casting은 type의 안전성을 개발자가 관리할 수 있게 하지만, 남용은 code 안정성을 해칠 수 있으므로 신중하게 사용해야 합니다.

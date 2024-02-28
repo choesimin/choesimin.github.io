@@ -12,7 +12,8 @@ date: 2024-02-28
 - TypeScript의 `string` type은 **text data를 다루기 위해 사용**됩니다.
     - `string` type은 Unicode 문자의 sequence를 나타내며, 이를 통해 text data를 표현, 저장, 조작할 수 있습니다.
 
-- JavaScript와 마찬가지로, TypeScript에서 문자열은 **큰따옴표(`" "`), 작은따옴표(`' '`), 또는 백틱(`` ` ` ``)으로 묶어 표현**할 수 있습니다.
+- JavaScript와 마찬가지로, TypeScript에서 문자열은 **큰따옴표(`" "`), 작은따옴표(`' '`), 또는 backtick(`` ` ` ``)으로 묶어 표현**할 수 있습니다.
+    - backtick을 사용하면 여러 line의 문자열을 한 묶음으로 표현할 수 있습니다.
 
 - TypeScript에서는 **단일 문자(character)와 여러 문자를 포함하는 문자열(string) 사이에 구문적인 차이가 없습니다.**
     - JavaScript와 TypeScript에서 문자와 문자열 사이에는 기술적으로 명확한 구분이 없습니다.
@@ -29,6 +30,12 @@ let firstName: string = "John";
 let lastName: string = 'Doe';
 let greeting: string = `Hello, ${firstName} ${lastName}!`;
 console.log(greeting);    // "Hello, John Doe!"
+
+let multiLine: string = `
+first line.
+second line.
+third line.
+`;
 ```
 
 
