@@ -7,6 +7,8 @@ date: 2024-02-26
 
 
 
+## Class
+
 - TypeScript가 지원하는 class는 **JavaScript ES6의 class와 유사**하지만, 몇 가지 **TypeScript만의 고유한 확장 기능**이 있습니다.
     - TypeScript의 class는 정적 typing과 몇 가지 추가 기능을 제공하여 class를 더욱 강력하고 안전하게 만듭니다.
 
@@ -18,7 +20,12 @@ date: 2024-02-26
 
 
 
-## Class 정의 (Class Definition)
+## Class Definition
+
+- JavaScript와 TypeScript의 class 정의 방식은 정적 typing 말고도, **class property(member 변수) 선언 여부**에서도 차이가 있습니다.
+
+
+### TypeScript에서 Class 정의하기
 
 - JavaScript ES6의 class는 class body에 method만을 포함할 수 있습니다.
 - class body에 class property를 선언할 수 없고, 반드시 생성자 내부에서 class property를 선언하고 초기화합니다.
@@ -38,7 +45,7 @@ class Person {
 
 - JavaScript ES6에서는 문제없이 실행되는 code이지만, file의 확장자를 `ts`로 바꾸어 TypeScript file로 변경한 후 compile하면 compile error가 발생합니다.
 
-```
+```log
 person.ts(4,10): error TS2339: Property 'name' does not exist on type 'Person'.
 person.ts(8,25): error TS2339: Property 'name' does not exist on type 'Person'.
 ```
