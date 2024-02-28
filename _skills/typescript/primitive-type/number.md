@@ -49,8 +49,7 @@ let remainder: number = integer % float;    // 나머지
 function safeDivide(a: number, b: number): number {
     if (b === 0) {
         throw new Error("Cannot divide by zero");
-        // 또는
-        // return 0; // 기본값 반환
+        // return 0;    // 또는 기본 값 반환
     }
     return a / b;
 }

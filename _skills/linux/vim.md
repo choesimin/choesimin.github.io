@@ -186,7 +186,7 @@ timeline
 | `:set nu` | line number를 표시합니다. |
 | `:set expandtab` | tab을 공백으로 바꿉니다. |
 | `:set tabstop=4` | tab 너비를 4칸으로 설정합니다. |
-| `:set shiftwidth=4` | `>>` 또는 `<<`로 들여쓸 때, 공백의 갯수를 4로 설정합니다. 기본값은 8입니다. |
+| `:set shiftwidth=4` | `>>` 또는 `<<`로 들여쓸 때, 공백의 갯수를 4로 설정합니다. 기본 값은 8입니다. |
 | `:set autoindent` | 자동으로 들여쓰기합니다. 줄을 바꿀 때, 바로 아래로 cursor를 떨어뜨립니다. |
 | `:set smartindent` | 자동으로 들여쓰기합니다. 줄을 바꿀 때, tabstop만큼 자동으로 더 띄어서 cursor를 위치시킵니다. |
 | `:set encoding=utf-8` | encoding 방식을 utf-8로 설정합니다. |
