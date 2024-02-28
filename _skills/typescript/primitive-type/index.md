@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript - Primitive Type
+title: TypeScript Primitive Type
 date: 2024-02-27
 ---
 
