@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript - Type을 검사하는 JavaScript
+title: TypeScript
 date: 2024-02-25
 ---
 
@@ -115,4 +115,3 @@ sum('x', 'y');    // error TS2345: Argument of type '"x"' is not assignable to p
 
 - <https://poiemaweb.com/>
 - <https://opentutorials.org/course/5080>
-
