@@ -185,9 +185,45 @@ console.log(symbolKey);    // 'globalSymbol'
 | `Symbol.hasInstance` | `instanceof` 연산자를 사용할 때 객체의 instance 여부를 결정하는 method를 정의합니다. |
 
 
-### Example : `Symbol.iterator` 사용
+### `Symbol.iterator`
 
-- `Symbol.iterator` 사용하면, 사용자는 반복될 객체의 내부 동작을 정확히 제어할 수 있으며, 다양한 유형의 data에 대해 반복 logic을 쉽게 구현할 수 있습니다.
+- 어떤 객체가 `Symbol.iterator`를 property key로 사용한 method를 가지고 있으면, JavaScript engine은 이 객체가 iteration protocol을 따르는 것으로 간주하고 iterator로 동작하도록 합니다.
+
+- `Symbol.iterator`를 property key로 사용하여 method를 구현하고 있는 여러 Built-in 객체(Built-in iterable)가 있습니다.
+    - Built-in iterable은 iteration protocol을 준수하여 iterator를 반환하며, iterator를 반환한다는 뜻은 `for...of` loop로 요소를 순회할 수 있다는 것을 의미합니다.
+
+
+
+| Object | Built-in Itertable |
+| --- | --- |
+| Array | `Array.prototype[Symbol.iterator]` |
+| String | `String.prototype[Symbol.iterator]` |
+| Map | `Map.prototype[Symbol.iterator]` |
+| Set | `Set.prototype[Symbol.iterator]` |
+| DOM data structures | `NodeList.prototype[Symbol.iterator] HTMLCollection.prototype[Symbol.iterator]` |
+| arguments | `arguments[Symbol.iterator]` |
+        
+```js
+// Symbol.iterator를 property key로 사용한 method를 구현해야 합니다.
+// 배열에는 Array.prototype[Symbol.iterator] method가 구현되어 있습니다.
+const iterable = ['a', 'b', 'c'];
+
+// iterator : iterable의 Symbol.iterator를 property key로 사용한 method는 iterator를 반환합니다.
+const iterator = iterable[Symbol.iterator]();
+
+// iterator는 순회 가능한 자료 구조인 iterable의 요소를 탐색하기 위한 pointer로써,
+// value, done property를 갖는 객체를 반환하는 next() 함수를 method로 갖는 객체입니다.
+// iterator의 next() method를 통해 iterable 객체를 순회할 수 있습니다.
+console.log(iterator.next());    // { value: 'a', done: false }
+console.log(iterator.next());    // { value: 'b', done: false }
+console.log(iterator.next());    // { value: 'c', done: false }
+console.log(iterator.next());    // { value: undefined, done: true }
+```
+
+
+#### `Symbol.iterator` 예제
+
+- `Symbol.iterator`를 사용하여 반복될 객체의 내부 동작을 사용자가 제어할 수 있으며, 다양한 유형의 data에 대해 반복 logic을 쉽게 구현할 수 있습니다.
 
 ```typescript
 let iterableObj: {
@@ -222,3 +258,14 @@ for (let value of iterableObj) {
 - 이 구조를 통해 `for...of` loop는 `iterableObj`를 반복할 때마다 `iterableObj`의 `Symbol.iterator` method로부터 반환된 반복자의 `next` method를 호출합니다.
 - `next` method는 처음에는 "Hello"를, 두 번째에는 "World"를 반환하고, 그 다음에는 `done`을 `true`로 설정하여 반복이 종료되었음을 나타냅니다.
 
+
+
+
+---
+
+
+
+
+## Reference
+
+- <https://inpa.tistory.com/entry/JS-%F0%9F%93%9A-%EC%9E%90%EB%A3%8C%ED%98%95-Symbol-%F0%9F%9A%A9-%EC%A0%95%EB%A6%AC>
