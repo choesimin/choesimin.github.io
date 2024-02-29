@@ -7,7 +7,7 @@ date: 2024-02-29
 
 
 
-## 함수 Type
+## 함수 Type : 함수의 Signature 정의하기
 
 - 함수 type은 함수의 signature, 즉 매개 변수의 type과 반환 값의 type을 정의하는 데 사용되는 기능입니다.
     - 함수 type을 통해 명시적으로 선언된 signature를 갖는 함수는 compile 시점에 TypeScript에 의해 검사됩니다.

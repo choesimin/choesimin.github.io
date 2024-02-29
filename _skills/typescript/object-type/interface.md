@@ -7,7 +7,7 @@ date: 2024-02-26
 
 
 
-## TypeScript의 Interface
+## Interface : 객체 계약서
 
 - TypeScript의 interface는 **변수, 함수, class가 특정 구조와 type을 갖추도록 명시**하는 데 사용됩니다.
     - 여러 type의 property로 이루어진 새로운 type을 정의하는 것과 같습니다.
