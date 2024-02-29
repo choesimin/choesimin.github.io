@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Type - Undefined And Null
+title: TypeScript Primitive Type - Undefined and Null (정의되지 않았거나 없는 값)
 date: 2024-02-28
 ---
 

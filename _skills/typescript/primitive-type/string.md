@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript String Type
+title: TypeScript Primitive Type - String (문자열)
 date: 2024-02-28
 ---
 

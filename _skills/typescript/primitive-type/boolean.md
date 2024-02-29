@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Boolean Type
+title: TypeScript Primitive Type - Boolean (참과 거짓)
 date: 2024-02-28
 ---
 

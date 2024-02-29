@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Symbol Type
+title: TypeScript Primitive Type - Symbol (고유 값)
 date: 2024-02-28
 ---
 
