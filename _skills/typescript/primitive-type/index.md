@@ -9,8 +9,8 @@ date: 2024-02-27
 
 ## Primitive Type : 원시 Type
 
-- TypeScript의 primitive(원시) type은 JavaScript의 primitive type을 기반으로 합니다.
-- primitive type은 program의 기본 단위로 사용되며, 직접 변경할 수 없는 불변의 값입니다.
+- TypeScript의 원시(primitive) type은 JavaScript의 원시 type을 기반으로 합니다.
+- 원시 type은 program의 기본 단위로 사용되며, 직접 변경할 수 없는 불변의 값입니다.
 
 
 ### `number`

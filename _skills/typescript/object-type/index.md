@@ -17,7 +17,7 @@ date: 2024-02-29
 
 ### `object` (소문자로 시작하는 object)
 
-- 소문자로 시작하는 `object` type은 primitive type을 제외한 모든 객체 type을 나타내며, `null`을 제외한 모든 객체를 포함합니다.
+- 소문자로 시작하는 `object` type은 원시 type을 제외한 모든 객체 type을 나타내며, `null`을 제외한 모든 객체를 포함합니다.
     - 객체, 배열, 함수, class instance 등 JavaScript에서 생성할 수 있는 거의 모든 구조를 포함할 수 있습니다.
 
 - `object` type을 사용하면 가장 일반적인 형태의 객체를 다룰 수 있지만, 구체적인 구조를 명시하지 않기 때문에 더 세밀한 type checking을 위해서는 다른 구체적인 객체 type을 사용하는 것이 좋습니다.
@@ -82,4 +82,4 @@ date: 2024-02-29
 
 | `Object` type(대문자 'O') | `object` type(소문자 'o') |
 | --- | --- |
-| JavaScript의 모든 객체가 기본적으로 상속받는 최상위 class입니다.<br>JavaScript에서 생성할 수 있는 모든 값(원시 값과 객체)을 포함합니다. | primitive type을 제외한 모든 객체 type입니다.<br>`null`을 제외한 모든 객체, 즉 배열, 함수, class instance 등 JavaScript에서 생성할 수 있는 거의 모든 구조체를 포함합니다. |
+| JavaScript의 모든 객체가 기본적으로 상속받는 최상위 class입니다.<br>JavaScript에서 생성할 수 있는 모든 값(원시 값과 객체)을 포함합니다. | 원시 type을 제외한 모든 객체 type입니다.<br>`null`을 제외한 모든 객체, 즉 배열, 함수, class instance 등 JavaScript에서 생성할 수 있는 거의 모든 구조체를 포함합니다. |

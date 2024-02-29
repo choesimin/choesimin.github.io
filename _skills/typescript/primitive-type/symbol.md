@@ -10,7 +10,7 @@ date: 2024-02-28
 
 ## Symbol Type
 
-- JavaScript의 Symbol은 ES6(ES2015)에서 도입된, 변경 불가능한 primitive data type입니다.
+- JavaScript의 Symbol은 ES6(ES2015)에서 도입된, 변경 불가능한 원시(primitive) type입니다.
 
 - 각 Symbol 값은 고유하며, 주로 객체 속성의 key로 사용됩니다.
     - Symbol을 사용하는 주된 목적은 이름 충돌의 위험 없이 객체에 유일한 속성들을 추가하는 것입니다.

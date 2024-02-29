@@ -9,7 +9,7 @@ date: 2024-02-28
 
 ## BigInt Type : 매우 큰 정수
 
-- `bigint`는 JavaScript와 TypeScript에서 매우 큰 정수를 나타내기 위한 primitive type입니다.
+- `bigint`는 JavaScript와 TypeScript에서 매우 큰 정수를 나타내기 위한 원시(primitive) type입니다.
     - ES2020에서 JavaScript에 도입되었으며, TypeScript에서도 사용할 수 있습니다.
 
 - `bigint`는 매우 큰 숫자를 사용하거나 정밀한 숫자 계산이 필요한 경우에 유용하게 사용될 수 있습니다.

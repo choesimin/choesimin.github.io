@@ -181,7 +181,7 @@ person.address = 'Seoul';    // Error
 
 ### Type Alias를 사용해야 할 때
 
-1. primitive type에 새로운 이름(별칭)을 생성할 때.
+1. 원시 type에 새로운 이름(별칭)을 생성할 때.
 2. union type, tuple type, function type, 또는 더 복잡한 type을 정의할 때.
 3. 함수를 overloading할 때.
 4. mapped type, 조건부(conditional) type, type guard, 또는 기타 고급(advanced) type 기능을 사용할 때.
