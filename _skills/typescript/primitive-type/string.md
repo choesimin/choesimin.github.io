@@ -79,3 +79,29 @@ console.log(emojiString);    // 😀 😃 😄 😁
 
 
 
+
+---
+
+
+
+
+## `string`과 `String`의 차이
+
+- `string` type은 TypeScript가 기본으로 제공하는 원시 type인 문자열 type을 의미합니다.
+- 하지만 대문자로 시작하는 `String` type은 `String` 생성자 함수로 생성된 `String` wrapper 객체 type을 의미합니다.
+- 따라서 `string` type에 `String` type을 할당하면 오류가 발생합니다.
+    - `String` type에는 `string` type을 할당할 수 있습니다.
+
+```typescript
+/* String : String 생성자 함수로 생성된 String wrapper 객체 type */
+let objectStr: String;
+objectStr = 'hello';    // OK
+objectStr = new String('hello');    // OK
+
+/* string : 원시 문자열 type */
+let primitiveStr: string;
+primitiveStr = 'hello';    // OK
+primitiveStr = new String('hello');    // Error : 원시 type 문자열 type에 객체를 할당하면 오류 발생
+// Type 'String' is not assignable to type 'string'.
+// 'string' is a primitive, but 'String' is a wrapper object. Prefer using 'string' when possible.
+```

@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript - Class
+title: TypeScript Object Type - Class
 date: 2024-02-26
 ---
 

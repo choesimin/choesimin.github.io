@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript - Interface
+title: TypeScript Object Type - Interface
 date: 2024-02-26
 ---
 
