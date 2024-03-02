@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Object Type - Function
+title: TypeScript Object Type - Function (함수 Signature)
 date: 2024-02-29
 ---
 

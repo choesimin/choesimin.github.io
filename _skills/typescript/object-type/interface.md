@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Object Type - Interface
+title: TypeScript Object Type - Interface (객체 계약서)
 date: 2024-02-26
 ---
 

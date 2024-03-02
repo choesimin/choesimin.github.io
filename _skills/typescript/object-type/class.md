@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Object Type - Class
+title: TypeScript Object Type - Class (객체 설계도)
 date: 2024-02-26
 ---
 

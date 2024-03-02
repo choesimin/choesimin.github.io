@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Object Type - Tuple
+title: TypeScript Object Type - Tuple (고정 배열)
 date: 2024-02-29
 ---
 

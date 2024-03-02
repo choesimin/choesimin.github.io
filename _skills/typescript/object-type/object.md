@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Object Type - Object
+title: TypeScript Object Type - Object (객체)
 date: 2024-02-29
 ---
 

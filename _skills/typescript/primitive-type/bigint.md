@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Primitive Type - BigInt(매우 큰 정수)
+title: TypeScript Primitive Type - BigInt (매우 큰 정수)
 date: 2024-02-28
 ---
 

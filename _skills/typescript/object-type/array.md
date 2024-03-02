@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Object Type - Array
+title: TypeScript Object Type - Array (배열)
 date: 2024-02-29
 ---
 
