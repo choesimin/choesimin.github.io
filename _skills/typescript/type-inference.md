@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript - Type 추론
+title: TypeScript - Type Inference (Type 추론)
 date: 2024-02-27
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript - 변수와 함수에 Type 선언하기
+title: TypeScript - Type Declaration (변수와 함수에 Type 선언하기)
 date: 2024-02-25
 ---
 

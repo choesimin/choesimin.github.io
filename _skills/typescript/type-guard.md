@@ -1,12 +1,12 @@
 ---
 layout: skill
-title: TypeScript - Type Guard
+title: TypeScript - Type Guard (Type 좁히기)
 date: 2024-02-28
 ---
 
 
 
-## Type Guard : Type 좁히기
+## Type Guard : Type 좁히기(Narrowing)
 
 - type guard는 특정 scope 내에서 **변수의 type을 보다 구체적으로 좁히기 위해 사용**하는 표현식입니다.
 

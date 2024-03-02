@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript - Type Alias
+title: TypeScript - Type Alias (Type 별칭)
 date: 2024-02-27
 ---
 

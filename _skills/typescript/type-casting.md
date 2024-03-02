@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript - Type Casting
+title: TypeScript - Type Casting (Type 변환하기)
 date: 2024-02-28
 ---
 
