@@ -36,7 +36,7 @@ let foo: string = 'hello';
 - 선언한 type에 맞지 않는 값을 할당하면 compile 시점에 오류가 발생합니다.
 
 ```typescript
-let bar: number = true; // error TS2322: Type 'true' is not assignable to type 'number'.
+let bar: number = true;    // error TS2322: Type 'true' is not assignable to type 'number'.
 ```
 
 
@@ -102,8 +102,8 @@ let list3: Array<number> = [1, 2, 3];    // generic 배열 type
 
 /* tuple */
 let tuple: [string, number];
-tuple = ['hello', 10]; // OK
-tuple = [10, 'hello']; // Error
+tuple = ['hello', 10];    // OK
+tuple = [10, 'hello'];    // Error
 tuple = ['hello', 10, 'world', 100];    // Error
 tuple.push(true);    // Error
 

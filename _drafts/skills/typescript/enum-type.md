@@ -39,8 +39,8 @@ enum Direction {
   Right
 }
 
-console.log(Direction.Up); // 0
-console.log(Direction.Down); // 1
+console.log(Direction.Up);    // 0
+console.log(Direction.Down);    // 1
 ```
 
 멤버에 특정 숫자 값을 할당할 수도 있으며, 할당된 값부터 순차적으로 증가합니다.
@@ -105,7 +105,7 @@ enum Color {
 }
 
 for (let color in Color) {
-  console.log(color); // 'Red', 'Green', 'Blue'
+  console.log(color);    // 'Red', 'Green', 'Blue'
 }
 ```
 
@@ -139,7 +139,7 @@ function getColorName(color: Color): string {
   }
 }
 
-console.log(getColorName(Color.Red)); // "Red"
+console.log(getColorName(Color.Red));    // "Red"
 ```
 
 - `switch` 문에서 `enum` 사용 시의 장점
@@ -166,7 +166,7 @@ function getColorName(color: Color): string {
     case Color.Blue:
       return 'Blue';
     default:
-      return assertNever(color); // 모든 경우를 처리했다면 이 줄은 실행되지 않음
+      return assertNever(color);    // 모든 경우를 처리했다면 이 줄은 실행되지 않음
   }
 }
 ```
@@ -193,8 +193,8 @@ function paintWall(color: Color) {
   // ...
 }
 
-paintWall(Color.Red); // 올바른 사용
-// paintWall("Red"); // 오류: 'Red'는 'Color' 타입에 할당할 수 없음
+paintWall(Color.Red);    // 올바른 사용
+// paintWall("Red");    // 오류: 'Red'는 'Color' 타입에 할당할 수 없음
 ```
 
 
@@ -333,7 +333,7 @@ const myPermissions = Permissions.Read | Permissions.Write;
 
 // 특정 권한 검사
 const canExecute = (myPermissions & Permissions.Execute) === Permissions.Execute;
-console.log(canExecute); // false
+console.log(canExecute);    // false
 ```
 
 
@@ -406,8 +406,8 @@ enum Example {
   A
 }
 
-let exampleName = Example[Example.A]; // "A"
-let exampleValue = Example["A"]; // 0
+let exampleName = Example[Example.A];    // "A"
+let exampleValue = Example["A"];    // 0
 ```
 
 이 기능은 `enum`의 값과 이름 사이를 쉽게 전환할 수 있게 해주어, 디버깅과 로깅 작업을 용이하게 합니다.
@@ -443,28 +443,6 @@ namespace Animal {
   }
 }
 
-console.log(Animal.info(Animal.Dog)); // "Dogs are domesticated mammals."
+console.log(Animal.info(Animal.Dog));    // "Dogs are domesticated mammals."
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -113,8 +113,8 @@ let notANumber2 = "text" / 2;    // NaN
     - `NaN === NaN`은 `false`를 반환합니다.
 
 ```typescript
-console.log(NaN === NaN); // false
-console.log(isNaN(result)); // true
+console.log(NaN === NaN);    // false
+console.log(isNaN(result));    // true
 ```
 
 - `NaN`을 포함하는 모든 수학 연산의 결과는 `NaN`입니다.

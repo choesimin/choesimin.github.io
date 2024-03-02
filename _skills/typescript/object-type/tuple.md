@@ -135,9 +135,9 @@ let employee: [number, string, string] = [1, "Steve", "Developer"];
 
 // 구조 분해 할당을 사용하여 tuple 요소를 변수에 할당
 let [id, name, position] = employee;
-console.log(id); // 1
-console.log(name); // Steve
-console.log(position); // Developer
+console.log(id);    // 1
+console.log(name);    // Steve
+console.log(position);    // Developer
 ```
 
 

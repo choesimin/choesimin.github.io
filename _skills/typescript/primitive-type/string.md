@@ -47,7 +47,7 @@ third line.
 ```typescript
 let price: number = 19.99;
 let message: string = `The price is: $${price}`;
-console.log(message); // "The price is: $19.99"
+console.log(message);    // "The price is: $19.99"
 ```
 
 
