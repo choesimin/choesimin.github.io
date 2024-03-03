@@ -83,6 +83,7 @@ type Toggle = true | false;    // 기본 boolean type을 사용하는 것과 동
 | 정의 방식 | `enum` Type 사용. 'enum' keyword. | type alias 사용. 'type' keyword. |
 | Runtime에 code 추가 | runtime에 추가 code를 생성함(runtime 객체로 존재). runtime code가 있어 bundle 크기가 증가할 수 있음. | runtime에 추가 code를 생성하지 않음. compile time에만 존재하므로 bundle 크기에 영향 없음. |
 | Type Checking | 자동 완성 기능 지원. type checking에 용이함. | 각 가능한 값을 수동으로 입력해야 함. 자동 완성 기능 사용 시 덜 편리함. |
+| Iterable | 값이기 때문에 순회가 가능함. | type이기 때문에 순회가 불가능함. |
 | JavaScript 호환성 | TypeScript code를 JavaScript로 compile할 때 그 구조를 유지함. JavaScript와 TypeScript를 혼합하여 사용하는 project에 적합함. | JavaScript로 compile 시 구조를 유지하지 않음. type 정보만 존재함. |
 | 사용을 권장하는 경우 | `enum` 값을 반복하거나, `enum`의 값들을 runtime에 조작해야 하는 경우.<br>특정 범주에 속하는 명확한 option 집합을 표현해야 할 때.<br>TypeScript와 JavaScript 간의 호환성이 중요한 경우. | type이 간단하고, runtime에서의 사용이 필요하지 않을 때(더 가볍고 간결한 code를 유지할 수 있음).<br>최종 bundle 크기를 최소화하고자 할 때(web application의 loading 시간과 성능 최적화에 유리). |
 
@@ -253,6 +254,9 @@ let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Ri
 ```
 
 - compile된 JavaScript에서는 `Directions`에 대한 참조가 해당 값으로 직접 치환됩니다.
+- build 과정에서 참조 값만 남기기 때문에 tree-shaking이 된다는 장점이 있습니다.
+    - tree-shaking이란 나무를 흔들면 죽은 나뭇잎이 떨어지는 것처럼 사용하지 않는 code를 삭제하는 방식입니다.
+- 하지만 `enum`과 다르게 직접적인 값으로 치환되기 때문에, 전체 namespace에 접근하지 못하고 순회할 수도 없다는 단점이 있습니다.
 
 
 ### `enum`의 계산된 Member (Computed Member)
