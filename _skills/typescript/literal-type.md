@@ -9,17 +9,17 @@ date: 2024-03-02
 
 ## Literal Type - 특정 값을 지정하기
 
-- TypeScript의 literal type은 특정 값만을 가질 수 있는 변수를 선언할 때 사용합니다.
-    - 이는 변수가 정확히 그 값만을 가질 수 있음을 의미합니다.
+- TypeScript의 literal type은 **특정 값만을 가질 수 있는 변수**를 선언할 때 사용합니다.
+    - 이는 변수가 **정확히 그 값만을 가질 수 있음**을 의미합니다.
 
 - literal type은 문자열, 숫자, boolean 값 등을 정확하게 지정할 수 있습니다.
 
 - literal type을 사용하면 type의 정확성을 높일 수 있어, code의 안정성을 높이고 오류를 줄이는 데 도움이 됩니다.
     - code를 통해 변수나 속성이 가질 수 있는 값의 범위를 명확히 표현할 수 있습니다.
-    - 예상치 못한 값의 할당을 compile 시점에 방지하여, runtime 오류의 가능성을 줄일 수 있습니다.
+    - 예상치 못한 값의 할당을 compile time에 방지하여, runtime 오류의 가능성을 줄일 수 있습니다.
     - IDE에서 literal type을 사용하면, 가능한 값에 대한 자동 완성 기능을 지원받을 수 있어, 개발 효율성을 높일 수 있습니다.
 
-- literal type은 보통 union type과 결합하여 literl union type으로 만들어 사용하는 경우가 많습니다.
+- literal type은 **보통 union type과 결합하여 literl union type으로 만들어 사용하는 경우가 많습니다.**
 
 
 ### 문자열 Literal Type
@@ -86,8 +86,8 @@ submitButton.color = "yellow";    // Error: Type '"yellow"' is not assignable to
 
 ## Literal Union Type : Literal Type으로 만든 Union Type
 
-- literal union type은 TypeScript의 강력한 type 정의 방식 중 하나로, 여러 literal type을 union(`|`) 연산자를 사용하여 결합한 것입니다.
-    - literal union type을 사용하면 이러한 literal type들을 하나의 type으로 결합하여, 변수가 여러 개의 구체적인 값 중 하나를 가질 수 있도록 할 수 있습니다.
+- literal union type은 TypeScript의 강력한 type 정의 방식 중 하나로, **여러 literal type을 union(`|`) 연산자를 사용하여 결합**한 것입니다.
+    - literal union type을 사용하면 이러한 literal type들을 하나의 type으로 결합하여, 변수가 **여러 개의 구체적인 값 중 하나를 가질 수 있도록** 할 수 있습니다.
 
 - literal union type을 통해 변수나 속성이 가질 수 있는 값의 범위를 명시적으로 제한할 수 있습니다.
     - 변수가 특정 값들 중 하나만을 가질 수 있도록 제한할 때, 함수가 받을 수 있는 인자의 값을 제한하고자 할 때 literal union type을 사용합니다.

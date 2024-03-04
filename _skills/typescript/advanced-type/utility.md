@@ -9,7 +9,7 @@ date: 2024-03-03
 
 ## Utility Type
 
-- TypeScript의 utility type은 type system 내에서 type을 효과적으로 재사용하고 조작하기 위해 설계된 built-in(내장) type 집합입니다.
+- TypeScript의 utility type은 type system 내에서 **type을 효과적으로 재사용하고 조작하기 위해 설계된 built-in(내장) type 집합**입니다.
     - 개발자가 보다 선언적이고 간결한 방식으로 type을 정의하고, type 조작을 통해 새로운 type을 생성할 수 있게 해줍니다.
 
 - utility type은 일반적인 type 변환을 쉽게 수행할 수 있도록, TypeScript에서 기본으로 제공하는 미리 정의된 type 집합을 제공합니다.
@@ -40,16 +40,16 @@ date: 2024-03-03
 
 ### Utility Type을 사용하는 이유
 
-1. Type 안전성 향상 : utility type을 사용함으로써 개발자는 기존 type의 구조를 유지하면서, 특정 속성을 수정하거나 추가하는 등의 type 조작을 안전하게 수행할 수 있습니다.
+1. **type 안전성 향상** : utility type을 사용함으로써 개발자는 기존 type의 구조를 유지하면서, 특정 속성을 수정하거나 추가하는 등의 type 조작을 안전하게 수행할 수 있습니다.
     - code 전반에 걸쳐 일관된 type 안전성을 보장합니다.
 
-2. Code 재사용성 증대 : utility type을 활용하면, 기존 type을 기반으로 새로운 type을 쉽게 생성하고 조작할 수 있습니다.
+2. **code 재사용성 증대** : utility type을 활용하면, 기존 type을 기반으로 새로운 type을 쉽게 생성하고 조작할 수 있습니다.
     - 비슷한 type pattern이 반복될 때 code 중복을 줄이고, 재사용성을 높이는 데 도움이 됩니다.
 
-3. 개발 생산성 향상 : utility type을 사용하면 복잡한 type 조작을 간단한 선언으로 해결할 수 있어, 개발 과정이 간소화됩니다.
+3. **개발 생산성 향상** : utility type을 사용하면 복잡한 type 조작을 간단한 선언으로 해결할 수 있어, 개발 과정이 간소화됩니다.
     - 개발자가 보다 신속하게 type-safe한 code를 작성할 수 있게 해주며, 결과적으로 생산성을 증대시킵니다.
 
-4. 유연성과 확장성 제공 : utility type들은 다양한 type 조작을 위한 기능을 제공하여, 변경에 유연하게 대처할 수 있게 합니다.
+4. **유연성과 확장성 제공** : utility type들은 다양한 type 조작을 위한 기능을 제공하여, 변경에 유연하게 대처할 수 있게 합니다.
     - project의 요구 사항이 변경되어 type을 수정하거나 확장해야 할 때 유연하게 대응할 수 있도록 해줍니다.
 
 

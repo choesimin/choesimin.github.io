@@ -9,16 +9,16 @@ date: 2024-03-02
 
 ## Union Type - 여러 Type 중 하나 선택하기
 
-- union type은 서로 다른 여러 type 중 하나가 될 수 있는 값을 정의할 때 사용하는 고급 type입니다. 
+- union type은 **서로 다른 여러 type 중 하나가 될 수 있는 값을 정의**할 때 사용하는 고급 type입니다. 
     - `|` 연산자를 사용하여 정의되며, 이는 변수나 매개 변수가 지정된 type 중 하나의 type을 가질 수 있음을 의미합니다.
 
 - union type을 사용하면, 변수나 함수 매개 변수가 여러 다른 type 중 하나를 가질 수 있습니다.
     - e.g., `string | number` union type은 해당 변수나 매개 변수가 문자열 또는 숫자일 수 있음을 의미합니다.
 
-- union type은 program이 다양한 type의 값들을 유연하게 처리할 수 있게 하며, 다양한 상황에서 유용하게 사용됩니다.
+- union type은 program이 **다양한 type의 값들을 유연하게 처리할 수 있게** 하며, 다양한 상황에서 유용하게 사용됩니다.
     - e.g., 함수가 여러 type의 인자를 받아들일 수 있도록 하거나, 함수가 여러 type 중 하나의 type을 반환할 수 있도록 할 때 union type을 사용할 수 있습니다.
 
-- `|` 연산자로 여러 type들을 연결하여 union type을 정의합니다.
+- **`|` 연산자**로 여러 type들을 연결하여 union type을 정의합니다.
 
 ```typescript
 function logMessage(message: string | number) {
@@ -34,7 +34,7 @@ logMessage(100);    // 숫자를 인자로 전달
 
 - union type을 사용하면 변수가 여러 type 중 하나의 type을 가질 수 있음을 의미합니다.
 - 이렇게 여러 type 중 하나를 가질 수 있는 변수에 대해서는, 해당 변수가 실제로 어떤 type을 가지는지를 정확히 알아내고, 그에 맞는 method나 속성에 접근하기 위해 type guard가 필요합니다.
-- union type과 type guard를 함께 사용하면 다양한 type을 가진 변수들을 더 안전하게 처리할 수 있습니다.
+- **union type과 type guard를 함께 사용**하면 다양한 type을 가진 변수들을 더 안전하게 처리할 수 있습니다.
 
 #### Union Type과 `typeof` Type Guard
 

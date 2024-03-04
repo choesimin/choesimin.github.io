@@ -52,8 +52,8 @@ let tuple2: [number, string, boolean] = [1, "Steve", true];
 ```typescript
 let person: [string, number] = ["Alice", 30];
 
-let name: string = person[0];    // Alice (string type으로 자동 추론됨)
-let age: number = person[1];    // 30 (number type으로 자동 추론됨)
+let personName: string = person[0];    // Alice (string type으로 자동 추론됨)
+let personAge: number = person[1];    // 30 (number type으로 자동 추론됨)
 ```
 
 - `person` tuple은 첫 번째 요소로 문자열(`string`)을, 두 번째 요소로 숫자(`number`)를 가집니다.

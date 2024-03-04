@@ -9,7 +9,7 @@ date: 2024-02-29
 
 ## 배열 Type : Type이 같은 값들의 집합
 
-- TypeScript의 배열 type은 강력한 type checking 기능을 제공하여, 배열 내의 모든 요소가 동일한 type을 갖도록 합니다.
+- TypeScript의 배열 type은 강력한 type checking 기능을 제공하여, **배열 내의 모든 요소가 동일한 type**을 갖도록 합니다.
 
 - 배열 type의 정의는 `type[]`과 `Array<type>` 두 가지 방식 중 상황에 맞는 방식을 선택하여 사용할 수 있습니다.
 

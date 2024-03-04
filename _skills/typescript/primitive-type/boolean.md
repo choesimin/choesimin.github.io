@@ -9,7 +9,7 @@ date: 2024-02-28
 
 ## Boolean Type : True/False
 
-- `boolean` type은 참(`true`) 또는 거짓(`false`)의 논리적 값으로 표현됩니다.
+- `boolean` type은 **참(`true`) 또는 거짓(`false`)의 논리적 값**으로 표현됩니다.
 - TypeScript의 `boolean` type은 JavaScript의 `boolean` type과 동일하게 작동합니다.
 
 - `boolean` type을 효과적으로 사용하면 program의 logic을 명확하게 표현하고 제어할 수 있습니다.
@@ -35,7 +35,7 @@ if (isCompleted) {
 ```
 
 
-### 논리 연산자와 함께 사용
+### 논리 연산자와 함께 사용하기
 
 - `boolean` type은 논리 연산자(`&&`, `||`, `!`)와 함께 사용될 때 더욱 강력해집니다.
 - 이를 통해 복잡한 조건을 표현하고 program의 흐름을 더 세밀하게 제어할 수 있습니다.

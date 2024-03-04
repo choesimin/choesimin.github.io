@@ -9,7 +9,7 @@ date: 2024-02-28
 
 ## Number(숫자) Type
 
-- TypeScript에서 `number` type은 JavaScript의 숫자를 나타내는 type입니다.
+- TypeScript에서 `number` type은 JavaScript의 **숫자**를 나타내는 type입니다.
     - `number` type은 JavaScript의 모든 숫자 값(정수, 실수, `NaN`, `Infinity`, `-Infinity` 등)를 포함합니다.
 
 

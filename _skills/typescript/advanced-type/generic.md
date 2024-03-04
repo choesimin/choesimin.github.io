@@ -9,11 +9,11 @@ date: 2024-03-04
 
 ## Generic Type : Type을 Parameter처럼 사용하기
 
-- generic type은 type을 parameter처럼 사용하여, 다양한 type에 대해 작동할 수 있는 함수, class, interface 등을 생성할 수 있게 해주는 기능입니다.
+- generic type은 **type을 parameter처럼 사용**하여, 다양한 type에 대해 작동할 수 있는 함수, class, interface 등을 생성할 수 있게 해주는 기능입니다.
     - generic을 사용함으로써 type 안전성을 유지하면서, code를 재사용 가능하고 유연하게 만들 수 있스빈다.
 
-- generic을 사용하면, 하나의 함수나 class가 여러 type에 대해 작동할 수 있게 됩니다.
-    - code를 작성할 때 구체적인 type을 명시하는 대신, type 변수(T)를 사용하여 함수나 class를 정의합니다.
+- **generic을 사용하면, 하나의 함수나 class가 여러 type에 대해 작동할 수 있게 됩니다.**
+    - code를 작성할 때 구체적인 type을 명시하는 대신, **type 변수(T)를 사용하여 함수나 class를 정의**합니다.
     - type 변수는 함수나 class가 호출되거나 instance를 생성할 때 구체적인 type으로 대체됩니다.
 
 
@@ -85,8 +85,8 @@ myGenericNumber.add = function(x, y) { return x + y; };
 ## Generic Constraint : 제약 조건 (`extends`)
 
 - generic type을 사용할 때, 특정 property나 method에 접근하고 싶을 수 있습니다.
-- 이럴 때 generic type에 제약 조건(constraint)을 사용하여, 특정 type이 가져야 할 구조를 명시할 수 있습니다.
-- generic type에 제약 조건을 추가하면, generic type이 특정 속성이나 method를 가지고 있음을 강제할 수 있습니다.
+- 이럴 때 generic type에 제약 조건(constraint)을 사용하여, **특정 type이 가져야 할 구조를 명시**할 수 있습니다.
+- generic type에 제약 조건을 추가하면, **generic type이 특정 속성이나 method를 가지고 있음을 강제**할 수 있습니다.
 
 - 제약 조건을 통해, 함수나 class 내부에서 generic type에 대해 보다 안전하게 연산을 수행할 수 있습니다.
     - e.g., generic type이 특정 interface를 구현하도록 강제할 수 있습니다.
@@ -139,10 +139,10 @@ function createItem<T extends Identifiable & Nameable>(item: T): T {
 
 ## Generic Default Type Parameter : 기본 값
 
-- generic type 기본 값(generic default type parameter)은 TypeScript에서 generic을 사용할 때 제공되지 않은 type 인자에 대해, 기본 type을 설정할 수 있게 해주는 기능입니다.
-    - generic type 기본 값을 통해 개발자는 generic 함수나 class를 더 유연하게 사용할 수 있으며, type 인자를 생략했을 때의 동작을 명시적으로 정의할 수 있습니다.
+- **generic type 기본 값(generic default type parameter)**은 TypeScript에서 **generic을 사용할 때 제공되지 않은 type 인자에 대해, 기본 type을 설정할 수 있게 해주는 기능**입니다.
+    - generic type 기본 값을 통해 개발자는 generic 함수나 class를 더 유연하게 사용할 수 있으며, **type 인자를 생략했을 때의 동작을 명시적으로 정의**할 수 있습니다.
 
-- generic type 기본 값을 사용하면 TypeScript의 type 추론(type inference) 기능이 동작하합니다.
+- generic type 기본 값을 사용하면 TypeScript의 type 추론(type inference) 기능이 동작합니다.
     - type 인자를 명시적으로 제공하지 않아도, TypeScript compiler는 제공된 값의 type을 기반으로 적절한 type을 추론하거나, 기본 값을 사용하여 type을 결정합니다.
 
 - generic type 기본 값은 code를 더욱 간결하고 유연하게 만듭니다.

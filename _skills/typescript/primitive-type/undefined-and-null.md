@@ -43,7 +43,7 @@ let myUndefinedVar: undefined = undefined;
     - 이런 엄격한 check는 code 내에서 잠재적인 null 참조 오류를 사전에 방지하고, 더 안전하고 예측 가능한 code를 작성할 수 있도록 도와줍니다.
 
 ```typescript
-let name: string = null;    // 오류: --strictNullChecks가 활성화되어 있을 때, 'null'을 'string'에 할당할 수 없습니다.
+let myName: string = null;    // 오류: --strictNullChecks가 활성화되어 있을 때, 'null'을 'string'에 할당할 수 없습니다.
 ```
 
 
@@ -60,8 +60,8 @@ let name: string = null;    // 오류: --strictNullChecks가 활성화되어 있
 - 따라서, 변수가 `null` 또는 `undefined`를 받을 수 있게 하려면, union type을 사용하여 명시적으로 선언해야 합니다.
 
 ```typescript
-let name: string | null = null;    // 정상 작동
-let age: number | undefined;    // 'undefined'를 명시적으로 포함
+let myName: string | null = null;    // 정상 작동
+let myAge: number | undefined;    // 'undefined'를 명시적으로 포함
 ```
 
 

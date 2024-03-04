@@ -7,7 +7,7 @@ date: 2024-02-27
 
 
 
-## Type Alias - Type에 이름 붙이기
+## Type Alias : Type에 이름 붙이기
 
 - type alias는 **기존에 존재하는 하나 이상의 type에 새로운 이름을 부여**하는, TypeScript의 강력한 type system을 활용한 기능 중 하나입니다.
     - 복잡한 type 구조를 간결하게 표현하고, code의 가독성을 높일 수 있습니다.
@@ -51,6 +51,11 @@ type UserID = number;
 type UserName = string;
 
 type Str = 'Lee';    // string literal type
+
+let id: UserID = 2;
+let nm: UserName = 'simin';
+
+id = '2';    // Error: Type 'string' is not assignable to type 'number'.
 ```
 
 
@@ -76,8 +81,11 @@ type Obj = {a: 1} | {b: 2};    // object literal union type
 
 ```typescript
 type Point = [number, number];
+```
 
+```typescript
 type Tuple = [string, boolean];
+
 const tupleA: Tuple = ['', true];    // OK
 const tupleB: Tuple = ['', ''];    // Error
 ```
@@ -93,6 +101,11 @@ type Point = {
     x: number;
     y: number;
 };
+```
+
+```typescript
+type UserID = number;
+type UserName = string;
 
 type User = {
     id: UserID;    // type alias를 type으로 지정

@@ -9,7 +9,7 @@ date: 2024-03-04
 
 ## Conditional Type : 특정 조건에 따라 Type 결정하기
 
-- 조건부(conditional) type은 TypeScript에서 특정 조건에 따라 type을 결정할 수 있게 해주는 고급 type system의 기능입니다.
+- 조건부(conditional) type은 TypeScript에서 **특정 조건에 따라 type을 결정**할 수 있게 해주는 고급 type system의 기능입니다.
     - type의 형태를 동적으로 조작할 수 있어, 복잡한 type 관계를 표현할 때 유용합니다.
         - type을 programming 언어의 `if` 문처럼 다룰 수 있게 해주어, type의 선택적 사용을 가능하게 합니다.
     - 조건부 type은 TypeScript의 code를 유연하고 재사용 가능하게 만들어줍니다.
@@ -93,7 +93,7 @@ type Test = ReturnType<typeof f1>;    // string | number
 - 따라서 `Test` type은 `string | number` union type이 됩니다.
 
 
-### 복잡한 조건과 type 추론
+### 복잡한 조건과 Type 추론
 
 - `infer` keyword를 사용하여 조건부 type 내에서 type을 추론할 수 있습니다.
 - 이를 통해 함수의 매개 변수 type이나 반환 type 등을 추출하는 등의 고급 type 조작이 가능해집니다.

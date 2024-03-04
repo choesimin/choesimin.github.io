@@ -28,7 +28,7 @@ type MappedType<T> = {
 
 ### 읽기 전용 Mapped Type
 
-- 기존 type의 모든 속성을 읽기 전용(readonly)으로 만듭니다.
+- 기존 type의 **모든 속성을 읽기 전용(readonly)으로 만듭니다.**
 
 ```typescript
 interface Person {
@@ -51,7 +51,7 @@ person.name = "Jane";    // 오류: 'name' 속성은 읽기 전용이므로 할�
 
 ### 선택적 속성 Mapped Type
 
-- 기존 type의 모든 속성을 선택적(optional property)으로 만듭니다.
+- 기존 type의 **모든 속성을 선택적(optional property)으로 만듭니다.**
 
 ```typescript
 type PartialPerson = {
