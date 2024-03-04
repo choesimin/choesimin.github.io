@@ -70,7 +70,7 @@ let sym2 = Symbol("key2");
 - ES2015(ES6)에서 도입된 Symbol type은 **고유하고 변경 불가능**한 type입니다.
 
 
-### `bigint`
+### `bigint` Type
 
 ```typescript
 let big: bigint = 100n;
