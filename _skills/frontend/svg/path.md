@@ -27,7 +27,7 @@ date: 2023-08-29
 
 ## Paths Data(`d`) 속성으로 Path 그리기
 
-- `<path>` 요소의 **paths data(`d`)** 속성으로 path 도형의 모양을 결정하는 path를 어뗗게 그릴지 설정할 수 있습니다.
+- `<path>` 요소의 **paths data(`d`) 속성**으로 path 도형의 모양을 결정하는 path를 어뗗게 그릴지 설정할 수 있습니다.
 - paths data 속성은 data의 약어인 `d`로 선언하며, `d` 속성의 속성값은 **Command Alphabet**과 **XY 좌표값**으로 이루어집니다.
 
 ```html

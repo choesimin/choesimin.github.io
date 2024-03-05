@@ -173,7 +173,7 @@ greeter(me);    // Hello Lee
 | --- | --- |
 | 주로 **type check를 위해 사용**됩니다.<br>객체의 구조를 정의하며, 이 구조에 따라 객체가 형성되어야 함을 명시합니다. | **구현과 상속을 위해 사용**됩니다.<br>일부 기능을 구현하고, 나머지 기능은 상속받는 class에서 구현하도록 강제할 수 있습니다. |
 | property과 method의 signature(추상 method 등)만을 정의할 수 있으며, **구현을 포함할 수 없습니다.** | 추상 method뿐만 아니라 **구현(일반 method 등)도 포함할 수 있습니다.** |
-| class는 **여러 interface를 구현(implement)**할 수 있습니다.<br>이를 통해 **다중 상속**과 유사한 효과를 낼 수 있습니다. | class는 **하나의 추상 class만 상속(extend)**할 수 있습니다.<br>이는 JavaScript와 TypeScript에서 다중 상속을 지원하지 않기 때문입니다. |
+| class는 **여러 interface를 구현**(implement)할 수 있습니다.<br>이를 통해 **다중 상속**과 유사한 효과를 낼 수 있습니다. | class는 **하나의 추상 class만 상속**(extend)할 수 있습니다.<br>이는 JavaScript와 TypeScript에서 다중 상속을 지원하지 않기 때문입니다. |
 | **runtime에는 존재하지 않습니다.**<br>TypeScript를 JavaScript로 compile할 때 interface는 제거됩니다. | **runtime에도 존재합니다.**<br>compile 후에도 JavaScript code에 추상 class는 남습니다. |
 | 특별한 keyword 없이 추상 method를 정의합니다. | `abstract` keyword를 사용하여 추상 method를 정의합니다. |
 

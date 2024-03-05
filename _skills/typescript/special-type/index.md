@@ -17,7 +17,7 @@ date: 2024-03-04
 
 ### `any` Type
 
-- `any` type은 TypeScript의 **type check를 회피할 수 있는 우회로(탈출구)**를 제공합니다.
+- `any` type은 TypeScript의 **type check를 회피할 수 있는 우회로**(탈출구)를 제공합니다.
 - **어떤 type의 값이든 할당할 수 있으며**, compiler는 `any` type에 대한 type check를 수행하지 않습니다.
 
 ```typescript

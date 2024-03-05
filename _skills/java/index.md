@@ -23,7 +23,7 @@ date: 2023-07-18
 
 ## Web 출현과 Java의 발전
 
-- Java는 **internet**과 **WWW(World Wide Web)**의 출현으로 당시 software project의 선두로 부상하게 됩니다.
+- Java는 **internet**과 **WWW**(World Wide Web)의 출현으로 당시 software project의 선두로 부상하게 됩니다.
     - Web 환경은 이식 가능한 언어를 요구합니다.
         - internet은 다양한 computer, 운영 체제, CPU로 넘쳐나는 광대한 분산형 system이기 때문입니다.
     - Java의 뛰어난 이식성은 Web 개발에 적합합니다.

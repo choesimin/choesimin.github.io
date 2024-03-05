@@ -8,7 +8,7 @@ date: 2024-02-06
 
 
 
-- Command Pattern은 실행될 기능 또는 작업을 캡슐화(encapsulation)하여, **기능의 실행을 요구하는 호출자(invoker)**와 **기능을 실행하는 수신자(Receiver)** 간의 결합을 느슨하게 만들기 위해 사용됩니다.
+- Command Pattern은 실행될 기능 또는 작업을 캡슐화(encapsulation)하여, **기능의 실행을 요구하는 호출자**(invoker)와 **기능을 실행하는 수신자**(receiver) 간의 결합을 느슨하게 만들기 위해 사용됩니다.
 - Command Pattern을 적용하면 명령을 쉽게 추가하거나 변경할 수 있으며, 실행 취소(undo), 재실행, queuing, logging 등 다양한 기능을 구현할 수 있습니다.
 
 

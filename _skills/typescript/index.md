@@ -9,10 +9,10 @@ date: 2024-02-25
 
 ## TypeScript = JavaScript + Type Check
 
-- TypeScript는 **AltJS(Alternative JavaScript)** 중 하나입니다.
+- TypeScript는 **AltJS**(Alternative JavaScript) 중 하나입니다.
     - AltJS는 'JavaScript 파생 언어'로, TypeScript 말고도 CoffeScript, Dart 등이 있습니다.
 
-- TypeScript는 **JavaScript(ES5)의 Superset(상위 확장)**이므로 기존의 JavaScript 문법을 그대로 사용할 수 있습니다.
+- TypeScript는 **JavaScript(ES5)의 Superset**(상위 확장)이므로 기존의 JavaScript 문법을 그대로 사용할 수 있습니다.
     - 따라서 TypeScript 실행 환경에 JavaScript를 coding하면 정상적으로 동작합니다.
     - 하지만 JavaScript 실행 환경에 TypeScript를 coding하면 동작하지 않습니다.
 
@@ -51,13 +51,13 @@ object --> function --> never
 ## TypeScript의 주요 특징 : 정적 Typing
 
 - **TypeScript는 정적(Static) Typing을 지원**합니다.
-    - 정적 type 언어는 변수를 선언할 때, 변수에 할당할 값의 type에 따라 **사전에 type을 명시적으로 선언(type declaration)**하고, **선언한 type에 맞는 값을 할당**합니다.
+    - 정적 type 언어는 변수를 선언할 때, 변수에 할당할 값의 type에 따라 **사전에 type을 명시적으로 선언**(type declaration)하고, **선언한 type에 맞는 값을 할당**합니다.
         - type이 결정된 후에는 type을 변경할 수 없습니다.
             - 잘못된 type의 값이 할당되거나 반환되면, compiler는 이를 감지해 오류를 발생시킵니다.
         - C-family(C, Java 등) 언어도 정적 typeing을 지원하는 언어입니다.
 
 - **JavaScript는 동적(Dynamic) Typing만을 지원**합니다.
-    - JavaScript는 동적 type(dynamic typed) 언어 혹은 느슨한 type(loosely typed) 언어이며, **type의 사전 선언 없이, 값이 할당되는 과정에서 동적으로 type을 추론(type inference)**합니다.
+    - JavaScript는 동적 type(dynamic typed) 언어 혹은 느슨한 type(loosely typed) 언어이며, **type의 사전 선언 없이, 값이 할당되는 과정에서 동적으로 type을 추론**(type inference)합니다.
         - 동적 type 언어는 type 추론에 의해 **변수의 type이 결정된 후에도 같은 변수에 여러 type의 값을 교차하여 할당**할 수 있습니다.
     - 동적 typing은 사용하기 간편하지만, code를 예측하기 힘들어 예상치 못한 오류를 만들 가능성이 높습니다.
 

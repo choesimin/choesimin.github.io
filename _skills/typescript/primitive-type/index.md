@@ -52,7 +52,7 @@ let u: undefined = undefined;
 let n: null = null;
 ```
 
-- `undefined`는 **'정의되지 않은 값'**을, `null`은 **'없는 값'**을 나타냅니다.
+- `undefined`는 '**정의되지 않은 값**'을, `null`은 '**없는 값**'을 나타냅니다.
 
 - 기본 설정에서는 `undefined`와 `null`을 **다른 모든 type의 하위 type으로 취급**합니다.
     - e.g., `number`나 `string` type의 변수에 `null`이나 `undefined`를 할당할 수 있습니다.

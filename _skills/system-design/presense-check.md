@@ -25,7 +25,7 @@ date: 2024-02-22
 
 ### Login
 
-- login을 통해 사용자와 실시간 service 사이에 연결이 이루어지면, 접속 상태 server는 **사용자의 상태(`status`)**와 **마지막 활동 일시(`last_active_at`)**를 key-value 저장소에 보관합니다.
+- login을 통해 사용자와 실시간 service 사이에 연결이 이루어지면, 접속 상태 server는 **사용자의 상태**(`status`)와 **마지막 활동 일시**(`last_active_at`)를 key-value 저장소에 보관합니다.
     - 이 작업이 끝나면 사용자는 '접속 중' 상태로 표시됩니다.
 
 ```mermaid

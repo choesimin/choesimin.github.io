@@ -139,7 +139,7 @@ function createItem<T extends Identifiable & Nameable>(item: T): T {
 
 ## Generic Default Type Parameter : 기본 값
 
-- **generic type 기본 값(generic default type parameter)**은 TypeScript에서 **generic을 사용할 때 제공되지 않은 type 인자에 대해, 기본 type을 설정할 수 있게 해주는 기능**입니다.
+- **generic type 기본 값**(generic default type parameter)은 TypeScript에서 **generic을 사용할 때 제공되지 않은 type 인자에 대해, 기본 type을 설정할 수 있게 해주는 기능**입니다.
     - generic type 기본 값을 통해 개발자는 generic 함수나 class를 더 유연하게 사용할 수 있으며, **type 인자를 생략했을 때의 동작을 명시적으로 정의**할 수 있습니다.
 
 - generic type 기본 값을 사용하면 TypeScript의 type 추론(type inference) 기능이 동작합니다.

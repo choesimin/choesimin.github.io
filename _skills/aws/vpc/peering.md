@@ -42,7 +42,7 @@ vpc2 -.- pcx
 pcx --> route
 ```
 
-- 다른 VPC를 peering하기 위해 중개자 역할의 **PCX(Peering Connection)**를 생성합니다.
+- 다른 VPC를 peering하기 위해 중개자 역할의 **PCX**(Peering Connection)를 생성합니다.
 - PCX를 생성할 때는 **요청자(Requester) VPC**와 **수락자(Accepter) VPC**를 설정합니다.
 - PCX를 생성한 후에, 실제로 통신할 수 있도록 PCX를 routing table에 연결합니다.
     - routing table에 PCX를 등록합니다.

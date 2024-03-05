@@ -14,7 +14,7 @@ date: 2023-12-29
 
 ## BSON 형식으로 Data 저장
 
-- MongoDB는 **BSON(Binary JSON)** 형식으로 data를 저장하고 전송합니다.
+- MongoDB는 **BSON**(Binary JSON) 형식으로 data를 저장하고 전송합니다.
 
 - BSON은 "Binary JSON"의 줄임말로, 이진 형식 data 직렬화를 위해 설계된 format입니다.
     - BSON은 이진 data로 표현되어 있어 JSON보다 더 효율적으로 저장하고 전송할 수 있습니다.

@@ -50,7 +50,7 @@ date: 2023-11-02
 Software 개발자는 '행위'와 '구조'의 두 가치를 모두 높게 유지해야 합니다.
 ```
 
-- **행위는 기능(software의 동작)**을, **구조는 architecture (software system 변경의 용이성)**을 의미합니다.
+- **행위는 기능**(software의 동작)을, **구조는 architecture**(software system 변경의 용이성)을 의미합니다.
 
 
 ### 첫 번째 가치 : 행위 (Behavior)
@@ -99,7 +99,7 @@ structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program
 
 #### 개발 우선 순위
 
-- 일반적으로, **긴급한 것은 기능(동작)**이고, **중요한 것은 architecture(구조)**입니다.
+- 일반적으로, **긴급한 것은 기능**(동작)이고, **중요한 것은 architecture**(구조)입니다.
 
 | 우선 순위 | 일의 종류 |
 | --- | --- |
