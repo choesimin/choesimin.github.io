@@ -42,17 +42,6 @@ date: 2024-03-06
     - e.g., 웹 어플리케이션의 "다크 모드" 설정은 사용자의 선호에 따라 변경될 수 있는 어플리케이션의 상태입니다.
 
 
-### 비슷하지만 다른 Strategy Pattern과 State Pattern
-
-- State Pattern은 Strategy Pattern과 'solution'이 동일하지만, 'context'와 'problem'이 다르기 때문에 별개의 pattern으로 분리합니다.
-    - 두 pattern을 구현했을 때, class의 구성이 완전히 같습니다.
-
-| Strategy Pattern | State Pattern |
-| --- | --- |
-| **context 객체가 행동을 결정**합니다. | **state 객체가 행동을 결정**합니다. context 객체가 행동할 때는 상태 전환 규칙에 따라 결정된 상태의 행동을 수행합니다. |
-| 새로운 **행동**(algorithm)을 추가할 때 새로운 객체를 추가합니다. | 새로운 **상태**(state)를 추가할 때 새로운 객체를 추가합니다. |
-
-
 
 
 ---
@@ -63,48 +52,59 @@ date: 2024-03-06
 ## State Pattern 구현
 
 
-### 상태 구현
+### State Pattern의 Class 구조
 
 ```mermaid
 classDiagram
 
+class Client
+
 class Context {
-    request()
+    -state: State
+
+    +Context(State)
+
+    +request()
+    +setState(State)
 }
 
 class State {
     <<interface>>
-    handle()
+    +handle()
 }
 
 class ConcreteStateA {
-    handle()
+    +handle()
 }
 
 class ConcreteStateB {
-    handle()
+    +handle()
 }
+
+Client --> Context
 
 Context --* State
 State <|.. ConcreteStateA
 State <|.. ConcreteStateB
 ```
 
-1. `State` interface : 추상적인 상태. 상태 인터페이스/추상 class
-    - 이는 모든 구체적인 상태 class가 따라야 하는 인터페이스 또는 추상 class입니다. 이 인터페이스에는 상태에 따라 다르게 동작해야 하는 메소드들이 정의되어 있습니다.
-    - 모든 구상 상태 class에 대한 공통 interface를 정의합니다.\n모든 상태 class에서 같은 interface를 구현하기 때문에 바꿔가면서 쓸 수 있습니다.
-    - 여러 상태를 추상화한 상태를 만듭니다.
-    - 각 상태는 추상화된 상태를 구현합니다.
-        - 해당 상태일 때 해야할 행동을 구현합니다.
-    
-    
+1. **`State` Interface** : 여러 상태들을 추상화한 상태.
+    - `State` interface는 **모든 구체적인 상태 class가 따라야 하는 공통 interface**(또는 추상 class)입니다.
+        - 이 인터페이스에 상태에 따라 다르게 동작해야 하는 메소드들이 정의되어 있습니다.
+    - 모든 구체적인 상태 class가 같은 interface(`State`)를 구현할 것이기 때문에, 상태를 사용하는 객체(`Context`)는 **구체적인 상태를 자유롭게 바꿔가면서 사용**할 수 있습니다.
 
-2. `ConcreteState` class : 구체적인 상태.
-    - 이들은 상태 인터페이스를 구현하거나 추상 상태 class를 상속받는 class들입니다. 각각의 class는 특정 상태에 대한 행동을 구현합니다. 예를 들어, "켜짐", "꺼짐", "대기 모드"와 같은 다양한 상태들이 이에 해당합니다.
-    - Context로부터 전달된 요청을 처리합니다.\n각 ConcreteState에서 그 요청을 처리하는 방법을 자기 나름의 방식으로 구현합니다.\nContext에서 상태를 바꾸기만 하면 행동도 바뀌게 됩니다.
+2. **`ConcreteState` Class** : 구체적인 상태.
+    - `ConcreteState` class는 **상태 인터페이스를 구현하는(또는 추상 상태 class를 상속받는) 구체적인 상태 class**들입니다.
+    - 각각의 상태 class는 추상화된 상태(`State`)를 구현하여, 특정 상태에 대한 행동을 정의합니다.
+        - e.g., 켜짐/꺼짐/대기, 제출/검토/승인/거부 등.
+    - `ConcreteState` class는 상태를 사용하는 객체(`Context`)로부터 전달된 요청을 처리합니다.
+        - 각 `ConcreteState`에서 그 요청을 처리하는 방법을 자기 나름의 방식으로 구현합니다.
+        - 따라서 `Context`에서 상태를 바꾸기만 하면 행동도 바뀌게 됩니다.
 
-3. `Context` class : 상태를 사용하는 객체.
-    - 이는 사용자가 상호작용하는 주 객체로, 여러 상태를 가질 수 있습니다. Context는 현재 상태를 나타내는 State 인터페이스/추상 class 타입의 변수를 포함합니다. Context 객체의 상태가 변경될 때, 해당 변수를 다른 Concrete State 객체로 교체하여 객체의 행동을 변경합니다.
+3. **`Context` Class** : 상태를 사용하는 객체.
+    - `Context` class는 사용자(`Client`)가 상호 작용하는 주 객체로, 여러 상태를 가질 수 있습니다.
+
+    Context는 현재 상태를 나타내는 State 인터페이스/추상 class 타입의 변수를 포함합니다. Context 객체의 상태가 변경될 때, 해당 변수를 다른 Concrete State 객체로 교체하여 객체의 행동을 변경합니다.
     - request() method는 state.handle()을 호출하여 상태 객체에게 작업을 맡깁니다.\nContext class 안에는 여러 가지 내부 상태가 들어있을 수 있습니다."
     - context 객체는 현재 상태를 나타내는 객체에게 행동을 위임합니다.
     - context 객체는 추상화된 상태만을 알고 있습니다.
@@ -122,7 +122,7 @@ class Context {
     }
 
     void request() {
-        state.handle(this);    // state 객체에 처리 위임
+        state.handle(this);    // state 객체에 처리를 위임함
     }
 }
 ```
@@ -142,6 +142,7 @@ class ConcreteStateA implements State {
 class ConcreteStateB implements State {
     @Override
     public void handle(Context context) {
+        // ...
         context.setState(ConcreteStateC.getInstance());    // 상태에서 동작을 실행한 후 바로 다른 상태로 바꾸기도 함
     }
 }
@@ -155,17 +156,41 @@ class ConcreteStateC implements State {
 ```
 
 
-### 상태 사용
+### State Pattern 사용 흐름
 
 ```mermaid
 sequenceDiagram
 
-Context ->> ConcreteStateA : handle()
-ConcreteStateA ->> ConcreteStateA : State를 ConcreteStateA에서 ConcreteStateB로 변경합니다.
-ConcreteStateA ->> Context : return result
-Context ->> ConcreteStateB : handle()
-ConcreteStateB ->> Context : return result
+actor Client
+
+Client ->> Context : setState(StateA)
+activate Context
+
+Client ->> Context : request()
+Context ->> StateA : handle()
+activate StateA
+StateA -->> Context : return
+deactivate StateA
+
+Client ->> Context : setState(StateB)
+Client ->> Context : request()
+Context ->> StateB : handle()
+activate StateB
+StateB ->> Context : setStat(StateC)
+StateB -->> Context : return
+deactivate StateB
+
+Client ->> Context : request()
+Context ->> StateC : handle()
+activate StateC
+StateC -->> Context : return
+deactivate StateC
+
+deactivate Context
 ```
+
+State Pattern에서 객체의 상태는 실행 시간(runtime)에 변경될 수 있습니다. 객체의 상태가 바뀌면, 해당 객체가 호출하는 메소드의 행동도 자동으로 바뀝니다. 이는 객체가 현재의 상태 객체에 모든 작업을 위임(delegate)하기 때문입니다. 이러한 방식으로, State Pattern은 객체의 상태에 따라 객체의 행동을 유연하게 변경할 수 있는 구조를 제공합니다.
+
 
 ```java
 class Client {
@@ -190,7 +215,76 @@ class Client {
 }
 ```
 
-State Pattern에서 객체의 상태는 실행 시간(runtime)에 변경될 수 있습니다. 객체의 상태가 바뀌면, 해당 객체가 호출하는 메소드의 행동도 자동으로 바뀝니다. 이는 객체가 현재의 상태 객체에 모든 작업을 위임(delegate)하기 때문입니다. 이러한 방식으로, State Pattern은 객체의 상태에 따라 객체의 행동을 유연하게 변경할 수 있는 구조를 제공합니다.
+
+
+
+---
+
+
+
+
+## 상태 패턴 특징
+ 
+
+### 상태 패턴 사용 시기
+
+객체의 행동(메서드)가 상태(state)에 따라 각기 다른 동작을 할때. 
+상태 및 전환에 걸쳐 대규모 조건 분기 코드와 중복 코드가 많을 경우
+조건문의 각 분기를 별도의 클래스에 넣는것이 상태 패턴의 핵심
+런타임단에서 객체의 상태를 유동적으로 변경해야 할때
+
+ 
+### 상태 패턴 장점
+
+상태(State)에 따른 동작을 개별 클래스로 옮겨서 관리 할 수 있다.
+상태(State)와 관련된 모든 동작을 각각의 상태 클래스에 분산시킴으로써, 코드 복잡도를 줄일 수 있다.
+단일 책임 원칙Visit Website을 준수할 수 있다. (특정 상태와 관련된 코드를 별도의 클래스로 구성)
+개방 폐쇄 원칙Visit Website을 준수 할 수 있다. (기존 State 클래스나 컨텍스트를 변경하지 않고 새 State를 도입할 수 있다)
+하나의 상태 객체만 사용하여 상태 변경을 하므로 일관성 없는 상태 주입을 방지하는데 도움이 된다.
+
+ 
+### 상태 패턴 단점
+
+상태 별로 클래스를 생성하므로, 관리해야할 클래스 수 증가
+상태 클래스 갯수가 많고 상태 규칙이 자주 변경된다면, Context의 상태 변경 코드가 복잡해지게 될 수 있다.
+객체에 적용할 상태가 몇가지 밖에 없거나 거의 상태 변경이 이루어지지 않는 경우 패턴을 적용하는 것이 과도할 수 있다.
+
+
+
+
+---
+
+
+
+
+## 비슷하지만 다른 Strategy Pattern과 State Pattern
+
+- State Pattern은 Strategy Pattern과 'solution'이 동일하지만, 'context'와 'problem'이 다르기 때문에 별개의 pattern으로 분리합니다.
+    - 두 pattern을 구현했을 때, class의 구성이 완전히 같습니다.
+
+| Strategy Pattern | State Pattern |
+| --- | --- |
+| **context 객체가 행동을 결정**합니다. | **state 객체가 행동을 결정**합니다. context 객체가 행동할 때는 상태 전환 규칙에 따라 결정된 상태의 행동을 수행합니다. |
+| 새로운 **행동**(algorithm)을 추가할 때 새로운 객체를 추가합니다. | 새로운 **상태**(state)를 추가할 때 새로운 객체를 추가합니다. |
+
+
+State vs Strategy 
+ 
+패턴 유사점
+
+전략 패턴과 상태 패턴은 클래스 다이어그램이 거의 동일하고 코드 사용법도 비슷하다.
+둘다 난잡한 조건 분기를 극복하기 위해 전략 / 상태 형태를 객체화
+둘다 합성(composition)을 통해 상속의 한계를 극복
+둘다 객체의 일련의 행동이 캡슐화되어 객체 지향 원칙을 준수한다.
+State는 Strategy의 확장으로 간주될 수도 있다.
+
+ 
+패턴 차이점
+
+전략 패턴과 상태 패턴의 구조는 거의 같지만 어떤 목적을 위해서 사용되는가에 따라 차이가 있다.
+전략 패턴은 알고리즘을 객체화 하여 클라이언트에서 유연적으로 전략을 제공 / 교체를 한다.상태 패턴은 객체의 상태를 객체화하여 클라이언트와 상태 클래스 내부에서 다른 상태로 교체를 한다.
+전략 패턴의 전략 객체는 그 전략만의 알고리즘 동작을 정의 및 수행한다. (만일 전략을 상태화 하면 클래스 폭발이 일어날 수 있다)상태 패턴의 상태 객체는 상태가 적용되는 대상 객체가 할수있는 일련의 모든 행동들을 정의 및 수행한다.
+전략 패턴의 전략 객체는 입력값에 따라 전략 형태가 다양하게 될 수 있으니 인스턴스로 구성한다.상태 패턴의 상태 객체는 정의된 상태를 서로 스위칭 하기에 메모리 절약을 위해 싱글톤으로 구성한다.
 
 
 
