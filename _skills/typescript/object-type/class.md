@@ -45,7 +45,7 @@ class Person {
 
 - JavaScript ES6에서는 문제없이 실행되는 code이지만, file의 확장자를 `ts`로 바꾸어 TypeScript file로 변경한 후 compile하면 compile error가 발생합니다.
 
-```log
+```txt
 person.ts(4,10): error TS2339: Property 'name' does not exist on type 'Person'.
 person.ts(8,25): error TS2339: Property 'name' does not exist on type 'Person'.
 ```
