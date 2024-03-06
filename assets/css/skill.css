@@ -47,6 +47,10 @@ article>ul>li {
     padding: 10px 0;
 }
 
+article>ol>li {
+    padding: 10px 0;
+}
+
 #progressBar {
     position: fixed;
     top: 0;
