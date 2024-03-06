@@ -3,17 +3,20 @@ layout: skill-base
 ---
 
 
-<div id="progressBar"></div>
+<div id="progressBar">
+    <div></div>
+</div>
 
-<article>
-    <h1 id="title">{{ page.title }}</h1>
-    <p id="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
-    <ul id="index"></ul>
-    {{ content }}
-    <div id="stamp">
-        <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}">
-    </div>
-</article>
+<h1 id="title">{{ page.title }}</h1>
+<p id="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
+
+<ul id="index"></ul>
+
+<article>{{ content }}</article>
+
+<div id="stamp">
+    <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}">
+</div>
 
 <script>
     const title = document.getElementById('title');
@@ -39,11 +42,21 @@ layout: skill-base
         index.appendChild(item);
     }
 
+    const progressBar = document.getElementById('progressBar');
+    let scrolling;
     window.onscroll = function () {
         var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         var scrolled = (winScroll / height) * 100;
-        document.getElementById('progressBar').style.width = scrolled + "%";
+
+        progressBar.style.width = scrolled + "%";
+        progressBar.style.height = '8px';
+
+        clearTimeout(scrolling);
+        scrolling = setTimeout(() => {
+            progressBar.style.height = '4px';
+            scrolling = undefined;
+        }, 100);
     };
 </script>
 

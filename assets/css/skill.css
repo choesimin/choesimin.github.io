@@ -43,13 +43,17 @@ blockquote {
     background-color: var(--background-highlight-color);
 }
 
+article>ul>li {
+    padding: 10px 0;
+}
+
 #progressBar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 0%;
-    height: 3px;
+    width: 0;
     background-color: var(--color);
+    transition: 100ms;
 }
 
 #title {
