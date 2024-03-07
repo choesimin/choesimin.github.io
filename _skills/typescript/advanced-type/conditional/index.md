@@ -25,6 +25,10 @@ T extends U ? X : Y;
     - `T`가 `U`에 할당 가능한 경우의 결과 type은 `X`가 되고, 그렇지 않은 경우는 `Y`가 됩니다.
         - "`T`가 `U`에 할당 가능한 경우"는 "`T`가 `U`의 하위 type인 경우"를 의미합니다.
 
+- 많은 utility type들이 조건부 type을 직접적으로 사용하여 구현되어 있습니다.
+    - e.g., `Partial<T>`, `Required<T>`, `Readonly<T>`, `Record<K, T>`, `Pick<T, K>`, `Exclude<T, U>`, `Extract<T, U>`, `NonNullable<T>`, `ReturnType<T>`, `InstanceType<T>`.
+    - 따라서 조건부 type을 사용하여 기능을 구현하기 전에, TypeScript에서 미리 정의한 utility type이 있는지 확인하는 것이 좋습니다.
+
 
 
 

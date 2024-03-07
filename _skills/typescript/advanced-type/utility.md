@@ -16,6 +16,9 @@ date: 2024-03-03
     - utility type들을 사용하면, 기존 type을 변형하여 새로운 type을 생성하는 등의 작업을 간편하게 할 수 있습니다.
         - TypeScript type system의 강력한 type 변환 기능을 활용하여, 복잡한 type 조작을 보다 간편하고 안전하게 수행할 수 있습니다.
 
+- 여러 utility type들이 조건부 type을 사용하여 구현되었습니다.
+    - 조건부(conditional) type은 특정 조건에 따라 type을 결정할 수 있게 해주는 고급 type 중 하나입니다.
+
 - utility type에는 `Partial`, `Readonly`, `Record`, `Pick`, `Omit` 등, 특정한 type 변환 작업을 위해 설계된 다양한 type이 있습니다.
 
 | Utility Type | 설명 |
