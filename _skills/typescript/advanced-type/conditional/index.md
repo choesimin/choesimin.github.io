@@ -11,7 +11,7 @@ date: 2024-03-04
 
 - 조건부(conditional) type은 TypeScript에서 **특정 조건에 따라 type을 결정**할 수 있게 해주는 고급 type system의 기능입니다.
     - type의 형태를 동적으로 조작할 수 있어, 복잡한 type 관계를 표현할 때 유용합니다.
-        - type을 programming 언어의 `if` 문처럼 다룰 수 있게 해주어, type의 선택적 사용을 가능하게 합니다.
+        - type을 programming 언어의 `if` 문(또는 삼항 연산자)처럼 다룰 수 있게 해주어, type의 선택적 사용을 가능하게 합니다.
     - 조건부 type은 TypeScript의 code를 유연하고 재사용 가능하게 만들어줍니다.
 
 - 조건부 type은 일반적으로 generic type과 함께 사용되며, TypeScript 2.8 version에서 도입되었습니다.

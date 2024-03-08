@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript Conditional Type - 'infer' Keyword (infer)
+title: TypeScript Conditional Type - Type 추론
 date: 2024-03-03
 ---
 
