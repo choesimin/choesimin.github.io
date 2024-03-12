@@ -78,15 +78,15 @@ type ProductOrder = Product & Order;    // Error : type 충돌
 - 두 개의 기본적인 type alias을 정의하고, 이를 합쳐서 intersection type을 만듭니다.
 
 ```typescript
-// 첫 번째 type 별칭 정의
+// 첫 번째 type alias 정의
 type Color = {
-  color: string;
+    color: string;
 };
 
-// 두 번째 type 별칭 정의
+// 두 번째 type alias 정의
 type Dimension = {
-  width: number;
-  height: number;
+    width: number;
+    height: number;
 };
 
 // Color와 Dimension type을 결합하여 ColoredRectangle intersection type 생성
@@ -94,9 +94,9 @@ type ColoredRectangle = Color & Dimension;
 
 // ColoredRectangle type의 객체 생성 예시
 const myRectangle: ColoredRectangle = {
-  color: "blue",
-  width: 20,
-  height: 10
+    color: "blue",
+    width: 20,
+    height: 10
 };
 
 console.log(myRectangle);
