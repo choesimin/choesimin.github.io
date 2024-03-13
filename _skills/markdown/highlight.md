@@ -9,7 +9,7 @@ date: 2023-04-09
 
 ## 문법
 
-```txt
+```markdown
 normal   
 *single asterisk*   
 _single underscore_   
@@ -17,15 +17,17 @@ _single underscore_
 __double underscore__   
 ~~double tilde~~   
 <u>underline tag</u>
+`inline code`
 ```
 
 
 ## 결과
 
-normal   
-*single asterisk*   
-_single underscore_   
-**double asterisk**   
-__double underscore__   
-~~double tilde~~   
-<u>underline tag</u>
+> normal   
+> *single asterisk*   
+> _single underscore_   
+> **double asterisk**   
+> __double underscore__   
+> ~~double tilde~~   
+> <u>underline tag</u>   
+> `inline code`

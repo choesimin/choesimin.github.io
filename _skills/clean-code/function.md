@@ -71,7 +71,7 @@ code를 읽으면서 짐작했던 기능을 각 routine이 그대로 수행한�
 - 서술적인 이름을 사용하면 설계가 뚜렷해지므로 code 개선이 쉬워집니다.
 - 일관성 있는 이름을 붙여야 합니다.
     - module 내에서 함수 이름은 같은 문구, 명사, 동사를 사용합니다.
-        - e.g., `includeSetupAndTeardownPages`, `includSetupPages`, `includeSuiteSetupPage`, `includeSetupPage`, ...
+        - e.g., `includeSetupAndTeardownPages`, `includeSetupPages`, `includeSuiteSetupPage`, `includeSetupPage`, ...
 
 
 ## 7. 인수를 적게 유지하기
