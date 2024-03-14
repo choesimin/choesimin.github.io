@@ -10,7 +10,7 @@ class App {
         window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
 
-        this.ball = new Ball(this.stageWidth, this.stageHeight, 60, 20);
+        this.ball = new Ball(this.stageWidth, this.stageHeight, 40, 20);
 
         window.requestAnimationFrame(this.animate.bind(this));
     }
