@@ -377,6 +377,89 @@ NoLabelA --|> NoLabelB
 
 
 
+## Diagram 방향 설정하기
+
+- `direction` 명령어와 상하좌우를 의미하는 `T`, `B`, `L`, `R` code를 이용하여 화살표의 방향을 설정합니다.
+
+```txt
+direction [begin][end]
+```
+
+| Code | 화살표의 방향 |
+| --- | --- |
+| `direction TB` | 상 -> 하 |
+| `direction BT` | 하 -> 상 |
+| `direction LR` | 좌 -> 우 |
+| `direction RL` | 우 -> 좌 |
+
+
+### Top to Bottom (상 -> 하)
+
+```txt
+classDiagram
+direction TB
+Begin --|> End
+```
+
+```mermaid
+classDiagram
+direction TB
+Begin --|> End
+```
+
+
+### Bottom to Top (하 -> 상)
+
+```txt
+classDiagram
+direction BT
+Begin --|> End
+```
+
+```mermaid
+classDiagram
+direction BT
+Begin --|> End
+```
+
+
+### Left to Right (좌 -> 우)
+
+```txt
+classDiagram
+direction LR
+Begin --|> End
+```
+
+```mermaid
+classDiagram
+direction LR
+Begin --|> End
+```
+
+
+### Right to Left (우 -> 좌)
+
+```txt
+classDiagram
+direction RL
+Begin --|> End
+```
+
+```mermaid
+classDiagram
+direction RL
+Begin --|> End
+```
+
+
+
+
+---
+
+
+
+
 ## Reference
 
 - <https://mermaid.js.org/syntax/classDiagram.html>

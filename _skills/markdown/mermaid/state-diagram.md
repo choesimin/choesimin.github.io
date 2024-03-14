@@ -37,9 +37,9 @@ crash --> [*]
 ## 상태 정의하기
 
 ```txt
-[stateId]
-[stateId] : [description]
-state "[description]" as [stateId]
+[state_id]
+[state_id] : [description]
+state "[description]" as [state_id]
 ```
 
 - 상태의 식별값과 설명을 작성하여 정의합니다.
@@ -64,11 +64,11 @@ state "This is a state description with alias" as descStateWithAlias
 ### Note 작성하기
 
 ```txt
-note [position] of [stateId]
+note [position] of [state_id]
     [memo]
 end
 
-note [position] of [stateId] : [memo]
+note [position] of [state_id] : [memo]
 ```
 
 - `note` keyword로 상태에 대한 설명을 추가할 수 있습니다.
@@ -171,7 +171,7 @@ Previous --> Next : action[condition]
 ## 선택 정의하기
 
 ```txt
-state [choiceId] <<choice>>
+state [choice_id] <<choice>>
 ```
 
 - 선택 상태는 `<<choice>>` keyword를 상태 식별값 뒤에 작성하여 정의합니다.
@@ -196,6 +196,89 @@ state if <<choice>>
 Previous --> if : Action
 if --> Next1 : Condition 1
 if --> Next2 : Condition 2
+```
+
+
+
+
+---
+
+
+
+
+## Diagram 방향 설정하기
+
+- `direction` 명령어와 상하좌우를 의미하는 `T`, `B`, `L`, `R` code를 이용하여 화살표의 방향을 설정합니다.
+
+```txt
+direction [begin][end]
+```
+
+| Code | 화살표의 방향 |
+| --- | --- |
+| `direction TB` | 상 -> 하 |
+| `direction BT` | 하 -> 상 |
+| `direction LR` | 좌 -> 우 |
+| `direction RL` | 우 -> 좌 |
+
+
+### Top to Bottom (상 -> 하)
+
+```txt
+stateDiagram-v2
+direction TB
+[*] --> [*]
+```
+
+```mermaid
+stateDiagram-v2
+direction TB
+[*] --> [*]
+```
+
+
+### Bottom to Top (하 -> 상)
+
+```txt
+stateDiagram-v2
+direction BT
+[*] --> [*]
+```
+
+```mermaid
+stateDiagram-v2
+direction BT
+[*] --> [*]
+```
+
+
+### Left to Right (좌 -> 우)
+
+```txt
+stateDiagram-v2
+direction LR
+[*] --> [*]
+```
+
+```mermaid
+stateDiagram-v2
+direction LR
+[*] --> [*]
+```
+
+
+### Right to Left (우 -> 좌)
+
+```txt
+stateDiagram-v2
+direction RL
+[*] --> [*]
+```
+
+```mermaid
+stateDiagram-v2
+direction RL
+[*] --> [*]
 ```
 
 
