@@ -6,8 +6,8 @@ layout: skill-base
 
 <br>
 <section id="intro">
-    <h1></h1>
-    <p></p>
+    <h1>기술시민</h1>
+    <p>기술 지식을 기록합니다.</p>
 </section>
 <br>
 <br>
@@ -21,8 +21,8 @@ layout: skill-base
     const title = intro.getElementsByTagName('h1')[0];
     const description = intro.getElementsByTagName('p')[0];
 
-    type(title, "기술시민", 120);
-    type(description, "기술 지식을 기록합니다.");
+    type(title, title.innerText, 120);
+    type(description, description.innerText);
 
     var pages = getPages();
     var nodes = makeNodes(pages);
@@ -177,4 +177,4 @@ layout: skill-base
 
 
 
-<link rel="stylesheet" href="{{ '/assets/css/skill-list.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/skills.css' | relative_url }}">
