@@ -6,8 +6,7 @@ layout: none
     {
       "title": "{{ skill.title | escape }}",
       "url": "{{ site.baseurl }}{{ skill.url }}",
-      "date": "{{ skill.date }}",
-      "content": {{ skill.content | jsonify }}
+      "date": "{{ skill.date }}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]

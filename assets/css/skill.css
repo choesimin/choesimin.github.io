@@ -57,10 +57,10 @@ article>ol>li {
     left: 0;
     width: 0;
     background-color: var(--color);
-    transition: 100ms;
 }
 
 #title {
+    padding-top: 50px;
     margin-bottom: 0px;
     line-height: 1;
     text-align: center;

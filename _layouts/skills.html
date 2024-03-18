@@ -5,117 +5,50 @@ layout: skill-base
 
 
 
-<a id="theme" onclick="toggleTheme()"><img /></a>
-
-<br>
-<br>
-
 <section id="intro">
     <h1>기술시민</h1>
     <p>기술 지식<span></span></p>
+    <a onclick="toggleTheme()"><img></a>
 </section>
 
-<!-- <button id="theme" onclick="toggleTheme()"><span></span> 보기</button> -->
+<section id="search">
+    <input type="text" placeholder="문서 검색하기 (제목, 날짜, URL)">
+    <div></div>
+</section>
 
-<!-- <div>
-    <a id="search" onclick="toggleSearch()"><img></a>
-</div> -->
-
-
-<!-- <h2>검색</h2>
-<input id="searchInput" type="text" placeholder="제목, 내용, 날짜">
-<div id="searchResult"></div> -->
-
-<br>
-<br>
-
-
-
-<hr>
-<h2>모든 문서</h2>
 <div id="index"></div>
 <article id="skills"></article>
 
 <script>
-    const description = document.getElementById('intro').getElementsByTagName('p')[0];
-    setTimeout(() => type(description.getElementsByTagName('span')[0], '을 기록합니다.', 100), 600);
+    const introSection = document.getElementById('intro');
+    const description = introSection.getElementsByTagName('p')[0];
+    const themeImage = introSection.getElementsByTagName('a')[0].getElementsByTagName('img')[0];
+    const searchSection = document.getElementById('search');
 
+    setTimeout(() => type(description.getElementsByTagName('span')[0], '을 기록합니다.', 100), 600);
+    setTimeout(() => themeImage.style.opacity = 0.7, 1200);
 
     setThemeIcon();
-    
-    function toggleTheme() {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light') localStorage.setItem('theme', 'dark');
-        else localStorage.setItem('theme', 'light');
 
+    function toggleTheme() {
+        localStorage.setItem('theme', localStorage.getItem('theme') === 'light' ? 'dark' : 'light');
         setTheme();
         setThemeIcon();
     }
 
     function setThemeIcon() {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'dark') document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
-        else document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/moon/black.svg' | relative_url }}";
+        themeImage.src = localStorage.getItem('theme') === 'dark'
+            ? "{{ '/assets/icon/sun/white.svg' | relative_url }}"
+            : "{{ '/assets/icon/moon/black.svg' | relative_url }}";
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // SimpleJekyllSearch({
-    //     searchInput: document.getElementById('searchInput'),
-    //     resultsContainer: document.getElementById('searchResult'),
-    //     json: '/assets/json/skill-search.json',
-    //     searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
-    // });
-
-    // function toggleSearch() {
-    //     var searchInput = document.getElementById('searchInput');
-    //     var searchResult = document.getElementById('searchResult');
-    //     if (getComputedStyle(searchInput).display === 'none' || getComputedStyle(searchResult).display === 'none') {
-    //         searchInput.style.display = 'block';
-    //         searchResult.style.display = 'block';
-    //         searchInput.focus();
-    //     } else {
-    //         searchInput.style.display = 'none';
-    //         searchResult.style.display = 'none';
-    //     }
-    // }
-
-    function setTheme() {
-        if (localStorage.getItem('theme') === 'light') {
-            setLightTheme();
-        } else if (localStorage.getItem('theme') === 'dark') {
-            setDarkTheme();
-        } else {
-            localStorage.setItem('theme', 'light');
-            setLightTheme();
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    SimpleJekyllSearch({
+        searchInput: searchSection.getElementsByTagName('input')[0],
+        resultsContainer: searchSection.getElementsByTagName('div')[0],
+        json: '/assets/json/skill-search.json',
+        searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
+    });
 
 
     var pages = getPages();

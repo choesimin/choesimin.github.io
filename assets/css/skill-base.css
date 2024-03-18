@@ -10,13 +10,6 @@ html {
 }
 
 body {
-    --background-color: black;
-    --background-highlight-color: black;
-    --color: black;
-    --code-color: black;
-    --highlight-color: black;
-    --border-color: black;
-
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
@@ -101,12 +94,14 @@ footer {
 
 #logo img {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 8px;
+    left: 8px;
     height: 60px;
     opacity: 0.8;
+    transition: 0.2s;
 }
 
 #logo img:hover {
     opacity: 1;
+    height: 70px;
 }
