@@ -7,6 +7,8 @@ author:
 collections:
   skills:
     output: true
+  graphics:
+    output: true
 
 plugins:
   - jekyll-seo-tag
