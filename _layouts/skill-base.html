@@ -14,15 +14,7 @@
 </head>
 
 <body>
-    <nav>
-        <a id="logo" href="{{ '/skills' | relative_url }}"><img /></a>
-        <input id="searchInput" type="text" placeholder="제목, 내용, 날짜" oninput="window.scrollTo(0,0);">
-        <div>
-            <a id="theme" onclick="toggleTheme()"><img></a>
-            <a id="search" onclick="toggleSearch()"><img></a>
-        </div>
-    </nav>
-    <div id="searchResult"></div>
+    <a id="logo" href="{{ '/skills' | relative_url }}"><img /></a>
     <main>
         {{ content }}
     </main>
