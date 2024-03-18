@@ -31,27 +31,6 @@
 
     setTheme();
 
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('searchInput'),
-        resultsContainer: document.getElementById('searchResult'),
-        json: '/assets/json/skill-search.json',
-        searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
-    });
-
-    function toggleSearch() {
-        var searchInput = document.getElementById('searchInput');
-        var searchResult = document.getElementById('searchResult');
-        if (getComputedStyle(searchInput).display === 'none' || getComputedStyle(searchResult).display === 'none') {
-            searchInput.style.display = 'block';
-            searchResult.style.display = 'block';
-            searchInput.focus();
-        } else {
-            searchInput.style.display = 'none';
-            searchResult.style.display = 'none';
-        }
-    }
-
     function setTheme() {
         if (localStorage.getItem('theme') === 'light') {
             setLightTheme();
@@ -63,14 +42,6 @@
         }
     }
 
-    function toggleTheme() {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light') localStorage.setItem('theme', 'dark');
-        else localStorage.setItem('theme', 'light');
-
-        setTheme();
-        if (document.querySelector('.language-mermaid') !== null) location.reload(true);
-    }
 
     function setLightTheme() {
         document.body.style.setProperty('--background-color', '#eeeeee');
@@ -81,8 +52,6 @@
         document.body.style.setProperty('--border-color', '#aaaaaa');
 
         document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/img/skill-stamp/black.png' | relative_url }}";
-        document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/moon/black.svg' | relative_url }}";
-        document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/black.svg' | relative_url }}";
 
         hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css';
         hljs.highlightAll();
@@ -99,8 +68,6 @@
         document.body.style.setProperty('--border-color', '#444444');
 
         document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/img/skill-stamp/white.png' | relative_url }}";
-        document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
-        document.getElementById('search').getElementsByTagName('img')[0].src = "{{ '/assets/icon/magnifier/white.svg' | relative_url }}";
 
         hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css';
         hljs.highlightAll();

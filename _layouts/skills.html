@@ -4,20 +4,27 @@ layout: skill-base
 
 
 
+
+<a id="theme" onclick="toggleTheme()"><img /></a>
+
+<br>
+<br>
+
 <section id="intro">
-    <h1></h1>
-    <p></p>
+    <h1>기술시민</h1>
+    <p>기술 지식<span></span></p>
 </section>
 
-
+<!-- <button id="theme" onclick="toggleTheme()"><span></span> 보기</button> -->
 
 <!-- <div>
-    <a id="theme" onclick="toggleTheme()"><img></a>
     <a id="search" onclick="toggleSearch()"><img></a>
 </div> -->
 
+
+<!-- <h2>검색</h2>
 <input id="searchInput" type="text" placeholder="제목, 내용, 날짜">
-<div id="searchResult"></div>
+<div id="searchResult"></div> -->
 
 <br>
 <br>
@@ -30,18 +37,85 @@ layout: skill-base
 <article id="skills"></article>
 
 <script>
-    window.onload = function () {
-        requestAnimationFrame(function () {
-            const intro = document.getElementById('intro');
-            const title = intro.getElementsByTagName('h1')[0];
-            const description = intro.getElementsByTagName('p')[0];
+    const description = document.getElementById('intro').getElementsByTagName('p')[0];
+    setTimeout(() => type(description.getElementsByTagName('span')[0], '을 기록합니다.', 100), 600);
 
-            setTimeout(() => {
-                type(title, '기술시민', 120);
-                type(description, '기술 지식을 기록합니다.');
-            }, 300);
-        });
-    };
+
+    setThemeIcon();
+    
+    function toggleTheme() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light') localStorage.setItem('theme', 'dark');
+        else localStorage.setItem('theme', 'light');
+
+        setTheme();
+        setThemeIcon();
+    }
+
+    function setThemeIcon() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/sun/white.svg' | relative_url }}";
+        else document.getElementById('theme').getElementsByTagName('img')[0].src = "{{ '/assets/icon/moon/black.svg' | relative_url }}";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // SimpleJekyllSearch({
+    //     searchInput: document.getElementById('searchInput'),
+    //     resultsContainer: document.getElementById('searchResult'),
+    //     json: '/assets/json/skill-search.json',
+    //     searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
+    // });
+
+    // function toggleSearch() {
+    //     var searchInput = document.getElementById('searchInput');
+    //     var searchResult = document.getElementById('searchResult');
+    //     if (getComputedStyle(searchInput).display === 'none' || getComputedStyle(searchResult).display === 'none') {
+    //         searchInput.style.display = 'block';
+    //         searchResult.style.display = 'block';
+    //         searchInput.focus();
+    //     } else {
+    //         searchInput.style.display = 'none';
+    //         searchResult.style.display = 'none';
+    //     }
+    // }
+
+    function setTheme() {
+        if (localStorage.getItem('theme') === 'light') {
+            setLightTheme();
+        } else if (localStorage.getItem('theme') === 'dark') {
+            setDarkTheme();
+        } else {
+            localStorage.setItem('theme', 'light');
+            setLightTheme();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     var pages = getPages();
