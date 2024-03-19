@@ -24,9 +24,8 @@
     transition: 1s;
 }
 
-#intro a img:hover {
-    height: 60px;
-    transform: rotate(1080deg);
+#intro a img:active {
+    transform: rotate(2160deg);
 }
 
 

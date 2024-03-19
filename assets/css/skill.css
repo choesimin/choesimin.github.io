@@ -78,7 +78,7 @@ article>ol>li {
     top: 10px;
     float: right;
     height: 40px;
-    opacity: 0.7;
+    opacity: 0.8;
     background-color: var(--background-highlight-color);
     z-index: 10;
 }
@@ -95,6 +95,7 @@ article>ol>li {
     top: 10px;
     float: right;
     background-color: var(--background-highlight-color);
+    opacity: 0.8;
 }
 
 #indexList li {
