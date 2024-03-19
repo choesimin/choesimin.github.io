@@ -10,7 +10,11 @@ layout: skill-base
 <h1 id="title">{{ page.title }}</h1>
 <p id="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
 
-<ul id="index"></ul>
+
+<section id="index">
+    <a onclick="toggleIndex()"><img></a>
+    <ul></ul>
+</section>
 
 <article>{{ content }}</article>
 
@@ -19,13 +23,32 @@ layout: skill-base
 </div>
 
 <script>
-    const title = document.getElementById('title');
-    type(title, title.innerText);
+    const indexSection = document.getElementById('index');
+    const indexToggleButton = indexSection.getElementsByTagName('a')[0];
+    const indexToggleImage = indexToggleButton.getElementsByTagName('img')[0];
+    const indexList = indexSection.getElementsByTagName('ul')[0];
 
+    indexToggleImage.src = localStorage.getItem('theme') === 'dark'
+        ? "{{ '/assets/icon/list/white.svg' | relative_url }}"
+        : "{{ '/assets/icon/list/black.svg' | relative_url }}";
+
+    function toggleIndex() {
+        if (indexList.style.display === 'block') {
+            indexSection.style.width = '50px';
+            indexList.style.display = 'none';
+        } else {
+            indexSection.style.width = '100%';
+            indexList.style.display = 'block';
+        }
+    }
+
+
+    const title = document.getElementById('title');
     const date = document.getElementById('date');
+    type(title, title.innerText);
     type(date, date.innerText, 80);
 
-    const index = document.getElementById('index');
+
     const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
 
     for (let i = 0; i < headers.length; i++) {
@@ -39,7 +62,7 @@ layout: skill-base
         item.appendChild(anchor);
         item.style.marginLeft = (parseInt(header.tagName.replace('H', '')) - 1) * 15 + 'px';
 
-        index.appendChild(item);
+        indexList.appendChild(item);
     }
 
     const progressBar = document.getElementById('progressBar');

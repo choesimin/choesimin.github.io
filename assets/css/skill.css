@@ -72,19 +72,47 @@ article>ol>li {
     text-align: center;
 }
 
+
 #index {
+    position: sticky;
+    top: 10px;
+    float: right;
+    padding: 5px;
+    box-sizing: border-box;
     background-color: var(--background-highlight-color);
-    padding: 20px;
     margin-bottom: 100px;
+    opacity: 0.9;
+    transition: 0.2s;
 }
 
-#index li {
+#index>a {
+    display: block;
+    height: 40px;
+    text-align: right;
+}
+
+#index>a img {
+    width: 40px;
+    height: 40px;
+    opacity: 0.7;
+}
+
+#index>a img:hover {
+    opacity: 1;
+}
+
+#index ul {
+    display: none;
+}
+
+#index ul li {
     list-style: inside;
 }
 
-#index li a {
+#index ul li a {
     text-decoration: none;
 }
+
 
 #stamp {
     margin-top: 150px;
