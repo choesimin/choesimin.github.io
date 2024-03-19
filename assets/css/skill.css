@@ -89,10 +89,11 @@ article>ol>li {
 
 #indexList {
     display: none;
-    position: fixed;
-    top: 50px;
-    right: 50px;
+    margin: 0;
     padding: 20px 25px;
+    position: sticky;
+    top: 10px;
+    float: right;
     background-color: var(--background-highlight-color);
 }
 
