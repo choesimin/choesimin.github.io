@@ -10,11 +10,8 @@ layout: skill-base
 <h1 id="title">{{ page.title }}</h1>
 <p id="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
 
-
-<section id="index">
-    <a onclick="toggleIndex()"><img></a>
-    <ul></ul>
-</section>
+<a id="indexButton" onclick="toggleIndex()"><img></a>
+<ul id="indexList"></ul>
 
 <article>{{ content }}</article>
 
@@ -23,34 +20,29 @@ layout: skill-base
 </div>
 
 <script>
-    const indexSection = document.getElementById('index');
-    const indexToggleButton = indexSection.getElementsByTagName('a')[0];
-    const indexToggleImage = indexToggleButton.getElementsByTagName('img')[0];
-    const indexList = indexSection.getElementsByTagName('ul')[0];
-
-    indexToggleImage.src = localStorage.getItem('theme') === 'dark'
-        ? "{{ '/assets/icon/list/white.svg' | relative_url }}"
-        : "{{ '/assets/icon/list/black.svg' | relative_url }}";
-
-    function toggleIndex() {
-        if (indexList.style.display === 'block') {
-            indexSection.style.width = '50px';
-            indexList.style.display = 'none';
-        } else {
-            indexSection.style.width = '100%';
-            indexList.style.display = 'block';
-        }
-    }
-
-
     const title = document.getElementById('title');
     const date = document.getElementById('date');
     type(title, title.innerText);
     type(date, date.innerText, 80);
 
 
-    const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    const indexButton = document.getElementById('indexButton');
+    const indexList = document.getElementById('indexList');
+    
 
+    indexButton.getElementsByTagName('img')[0].src = localStorage.getItem('theme') === 'dark'
+        ? "{{ '/assets/icon/list/white.svg' | relative_url }}"
+        : "{{ '/assets/icon/list/black.svg' | relative_url }}";
+
+    function toggleIndex() {
+        if (indexList.style.display === 'block') {
+            indexList.style.display = 'none';
+        } else {
+            indexList.style.display = 'block';
+        }
+    }
+
+    const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
     for (let i = 0; i < headers.length; i++) {
         const header = headers[i];
 
@@ -63,7 +55,12 @@ layout: skill-base
         item.style.marginLeft = (parseInt(header.tagName.replace('H', '')) - 1) * 15 + 'px';
 
         indexList.appendChild(item);
+
+        item.addEventListener('click', (e) => {
+            toggleIndex();
+        });
     }
+
 
     const progressBar = document.getElementById('progressBar');
     let scrolling;

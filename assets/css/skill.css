@@ -73,43 +73,34 @@ article>ol>li {
 }
 
 
-#index {
+#indexButton img {
     position: sticky;
     top: 10px;
     float: right;
-    padding: 5px;
-    box-sizing: border-box;
-    background-color: var(--background-highlight-color);
-    margin-bottom: 100px;
-    opacity: 0.9;
-    transition: 0.2s;
-}
-
-#index>a {
-    display: block;
-    height: 40px;
-    text-align: right;
-}
-
-#index>a img {
-    width: 40px;
     height: 40px;
     opacity: 0.7;
+    background-color: var(--background-highlight-color);
+    z-index: 10;
 }
 
-#index>a img:hover {
+#indexButton img:hover {
     opacity: 1;
 }
 
-#index ul {
+#indexList {
     display: none;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    padding: 20px 25px;
+    background-color: var(--background-highlight-color);
 }
 
-#index ul li {
-    list-style: inside;
+#indexList li {
+    list-style: none;
 }
 
-#index ul li a {
+#indexList li a {
     text-decoration: none;
 }
 
