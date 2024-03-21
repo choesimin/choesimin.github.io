@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: Git - 여러 Commit들을 하나로 합치기
+title: Git - 여러 Commit들을 하나로 합치기 (rebase)
 date: 2023-04-06
 ---
 
