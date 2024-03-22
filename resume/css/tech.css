@@ -1,0 +1,63 @@
+#tech div.content::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+#tech div.content div.skill_tech {
+	float: left;
+	height: 180px;
+	width: 375px;
+	margin-top: 10px;
+}
+
+#tech div.content div.skill_tech:nth-child(odd) {
+	margin-left: 25px;
+}
+
+#tech div.content div.skill_tech:nth-child(even) {
+	margin-right: 25px;
+}
+
+#tech div.content div.skill_tech h4 {
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+#tech div.content div.skill_tech div.progress-background {
+	width: 100%;
+	height: 6px;
+	background-color: #f2f3f7;
+	border-radius: 4px;
+}
+
+#tech div.content div.skill_tech div.progress-background div.progress-value {
+	height: 100%;
+	position: relative;
+	border-radius: 4px;
+}
+
+#tech div.content div.skill_tech div.progress-background div.progress-value span.progress-ball {
+	display: block;
+	position: absolute;
+	background-color: inherit;
+	right: 0px;
+	width: 12px;
+	height: 12px;
+	border-radius: 6px;
+	transform: translate(6px, -3px);
+}
+
+#tech div.content div.skill_tech div.progress-background div.progress-value span.progress-percent {
+	display: block;
+	position: absolute;
+	top: -20px;
+	right: -5px;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#tech div.content div.skill_tech p {
+	margin-top: 10px;
+}

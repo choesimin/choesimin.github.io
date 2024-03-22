@@ -1,0 +1,48 @@
+#contact .content::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+#contact .content .info {
+	float: left;
+	width: 600px;
+}
+#contact .content .info .info-item::after {
+	margin-bottom: 10px;
+}
+
+#contact .content .info .info-item::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+#contact .content .info .info-item .icon {
+	float: left;
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	color: #2c98f0;
+	font-size: 25px;
+	text-align: center;
+	background-color: #f2f3f7;
+}
+
+#contact .content .info .info-item p {
+	float: left;
+	margin-left: 20px;
+	font-size: 16px;
+	height: 100px;
+	line-height: 100px;
+}
+#contact .content .info .info-item p a {
+	text-decoration: none;
+	color: #2c98f0;
+}
+
+#contact .content img {
+	float: left;
+	width: 200px;
+}
+

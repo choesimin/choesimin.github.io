@@ -1,0 +1,85 @@
+#project div.content::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.hover_effect_box {
+	float: left;
+	width: 375px;
+	height: 300px;
+	margin-bottom: 40px;
+	overflow: hidden;
+	position: relative;
+}
+
+.hover_effect_box:nth-child(odd) {
+	margin-right: 25px;
+}
+
+.hover_effect_box:nth-child(even) {
+	margin-left: 25px;
+}
+
+.hover_effect_box .caption {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 10px 15px;
+	opacity: 0;
+	background-color: #454545;
+	color: #fff;
+	transition: 0.2s;
+	overflow: hidden;
+}
+.hover_effect_box .content_bg {
+	display: block;
+	position: relative;
+	transition: 0.2s;
+}
+.hover_effect_box .content_bg img {
+	width: 100%;
+	height: 100%;
+}
+.hover_effect_box .caption_title {
+	display: block;
+	position: relative;
+	font-size: 16px;
+	transform: translateY(-100px);
+	margin-bottom: 10px;
+	opacity: 0;
+}
+.hover_effect_box .caption_desc {
+	color: #ddd;
+	font-size: 13px;
+	transform: translateY(100px);
+	opacity: 0;
+}
+.hover_effect_box .caption_link {
+	display: block;
+	position: absolute;
+	right: 15px;
+	bottom: 15px;
+	padding: 5px 10px;
+	text-decoration: none;
+	background-color: #ddd;
+	color: #000;
+	font-weight: 600;
+	transform: translateY(100px);
+	opacity: 0;
+}
+
+.hover_effect_box:hover .caption {
+	opacity: 1;
+}
+
+.hover_effect_box:hover .caption_title,
+.hover_effect_box:hover .caption_desc,
+.hover_effect_box:hover .caption_link {
+	opacity: 1;
+	transform: translateY(0px);
+	transition: 0.2s;
+}
+
