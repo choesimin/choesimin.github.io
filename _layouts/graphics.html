@@ -48,36 +48,24 @@
 
 <body>
     <script>
-        document.body.innerHTML = [
+        const pages = [
+            {% for graphic in site.graphics %}
             {
-                title: "혈관",
-                desc: "혈관 속으로 들어왔습니다.<br>누구의 혈관일까요.<br>흐르는 것은 무엇일까요.",
-                date: "2023-12-10",
-                link: "blood-vessel"
+                title: "{{ graphic.title }}",
+                date: "{{ graphic.date | date: '%Y-%m-%d' }}",
+                url: "{{ graphic.url | relative_url }}",
+                desc: "{{ graphic.desc }}",
             },
-            {
-                title: "감정 결벽증",
-                desc: "만지지 마세요.<br>마음은 더럽습니다.",
-                date: "2023-12-24",
-                link: "emotion-mysophobia"
-            },
-            {
-                title: "빛 도넛",
-                desc: "빛으로 구운 도넛입니다.<br>먹어도 배부르지 않습니다.",
-                date: "2024-01-23",
-                link: "light-doughnut"
-            },
-            {
-                title: "자유",
-                desc: "공은 밖으로 나가고 싶습니다.",
-                date: "2024-01-28",
-                link: "ball-for-freedom"
-            },
-        ].map(item => {
-            return `<a href="./${item.link}">
-                <h2>${item.title}</h2>
-                <p>${item.desc}</p>
-                <p class='date'>${item.date}</p>
+            {% endfor %}
+        ];
+
+        console.log(pages);
+
+        document.body.innerHTML = pages.map(page => {
+            return `<a href="${page.url}">
+                <h2>${page.title}</h2>
+                <p>${page.desc}</p>
+                <p class='date'>${page.date}</p>
             </a>`
         }).join("<br>");
     </script>
