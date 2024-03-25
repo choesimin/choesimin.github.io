@@ -49,10 +49,10 @@ date: 2024-03-25
     - class, interface 등을 포함합니다.
     - 배열(array)과 tuple은 data를 구조화하는 데 사용됩니다.
 
-- **조합(Combined) type** : `Union`과 `Intersection`은 type을 조합하여 더 복잡한 type을 정의할 수 있습니다.
+- **조합(Combined) Type** : `Union`과 `Intersection`은 type을 조합하여 더 복잡한 type을 정의할 수 있습니다.
     - type 유연성을 향상시킵니다.
 
-- **고급(Advanced) type** : 사용 난이도가 높지만, code 재사용성을 높이고 복잡한 type 조작을 가능하게 하는 강력한 type입니다.
+- **고급(Advanced) Type** : 사용 난이도가 높지만, code 재사용성을 높이고 복잡한 type 조작을 가능하게 하는 강력한 type입니다.
     - 주로 TypeScript 고급 사용자가 사용합니다.
 
-- **기타** : literal type, 열거형 등은 값 자체나 값의 집합을 더 명확하게 표현할 수 있게 합니다.
+- **기타 Type** : literal type, 열거형 등은 값 자체나 값의 집합을 더 명확하게 표현할 수 있게 합니다.
