@@ -211,7 +211,7 @@ const iterable = ['a', 'b', 'c'];
 // iterator : iterable의 Symbol.iterator를 property key로 사용한 method는 iterator를 반환합니다.
 const iterator = iterable[Symbol.iterator]();
 
-// iterator는 순회 가능한 자료 구조인 iterable의 요소를 탐색하기 위한 pointer로써,
+// iterator는 순회 가능한 자료구조인 iterable의 요소를 탐색하기 위한 pointer로써,
 // value, done property를 갖는 객체를 반환하는 next() 함수를 method로 갖는 객체입니다.
 // iterator의 next() method를 통해 iterable 객체를 순회할 수 있습니다.
 console.log(iterator.next());    // { value: 'a', done: false }
