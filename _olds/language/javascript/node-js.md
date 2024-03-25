@@ -5,7 +5,7 @@ layout: skill
 # Node.js
 
 - 공식 site에서 내린 Node.js의 정의 
-    - "Node.js는 Chrome V8 JavaScript Engine으로 build된 JavaScript Runtime입니다. Node.js는 event 기반, non-blocking I/O model을 사용해 가볍고 효율적이빈다. Node.js의 package 생태계인 npm은 세계에서 가장 큰 open source library 생태계이기도 합니다."
+    - "Node.js는 Chrome V8 JavaScript Engine으로 build된 JavaScript Runtime입니다. Node.js는 event 기반, non-blocking I/O model을 사용해 가볍고 효율적입니다. Node.js의 package 생태계인 npm은 세계에서 가장 큰 open source library 생태계이기도 합니다."
 - javascript runtime이 browser 밖에 존재하지 않았으나, 그 한계를 극복하고 Node.js가 나옴
 
 ## 특징

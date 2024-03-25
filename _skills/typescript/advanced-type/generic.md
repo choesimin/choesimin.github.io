@@ -10,7 +10,7 @@ date: 2024-03-04
 ## Generic Type : Type을 Parameter처럼 사용하기
 
 - generic type은 **type을 parameter처럼 사용**하여, 다양한 type에 대해 작동할 수 있는 함수, class, interface 등을 생성할 수 있게 해주는 기능입니다.
-    - generic을 사용함으로써 type 안전성을 유지하면서, code를 재사용 가능하고 유연하게 만들 수 있스빈다.
+    - generic을 사용함으로써 type 안전성을 유지하면서, code를 재사용 가능하고 유연하게 만들 수 있습니다.
 
 - **generic을 사용하면, 하나의 함수나 class가 여러 type에 대해 작동할 수 있게 됩니다.**
     - code를 작성할 때 구체적인 type을 명시하는 대신, **type 변수(T)를 사용하여 함수나 class를 정의**합니다.
