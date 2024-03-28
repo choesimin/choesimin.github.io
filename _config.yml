@@ -9,8 +9,3 @@ collections:
     output: true
   graphics:
     output: true
-
-plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-feed
