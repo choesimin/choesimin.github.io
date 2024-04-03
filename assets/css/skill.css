@@ -57,6 +57,7 @@ article>ol>li {
     left: 0;
     width: 0;
     background-color: var(--color);
+    z-index: 100;
 }
 
 #title {
@@ -73,36 +74,46 @@ article>ol>li {
 }
 
 
-#indexButton img {
+#content {
+    position: relative;
+}
+
+
+#index {
     position: sticky;
     top: 10px;
+}
+
+#index a img {
     float: right;
     height: 40px;
+    width: auto;
     opacity: 0.8;
     background-color: var(--background-highlight-color);
     z-index: 10;
 }
 
-#indexButton img:hover {
+#index a img:hover {
     opacity: 1;
 }
 
-#indexList {
+#index ul {
     display: none;
     margin: 0;
     padding: 20px 25px;
-    position: sticky;
-    top: 10px;
-    float: right;
+    position: absolute;
+    top: 40px;
+    right: 0px;
     background-color: var(--background-highlight-color);
-    opacity: 0.8;
+    opacity: 0.9;
+    backdrop-filter: blur(10px);
 }
 
-#indexList li {
+#index ul li {
     list-style: none;
 }
 
-#indexList li a {
+#index ul li a {
     text-decoration: none;
 }
 

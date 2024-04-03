@@ -3,17 +3,18 @@ layout: skill-base
 ---
 
 
-<div id="progressBar">
-    <div></div>
-</div>
+<div id="progressBar"></div>
 
 <h1 id="title">{{ page.title }}</h1>
 <p id="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
 
-<a id="indexButton" onclick="toggleIndex()"><img></a>
-<ul id="indexList"></ul>
-
-<article>{{ content }}</article>
+<div id="content">
+    <div id="index">
+        <a onclick="toggleIndex()"><img></a>
+        <ul></ul>
+    </div>
+    <article>{{ content }}</article>
+</div>
 
 <div id="stamp">
     <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}">
@@ -26,9 +27,9 @@ layout: skill-base
     type(date, date.innerText, 80);
 
 
-    const indexButton = document.getElementById('indexButton');
-    const indexList = document.getElementById('indexList');
-    
+    const index = document.getElementById('index');
+    const indexButton = index.getElementsByTagName('a')[0];
+    const indexList = index.getElementsByTagName('ul')[0];
 
     indexButton.getElementsByTagName('img')[0].src = localStorage.getItem('theme') === 'dark'
         ? "{{ '/assets/icon/list/white.svg' | relative_url }}"
@@ -56,7 +57,7 @@ layout: skill-base
 
         indexList.appendChild(item);
 
-        item.addEventListener('click', (e) => {
+        item.getElementsByTagName('a')[0].addEventListener('click', (e) => {
             toggleIndex();
         });
     }

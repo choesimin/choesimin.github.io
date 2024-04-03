@@ -99,6 +99,7 @@ footer {
     height: 60px;
     opacity: 0.8;
     transition: 0.2s;
+    z-index: 100;
 }
 
 #logo img:hover {
