@@ -24,11 +24,10 @@ class App {
     this.canvas.height = this.stageHeight * this.pixelRatio;
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
 
-    this.circles.push(
-      new Circle(this.stageWidth / 2, this.stageHeight / 2, 600, "#000000")
-    );
-
-    this.circles.push(new Circle(10, 10, 600, "#FFFFFF", this.circles[0]));
+    this.circles.push(new Circle());
+    for (let i = 0; i < 30; i++) {
+      this.circles.push(new Circle(this.circles.at(-1)));
+    }
   }
 
   animate(t) {
