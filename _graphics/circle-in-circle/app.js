@@ -13,6 +13,10 @@ class App {
     window.addEventListener("resize", this.resize.bind(this), false);
     this.resize();
 
+    document.body.addEventListener("click", () => {
+      this.addCircle();
+    });
+
     window.requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -24,15 +28,17 @@ class App {
     this.canvas.height = this.stageHeight * this.pixelRatio;
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
 
-    this.circles.push(new Circle());
-    for (let i = 0; i < 30; i++) {
-      this.circles.push(new Circle(this.circles.at(-1)));
-    }
+    this.circles = [new Circle()];
+    this.addCircle();
   }
 
   animate(t) {
     window.requestAnimationFrame(this.animate.bind(this));
     this.circles.forEach((circle) => circle.animate(this.ctx));
+  }
+
+  addCircle() {
+    this.circles.push(new Circle(this.circles.at(-1)));
   }
 }
 
