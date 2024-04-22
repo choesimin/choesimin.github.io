@@ -56,6 +56,7 @@ article>ol>li {
     top: 0;
     left: 0;
     width: 0;
+    height: 3px;
     background-color: var(--color);
     z-index: 100;
 }
@@ -89,7 +90,6 @@ article>ol>li {
     height: 40px;
     width: auto;
     opacity: 0.8;
-    background-color: var(--background-highlight-color);
     z-index: 10;
 }
 
@@ -105,6 +105,7 @@ article>ol>li {
     top: 40px;
     right: 0px;
     background-color: var(--background-highlight-color);
+    border: 1px solid var(--border-color);
     opacity: 0.9;
     backdrop-filter: blur(10px);
 }
