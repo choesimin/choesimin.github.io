@@ -10,7 +10,7 @@ layout: resume
 
 - [Email](choesimin961009@gmail.com)
 - [GitHub](https://github.com/choesimin)
-- [Blog](https://www.simin.im/skills)
+- [Introduction](https://www.simin.im)
 
 ---
 
@@ -127,7 +127,7 @@ layout: resume
 
 - 전용선 사용 문제로 타 카드사보다 더 복잡한 결제 프로세스를 파악하기 위해 **시퀀스 다이어그램**을 그렸습니다. "결제 수단 등록"과 "정기 결제 요청" 과정에 대해 AS-IS와 TO-BE 버전으로 나누어 총 4개의 다이어그램을 그렸으며, 이는 기획팀, 개발팀과 개발 방향을 논의하고 결정하는 데에 많은 도움이 되었습니다.
 - 기존의 정기 결제 수단 등록과 결제 요청 로직을 그대로 사용할 수 있도록, 타 카드사와 상이했던 신한카드의 **결제 프로세스를 일반화**하였습니다. 이를 위해 기존의 비씨, 국민, 하나, 롯데, 농협 앱카드 정기 결제 로직을 추가로 분석했습니다.
-- 신한카드의 **OTC 발급** 기능을 연동하였으며, 통신을 위한 **AES 암복호화 모듈**을 개발했습니다.
+- 신한카드의 **OTC 발급** 기능을 연동하였으며, 암호화 통신을 위한 **AES 암복호화 모듈**을 개발했습니다.
 
 <!-- ### 결제선생 파트너, SPEEID
 
@@ -143,44 +143,27 @@ layout: resume
 
 하고 싶은 일들에 도전합니다.
 
-### 교육용 육성 시뮬레이션 게임 ()
+### 기술 블로그 (2023.04 ~ 현재)
 
-ddddddddddd  
-ddddddddddd  
-ddddddddddd  
-ddddddddddd
+[**기술시민 보러가기**](https://www.simin.im/skills)
 
-`Java`, `Spring Boot`, `MySQL`, `MyBatis`.
+새로운 기술이나 도구의 **학습 과정을 문서화**하고 있습니다. 나중에 참고할 수 있는 자료로, 지식 전파의 매개로 유용하게 사용될 수 있도록, 최대한 쉽고 정확하게 작성합니다.  
+원하는 분위기를 만들기 위해 테마의 디자인과 구현을 직접 하였고, **Github Pages**와 **Jekyll**을 사용하여 운영 중입니다.  
+글은 **마크다운** 문법으로 작성하며, 설명에 필요한 경우에는 **Mermaid.js**의 도식화 기능을 이용하여 **UML**도 함께 그립니다. 주로 여러 자료를 모아(輯) 하나의 글로 다시 정리(編)하는 편집(編輯)글 위주로 작성합니다.
 
-### 데이터 시각화 ()
+`Writing`, `Markdown`, `Mermaid.js`, `HTML`, `CSS`, `JavaScript`, `Jekyll`, `Github Pages`.
 
-ddddddddddd  
-ddddddddddd  
-ddddddddddd
+### 데이터 시각화 (2024.03 ~ 현재)
+
+2023년은 사내 신규 프로젝트 개발 중에 기획이 수정되는 일이 잦았습니다. 개발 팀은 추가된 기능을 일정 안에 구현해야 하는 상황이었기에 급하게 개발하였고, 이는 반영 후 운영 오류의 원인이 되었습니다.  
+저는 이 상황이 불확실한 기획에서 시작된 것이고, 불확실한 기획은 근거가 부족한 결정에서 나왔다고 생각했습니다. 그래서 의사 결정자가 **데이터를 기반으로 결정**할 수 있도록, **데이터를 시각화**하는 개인 프로젝트를 시작하였습니다.
+
+크게 "원본 DB에서 데이터를 조회하여 통계 DB에 저장"하는 **데이터 동기화 기능**과 "통계 DB의 데이터를 조회하여 화면에 출력"하는 **시각화 기능**으로 구성되어 있습니다. 통계 데이터를 저장하는 DB로 **MongoDB**를 사용하였고, 데이터 신뢰성과 관리 면에서 이점을 가져가기 위해 **불변하는 시계열 데이터**로 저장하도록 했습니다. 데이터는 **불변성**을 위해 수정/삭제 없이 **생성/조회만 가능**합니다.
+
+개발하며 가장 중요하게 생각한 것은 **지속 가능한 시스템**을 구축하는 것이었습니다. 이후에 사용할 사람을 위해서 **새로운 데이터를 쉽게 만들고 관리**할 수 있어야 하고, 동기화를 위한 원본 데이터 조회 명령이 **원본 DB에 부하**를 주지 않아야 합니다.  
+따라서 **쉬운 관리**를 위해 원본 데이터 조회 명령문과 통계 데이터를 저장할 컬렉션 이름 등의 설정 정보를 템플릿화하여, 템플릿만 추가하면 자동으로 데이터가 채워지도록 했습니다. 또한 **원본 DB에 대한 영향을 최소화**하기 위해 무거운 집계 함수를 SQL 내에서 사용하지 않고, 프로그램에 따로 정의하여 계산된 데이터를 얻었습니다.
 
 `TypeScript`, `MongoDB`, `Next.js`, `React.js`, `MUI`.
-
-### 기술 블로그 ()
-
-ddddddddddd  
-ddddddddddd  
-ddddddddddd
-
-`HTML`, `CSS`, `JavaScript`, `Jekyll`.
-
-### AWS 국비 교육 (2023.06)
-
-- Soldesk에서 진행하는 AWS 국비 교육을 수료했습니다.
-
-`AWS EC2`, `AWS RDS`, `AWS S3`, `AWS EBS`.
-
-### 사내 스터디 ()
-
-dDdddddddddddddddddddddd
-ddddddddddd  
-ddddddddddd
-
-`Clean Architecture`, `Clean Code`, `Design Pattern`.
 
 ### 사내 위키 (2022.07 ~ 현재)
 
@@ -188,6 +171,26 @@ ddddddddddd
 이는 개발 팀 내에서 정보의 접근성을 높이고, 새로운 팀원의 효율적인 온보딩을 가능하게 하는 등 구체적인 성과로 이어졌습니다.
 
 `HTML`, `CSS`, `JavaScript`, `Jekyll`.
+
+### 사내 스터디 (2023.11 ~ 2024.03)
+
+dDdddddddddddddddddddddd
+ddddddddddd  
+ddddddddddd
+
+`Clean Architecture`, `Clean Code`, `Design Pattern`.
+
+### Soldesk AWS 교육 (2023.06)
+
+Soldesk에서 진행하는 AWS 국비 지원 교육 과정을 수료했습니다.
+
+`AWS EC2`, `AWS RDS`, `AWS S3`, `AWS EBS`.
+
+### 리딩오션 - 아쿠아리움 (2022.09 ~ 2022.12)
+
+리딩오션의 교육용 육성 시뮬레이션 게임 "아쿠아리움"을 개발하였습니다.
+
+`Java`, `Spring Boot`, `MySQL`, `MyBatis`.
 
 ### 숭실대학교 기계공학부 (2015.03 ~ 2021.02)
 
@@ -198,8 +201,8 @@ ddddddddddd
 
 ## Skills
 
-필요한 기술은 주저하지 않고 배웁니다. 주로 서버 관련 지식을 얻기 위해 공부하고, 취미로 FrontEnd 개발을 하고 있습니다.  
-[시간이 지나도 잘 활용할 수 있도록, 기술들을 인덱싱하여 기록해두고 있습니다.](/skills)
+필요한 기술은 주저하지 않고 배웁니다. 주로 서버 지식을 공부하고, 취미로 FrontEnd 개발을 하고 있습니다.  
+[시간이 지나도 잘 활용할 수 있도록, 기술들을 인덱싱하여 기록해두고 있습니다.](https://simin.im/skills)
 
 ### Writing
 
@@ -235,7 +238,7 @@ ddddddddddd
 ### FrontEnd
 
 - Next.js, React, MUI, Tailwind를 사용하여 간단한 웹 화면을 구현할 수 있습니다.
-- [HTML/CSS를 사용하여 기초적인 수준의 Interactive Graphic을 구현할 수 있습니다.](/graphics)
+- [HTML/CSS를 사용하여 기초적인 수준의 Interactive Graphic을 구현할 수 있습니다.](https://simin.im/graphics)
 
 ---
 
