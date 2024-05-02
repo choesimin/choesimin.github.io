@@ -23,7 +23,7 @@ date: 2024-01-16
 - 전체 객체가 부분 객체의 제어권을 갖습니다.
     - 전체와 부분의 life time이 같습니다.
 
-- 일체형 computer를 예로 들 수 있습니ㅏㄷ.
+- 일체형 computer를 예로 들 수 있습니다.
     - `Computer` 객체가 생성될 때, `MainBoard`, `CPU`, `Memory` 객체도 생성됩니다.
         - 그리고 생성된 객체의 주소는 `Computer` 객체의 field 변수에 저장합니다.
     - 따라서 `Computer` 객체가 사라지면, `MainBoard`, `CPU`, `Memory` 객체도 사라집니다.
