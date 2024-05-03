@@ -1,11 +1,13 @@
 ---
 layout: skill
-title: 기계 학습 (Machine Learning)
+title: Machine Learning
 date: 2023-08-08
 ---
 
 
 
+
+## Machine Learning (기계 학습)
 
 - 기계 학습은 computer가 스스로 학습하여 문제를 해결하는 algorithm을 연구하는 분야입니다.
     - computer는 data를 통해 학습하고, 학습 결과를 바탕으로 예측이나 결정을 내릴 수 있습니다.
