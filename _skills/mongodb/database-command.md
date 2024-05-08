@@ -10,19 +10,19 @@ date: 2023-12-30
 
 ### 모든 Database 목록 출력
 
-```sql
+```sh
 show dbs
 ```
 
 ### 현재 사용하고 있는 Database 출력
 
-```sql
+```sh
 db
 ```
 
 ### 현재 사용하고 있는 Database 정보 출력
 
-```sql
+```sh
 db.status()
 ```
 
@@ -35,7 +35,7 @@ db.status()
 
 ## Database 생성 및 사용
 
-```sql
+```sh
 use database_name
 ```
 
@@ -53,7 +53,7 @@ use database_name
 
 ## Database 삭제
 
-```sql
+```sh
 db.dropDatabase()
 ```
 
