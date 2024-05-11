@@ -147,7 +147,7 @@ Next.js, TypeScript, MongoDB 등 필요하다 생각되는 새로운 기술들�
 - 통계 데이터를 **불변하는 시계열 형태**로 저장함으로써 데이터의 신뢰성과 관리성을 향상시켰습니다. **데이터의 불변성**을 유지하기 위해 수정과 삭제 기능은 배제하고, 생성과 조회 기능만을 사용하였습니다.
 - 통계 DB의 데이터를 조회하여 화면에 출력하는 **시각화 기능**을 구현하였습니다. Next.js와 MUI의 차트 라이브러리를 사용했습니다.
 
-`TypeScript` `MongoDB` `Next.js` `React.js` `MUI`
+`TypeScript` `MongoDB` `Next.js` `React` `MUI`
 
 ### 사내 위키 (2022.07 ~ 현재)
 
@@ -246,7 +246,7 @@ Next.js, TypeScript, MongoDB 등 필요하다 생각되는 새로운 기술들�
 
 ### FrontEnd
 
-`HTML` `CSS` `JavaScript` `TypeScript` `Next.js` `React.js` `MUI` `Tailwind`
+`HTML` `CSS` `JavaScript` `TypeScript` `Next.js` `React` `MUI` `Tailwind`
 
-- **TypeScript**와 **프론트엔드 프레임워크**(Next.js, React.js)를 활용하여 동적인 웹 애플리케이션을 구현할 수 있습니다.
+- **TypeScript**와 **프론트엔드 프레임워크**(Next.js, React)를 활용하여 동적인 웹 애플리케이션을 구현할 수 있습니다.
 - HTML, CSS, JavaScript를 사용하여 **사용자 상호 작용을 기반으로 하는 그래픽 요소**를 구현할 수 있습니다. 작업물은 [여기](https://www.simin.im/graphics)에서 확인하실 수 있습니다.
