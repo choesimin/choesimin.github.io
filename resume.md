@@ -197,7 +197,7 @@ Next.js, TypeScript, MongoDB 등 필요하다 생각되는 새로운 기술들�
 # Skills
 
 필요한 기술을 배우는 데에 적극적이며, 특히 **백엔드 개발**에 대한 지식을 지속적으로 확장해 나가고 있습니다. 취미로 **프론트엔드 개발**을 공부하여 다양한 분야에 대한 이해를 넓히고 있습니다.  
-시간이 지나도 잘 활용할 수 있도록, 기술들을 체계적으로 **인덱싱**하여 기록하고 있습니다. 기록물은 [여기](https://simin.im/skills)에서 확인하실 수 있습니다.
+시간이 지나도 잘 활용할 수 있도록, 기술들을 체계적으로 **인덱싱**하여 기록하고 있습니다. 기록물은 [**여기**](https://simin.im/skills)에서 확인하실 수 있습니다.
 
 ### Writing
 
@@ -249,4 +249,4 @@ Next.js, TypeScript, MongoDB 등 필요하다 생각되는 새로운 기술들�
 `HTML` `CSS` `JavaScript` `TypeScript` `Next.js` `React` `MUI` `Tailwind`
 
 - **TypeScript**와 **프론트엔드 프레임워크**(Next.js, React)를 활용하여 동적인 웹 애플리케이션을 구현할 수 있습니다.
-- HTML, CSS, JavaScript를 사용하여 **사용자 상호 작용을 기반으로 하는 그래픽 요소**를 구현할 수 있습니다. 작업물은 [여기](https://www.simin.im/graphics)에서 확인하실 수 있습니다.
+- HTML, CSS, JavaScript를 사용하여 **사용자 상호 작용을 기반으로 하는 그래픽 요소**를 구현할 수 있습니다. 작업물은 [**여기**](https://www.simin.im/graphics)에서 확인하실 수 있습니다.
