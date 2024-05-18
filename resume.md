@@ -9,8 +9,12 @@ layout: resume
 **기록 중심의 접근 방식**을 선호합니다. 체계적인 기록을 통해 **지속 가능한 시스템**을 구축해나가고 있습니다.
 
 - **Introduction :** <https://www.simin.im>
-- **Email :** <choesimin961009@gmail.com>
 - **GitHub :** <https://github.com/choesimin>
+- **Email :** <choesimin961009@gmail.com>
+- **Phone :** 010-3396-3093
+
+아래의 내용은 업무 과정에서 경험한 [**Work Experience**](#work-experience), 개인 프로젝트를 개발하고 기술을 학습하며 경험한 [**Other Experience**](#other-experience), 그리고 그 과정에서 익혀온 [**Skills**](#skills)로 구성되어 있습니다.  
+**Experience** 항목에는 개발 기여도가 70% 이상인 프로젝트만을 적었습니다.
 
 ---
 
@@ -24,8 +28,8 @@ layout: resume
 신규 서비스 개발부터 기존 서비스 유지보수, 운영 오류 처리 및 조치, 파트너 업체 기술 지원, CS 문의 대응, 통계 데이터 조회 등 다양한 업무에 대한 경험이 있습니다.  
 현재는 주로 [**결제선생**](https://payssam.kr)의 **결제**, **정산**, **파트너** 시스템을 맡고 있습니다.
 
-**Team Main Tech Stack :** `Java` `Spring Boot` `MySQL` `MyBatis` `AWS` `Git` `GitLab`  
-**Team Sub Tech Stack :** `JavaScript` `Node.js` `Express.js`
+**Team Main Tech Stack :** `Java` `Spring Boot` `Gradle` `MySQL` `MyBatis` `AWS` `Git` `GitLab`  
+**Team Sub Tech Stack :** `Gradle` `JavaScript` `Node.js` `Express.js`
 
 ### 개발 서버 구축 (2021.08 ~ 2021.09)
 
@@ -136,7 +140,7 @@ layout: resume
 
 `Technical Writing` `Markdown` `Mermaid.js` `HTML` `CSS` `JavaScript` `Jekyll` `Github Pages`
 
-### 데이터 시각화 (2024.03 ~ 현재)
+### 데이터 시각화 (2024.03 ~ 2024.05)
 
 **GitHub Repository 보러가기** : <https://github.com/choesimin/time-series-data-visualization>
 
@@ -173,7 +177,8 @@ Next.js, TypeScript, MongoDB 등 필요하다 생각되는 새로운 기술들�
 
 ### 솔데스크 AWS 교육 수료 (2023.07 ~ 2023.08)
 
-솔데스크에서 진행한 **AWS Cloud 핵심 서비스 활용** 교육 과정을 수료하였습니다.
+솔데스크에서 진행한 **AWS Cloud 핵심 서비스 활용** 교육 과정을 수료하였습니다.  
+AWS의 기본적인 서비스를 익히려는 노력 외에도, 기술 트렌드에 꾸준한 관심을 가지고 AWS 행사에 참여하고 있습니다. 2023년과 2024년의 **AWS Summit Seoul**과 다양한 업체에서 주관하는 온라인 교육 프로그램 등에 참여해 왔습니다.
 
 - AWS에서 제공하는 다양한 클라우드 서비스를 이용하여 **웹 서비스를 호스팅**하는 기본적인 내용부터, 실제 비즈니스 환경에서 필수적인 **로드 밸런싱**, **오토 스케일링** 등의 기능을 구현하는 방법을 실습하였습니다.
 - 가상 네트워크(VPC)의 설계 및 구축, 세밀한 사용자 접근 권한 설정을 통한 **보안 강화 방법**도 직접 수행해보며, 이론과 실습을 통한 종합적인 학습 경험을 얻었습니다.
