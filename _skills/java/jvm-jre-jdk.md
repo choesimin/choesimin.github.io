@@ -132,8 +132,8 @@ mindmap
     - platform(OS, hardware)마다 실행을 위한 기계어는 다르기 때문에 JVM도 다릅니다.
         - 예를 들어, macOS의 JVM과 Linux의 JVM은 서로 다릅니다.
 
-- 예를 들어, C언어의 compiler는 platform에 종속되지만, Java의 compiler는 종속되지 않습니다.
-    - C언어는 compiler가 종속되기 때문에 실행 file도 종속됩니다.
+- 예를 들어, C 언어의 compiler는 platform에 종속되지만, Java의 compiler는 종속되지 않습니다.
+    - C 언어는 compiler가 종속되기 때문에 실행 file도 종속됩니다.
     - Java는 compiler가 종속되지 않기 때문에 실행 file(`.class`)도 종속되지 않습니다.
         - JVM이 환경에 맞게 실행 file을 그때그때 변환하여 사용합니다.
 
@@ -172,7 +172,7 @@ windows_vm --> windows_run
 ```
 
 
-### C언어 실행 과정
+### C 언어 실행 과정
 
 - compiler가 platform에 따라 변하는 부분을 맡습니다.
 
