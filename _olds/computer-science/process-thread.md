@@ -44,7 +44,7 @@ version: 2023-05-08
 
 ## Process의 특징 : kernel에 의해 직접 관리됨
 
-- kernel memory 안에는 kernel이 관리하고 있는 각각의 process에 대한 data들이 있고, PCB(Process Control Block) 자료구조로 저장됨
+- kernel memory 안에는 kernel이 관리하고 있는 각각의 process에 대한 data들이 있고, PCB(Process Control Block) 자료 구조로 저장됨
 
 - PCB(Process Control Block)에 저장되는 정보와 자원
     - program과 관련된 실행 가능한 기계어 image

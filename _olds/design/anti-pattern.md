@@ -37,8 +37,8 @@ layout: skill
     - 구조를 지나치게 분리하게 되면 더욱 이해하기 힘든 구조가 됨
 7. Action at a Dstance : 개발
     - 예상되지 않은 상호작용은 system을 광범위하게 구분해버림
-8. 변조된 요구사항(Phony Requirements) : Architecture
-    - project에서 모든 요구사항이 문서로 상세화되지 않고, 유선이나 개개인의 구두로 전달이 된다면 변조(허위)된 요구사항이 발생함
+8. 변조된 요구 사항(Phony Requirements) : Architecture
+    - project에서 모든 요구 사항이 문서로 상세화되지 않고, 유선이나 개개인의 구두로 전달이 된다면 변조(허위)된 요구 사항이 발생함
 9. 애매한 관점(Ambiguous Viewpoint) : 개발
     - 명확하지 않은 관점에서 modeling을 수행하면 객체 modeling에서 객체들을 정확하게 정의할 수 없음
 

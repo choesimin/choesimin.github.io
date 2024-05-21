@@ -308,13 +308,13 @@ A solution to a problem in a context.
 
 #### Visitor Pattern
 
-- 각 class의 자료구조로부터 처리 기능을 분리하여 별도의 class를 만들어 놓고, 해당 class의 method가 각 class를 돌아다니며 특정 작업을 수행합니다.
+- 각 class의 자료 구조로부터 처리 기능을 분리하여 별도의 class를 만들어 놓고, 해당 class의 method가 각 class를 돌아다니며 특정 작업을 수행합니다.
 - 객체의 구조는 변경하지 않으면서 기능만 따로 추가하거나 확장할 때 사용합니다.
 
 #### Command Pattern
 
 - 실행될 기능을 캡슐화(encapsulation)하여, 주어진 여러 기능을 실행할 수 있는 재사용성이 높은 class를 설계합니다.
-    - 요구사항을 객체로 캡슐화(encapsulation)합니다.
+    - 요구 사항을 객체로 캡슐화(encapsulation)합니다.
 - 하나의 abstract class에 method를 만들어 각 명령이 들어오면 그에 맞는 sub class가 선택되어 실행됩니다.
 
 #### Strategy Pattern

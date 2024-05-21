@@ -29,7 +29,6 @@
     width: 300px;
     background-color: var(--background-color);
     text-align: center;
-    font-family: inherit;
     color: inherit;
     border: none;
     border-bottom: 1px solid var(--background-highlight-color);

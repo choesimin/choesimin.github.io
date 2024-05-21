@@ -120,13 +120,13 @@ version: 2023-05-08
     - Java에서는 GC(Garbage Collector)가 자동으로 해제함
 - 동적 할당 (Dynamic Memory Allocation)
     - Heap의 기억 장소는 pointer를 통해 동적으로 할당되거나 반환됨
-        - 동적인 특성을 가진 자료구조에서 널리 사용됨
+        - 동적인 특성을 가진 자료 구조에서 널리 사용됨
             - ex) Linked List, Tree, Graph 등
     - runtime 시 크기가 결정됨
     - data 배열의 크기가 확실하지 않고 변동이 있을 때 사용
 - memory의 낮은 주소에서 높은 주소의 방향으로 할당 (적재)
 - Stack보다 할당할 수 있는 memory 공간이 많다는 것이 장점
-    - 하지만 pointer로 memory 영역을 접근해야 하기 때문에 자른 자료구조에 비해서 data를 읽고 쓰는 것이 느림
+    - 하지만 pointer로 memory 영역을 접근해야 하기 때문에 자른 자료 구조에 비해서 data를 읽고 쓰는 것이 느림
 
 
 ### 장점

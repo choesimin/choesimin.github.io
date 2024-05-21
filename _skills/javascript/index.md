@@ -41,7 +41,7 @@ date: 2023-12-13
     - 동적으로 바뀌는 내용이 없는 web page를 정적인 page라고 하며, 항상 동일한 내용만 표시합니다.
 
 - server-side에서 JavaScript는 server에서 새 contents를 동적으로 생성합니다.
-    - e.g., database에서 data를 가져와 새로운 자료구조 또는 객체를 생성합니다.
+    - e.g., database에서 data를 가져와 새로운 자료 구조 또는 객체를 생성합니다.
 - client-side에서 JavaScript는 browser 내부에서 새 contents를 동적으로 생성합니다.
     - e.g., 새 HTML table을 생성하고, server에서 요청한 data로 채운 다음, web page에 table을 표시합니다.
 
@@ -256,7 +256,7 @@ parse --> compile --> run
 ## JavaScript로 변환이 가능한 다른 언어들
 
 - browser에서 실행하기 전에 JavaScript로 변환(transpile)할 수 있는 새로운 언어들이 만들어졌습니다.
-    - 각 언어마다 고유한 기능을 제공하며, project의 요구사항에 맞추어 선택하면 됩니다.
+    - 각 언어마다 고유한 기능을 제공하며, project의 요구 사항에 맞추어 선택하면 됩니다.
 
 1. CoffeeScript는 JavaScript를 위한 'syntactic sugar’입니다.
     - 짧은 문법을 도입하여 명료하고 이해하기 쉬운 code를 작성할 수 있습니다.

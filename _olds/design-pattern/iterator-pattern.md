@@ -116,7 +116,7 @@ ConcreteIterator .. ConcreteIterator : 반복 작업 중에 \n현재 위치를 �
     - 아침에는 Pancake House의 menu를 사용하고, 점심에는 '객체마을 식당'의 menu를 사용하도록 해야 함
 
 - 두 가게 모두 메뉴 항목을 나타내는 MenuItem은 통일함
-- 그러나 여러 MenuItem을 저장하는 집합체의 자료구조가 다름
+- 그러나 여러 MenuItem을 저장하는 집합체의 자료 구조가 다름
     - 'Pancake House'는 menu를 만들 때 ArrayList에 저장함
     - '객체마을 식당'은 menu를 만들 때 배열에 저장함
 
@@ -124,8 +124,8 @@ ConcreteIterator .. ConcreteIterator : 반복 작업 중에 \n현재 위치를 �
     - menu 출력하기
     - 채식주의자용 menu만 출력하기
 
-- Iterator Pattern을 사용해서 Waitress가 집합체의 자료구조에 구애받지 않고 일할 수 있도록 하기
-    - Iterator Pattern을 사용하지 않는다면, Waitress는 서로 자료구조이 다른 두 가게의 menu를 출력하기 위해서 반복 작업을 할 때 자료구조에 따라 다른 처리를 해주어야 함
+- Iterator Pattern을 사용해서 Waitress가 집합체의 자료 구조에 구애받지 않고 일할 수 있도록 하기
+    - Iterator Pattern을 사용하지 않는다면, Waitress는 서로 자료 구조이 다른 두 가게의 menu를 출력하기 위해서 반복 작업을 할 때 자료 구조에 따라 다른 처리를 해주어야 함
 
 
 

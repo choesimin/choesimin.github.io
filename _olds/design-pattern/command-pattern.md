@@ -249,7 +249,7 @@ class Command {
 }
 ```
 
-- data가 변경될 때마다 매번 저장할 수 없는 방대한 자료구조를 다루는 application의 복구 방식
+- data가 변경될 때마다 매번 저장할 수 없는 방대한 자료 구조를 다루는 application의 복구 방식
     - 명령을 실행하면서 checkpoint 이후의 실행 history를 disk에 기록함
         - 마지막 checkpoint 이후로 한 모든 작업 저장함
     - system down 되었을 경우, checkpoint에 최근 수행한 작업을 다시 적용하면 복구할 수 있음

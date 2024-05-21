@@ -1284,7 +1284,7 @@ for (let key in user) {
 - 소숫점 자릿수
   ```javascript
   let user_rate = 30.1234;
-  // 요구사항 : 소수점 둘째 자리까지 표현 (셋째 자리에서 반올림)
+  // 요구 사항 : 소수점 둘째 자리까지 표현 (셋째 자리에서 반올림)
 
   console.log(Math.round(user_rate * 100) / 100);    // 30.12
 
