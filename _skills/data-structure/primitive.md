@@ -1,15 +1,15 @@
 ---
 layout: skill
-title: 자료 구조 - 단순 구조 (Simple Structure)
+title: 단순 자료 구조 (Primitive Data Structure)
 date: 2024-05-21
 ---
 
 
 
 
-## 단순 구조 : Program에서 가장 기본적이고 필수적인 Data Type
+## 단순 자료 구조 : Program에서 가장 기본적이고 필수적인 Data Type
 
-- 단순 구조(Simple Structure)는 **가장 기본적인 형태의 data** 저장 및 처리를 제공하는 자료형입니다.
+- 단순 자료 구조(Primitive Data Structure)는 **가장 기본적인 형태의 data** 저장 및 처리를 제공하는 자료형입니다.
     - computer system이 **기본적으로 제공**하며, **복잡한 자료 구조를 구성**하는 기본 요소로 사용됩니다.
 
 

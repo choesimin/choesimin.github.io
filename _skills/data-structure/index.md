@@ -45,38 +45,31 @@ date: 2024-05-21
 ```mermaid
 mindmap
     root((자료 구조))
-        simple-structure[단순 구조]
+        primitive[단순 자료 구조]
             integer[정수]
             float[실수]
             char[문자]
             string[문자열]
             boolean[논리값]
-        linear-structure[선형 구조]
+        linear[선형 구조]
             sequential-list[순차 List]
             linked-list[연결 List]
-                singly-linked-list[단순 연결 List]
-                doubly-linked-list[이중 연결 List]
-                circular-linked-list[원형 연결 List]
             stack[Stack]
             queue[Queue]
             deque[Deque]
-        non-linear-structure[비선형 구조]
+        non-linear[비선형 구조]
             graph[Graph]
-                directed-graph[방향 Graph]
-                undirected-graph[무방향 Graph]
             tree[Tree]
-                general-tree[일반 Tree]
-                binary-tree[이진 Tree]
-        file-structure[File 구조]
+        file[File 구조]
             sequential-file[순차 File]
             indexed-file[색인 File]
             direct-file[직접 File]
 ```
 
 
-### 1. 단순 구조 (Simple Structure)
+### 1. 단순 자료 구조 (Primitive Data Structure)
 
-- 단순 구조는 computer가 기본적으로 제공하는 자료형으로, **가장 기본적인 형태의 data** 저장 및 처리를 제공합니다.
+- 단순 자료 구조는 computer가 기본적으로 제공하는 자료형으로, **가장 기본적인 형태의 data** 저장 및 처리를 제공합니다.
 
 | 자료 구조 | 설명 |
 | --- | --- |
@@ -87,7 +80,7 @@ mindmap
 | 문자열 (String) | 여러 문자를 연속적으로 저장한 것입니다. e.g., "hello", "world", "123abc". |
 
 
-### 2. 선형 구조 (Linear Structure)
+### 2. 선형 자료 구조 (Linear Data Structure)
 
 - 선형 구조는 data가 **일렬로 저장**되는 형태의 자료 구조입니다.
 - 각 요소는 이전 요소와 다음 요소가 존재하며, 순차적으로 접근할 수 있습니다.
@@ -101,7 +94,7 @@ mindmap
 | Deque | 양쪽 끝에서 삽입과 삭제가 모두 가능한 자료 구조입니다. |
 
 
-### 3. 비선형 구조 (Non-Linear Structure)
+### 3. 비선형 자료 구조 (Non-Linear Data Structure)
 
 - 비선형 구조는 data가 **계층적 또는 network 형태로 저장**되는 자료 구조입니다.
 - 각 요소는 여러 다른 요소와 연결될 수 있습니다.
@@ -112,7 +105,7 @@ mindmap
 | Graph | 정점(node)과 간선(edge)으로 구성된 network 구조입니다. |
 
 
-### 4. file 구조 (File Structure)
+### 4. File 자료 구조 (File Data Structure)
 
 - file 구조는 data를 **file system에 저장하고 관리**하는 방식입니다.
 - 다양한 자료 구조의 data를 file에 저장하여 **영구적으로 보관**할 수 있습니다.
@@ -213,4 +206,5 @@ int main() {
 
 ## Reference
 
+- <https://akcoding.com/classification-of-data-structures/>
 - <https://velog.io/@filoscoder/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%A2%85%EB%A5%98%EC%99%80-%EB%B6%84%EB%A5%98>
