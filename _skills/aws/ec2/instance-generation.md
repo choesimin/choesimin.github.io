@@ -7,7 +7,7 @@ date: 2023-07-16
 
 
 
-- 사용 목적과 운영 환경에 따라서 여러가지 option들을 설정하여 적합한 Instance를 만듭니다.
+- 사용 목적과 운영 환경에 따라서 여러 가지 option들을 설정하여 적합한 Instance를 만듭니다.
 
 
 
@@ -75,7 +75,7 @@ date: 2023-07-16
 
 - 용량과 종류를 선택하고 새로운 volume을 추가합니다.
 - 종류는 목적에 맞게 선택합니다.
-    - e.g., `gp`는 General Purpost를 의미합니다.
+    - 예를 들어, `gp`는 General Purpost를 의미합니다.
 
 
 ### 6. (Optional) 고급 세부 정보(Advanced details) 설정
@@ -110,7 +110,7 @@ echo "<h1>Hello, EC2.</h1>" > /var/www/html/index.html
 ### 8. Instance 최종 생성
 
 - 만약 Free tier Instance 생성에 실패했다면, 선택한 Subnet이 Free tier를 지원하는 Subnet인지 확인합니다.
-    - e.g., seoul region의 경우, Free tier는 'a'와 'c'로 끝나는 Subnet만 사용할 수 있습니다.
+    - 예를 들어, seoul region의 경우, Free tier는 'a'와 'c'로 끝나는 Subnet만 사용할 수 있습니다.
 
 
 

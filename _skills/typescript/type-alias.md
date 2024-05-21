@@ -200,7 +200,7 @@ person.address = 'Seoul';    // Error
 4. mapped type, 조건부(conditional) type, type guard, 또는 기타 고급(advanced) type 기능을 사용할 때.
 
 - interface로는 구현하기 어려운 **type alias만의 고급 기능**들이 있습니다.
-    - e.g., 조건부(conditional) type, generic type, type guard, 고급(advanced) type 등.
+    - 예를 들어, 조건부(conditional) type, generic type, type guard, 고급(advanced) type 등.
     - type alias의 고급 기능을 사용하여, 강력한 type system을 갖춘 application을 만들 수 있습니다.
 
 #### Type Alias 고급 기능 사용 예제 : 객체의 Getter Method 자동 생성하기

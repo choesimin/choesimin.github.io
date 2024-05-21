@@ -12,7 +12,7 @@ date: 2023-09-23
 - crontab은 Linux에 기본 program으로 설치되어 있는 작업 Scheduler입니다.
 
 - crontab으로 작업을 주기적으로 실행하도록 할 수 있습니다.
-    - e.g., '매일 1시에 이 작업을 실행하라.', '10분마다 이 script를 실행하라.'
+    - 예를 들어, '매일 1시에 이 작업을 실행하라.', '10분마다 이 script를 실행하라.'
 
 - 사용자는 작업을 등록하고, crontab은 작업을 실행합니다.
     - 따라서 사용자는 작업을 관리하는 script file을 작성하기만 합니다.
@@ -44,7 +44,7 @@ crontab [option]
 
 - 편집 mode에서는 crontab의 작업 내용을 정의할 수 있습니다.
 - crontab 설정 편집기로 vim 편집기가 실행되었다면, `i`를 눌러 편집을 시작하고, `esc`와 `:wq`를 순서대로 입력하여 편집을 종료합니다.
-    - Linux에서 crontab의 기본 편집기는 `select-editor` 명령어로 다른 편집기(e.g., `vim`, `nano`, `gedit` 등)로 바꿀 수도 있습니다.
+    - Linux에서 crontab의 기본 편집기는 `select-editor` 명령어로 다른 편집기(예를 들어, `vim`, `nano`, `gedit` 등)로 바꿀 수도 있습니다.
 - 시간을 표현하는 crontab의 특수한 표현식(expression)을 사용하여, 명령어 또는 shell script을 scheduler에 등록합니다.
 
 

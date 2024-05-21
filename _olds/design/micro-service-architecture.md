@@ -158,7 +158,7 @@ layout: skill
 
 - MicroService archtecture를 적용하면 architect와 개발자들은 주어진 scenario에 가장 적합한 기술과 architecture를 선택할 수 있음
     - 유연성을 바탕으로 더 비용 효과적인 방식으로 목적에 맞는 solution을 설계할 수 있음
-- MicroService는 자율적이고 독립적이므로 각 service는 자신만의 고유한 architecture와 여러가지 version의 기술을 적용해서 구축하고 운영할 수 있음
+- MicroService는 자율적이고 독립적이므로 각 service는 자신만의 고유한 architecture와 여러 가지 version의 기술을 적용해서 구축하고 운영할 수 있음
 
 ### 실험과 혁신 유도
 
@@ -253,8 +253,8 @@ layout: skill
     - ex) 'MicroService 하나당 하나의 REST endpoint', '300 line 이하의 code', '하나의 책임만을 지는 component'
     - 예시의 기준 중에서 하나를 고르기 전에 service의 경계를 이해하기 위해 분석해야 할 것들이 많음
 - MicroService의 경계를 설계하는 가장 실용적인 방법은 손으로 scenario를 돌려보는 것
-    - 가능한 여러가지 선택 사항에 대해 service litmus test를 하는 것과 비슷
-    - 주어진 scenario에 적합한 여러가지 조건이 있을 것이고, 장단점 분석을 해야함
+    - 가능한 여러 가지 선택 사항에 대해 service litmus test를 하는 것과 비슷
+    - 주어진 scenario에 적합한 여러 가지 조건이 있을 것이고, 장단점 분석을 해야함
 1. 자율적인 기능
     - 자율적인 service는 일반적으로 외부 기능에 대한 의존도가 낮음
         - 입력을 받아 내부의 logic과 data로 계산해서 결과를 반환
@@ -288,7 +288,7 @@ layout: skill
         - 복잡한 machine learning algorithm 필요하므로 전문가 team이 필요함
         - 이럴 때, 개인화 추천 service 기능을 별도로 분리된 전문가 team에서 개발할 수 있음
 7. 단일 책임
-    - 단일 책임 원칙에서 하나의 책임이 여러 MicroService와 공유될 수 없는 것처럼, 하나의 MicroService는 여러가지 책임을 담당해서는 안됨
+    - 단일 책임 원칙에서 하나의 책임이 여러 MicroService와 공유될 수 없는 것처럼, 하나의 MicroService는 여러 가지 책임을 담당해서는 안됨
         - 이론적으로 단일 책임 원칙(SRP; Single Responsibility Principle)은 method, class, service 수준에 적용되는 개념
             - 하지만 MicroService 환경에서는 하나의 책임을 반드시 단 하나의 service나 endpoint와 짝지을 필요 없음
             - 하나의 business 범위 또는 하나의 기술 범위로 치환해서 생각하는 것이 더 현실적인 방식
@@ -432,7 +432,7 @@ layout: skill
     2. process를 monitoring하고 효율을 높이기 위해 최적화하는 것
         - 이 작업은 완전하게 자동화된 비동기 연출 방식의 MicroService 생태계와 협업하는 방식으로 처리됨
         - 이 scenario에서 MicroService와 BPM은 독립적인 생태계로서 존재
-            - MicroService는 process의 시작, 상태의 변경, process의 종료 등과 같은 여러가지 시간 frame에 걸쳐 event를 전송
+            - MicroService는 process의 시작, 상태의 변경, process의 종료 등과 같은 여러 가지 시간 frame에 걸쳐 event를 전송
             - BPM은 받은 event를 process 상태를 구성하고 monitoring하는 데에 사용
 
 ### MicroService가 data store를 공유할 수 있는가?

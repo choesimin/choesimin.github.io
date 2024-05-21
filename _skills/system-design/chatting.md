@@ -345,12 +345,12 @@ end
 2. chatting system에 고유한 **chat history(대화 이력) data**는 **key-value 저장소**에 보관합니다.
     - chat history 저장소로는 **수평적 규모 확장**이 쉽고, **data 접근 지연 시간이 낮은** key-value 저장소가 적합합니다.
         - chat history은 data 양이 엄청나게 많습니다.
-            - e.g., Facebook, WhatsApp은 매일 600억 개의 message를 처리합니다.
+            - 예를 들어, Facebook, WhatsApp은 매일 600억 개의 message를 처리합니다.
         - 최근에 주고받은 message만 빈번하게 사용됩니다.
         - 검색, 언급(mention) 등의 기능으로 특정 message로 이동하는 무작위적인 data 접근이 많습니다.
         - 쓰기와 읽기가 1:1 비율입니다.
     - 관계형 database는 index가 커지면 무작위적 접근을 처리하는 비용이 늘어나고, 'Long Tail'에 해당하는 data 조회에 한계가 있습니다.
-    - e.g., Facebook(Hbase), Discord(Cassandra) 등, 이미 많은 안정적인 chatting system이 key-value 저장소를 채택하였습니다. 
+    - 예를 들어, Facebook(Hbase), Discord(Cassandra) 등, 이미 많은 안정적인 chatting system이 key-value 저장소를 채택하였습니다. 
 
 
 ### Chatting Message Data Model
@@ -428,7 +428,7 @@ ORDER BY message_id ASC;
 
 2. **client의 `cur_max_message_id` 값**과 **DB의 `message_id`** 값을 비교하여, 단말기에 없는 message를 key-value 저장소에서 조회합니다.
     - `cur_max_message_id`보다 큰 `message_id`를 가진 message들을 조회합니다.
-    - e.g., `message_id > cur_max_message_id`.
+    - 예를 들어, `message_id > cur_max_message_id`.
 
 3. 조회 결과를 사용자의 단말기에 보관하고, `cur_max_message_id`를 최신 `message_id`로 갱신합니다.
 

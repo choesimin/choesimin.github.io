@@ -51,13 +51,13 @@ block : 새 줄에서 시작하며 브라우저 전체 폭을 차지한다
 - `width`, `height`, `margin`, `padding` 속성값을 지정할 수 있습니다.
 - `block` 요소 뒤에 등장하는 요소가 그 이전 `block` 요소의 오른쪽에 배치될 수 있어도 항상 다음 줄에 위치합니다.
 
-- e.g., `<div>`, `<h1>`, `<p>`, `<ul>`, `<ol>`, `<form>`.
+- 예를 들어, `<div>`, `<h1>`, `<p>`, `<ul>`, `<ol>`, `<form>`.
 
 
 ### `inline`
 
 - text에 효과를 주기 위해 존재하는 요소입니다.
-    - e.g., bold, italic, underline, color, link.
+    - 예를 들어, bold, italic, underline, color, link.
     - `inline` 요소의 `width`와 `height` 속성 기본 값은 content 영역의 크기로 자동 설정됩니다.
 
 - `width`, `height` 속성값을 지정할 수 없습니다.
@@ -68,7 +68,7 @@ block : 새 줄에서 시작하며 브라우저 전체 폭을 차지한다
 
 - `inline` 요소 뒤에 등장하는 요소는 `inline` 요소의 바로 오른쪽에 위치합니다.
 
-- e.g., `<span>`, `<a>`, `<img>`.
+- 예를 들어, `<span>`, `<a>`, `<img>`.
 
 
 ### `inline-block`

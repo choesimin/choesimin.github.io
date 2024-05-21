@@ -71,7 +71,7 @@ code를 읽으면서 짐작했던 기능을 각 routine이 그대로 수행한�
 - 서술적인 이름을 사용하면 설계가 뚜렷해지므로 code 개선이 쉬워집니다.
 - 일관성 있는 이름을 붙여야 합니다.
     - module 내에서 함수 이름은 같은 문구, 명사, 동사를 사용합니다.
-        - e.g., `includeSetupAndTeardownPages`, `includeSetupPages`, `includeSuiteSetupPage`, `includeSetupPage`, ...
+        - 예를 들어, `includeSetupAndTeardownPages`, `includeSetupPages`, `includeSuiteSetupPage`, `includeSetupPage`, ...
 
 
 ## 7. 인수를 적게 유지하기
@@ -114,7 +114,7 @@ code를 읽으면서 짐작했던 기능을 각 routine이 그대로 수행한�
 
 - 객체 지향 언어에서는 출력 인수를 사용할 필요가 거의 없습니다.
     - 출력 인수로 사용하기 위해 설계한 `this`라는 변수가 있기 때문입니다.
-    - e.g., `appendFooter(s);`는 `s`를 바닥글로 첨부 할지, `s`에 바닥글을 첨부 할지 알 수 없습니다.
+    - 예를 들어, `appendFooter(s);`는 `s`를 바닥글로 첨부 할지, `s`에 바닥글을 첨부 할지 알 수 없습니다.
         - `appendFooter(s)`보다 `report.appendFooter()`가 더 낫습니다.
 
 - 함수에서 상태를 변경해야 한다면, 함수가 속한 객체 상태를 변경하는 방식을 사용하는 것이 더 좋습니다.

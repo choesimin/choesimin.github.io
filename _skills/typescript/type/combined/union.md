@@ -13,10 +13,10 @@ date: 2024-03-02
     - `|` 연산자를 사용하여 정의되며, 이는 변수나 매개 변수가 지정된 type 중 하나의 type을 가질 수 있음을 의미합니다.
 
 - union type을 사용하면, 변수나 함수 매개 변수가 여러 다른 type 중 하나를 가질 수 있습니다.
-    - e.g., `string | number` union type은 해당 변수나 매개 변수가 문자열 또는 숫자일 수 있음을 의미합니다.
+    - 예를 들어, `string | number` union type은 해당 변수나 매개 변수가 문자열 또는 숫자일 수 있음을 의미합니다.
 
 - union type은 program이 **다양한 type의 값들을 유연하게 처리할 수 있게** 하며, 다양한 상황에서 유용하게 사용됩니다.
-    - e.g., 함수가 여러 type의 인자를 받아들일 수 있도록 하거나, 함수가 여러 type 중 하나의 type을 반환할 수 있도록 할 때 union type을 사용할 수 있습니다.
+    - 예를 들어, 함수가 여러 type의 인자를 받아들일 수 있도록 하거나, 함수가 여러 type 중 하나의 type을 반환할 수 있도록 할 때 union type을 사용할 수 있습니다.
 
 - **`|` 연산자**로 여러 type들을 연결하여 union type을 정의합니다.
 
@@ -170,7 +170,7 @@ type Status = "success" | "failure" | "pending";
 
 - literal union type은 여러 literal type(주로 문자열 또는 숫자)을 `|` 연산자를 사용해 결합한 것입니다.
 - 이를 통해 변수나 parameter가 특정 값들 중 하나를 가져야 함을 명시적으로 선언할 수 있습니다.
-    - e.g., 함수가 받을 수 있는 특정 문자열이나 숫자의 집합을 제한하고 싶을 때 유용합니다.
+    - 예를 들어, 함수가 받을 수 있는 특정 문자열이나 숫자의 집합을 제한하고 싶을 때 유용합니다.
 
 ```typescript
 type Direction = "up" | "down" | "left" | "right";

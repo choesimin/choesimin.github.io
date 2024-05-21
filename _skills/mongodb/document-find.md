@@ -166,7 +166,7 @@ db.books.find({$where: "this.name == 'A' || this.hits <= 50"});    // JavaScript
     - document에서 필요한 data만 추출할 수 있으며, 불필요한 data는 제외됩니다.
         - e.g, 회원의 개인 정보 같은 민감한 data를 다룰 때 유용합니다.
     - projection으로 query의 효율성을 높이고, network를 통해 전송되는 data 양을 줄일 수 있습니다.
-        - e.g., 게시글 목록에서 내용까지 모두 불러오면 용량이 매우 크지만, 제목만 불러오면 data를 아낄 수 있습니다.
+        - 예를 들어, 게시글 목록에서 내용까지 모두 불러오면 용량이 매우 크지만, 제목만 불러오면 data를 아낄 수 있습니다.
     - projection을 사용함으로써 더 빠르고 효율적인 query를 실행할 수 있으며, application의 성능을 개선할 수 있습니다.
 
 - 조회 method(`find`, `findOne`)의 **두 번째 인자**에 조회할 field를 명시합니다.

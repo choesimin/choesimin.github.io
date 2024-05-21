@@ -123,7 +123,7 @@ console.log(JSON.stringify(myObject));
     - `Symbol`을 통한 Metaprogramming 기능 중에서도, 특히 전역적인 context에서 symbol을 공유하고 재사용할 필요가 있을 때 유용하게 사용됩니다.
 
 - 전역 symbol registry는 전역적으로 공유되어야 하는 고유한 식별자를 생성하고자 할 때 사용합니다.
-    - e.g., 여러 module이나 package에서 동일한 식별자를 참조해야 하는 경우, `Symbol.for()`를 사용하여 동일한 symbol을 안전하게 공유할 수 있습니다.
+    - 예를 들어, 여러 module이나 package에서 동일한 식별자를 참조해야 하는 경우, `Symbol.for()`를 사용하여 동일한 symbol을 안전하게 공유할 수 있습니다.
     - 이는 이름 충돌 없이 module 간의 상호 작용을 구현하는 데 도움이 됩니다.
     - application 전반에서 symbol 값의 일관성을 유지할 수 있으며, debugging이나 code의 이해를 돕는 데에도 유용하게 사용될 수 있습니다.
 
@@ -172,7 +172,7 @@ console.log(symbolKey);    // 'globalSymbol'
 - well-known symbol은 ECMAScript 사양에 미리 정의되어 있는 '잘 알려진(well-known)' symbol을 의미합니다.
 
 - well-known symbol은 객체의 표준 동작(내부적인 언어 동작)을 변경(사용자 정의)할 수 있게 하여, metaprogramming을 가능하게 합니다.
-    - e.g., `Symbol.iterator`는 객체가 반복자 protocol을 구현하는 방법을 정의하는 데 사용됩니다.
+    - 예를 들어, `Symbol.iterator`는 객체가 반복자 protocol을 구현하는 방법을 정의하는 데 사용됩니다.
 
 - 다양한 Well-Known Symbol들이 있으며, 필요에 따라서 선택하여 사용합니다.
 
@@ -180,7 +180,7 @@ console.log(symbolKey);    // 'globalSymbol'
 | --- | --- |
 | `Symbol.iterator` | 객체가 'iterable'이 되게 하여 `for...of` loop와 같은 구문에서 사용될 수 있도록 합니다.<br>`Symbol.iterator`는 객체에 method를 정의하며, 이 method는 반복자(iterator)를 반환해야 합니다.<br>이 반복자는 `next` method를 가지고 있으며, `next`는 반복될 각 값에 대한 `{value, done}` 객체를 반환해야 합니다. |
 | `Symbol.asyncIterator` | 비동기 반복자를 정의하는 데 사용됩니다.<br>이를 통해 객체는 `for await...of` loop에 의해 비동기적으로 반복될 수 있습니다. |
-| `Symbol.toStringTag` | 객체의 기본 `toString()` method 호출 결과에 사용되는 문자열을 정의합니다.<br>e.g., `Object.prototype.toString.call(new Array())`을 호출하면 `"[object Array]"`가 반환되는데, 이는 `Array` 객체의 `Symbol.toStringTag` 속성이 `"Array"`로 설정되어 있기 때문입니다. |
+| `Symbol.toStringTag` | 객체의 기본 `toString()` method 호출 결과에 사용되는 문자열을 정의합니다.<br>예를 들어, `Object.prototype.toString.call(new Array())`을 호출하면 `"[object Array]"`가 반환되는데, 이는 `Array` 객체의 `Symbol.toStringTag` 속성이 `"Array"`로 설정되어 있기 때문입니다. |
 | `Symbol.species` | 생성자 함수에 의해 생성된 객체의 유형을 지정합니다.<br>이 symbol을 사용하여 내장 객체의 subclass에서 `map`, `filter` 같은 method를 호출할 때 반환되는 instance의 유형을 customizing할 수 있습니다. |
 | `Symbol.hasInstance` | `instanceof` 연산자를 사용할 때 객체의 instance 여부를 결정하는 method를 정의합니다. |
 

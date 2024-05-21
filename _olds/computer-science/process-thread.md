@@ -76,7 +76,7 @@ version: 2023-05-08
 - process 간의 통신이 필요할 경우에 사용하는 최소한의 interface입니다.
     - 각 process가 다른 process의 정보를 변경하는 것을 방지하기 위해 최소한의 기능만 제공
 
-- e.g., Unix Pipelining
+- 예를 들어, Unix Pipelining
     - `cat many-names | sort | uniq`
 
 
@@ -85,7 +85,7 @@ version: 2023-05-08
 ## Multitasking & Context Switch
 
 - Multitasking는 하나의 computer에서 여러 가지 작업을 동시에 하는 것을 의미합니다.
-    - e.g., 음악을 들으면서, code editor를 켜놓고, chrome에서 검색하기.
+    - 예를 들어, 음악을 들으면서, code editor를 켜놓고, chrome에서 검색하기.
 
 - 현대적인 모든 운영 체제는 모두 multitasking을 지원합니다.
 

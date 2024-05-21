@@ -55,7 +55,7 @@ let n: null = null;
 - `undefined`는 **정의되지 않은 값**을, `null`은 **없는 값**을 나타냅니다.
 
 - 기본 설정에서는 `undefined`와 `null`을 **다른 모든 type의 하위 type으로 취급**합니다.
-    - e.g., `number`나 `string` type의 변수에 `null`이나 `undefined`를 할당할 수 있습니다.
+    - 예를 들어, `number`나 `string` type의 변수에 `null`이나 `undefined`를 할당할 수 있습니다.
 
 - 만약 `--strictNullChecks` 옵션을 활성화하면, `null`과 `undefined`는 `any`와 각각의 type들에만 할당할 수 있게 됩니다.
 
@@ -83,4 +83,4 @@ let big: bigint = 100n;
 
 - `bigint`와 `number` type 간에는 직접적인 연산이 불가능합니다.
     - `bigint`와 `number`가 내부적으로 다르게 처리되기 때문입니다.
-    - e.g., `bigint`와 `number`를 더하려고 하면 compiler는 오류를 발생시킵니다.
+    - 예를 들어, `bigint`와 `number`를 더하려고 하면 compiler는 오류를 발생시킵니다.

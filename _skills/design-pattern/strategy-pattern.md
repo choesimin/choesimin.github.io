@@ -13,8 +13,8 @@ date: 2023-07-03
 
 - 같은 목적을 가진 class들의 algorithm을 상황에 따라 교체해야 하는 경우, Strategy Pattern을 사용하면 좋습니다.
     - 평소에는 한 가지 algorithm을 사용하더라도 algorithm을 변경해야 할 때가 있습니다.
-        - e.g., 참조하는 class가 변경/제거될 때(compile time).
-        - e.g., 사용하는 시점에 따라서 적용할 algorithm이 다를 때(runtime).
+        - 예를 들어, 참조하는 class가 변경/제거될 때(compile time).
+        - 예를 들어, 사용하는 시점에 따라서 적용할 algorithm이 다를 때(runtime).
 
 
 
@@ -51,7 +51,7 @@ date: 2023-07-03
 
 - logic을 단순히 client에 if-else로 분리해서 그 안에 구현하는 게 보기 편할 수도 있습니다.
     - 한 눈에 들어오는 짧은 code에서는 Strategy Pattern을 사용하는 것이 오히려 가독성을 떨어뜨립니다.
-    - e.g., 분기가 2개인 경우에는 if-else를 사용하는 것이 더 나을 수 있습니다.
+    - 예를 들어, 분기가 2개인 경우에는 if-else를 사용하는 것이 더 나을 수 있습니다.
 
 ### Client가 구체적인 전략(concrete strategy)에 대해 알고 있어야 함
 
@@ -125,7 +125,7 @@ ConcreteStrategyB ->> Client : return result
 
 - client에서는 **나는 행동**과 **꽥꽥거리는 행동** 모두에 대해서 캡슐화(encapsulation)된 algorithm group을 **활용**합니다.
     - client는 `setter`로 행동 변수를 설정하고 `perform` 함수를 사용하면 됩니다.
-        - e.g., `setFlyBehavior()` -> `performFly()`
+        - 예를 들어, `setFlyBehavior()` -> `performFly()`
 
 - 각 행동의 집합은 각 algorithm group입니다.
 

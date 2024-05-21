@@ -37,9 +37,9 @@ if (typeof value === "string") {    // type guard
 ```
 
 - `unknown` type은 **type 정보 없이 data를 처리해야 하는 경우** 유용하게 사용됩니다.
-    - e.g., **외부 API로부터 받은 data의 type이 미리 정의되지 않은 경우**, `unknown` type을 사용하여 초기 변수를 선언할 수 있습니다.
+    - 예를 들어, **외부 API로부터 받은 data의 type이 미리 정의되지 않은 경우**, `unknown` type을 사용하여 초기 변수를 선언할 수 있습니다.
         - 이후, type guard를 통해 data의 type을 좁혀나갑니다.
-    - e.g., library 개발 시 **type 정보 없이 data를 처리해야 하는 경우**, library 사용자가 type을 명확하게 지정하도록 강제하기 위해 `unknown` type을 사용할 수 있습니다.
+    - 예를 들어, library 개발 시 **type 정보 없이 data를 처리해야 하는 경우**, library 사용자가 type을 명확하게 지정하도록 강제하기 위해 `unknown` type을 사용할 수 있습니다.
 
 
 ### `unknown`과 `any`의 차이점
@@ -77,7 +77,7 @@ if (typeof value === "string") {    // type guard
 
 - `unknown` type과 union type을 함께 사용하면, 여러 다른 type 중 하나가 될 수 있는 값을 안전하게 처리할 수 있는 유연성을 제공합니다.
     - union type이란 변수가 여러 type 중 하나를 가질 수 있음을 나타내는 방법입니다.
-        - e.g., `string | number` union type은 해당 변수가 문자열 또는 숫자 type의 값을 가질 수 있음을 의미합니다.
+        - 예를 들어, `string | number` union type은 해당 변수가 문자열 또는 숫자 type의 값을 가질 수 있음을 의미합니다.
 
 - `unknown` type을 union type과 함께 사용할 때, `unknown` type의 변수에 대해 진행할 수 있는 연산은 해당 union type의 모든 member에 공통적으로 적용될 수 있는 연산에만 제한됩니다.
     - 특정 type에만 적용 가능한 연산을 수행하기 전에, 해당 변수의 type을 좁혀주는 type guard를 사용하여 변수의 실제 type을 확인해야 합니다.

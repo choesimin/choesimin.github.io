@@ -13,13 +13,13 @@ date: 2023-08-26
     - vector graphic은 확대하더라도 raster/bitmap graphic처럼 계단 현상이 발생하지 않기 때문에(Scalable), 다양한 크기의 화면을 지원해야하는 Web 환경에서 큰 이점이 있습니다.
 
 - SVG(`<svg>`)는 점, 직선, 곡선, 원, 사각형, 다각형 등과 같은 하나의 graphic 영역을 이루는 요소를 markup하기 위해서 사용됩니다.
-    - e.g., HTML은 제목(`<h1>`, `<h2>`), 단락(`<p>`), 목록(`<ul>`, `<ol>`), 표(`<table>`)과 같은 문서를 이루는 요소를 markup하기 위해서 사용됩니다.
+    - 예를 들어, HTML은 제목(`<h1>`, `<h2>`), 단락(`<p>`), 목록(`<ul>`, `<ol>`), 표(`<table>`)과 같은 문서를 이루는 요소를 markup하기 위해서 사용됩니다.
 
 - SVG graphic은 `<svg>` tag를 사용하여 다른 HTML 요소처럼 HTML 문서 안에 바로 markup하는 것이 가능합니다.
 - `<object>`, `<img>`, `<iframe>` 요소를 통해 외부 file(`.svg`)에 작성된 SVG를 HTML 문서로 불러올 수도 있습니다.
 
 - SVG는 CSS로 꾸미거나 JavaScript로 동적 효과를 적용할 수 있으며, 상호 작용(interactive)이 가능하고 동적(dynamic)입니다.
-    - e.g., 특정 event에 반응하는 animation을 적용할 수 있습니다.
+    - 예를 들어, 특정 event에 반응하는 animation을 적용할 수 있습니다.
 
 
 

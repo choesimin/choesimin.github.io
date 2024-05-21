@@ -132,7 +132,7 @@ mixer ----> result
 - [Real Graph](https://www.ueo-workshop.com/wp-content/uploads/2014/04/sig-alternate.pdf)는 In-Network에서 순위를 정할 때 사용되는 핵심 component입니다.
     - Real Graph는 두 사용자 간의 참여(engagement) 가능성을 예측하는 model입니다.
         - engagement : 상호 간의 관계를 맺는 모든 행위.
-            - e.g., 댓글 작성하기
+            - 예를 들어, 댓글 작성하기
     - '사용자(user)'와 '사용자가 follow하는 사람(author of tweet)' 간의 Real Graph 점수가 높을 수록 더 많은 tweet이 후보에 포함됩니다.
 
 ### Out-of-Network Sources
@@ -220,7 +220,7 @@ mixer ----> result
 
 1. Visibility Filtering
     - tweet의 내용과 사용자의 선호도에 따라 tweet들을 filtering합니다.
-    - e.g., block 또는 mute한 계정의 tweet들을 제거합니다.
+    - 예를 들어, block 또는 mute한 계정의 tweet들을 제거합니다.
 
 2. Author Diversity
     - 한 작성자의 연속되는 tweet을 피합니다.

@@ -46,7 +46,7 @@ layout: skill
     - tech stack이 더 다루기 힘들어짐
     - web site를 구축하는 것이 더 복잡함
 - static contents인지 dynamic contents인지에 따라 caching 전략을 다르게 해야함
-    - caching은 site를 빠르게 하지만, dynamic contents에 caching을 하게 되면 여러가지 문제가 생김
+    - caching은 site를 빠르게 하지만, dynamic contents에 caching을 하게 되면 여러 가지 문제가 생김
         - ex) login을 했는데, 내 id가 아니라 다른 사람의 id가 보이는 문제
     - static web page
         - 단순히 해당 page(contents)를 저장

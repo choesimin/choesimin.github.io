@@ -17,7 +17,7 @@ date: 2024-01-24
     
 - 각 section에 `scroll-snap-align` 속성을 사용하기 전에, 부모 요소에 `scroll-snap-type` 속성을 설정해야 합니다.
     - `scroll-snap-type` 속성은 scroll snap의 축과 강제 여부를 정의합니다.
-        - e.g., `scroll-snap-type: y mandatory;`는 수직 scroll에 smap을 강제로 적용하겠다는 의미입니다. 
+        - 예를 들어, `scroll-snap-type: y mandatory;`는 수직 scroll에 smap을 강제로 적용하겠다는 의미입니다. 
 
 
 

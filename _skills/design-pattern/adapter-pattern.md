@@ -11,7 +11,7 @@ date: 2024-02-14
 
 - Adapter Pattern은 **서로 다른 interface를 가지는 두 객체를 연결**하여 사용할 수 있도록 하는 design pattern입니다.
     - interface가 호환되지 않아서 함께 동작할 수 없는 class들을 함께 사용할 수 있도록 변환합니다.
-    - e.g., 원래 객체와 호환되지 않는 외부 library나 API를 사용해야 하는 경우, Adapter Pattern을 적용하면 기존 code를 재사용하면서 외부 library나 API를 사용할 수 있습니다.
+    - 예를 들어, 원래 객체와 호환되지 않는 외부 library나 API를 사용해야 하는 경우, Adapter Pattern을 적용하면 기존 code를 재사용하면서 외부 library나 API를 사용할 수 있습니다.
         - 한국에서 쓰던 220V 기기들을 Voltage Power Adapter를 사용하여 110V를 쓰는 곳에 가서도 그대로 쓸 수 있는 것과 비슷합니다.
         - Adapter Pattern에서도 Adapter처럼 변환하는 역할을 하는 class를 새로 만들어야 합니다.
 
@@ -49,7 +49,7 @@ adapter -->|변환된 요청| adaptee
 
 - Adapter Pattern을 다른 pattern과 결합하여 더욱 효과적으로 사용할 수 있습니다.
     - Adapter Pattern은 다른 pattern들과 결합하여 사용하기 좋습니다.
-    - e.g., Builder Pattern과 Adapter Pattern을 결합하여, 새로운 객체를 생성하면서 외부 library나 API와 연결할 수 있습니다.
+    - 예를 들어, Builder Pattern과 Adapter Pattern을 결합하여, 새로운 객체를 생성하면서 외부 library나 API와 연결할 수 있습니다.
 
 
 ## Adapter Pattern & Facade pattern & Decorator Pattern
@@ -118,7 +118,7 @@ deactivate Client
 
 - `Adaptee` : Client가 최종적으로 사용하고자 하는 service이자, Adapter의 호환 작업 대상(Adaptee)입니다.
     - Client에서 사용하고 싶지만 호환성 문제로 바로 사용할 수 없는 service입니다.
-    - e.g., 기존 system, 외부 system, third party library 등이 Adaptee에 해당됩니다.
+    - 예를 들어, 기존 system, 외부 system, third party library 등이 Adaptee에 해당됩니다.
 
 
 ### Object Adapter : 합성을 이용해 구현한 Adapter
@@ -220,7 +220,7 @@ note for Adapter "specificData = convertToSpecificFormat(data);\nreturn specific
 - Adaptee class를 상속(inheritance)받아, **부모의 method를 호출**하는 방식으로 변환 작업을 합니다.
     - 상속은 기존에 구현된 code를 재사용하는 대표적인 방식입니다.
     - Adapter가 Adaptee와 Target interface 모두를 상속받기 때문에, Adapter는 객체 구현 없이 바로 Adaptee의 code를 재사용할 수 있습니다.
-    - 그러나 다중 상속을 지원하지 않는 언어(e.g., Java, C#)에서는 Class Adapter를 사용할 수 없습니다.
+    - 그러나 다중 상속을 지원하지 않는 언어(예를 들어, Java, C#)에서는 Class Adapter를 사용할 수 없습니다.
 
 ```java
 class Client {

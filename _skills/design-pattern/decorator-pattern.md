@@ -272,7 +272,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
 - decorator를 너무 많이 사용하면 code가 필요 이상으로 복잡해질 수도 있습니다.
     - option마다 만들다보면 자잘한 decorator 객체들이 많이 추가될 수 있기 때문입니다.
     - 또한 decorator를 조합하는 초기 생성 code가 보기 흉할 수 있습니다.
-        - e.g., `new A(new B(new C(new D())));`
+        - 예를 들어, `new A(new B(new C(new D())));`
     - 이 문제는 Factory Pattern과 Builder Pattern로 해결할 수 있습니다.
 
 - decorator의 행동이 decorator 내의 순서에 의존하지 않는 방식으로 decorator를 구현하기가 어렵습니다.

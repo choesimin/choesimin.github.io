@@ -33,7 +33,7 @@ date: 2023-11-28
     - 가장 내부 계층은 가장 범용적이며, 높은 수준의 정책을 가지고 있습니다.
 
 - 외부 계층에 위치한 어떤 것도 내부 계층에 영향을 주지 않아야 합니다.
-    - 내부 계층에 속한 요소는 외부 계층에 속한 어떤 것(e.g., 함수, class, 변수 등의 모든 software entity)도 알지 못합니다.
+    - 내부 계층에 속한 요소는 외부 계층에 속한 어떤 것(예를 들어, 함수, class, 변수 등의 모든 software entity)도 알지 못합니다.
 
 
 ## Architecture 계층 Diagram
@@ -72,7 +72,7 @@ enterprise_business_logic
 
 - 특정 application에 어떠한 변경이 필요하더라도 Entity에는 영향을 주면 안 됩니다.
     - 외부 계층의 무언가가 변경되더라도, Entity는 변경되어선 안 됩니다.
-    - e.g., Entity는 핵심 업무 규칙(business logic)을 다루므로, UI 단의 paging 처리 등이 필요해도 변경이 일어나서는 안 됩니다.
+    - 예를 들어, Entity는 핵심 업무 규칙(business logic)을 다루므로, UI 단의 paging 처리 등이 필요해도 변경이 일어나서는 안 됩니다.
 
 
 ### Application 업무 규칙 계층 : UseCase

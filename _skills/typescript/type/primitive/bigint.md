@@ -13,7 +13,7 @@ date: 2024-02-28
     - ES2020에서 JavaScript에 도입되었으며, TypeScript에서도 사용할 수 있습니다.
 
 - `bigint`는 매우 큰 숫자를 사용하거나 정밀한 숫자 계산이 필요한 경우에 유용하게 사용될 수 있습니다.
-    - e.g., 큰 숫자를 암호화(cryptography), 고정밀 시간 측정기(high precision timer), 고유 식별자 생성(unique id generation) 생성, 금융 service 등.
+    - 예를 들어, 큰 숫자를 암호화(cryptography), 고정밀 시간 측정기(high precision timer), 고유 식별자 생성(unique id generation) 생성, 금융 service 등.
 
 - `bigint` 값을 생성하기 위해서는 숫자 literal 끝에 `n`을 붙이거나, `BigInt()` 함수를 호출합니다.
 
@@ -48,7 +48,7 @@ console.log(serializedBigInt);    // "1234567890123456789012345678901234567890"
     - `bigint` type은 이론상으로 제한 없이 큰 정수를 표현할 수 있어, `number` type의 한계를 넘어서는 큰 정수 연산에 적합합니다.
 
 2. `bigint`와 `number` type 간에는 자동 변환이 이루어지지 않으며, 따라서 두 type 간의 직접적인 산술 연산 역시 불가능합니다.
-    - e.g., `bigint` type의 값과 `number` type의 값을 더하려고 하면, TypeScript는 type 오류를 발생시킵니다.
+    - 예를 들어, `bigint` type의 값과 `number` type의 값을 더하려고 하면, TypeScript는 type 오류를 발생시킵니다.
     - 이러한 제약은 `bigint`와 `number`가 내부적으로 다르게 처리되기 때문이며, 명시적인 type 변환(type casting)을 통해 해결할 수 있지만, type의 안전성을 해칠 수 있으므로 권장되지 않습니다.
         - 가능한 한 같은 type 간의 연산을 유지하는 것이 좋습니다.
 

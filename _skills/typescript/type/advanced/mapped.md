@@ -12,7 +12,7 @@ date: 2024-03-04
 - Mapped Type은 TypeScript에서 **기존의 type을 기반으로 새로운 type을 생성하는 방법을 제공**합니다.
 
 - Mapped Type을 사용하면, **기존 type의 각 속성을 변형하여 새로운 type을 만들 수 있습니다.**
-    - e.g., 속성을 읽기 전용으로 만들거나, 선택적으로 설정하거나, 심지어 속성 이름을 변형하는 등 다양한 용도로 사용될 수 있습니다.
+    - 예를 들어, 속성을 읽기 전용으로 만들거나, 선택적으로 설정하거나, 심지어 속성 이름을 변형하는 등 다양한 용도로 사용될 수 있습니다.
 
 ```typescript
 type MappedType<T> = {
@@ -79,7 +79,7 @@ const person: PartialPerson = {
 ### 조건부 Type과의 결합
 
 - mapped type은 조건부 type과 결합하여 특정 조건에 따라 type을 다르게 할당할 수 있습니다.
-    - e.g., 특정 type만 읽기 전용으로 만들고 싶을 때 사용할 수 있습니다.
+    - 예를 들어, 특정 type만 읽기 전용으로 만들고 싶을 때 사용할 수 있습니다.
 
 ```typescript
 type ConditionalReadonly<T> = {
@@ -118,7 +118,7 @@ const person: PrefixedPerson = {
 ### Utility Type 확장
 
 - mapped type은 기존 utility type을 확장하거나 변형하여 새로운 utility type을 만드는 데 사용될 수 있습니다.
-    - e.g., `Partial`과 `Readonly`를 결합한 새로운 utility type을 정의할 수 있습니다.
+    - 예를 들어, `Partial`과 `Readonly`를 결합한 새로운 utility type을 정의할 수 있습니다.
 
 ```typescript
 type PartialReadonly<T> = {

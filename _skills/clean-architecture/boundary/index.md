@@ -18,7 +18,7 @@ date: 2023-11-28
     - 업무 요구 사항(Usecase)과 관련 없는 것들로는 framework, database, web server, utility library, 의존성 주입 등이 있습니다.
 
 - 경계는 **관련이 있는 것과 없는 것 사이**에 정의합니다.
-    - e.g., GUI와 업무 규칙 사이에 긋고, database와 업무 규칙 사이에 긋습니다.
+    - 예를 들어, GUI와 업무 규칙 사이에 긋고, database와 업무 규칙 사이에 긋습니다.
 
 - 경계 선을 정의하려면 먼저 system을 component 단위로 분할해야 합니다.
     - plugin으로 분할된 component(저수준의 세부 사항)의 의존성의 방향은 핵심 업무 규칙 component(고수준의 추상화)를 향하도록 합니다.

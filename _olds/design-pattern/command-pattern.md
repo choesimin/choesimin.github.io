@@ -151,7 +151,7 @@ public class Receiver {
 
 
 
-- Command Pattern을 이용하면 요구 사항을 객체로 캡슐화(encapsulation)할 수 있고, 매개변수를 써서 여러가지 다른 요구 사항을 집어넣을 수도 있습니다.
+- Command Pattern을 이용하면 요구 사항을 객체로 캡슐화(encapsulation)할 수 있고, 매개변수를 써서 여러 가지 다른 요구 사항을 집어넣을 수도 있습니다.
 
 - 요청을 하는 객체와 그 요청을 수행하는 객체를 분리시킬 수 있음
     - 분리시키는 과정의 중심에는 Command 객체가 있음

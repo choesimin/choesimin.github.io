@@ -16,7 +16,7 @@ date: 2024-03-12
     - type을 programming 언어의 `if` 문처럼 다룰 수 있게 해주어, type의 선택적 사용을 가능하게 합니다.
 
 - 많은 utility type들이 조건부 type을 사용하여 구현되어 있습니다.
-    - e.g., `Partial<T>`, `Required<T>`, `Readonly<T>`, `Record<K, T>`, `Pick<T, K>`, `Exclude<T, U>`, `Extract<T, U>`, `NonNullable<T>`, `ReturnType<T>`, `InstanceType<T>`.
+    - 예를 들어, `Partial<T>`, `Required<T>`, `Readonly<T>`, `Record<K, T>`, `Pick<T, K>`, `Exclude<T, U>`, `Extract<T, U>`, `NonNullable<T>`, `ReturnType<T>`, `InstanceType<T>`.
     - 따라서 조건부 type으로 기능을 구현하기 전에, TypeScript에서 미리 만들어 놓은 utility type이 있는지 확인하는 것이 좋습니다.
 
 - 조건부 type은 JavaScript에 있는 삼항 연산자 조건문(`condition ? trueExpression : falseExpression`) 같은 형태를 가집니다.
@@ -212,7 +212,7 @@ function f2<T extends string | undefined>(x: T, y: NonNullable<T>) {
     - `infer` keyword를 통해 조건부 type의 type 추론(type inference) 기능을 사용할 수 있으며, **'참' 값 분기에서 비교하는 type을 추론**합니다.
 
 - `infer` keyword는 주로 generic type과 함께 사용되며, 특정 type의 구조에서 일부를 동적으로 추론할 때 유용합니다.
-    - e.g., 함수 type의 매개 변수나 반환 type을 추론하거나, generic type에서 특정 type을 추출하는 데 사용됩니다.
+    - 예를 들어, 함수 type의 매개 변수나 반환 type을 추론하거나, generic type에서 특정 type을 추출하는 데 사용됩니다.
 
 
 ```typescript
@@ -220,7 +220,7 @@ T extends (infer U) ? X : Y
 ```
 
 - 조건부 type을 사용할 때, `T extends U ? X : Y` 형태의 조건문에서 `U`의 위치에 `infer` keyword를 사용하여 type을 추론할 수 있습니다.
-    - `infer` keyword 다음에 나오는 변수(e.g., `infer R`)는 조건부 type이 참인 경우에만 type을 추론하며, 이 변수는 추론된 type을 나타내는 데 사용됩니다.
+    - `infer` keyword 다음에 나오는 변수(예를 들어, `infer R`)는 조건부 type이 참인 경우에만 type을 추론하며, 이 변수는 추론된 type을 나타내는 데 사용됩니다.
 
 - `infer` keyword의 사용은 복잡한 type 조작을 단순화하고, code의 가독성을 높이며, 재사용 가능한 type을 생성하는 데 큰 도움을 줍니다.
     1. **복잡한 type 추론 가능** : `infer`를 사용하면, 복잡한 구조에서 특정 type을 추출하거나, 함수의 반환 type, tuple의 요소 type 등을 쉽게 추론할 수 있습니다.

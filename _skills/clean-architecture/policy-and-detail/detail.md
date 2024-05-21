@@ -11,7 +11,7 @@ date: 2023-11-02
 
 - 세부 사항에 대한 결정은 가능한 오래 미룰 수 있어야 합니다.
     - 세부 사항은 정책에 무관하기 때문에, 세부 사항의 결정을 뒤로 미뤄도 정책을 구현하는 데에 영향을 주어서는 안 됩니다.
-        - e.g., DB table 추가가 미뤄져도, business logic에 대한 개발은 진행할 수 있어야 합니다.
+        - 예를 들어, DB table 추가가 미뤄져도, business logic에 대한 개발은 진행할 수 있어야 합니다.
     - 따라서 정책을 설계할 때는 세부 사항에 몰두하지 않고, 가능한 많은 선택지를 가능한 오래 남겨 두어야 합니다.
 
 - 세부 사항에는 입출력 장치, database, web system, server, framework, 통신 protocol 등이 있습니다.
@@ -91,7 +91,7 @@ date: 2023-11-02
 - framework를 architecture의 바깥쪽 원에 속하는 세부 사항으로 취급하고, architecture의 중심부로 들어오지 못하게 해야 합니다.
     - framework가 자신의 class로부터 파생을 요구한다면 proxy를 만들고, 업무 규칙에 plugin할 수 있는 component에 위치시켜야 합니다.
     - 핵심 code에 plugin할 수 있는 component에 framework를 통합하고, 의존성 규칙을 준수해야 합니다.
-        - e.g., Spring은 훌륭한 의존성 주입 framework이지만, 업무 객체는 `@Autowired` 등을 포함하여 절대로 Spring에 대해 알아서는 안 됩니다.
+        - 예를 들어, Spring은 훌륭한 의존성 주입 framework이지만, 업무 객체는 `@Autowired` 등을 포함하여 절대로 Spring에 대해 알아서는 안 됩니다.
 
 
 

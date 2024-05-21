@@ -76,7 +76,7 @@ console.log(person);    // ["Bob", 32]
 ```
 
 - 각 요소를 변경할 때는 tuple에서 해당 위치에 정의된 type에 맞는 값을 할당해야 합니다.
-    - e.g., 숫자 type이 요구되는 위치에 문자열을 할당하려고 하면 TypeScript compiler는 type 오류를 발생시킵니다.
+    - 예를 들어, 숫자 type이 요구되는 위치에 문자열을 할당하려고 하면 TypeScript compiler는 type 오류를 발생시킵니다.
 
 #### Tuple의 요소를 변경할 수 없는 경우
 

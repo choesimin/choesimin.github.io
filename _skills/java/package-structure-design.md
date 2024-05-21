@@ -79,7 +79,7 @@ application
 
 2. UseCase(사용자의 행위) 표현이 어렵습니다.
     - 규모가 커지면, UseCase별로 class를 분리할 때가 있습니다.
-        - e.g., 상품 등록 UseCase를 `ProductRegistrationService`로 분리합니다.
+        - 예를 들어, 상품 등록 UseCase를 `ProductRegistrationService`로 분리합니다.
     - 계층형 구조에서는 계층으로 package가 묶이기 때문에, domain 구조에 비해 분리하기 어렵습니다.
 
 3. 하나의 package 안에 여러 class들이 모여서 구분이 어렵습니다.
@@ -137,7 +137,7 @@ application
 
 2. UseCase별로 세분화해서 표현이 가능합니다.
     - domain별로 package가 나뉘기 때문에 domain의 UseCase를 분리하기 쉽습니다.
-        - e.g., 상품 등록 UseCase는 `ProductRegistrationService`로, 상품 검색 UseCase는 `ProductSearchService`로 쉽게 분리할 수 있습니다.
+        - 예를 들어, 상품 등록 UseCase는 `ProductRegistrationService`로, 상품 검색 UseCase는 `ProductSearchService`로 쉽게 분리할 수 있습니다.
  
 
 ### 단점
@@ -148,7 +148,7 @@ application
 2. class의 domain 분류 기준이 개발자마다 다를 수 있습니다.
     - class의 역할이 확실히 특정한 domain에 속한다면 해당 domain package에 포함시키면 됩니다.
     - 그러나 class의 역할이 domain으로 정확히 나뉘기 애매한 경우, 개발자마다 다른 기준으로 다른 package에 위치시키게 됩니다.
-        - e.g., '청구서 결제' 기능을 어떤 개발자는 '청구서'로 분류하고, 어떤 개발자는 '결제'로 분류할 수 있습니다.
+        - 예를 들어, '청구서 결제' 기능을 어떤 개발자는 '청구서'로 분류하고, 어떤 개발자는 '결제'로 분류할 수 있습니다.
     - 이후에 다른 개발자가 class의 위치가 자신이 예상하는 package와 다를 때, 해당 class를 찾기가 어렵습니다.
     - 따라서 내부적으로 합의된 domain 분류 기준이 있어야 합니다.
 

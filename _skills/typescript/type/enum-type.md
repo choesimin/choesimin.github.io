@@ -123,7 +123,7 @@ for (let color in Color) {
 - `enum`을 `switch`의 조합은 code의 가독성을 높이고, `enum` 값에 따라 다른 logic을 실행할 수 있게 해주어, 복잡한 조건 logic을 효과적으로 관리할 수 있습니다.
     - `enum`의 각 member를 `case`로 사용하여 `switch` 문 내에서 분기를 처리하는 방식은, 특정 상태나 option에 따라 다른 행동을 취해야 할 때 유용합니다.
 
-- `switch` 문에서 `enum`을 사용했을 때의 여러가지 장점이 있습니다.
+- `switch` 문에서 `enum`을 사용했을 때의 여러 가지 장점이 있습니다.
     1. 명확성 : `enum` member를 사용하면, magic number나 문자열 literal 대신 의미 있는 이름을 사용할 수 있어, code의 의도를 명확히 전달할 수 있습니다.
     2. type 안전성 : TypeScript compiler는 `enum`과 `switch` 문을 사용할 때, 모든 `enum` member가 처리되었는지 확인합니다.
         - `case`를 누락한 경우, compiler가 경고할 수 있으므로, error를 미연에 방지할 수 있습니다.

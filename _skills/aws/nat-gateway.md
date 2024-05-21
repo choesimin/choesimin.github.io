@@ -8,7 +8,7 @@ date: 2023-08-06
 
 
 - Private Instance는 보안 상의 이유로 Private Subnet에 생성되어 Private Route Table에 연결되어 외부에서 접속할 수 없도록 설정한 server를 의미합니다.
-- Private Instance에 internet 연결이 필요한 작업(e.g., program install/update.)을 해야할 때, NAT Gateway를 사용하여 internet 연결을 제어할 수 있습니다.
+- Private Instance에 internet 연결이 필요한 작업(예를 들어, program install/update.)을 해야할 때, NAT Gateway를 사용하여 internet 연결을 제어할 수 있습니다.
 
 
 
@@ -36,7 +36,7 @@ date: 2023-08-06
     2. Subnet 이름을 설정합니다.
         - private subnet은 `pvt`라는 접두어를 많이 사용합니다.
     3. IP 대역(IPv4 CIDR block)을 설정합니다.
-        - e.g., `10.0.64.0/20`
+        - 예를 들어, `10.0.64.0/20`
 
 
 ### 2. Private Route Table을 만들어 Private Subnet과 연결하기

@@ -72,7 +72,7 @@ date: 2023-07-30
 7. Scaling 정책(policy)을 선택합니다.
     - 정책은 나중에 CloudWatch에서 설정하기 때문에 일반적으로 Auto Scaling Group을 생성할 때는 '없음'으로 선택합니다.
     - Target tracking scaling policy (대상 추적 크기 조정 정책)을 선택하면 하나의 지표만을 가지고 확장과 축소를 합니다.
-        - e.g., CPU 사용량이 50% 이상이면 확장, 50% 이하면 축소.
+        - 예를 들어, CPU 사용량이 50% 이상이면 확장, 50% 이하면 축소.
 8. Instance scale-in protection(축소 보호) 여부를 선택합니다.
     - 확장(scale out)하면 다시 축소(scale in)하지 않도록 하는 설정입니다.
 9. (Optional) 알림을 추가합니다.
@@ -93,11 +93,11 @@ date: 2023-07-30
 2. 정책 이름을 설정합니다.
 3. CloudWatch 경보(alarm)를 생성합니다.
     1. 지표(metric)를 선택합니다.
-        - e.g., EC2 > By Auto Scaling Group > CPUUtilization.
+        - 예를 들어, EC2 > By Auto Scaling Group > CPUUtilization.
     2. 측정 대상 값(CPU 사용량)의 평균을 계산하는 주기(period)를 설정합니다.
         - 주기가 짧을수록 더 정확하지만 더 비쌉니다.
     3. 조건을 선택합니다.
-        - e.g., CPU 사용량이 70% 이상.
+        - 예를 들어, CPU 사용량이 70% 이상.
     4. email notification을 설정합니다.
         - 지표를 넘었을 때 email로 알려줍니다.
     5. 경보의 이름을 입력합니다.

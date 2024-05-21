@@ -60,7 +60,7 @@ let mixedArray = [1, "two", true];    // (number | string | boolean)[] type으�
 ### Context Typing
 
 - 변수나 함수에 사용된 context를 기반으로 type을 추론합니다.
-    - e.g., event handler에서 event 객체의 type을 추론할 수 있습니다.
+    - 예를 들어, event handler에서 event 객체의 type을 추론할 수 있습니다.
 
 ```typescript
 window.onmousedown = function(mouseEvent) {

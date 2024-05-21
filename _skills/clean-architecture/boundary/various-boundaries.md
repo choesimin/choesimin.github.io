@@ -33,7 +33,7 @@ date: 2023-11-28
 ### 2. 배포형 Component 경계
 
 - architecture의 경계가 물리적으로 드러난 형태입니다.
-    - e.g., .NET DLL, Java Jar file, Ruby Gem, Unix 공유 library 등의 동적 link library가 이에 속합니다.
+    - 예를 들어, .NET DLL, Java Jar file, Ruby Gem, Unix 공유 library 등의 동적 link library가 이에 속합니다.
     - component를 이 형태로 배포하면 따로 compile하지 않고 바로 사용할 수 있습니다.
 
 - 배포 수준 결합 분리 mode에서 component는 binary와 같이 배포 가능한 형태로 전달됩니다.
@@ -72,7 +72,7 @@ date: 2023-11-28
         - architecture 관점의 목표는 저수준 process가 고수준 process의 plugin이 되도록 만드는 것이기 때문입니다.
 
 - local process는 socket, mailbox, message queue 같은 운영 체제에서 제공하는 통신 기능을 이용하여 서로 통신합니다.
-    - e.g., local process 경계를 지나는 통신에는 운영 체제 호출, data marshaling/unmarshaling, process 간 문맥 교환 등이 있습니다.
+    - 예를 들어, local process 경계를 지나는 통신에는 운영 체제 호출, data marshaling/unmarshaling, process 간 문맥 교환 등이 있습니다.
     - local process 경계를 지나는 통신은 비싼 작업에 속하므로 너무 빈번하게 이뤄지지 않도록 신중하게 제한해야 합니다.
 
 
@@ -83,7 +83,7 @@ date: 2023-11-28
 
 - 통신을 제외하고, local process에 적용한 규칙이 그대로 적용됩니다.
     - 저수준 service는 반드시 고수준 service에 plugin되어야 합니다.
-    - 고수준 service의 source code에는 저수준 service를 특정하는 물리적인 정보(e.g., URI)를 포함해서는 안 됩니다.
+    - 고수준 service의 source code에는 저수준 service를 특정하는 물리적인 정보(예를 들어, URI)를 포함해서는 안 됩니다.
 
 - service 경계를 지나는 통신은 함수 호출에 비해 매우 느립니다.
     - 자신의 물리적 위치에 구애받지 않고 모든 통신은 network를 통해 이루어집니다.

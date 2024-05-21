@@ -100,7 +100,7 @@ date: 2023-06-06
 
 - 그러나 객체 지향 design에서는 의존성의 방향이 뒤집어지는 경우가 있습니다.
     - 객체지향 design을 할 때는 일반적으로 생각하는 방법과는 반대로(뒤집어서) 생각해야 합니다.
-    - e.g., Factory Pattern에서는 저수준 module과 고수준 module이 둘 다 하나의 abstract class에 의존합니다.
+    - 예를 들어, Factory Pattern에서는 저수준 module과 고수준 module이 둘 다 하나의 abstract class에 의존합니다.
 
 
 ### Guide Line
@@ -110,7 +110,7 @@ date: 2023-06-06
 #### 1. 어떤 변수에도 Concrete Class에 대한 Reference를 저장하지 않기
 
 - `new` 연산자를 사용하는 것은 concrete class에 대한 reference를 사용하는 것이기 때문에 피해야 합니다.
-- e.g., Factory Pattern에서는 concrete class에 대한 reference를 변수에 저장하는 일을 미리 방지합니다.
+- 예를 들어, Factory Pattern에서는 concrete class에 대한 reference를 변수에 저장하는 일을 미리 방지합니다.
 
 #### 2. Concrete Class에서 유도된 class들은 만들지 않기
 
@@ -166,7 +166,7 @@ date: 2023-06-06
 
 - Hollywood 원칙을 활용하면 의존성 부패를 방지할 수 있습니다.
     - 의존성 부패(dependency rot) : 의존성이 복잡하게 꼬여있는 것.
-        - e.g., 어떤 고수준 구성 요소가 저수준 구성 요소에 의존하고, 그 저수준 구성 요소는 다시 고수준 구성 요소에 의존하고, 그 고수준 구성 요소는 다시 또 다른 구성 요소에 의존하고, 그 다른 구성 요소는 또 저수준 구성 요소에 의존하고, ...
+        - 예를 들어, 어떤 고수준 구성 요소가 저수준 구성 요소에 의존하고, 그 저수준 구성 요소는 다시 고수준 구성 요소에 의존하고, 그 고수준 구성 요소는 다시 또 다른 구성 요소에 의존하고, 그 다른 구성 요소는 또 저수준 구성 요소에 의존하고, ...
 
 - 저수준 구성 요소에서 고수준 구성 요소에 있는 method를 호출할 수도 있습니다.
     - 저수준 구성 요소에서도 상속 계층 구조상 위에 있는 class에서 정의한 method를, 상속을 통해서 호출하게 되는 경우가 빈번하게 있습니다.
@@ -190,7 +190,7 @@ date: 2023-06-06
 ## 단일 역할 원칙
 
 - class를 바꾸는 이유는 한 가지 뿐이어야 합니다.
-    - e.g., Iterator Pattern은 iterator와 collection의 역할을 분리합니다.
+    - 예를 들어, Iterator Pattern은 iterator와 collection의 역할을 분리합니다.
     - 만약 하나의 class에 두 역할이 있다면, 두 가지 이유로 그 class가 바뀔 수 있습니다.
 
 - class를 고치는 것은 최대한 피해야 합니다.

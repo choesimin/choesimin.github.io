@@ -41,9 +41,9 @@ date: 2023-12-13
     - 동적으로 바뀌는 내용이 없는 web page를 정적인 page라고 하며, 항상 동일한 내용만 표시합니다.
 
 - server-side에서 JavaScript는 server에서 새 contents를 동적으로 생성합니다.
-    - e.g., database에서 data를 가져와 새로운 자료 구조 또는 객체를 생성합니다.
+    - 예를 들어, database에서 data를 가져와 새로운 자료 구조 또는 객체를 생성합니다.
 - client-side에서 JavaScript는 browser 내부에서 새 contents를 동적으로 생성합니다.
-    - e.g., 새 HTML table을 생성하고, server에서 요청한 data로 채운 다음, web page에 table을 표시합니다.
+    - 예를 들어, 새 HTML table을 생성하고, server에서 요청한 data로 채운 다음, web page에 table을 표시합니다.
 
 
 ### Interpreter 언어
@@ -70,7 +70,7 @@ date: 2023-12-13
 - server-side code는 server에서 실행되는 code입니다.
     - server에서 source code를 실행하고, 그 결과를 사용자 측에서 받아 browser에 표시합니다.
         - source code는 server에 있습니다.
-    - e.g., Node.js를 사용하여 server application을 만들 수 있습니다.
+    - 예를 들어, Node.js를 사용하여 server application을 만들 수 있습니다.
 
 
 
@@ -131,7 +131,7 @@ date: 2023-12-13
 4. cookie를 가져오거나 설정합니다.
 5. 사용자에게 질문하거나 message 보여줍니다.
 6. client-side에 data를 저장합니다.
-    - e.g., local storage.
+    - 예를 들어, local storage.
 
 
 ### Browser에서 제약받는 것들
@@ -171,7 +171,7 @@ date: 2023-12-13
 
 - API(Application Programming Interface)는 client 측 JavaScript 언어 위에 미리 구현한 기능을 개발자에게 제공합니다.
     - API는 개발자가 구현하기 어렵거나 구현이 불가능한 program을 쉽게 만들 수 있게 해줍니다.
-    - e.g., 기성품 가구 제작 kit로 가구를 만드는 것과 같은 방식으로 개발할 수 있습니다.
+    - 예를 들어, 기성품 가구 제작 kit로 가구를 만드는 것과 같은 방식으로 개발할 수 있습니다.
         - 직접 설계하고, 목재를 찾고, 자르고, 나사를 박아서 책장을 만드는 것보다, 기성품을 조립하여 책장을 만드는 것이 훨씬 쉽습니다.
 
 
@@ -182,7 +182,7 @@ date: 2023-12-13
 1. DOM(Document Object Model) API를 사용하면 HTML과 CSS를 동적으로 조작할 수 있습니다.
     - 실시간으로 HTML을 생성/제거/변경합니다.
     - 실시간으로 style을 적용합니다.
-    - e.g., page에 경고 창을 띄우거나, 새로운 정보를 page 전환 없이 표시합니다.
+    - 예를 들어, page에 경고 창을 띄우거나, 새로운 정보를 page 전환 없이 표시합니다.
 
 2. Geolocation API로 지리 정보를 가져올 수 있습니다.
 

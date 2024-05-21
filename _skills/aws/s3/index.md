@@ -42,7 +42,7 @@ date: 2023-08-06
 - ACL의 활성화 여부를 선택합니다.
 - ACL를 비활성화하면 외부 접근이 차단되며, 보안상 비활성화하는 것을 권장합니다.
 - 그러나 S3의 data를 외부에 노출시켜야 하는 상황이라면, ACL을 활성화하고 Public Access 차단 설정(`Block Public Access settings for this bucket`)을 허용합니다.
-    - e.g., S3로 정적 Web site를 구축하는 경우.
+    - 예를 들어, S3로 정적 Web site를 구축하는 경우.
 
 
 ### 4. Bucket Version 관리(`Bucket Versioning`) 여부 선택

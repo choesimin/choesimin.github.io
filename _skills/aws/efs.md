@@ -57,7 +57,7 @@ date: 2023-08-06
 2. mount하고 싶은 directory로 이동하여 `mkdir efs` 명령어로 EFS에 mount할 folder를 생성합니다.
 3. 명령어를 입력하여 mount합니다.
     - 명령어는 File System 상세 console의 연결(`Attach`) 기능에 있는 NFS Client 사용(`Using the NFS client`) 항목을 복사하여 그대로 사용할 수 있습니다.
-    - e.g., `sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport [efs_public_domain_address]:/ efs`
+    - 예를 들어, `sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport [efs_public_domain_address]:/ efs`
 
 
 

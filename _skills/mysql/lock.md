@@ -83,9 +83,9 @@ SHOW PROCESSLIST;
 - slow query가 원인이 아니라면 transaction을 확인해봅니다.
 
 - program에 transaction option을 설정한 경우엔, 원자성을 보장하기 위해 table을 잠그기도 합니다.
-    - e.g., Java Spring Framework의 `@Transactional` annotation을 사용한 경우.
+    - 예를 들어, Java Spring Framework의 `@Transactional` annotation을 사용한 경우.
 - program이 transaction을 생성하고 어떤 이유로 종료하지 않았다면, table에 계속 lock이 걸려있을 수 있습니다.
-    - e.g., transaction을 시작하고 종료하기 전에 program이 죽은 경우.
+    - 예를 들어, transaction을 시작하고 종료하기 전에 program이 죽은 경우.
 
 - 따라서 InnoDB의 transaction 목록을 확인하여, transaction이 걸려있는 process를 종료합니다.
     - `show processlist` 명령어 만으로는 transaction이 걸려있는 query를 확인하기 어렵습니다.

@@ -5,7 +5,7 @@ layout: skill
 # Spring Framework
 
 - java platform을 위한 opensource application framework
-- 동적인 website를 개발하기 위한 여러가지 service를 제공
+- 동적인 website를 개발하기 위한 여러 가지 service를 제공
 - 전자정부 표준 framework의 기반 기술로 쓰임
 - enterprise급
     - 대규모 data 처리

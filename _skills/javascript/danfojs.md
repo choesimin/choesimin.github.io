@@ -14,7 +14,7 @@ date: 2023-08-09
     - Pandas를 사용해본 적이 있다면, Danfo.js도 쉽게 익힐 수 있습니다.
 
 - Danfo.js는 TensorFlow.js(JavaScript machine learning library)를 지원합니다.
-    - e.g., Danfo.js의 자료형(`DataFrame`)을 TensorFlow.js의 자료형(`Tensor`)으로, 또는 그 반대로 간단하게 변환할 수 있습니다.
+    - 예를 들어, Danfo.js의 자료형(`DataFrame`)을 TensorFlow.js의 자료형(`Tensor`)으로, 또는 그 반대로 간단하게 변환할 수 있습니다.
 
 
 

@@ -47,7 +47,7 @@ Interface <|.. Module3
     - 객체들이 서로 정보를 주고 받을 때는 의존 관계가 형성됩니다.
         - 변하지 않을 가능성이 높은 **추상성이 높은 class(상위 class, interface, 추상 class)와 통신**해야 합니다.
     - 의존 관계가 형성된다는 말(class 간에 의존한다는 말)은, 한 class가 어떤 기능을 수행할 때 다른 class의 service가 필요한 경우를 의미합니다.
-        - e.g., A class의 method에서 B class type의 parameter를 받아 B 객체의 method를 사용한다면, A class는 B class에 의존하고 있는 것입니다.
+        - 예를 들어, A class의 method에서 B class type의 parameter를 받아 B 객체의 method를 사용한다면, A class는 B class에 의존하고 있는 것입니다.
 
 
 ### DIP 원칙 실천법 : 안정된 추상화

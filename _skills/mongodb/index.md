@@ -20,7 +20,7 @@ date: 2023-12-29
     - BSON은 이진 data로 표현되어 있어 JSON보다 더 효율적으로 저장하고 전송할 수 있습니다.
 
 - BSON은 JSON과 유사하며, JSON에서 사용되는 data 유형에 몇 가지를 추가적으로 제공합니다.
-    - e.g., binary data, 날짜, 정규 표현식 등.
+    - 예를 들어, binary data, 날짜, 정규 표현식 등.
 
 
 ## 자유로운 Schema

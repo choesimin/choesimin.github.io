@@ -42,7 +42,7 @@ date: 2023-07-16
 ### Instance life cycle의 쉬운 관리
 
 - Instance(VM)의 life cycle을 쉽게 관리할 수 있습니다.
-- e.g., Black Friday 행사 기간 동안에 server를 잠시 늘렸다가, 행사가 끝났을 때 다시 줄이는 작업을 쉽게 할 수 있습니다.
+- 예를 들어, Black Friday 행사 기간 동안에 server를 잠시 늘렸다가, 행사가 끝났을 때 다시 줄이는 작업을 쉽게 할 수 있습니다.
 
 
 ### 고가용성 System 구축에 필요한 Service 제공

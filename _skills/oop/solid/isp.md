@@ -27,7 +27,7 @@ client가 자신이 이용하지 않는 method에 의존하지 않아야 합니�
     - interface를 잘게 분리함으로써, client의 목적과 용도에 적합한 interface만을 제공할 수 있습니다.
     - ISP를 적용하면 class의 기능을 쉽게 파악할 수 있고, 객체의 기능을 유연하게 확장/수정할 수 있게 됩니다.
 
-- 만약 interface의 추상 method들을 범용적으로 여러가지를 구현하면, 그 interface를 상속받는 class는 자신이 사용하지 않는 interface도 억지고 구현해야 합니다.
+- 만약 interface의 추상 method들을 범용적으로 여러 가지를 구현하면, 그 interface를 상속받는 class는 자신이 사용하지 않는 interface도 억지고 구현해야 합니다.
     - 또한 사용하지도 않는 interface의 추상 method가 변경된다면, class에서도 수정이 필요하게 됩니다.
 
 

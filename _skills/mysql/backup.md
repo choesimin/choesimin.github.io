@@ -92,7 +92,7 @@ passowrd : 123456
 
 ## Backup Option
 
-- backup할 때, `mysqldump`에 여러가지 option을 적용할 수 있습니다.
+- backup할 때, `mysqldump`에 여러 가지 option을 적용할 수 있습니다.
 
 
 ### Access Option

@@ -81,7 +81,7 @@ type Callback = (success: boolean) => void;
 ### Promise와 `void` type
 
 - `Promise<void>`는 비동기 작업이 성공적으로 완료되었지만, 특정 값을 반환하지 않음을 나타낼 때 유용합니다.
-    - e.g., database에 data를 저장하는 비동기 함수는 작업이 완료된 후 반환 값 없이 성공적으로 완료되었다는 사실만 알립니다.
+    - 예를 들어, database에 data를 저장하는 비동기 함수는 작업이 완료된 후 반환 값 없이 성공적으로 완료되었다는 사실만 알립니다.
 
 ```typescript
 async function saveToDatabase(data: any): Promise<void> {

@@ -23,7 +23,7 @@ let myUndefinedVar: undefined = undefined;
 ```
 
 - TypeScript에는 JavaScript에는 없는 `undefined`와 `null` type에 대한 추가적인 기능들이 있으며, 이는 TypeScript가 제공하는 강력한 type system의 일부입니다.
-    - e.g., `--strictNullChecks` option을 사용하여 type 안전성을 강화하고, optional chaining과 nullish coalescing를 활용하여 code의 안정성과 가독성을 높일 수 있습니다.
+    - 예를 들어, `--strictNullChecks` option을 사용하여 type 안전성을 강화하고, optional chaining과 nullish coalescing를 활용하여 code의 안정성과 가독성을 높일 수 있습니다.
 
 
 

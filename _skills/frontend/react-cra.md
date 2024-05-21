@@ -18,7 +18,7 @@ date: 2023-11-30
     1. 필요 없는 file을 삭제합니다.
     2. 삭제한 file을 import하는 code를 import하지 않도록 수정합니다.
     3. source folder(`/src`) 내의 구조를 사용하기 편한 구조로 수정합니다.
-        - e.g., components, hooks, pages, ...
+        - 예를 들어, components, hooks, pages, ...
 
 
 ## CRA 사용 방법

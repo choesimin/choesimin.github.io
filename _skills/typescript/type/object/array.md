@@ -126,7 +126,7 @@ numbers.push(4);
 - TypeScript는 표준 배열 method를 사용할 때도 'type 추론'을 제공합니다.
     - type 추론(type inference)은 TypeScript가 code에서 변수나 함수의 type을 자동으로 결정하는 과정입니다.
 
-- e.g., `map`, `filter`, `reduce` 같은 method에 대한 callback 함수의 매개 변수 type도 자동으로 추론됩니다.
+- 예를 들어, `map`, `filter`, `reduce` 같은 method에 대한 callback 함수의 매개 변수 type도 자동으로 추론됩니다.
 
 ```typescript
 let numbers: number[] = [1, 2, 3, 4, 5];

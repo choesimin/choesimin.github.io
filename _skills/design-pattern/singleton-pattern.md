@@ -10,7 +10,7 @@ date: 2023-11-01
 - Singleton Pattern은 해당 class의 instance가 하나만 만들어지고, 어디서든지 그 instance에 접근할 수 있도록 하기 위한 pattern입니다.
 
 - 하나만 있어도 되는 객체를 만들 때 사용할 수 있습니다.
-    - e.g., Connection pool, Thread pool, Cache, 대화 상자, 사용자 설정 & Registry 설정 객체, Log 기록용 객체, Device driver (Printer, Graphic card), ...
+    - 예를 들어, Connection pool, Thread pool, Cache, 대화 상자, 사용자 설정 & Registry 설정 객체, Log 기록용 객체, Device driver (Printer, Graphic card), ...
 
 
 

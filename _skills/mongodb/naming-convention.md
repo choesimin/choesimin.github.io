@@ -49,7 +49,7 @@ date: 2024-01-16
     - lower case를 권장하며, lower case를 사용한다면 구분자(`-`, `_`)를 넣는 것이 가독성을 높일 수 있습니다.
 
 - 복수형을 권장합니다.
-    - e.g., `students`, `employees`.
+    - 예를 들어, `students`, `employees`.
 
 - `$`, 공백 문자(` `), null 문자열(`null`)를 포함해서는 안 됩니다.
 - `System`이라는 접두어는 예약어이기 때문에 사용해서는 안 됩니다.

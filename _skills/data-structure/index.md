@@ -11,7 +11,7 @@ date: 2024-05-21
 
 - **자료 구조(Data Structure)**는 computer 과학에서 **data를 효율적으로 저장하고 관리하기 위한 체계적 방식**입니다.
     - **자료(Data)**는 computer 과학에서 처리되는 **정보의 기본 단위**이며, 다양한 형태를 가질 수 있습니다.
-        - e.g., 정수(Integer), 실수(Floating Point Number), 문자(Character), 문자열(String), 논리값(Boolean).
+        - 예를 들어, 정수(Integer), 실수(Floating Point Number), 문자(Character), 문자열(String), 논리값(Boolean).
         - 자료는 programming에서 변수를 통해 저장되고, 변수는 memory에 특정 공간을 차지하게 됩니다.
         - 자료는 program의 주요 입력 및 출력이 되며, 연산의 대상이 됩니다.
     - **구조(Structure)**는 **자료를 어떻게 조직하고 배치할 것인가**에 관한 것입니다.
@@ -51,16 +51,16 @@ mindmap
             char[문자]
             string[문자열]
             boolean[논리값]
-        linear[선형 구조]
+        linear[선형 자료 구조]
             sequential-list[순차 List]
             linked-list[연결 List]
             stack[Stack]
             queue[Queue]
             deque[Deque]
-        non-linear[비선형 구조]
+        non-linear[비선형 자료 구조]
             graph[Graph]
             tree[Tree]
-        file[File 구조]
+        file[File 자료 구조]
             sequential-file[순차 File]
             indexed-file[색인 File]
             direct-file[직접 File]
@@ -74,10 +74,10 @@ mindmap
 | 자료 구조 | 설명 |
 | --- | --- |
 | 논리값 (Boolean) | True 또는 False 값을 가집니다. 조건문에서 주로 사용됩니다. |
-| 정수 (Integer) | 음수, 0, 양수의 형태로 정수를 저장합니다. e.g., -3, 0, 42. |
-| 실수 (Floating Point Number) | 소수점을 포함한 실수를 저장합니다. e.g., 3.14, -0.001, 2.718. |
-| 문자 (Character) | 단일 문자를 저장합니다. e.g., 'a', 'B', '3'. |
-| 문자열 (String) | 여러 문자를 연속적으로 저장한 것입니다. e.g., "hello", "world", "123abc". |
+| 정수 (Integer) | 음수, 0, 양수의 형태로 정수를 저장합니다. 예를 들어, -3, 0, 42. |
+| 실수 (Floating Point Number) | 소수점을 포함한 실수를 저장합니다. 예를 들어, 3.14, -0.001, 2.718. |
+| 문자 (Character) | 단일 문자를 저장합니다. 예를 들어, 'a', 'B', '3'. |
+| 문자열 (String) | 여러 문자를 연속적으로 저장한 것입니다. 예를 들어, "hello", "world", "123abc". |
 
 
 ### 2. 선형 자료 구조 (Linear Data Structure)

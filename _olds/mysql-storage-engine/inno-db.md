@@ -15,7 +15,7 @@ layout: skill
 - table space당 64TB data의 저장을 지원함
 - 다른 engine들에 비해 data load 속도가 느림
 - data 압축 option을 제공하지 않음
-- row 레벨의 lock을 지원하며 여러가지 isolation level을 지원함
+- row 레벨의 lock을 지원하며 여러 가지 isolation level을 지원함
 
 - Primary key에 의한 clustering
     - 모든 table은 기본적으로 primary key를 기준으로 clustering되어 저장됨
@@ -28,7 +28,7 @@ layout: skill
 - Foreign key 지원
     - InnoDB storage engine level에서 지원하는 기능
         - MylSAM이나 MEMORY table에서는 사용할 수 없음
-    - foreign key는 여러가지 제약사항 탓으로 인해 실무에서는 잘 사용하지 않기 때문에 그렇게 필수적이지는 않지만, 개발 환경 database에서는 좋은 guide 역할을 할 수 있음
+    - foreign key는 여러 가지 제약사항 탓으로 인해 실무에서는 잘 사용하지 않기 때문에 그렇게 필수적이지는 않지만, 개발 환경 database에서는 좋은 guide 역할을 할 수 있음
 
 - 자동 Deadlock 감지
     - graph 기반의 deadlock check 방식을 사용하기 때문에 deadlock이 발생함과 동시에 바로 감지할 수 있음

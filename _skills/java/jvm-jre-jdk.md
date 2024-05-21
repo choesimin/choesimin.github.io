@@ -44,7 +44,7 @@ JDK는 JRE를 포함하고, JRE는 JVM을 포함합니다.
 
 - JDK는 Java program을 개발하는데 필요한 모든 library 및 file을 포함합니다.
     - 개발 단계에서 필요한 모든 기능을 수행합니다.
-        - e.g., Java code(`.java`)를 compile하거나, debugging하거나, 실행할 수 있습니다.
+        - 예를 들어, Java code(`.java`)를 compile하거나, debugging하거나, 실행할 수 있습니다.
     - JRE를 포함합니다.
         - JRE로는 compile된 Java bytecode(`.class`)를 실행만 할 수 있습니다.
 
@@ -64,7 +64,7 @@ mindmap
 
 - Java SE는 Java의 기본 규격입니다.
 - 사용 목적에 따라 Java SE를 기준으로 기능을 더하거나 뺀 특수 목적 edition이 있습니다.
-    - e.g., Java EE, Java ME.
+    - 예를 들어, Java EE, Java ME.
 
 
 #### Java SE : Java Platform, Standard Edition
@@ -88,7 +88,7 @@ mindmap
 #### Java ME : Java Platform, Micro Edition
 
 - 제한된 자원을 가진 embedded system에서 Java로 program을 개발할 떄 이용합니다.
-    - e.g., mobile phone, PDA, set-top box 등.
+    - 예를 들어, mobile phone, PDA, set-top box 등.
 
 
 
@@ -130,9 +130,9 @@ mindmap
 
 - JVM은 Java bytecode(`.class`)를 해당 platform에 맞는 기계어로 변환하여 실행합니다.
     - platform(OS, hardware)마다 실행을 위한 기계어는 다르기 때문에 JVM도 다릅니다.
-        - e.g., macOS의 JVM과 Linux의 JVM은 서로 다릅니다.
+        - 예를 들어, macOS의 JVM과 Linux의 JVM은 서로 다릅니다.
 
-- e.g., C언어의 compiler는 platform에 종속되지만, Java의 compiler는 종속되지 않습니다.
+- 예를 들어, C언어의 compiler는 platform에 종속되지만, Java의 compiler는 종속되지 않습니다.
     - C언어는 compiler가 종속되기 때문에 실행 file도 종속됩니다.
     - Java는 compiler가 종속되지 않기 때문에 실행 file(`.class`)도 종속되지 않습니다.
         - JVM이 환경에 맞게 실행 file을 그때그때 변환하여 사용합니다.

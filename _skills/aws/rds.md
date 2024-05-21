@@ -29,7 +29,7 @@ date: 2023-07-23
 ### 1. DB Engine 선택하기
 
 - DB Engine과 version을 선택합니다.
-    - e.g., Aurora, MySQL, MariaDB, PostgreSQL, Oracle 등.
+    - 예를 들어, Aurora, MySQL, MariaDB, PostgreSQL, Oracle 등.
 
 
 ### 2. Template을 선택하기
@@ -43,7 +43,7 @@ date: 2023-07-23
 
 - `Single DB`를 선택하면 standby DB 없이 하나의 Instance만 만듭니다.
 - `Multi-AZ DB`를 선택하면 primary DB와 standby DB를 나누어 Instance를 여러 가용 영역에 생성합니다.
-    - e.g., 한 가용 영역의 data center가 재난에 의해 망가지면, standby DB를 사용합니다.
+    - 예를 들어, 한 가용 영역의 data center가 재난에 의해 망가지면, standby DB를 사용합니다.
 
 
 ### 4. DB의 이름 정하기
@@ -66,7 +66,7 @@ date: 2023-07-23
 ### 7. 용량 설정하기
 
 - 저장 장치 종류를 선택합니다.
-    - e.g., SSD, HDD.
+    - 예를 들어, SSD, HDD.
 
 - autoscaling 여부를 선택합니다.
     - autoscaling을 사용하면 storage를 모두 사용했을 때, 추가 storage를 자동으로 증설합니다.

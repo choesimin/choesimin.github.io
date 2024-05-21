@@ -89,7 +89,7 @@ myGenericNumber.add = function(x, y) { return x + y; };
 - generic type에 제약 조건을 추가하면, **generic type이 특정 속성이나 method를 가지고 있음을 강제**할 수 있습니다.
 
 - 제약 조건을 통해, 함수나 class 내부에서 generic type에 대해 보다 안전하게 연산을 수행할 수 있습니다.
-    - e.g., generic type이 특정 interface를 구현하도록 강제할 수 있습니다.
+    - 예를 들어, generic type이 특정 interface를 구현하도록 강제할 수 있습니다.
 
 ```typescript
 <T extends Type>

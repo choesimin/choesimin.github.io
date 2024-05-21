@@ -10,7 +10,7 @@ date: 2023-07-23
 - EBS의 새로운 Volume을 만들어 EC2 Instance에 추가(mount)할 수 있습니다.
 
 - EBS Volume을 늘리는 것은 On-premise 장비에 disk를 추가하는 것과 동일합니다.
-    - e.g., Windows OS에 HDD나 SSD를 추가하여 D drive, E drive를 추가합니다.
+    - 예를 들어, Windows OS에 HDD나 SSD를 추가하여 D drive, E drive를 추가합니다.
 
 - EBS는 장비를 종료하지 않고 Volume(storage)을 증설할 수 있기 때문에, On-premise보다 저장 공간 운영이 더 유연합니다.
 
@@ -30,7 +30,7 @@ date: 2023-07-23
 ### 1. Volume 유형 선택
 
 - 사용 목적에 적합한 유형을 선택합니다.
-    - e.g., backup용 storage라면 높은 성능이 필요없기 때문에 용량 대비 저렴한 HDD를 선택합니다.
+    - 예를 들어, backup용 storage라면 높은 성능이 필요없기 때문에 용량 대비 저렴한 HDD를 선택합니다.
 - IOPS(Input Out Per Second) 수치가 클수록 IO 성능과 비용이 높아집니다.
 
 
@@ -48,7 +48,7 @@ date: 2023-07-23
 
 - Volume을 식별할 수 있도록 tag를 추가합니다.
 - `Name` tag는 Volume 이름입니다.
-- e.g., `Name`에 추가 용량을 의미하는 `web-add` tag를 추가합니다. 
+- 예를 들어, `Name`에 추가 용량을 의미하는 `web-add` tag를 추가합니다. 
 
 
 ### 5. Volume 최종 생성

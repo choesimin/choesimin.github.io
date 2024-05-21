@@ -74,13 +74,10 @@ date: 2024-03-26
 ## Reference
 
 - <https://blog.naver.com/nsj6646/221484404809>
-- <https://velog.io/@filoscoder/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%A2%85%EB%A5%98%EC%99%80-%EB%B6%84%EB%A5%98>
 
-https://milkoon1.tistory.com/44
-https://cocoon1787.tistory.com/527
+- <https://cocoon1787.tistory.com/527>
 
-
-- 선형 비선형 : https://wooooozin.tistory.com/23
+- 선형 비선형 : <https://wooooozin.tistory.com/23>
 
 
 

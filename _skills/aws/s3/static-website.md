@@ -46,7 +46,7 @@ date: 2023-08-13
 
 1. Index 문서(`Index document`)를 `index.html`로 지정합니다.
 2. (Optional) 오류 문서(`Error document`)를 지정합니다.
-    - e.g., 404 Not Found page.
+    - 예를 들어, 404 Not Found page.
 3. 편집을 완료합니다.
 4. `Bucket website endpoint` url로 website hosting이 잘 되고 있는지 확인할 수 있습니다.
     - 이 url은 S3의 주소이기 때문에 website 주소로 적합하지 않습니다.
