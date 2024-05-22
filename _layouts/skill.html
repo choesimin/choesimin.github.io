@@ -10,7 +10,7 @@ layout: skill-base
 
 <div id="content">
     <div id="index">
-        <a onclick="toggleIndex()"><img></a>
+        <button onclick="toggleIndex()">≡</button>
         <ul></ul>
     </div>
     <article>{{ content }}</article>
@@ -30,10 +30,6 @@ layout: skill-base
     const index = document.getElementById('index');
     const indexButton = index.getElementsByTagName('a')[0];
     const indexList = index.getElementsByTagName('ul')[0];
-
-    indexButton.getElementsByTagName('img')[0].src = localStorage.getItem('theme') === 'dark'
-        ? "{{ '/assets/icon/list/white.svg' | relative_url }}"
-        : "{{ '/assets/icon/list/black.svg' | relative_url }}";
 
     function toggleIndex() {
         if (indexList.style.display === 'block') {
