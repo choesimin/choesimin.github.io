@@ -113,7 +113,7 @@ date: 2024-05-22
 5. **Stack 영역**: **함수 호출 시 지역 변수와 함수 호출 정보**를 저장하는 memory 영역입니다.
     - 함수가 호출될 때마다 stack frame이 추가되고, 함수가 종료되면 stack frame이 제거됩니다.
         - 호출되는 함수의 매개 변수, 지역 변수 뿐만 아니라, 함수가 끝났을 때의 복귀 주소 또한 Stack 영역에 저장됩니다.
-    - Stack 영역은 memory의 상위 부분에서부터 **LIFO(Last-In-First-Out)** 구조로 memory를 할당합니다.
+    - Stack 영역은 memory의 상위 부분에서부터 **LIFO(Last In First Out)** 구조로 memory를 할당합니다.
     - 순환 algorithm에서 종종 **"Stack Overflow" alert message**가 뜨는 것은, 많은 함수 호출 때문에 Stack 영역이 너무 커졌기 때문입니다.
 
 

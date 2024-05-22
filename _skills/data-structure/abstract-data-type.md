@@ -37,7 +37,7 @@ date: 2024-05-21
 ## 추상 자료형의 예시 : Stack(ADT)
 
 - Stack은 대표적인 추상 자료형입니다.
-    - Stack은 data가 후입선출(LIFO, Last-In-First-Out) 방식으로 저장되고 삭제되는 자료 구조입니다.
+    - Stack은 data가 후입선출(LIFO, Last In First Out) 방식으로 저장되고 삭제되는 자료 구조입니다.
 
 - Stack ADT는 data에 대한 여러 가지 연산을 포함합니다.
     - `push` : Stack의 맨 위에 data를 추가.
