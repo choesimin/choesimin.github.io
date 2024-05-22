@@ -1,7 +1,7 @@
 ---
 layout: skill
 title: C 언어의 동적 Memory 할당
-date: 2024-05-21
+date: 2024-05-22
 ---
 
 
