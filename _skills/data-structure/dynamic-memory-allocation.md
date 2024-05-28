@@ -9,7 +9,7 @@ date: 2024-05-22
 
 ## 동적 Memory 할당 (Dynamic Memory Allocation)
 
-> 동적 memory 할당이란 computer programming에서 **실행 중(runtime)에 사용할 memory 공간을 할당**하는 것을 의미한다.
+> 동적 memory 할당이란 computer programming에서 **실행 중(runtime)에 사용할 memory 공간을 할당**하는 것을 의미합니다.
 
 - program이 실행되기 위해서는 memory가 필요하며, compiler는 compile 시점에 소스 code를 읽고, 변수 타입들의 크기에 따라 memory를 할당합니다.
     - 이처럼 program이 실행되기 전, compile 시점에 소스 code를 읽고 memory 공간을 확보하는 것을 **정적 할당(static allocation)**이라고 합니다.
@@ -280,7 +280,7 @@ int main() {
 
 - `malloc`, `calloc`, `realloc`을 통해 할당된 memory를 더 이상 사용하지 않을 때 `free`를 호출하여 memory를 반환해야 합니다.
     - 동적 memory 할당 함수 중 `free`는 할당된 memory를 해제하는 데 사용됩니다.
-    - `free` 함수의 사용법은 간단하지만, memory 누수를 방지하기 위해 중요합니다.
+    - `free` 함수로 memory를 해제하여 memory 누수를 방지합니다.
 
 - `malloc`을 통해 동적으로 할당된 memory를 `free`를 사용하여 해제합니다.
 
