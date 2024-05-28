@@ -13,7 +13,7 @@ export class Circle {
     } else {
       this.parent = parent;
       this.color = parent.color === "#000000" ? "#FFFFFF" : "#000000";
-      this.velocity = parent.velocity + 0.01;
+      this.velocity = parent.velocity + 0.03;
     }
 
     this.angle = 0;
@@ -21,7 +21,7 @@ export class Circle {
 
   updatePosition() {
     if (this.parent) {
-      const radius = this.parent.radius * 0.9;
+      const radius = this.parent.radius * 0.7;
 
       this.x =
         this.parent.x + (this.parent.radius - radius) * Math.cos(this.angle);
