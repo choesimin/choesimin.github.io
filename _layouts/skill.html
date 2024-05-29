@@ -2,72 +2,73 @@
 layout: skill-base
 ---
 
+<link rel="stylesheet" href="{{ '/assets/css/skill.css' | relative_url }}" />
 
 <div id="progressBar"></div>
 
-<h1 id="title">{{ page.title }}</h1>
-<p id="date">{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
+<h1 id="title">&nbsp</h1>
+<p id="date">&nbsp</p>
 
 <div id="content">
-    <div id="index">
-        <button onclick="toggleIndex()">≡</button>
-        <ul></ul>
-    </div>
-    <article>{{ content }}</article>
+  <div id="index">
+    <a onclick="toggleIndex()">≡</a>
+    <ul></ul>
+  </div>
+  <article>{{ content }}</article>
 </div>
 
 <div id="stamp">
-    <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}">
+  <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}" />
 </div>
 
 <script>
-    const title = document.getElementById('title');
-    const date = document.getElementById('date');
-    type(title, title.innerText);
-    type(date, date.innerText, 80);
+  const title = document.getElementById("title");
+  const date = document.getElementById("date");
+  type(title, "{{ page.title }}");
+  type(date, '{{ page.date | date: "%Y년 %-m월 %e일" }}', 80);
 
+  const indexList = document
+    .getElementById("index")
+    .getElementsByTagName("ul")[0];
 
-    const index = document.getElementById('index');
-    const indexButton = index.getElementsByTagName('a')[0];
-    const indexList = index.getElementsByTagName('ul')[0];
-
-    function toggleIndex() {
-        if (indexList.style.display === 'block') {
-            indexList.style.display = 'none';
-        } else {
-            indexList.style.display = 'block';
-        }
+  function toggleIndex() {
+    if (indexList.style.display === "block") {
+      indexList.style.display = "none";
+    } else {
+      indexList.style.display = "block";
     }
+  }
 
-    const headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
-    for (let i = 0; i < headers.length; i++) {
-        const header = headers[i];
+  const headers = document.querySelectorAll("h2,h3,h4,h5,h6");
+  for (let i = 0; i < headers.length; i++) {
+    const header = headers[i];
 
-        const anchor = document.createElement('a');
-        anchor.innerHTML = header.innerText;
-        anchor.href = '#' + header.id;
+    const anchor = document.createElement("a");
+    anchor.innerHTML = header.innerText;
+    anchor.href = "#" + header.id;
 
-        const item = document.createElement('li');
-        item.appendChild(anchor);
-        item.style.marginLeft = (parseInt(header.tagName.replace('H', '')) - 1) * 15 + 'px';
+    const item = document.createElement("li");
+    item.appendChild(anchor);
+    item.style.marginLeft =
+      (parseInt(header.tagName.replace("H", "")) - 2) * 15 + "px";
 
-        indexList.appendChild(item);
+    indexList.appendChild(item);
 
-        item.getElementsByTagName('a')[0].addEventListener('click', (e) => {
-            toggleIndex();
-        });
-    }
+    item.getElementsByTagName("a")[0].addEventListener("click", (e) => {
+      toggleIndex();
+    });
+  }
 
+  const progressBar = document.getElementById("progressBar");
+  let scrolling;
+  window.onscroll = function () {
+    var winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    var height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
 
-    const progressBar = document.getElementById('progressBar');
-    let scrolling;
-    window.onscroll = function () {
-        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var scrolled = (winScroll / height) * 100;
-
-        progressBar.style.width = scrolled + "%";
-    };
+    progressBar.style.width = scrolled + "%";
+  };
 </script>
-
-<link rel="stylesheet" href="{{ '/assets/css/skill.css' | relative_url }}">

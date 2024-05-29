@@ -62,6 +62,7 @@ article > ol > li {
 }
 
 #title {
+  min-height: 50px;
   padding-top: 50px;
   margin-bottom: 0px;
   line-height: 1;
@@ -69,6 +70,7 @@ article > ol > li {
 }
 
 #date {
+  height: 40px;
   font-size: 17px;
   opacity: 0.5;
   text-align: center;
@@ -84,19 +86,15 @@ article > ol > li {
   z-index: 100;
 }
 
-#index button {
+#index > a {
   float: right;
   margin: 0;
   padding: 0;
-  border: none;
-  background-color: transparent;
   font-size: 40px;
-  line-height: 0.5;
-  color: var(--color);
+  line-height: 1;
 }
 
-#index button:hover {
-  color: var(--highlight-color);
+#index a:hover {
   cursor: pointer;
 }
 

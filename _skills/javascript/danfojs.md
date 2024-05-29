@@ -29,7 +29,7 @@ date: 2023-08-09
 
 ### Data CRUD 기능
 
-- data를 간단하게 생성(Create), 조회(Read), 수정(Update), 삭제()(Create, Read, Update, Delete)할 수 있습니다.
+- data를 간단하게 생성(Create), 조회(Read), 수정(Update), 삭제(Delete)할 수 있습니다.
 - 2차원 data(`DataFrame`)인 경우, data 뿐만 아니라 column과 row에 대한 삽입(insert), 삭제(delete)를 지원합니다.
 
 
