@@ -52,7 +52,7 @@ date: 2024-05-29
 - 연결 List에는 여러 종류가 있지만, 기본적으로 **Node**, **Head**, **Tail**로 구성됩니다.
 
 1. **Node** : 각 node는 자신의 data를 저장하고, 다음 node의 주소를 pointer로 가집니다.
-   - pointer를 통해 node들이 체인처럼 연결됩니다.
+   - pointer를 통해 node들이 chain처럼 연결됩니다.
 
 2. **Head** : list의 첫 번째 node를 가리키는 pointer로, 연결 List의 시작 지점을 나타냅니다.
    - head를 통해 list를 순회하거나, 새로운 node를 삽입할 때 list의 맨 앞에 추가할 수 있습니다.
@@ -68,6 +68,7 @@ Node1 --> Node2
 Node2 --> Node3
 Node3 --> Tail
 ```
+
 
 ### 1. Node
 
@@ -88,6 +89,7 @@ struct Node {
 2. **Pointer** : 다음 node를 가리키는 pointer입니다.
     - 이 pointer를 통해 node들이 서로 연결됩니다.
 
+
 ### 2. Head
 
 - head는 **연결 List의 첫 번째 node를 가리키는 pointer**입니다.
@@ -102,6 +104,7 @@ struct Node* head = NULL;    // 초기에는 list가 비어 있어 NULL로 초�
 
 - list가 비어 있는 경우에 head는 NULL 값을 가질 수 있습니다.
 
+
 ### 3. Tail
 
 - tail은 **연결 List의 마지막 node를 가리키는 pointer**입니다.
@@ -113,7 +116,7 @@ struct Node* head = NULL;    // 초기에는 list가 비어 있어 NULL로 초�
 struct Node* tail = NULL;    // 초기에는 list가 비어 있어 NULL로 초기화
 ```
 
-- list가 비어 있는 경우에는 NULL 값을 가질 수 있습니다.
+- list가 비어 있는 경우에 tail은 NULL 값을 가질 수 있습니다.
 
 
 
@@ -125,11 +128,11 @@ struct Node* tail = NULL;    // 초기에는 list가 비어 있어 NULL로 초�
 
 ## 1. 단일 연결 List (Singly Linked List)
 
-- 단일 연결 List(Singly Linked List)는 가장 기본적인 형태의 연결 List입니다.
+- **단일 연결 List(Singly Linked List)**는 **가장 기본적인 형태의 연결 List**입니다.
 
 - 각 node는 data를 저장하고, 다음 node를 가리키는 **단일 pointer**를 포함합니다.
     - node의 data 부분은 저장할 값을 가지며, pointer 부분은 **다음 node의 주소**를 가리킵니다.
-    - 이를 통해 node들이 체인처럼 연결됩니다.
+    - 이를 통해 node들이 chain처럼 연결됩니다.
 
 - list의 시작 지점을 나타내는 **head pointer**가 있으며, **list의 끝은 NULL pointer**로 표시됩니다.
     - 단일 연결 List의 순회는 head에서 시작하여 다음 node로 이동하는 방식(**단방향 순회**)으로 이루어집니다.
@@ -142,7 +145,7 @@ struct Node {
 ```
 
 
-### node 삽입
+### Node 삽입
 
 ```c
 // list의 앞에 삽입
@@ -175,7 +178,7 @@ void insertAtEnd(int data) {
 ```
 
 
-### node 삭제
+### Node 삭제
 
 ```c
 // 특정 값을 가진 node 삭제
@@ -206,7 +209,7 @@ void deleteNode(int key) {
 ```
 
 
-### node 검색
+### Node 검색
 
 ```c
 // 특정 값을 가진 node 검색
@@ -223,7 +226,7 @@ struct Node* search(int key) {
 ```
 
 
-### node 순회
+### Node 순회
 
 ```c
 // list의 모든 node를 순회하며 data 처리
@@ -247,7 +250,7 @@ void printList() {
 
 ## 2. 이중 연결 List
 
-- 이중 연결 List(Doubly Linked List)는 각 node가 두 개의 pointer를 가지는 형태의 연결 List입니다.
+- **이중 연결 List(Doubly Linked List)**는 **각 node가 두 개의 pointer를 가지는 형태의 연결 List**입니다.
 
 - 각 node는 data를 저장하고, 다음 node와 이전 node를 가리키는 **두 개의 pointer**(이중 pointer)를 포함합니다.
     - node의 data 부분은 저장할 값을 가지며, pointer 부분은 **다음 node와 이전 node의 주소**를 가리킵니다.
@@ -269,7 +272,7 @@ struct Node {
 ```
 
 
-### node 삽입
+### Node 삽입
 
 ```c
 // list의 앞에 삽입
@@ -310,7 +313,7 @@ void insertAtEnd(int data) {
 ```
 
 
-### node 삭제
+### Node 삭제
 
 ```c
 // 특정 값을 가진 node 삭제
@@ -345,7 +348,7 @@ void deleteNode(int key) {
 ```
 
 
-### node 검색
+### Node 검색
 
 ```c
 // 특정 값을 가진 node 검색
@@ -362,7 +365,7 @@ struct Node* search(int key) {
 ```
 
 
-### node 순회
+### Node 순회
 
 ```c
 // list의 모든 node를 순회하며 data 처리
@@ -386,7 +389,7 @@ void printList() {
 
 ## 3. 원형 연결 List
 
-- 원형 연결 List(Circular Linked List)는 **마지막 node가 첫 번째 node를 가리키는 구조**를 가진 연결 List입니다.
+- **원형 연결 List(Circular Linked List)**는 **마지막 node가 첫 번째 node를 가리키는 구조를 가진 연결 List**입니다.
     - 단일 원형 연결 List와 이중 원형 연결 List로 구현될 수 있으며, 각각의 방식은 특정 용도와 성능 요구 사항에 맞게 사용될 수 있습니다.
 
 - 원형 연결 List는 **순환 구조**로 되어 있으며, 따라서 list의 끝이 존재하지 않습니다.
@@ -397,7 +400,7 @@ void printList() {
 
 ### 단일 원형 연결 List
 
-- 단일 원형 연결 List(Singly Circular Linked List)에서 각 node는 data를 저장하고, 다음 node를 가리키는 단일 pointer를 포함합니다.
+- **단일 원형 연결 List(Singly Circular Linked List)**에서 각 node는 data를 저장하고, 다음 node를 가리키는 단일 pointer를 포함합니다.
 - 마지막 node의 다음 pointer가 첫 번째 node를 가리킵니다.
 
 ```c
@@ -408,7 +411,7 @@ struct Node {
 ```
 
 
-#### node 삽입
+#### Node 삽입
 
 ```c
 // list의 앞에 삽입
@@ -450,7 +453,7 @@ void insertAtEnd(int data) {
 ```
 
 
-#### node 삭제
+#### Node 삭제
 
 ```c
 // 특정 값을 가진 node 삭제
@@ -467,13 +470,13 @@ void deleteNode(int key) {
         temp = temp->next;
     }
 
-    if (temp->next == head && prev == NULL) {    // Only one node
+    if (temp->next == head && prev == NULL) {    // only one node
         head = NULL;
         free(temp);
         return;
     }
 
-    if (temp == head) {    // Deleting the head node
+    if (temp == head) {    // deleting the head node
         prev = head;
         while (prev->next != head) {
             prev = prev->next;
@@ -481,10 +484,10 @@ void deleteNode(int key) {
         head = temp->next;
         prev->next = head;
         free(temp);
-    } else if (temp->next == head) {    // Deleting the last node
+    } else if (temp->next == head) {    // deleting the last node
         prev->next = head;
         free(temp);
-    } else {    // Deleting a middle node
+    } else {    // deleting a middle node
         prev->next = temp->next;
         free(temp);
     }
@@ -530,7 +533,7 @@ void printList() {
 
 ### 이중 원형 연결 List
 
-- 이중 원형 연결 List(Doubly Circular Linked List)에서 각 node는 data를 저장하고, 다음 node와 이전 node를 가리키는 두 개의 pointer를 포함합니다.
+- **이중 원형 연결 List(Doubly Circular Linked List)**에서 각 node는 data를 저장하고, **다음 node와 이전 node를 가리키는 두 개의 pointer를 포함**합니다.
 - 마지막 node의 다음 pointer가 첫 번째 node를 가리키고, 첫 번째 node의 이전 pointer가 마지막 node를 가리킵니다.
 
 ```c
@@ -542,7 +545,7 @@ struct Node {
 ```
 
 
-#### node 삽입
+#### Node 삽입
 
 ```c
 // list의 앞에 삽입
@@ -584,7 +587,7 @@ void insertAtEnd(int data) {
 ```
 
 
-#### node 삭제
+#### Node 삭제
 
 ```c
 // 특정 값을 가진 node 삭제
@@ -600,13 +603,13 @@ void deleteNode(int key) {
         temp = temp->next;
     }
 
-    if (temp->next == head && temp->prev == head) {    // Only one node
+    if (temp->next == head && temp->prev == head) {    // only one node
         head = NULL;
         free(temp);
         return;
     }
 
-    if (temp == head) {    // Deleting the head node
+    if (temp == head) {    // deleting the head node
         struct Node* tail = head->prev;
         head = head->next;
         tail->next = head;
@@ -621,7 +624,7 @@ void deleteNode(int key) {
 ```
 
 
-#### node 검색
+#### Node 검색
 
 ```c
 // 특정 값을 가진 node 검색
@@ -641,7 +644,7 @@ struct Node* search(int key) {
 ```
 
 
-#### node 순회
+#### Node 순회
 
 ```c
 // list의 모든 node를 순회하며 data 처리
