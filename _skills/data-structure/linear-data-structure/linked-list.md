@@ -63,10 +63,19 @@ date: 2024-05-29
 
 ```mermaid
 flowchart LR
-Head --> Node1
-Node1 --> Node2
-Node2 --> Node3
-Node3 --> Tail
+
+node1[Head\nNode 1]
+node2[Node 2]
+node3[Node 3]
+node4[Node 4]
+tail((Tail\nPointer))
+null((NULL))
+
+node1 --> node2
+node2 --> node3
+node3 --> node4
+node4 -->|Tail을 사용하는 경우| tail
+node4 -->|Tail을 사용하지 않는 경우| null
 ```
 
 
@@ -129,6 +138,21 @@ struct Node* tail = NULL;    // 초기에는 list가 비어 있어 NULL로 초�
 ## 1. 단일 연결 List (Singly Linked List)
 
 - **단일 연결 List(Singly Linked List)**는 **가장 기본적인 형태의 연결 List**입니다.
+
+```mermaid
+flowchart LR
+
+node1[Head\nNode 1\nData: 5]
+node2[Node 2\nData: 10]
+node3[Node 3\nData: 20]
+node4[Node 4\nData: 30]
+null((NULL))
+
+node1 --> node2
+node2 --> node3
+node3 --> node4
+node4 --> null
+```
 
 - 각 node는 data를 저장하고, 다음 node를 가리키는 **단일 pointer**를 포함합니다.
     - node의 data 부분은 저장할 값을 가지며, pointer 부분은 **다음 node의 주소**를 가리킵니다.
@@ -251,6 +275,21 @@ void printList() {
 ## 2. 이중 연결 List
 
 - **이중 연결 List(Doubly Linked List)**는 **각 node가 두 개의 pointer를 가지는 형태의 연결 List**입니다.
+
+```mermaid
+flowchart LR
+
+node1[Head\nNode 1\nData: 5]
+node2[Node 2\nData: 10]
+node3[Node 3\nData: 20]
+node4[Node 4\nData: 30]
+null((NULL))
+
+node1 <--> node2
+node2 <--> node3
+node3 <--> node4
+node4 <--> null
+```
 
 - 각 node는 data를 저장하고, 다음 node와 이전 node를 가리키는 **두 개의 pointer**(이중 pointer)를 포함합니다.
     - node의 data 부분은 저장할 값을 가지며, pointer 부분은 **다음 node와 이전 node의 주소**를 가리킵니다.
@@ -401,6 +440,21 @@ void printList() {
 ### 단일 원형 연결 List
 
 - **단일 원형 연결 List(Singly Circular Linked List)**에서 각 node는 data를 저장하고, 다음 node를 가리키는 단일 pointer를 포함합니다.
+
+```mermaid
+flowchart LR
+
+node1[Head\nNode 1\nData: 5]
+node2[Node 2\nData: 10]
+node3[Node 3\nData: 20]
+node4[Node 4\nData: 30]
+
+node1 --> node2
+node2 --> node3
+node3 --> node4
+node4 --> node1
+```
+
 - 마지막 node의 다음 pointer가 첫 번째 node를 가리킵니다.
 
 ```c
@@ -495,7 +549,7 @@ void deleteNode(int key) {
 ```
 
 
-#### node 검색
+#### Node 검색
 
 ```c
 // 특정 값을 가진 node 검색
@@ -514,7 +568,8 @@ struct Node* search(int key) {
 }
 ```
 
-#### node 순회
+
+#### Node 순회
 
 ```c
 // list의 모든 node를 순회하며 data 처리
@@ -534,6 +589,21 @@ void printList() {
 ### 이중 원형 연결 List
 
 - **이중 원형 연결 List(Doubly Circular Linked List)**에서 각 node는 data를 저장하고, **다음 node와 이전 node를 가리키는 두 개의 pointer를 포함**합니다.
+
+```mermaid
+flowchart LR
+
+node1[Head\nNode 1\nData: 5]
+node2[Node 2\nData: 10]
+node3[Node 3\nData: 20]
+node4[Node 4\nData: 30]
+
+node1 <--> node2
+node2 <--> node3
+node3 <--> node4
+node4 <--> node1
+```
+
 - 마지막 node의 다음 pointer가 첫 번째 node를 가리키고, 첫 번째 node의 이전 pointer가 마지막 node를 가리킵니다.
 
 ```c
