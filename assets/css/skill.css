@@ -4,131 +4,128 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--highlight-color);
+  color: var(--highlight-color);
 }
 
 h1,
 h2,
 h3 {
-    margin-top: 60px;
+  margin-top: 60px;
 }
 
 h4,
 h5,
 h6 {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 p {
-    margin: 0;
+  margin: 0;
 }
 
 ol,
 ul {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
 code.hljs {
-    border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color);
 }
 
 code.language-plaintext:not(.hljs) {
-    color: var(--code-color);
+  color: var(--code-color);
 }
 
 blockquote {
-    margin: 0;
-    padding: 4px 20px;
-    border-left: 5px solid var(--border-color);
-    background-color: var(--background-highlight-color);
+  margin: 0;
+  padding: 4px 20px;
+  border-left: 5px solid var(--border-color);
+  background-color: var(--background-highlight-color);
 }
 
-article>ul>li {
-    padding: 10px 0;
+article > ul > li {
+  padding: 10px 0;
 }
 
-article>ol>li {
-    padding: 10px 0;
+article > ol > li {
+  padding: 10px 0;
 }
 
 #progressBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background-color: var(--color);
-    z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: var(--color);
+  z-index: 100;
 }
 
 #title {
-    padding-top: 50px;
-    margin-bottom: 0px;
-    line-height: 1;
-    text-align: center;
+  padding-top: 50px;
+  margin-bottom: 0px;
+  line-height: 1;
+  text-align: center;
 }
 
 #date {
-    font-size: 17px;
-    opacity: 0.5;
-    text-align: center;
+  font-size: 17px;
+  opacity: 0.5;
+  text-align: center;
 }
-
 
 #content {
-    position: relative;
+  position: relative;
 }
 
-
 #index {
-    position: sticky;
-    top: 10px;
+  position: sticky;
+  top: 10px;
 }
 
 #index button {
-    float: right;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    font-size: 40px;
-    z-index: 10;
-    opacity: 0.7;
+  float: right;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-size: 40px;
+  z-index: 10;
+  color: var(--color);
 }
 
 #index button:hover {
-    opacity: 1;
-    cursor: pointer;
+  color: var(--highlight-color);
+  cursor: pointer;
 }
 
 #index ul {
-    display: none;
-    margin: 0;
-    padding: 20px 25px;
-    position: absolute;
-    top: 40px;
-    right: 0px;
-    background-color: var(--background-highlight-color);
-    border: 1px solid var(--border-color);
-    opacity: 0.9;
-    backdrop-filter: blur(10px);
+  display: none;
+  margin: 0;
+  padding: 20px 25px;
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  background-color: var(--background-highlight-color);
+  border: 1px solid var(--border-color);
+  opacity: 0.9;
+  backdrop-filter: blur(10px);
 }
 
 #index ul li {
-    list-style: none;
+  list-style: none;
 }
 
 #index ul li a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-
 #stamp {
-    margin-top: 150px;
-    display: flex;
-    justify-content: flex-end;
+  margin-top: 150px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #stamp img {
-    width: 80px;
+  width: 80px;
 }

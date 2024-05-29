@@ -1,88 +1,54 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
+  <head>
     <title>기술시민</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
-    <link rel="stylesheet" href="{{ '/assets/css/skill-base.css' | relative_url }}">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/skill-base.css' | relative_url }}"
+    />
     <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script src="{{ '/assets/js/typing-effect.js' | relative_url }}"></script>
-</head>
+  </head>
 
-<body>
-    <a id="logo" href="{{ '/skills' | relative_url }}"><img></a>
+  <body>
+    <a id="logo" href="{{ '/skills' | relative_url }}">
+      <img src="{{ '/assets/img/skill-stamp/black.png' | relative_url }}" />
+    </a>
     <main>
-        <a id="about" href="{{ '/' | relative_url }}">SIMIN</a>
-        {{ content }}
+      <a id="simin" href="{{ '/' | relative_url }}">SIMIN</a>
+      {{ content }}
     </main>
     <footer>
-        <hr>
-        <p>(C) {{ "now" | date: "%Y" }}. {{ site.author.name }} all rights reserved.</p>
+      <hr />
+      <p>
+        (C) {{ "now" | date: "%Y" }}. {{ site.author.name }} all rights
+        reserved.
+      </p>
     </footer>
-</body>
+  </body>
 
-<script>
-    let hljsStyle = document.createElement('link');
-    hljsStyle.rel = 'stylesheet';
-    document.head.appendChild(hljsStyle);
+  <script>
+    hljs.highlightAll();
+    renderMermaid();
 
-    setTheme();
-
-    function setTheme() {
-        if (localStorage.getItem('theme') === 'light') {
-            setLightTheme();
-        } else if (localStorage.getItem('theme') === 'dark') {
-            setDarkTheme();
-        } else {
-            localStorage.setItem('theme', 'light');
-            setLightTheme();
-        }
+    async function renderMermaid() {
+      mermaid.initialize({
+        theme: "neutral",
+        startOnLoad: false,
+        securityLevel: "loose",
+      });
+      await mermaid.run({ querySelector: ".language-mermaid" });
     }
-
-
-    function setLightTheme() {
-        document.body.style.setProperty('--background-color', '#eeeeee');
-        document.body.style.setProperty('--background-highlight-color', '#dddddd');
-        document.body.style.setProperty('--color', '#111111');
-        document.body.style.setProperty('--code-color', '#880000');
-        document.body.style.setProperty('--highlight-color', '#000000');
-        document.body.style.setProperty('--border-color', '#aaaaaa');
-
-        document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/img/skill-stamp/black.png' | relative_url }}";
-
-        hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css';
-        hljs.highlightAll();
-
-        renderMermaid('neutral');
-    }
-
-    function setDarkTheme() {
-        document.body.style.setProperty('--background-color', '#111111');
-        document.body.style.setProperty('--background-highlight-color', '#222222');
-        document.body.style.setProperty('--color', '#cccccc');
-        document.body.style.setProperty('--code-color', '#bbddff');
-        document.body.style.setProperty('--highlight-color', '#ffffff');
-        document.body.style.setProperty('--border-color', '#444444');
-
-        document.getElementById('logo').getElementsByTagName('img')[0].src = "{{ '/assets/img/skill-stamp/white.png' | relative_url }}";
-
-        hljsStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css';
-        hljs.highlightAll();
-
-        renderMermaid('dark');
-    }
-
-    async function renderMermaid(theme) {
-        mermaid.initialize({
-            theme: theme,
-            startOnLoad: false,
-            securityLevel: 'loose',
-        });
-        await mermaid.run({ querySelector: '.language-mermaid' });
-    }
-</script>
-
+  </script>
 </html>
