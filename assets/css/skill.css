@@ -81,6 +81,7 @@ article > ol > li {
 #index {
   position: sticky;
   top: 10px;
+  z-index: 100;
 }
 
 #index button {
@@ -90,7 +91,7 @@ article > ol > li {
   border: none;
   background-color: transparent;
   font-size: 40px;
-  z-index: 10;
+  line-height: 0.5;
   color: var(--color);
 }
 
@@ -104,12 +105,11 @@ article > ol > li {
   margin: 0;
   padding: 20px 25px;
   position: absolute;
-  top: 40px;
+  top: 30px;
   right: 0px;
-  background-color: var(--background-highlight-color);
+  background-color: var(--background-color);
   border: 1px solid var(--border-color);
   opacity: 0.9;
-  backdrop-filter: blur(10px);
 }
 
 #index ul li {
