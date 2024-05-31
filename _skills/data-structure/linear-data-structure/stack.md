@@ -29,19 +29,19 @@ date: 2024-05-31
 | **구현 복잡성** | 배열로 구현하는 것이 상대적으로 간단합니다. 초기 크기 설정 후, push와 pop 연산을 수행합니다. | 연결 List는 pointer를 관리해야 하므로, 배열에 비해 구현이 더 복잡합니다. node의 삽입과 삭제는 비교적 간단하지만, pointer를 올바르게 유지해야 합니다. |
 
 
-### Stack의 주요 연산
-
-1. **Push** : Stack의 맨 위에 새로운 data를 추가하는 연산입니다.
-2. **Pop** : Stack의 맨 위에 있는 data를 제거하고 반환하는 연산입니다.
-3. **Peek** or **Top** : Stack의 맨 위에 있는 data를 제거하지 않고 반환하는 연산입니다.
-
-
 ### Stack이 사용되는 곳
 
 - **함수 호출 관리** : 함수 호출 Stack을 관리하여 재귀 함수 호출 시 반환 주소를 저장합니다.
 - **표현식 계산** : 후위 표기법(Reverse Polish Notation, RPN) 계산기에서 사용됩니다.
 - **문자열 역순 변환** : 문자열을 뒤집는 데 사용됩니다.
 - **Backtracking algorithm** : 미로 찾기, puzzle 해결 등의 문제에서 상태를 저장하고 복원하는 데 사용됩니다.
+
+
+### Stack의 주요 연산
+
+1. **push(item)** : Stack의 맨 위에 새로운 data를 추가하는 연산입니다.
+2. **pop()** : Stack의 맨 위에 있는 data를 제거하고 반환하는 연산입니다.
+3. **peek()** : Stack의 맨 위에 있는 data를 제거하지 않고 반환하는 연산입니다.
 
 
 
@@ -57,51 +57,82 @@ date: 2024-05-31
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 100    // Stack의 최대 크기
+#define MAX 100
 
-int stack[MAX];
-int top = -1;
+typedef struct {
+    int arr[MAX];
+    int top;
+} Stack;
 
-void push(int data) {
-    if (top >= MAX - 1) {
-        printf("Stack overflow\n");
+
+// Stack 초기화
+void initStack(Stack* stack) {
+    stack->top = -1;
+}
+
+// Stack이 비어있는지 확인
+int isEmpty(Stack* stack) {
+    return stack->top == -1;
+}
+
+// Stack이 가득 찼는지 확인
+int isFull(Stack* stack) {
+    return stack->top == MAX - 1;
+}
+
+// Stack에 item 추가
+void push(Stack* stack, int data) {
+    if (isFull(stack)) {
+        printf("Stack is full.\n");
         return;
     }
-    stack[++top] = data;
+    stack->arr[++stack->top] = data;
 }
 
-int pop() {
-    if (top < 0) {
-        printf("Stack underflow\n");
+// Stack에서 item 제거 및 반환
+int pop(Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty.\n");
         return -1;
     }
-    return stack[top--];
+    return stack->arr[stack->top--];
 }
 
-int peek() {
-    if (top < 0) {
-        printf("Stack이 비어 있습니다\n");
+// Stack의 가장 위에 있는 item 반환 (제거하지 않음)
+int peek(Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty.\n");
         return -1;
     }
-    return stack[top];
+    return stack->arr[stack->top];
 }
 
-int isEmpty() {
-    return top == -1;
+// Stack의 모든 요소를 출력
+void printStack(Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty.\n");
+        return;
+    }
+    for (int i = 0; i <= stack->top; i++) {
+        printf("%d ", stack->arr[i]);
+    }
+    printf("\n");
 }
 
-int size() {
-    return top + 1;
-}
 
 int main() {
-    push(10);
-    push(20);
-    push(30);
+    Stack stack;
+    initStack(&stack);
 
-    printf("Stack의 맨 위 요소 : %d\n", peek());
-    printf("Stack에서 pop한 요소 : %d\n", pop());
-    printf("Stack의 크기 : %d\n", size());
+    push(&stack, 10);
+    push(&stack, 20);
+    push(&stack, 30);
+    printStack(&stack);    // 10 20 30
+
+    printf("Popped : %d\n", pop(&stack));    // 30
+    printStack(&stack);    // 10 20
+
+    printf("Peek : %d\n", peek(&stack));    // 20
 
     return 0;
 }
@@ -121,66 +152,82 @@ int main() {
 #include <stdio.h>
 #include <stdlib.h>
 
+// Node 구조체 정의
 struct Node {
     int data;
     struct Node* next;
 };
 
-struct Node* top = NULL;
+// Stack 구조체 정의
+typedef struct {
+    struct Node* top;
+} Stack;
 
-void push(int data) {
+
+// Stack 초기화
+void initStack(Stack* stack) {
+    stack->top = NULL;
+}
+
+// Stack이 비어있는지 확인
+int isEmpty(Stack* stack) {
+    return stack->top == NULL;
+}
+
+// Stack에 item 추가
+void push(Stack* stack, int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    if (!newNode) {
-        printf("memory 할당 실패\n");
-        return;
-    }
     newNode->data = data;
-    newNode->next = top;
-    top = newNode;
+    newNode->next = stack->top;
+    stack->top = newNode;
 }
 
-int pop() {
-    if (top == NULL) {
-        printf("Stack underflow\n");
+// Stack에서 item 제거 및 반환
+int pop(Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty.\n");
         return -1;
     }
-    struct Node* temp = top;
-    int popped = temp->data;
-    top = top->next;
+    struct Node* temp = stack->top;
+    int poppedData = temp->data;
+    stack->top = stack->top->next;
     free(temp);
-    return popped;
+    return poppedData;
 }
 
-int peek() {
-    if (top == NULL) {
-        printf("Stack이 비어 있습니다\n");
+// Stack의 가장 위에 있는 item 반환 (제거하지 않음)
+int peek(Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty.\n");
         return -1;
     }
-    return top->data;
+    return stack->top->data;
 }
 
-int isEmpty() {
-    return top == NULL;
-}
-
-int size() {
-    int count = 0;
-    struct Node* temp = top;
+// Stack의 모든 요소를 출력
+void printStack(Stack* stack) {
+    struct Node* temp = stack->top;
     while (temp != NULL) {
-        count++;
+        printf("%d ", temp->data);
         temp = temp->next;
     }
-    return count;
+    printf("\n");
 }
 
-int main() {
-    push(10);
-    push(20);
-    push(30);
 
-    printf("Stack의 맨 위 요소 : %d\n", peek());
-    printf("Stack에서 pop한 요소 : %d\n", pop());
-    printf("Stack의 크기 : %d\n", size());
+int main() {
+    Stack stack;
+    initStack(&stack);
+
+    push(&stack, 10);
+    push(&stack, 20);
+    push(&stack, 30);
+    printStack(&stack);    // 30 20 10
+
+    printf("Popped: %d\n", pop(&stack));    // 30
+    printStack(&stack);    // 20 10
+
+    printf("Peek: %d\n", peek(&stack));    // 20
 
     return 0;
 }
