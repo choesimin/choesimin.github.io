@@ -162,27 +162,27 @@ node4 --> null
     - 단일 연결 List의 순회는 head에서 시작하여 다음 node로 이동하는 방식(**단방향 순회**)으로 이루어집니다.
 
 ```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node 구조체 정의
 struct Node {
     int data;    // data 부분
     struct Node* next;    // 다음 node를 가리키는 pointer
 };
-```
 
+// 전역 변수 head 정의
+struct Node* head = NULL;
 
-### Node 삽입
-
-```c
-// list의 앞에 삽입
+// list의 앞에 node 삽입
 void insertAtFront(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
     newNode->next = head;
     head = newNode;
 }
-```
 
-```c
-// list의 끝에 삽입
+// list의 끝에 node 삽입
 void insertAtEnd(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -199,12 +199,7 @@ void insertAtEnd(int data) {
     }
     temp->next = newNode;
 }
-```
 
-
-### Node 삭제
-
-```c
 // 특정 값을 가진 node 삭제
 void deleteNode(int key) {
     struct Node* temp = head;
@@ -230,12 +225,7 @@ void deleteNode(int key) {
     prev->next = temp->next;
     free(temp);
 }
-```
 
-
-### Node 검색
-
-```c
 // 특정 값을 가진 node 검색
 struct Node* search(int key) {
     struct Node* temp = head;
@@ -247,12 +237,7 @@ struct Node* search(int key) {
     }
     return NULL;
 }
-```
 
-
-### Node 순회
-
-```c
 // list의 모든 node를 순회하며 data 처리
 void printList() {
     struct Node* temp = head;
@@ -261,6 +246,29 @@ void printList() {
         temp = temp->next;
     }
     printf("NULL\n");
+}
+
+
+int main() {
+    insertAtEnd(10);
+    insertAtEnd(20);
+    insertAtFront(5);
+    printList();    // 5 -> 10 -> 20 -> NULL
+
+    struct Node* foundNode = search(10);
+    if (foundNode != NULL) {
+        printf("Node with data %d found.\n", foundNode->data);
+    } else {
+        printf("Node with data %d not found.\n", 10);
+    }
+
+    deleteNode(10);
+    printList();    // 5 -> 20 -> NULL
+
+    deleteNode(5);
+    printList();    // 20 -> NULL
+
+    return 0;
 }
 ```
 
@@ -303,18 +311,20 @@ node4 <--> null
     - tail pointer는 list의 마지막 node를 가리킵니다.
 
 ```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node 구조체 정의
 struct Node {
     int data;    // data 부분
     struct Node* next;    // 다음 node를 가리키는 pointer
     struct Node* prev;    // 이전 node를 가리키는 pointer
 };
-```
 
+// 전역 변수 head 정의
+struct Node* head = NULL;
 
-### Node 삽입
-
-```c
-// list의 앞에 삽입
+// list의 앞에 node 삽입
 void insertAtFront(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -327,10 +337,8 @@ void insertAtFront(int data) {
 
     head = newNode;
 }
-```
 
-```c
-// list의 끝에 삽입
+// list의 끝에 node 삽입
 void insertAtEnd(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -349,12 +357,7 @@ void insertAtEnd(int data) {
     temp->next = newNode;
     newNode->prev = temp;
 }
-```
 
-
-### Node 삭제
-
-```c
 // 특정 값을 가진 node 삭제
 void deleteNode(int key) {
     struct Node* temp = head;
@@ -372,24 +375,19 @@ void deleteNode(int key) {
         head = temp->next;
     }
 
-    // 다음 node의 prev pointer를 업데이트
+    // 다음 node의 prev pointer를 update
     if (temp->next != NULL) {
         temp->next->prev = temp->prev;
     }
 
-    // 이전 node의 next pointer를 업데이트
+    // 이전 node의 next pointer를 update
     if (temp->prev != NULL) {
         temp->prev->next = temp->next;
     }
 
     free(temp);
 }
-```
 
-
-### Node 검색
-
-```c
 // 특정 값을 가진 node 검색
 struct Node* search(int key) {
     struct Node* temp = head;
@@ -401,12 +399,7 @@ struct Node* search(int key) {
     }
     return NULL;
 }
-```
 
-
-### Node 순회
-
-```c
 // list의 모든 node를 순회하며 data 처리
 void printList() {
     struct Node* temp = head;
@@ -415,6 +408,29 @@ void printList() {
         temp = temp->next;
     }
     printf("NULL\n");
+}
+
+
+int main() {
+    insertAtEnd(10);
+    insertAtEnd(20);
+    insertAtFront(5);
+    printList();    // 5 <-> 10 <-> 20 <-> NULL
+
+    struct Node* foundNode = search(10);
+    if (foundNode != NULL) {
+        printf("Node with data %d found.\n", foundNode->data);
+    } else {
+        printf("Node with data %d not found.\n", 10);
+    }
+
+    deleteNode(10);
+    printList();    // 5 <-> 20 <-> NULL
+
+    deleteNode(5);
+    printList();    // 20 <-> NULL
+
+    return 0;
 }
 ```
 
@@ -458,17 +474,19 @@ node4 --> node1
 - 마지막 node의 다음 pointer가 첫 번째 node를 가리킵니다.
 
 ```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node 구조체 정의
 struct Node {
     int data;   // data 부분
     struct Node* next;    // 다음 node를 가리키는 pointer
 };
-```
 
+// 전역 변수 head 정의
+struct Node* head = NULL;
 
-#### Node 삽입
-
-```c
-// list의 앞에 삽입
+// list의 앞에 node 삽입
 void insertAtFront(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -485,10 +503,8 @@ void insertAtFront(int data) {
         head = newNode;
     }
 }
-```
 
-```c
-// list의 끝에 삽입
+// list의 끝에 node 삽입
 void insertAtEnd(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -504,12 +520,7 @@ void insertAtEnd(int data) {
         newNode->next = head;
     }
 }
-```
 
-
-#### Node 삭제
-
-```c
 // 특정 값을 가진 node 삭제
 void deleteNode(int key) {
     if (head == NULL) return;
@@ -546,12 +557,7 @@ void deleteNode(int key) {
         free(temp);
     }
 }
-```
 
-
-#### Node 검색
-
-```c
 // 특정 값을 가진 node 검색
 struct Node* search(int key) {
     struct Node* temp = head;
@@ -566,12 +572,7 @@ struct Node* search(int key) {
 
     return NULL;
 }
-```
 
-
-#### Node 순회
-
-```c
 // list의 모든 node를 순회하며 data 처리
 void printList() {
     if (head == NULL) return;
@@ -582,6 +583,29 @@ void printList() {
         temp = temp->next;
     } while (temp != head);
     printf("HEAD\n");
+}
+
+
+int main() {
+    insertAtEnd(10);
+    insertAtEnd(20);
+    insertAtFront(5);
+    printList();    // 5 -> 10 -> 20 -> HEAD
+
+    struct Node* foundNode = search(10);
+    if (foundNode != NULL) {
+        printf("Node with data %d found.\n", foundNode->data);
+    } else {
+        printf("Node with data %d not found.\n", 10);
+    }
+
+    deleteNode(10);
+    printList();    // 5 -> 20 -> HEAD
+
+    deleteNode(5);
+    printList();    // 20 -> HEAD
+
+    return 0;
 }
 ```
 
@@ -607,18 +631,20 @@ node4 <--> node1
 - 마지막 node의 다음 pointer가 첫 번째 node를 가리키고, 첫 번째 node의 이전 pointer가 마지막 node를 가리킵니다.
 
 ```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node 구조체 정의
 struct Node {
     int data;    // data 부분
     struct Node* next;    // 다음 node를 가리키는 pointer
     struct Node* prev;    // 이전 node를 가리키는 pointer
 };
-```
 
+// 전역 변수 head 정의
+struct Node* head = NULL;
 
-#### Node 삽입
-
-```c
-// list의 앞에 삽입
+// list의 앞에 node 삽입
 void insertAtFront(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -635,10 +661,8 @@ void insertAtFront(int data) {
         head = newNode;
     }
 }
-```
 
-```c
-// list의 끝에 삽입
+// list의 끝에 node 삽입
 void insertAtEnd(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -654,12 +678,7 @@ void insertAtEnd(int data) {
         head->prev = newNode;
     }
 }
-```
 
-
-#### Node 삭제
-
-```c
 // 특정 값을 가진 node 삭제
 void deleteNode(int key) {
     if (head == NULL) return;
@@ -691,12 +710,7 @@ void deleteNode(int key) {
         free(temp);
     }
 }
-```
 
-
-#### Node 검색
-
-```c
 // 특정 값을 가진 node 검색
 struct Node* search(int key) {
     struct Node* temp = head;
@@ -711,12 +725,7 @@ struct Node* search(int key) {
 
     return NULL;
 }
-```
 
-
-#### Node 순회
-
-```c
 // list의 모든 node를 순회하며 data 처리
 void printList() {
     if (head == NULL) return;
@@ -727,5 +736,28 @@ void printList() {
         temp = temp->next;
     } while (temp != head);
     printf("HEAD\n");
+}
+
+
+int main() {
+    insertAtEnd(10);
+    insertAtEnd(20);
+    insertAtFront(5);
+    printList();    // 5 <-> 10 <-> 20 <-> HEAD
+
+    struct Node* foundNode = search(10);
+    if (foundNode != NULL) {
+        printf("Node with data %d found.\n", foundNode->data);
+    } else {
+        printf("Node with data %d not found.\n", 10);
+    }
+
+    deleteNode(10);
+    printList();    // 5 <-> 20 <-> HEAD
+
+    deleteNode(5);
+    printList();    // 20 <-> HEAD
+
+    return 0;
 }
 ```

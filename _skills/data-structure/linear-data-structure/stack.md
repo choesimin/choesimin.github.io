@@ -34,8 +34,6 @@ date: 2024-05-31
 1. **Push** : Stack의 맨 위에 새로운 data를 추가하는 연산입니다.
 2. **Pop** : Stack의 맨 위에 있는 data를 제거하고 반환하는 연산입니다.
 3. **Peek** or **Top** : Stack의 맨 위에 있는 data를 제거하지 않고 반환하는 연산입니다.
-4. **IsEmpty** : Stack이 비어 있는지 확인하는 연산입니다.
-5. **Size** : Stack에 있는 data의 갯수를 반환하는 연산입니다.
 
 
 ### Stack이 사용되는 곳
@@ -53,7 +51,7 @@ date: 2024-05-31
 
 
 
-## 1. 배열로 Stack 구현하기
+## 배열로 Stack 구현하기
 
 ```c
 #include <stdio.h>
@@ -117,7 +115,7 @@ int main() {
 
 
 
-## 2. 연결 List로 Stack 구현하기
+## 연결 List로 Stack 구현하기
 
 ```c
 #include <stdio.h>
