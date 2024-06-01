@@ -21,8 +21,8 @@ date: 2024-05-31
 
 ### Queue의 주요 연산
 
-1. **enqueue(item)** : Queue의 끝에 새로운 요소를 추가합니다.
-2. **dequeue()** : Queue의 앞에서 요소를 제거하고 반환합니다.
+- **enqueue(item)** : Queue의 끝에 새로운 요소를 추가합니다.
+- **dequeue()** : Queue의 앞에서 요소를 제거하고 반환합니다.
 
 
 

@@ -19,8 +19,8 @@ date: 2024-05-21
         - 구조는 자료의 논리적 관계와 이를 표현하는 방식을 의미하며, 따라서 "자료 구조"는 data를 효율적으로 다루기 위한 틀(frame)을 제공합니다.
 
 - 자료 구조는 data를 조직화하고, 저장하고, 조작할 수 있는 다양한 방법을 제공하여 algorithm이 data를 효율적으로 처리할 수 있도록 합니다.
-    1. **Data의 조직화** : data를 논리적이고 체계적으로 배치하여 접근과 수정이 용이하도록 합니다.
-    2. **Data의 효율적 처리** : data의 검색, 삽입, 삭제 등의 작업을 효율적으로 수행할 수 있게 합니다.
+    - **Data의 조직화** : data를 논리적이고 체계적으로 배치하여 접근과 수정이 용이하도록 합니다.
+    - **Data의 효율적 처리** : data의 검색, 삽입, 삭제 등의 작업을 효율적으로 수행할 수 있게 합니다.
 
 
 ### 자료 구조의 필요성
@@ -69,54 +69,54 @@ mindmap
 ```
 
 
-### 1. 단순 자료 구조 (Primitive Data Structure)
+### 단순 자료 구조 (Primitive Data Structure)
 
 - 단순 자료 구조는 computer가 기본적으로 제공하는 자료형으로, **가장 기본적인 형태의 data** 저장 및 처리를 제공합니다.
 
 | 자료 구조 | 설명 |
 | --- | --- |
-| 논리값 (Boolean) | True 또는 False 값을 가집니다. 조건문에서 주로 사용됩니다. |
-| 정수 (Integer) | 음수, 0, 양수의 형태로 정수를 저장합니다. 예를 들어, -3, 0, 42. |
-| 실수 (Floating Point Number) | 소수점을 포함한 실수를 저장합니다. 예를 들어, 3.14, -0.001, 2.718. |
-| 문자 (Character) | 단일 문자를 저장합니다. 예를 들어, 'a', 'B', '3'. |
-| 문자열 (String) | 여러 문자를 연속적으로 저장한 것입니다. 예를 들어, "hello", "world", "123abc". |
+| **논리값 (Boolean)** | True 또는 False 값을 가집니다. 조건문에서 주로 사용됩니다. |
+| **정수 (Integer)** | 음수, 0, 양수의 형태로 정수를 저장합니다. 예를 들어, -3, 0, 42. |
+| **실수 (Floating Point Number)** | 소수점을 포함한 실수를 저장합니다. 예를 들어, 3.14, -0.001, 2.718. |
+| **문자 (Character)** | 단일 문자를 저장합니다. 예를 들어, 'a', 'B', '3'. |
+| **문자열 (String)** | 여러 문자를 연속적으로 저장한 것입니다. 예를 들어, "hello", "world", "123abc". |
 
 
-### 2. 선형 자료 구조 (Linear Data Structure)
+### 선형 자료 구조 (Linear Data Structure)
 
 - 선형 구조는 data가 **일렬로 저장**되는 형태의 자료 구조입니다.
 - 각 요소는 이전 요소와 다음 요소가 존재하며, 순차적으로 접근할 수 있습니다.
 
 | 자료 구조 | 설명 |
 | --- | --- |
-| 배열 (Array) | 동일한 타입의 data를 연속된 memory 공간에 저장합니다. index를 사용하여 요소에 빠르게 접근할 수 있습니다. |
-| 연결 List (Linked List) | 각 node가 data와 다음 node에 대한 pointer를 포함합니다. 크기가 가변적이며, 삽입과 삭제가 효율적입니다. 단순 연결 List, 이중 연결 List, 원형 연결 List 등이 있습니다. |
-| Stack | 후입선출(LIFO, Last In First Out) 구조로, 삽입과 삭제가 한쪽 끝에서만 일어납니다. 함수 호출 및 되돌리기 기능에 주로 사용됩니다. |
-| Queue | 선입선출(FIFO, First In First Out) 구조로, 삽입은 한쪽 끝에서, 삭제는 다른 쪽 끝에서 일어납니다. 작업(task) scheduling에 주로 사용됩니다. |
-| Deque | 양쪽 끝에서 삽입과 삭제가 모두 가능한 자료 구조입니다. |
+| **배열 (Array)** | 동일한 타입의 data를 연속된 memory 공간에 저장합니다. index를 사용하여 요소에 빠르게 접근할 수 있습니다. |
+| **연결 List (Linked List)** | 각 node가 data와 다음 node에 대한 pointer를 포함합니다. 크기가 가변적이며, 삽입과 삭제가 효율적입니다. 단순 연결 List, 이중 연결 List, 원형 연결 List 등이 있습니다. |
+| **Stack** | 후입선출(LIFO, Last In First Out) 구조로, 삽입과 삭제가 한쪽 끝에서만 일어납니다. 함수 호출 및 되돌리기 기능에 주로 사용됩니다. |
+| **Queue** | 선입선출(FIFO, First In First Out) 구조로, 삽입은 한쪽 끝에서, 삭제는 다른 쪽 끝에서 일어납니다. 작업(task) scheduling에 주로 사용됩니다. |
+| **Deque** | 양쪽 끝에서 삽입과 삭제가 모두 가능한 자료 구조입니다. |
 
 
-### 3. 비선형 자료 구조 (Non-Linear Data Structure)
+### 비선형 자료 구조 (Non-Linear Data Structure)
 
 - 비선형 구조는 data가 **계층적 또는 network 형태로 저장**되는 자료 구조입니다.
 - 각 요소는 여러 다른 요소와 연결될 수 있습니다.
 
 | 자료 구조 | 설명 |
 | --- | --- |
-| Tree | 계층적 구조로, root node와 자식 node들로 구성됩니다. |
-| Graph | 정점(node)과 간선(edge)으로 구성된 network 구조입니다. |
+| **Tree** | 계층적 구조로, root node와 자식 node들로 구성됩니다. |
+| **Graph** | 정점(node)과 간선(edge)으로 구성된 network 구조입니다. |
 
 
-### 4. File 자료 구조 (File Data Structure)
+### File 자료 구조 (File Data Structure)
 
 - file 구조는 data를 **file system에 저장하고 관리**하는 방식입니다.
 - 다양한 자료 구조의 data를 file에 저장하여 **영구적으로 보관**할 수 있습니다.
 
 | 자료 구조 | 설명 |
 | --- | --- |
-| 순차 File (Sequential File) | data가 순차적으로 저장되는 file 구조입니다. 간단하고 접근이 빠르지만, 삽입과 삭제가 비효율적입니다. |
-| 색인 File (Indexed File) | data 접근 속도를 높이기 위해 index를 사용하는 file 구조입니다. 특정 data에 빠르게 접근할 수 있습니다. |
-| 직접 File (Direct File) | data의 물리적 위치를 계산하여 직접 접근하는 file 구조입니다. hash 함수를 사용하여 data를 저장하고 검색합니다. |
+| **순차 File (Sequential File)** | data가 순차적으로 저장되는 file 구조입니다. 간단하고 접근이 빠르지만, 삽입과 삭제가 비효율적입니다. |
+| **색인 File (Indexed File)** | data 접근 속도를 높이기 위해 index를 사용하는 file 구조입니다. 특정 data에 빠르게 접근할 수 있습니다. |
+| **직접 File (Direct File)** | data의 물리적 위치를 계산하여 직접 접근하는 file 구조입니다. hash 함수를 사용하여 data를 저장하고 검색합니다. |
 
 
 

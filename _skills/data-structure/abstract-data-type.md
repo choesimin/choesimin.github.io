@@ -17,13 +17,13 @@ date: 2024-05-21
 
 ### 추상 자료형의 개념
 
-1. **추상화** : ADT는 data와 data를 조작하는 연산들을 추상화합니다.
+- **추상화** : ADT는 data와 data를 조작하는 연산들을 추상화합니다.
     - 예를 들어, Stack ADT는 `push`, `pop`, `isEmpty`와 같은 연산을 정의할 수 있습니다.
 
-2. **캡슐화** : ADT는 data를 숨기며, data가 실제로 어떻게 저장되고 관리되는지는 사용자에게 보이지 않습니다.
+- **캡슐화** : ADT는 data를 숨기며, data가 실제로 어떻게 저장되고 관리되는지는 사용자에게 보이지 않습니다.
     - 사용자는 제공된 연산을 통해서만 data와 상호작용할 수 있습니다.
 
-3. **Interface** : ADT는 data와 data를 조작하는 방법을 정의하는 interface입니다.
+- **Interface** : ADT는 data와 data를 조작하는 방법을 정의하는 interface입니다.
     - interface는 data type과 그 연산의 명세(specification)를 포함합니다.
 
 

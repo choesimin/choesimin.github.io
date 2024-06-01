@@ -21,9 +21,8 @@ date: 2024-05-31
 ### Deque의 주요 연산
 
 - **insertFront(item)** : item을 Deque의 앞쪽에 삽입합니다.
-- **deleteFront()** : Deque의 앞쪽에서 item을 삭제합니다.
-
 - **insertLast(item)** : item을 Deque의 뒤쪽에 삽입합니다.
+- **deleteFront()** : Deque의 앞쪽에서 item을 삭제합니다.
 - **deleteLast()** : Deque의 뒤쪽에서 item을 삭제합니다.
 
 

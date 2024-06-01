@@ -35,27 +35,27 @@ date: 2024-05-22
 
 #### 장점
 
-1. **직접적인 Memory 관리** : C 언어는 `malloc`, `calloc`, `realloc`, `free`와 같은 함수를 통해 memory를 직접 관리할 수 있습니다.
+- **직접적인 Memory 관리** : C 언어는 `malloc`, `calloc`, `realloc`, `free`와 같은 함수를 통해 memory를 직접 관리할 수 있습니다.
     - 이를 통해 개발자는 memory 사용을 최적화할 수 있습니다.
 
-2. **Memory 효율성** : 직접적인 memory 관리를 통해 memory 사용을 효율적으로 최적화할 수 있습니다.
+- **Memory 효율성** : 직접적인 memory 관리를 통해 memory 사용을 효율적으로 최적화할 수 있습니다.
     - 필요한 만큼만 memory를 할당하고, 사용 후 즉시 해제할 수 있습니다.
 
-3. **저수준 접근 가능** : C 언어는 pointer를 통해 memory의 특정 위치에 직접 접근할 수 있습니다.
+- **저수준 접근 가능** : C 언어는 pointer를 통해 memory의 특정 위치에 직접 접근할 수 있습니다.
     - system programming이나 hardware 제어와 같은 저수준 작업에서 유용합니다.
 
 #### 단점
 
-1. **Memory 누수** : 동적 memory를 할당한 후 해제하지 않으면 memory 누수(leak)가 발생할 수 있습니다.
+- **Memory 누수** : 동적 memory를 할당한 후 해제하지 않으면 memory 누수(leak)가 발생할 수 있습니다.
     - memory 누수 문제는 장기적으로 system의 memory 자원을 고갈시킬 수 있습니다.
 
-2. **Pointer 오류** : pointer를 잘못 사용하면 잘못된 memory 접근, buffer overflow 등의 심각한 오류가 발생할 수 있습니다.
+- **Pointer 오류** : pointer를 잘못 사용하면 잘못된 memory 접근, buffer overflow 등의 심각한 오류가 발생할 수 있습니다.
     - pointer 오류 문제는 program의 안정성과 보안에 큰 영향을 미칠 수 있습니다.
 
-3. **복잡성 증가** : memory 관리를 수동으로 해야 하므로 code가 복잡해지고, memory 할당 및 해제에 대한 오류가 발생하기 쉽습니다.
+- **복잡성 증가** : memory 관리를 수동으로 해야 하므로 code가 복잡해지고, memory 할당 및 해제에 대한 오류가 발생하기 쉽습니다.
     - 복잡성이 증가하면 개발자의 부담도 함께 증가합니다.
 
-4. **Garbage Collector 부재** : C 언어는 자동 Garbage Collection 기능이 없습니다.
+- **Garbage Collector 부재** : C 언어는 자동 Garbage Collection 기능이 없습니다.
     - Garbage Collector가 없기 때문에 개발자가 직접 memory 할당 및 해제를 관리해야 하며, 개발자의 실수로 인해 memory 관리 문제가 발생할 수 있습니다.
 
 
