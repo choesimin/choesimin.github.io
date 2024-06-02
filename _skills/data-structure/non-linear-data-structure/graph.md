@@ -12,6 +12,20 @@ date: 2024-06-02
 - Graph는 **여러 개의 정점(Vertex)**과 **그 점들을 잇는 간선(Edge)**으로 구성된 network 구조로, 다양한 관계를 modeling하는 데 사용됩니다.
     - social network, 지도 내 경로 찾기, web page 간의 link 구조 등의 많은 실생활 문제를 modeling할 수 있는 data 구조입니다.
 
+```mermaid
+flowchart TD
+
+A --- B
+A --- C
+A --- F
+B --- D
+B --- F
+C --- D
+C --- E
+D --- F
+E --- F
+```
+
 - Graph는 두 node 사이에는 2개 이상의 **여러 개의 경로**가 존재할 수 있으며, 이는 node들 사이의 다양한 연결을 표현할 수 있게 합니다.
    - Graph는 node들 사이에 **무방향(양방향)** 또는 **방향(단방향)** 경로를 가질 수 있습니다.
    - **무방향 Graph**에서는 연결된 node들이 양방향으로 접근 가능하고, **방향 Graph**에서는 특정 방향으로만 접근 가능합니다.
