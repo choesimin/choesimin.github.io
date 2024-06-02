@@ -61,7 +61,7 @@ date: 2024-06-01
 | **부모-자식** | 부모-자식의 개념이 없음. | 부모-자식 관계.<br>top-bottom 또는 bottom-top으로 이루어짐. |
 | **Model** | network model. | 계층 model. |
 | **순회** | DFS, BFS. | DFS, BFS 안의 Pre-order, In-order, Post-order. |
-| **간선의 수** | Graph에 따라 간선의 수가 다름.<br>간선이 없을 수도 있음. | node가 N인 Tree는 항상 N-1의 간선을 가짐. |
+| **간선의 수** | Graph에 따라 간선의 수가 다름.<br>간선이 없을 수도 있음. | node가 N개인 Tree는 항상 N-1개의 간선을 가짐. |
 | **경로** | - | 임의의 두 node 간의 경로는 유일함. |
 | **예시 및 종류** | 지도, 지하철 노선도의 최단 경로, 전기 회로의 소자들, 도로(교차점과 일방 통행길), 선수 과목. | 이진 Tree, 이진 탐색 Tree, 균형 Tree(AVL Tree, Red-Black Tree), 이진 Heap(최대 Heap, 최소 Heap). |
 
