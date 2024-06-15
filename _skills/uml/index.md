@@ -54,7 +54,7 @@ date: 2023-07-02
 | Interaction Overview Diagram | 조건에 따라 다르게 동작을 하는 sequence diagram을 activity diagram 안에 포함하여 표현 |
 | Timing Diagram | instance 간의 상태 전이와 상호 작용을 시간 제약으로 표현 |
 | UseCase Diagram | system이 제공하는 기능과 이용자의 관계를 표현 |
-| State Machine Diagram | instance의 상태 변활르 표현 |
+| State Machine Diagram | instance의 상태 변화를 표현 |
 
 
 
