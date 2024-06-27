@@ -14,7 +14,7 @@ client가 자신이 이용하지 않는 method에 의존하지 않아야 합니�
 ```
 
 - client는 객체를 사용하는 소비자를 의미합니다.
-    - e.g method, class 등.
+    - 예를 들어, method, class 등.
 
 - 기능이 많은 큰 덩어리의 interface를 구현하는 대신, 구체적이고 작은 단위들로 분리시켜 사용합니다.
     - client들이 꼭 필요한 method들만 이용할 수 있도록 합니다.
