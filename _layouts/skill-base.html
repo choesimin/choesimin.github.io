@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <title>기술시민</title>
+    <title>{{ site.skill.title }}</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1"
     />
+
+    <meta name="description" content="{{ site.skill.description }}" />
+    <meta name="keywords" content="{{ site.skill.keywords }}" />
+    <meta name="author" content="{{ site.author }}" />
+
+    <meta property="og:title" content="{{ site.skill.title }}" />
+    <meta property="og:description" content="{{ site.skill.description }}" />
+    <meta property="og:image" content="{{ site.skill.logo | relative_url }}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="{{ site.skill.logo | relative_url }}" />
+    <meta name="twitter:title" content="{{ site.skill.title }}" />
+    <meta name="twitter:description" content="{{ site.skill.description }}" />
+    <meta name="twitter:image" content="{{ site.skill.logo | relative_url }}" />
+
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css"
@@ -15,6 +32,7 @@
       rel="stylesheet"
       href="{{ '/assets/css/skill-base.css' | relative_url }}"
     />
+
     <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
@@ -23,7 +41,7 @@
 
   <body>
     <a id="logo" href="{{ '/skills' | relative_url }}">
-      <img src="{{ '/assets/img/skill-stamp/black.png' | relative_url }}" />
+      <img src="{{ site.skill.logo | relative_url }}" />
     </a>
     <main>
       <a id="simin" href="{{ '/' | relative_url }}">SIMIN</a>
@@ -32,8 +50,7 @@
     <footer>
       <hr />
       <p>
-        (C) {{ "now" | date: "%Y" }}. {{ site.author.name }} all rights
-        reserved.
+        (C) {{ "now" | date: "%Y" }}. {{ site.author }} all rights reserved.
       </p>
     </footer>
   </body>
