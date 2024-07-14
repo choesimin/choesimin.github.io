@@ -21,7 +21,6 @@ client가 자신이 이용하지 않는 method에 의존하지 않아야 합니�
 
 - ISP를 통해 system의 내부 의존성을 약화시켜 refactoring, 수정, 재배포를 쉽게 할 수 있습니다.
     - 결합도를 낮춘다는 말과 같습니다.
-    
 
 - Interface 분리 원칙은 **범용적인 interface보다는 client(사용자)가 실제로 사용하는 interface를 만들어야 한다**는 원칙입니다.
     - interface를 잘게 분리함으로써, client의 목적과 용도에 적합한 interface만을 제공할 수 있습니다.
@@ -105,7 +104,6 @@ IPetDogs <|.. Dog
 IPetCats <|.. Cat
 IPets <|.. Rabbit
 ```
-
 
 
 
