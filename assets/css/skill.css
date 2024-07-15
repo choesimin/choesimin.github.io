@@ -33,7 +33,10 @@ code.hljs {
 }
 
 code.language-plaintext:not(.hljs) {
-  color: var(--code-color);
+  color: var(--highlight-color);
+  background-color: var(--code-background-color);
+  border-radius: 3px;
+  padding: 2px 3px;
 }
 
 blockquote {
@@ -115,6 +118,11 @@ article > ol > li {
 }
 
 #index ul li a {
+  text-decoration: none;
+}
+
+#related {
+  font-size: x-large;
   text-decoration: none;
 }
 

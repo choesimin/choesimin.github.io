@@ -15,6 +15,13 @@ layout: skill-base
     <ul></ul>
   </div>
   <article>{{ content }}</article>
+  <hr />
+  {% assign original_url = page.url %}
+  {% assign parts = page.url | split: "/skills/" %}
+  {% assign path = parts[1] | split: "/" %}
+  {% assign new_path = path[0] %}
+  {% assign new_url = site.url | append: "/skills#" | append: new_path %}
+  <a id="related" href="{{ new_url }}">> 관련된 글 보러가기 ({{ new_path }})</a>
 </div>
 
 <div id="stamp">

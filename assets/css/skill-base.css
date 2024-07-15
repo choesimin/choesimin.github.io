@@ -2,9 +2,9 @@
   --background-color: #ffffff;
   --background-highlight-color: #eeeeee;
   --color: #111111;
-  --code-color: #880000;
   --highlight-color: #000000;
   --border-color: #aaaaaa;
+  --code-background-color: #dddddd;
 }
 
 html {
