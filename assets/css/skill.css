@@ -33,7 +33,7 @@ code.hljs {
 }
 
 code.language-plaintext:not(.hljs) {
-  color: var(--highlight-color);
+  color: var(--code-color);
   background-color: var(--code-background-color);
   border-radius: 3px;
   padding: 2px 3px;
