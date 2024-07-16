@@ -33,8 +33,8 @@ code.hljs {
 }
 
 code.language-plaintext:not(.hljs) {
-  color: var(--code-color);
-  background-color: var(--code-background-color);
+  color: var(--highlight-color);
+  background-color: var(--background-highlight-color);
   border-radius: 3px;
   padding: 2px 3px;
 }
@@ -121,17 +121,22 @@ article > ol > li {
   text-decoration: none;
 }
 
-#related {
-  font-size: x-large;
-  text-decoration: none;
-}
-
 #stamp {
-  margin-top: 150px;
+  margin-top: 70px;
   display: flex;
   justify-content: flex-end;
 }
 
 #stamp img {
   width: 80px;
+}
+
+#related {
+  margin-top: 150px;
+  text-align: right;
+}
+
+#related a {
+  font-size: large;
+  text-decoration: none;
 }
