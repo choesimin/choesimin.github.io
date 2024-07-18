@@ -9,6 +9,14 @@ date: 2024-06-27
 
 ## Map : Key와 Value 쌍으로 이루어진 자료 구조
 
+```js
+{
+    key1: "value1",
+    key2: "value2",
+    key3: "value3"
+}
+```
+
 - Map 자료 구조는 **key와 value의 쌍을 저장**하고, key를 사용해 value를 효율적으로 검색할 수 있도록 하는 구조입니다.
     - **key(식별자)에 value(저장하고자 하는 값)를 연결**하여 저장합니다.
     - 이렇게 key와 value로 연결(mapping)되는 과정 자체를 **hashing**이라고 합니다.
