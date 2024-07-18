@@ -17,12 +17,15 @@ date: 2024-06-27
 }
 ```
 
-- Map 자료 구조는 **key와 value의 쌍을 저장**하고, key를 사용해 value를 효율적으로 검색할 수 있도록 하는 구조입니다.
+- Map은 **key와 value의 쌍(key-value)을 저장**하고, **key를 사용해 value를 효율적으로 검색**할 수 있도록 하는 자료 구조입니다.
     - **key(식별자)에 value(저장하고자 하는 값)를 연결**하여 저장합니다.
-    - 이렇게 key와 value로 연결(mapping)되는 과정 자체를 **hashing**이라고 합니다.
-    - Map은 hash 함수를 통해 key를 빠르게 검색할 수 있도록 설계되었습니다.
-        - 배열이나 List처럼 순차적으로 해당 요소 값을 구하지 않고, key를 통해 값(value)을 얻습니다.
-        - 따라서 Map에 저장된 특정 value를 검색하는 시간 복잡도는 일반적으로 `O(1)`입니다.
+        - key를 hash 함수를 통해 hashing하고, 그 결과를 배열의 index로 사용하여 값을 저장하거나 검색합니다.
+            - key와 value로 연결(mapping)되는 과정 자체를 **hashing**이라고 합니다.
+        - 따라서 삽입, 삭제, 검색 연산의 평균 시간 복잡도가 `O(1)`에 가깝습니다.
+
+- Map은 hash 함수를 통해 **key를 빠르게 검색할 수 있도록 설계**되었습니다.
+    - 배열이나 List처럼 순차적으로 해당 요소 값을 구하지 않고, key를 통해 값(value)을 얻습니다.
+    - 따라서 Map에 저장된 특정 value를 검색하는 시간 복잡도는 일반적으로 `O(1)`입니다.
 
 - Map의 value(값)는 중복될 수 있지만, **key는 고유(unique)해야** 합니다.
     - key를 통해 value를 얻어내야 하기 때문에 key는 중복 지정을 허용하지 않습니다.
@@ -30,6 +33,8 @@ date: 2024-06-27
 
 - **Map**은 ADT(Abstract Data Type, 추상 자료형)로, key-value 쌍을 관리하는 자료 구조의 기본적인 연산을 정의합니다.
     - Map ADT를 구현한 다양한 자료 구조가 있습니다.
+
+- Map 자료 구조는 보통 HahsMap 또는 HashTable을 의미합니다.
 
 ```mermaid
 mindmap
