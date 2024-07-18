@@ -137,6 +137,7 @@ article > ol > li {
 }
 
 #related a {
-  font-size: large;
+  font-size: larger;
+  font-weight: bolder;
   text-decoration: none;
 }
