@@ -34,7 +34,7 @@ layout: skill
 
 - Plain Old Java Object : 평범한 java 객체
     - POJO는 getter/setter를 가진 단순한 객체로 정의됨
-    - 의존성이 없고 추후 테스트 및 유지보수가 편리한 유연성의 장점을 가짐
+    - 의존성이 없고 추후 테스트 및 유지 보수가 편리한 유연성의 장점을 가짐
     - 따라서, 객체지향적인 다양한 설계와 구현이 가능해짐
 - History
     - 이전에 EJB(Enterprise JavaBeans)가 확장과 재사용이 가능한 logic을 개발하기 위해 사용되었음
@@ -48,11 +48,11 @@ layout: skill
     - 무분별하게 중복되는 code(공통 기능)를 한 곳에 모아둠
         - 중복 code 제거 가능
         - 공통 기능 하나의 수정으로 모든 핵심 기능들의 공통 기능을 수정할 수 있음
-    - 효율적인 유지보수가 가능 + 재활용성 극대화
+    - 효율적인 유지 보수가 가능 + 재활용성 극대화
 - History
     - OOP(Object Oriented Programming) 방식은 대부분의 software 개발 process에서 사용됨
     - 객체지향 원칙에 따라 관심사가 같은 data를 한 곳에 모아 분리하고 낮은 결합도를 갖게하여 독립적이고 유연한 모듈로 캡슐화(encapsulation)하는 것을 일컬음
-    - 이 과정에서 중복 code가 많아지고, 이는 가독성, 확장성, 유지보수성을 떨어뜨림
+    - 이 과정에서 중복 code가 많아지고, 이는 가독성, 확장성, 유지 보수성을 떨어뜨림
     - 이 문제를 보완하기 위해 나온 것이 AOP
 
 ### Spring Framework의 특징 : MVC (Model2)
@@ -77,7 +77,7 @@ layout: skill
         - 모든 요청 error와 Model error를 처리
         - View에 대한 정보를 알고 있어야 함
         - Model과 View의 정보에 대해서 알고 있어야함
-    - Model, View, Controller를 나누어 source를 분리함으로써 각 source의 목적이 명확해져 유지보수하기에 용이
+    - Model, View, Controller를 나누어 source를 분리함으로써 각 source의 목적이 명확해져 유지 보수하기에 용이
     - View의 정보가 달라지더라도 Controller에서 Service에 넘겨줄 매개변수 data 가공만 처리하면 되기 때문에 비용 절감의 효과 있음
     - Service 영역의 재사용이 가능하기 때문에 확장성이 좋아짐
 

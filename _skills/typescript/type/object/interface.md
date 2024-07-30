@@ -18,7 +18,7 @@ date: 2024-02-26
     - TypeScript file이 compile된 JavaScript file에는 interface에 대한 code가 없습니다.
 
 - JavaScript ES6는 interface를 지원하지 않지만, TypeScript는 interface를 지원합니다.
-    - TypeScript는 interface를 통해 개발자가 더 명확하고 유지보수가 용이한 code를 작성할 수 있도록 합니다.
+    - TypeScript는 interface를 통해 개발자가 더 명확하고 유지 보수가 용이한 code를 작성할 수 있도록 합니다.
 
 
 

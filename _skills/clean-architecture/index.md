@@ -25,8 +25,8 @@ date: 2023-11-02
 
 ### Architecture의 목표
 
-- software architecture의 목표는 필요한 system을 만들고 유지보수하는 데에 투입되는 인력을 최소화하는 것입니다.
-    - 따라서 software system을 쉽게 개발하고, 쉽게 배포하고, 쉽게 운영하고, 쉽게 유지보수할 수 있도록 architecture를 만들어야 합니다.
+- software architecture의 목표는 필요한 system을 만들고 유지 보수하는 데에 투입되는 인력을 최소화하는 것입니다.
+    - 따라서 software system을 쉽게 개발하고, 쉽게 배포하고, 쉽게 운영하고, 쉽게 유지 보수할 수 있도록 architecture를 만들어야 합니다.
 
 
 ### 좋은 Architecture
@@ -90,7 +90,7 @@ flowchart TD
 
 behavior([행위, 즉 기능을 우선한 경우]) --> behavior1[program이 완벽하게 동작하지만 수정이 불가능합니다.] --> behavior2[요구 사항이 변경될 때 동작하지 않습니다.] --> behavior3[수정이 불가능하기 때문에 program이 돌아가도록 만들 수 없습니다.] --> behavior4([program이 더이상 쓸모가 없어집니다.])
 
-structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program이 동작은 하지 않지만 변경하기 쉽습니다.] --> structure2[program이 동작하도록 변경할 수 있습니다.] --> structure3[변경 사항이 생기더라도 여전히 동작하도록 유지보수할 수 있습니다.] --> structure4([program이 앞으로도 유용한 채로 남습니다.])
+structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program이 동작은 하지 않지만 변경하기 쉽습니다.] --> structure2[program이 동작하도록 변경할 수 있습니다.] --> structure3[변경 사항이 생기더라도 여전히 동작하도록 유지 보수할 수 있습니다.] --> structure4([program이 앞으로도 유용한 채로 남습니다.])
 ```
 
 - 기능의 긴급성이 아닌 architecture의 중요성을 설득하는 일은 개발자가 책임져야 합니다.

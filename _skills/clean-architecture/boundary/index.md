@@ -26,7 +26,7 @@ date: 2023-11-28
 
 ### Plugin Architecture
 
-- software 개발 기술의 역사는 **plugin을 손쉽게 생성**하여, **확장 가능하며 유지보수가 쉬운 system architecture를 확립**할 수 있게 만드는 방법에 대한 이야기입니다.
+- software 개발 기술의 역사는 **plugin을 손쉽게 생성**하여, **확장 가능하며 유지 보수가 쉬운 system architecture를 확립**할 수 있게 만드는 방법에 대한 이야기입니다.
     - 그래서 plugin architecture가 탄생하였습니다.
 
 - 경계 맞은 편의 component는 다른 시점에 다른 이유로 변경되므로 SRP(단일 책임 원칙)을 적용해야 합니다.

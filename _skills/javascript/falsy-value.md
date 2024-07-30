@@ -14,7 +14,7 @@ if (!value) {
 ```
 
 - `value`가 falsy 값(`false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`)일 때 조건문 내부의 code가 실행됩니다.
-    - 이 code pattern은 JavaScript에서 흔하게 사용되며, code의 가독성과 유지보수성을 높이는 데 도움이 됩니다.
+    - 이 code pattern은 JavaScript에서 흔하게 사용되며, code의 가독성과 유지 보수성을 높이는 데 도움이 됩니다.
 
 
 

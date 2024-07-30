@@ -55,7 +55,7 @@ date: 2023-11-02
     | | |
     | - | - |
     | REP | 재사용성을 높임 |
-    | CCP | 유지보수성을 높임 |
+    | CCP | 유지 보수성을 높임 |
     | CRP | 분리하여 불필요한 release를 줄임 |
 
 
@@ -87,7 +87,7 @@ date: 2023-11-02
     - 불가능한 하향식(top-down) 설계
         - component 구조는 하향식으로 설계될 수 없음
             - component는 system이 성장하고 변경될 때 함께 진화하기 때문에 가장 먼저 설계할 수 있는 대상이 아님
-            - component의 빌드 가능성(buildability)과 유지보수성(maintainability)을 나타내는 지도(map)는 그 대상이 되는 software가 있어야 그릴 수 있기 때문
+            - component의 빌드 가능성(buildability)과 유지 보수성(maintainability)을 나타내는 지도(map)는 그 대상이 되는 software가 있어야 그릴 수 있기 때문
         - component 의존성 구조는 system의 논리적 설계에 발맞춰 성장하며 진화해야 함
     - component의 성장
         1. project 초기 구현과 설계가 이뤄지고 module들이 점차 쌓이기 시작함

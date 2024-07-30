@@ -9,7 +9,7 @@ date: 2024-02-27
 
 ## 고급 Type : TypeScript의 고급 Type System
 
-- TypeScript의 고급 type system은 code의 재사용성, 유지보수성, 그리고 type 안전성을 향상시키는 다양한 기능을 제공합니다.
+- TypeScript의 고급 type system은 code의 재사용성, 유지 보수성, 그리고 type 안전성을 향상시키는 다양한 기능을 제공합니다.
 - 고급 type에는 generic type, utility type, conditional type, mapped type이 포함됩니다.
 - 각각의 type은 TypeScript에서 보다 복잡한 type 관계를 표현하고 다루기 위한 강력한 도구를 제공합니다.
 

@@ -37,7 +37,7 @@ layout: skill
 
 ## Layered Architecture의 장점
 
-- system을 layer로 나누면 system 전체를 수정하지 않고도 특정 layer를 수정 및 개선할 수 있어 재사용성을 높일 수 있고 유지보수가 용이함
+- system을 layer로 나누면 system 전체를 수정하지 않고도 특정 layer를 수정 및 개선할 수 있어 재사용성을 높일 수 있고 유지 보수가 용이함
 - 단방향 의존성
     - 각각의 layer는 하위의 인접한 layer에게만 의존
 - 관심사의 분리

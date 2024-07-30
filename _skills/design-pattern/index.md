@@ -304,7 +304,7 @@ A solution to a problem in a context.
 - 객체의 상태에 따라 행위 내용을 변경합니다.
     - 객체 상태에 따라 다르게 처리할 수 있습니다.
     - 객체 상태를 캡슐화(encapsulation)한 class를 참조합니다.
-    - 행위 변경 시 원시 code의 수정을 최소화할 수 있기 때문에 유지보수가 편해집니다.
+    - 행위 변경 시 원시 code의 수정을 최소화할 수 있기 때문에 유지 보수가 편해집니다.
 
 #### Visitor Pattern
 

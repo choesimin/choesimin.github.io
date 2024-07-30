@@ -28,7 +28,7 @@ layout: skill
 
 ## web server와 WAS를 구분하는 이유
 
-- 자원 이용의 효율성 및 장애 극복, 배포 및 유지보수의 편의성을 위해 web server와 WAS를 분리
+- 자원 이용의 효율성 및 장애 극복, 배포 및 유지 보수의 편의성을 위해 web server와 WAS를 분리
     - web server를 WAS 앞에 두고 필요한 WAS들을 web server에 plugin 형태로 설정하면 더욱 효율적인 분산 처리 가능
 - web server가 필요한 이유
     - web server에서는 static contents만 처리하도록 기능을 분배하여 server의 부담을 줄일 수 있음
