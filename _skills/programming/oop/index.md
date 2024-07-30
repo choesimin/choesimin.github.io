@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: OOP
+title: 객체 지향 Programming (OOP)
 date: 2023-11-07
 ---
 

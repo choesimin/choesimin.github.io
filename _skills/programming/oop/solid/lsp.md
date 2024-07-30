@@ -229,7 +229,7 @@ public class Main {
 - LSP 원칙의 핵심은 상속(inheritance)입니다.
     - 다형성의 특징을 이용하기 위해 상위 class type으로 객체를 선언하여 하위 class의 instance를 받으면, upcasting된 상태에서 부모의 method를 사용해도 의도한대로만 수행되어야 한다는 원칙입니다.
 
-- 하지만 객체지향 programming에서 상속의 사용은 특별한 상황이 아니면 권장되지 않습니다.
+- 하지만 객체 지향 programming에서 상속의 사용은 특별한 상황이 아니면 권장되지 않습니다.
     - 기반 class와 sub class 사이에 확실한 `IS-A` 관계가 있는 경우에만 상속을 사용해야 합니다.
     - 대부분의 경우는 합성(composition)을 사용하는 것이 더 낫습니다.
 

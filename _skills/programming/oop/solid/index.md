@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: SOLID - 객체지향 설계의 5원칙
+title: SOLID - 객체 지향 설계의 5원칙
 date: 2023-11-05
 ---
 
@@ -15,7 +15,7 @@ date: 2023-11-05
 | ISP | Interface Segregation Principle | Interface 분리 원칙 |
 | DIP | Dependency Inversion Principle | 의존 관계 역전 원칙 |
 
-- SOLID 원칙은 객체지향의 특징을 잘 살릴 수 있는 설계의 특징 5가지입니다.
+- SOLID 원칙은 객체 지향의 특징을 잘 살릴 수 있는 설계의 특징 5가지입니다.
 - SOLID 원칙을 적용하면, code를 확장하고 유지보수하기가 더 쉬워집니다.
 
 - SOLID 원칙은 특정 programming 언어나 framework에 종속되지 않습니다.
