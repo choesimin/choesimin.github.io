@@ -89,8 +89,11 @@ date: 2024-07-29
 - **Operator** : **data stream을 변환하거나 조작하는 함수**들입니다.
     - 예를 들어, `map`, `filter`, `reduce`, `merge` 등의 연산자를 사용하여 stream의 data를 원하는 형태로 가공할 수 있습니다.
 
-- **Scheduler** : **비동기 작업을 실행할 thread 또는 thread pool을 지정**하는 데 사용됩니다.
-    - scheduling 기능을 통해 **비동기 작업의 실행 context를 제어**할 수 있습니다.
+- **Scheduler** : Rx는 Scheduler를 통해 **비동기 작업을 관리**하고, **thread pool을 활용하여 병렬 처리를 지원**합니다. 
+    - Scheduler로 비동기 작업을 실행할 thread 또는 thread pool을 지정합니다.
+    - scheduling 기능을 사용하여 비동기 작업의 실행 context를 제어할 수 있습니다.
+        - 예를 들어, I/O 작업, network 호출, database query 등과 같은 비동기 작업을 효과적으로 처리할 수 있습니다. 
+    -  Scheduler를 사용하여 작업을 지연시키거나 주기적으로 반복 실행할 수도 있습니다.
 
 
 ### Rx의 장점
@@ -118,7 +121,7 @@ public class RxJavaExample {
 
         // Observer 생성 및 구독
         observable.subscribe(
-            item -> System.out.println("Next: " + item),    // onNext
+            item -> System.out.println("Next : " + item),    // onNext
             error -> System.err.println("Error : " + error),    // onError
             () -> System.out.println("Completed")    // onComplete
         );
@@ -259,7 +262,7 @@ import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.observers.DisposableObserver;
 
-public class RxJavaOperatorsExample {
+public class RxJavaOperatorExample {
     public static void main(String[] args) {
         Observable<Integer> observable = Observable.fromArray(1, 2, 3, 4, 5)
                 .filter(num -> num % 2 == 0)    // 짝수 filtering
@@ -359,6 +362,110 @@ public class RxJavaNetworkExample {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+}
+```
+
+
+### 예제 4 : 실시간 주식 시장 Data 추적
+
+- 실시간 주식 시장 data를 가져와 특정 주식의 가격 변화를 실시간으로 추적하고 사용자에게 update된 정보를 제공하는 web application 예제입니다.
+    - 실시간 data stream을 효율적으로 처리하고, data의 변화에 실시간으로 반응하는 reactive한 application입니다.
+
+1. **Observable 생성** : `StockPriceFetcher` class에서 `Observable`을 생성합니다.
+    - `create` method를 사용하여 새로운 `Observable`을 생성하고, `emitter`를 통해 event를 발생시킵니다.
+    - 여기서는 `Timer`를 사용하여 주기적으로 주식 가격을 가져온 후, `onNext`를 호출하여 stream에 event를 발생시킵니다.
+
+2. **주식 가격 Data 가져오기** : 주식 가격 data르 가져오는 method를 작성합니다.
+    - `fetchStockPrice` method는 실제로는 외부 API를 호출하여 주식 가격 data를 가져와야 합니다.
+    - 여기서는 예시로 random 값을 사용합니다.
+
+3. **Stream 구독 및 UI Update** : `StockPriceUI` class에서 `Observable`을 구독합니다.
+    - `subscribe` method를 사용하여 새로운 가격 data가 도착할 때마다 호출될 callback 함수를 전달합니다.
+    - 이 함수에서는 `updateStockPriceUI` method를 호출하여 가격 data를 UI에 update합니다. 
+
+
+#### 1. Project 설정
+
+- Maven 또는 Gradle을 사용하여 project에 RxJava library를 추가합니다.
+
+```xml
+<!-- Maven -->
+<dependency>
+    <groupId>io.reactivex.rxjava3</groupId>
+    <artifactId>rxjava</artifactId>
+    <version>3.0.0</version>
+</dependency>
+```
+
+```groovy
+// Gradle
+implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+```
+
+#### 2. 주식 가격 Data를 가져오는 비동기 작업
+
+- 주식 가격 data를 stream으로 가져오는 비동기 작업을 생성합니다.
+    - 이 작업은 일정 간격으로 주식 가격을 가져오고, stream에 event를 발생시킵니다.
+
+```java
+import io.reactivex.rxjava3.core.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class StockPriceFetcher {
+    public static Observable<Double> getStockPriceStream() {
+        return Observable.create(emitter -> {
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    try {
+                        // 주식 가격을 가져오는 비동기 작업
+                        double stockPrice = fetchStockPrice();
+                        emitter.onNext(stockPrice);
+                    } catch (Exception e) {
+                        emitter.onError(e);
+                    }
+                }
+            }, 0, 1000);    // 1초마다 주식 가격 update
+        });
+    }
+
+    private static double fetchStockPrice() {
+        // 여기서는 예시로 random 값을 가져오지만, 실제로는 외부 API를 호출하는 등의 작업이 필요함
+        return 100 + Math.random() * 10;
+    }
+}
+```
+
+#### 3. 주식 가격 변화를 실시간으로 추적하고 UI Update
+
+- 주식 가격 stream을 구독하여 새로운 가격 data가 도착할 때마다 callback 함수를 호출합니다.
+    - 이 함수에서 가격 data를 UI에 update할 수 있습니다.
+
+```java
+public class StockPriceUI {
+    public static void main(String[] args) {
+        Observable<Double> stockPriceStream = StockPriceFetcher.getStockPriceStream();
+
+        stockPriceStream.subscribe(
+            price -> updateStockPriceUI(price),
+            error -> System.err.println("Error : " + error),
+            () -> System.out.println("Stock price stream completed")
+        );
+
+        // 계속 실행되도록 main thread 대기시키기
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void updateStockPriceUI(Double price) {
+        // 실제로는 UI를 update하는 code가 필요함
+        System.out.println("Updated Stock Price : " + price);
     }
 }
 ```
