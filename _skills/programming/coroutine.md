@@ -257,7 +257,7 @@ deactivate f
 | 장점 | 강력한 연산자 세트, 복잡한 data 흐름을 쉽게 표현, 다양한 언어 지원. | 직관적인 code 작성, 기존 동기 code와 유사하게 작성 가능, 성능 효율성 높음. |
 | 단점 | 학습 곡선이 가파름, 모든 상황에 적합하지 않음, code 가독성이 떨어질 수 있음. | 복잡한 data stream 처리가 어렵고, Rx처럼 강력한 연산자 세트가 부족함. |
 | 사용 사례 | event stream 처리(UI event, network 응답, database 변경 등), 복잡한 비동기 data 흐름 관리, data를 filtering/변환/결합하는 복잡한 연산 수행. | 간단한 비동기 작업(network 호출, file I/O, 지연 작업 등), 순차적인 비동기 작업 실행, 동시성(concurrency) 관리를 통한 성능 최적화. |
-| 요약 | 복잡한 data stream과 event 기반 비동기 작업에 적합하며, 연산자를 사용한 data 변환과 결합이 강력합니다. | 간단한 비동기 작업을 동기 code처럼 작성할 수 있게 해주며, 순차적인 비동기 작업과 성능 최적화에 유리합니다. |
+| 요약 | 복잡한 data stream과 event 기반 비동기 작업에 적합하며, 연산자를 사용한 data 변환과 결합 기능이 강력합니다. | 간단한 비동기 작업을 동기 code처럼 작성할 수 있게 해주며, 순차적인 비동기 작업과 성능 최적화에 유리합니다. |
 
 
 ### Rx (Reactive Extensions) : Data Stream과 비동기 Event Sequence를 다루기 위한 Library
