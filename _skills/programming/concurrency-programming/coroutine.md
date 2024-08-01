@@ -175,7 +175,6 @@ def sum_coroutine():
         x = (yield total)
         total += x
 
-
 def sum_func():
     co = sum_coroutine()
     next(co)

@@ -217,37 +217,6 @@ fun preparePostAsync(): Single<Token> {
 
 
 
-## Coroutine 사용하기
-
-
-
-### 1. 
-
-
-
-### 2. 
-
-
-
-### 3. 
-
-
-
-### 4. 
-
-
-
-### 5. 
-
-
-
-
-
----
-
-
-
-
 ## Reference
 
 - <https://kotlinlang.org/docs/async-programming.html>
