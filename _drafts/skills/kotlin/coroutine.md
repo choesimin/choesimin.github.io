@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: Kotlin Coroutine - 비동기 Programming 구현하기
+title: Kotlin Coroutine 개념 - 비동기 작업을 처리하는 방법
 date: 2024-08-01
 ---
 
@@ -12,10 +12,15 @@ date: 2024-08-01
 - Coroutine은 **함수의 실행을 일시 중지하고 나중에 재개**할 수 있는 기능을 제공하여, **비동기 code를 동기 code처럼 쉽게 작성**할 수 있게 합니다.
     - Coroutine은 새로운 개념이 아니며, Go와 같은 일부 다른 programming 언어에서도 인기있는 개념입니다.
 
-- Kotlin은 **언어 차원에서 Coroutine library를 지원**합니다.
+- Kotlin은 **언어 차원에서 Coroutine official library를 지원**합니다.
     - Kotlin에서 비동기 code를 작성할 때는 Coroutine을 사용하는 것이 매우 일반적입니다.
 
-- Coroutine의 가장 큰 이점 중 하나는 개발자가 non-blocking code를 작성할 때와 blocking code를 작성할 때의 programming model이 거의 변하지 않는다는 점입니다.
+- Coroutine은 다양한 작업을 비동기적으로 진행할 때 필요한 요소이지만, thread와는 다른 개념입니다.
+    - Coroutine은 thread와 함께 사용됩니다.
+    - Coroutine은 code를 실행 중일 때 멈출 수 있고(suspendable), 다시 실행할 수 있는(resume) 제어 능력을 가지고 있지만, thread는 불가능합니다. 
+    - Coroutine을 사용하면 작업을 쉽게 전환하며 thread를 옮겨다니며 작업할 수 있게 됩니다.
+    - thread보다 효율적이고 처리 속도가 빠릅니다. 
+    - non-blocking code를 작성할 때와 blocking code를 작성할 때의 programming model이 거의 변하지 않습니다.
 
 ```kotlin
 fun postItem(item: Item) {
@@ -130,7 +135,7 @@ fun preparePostAsync(callback: (Token) -> Unit) {
 - callback은 JavaScript와 같은 event loop architecture에서 매우 흔하지만, 그마저도 Promise나 Rx와 같은 다른 방식을 사용하는 쪽으로 옮겨가고 있습니다.
 
 
-### Future, Promise, etc
+### Future, Promise
 
 - Future 또는 Promise는 호출을 할 때, 어떤 시점에 Promise라는 객체를 반환할 것을 약속받는다는 것입니다.
 
@@ -203,6 +208,37 @@ fun preparePostAsync(): Single<Token> {
     - Rx는 복잡한 data stream과 event 기반 비동기 작업에 적합하며, 연산자를 사용한 data 변환과 결합 기능이 강력합니다.
     - 반면에 Coroutine은 간단한 비동기 작업을 동기 code처럼 작성할 수 있게 해주며, 순차적인 비동기 작업과 성능 최적화에 유리합니다.
     - 따라서 Rx와 Coroutine은 상황에 맞추어 선택해 사용하면 됩니다.
+
+
+
+
+---
+
+
+
+
+## Coroutine 사용하기
+
+
+
+### 1. 
+
+
+
+### 2. 
+
+
+
+### 3. 
+
+
+
+### 4. 
+
+
+
+### 5. 
+
 
 
 

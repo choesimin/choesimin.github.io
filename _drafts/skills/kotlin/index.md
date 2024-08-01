@@ -31,7 +31,7 @@ date: 2024-08-01
 - **강력한 도구 지원** : JetBrains의 IntelliJ IDEA와 Android Studio와 같은 강력한 개발 도구 지원을 받습니다.
     - code 자동 완성, debugging, refactoring 등 다양한 기능을 통해 개발 생산성을 높일 수 있습니다.
 
-- **Coroutine** : - Kotlin은 비동기 programming을 간편하게 할 수 있도록 언어 차원에서 Coroutine을 지원합니다.
+- **Coroutine** : Kotlin은 비동기 programming을 간편하게 할 수 있도록 언어 차원에서 Coroutine을 지원합니다.
     - 이는 비동기 작업을 쉽게 처리하고, UI thread를 blocking하지 않으면서도 간결한 code를 작성할 수 있게 해줍니다.
 
 
