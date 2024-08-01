@@ -180,9 +180,9 @@ def sum_func():
     co = sum_coroutine()
     next(co)
     result1 = co.send(10)
-    print(f"result1 --> {result1}")
+    print(f"result1 : {result1}")
     result2 = co.send(20)
-    print(f"result2 --> {result2}")
+    print(f"result2 : {result2}")
 
 sum_func()
 ```
