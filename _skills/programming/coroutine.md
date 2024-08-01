@@ -275,7 +275,7 @@ observable
 ```
 
 - **Observable** : 시간에 따라 발생하는 data stream을 나타냅니다.
-    - Observable은 data를 생성하고 구독자에게 data를 푸시합니다.
+    - Observable은 data를 생성하고 구독자에게 data를 push합니다.
 
 - **Observer** : Observable을 구독(subscribe)하여 data stream을 소비하는 객체입니다.
     - Observer는 Observable로부터 data event, 오류 event, 완료 event를 수신합니다.
