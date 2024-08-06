@@ -1,0 +1,19 @@
+---
+layout: skill-base
+---
+
+<h1>Algorithm Problem Solving</h1>
+
+<ul>
+  {% for problem in site.problems %}
+  <li>
+    <a href="{{ problem.url | relative_url }}">
+      {{ problem.title }}
+      <br />
+      {{ problem.date | date: '%Y-%m-%d' }}
+      <br />
+      {{ problem.url | relative_url }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

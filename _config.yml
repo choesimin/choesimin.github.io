@@ -12,3 +12,5 @@ collections:
     output: true
   graphics:
     output: true
+  problems:
+    output: false
