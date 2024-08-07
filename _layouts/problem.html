@@ -1,7 +1,14 @@
 ---
-layout: skill-base
+layout: none
 ---
 
-
-
-
+<html>
+  <body>
+    <h1>{{ page.title }}</h1>
+    <p>날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}</p>
+    <p>기술 : {{ page.tags }}</p>
+    <p>출처 : <a href="{{ page.source }}" target="_blank">{{page.category}}</a></p>
+    <hr />
+    {{ content }}
+  </body>
+</html>

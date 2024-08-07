@@ -1,19 +1,18 @@
 ---
-layout: skill-base
+layout: none
 ---
 
-<h1>Algorithm Problem Solving</h1>
-
-<ul>
-  {% for problem in site.problems %}
-  <li>
-    <a href="{{ problem.url | relative_url }}">
-      {{ problem.title }}
-      <br />
-      {{ problem.date | date: '%Y-%m-%d' }}
-      <br />
-      {{ problem.url | relative_url }}
-    </a>
-  </li>
-  {% endfor %}
-</ul>
+<html>
+  <body>
+    <h1>Algorithm PS <small>with C++</small></h1>
+    <ul>
+      {% for problem in site.problems %}
+      <li>
+        <a href="{{ problem.url | relative_url }}">
+          {{ problem.date | date: '%Y-%m-%d' }}- {{problem.category}} - {{ problem.title }} - {{problem.tags}} 
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

@@ -7,10 +7,12 @@ skill:
   logo: /assets/img/skill-stamp/black.png
   keywords: 기술, 개발, IT, Backend, 글쓰기
 
+collections_dir: collections
+
 collections:
   skills:
     output: true
   graphics:
     output: true
   problems:
-    output: false
+    output: true
