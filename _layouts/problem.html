@@ -2,12 +2,32 @@
 layout: none
 ---
 
-<html>
+<html lang="ko">
+  <head>
+    <title>[C++ PS] {{ page.title }} ({{ page.category }})</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script>hljs.highlightAll()</script>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
   <body>
     <h1>{{ page.title }}</h1>
-    <p>날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}</p>
-    <p>기술 : {{ page.tags }}</p>
-    <p>출처 : <a href="{{ page.source }}" target="_blank">{{page.category}}</a></p>
+    <p>
+      날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}
+      <br />
+      기술 : {{ page.tags }}
+      <br />
+      언어 : C++
+      <br />
+      출처 : <a href="{{ page.source }}" target="_blank">{{ page.category }}</a>
+    </p>
     <hr />
     {{ content }}
   </body>
