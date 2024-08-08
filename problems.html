@@ -1,3 +1,30 @@
 ---
-layout: problem-list
+layout: none
 ---
+<html lang="ko">
+  <head>
+    <title>C++ PS</title>
+    <style>
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+      }
+      ul a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Algorithm Problem Solving <small>with C++</small></h1>
+    <h4><a href="{{ '/skills' | relative_url }}">기술시민으로 돌아가기</a></h4>
+    <ul>
+      {% for problem in site.problems %}
+      <li>
+        <a href="{{ problem.url | relative_url }}">
+          {{ problem.category }} <b>{{ problem.title }} ({{ problem.tags }})</b>
+          <small> : {{ problem.date | date: '%Y.%m.%d' }}</small>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
