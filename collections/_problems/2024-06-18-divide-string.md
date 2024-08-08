@@ -54,28 +54,22 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/140108
 
 using namespace std;
 
-int solution(string s)
-{
+int solution(string s) {
     int answer = 0;
 
     char x = s[0];
     int count_x = 0;
     int count_other = 0;
 
-    for (int i = 0; i < s.size(); i++)
-    {
-        if (x == s[i])
-        {
+    for (int i = 0; i < s.size(); i++) {
+        if (x == s[i]) {
             count_x++;
-        }
-        else
-        {
+        } else {
             count_other++;
         }
 
         // x와 같은 문자 갯수와 x와 다른 문자 갯수가 같아지는 순간 세기
-        if (count_x == count_other)
-        {
+        if (count_x == count_other) {
             answer++;
             count_x = 0;
             count_other = 0;
@@ -84,16 +78,14 @@ int solution(string s)
     }
 
     // 짜투리로 남은 문자열도 세기
-    if (count_x != count_other)
-    {
+    if (count_x != count_other) {
         answer++;
     }
 
     return answer;
 }
 
-int main()
-{
+int main() {
     string s1 = "banana";
     cout << solution(s1) << endl;
 

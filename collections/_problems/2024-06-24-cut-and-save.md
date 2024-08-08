@@ -48,13 +48,11 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120913
 
 using namespace std;
 
-vector<string> solution(string my_str, int n)
-{
+vector<string> solution(string my_str, int n) {
     vector<string> answer;
 
     // 0부터 문자열의 길이까지 n씩 증가시키며 반복
-    for (int i = 0; i < my_str.length(); i += n)
-    {
+    for (int i = 0; i < my_str.length(); i += n) {
         // i부터 n개의 문자를 잘라서 vector에 추가
         answer.push_back(my_str.substr(i, n));
     }
@@ -62,11 +60,9 @@ vector<string> solution(string my_str, int n)
     return answer;
 }
 
-int print(vector<string> result)
-{
+int print(vector<string> result) {
 
-    for (string str : result)
-    {
+    for (string str : result) {
         cout << str << " ";
     }
     cout << endl;
@@ -74,8 +70,7 @@ int print(vector<string> result)
     return 0;
 }
 
-int main()
-{
+int main() {
     print(solution("abc1Addfggg4556b", 6));
     print(solution("abcdef123", 3));
 }

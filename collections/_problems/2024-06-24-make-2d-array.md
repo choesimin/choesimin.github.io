@@ -48,13 +48,11 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120842
 
 using namespace std;
 
-vector<vector<int>> solution(vector<int> num_list, int n)
-{
+vector<vector<int>> solution(vector<int> num_list, int n) {
     vector<vector<int>> answer;
 
     // 자를 갯수만큼 증가시키며 반복
-    for (int i = 0; i < num_list.size(); i += n)
-    {
+    for (int i = 0; i < num_list.size(); i += n) {
         // i부터 i+n까지 잘라서 vector로 만들기
         vector<int> row(num_list.begin() + i, num_list.begin() + i + n);
         answer.push_back(row);
@@ -63,12 +61,9 @@ vector<vector<int>> solution(vector<int> num_list, int n)
     return answer;
 }
 
-void print(vector<vector<int>> result)
-{
-    for (vector<int> row : result)
-    {
-        for (int num : row)
-        {
+void print(vector<vector<int>> result) {
+    for (vector<int> row : result) {
+        for (int num : row) {
             cout << num << " ";
         }
         cout << endl;
@@ -76,8 +71,7 @@ void print(vector<vector<int>> result)
     cout << endl;
 }
 
-int main()
-{
+int main() {
     print(solution({1, 2, 3, 4, 5, 6, 7, 8}, 2));
     print(solution({100, 95, 2, 4, 5, 6, 18, 33, 948}, 3));
 }
