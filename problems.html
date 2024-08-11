@@ -21,7 +21,7 @@ layout: none
       <li>
         <a href="{{ problem.url | relative_url }}">
           {{ problem.category }} <b>{{ problem.title }} ({{ problem.tags }})</b>
-          <small> : {{ problem.date | date: '%Y.%m.%d' }}</small>
+          <small>on {{ problem.date | date: '%Y.%m.%d' }}</small>
         </a>
       </li>
       {% endfor %}
