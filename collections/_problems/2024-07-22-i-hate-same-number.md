@@ -1,8 +1,9 @@
-/*
-# 같은 숫자는 싫어
-
-<https://school.programmers.co.kr/learn/courses/30/lessons/12906>
-
+---
+layout: problem
+title: 같은 숫자는 싫어
+category: programmers
+tags: stack
+source: https://school.programmers.co.kr/learn/courses/30/lessons/12906
 ---
 
 # 문제 설명
@@ -14,14 +15,10 @@
 
 배열 arr에서 연속적으로 나타나는 숫자는 제거하고 남은 수들을 return 하는 solution 함수를 완성해 주세요.
 
----
-
 # 제한사항
 
 - 배열 arr의 크기 : 1,000,000 이하의 자연수
 - 배열 arr의 원소의 크기 : 0보다 크거나 같고 9보다 작거나 같은 정수
-
----
 
 # 입출력 예
 
@@ -30,16 +27,17 @@
 | [1,1,3,3,0,1,1] | [1,3,0,1] |
 | [4,4,4,3,3] | [4,3] |
 
----
-
 # 입출력 예 설명
 
 ## 입출력 예 #1,2
 
 문제의 예시와 같습니다.
 
-*/
+---
 
+# Solution
+
+```cpp
 #include <string>
 #include <vector>
 #include <stack>
@@ -48,23 +46,19 @@
 
 using namespace std;
 
-vector<int> solution(vector<int> arr)
-{
+vector<int> solution(vector<int> arr) {
     vector<int> answer;
     stack<int> stk;
 
-    for (int i = 0; i < arr.size(); i++)
-    {
+    for (int i = 0; i < arr.size(); i++) {
         int num = arr[i];
 
-        if (i == 0 || stk.top() != num)
-        {
+        if (i == 0 || stk.top() != num) {
             stk.push(num);
         }
     }
 
-    while (!stk.empty())
-    {
+    while (!stk.empty()) {
         answer.push_back(stk.top());
         stk.pop();
     }
@@ -73,10 +67,8 @@ vector<int> solution(vector<int> arr)
     return answer;
 }
 
-int print(vector<int> result)
-{
-    for (int num : result)
-    {
+int print(vector<int> result) {
+    for (int num : result) {
         cout << num << " ";
     }
     cout << endl;
@@ -84,8 +76,8 @@ int print(vector<int> result)
     return 0;
 }
 
-int main()
-{
+int main() {
     print(solution({1, 1, 3, 3, 0, 1, 1}));
     print(solution({4, 4, 4, 3, 3}));
 }
+```
