@@ -192,6 +192,9 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/118666
 
 ---
 
+# Solution
+
+{% raw %}
 ```cpp
 #include <string>
 #include <vector>
@@ -234,3 +237,4 @@ int main() {
     cout << solution(survey2, choices2) << endl;
 }
 ```
+{% endraw %}
