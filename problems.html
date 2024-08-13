@@ -1,6 +1,7 @@
 ---
 layout: none
 ---
+
 <html lang="ko">
   <head>
     <title>C++ PS</title>
@@ -11,6 +12,9 @@ layout: none
       ul a {
         text-decoration: none;
       }
+      li {
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
@@ -20,8 +24,14 @@ layout: none
       {% for problem in site.problems %}
       <li>
         <a href="{{ problem.url | relative_url }}">
-          {{ problem.category }} <b>{{ problem.title }} ({{ problem.tags }})</b>
-          <small>on {{ problem.date | date: '%Y.%m.%d' }}</small>
+          {{ problem.category }}
+          <b>{{ problem.title }}</b>
+          <small>({{ problem.tags }})</small>
+          <sup>
+            <small>
+              <i>{{ problem.date | date: '%Y.%m.%d' }}</i>
+            </small>
+          </sup>
         </a>
       </li>
       {% endfor %}
