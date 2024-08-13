@@ -27,11 +27,7 @@ layout: none
           {{ problem.category }}
           <b>{{ problem.title }}</b>
           <small>({{ problem.tags }})</small>
-          <sup>
-            <small>
-              <i>{{ problem.date | date: '%Y.%m.%d' }}</i>
-            </small>
-          </sup>
+          <sup><small>{{ problem.date | date: '%Y.%m.%d' }}</small></sup>
         </a>
       </li>
       {% endfor %}
