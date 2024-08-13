@@ -1,13 +1,14 @@
-/*
-# 요세푸스 문제
-
-<https://www.acmicpc.net/problem/1158>
+---
+layout: problem
+title: 요세푸스 문제
+category: baekjoon
+tags: queue
+source: https://www.acmicpc.net/problem/1158
+---
 
 | 시간 제한 | 메모리 제한 |
 | --- | --- |
 | 2 초 | 256 MB |
-
----
 
 # 문제
 
@@ -17,41 +18,31 @@
 
 N과 K가 주어지면 (N, K)-요세푸스 순열을 구하는 프로그램을 작성하시오.
 
----
-
 # 입력
 
 첫째 줄에 N과 K가 빈 칸을 사이에 두고 순서대로 주어진다. (1 ≤ K ≤ N ≤ 5,000)
-
----
 
 # 출력
 
 예제와 같이 요세푸스 순열을 출력한다.
 
----
-
 # 예제
 
 ## 입력 1
 
-```
+```txt
 7 3
 ```
 
 ## 출력 1
 
-```
+```txt
 <3, 6, 2, 7, 5, 1, 4>
 ```
-
----
 
 # 출처
 
 - 문제를 만든 사람: author5
-
----
 
 # 알고리즘 분류
 
@@ -59,38 +50,36 @@ N과 K가 주어지면 (N, K)-요세푸스 순열을 구하는 프로그램을 �
 - 자료 구조
 - 큐
 
-*/
+---
 
+# Solution
+
+```cpp
 #include <iostream>
 #include <queue>
 
 using namespace std;
 
-int main()
-{
+int main() {
     int N, K;
     cin >> N >> K;
 
     queue<int> que;
-    for (int i = 1; i <= N; ++i)
-    {
+    for (int i = 1; i <= N; ++i) {
         que.push(i);
     }
 
     string result = "<";
 
-    while (!que.empty())
-    {
-        for (int i = 0; i < K - 1; i++)
-        {
+    while (!que.empty()) {
+        for (int i = 0; i < K - 1; i++) {
             que.push(que.front());
             que.pop();
         }
         result += to_string(que.front());
         que.pop();
 
-        if (!que.empty())
-        {
+        if (!que.empty()) {
             result += ", ";
         }
     }
@@ -100,3 +89,4 @@ int main()
 
     return 0;
 }
+```

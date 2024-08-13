@@ -25,6 +25,7 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/12950
 
 # Solution
 
+{% raw %}
 ```cpp
 #include <string>
 #include <vector>
@@ -63,3 +64,4 @@ int main() {
     print(solution({{1}, {2}}, {{3}, {4}}));
 }
 ```
+{% endraw %}

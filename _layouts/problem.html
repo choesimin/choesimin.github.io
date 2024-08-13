@@ -3,6 +3,7 @@
     <title>[C++ PS] {{ page.title }} ({{ page.category }})</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>hljs.highlightAll();</script>
     <style>
       body {
@@ -39,4 +40,16 @@
     <hr />
     {{ content }}
   </body>
+  <script>
+    renderMermaid();
+
+    async function renderMermaid() {
+      mermaid.initialize({
+        theme: "neutral",
+        startOnLoad: false,
+        securityLevel: "loose",
+      });
+      await mermaid.run({ querySelector: ".language-mermaid" });
+    }
+  </script>
 </html>
