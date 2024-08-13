@@ -1,13 +1,19 @@
 <html lang="ko">
   <head>
     <title>[C++ PS] {{ page.title }} ({{ page.category }})</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+      hljs.highlightAll();
+    </script>
     <style>
       body {
         font-family: "Noto Sans KR", sans-serif;
+        line-height: 1.6;
       }
       table,
       th,
@@ -15,6 +21,7 @@
         border: 1px solid;
         border-collapse: collapse;
       }
+      th,
       td {
         padding: 2px 10px;
       }
@@ -23,6 +30,11 @@
       }
       h1:not(:first-child) {
         margin-top: 50px;
+      }
+      code.language-plaintext:not(.hljs) {
+        background-color: gainsboro;
+        border-radius: 3px;
+        padding: 2px 3px;
       }
     </style>
   </head>
