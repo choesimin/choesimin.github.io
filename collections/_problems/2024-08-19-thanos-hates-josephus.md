@@ -20,7 +20,7 @@ N, K가 주어질 때 마지막으로 남는 청설모의 번호를 구하여라
 
 # 입력
 
-첫째 줄에 정수 N과 K가 공백을 사이에 두고 주어진다. (2 <= N, K <= 10^6)
+첫째 줄에 정수 N과 K가 공백을 사이에 두고 주어진다. (2 ≤ N, K ≤ 10^6)
 
 # 출력
 
@@ -98,6 +98,33 @@ University > 서강대학교 > 2023 서강대학교 청정수컵 > Open Contest 
 using namespace std;
 
 int main() {
+    int N, K;
+    cin >> N >> K;
+
+    // 청설모를 queue에 넣기
+    queue<int> squirrels;
+    for (int i = 1; i <= N; i++) {
+        squirrels.push(i);
+    }
+
+    // 청설모가 1마리 남을 때까지 타노스의 방식으로 숫자 제거하기
+    while (squirrels.size() > 1) {
+        // 첫 번째 청설모는 따로 보관하기 (나중에 다시 queue에 넣어줌)
+        int first = squirrels.front();
+        squirrels.pop();
+
+        // K-1마리의 청설모를 queue에서 순서대로 제거하기
+        int limit = min(K-1, (int)squirrels.size());
+        for (int i = 0; i < limit; i++) {
+            squirrels.pop();
+        }
+
+        // 첫 번째 청설모를 다시 queue에 넣기
+        squirrels.push(first);
+    }
+
+    // 마지막으로 남은 청설모의 번호 출력하기
+    cout << squirrels.front() << endl;
     return 0;
 }
 ```
