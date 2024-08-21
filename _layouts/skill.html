@@ -1,83 +1,282 @@
----
-layout: skill-base
----
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>{{ page.title }}</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1"
+    />
 
-<link rel="stylesheet" href="{{ '/assets/css/skill.css' | relative_url }}" />
+    <meta name="description" content="{{ page.description }}" />
+    <!-- <meta name="keywords" content="{{ page.tags }}" /> -->
+    <meta name="author" content="{{ site.author }}" />
 
-<div id="progressBar"></div>
+    <meta property="og:title" content="{{ page.title }}" />
+    <!-- <meta property="og:description" content="{{ page.description }}" /> -->
+    <!-- <meta property="og:image" content="{{ site.skill.logo | absolute_url }}" /> -->
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:type" content="website" />
 
-<h1 id="title">&nbsp</h1>
-<p id="date">&nbsp</p>
+    <meta name="twitter:card" content="{{ site.skill.logo | absolute_url }}" />
+    <meta name="twitter:title" content="{{ page.title }}" />
+    <!-- <meta name="twitter:description" content="{{ page.description }}" /> -->
+    <meta name="twitter:image" content="{{ site.skill.logo | absolute_url }}" />
 
-<div id="content">
-  <div id="index">
-    <a onclick="toggleIndex()">≡</a>
-    <ul></ul>
-  </div>
-  <article>{{ content }}</article>
-</div>
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 
-<div id="stamp">
-  <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}" />
-</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="{{ '/assets/js/typing-effect.js' | relative_url }}"></script>
 
-<div id="related">
-  {% assign original_url = page.url %}
-  {% assign parts = page.url | split: "/skills/" %}
-  {% assign path = parts[1] | split: "/" %}
-  {% assign new_path = path[0] %}
-  {% assign new_url = site.url | append: "/skills#" | append: new_path %}
-  <a href="{{ new_url }}">관련 글 보러가기 > #{{ new_path }}</a>
-</div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/skill.css' | relative_url }}"
+    />
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: var(--highlight-color);
+      }
 
-<script>
-  const title = document.getElementById("title");
-  const date = document.getElementById("date");
-  type(title, "{{ page.title }}");
-  type(date, '{{ page.date | date: "%Y년 %-m월 %e일" }}', 80);
+      h1,
+      h2,
+      h3 {
+        margin-top: 60px;
+      }
 
-  const indexList = document
-    .getElementById("index")
-    .getElementsByTagName("ul")[0];
+      h4,
+      h5,
+      h6 {
+        margin-top: 40px;
+      }
 
-  function toggleIndex() {
-    if (indexList.style.display === "block") {
-      indexList.style.display = "none";
-    } else {
-      indexList.style.display = "block";
+      p {
+        margin: 0;
+      }
+
+      ol,
+      ul {
+        padding-left: 20px;
+      }
+
+      code.hljs {
+        border: 1px solid var(--border-color);
+      }
+
+      code.language-plaintext:not(.hljs) {
+        color: var(--highlight-color);
+        background-color: var(--background-highlight-color);
+        border-radius: 3px;
+        padding: 2px 3px;
+      }
+
+      blockquote {
+        margin: 0;
+        padding: 4px 20px;
+        border-left: 5px solid var(--border-color);
+        background-color: var(--background-highlight-color);
+      }
+
+      article > ul > li {
+        padding: 10px 0;
+      }
+
+      article > ol > li {
+        padding: 10px 0;
+      }
+
+      #progressBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 4px;
+        background-color: var(--color);
+        z-index: 100;
+      }
+
+      #title {
+        min-height: 50px;
+        padding-top: 50px;
+        margin-bottom: 0px;
+        line-height: 1;
+        text-align: center;
+      }
+
+      #date {
+        height: 40px;
+        font-size: 17px;
+        opacity: 0.5;
+        text-align: center;
+      }
+
+      #content {
+        position: relative;
+      }
+
+      #index {
+        position: sticky;
+        top: 10px;
+        z-index: 100;
+      }
+
+      #index > a {
+        float: right;
+        margin: 0;
+        padding: 0;
+        font-size: 40px;
+        line-height: 1;
+      }
+
+      #index a:hover {
+        cursor: pointer;
+      }
+
+      #index ul {
+        display: none;
+        margin: 0;
+        padding: 20px 25px;
+        position: absolute;
+        top: 30px;
+        right: 0px;
+        background-color: var(--background-color);
+        border: 1px solid var(--border-color);
+        opacity: 0.9;
+      }
+
+      #index ul li {
+        list-style: none;
+      }
+
+      #index ul li a {
+        text-decoration: none;
+      }
+
+      #stamp {
+        margin-top: 70px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      #stamp img {
+        width: 80px;
+      }
+
+      #related {
+        margin-top: 150px;
+        text-align: right;
+      }
+
+      #related a {
+        font-weight: bolder;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include header.html %}
+    <main>
+      <div id="progressBar"></div>
+
+      <h1 id="title">&nbsp</h1>
+      <p id="date">&nbsp</p>
+
+      <div id="content">
+        <div id="index">
+          <a onclick="toggleIndex()">≡</a>
+          <ul></ul>
+        </div>
+        <article>{{ content }}</article>
+      </div>
+
+      <div id="stamp">
+        <img
+          src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}"
+        />
+      </div>
+
+      <div id="related">
+        {% assign original_url = page.url %} {% assign parts = page.url | split:
+        "/skills/" %} {% assign path = parts[1] | split: "/" %} {% assign
+        new_path = path[0] %} {% assign new_url = site.url | append: "/skills#"
+        | append: new_path %}
+        <a href="{{ new_url }}">관련 글 보러가기 > #{{ new_path }}</a>
+      </div>
+    </main>
+    {% include footer.html %}
+  </body>
+
+  <script>
+    hljs.highlightAll();
+    renderMermaid();
+
+    async function renderMermaid() {
+      mermaid.initialize({
+        theme: "neutral",
+        startOnLoad: false,
+        securityLevel: "loose",
+      });
+      await mermaid.run({ querySelector: ".language-mermaid" });
     }
-  }
 
-  const headers = document.querySelectorAll("h2,h3,h4,h5,h6");
-  for (let i = 0; i < headers.length; i++) {
-    const header = headers[i];
+    const title = document.getElementById("title");
+    const date = document.getElementById("date");
+    type(title, "{{ page.title }}");
+    type(date, '{{ page.date | date: "%Y년 %-m월 %e일" }}', 80);
 
-    const anchor = document.createElement("a");
-    anchor.innerHTML = header.innerText;
-    anchor.href = "#" + header.id;
+    const indexList = document
+      .getElementById("index")
+      .getElementsByTagName("ul")[0];
 
-    const item = document.createElement("li");
-    item.appendChild(anchor);
-    item.style.marginLeft =
-      (parseInt(header.tagName.replace("H", "")) - 2) * 15 + "px";
+    function toggleIndex() {
+      if (indexList.style.display === "block") {
+        indexList.style.display = "none";
+      } else {
+        indexList.style.display = "block";
+      }
+    }
 
-    indexList.appendChild(item);
+    const headers = document.querySelectorAll("h2,h3,h4,h5,h6");
+    for (let i = 0; i < headers.length; i++) {
+      const header = headers[i];
 
-    item.getElementsByTagName("a")[0].addEventListener("click", (e) => {
-      toggleIndex();
-    });
-  }
+      const anchor = document.createElement("a");
+      anchor.innerHTML = header.innerText;
+      anchor.href = "#" + header.id;
 
-  const progressBar = document.getElementById("progressBar");
-  let scrolling;
-  window.onscroll = function () {
-    var winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    var height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
+      const item = document.createElement("li");
+      item.appendChild(anchor);
+      item.style.marginLeft =
+        (parseInt(header.tagName.replace("H", "")) - 2) * 15 + "px";
 
-    progressBar.style.width = scrolled + "%";
-  };
-</script>
+      indexList.appendChild(item);
+
+      item.getElementsByTagName("a")[0].addEventListener("click", (e) => {
+        toggleIndex();
+      });
+    }
+
+    const progressBar = document.getElementById("progressBar");
+    let scrolling;
+    window.onscroll = function () {
+      var winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      var height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+
+      progressBar.style.width = scrolled + "%";
+    };
+  </script>
+</html>
