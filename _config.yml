@@ -1,12 +1,6 @@
 title: SIMIN
 author: 최시민
 
-skill:
-  title: 기술시민
-  description: 기술 지식을 기록합니다.
-  logo: /assets/img/skill-stamp/black.png
-  keywords: 기술, 개발, IT, Backend, 글쓰기
-
 collections_dir: collections
 
 collections:

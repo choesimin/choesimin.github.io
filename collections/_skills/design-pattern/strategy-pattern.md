@@ -7,7 +7,7 @@ date: 2023-07-03
 
 
 
-- State Pattern을 이용하면 algorithm을 상황에 따라 변경해가며 사용할 수 있습니다.
+- Strategy Pattern을 이용하면 algorithm을 상황에 따라 변경해가며 사용할 수 있습니다.
     - 동일한 목적을 지닌 algorithm group을 정의하고 각각을 캡슐화(encapsulation)하여 group 내의 algorithm을 교환해서 사용할 수 있도록 합니다.
     - algorithm을 사용하는 client에서 algorithm을 분리하기 때문에 독립적으로 algorithm을 변경할 수 있습니다.
 

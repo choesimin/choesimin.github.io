@@ -2,10 +2,10 @@
 <html lang="ko">
   <head>
     <title>{{ page.title }}</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css"
-    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
@@ -15,6 +15,13 @@
       body {
         font-family: "Noto Sans KR", sans-serif;
         line-height: 1.6;
+      }
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      a {
+        color: black;
       }
       table,
       th,
@@ -40,18 +47,20 @@
     </style>
   </head>
   <body>
-    <h1>{{ page.title }}</h1>
-    <p>
-      날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}
-      <br />
-      기술 : {{ page.tags }}
-      <br />
-      언어 : C++
-      <br />
-      출처 : <a href="{{ page.source }}" target="_blank">{{ page.category }}</a>
-    </p>
-    <hr />
-    {{ content }}
+    <main>
+      <h1>{{ page.title }}</h1>
+      <p>
+        날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}
+        <br />
+        기술 : {{ page.tags }}
+        <br />
+        언어 : C++
+        <br />
+        출처 : <a href="{{ page.source }}" target="_blank">{{ page.category | capitalize }}</a>
+      </p>
+      <hr />
+      {{ content }}
+    </main>
   </body>
   <script>
     renderMermaid();
