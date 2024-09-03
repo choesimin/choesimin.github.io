@@ -32,9 +32,9 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/42746
 # Solution
 
 ```cpp
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 #include <algorithm>
 
 using namespace std;

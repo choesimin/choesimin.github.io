@@ -46,10 +46,10 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/42576
 # Solution
 
 ```cpp
+#include <iostream>
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <iostream>
 
 using namespace std;
 

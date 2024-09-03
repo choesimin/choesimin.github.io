@@ -52,10 +52,10 @@ PROGRAMMERS-962 행성에 불시착한 우주비행사 머쓱이는 외계행성
 # Solution
 
 ```cpp
+#include <iostream>
 #include <string>
 #include <vector>
 #include <set>
-#include <iostream>
 
 using namespace std;
 

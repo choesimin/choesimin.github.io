@@ -38,11 +38,11 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/12906
 # Solution
 
 ```cpp
+#include <iostream>
 #include <string>
 #include <vector>
 #include <stack>
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 

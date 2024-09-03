@@ -43,8 +43,8 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120842
 # Solution
 
 ```cpp
-#include <vector>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 

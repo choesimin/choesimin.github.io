@@ -42,9 +42,9 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120913
 # Solution
 
 ```cpp
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 
 using namespace std;
 

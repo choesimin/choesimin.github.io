@@ -38,9 +38,9 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120899
 # Solution
 
 ```cpp
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 
 using namespace std;
 
