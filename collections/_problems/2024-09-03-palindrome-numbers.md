@@ -35,6 +35,14 @@ source: https://www.acmicpc.net/problem/1259
 0
 ```
 
+## 출력 1
+
+```txt
+yes
+no
+yes
+```
+
 # 출처
 
 ICPC > Regionals > South Pacific > South Pacific Region > New Zealand Programming Contest > NZPC 2006 B번
