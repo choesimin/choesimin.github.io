@@ -13,7 +13,8 @@ desc: Guess the number between 1 and 100!
     <title>업 다운 게임</title>
     <style>
         :root {
-            --theme-color: #007bff; /* 초기 테마 색상 */
+            --theme-color: #111111; /* 초기 테마 색상 */
+            --theme-dark-color: #000000; /* 초기 진한 테마 색상 */
         }
 
         body {
@@ -23,7 +24,7 @@ desc: Guess the number between 1 and 100!
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: var(--theme-color);
+            background-color: var(--theme-dark-color);
             transition: background-color 0.5s ease;
         }
         .game-container {
@@ -57,7 +58,7 @@ desc: Guess the number between 1 and 100!
         }
         input:focus {
             outline: none;
-            border-color: #764ba2;
+            border-color: var(--theme-dark-color);
         }
         button {
             background-color: var(--theme-color);
@@ -70,7 +71,7 @@ desc: Guess the number between 1 and 100!
             transition: background-color 0.5s ease, transform 0.1s ease;
         }
         button:hover {
-            background-color: #764ba2;
+            background-color: var(--theme-dark-color);
         }
         button:active {
             transform: scale(0.98);
@@ -79,8 +80,6 @@ desc: Guess the number between 1 and 100!
             font-weight: bold;
             margin-top: 20px;
             padding: 10px;
-            border-radius: 10px;
-            background-color: #f0f0f0;
         }
         .adjust-buttons {
             display: flex;
@@ -128,12 +127,21 @@ desc: Guess the number between 1 and 100!
             const r = Math.floor(Math.random() * 128);
             const g = Math.floor(Math.random() * 128);
             const b = Math.floor(Math.random() * 128);
-            return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function darkenColor(color) {
+            const rgbValues = color.match(/\d+/g);
+            const darkerValues = rgbValues.map(value => Math.max(0, parseInt(value) - 30));
+            return `rgb(${darkerValues.join(', ')})`;
         }
 
         function changeThemeColor() {
             const newThemeColor = generateRandomColor();
+            const newDarkThemeColor = darkenColor(newThemeColor);
+            
             document.documentElement.style.setProperty('--theme-color', newThemeColor);
+            document.documentElement.style.setProperty('--theme-dark-color', newDarkThemeColor);
             document.documentElement.style.setProperty('--background-color', newThemeColor);
         }
 
