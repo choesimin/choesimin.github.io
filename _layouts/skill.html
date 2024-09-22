@@ -3,40 +3,14 @@
   <head>
     <title>{{ page.title }}</title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1"
-    />
-
-    <meta name="description" content="{{ page.description }}" />
-    <!-- <meta name="keywords" content="{{ page.tags }}" /> -->
-    <meta name="author" content="{{ site.author }}" />
-
-    <meta property="og:title" content="{{ page.title }}" />
-    <!-- <meta property="og:description" content="{{ page.description }}" /> -->
-    <!-- <meta property="og:image" content="{{ site.skill.logo | absolute_url }}" /> -->
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-    <meta property="og:type" content="website" />
-
-    <meta name="twitter:card" content="{{ site.skill.logo | absolute_url }}" />
-    <meta name="twitter:title" content="{{ page.title }}" />
-    <!-- <meta name="twitter:description" content="{{ page.description }}" /> -->
-    <meta name="twitter:image" content="{{ site.skill.logo | absolute_url }}" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+    <meta name="description" content="{{ page.excerpt | strip_html | truncatewords: 25 }}" />
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script src="{{ '/assets/js/typing-effect.js' | relative_url }}"></script>
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ '/assets/css/skill.css' | relative_url }}"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css" />
+    <link rel="stylesheet" href="{{ '/assets/css/skill.css' | relative_url }}" />
     <style>
       h1,
       h2,
@@ -200,9 +174,7 @@
       </div>
 
       <div id="stamp">
-        <img
-          src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}"
-        />
+        <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}" />
       </div>
 
       <div id="related">

@@ -38,8 +38,8 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120839
 # Solution
 
 ```cpp
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 

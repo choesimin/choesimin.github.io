@@ -40,9 +40,9 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120864
 # Solution
 
 ```cpp
-#include <cctype>
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using namespace std;
 

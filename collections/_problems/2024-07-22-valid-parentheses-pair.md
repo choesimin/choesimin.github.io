@@ -40,9 +40,9 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/12909
 # Solution
 
 ```cpp
+#include <iostream>
 #include <string>
 #include <stack>
-#include <iostream>
 
 using namespace std;
 

@@ -64,8 +64,8 @@ ICPC > Regionals > Europe > Northwestern European Regional Contest > Benelux Alg
 
 ```cpp
 #include <iostream>
-#include <stack>
 #include <string>
+#include <stack>
 
 using namespace std;
 

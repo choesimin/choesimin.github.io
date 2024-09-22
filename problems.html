@@ -4,33 +4,47 @@ layout: none
 
 <html lang="ko">
   <head>
-    <title>C++ PS</title>
+    <title>C++ Algorithm PS</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+    <meta name="description" content="C++를 사용하여 Algorithm 문제를 풉니다." />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
     <style>
       body {
         font-family: "Noto Sans KR", sans-serif;
+      }
+      a {
+        color: black;
+      }
+      main {
+        max-width: 800px;
+        margin: 0 auto;
       }
       ul a {
         text-decoration: none;
       }
       li {
         margin-top: 10px;
+        list-style: decimal
       }
     </style>
   </head>
   <body>
-    <h1>Algorithm Problem Solving <small>with C++</small></h1>
-    <h4><a href="{{ '/skills' | relative_url }}">기술시민으로 돌아가기</a></h4>
-    <ul>
-      {% for problem in site.problems %}
-      <li>
-        <a href="{{ problem.url | relative_url }}">
-          {{ problem.category }}
-          <b>{{ problem.title }}</b>
-          <small>({{ problem.tags }})</small>
-          <sup><small>{{ problem.date | date: '%Y.%m.%d' }}</small></sup>
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
+    <main>
+      <h1>Algorithm Problem Solving <small>with C++</small></h1>
+      <h4><a href="{{ '/skills' | relative_url }}">기술시민으로 돌아가기</a></h4>
+      <ul>
+        {% for problem in site.problems %}
+        <li>
+          <a href="{{ problem.url | relative_url }}">
+            {{ problem.category | capitalize }}
+            <b>{{ problem.title }}</b>
+            <small>({{ problem.tags }})</small>
+            <sup><small>{{ problem.date | date: '%Y.%m.%d' }}</small></sup>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </main>
   </body>
 </html>

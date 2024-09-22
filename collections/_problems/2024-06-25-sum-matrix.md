@@ -27,9 +27,9 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/12950
 
 {% raw %}
 ```cpp
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 
 using namespace std;
 

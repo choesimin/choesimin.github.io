@@ -37,10 +37,10 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120844
 # Solution
 
 ```cpp
+#include <iostream>
 #include <string>
 #include <vector>
 #include <queue>
-#include <iostream>
 
 using namespace std;
 

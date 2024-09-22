@@ -83,8 +83,8 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/77484
 # Solution
 
 ```cpp
-#include <vector>
 #include <iostream>
+#include <vector>
 #include <set>
 
 using namespace std;

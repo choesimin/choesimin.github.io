@@ -42,8 +42,8 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120902
 
 ```cpp
 #include <iostream>
-#include <sstream>
 #include <string>
+#include <sstream>
 #include <vector>
 
 using namespace std;
