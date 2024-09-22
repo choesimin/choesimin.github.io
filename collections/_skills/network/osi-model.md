@@ -1,7 +1,7 @@
 ---
 layout: skill
 title: OSI Model (OSI 7 계층)
-date: 2024-09-20
+date: 2024-09-22
 ---
 
 
@@ -290,7 +290,7 @@ date: 2024-09-20
     - **장치 식별** : internet에 연결된 수많은 장치들을 구별하여 통신을 가능하게 합니다.
         - 각 장치에 고유한 논리적인 주소 체계(IP 주소)를 부여하여 internet 상에서 식별 가능하도록 합니다.
     - **Data 전달** : data가 정확한 목적지에 도달할 수 있도록 경로 정보를 제공합니다.
-    - **Network 관리** : network 관리자는 IP 주소를 통해 network 트래픽을 모니터링하고 제어할 수 있습니다.
+    - **Network 관리** : network 관리자는 IP 주소를 통해 network traffic을 모니터링하고 제어할 수 있습니다.
 
 - IP 주소는 크게 IPv4와 IPv6 두 가지 버전으로 나뉩니다.
     - **IPv4** : 32bit 주소 체계로, 약 43억 개의 주소를 생성할 수 있습니다.
@@ -619,44 +619,44 @@ date: 2024-09-20
 
 | 특징 | 설명 |
 | --- | --- |
-| **Protocol** | ASCII, Unicode, MIME, EBCDIC, UTF-8, MBCS. EUC-KR, JPG, MP3, MPEG 등 |
+| **Protocol** | ASCII, Unicode, MIME, EBCDIC, UTF-8, MBCS, EUC-KR, JPG, MP3, MPEG 등 |
 
 - **표현 계층**은 **응용 계층에서 주고받는 data를 서로 이해할 수 있는 형태로 변환**하는 역할을 담당합니다.
     - **code 간의 번역**을 담당하여 사용자 system에서 data의 형식상 차이를 다루는 부담을 응용 계층으로부터 덜어 줍니다.
-    - **서로 다른 system 간의 data 형식 차이를 해결**하여 원활한 통신을 가능하게 합니다.
+    - 서로 다른 system 간의 **data 형식 차이를 해결**하여 원활한 통신을 가능하게 합니다.
 
 - 표현 계층은 사용자가 직접 인지하지 못하는 경우가 많지만, 응용 program들이 서로 다른 system과 통신할 때 data를 올바르게 해석하고 처리할 수 있도록 중요한 역할을 수행합니다.
 
 - MIME encoding이나 암호화 등의 동작이 이 계층에서 이루어집니다.
     - 예를 들면, EBCDIC로 encoding된 문서 file을 ASCII로 encoding된 file로 바꿔 주는 것은 표현 계층의 몫입니다.
-    - 최근에는 문자 data 외에도 음성, 동영상 등 멀티미디어 트래픽, data도 포함됩니다.
+    - 최근에는 문자 data 외에도 음성, 동영상 등 multimedea traffic, data도 포함됩니다.
 
 
 ### 표현 계층의 주요 기능
 
-#### data 형식 변환
+#### Data 형식 변환
 
-- **code 변환** : 서로 다른 문자 code(ASCII, EBCDIC, Unicode 등)를 변환하여 system 간 호환성을 보장합니다.
-- **data 압축 및 암호화** : data 크기를 줄이거나 보안을 강화하기 위해 압축 및 암호화를 수행합니다.
-- **file 형식 변환** : 이미지, 동영상, 문서 등 다양한 file 형식을 변환하여 다른 system에서도 열고 사용할 수 있도록 합니다.
+- **Code 변환** : 서로 다른 문자 code(ASCII, EBCDIC, Unicode 등)를 변환하여 system 간 호환성을 보장합니다.
+- **Data 압축 및 암호화** : data 크기를 줄이거나 보안을 강화하기 위해 압축 및 암호화를 수행합니다.
+- **File 형식 변환** : image, 동영상, 문서 등 다양한 file 형식을 변환하여 다른 system에서도 열고 사용할 수 있도록 합니다.
 
-#### data 구조 표현
+#### Data 구조 표현
 
 - **추상 구문 표기법 (ASN.1)** : data 구조를 표현하는 표준 방식으로, 서로 다른 system 간에 복잡한 data 구조를 교환할 때 사용됩니다.
-- **XML, JSON** : data를 구조화하여 표현하는 데 널리 사용되는 마크업 언어 및 data 교환 형식입니다.
+- **XML, JSON** : data를 구조화하여 표현하는 데 널리 사용되는 markup 언어 및 data 교환 형식입니다.
 
 
 ### 표현 계층의 중요성
 
-- **system 간 호환성** : 서로 다른 system 간의 data 형식 차이를 해결하여 원활한 통신을 가능하게 합니다.
-- **data 효율성** : data 압축을 통해 network 대역폭을 절약하고 전송 시간을 단축합니다.
-- **data 보안** : 암호화를 통해 data를 보호하고 무단 접근을 방지합니다.
+- **System 간 호환성** : 서로 다른 system 간의 data 형식 차이를 해결하여 원활한 통신을 가능하게 합니다.
+- **Data 효율성** : data 압축을 통해 network 대역폭을 절약하고 전송 시간을 단축합니다.
+- **Data 보안** : 암호화를 통해 data를 보호하고 무단 접근을 방지합니다.
 
 
-### 표현 계층에서 사용되는 protocol의 예시
+### 표현 계층에서 사용되는 Protocol의 예시
 
 - **ASCII, EBCDIC, Unicode** : 문자 code 변환.
-- **JPEG, MPEG, GIF** : 이미지 및 동영상 압축.
+- **JPEG, MPEG, GIF** : image 및 동영상 압축.
 - **ZIP, RAR** : file 압축.
 - **SSL, TLS** : data 암호화.
 - **ASN.1, XML, JSON** : data 구조 표현.
@@ -668,24 +668,24 @@ date: 2024-09-20
     - email, web browsing, file 전송 등 다양한 분야에서 MIME은 data를 정확하고 효율적으로 전송하는 데 핵심적인 역할을 합니다.
 
 - MIME(Multipurpose Internet Mail Extensions)은 **internet에서 다양한 종류의 data를 전송하기 위한 표준 방식**입니다.
-    - 원래는 email을 통해 텍스트뿐만 아니라 이미지, 동영상, 음악 등 다양한 file을 전송하기 위해 개발되었지만, 현재는 web browser와 web server 간의 data 교환에도 널리 사용되고 있습니다.
+    - 원래는 email을 통해 text뿐만 아니라 image, 동영상, 음악 등 다양한 file을 전송하기 위해 개발되었지만, 현재는 web browser와 web server 간의 data 교환에도 널리 사용되고 있습니다.
 
 #### MIME의 주요 기능
 
-1. **file 형식 식별** : MIME은 각 file에 Content-Type header를 추가하여 file의 종류를 명시합니다.
+1. **File 형식 식별** : MIME은 각 file에 Content-Type header를 추가하여 file의 종류를 명시합니다.
     - 예를 들어, image/jpeg, text/html, audio/mpeg 등의 file 종류가 있습니다.
     - 이를 통해 수신 측은 file 형식을 정확히 파악하고 적절한 program으로 열 수 있습니다.
 
-2. **텍스트 encoding** : MIME은 텍스트 data의 문자 encoding 방식을 지정하여 다른 system에서도 텍스트를 올바르게 표시할 수 있도록 합니다.
+2. **Text encoding** : MIME은 text data의 문자 encoding 방식을 지정하여 다른 system에서도 text를 올바르게 표시할 수 있도록 합니다.
     - 예를 들어, UTF-8, EUC-KR 등의 encoding 방식이 있습니다.
 
-3. **file 첨부** : MIME은 email이나 web 폼을 통해 file을 첨부하여 전송할 수 있도록 지원합니다.
-    - 첨부 file은 Base64 encoding 등을 통해 텍스트 형태로 변환되어 전송됩니다.
+3. **File 첨부** : MIME은 email이나 web form을 통해 file을 첨부하여 전송할 수 있도록 지원합니다.
+    - 첨부 file은 Base64 encoding 등을 통해 text 형태로 변환되어 전송됩니다.
 
 #### MIME의 중요성
 
-- **다양한 data 전송** : MIME은 텍스트, 이미지, 동영상, 음악 등 다양한 종류의 data를 internet을 통해 안전하고 효율적으로 전송할 수 있도록 합니다.
-- **system 호환성** : MIME은 서로 다른 system 간의 data 교환을 위한 표준을 제공하여 호환성 문제를 해결합니다.
+- **다양한 Data 전송** : MIME은 text, image, 동영상, 음악 등 다양한 종류의 data를 internet을 통해 안전하고 효율적으로 전송할 수 있도록 합니다.
+- **System 호환성** : MIME은 서로 다른 system 간의 data 교환을 위한 표준을 제공하여 호환성 문제를 해결합니다.
 - **사용자 편의성** : MIME은 사용자가 다양한 종류의 file을 쉽게 주고받을 수 있도록 지원합니다.
 
 
@@ -700,15 +700,15 @@ date: 2024-09-20
 
 | 특징 | 설명 |
 | --- | --- |
-| 전송 단위 | Message 또는 Data |
-| 대표 장치 | L7 Switch, 방화벽 |
-| protocol | FTP, HTTP, HTTPS, XML, Telnet, SSH, SMTP, POP3, IMAP 등 |
+| **전송 단위** | Message 또는 Data |
+| **대표 장치** | L7 Switch, 방화벽 |
+| **Protocol** | FTP, HTTP, HTTPS, XML, Telnet, SSH, SMTP, POP3, IMAP 등 |
 
 - 응용 계층은 **응용 process와 직접 관계하여 일반적인 응용 service를 수행**하며, 사용자 또는 application이 network에 접근할 수 있도록 합니다.
-    - 응용 service의 예로, 가상 터미널(예를 들어, Telnet), JTM(Job transfer and Manipulation protocol, 표준 ISO/IEC 8832) 등이 있습니다.
+    - 응용 service의 예로, 가상 terminal(예를 들어, Telnet), JTM(Job transfer and Manipulation protocol, 표준 ISO/IEC 8832) 등이 있습니다.
 
 - 사용자를 위한 interface(UI, User Interface)를 제공하며, **사용자에게 보이는 유일한 계층**이라고 할 수 있습니다.
-    - computer나 스마트폰으로 internet을 사용할 때 직접 마주하는 계층입니다.
+    - computer나 smart phone으로 internet을 사용할 때 직접 마주하는 계층입니다.
 
 - web browser, email client, file 전송 program 등이 모두 응용 계층에서 동작하며, 사용자가 원하는 작업을 수행할 수 있도록 다양한 기능을 제공합니다. 
     - web browser에서 web page를 열 때 **HTTP protocol**을 사용합니다.
@@ -728,6 +728,7 @@ date: 2024-09-20
 
 
 ---
+
 
 
 
