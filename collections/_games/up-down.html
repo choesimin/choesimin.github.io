@@ -1,0 +1,170 @@
+---
+layout: none
+title: Up Down Game
+date: 2024-09-22
+desc: Guess the number between 1 and 100!
+---
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>업 다운 게임</title>
+    <style>
+        :root {
+            --theme-color: #007bff; /* 초기 테마 색상 */
+        }
+
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: var(--theme-color);
+            transition: background-color 0.5s ease;
+        }
+        .game-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            color: #4a4a4a;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+        button {
+            background-color: var(--theme-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.5s ease, transform 0.1s ease;
+        }
+        button:hover {
+            background-color: #764ba2;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #message {
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+        }
+        .adjust-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .adjust-buttons button {
+            padding: 5px 10px;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>업 다운 게임</h1>
+        <p>1부터 100 사이의 숫자를 맞춰보세요!</p>
+        <input type="number" id="guessInput" min="1" max="100" value="50">
+        <div class="adjust-buttons">
+            <button onclick="adjustGuess(-10)">-10</button>
+            <button onclick="adjustGuess(-1)">-1</button>
+            <button onclick="adjustGuess(1)">+1</button>
+            <button onclick="adjustGuess(10)">+10</button>
+        </div>
+        <button onclick="checkGuess()">확인</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        let targetNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function generateRandomColor() {
+            const r = Math.floor(Math.random() * 128);
+            const g = Math.floor(Math.random() * 128);
+            const b = Math.floor(Math.random() * 128);
+            return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+        }
+
+        function changeThemeColor() {
+            const newThemeColor = generateRandomColor();
+            document.documentElement.style.setProperty('--theme-color', newThemeColor);
+            document.documentElement.style.setProperty('--background-color', newThemeColor);
+        }
+
+        function checkGuess() {
+            let guess = parseInt(document.getElementById('guessInput').value);
+            attempts++;
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                setMessage('1부터 100 사이의 유효한 숫자를 입력해주세요.');
+            } else if (guess < targetNumber) {
+                setMessage(`${guess}는(은) 너무 낮습니다! 다시 시도해보세요.`);
+            } else if (guess > targetNumber) {
+                setMessage(`${guess}는(은) 너무 높습니다! 다시 시도해보세요.`);
+            } else {
+                setMessage(`축하합니다! ${attempts}번 만에 숫자를 맞추셨습니다!`);
+                document.querySelector('button').disabled = true;
+            }
+            changeThemeColor(); // 테마 색상과 배경 색상 변경
+        }
+
+        function setMessage(msg) {
+            document.getElementById('message').textContent = msg;
+        }
+
+        function adjustGuess(amount) {
+            let input = document.getElementById('guessInput');
+            let newValue = parseInt(input.value) + amount;
+            if (newValue < 1) newValue = 1;
+            if (newValue > 100) newValue = 100;
+            input.value = newValue;
+        }
+    </script>
+</body>
+</html>
