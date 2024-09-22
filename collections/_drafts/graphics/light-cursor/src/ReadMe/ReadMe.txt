@@ -1,0 +1,1 @@
+📝 The source code crafted by Muhilan (@codewith_muhilan) is copyrighted, yet feel free to use it for personal and educational purposes. However, any commercial use, such as selling or renting 💰🚫, requires explicit written permission from Muhilan. 📄✨
