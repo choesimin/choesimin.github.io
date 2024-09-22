@@ -260,39 +260,37 @@ date: 2024-09-20
 
 - Network 계층은 internet protocol suite(TCP/IP)의 핵심 계층 중 하나로, **서로 다른 network에 있는 장치들 간의 data 전송을 가능하게 하는 역할**을 합니다.
     - 경로를 선택하고 주소를 정한 뒤, 경로에 따라 packet을 전달합니다.
-        - Network 계층의 핵심 protocol은 **IP(Internet Protocol)**입니다.
-            - IP는 data를 packet 형태로 캡슐화하고, 각 packet에 출발지 및 목적지 IP 주소를 포함시켜 router들이 packet을 목적지까지 전달할 수 있도록 합니다.
-    - 현재 흔하게 사용되고 있는 **internet**이 기본적으로 Network 계층에 속하는 망이며, Network 계층이 **internet**이라는 거대한 network를 구축하고 운영하는 데 핵심적인 역할을 합니다. 
-        - internet은 수많은 computer와 network들이 서로 연결되어 정보를 주고받는 공간이며, Network 계층은 이러한 연결을 가능하게 하는 중요한 기술입니다.
-        - L3(Network 계층), L4(전송 계층), L5(Session 계층)는 보통 국제 internet 표준화 기구(IETF)에서 규격을 관리합니다.
-
-- Network 계층은 각각의 computer와 network에 **IP 주소**라는 고유한 식별자를 부여합니다.
-    - 이를 통해 internet에 연결된 모든 장치들은 서로를 구별하고 data를 정확하게 주고받을 수 있습니다.
-    - IP 주소는 우편 주소와 유사하게 작동하며, data가 목적지까지 도달하기 위한 경로를 찾는 데 사용됩니다.
 
 - Network 계층은 **routing**이라는 과정을 통해 data가 출발지에서 목적지까지 최적의 경로를 찾아 전달될 수 있도록 합니다.
-    - router는 Network 계층의 핵심 장비로, IP 주소를 기반으로 data Packet을 다음 목적지로 전달하는 역할을 합니다.
+    - router는 Network 계층의 핵심 장비로, IP 주소를 기반으로 data packet을 다음 목적지로 전달하는 역할을 합니다.
     - internet은 수많은 network들이 복잡하게 연결되어 있기 때문에, routing은 data가 효율적으로 전달되도록 하는 데 필수적입니다.
     - 최근에는 2계층 장비인 switch에 routing 기능을 장착한 Layer 3 switch도 있습니다.
 
-- Network 계층은 상위 계층(전송 계층)에서 받은 data를 **Packet**이라는 작은 단위로 분할합니다.
-    - 각 Packet에는 출발지 및 목적지 IP 주소, 전송 순서 등의 정보가 포함되어 있어, Packet들이 목적지에 도착한 후 원래의 data로 재조립될 수 있습니다.
-    - Packet 단위로 data를 전송하면 network 자원을 효율적으로 사용하고, 전송 중 오류가 발생했을 때 손실된 부분만 재전송하여 복구할 수 있습니다.
+- Network 계층은 상위 계층(전송 계층)에서 받은 data를 **packet**이라는 작은 단위로 분할합니다.
+    - 각 packet에는 출발지 및 목적지 IP 주소, 전송 순서 등의 정보가 포함되어 있어, packet들이 목적지에 도착한 후 원래의 data로 재조립될 수 있습니다.
+    - packet 단위로 data를 전송하면 network 자원을 효율적으로 사용하고, 전송 중 오류가 발생했을 때 손실된 부분만 재전송하여 복구할 수 있습니다.
 
 
-### Network 계층과 IP 주소 : internet 연결의 핵심 요소
+### Network 계층과 Internet Protocol(IP)
 
-- internet은 전 세계 수많은 computer와 network들이 서로 연결되어 정보를 주고받는 거대한 통신망입니다.
-- 이러한 연결을 가능하게 하는 핵심 기술 중 하나가 바로 **Network 계층**이며, **IP 주소**는 Network 계층에서 각 장치를 식별하고 data를 전달하는 데 사용되는 중요한 요소입니다.
+- Network 계층의 핵심 protocol은 **IP(Internet Protocol)**입니다.
+    - IP는 data를 packet 형태로 캡슐화하고, 각 packet에 출발지 및 목적지 IP 주소를 포함시켜 router들이 packet을 목적지까지 전달할 수 있도록 합니다.
 
-- IP 주소는 **internet에 연결된 모든 장치에 할당되는 고유한 식별자**입니다.
-    - 사람들이 서로 다른 집 주소를 가지고 있는 것처럼, 각 computer와 network 장비는 고유한 IP 주소를 통해 구분됩니다.
+- 현재 흔하게 사용되고 있는 **internet**이 기본적으로 Network 계층에 속하는 망이며, Network 계층이 **internet**이라는 거대한 network를 구축하고 운영하는 데 핵심적인 역할을 합니다. 
+    - internet은 **수많은 computer와 network들이 서로 연결되어 정보를 주고받는 공간**이며, Network 계층은 이러한 연결을 가능하게 하는 핵심 기술입니다.
+    - L3(Network 계층), L4(전송 계층), L5(Session 계층)는 보통 국제 internet 표준화 기구(IETF)에서 규격을 관리합니다.
+
+- Network 계층은 각각의 computer와 network에 **IP 주소**라는 고유한 식별자를 부여합니다.
+    - **IP 주소**는 **internet에 연결된 모든 장치에 할당되는 고유한 식별자**이며, Network 계층에서 각 장치를 식별하고 data를 전달하는 데 사용됩니다.
+        - IP 주소를 통해 internet에 연결된 모든 장치들은 서로를 구별하고 data를 정확하게 주고받을 수 있습니다.
+    - **IP 주소는 우편 주소와 유사하게 계층적으로 작동**하며, data가 목적지까지 도달하기 위한 경로를 찾는 데 사용됩니다.
+        - 사람들이 서로 다른 집 주소를 가지고 있는 것처럼, 각 computer와 network 장비는 고유한 IP 주소를 통해 구분됩니다.
 
 - IP 주소는 주로 장치 식별, data 전달, network 관리의 역할을 합니다.
     - **장치 식별** : internet에 연결된 수많은 장치들을 구별하여 통신을 가능하게 합니다.
         - 각 장치에 고유한 논리적인 주소 체계(IP 주소)를 부여하여 internet 상에서 식별 가능하도록 합니다.
-    - **data 전달** : data가 정확한 목적지에 도달할 수 있도록 경로 정보를 제공합니다.
-    - **network 관리** : network 관리자는 IP 주소를 통해 network 트래픽을 모니터링하고 제어할 수 있습니다.
+    - **Data 전달** : data가 정확한 목적지에 도달할 수 있도록 경로 정보를 제공합니다.
+    - **Network 관리** : network 관리자는 IP 주소를 통해 network 트래픽을 모니터링하고 제어할 수 있습니다.
 
 - IP 주소는 크게 IPv4와 IPv6 두 가지 버전으로 나뉩니다.
     - **IPv4** : 32bit 주소 체계로, 약 43억 개의 주소를 생성할 수 있습니다.
@@ -301,30 +299,30 @@ date: 2024-09-20
         - IPv4의 주소 고갈 문제를 해결하고, 향후 internet 확장에 대비하기 위해 개발되었습니다.
 
 
-### IP 주소의 계층적 구조 : internet 주소 체계의 효율성
+### IP 주소의 계층적 구조 : 효율적인 Internet 주소 체계
 
-- IP 주소의 계층적 구조(Hierarchical Addressing)는 **internet 주소 체계를 효율적으로 관리**하고 **routing을 용이**하게 하기 위한 중요한 설계 원칙입니다.
+- IP 주소의 계층적 구조(hierarchical addressing)는 **internet 주소 체계를 효율적으로 관리**하고 **routing을 용이**하게 하기 위한 중요한 설계 원칙입니다.
 
 - IP 주소는 우편 주소 체계와 유사한 방식으로 작동합니다. 
     - **우편 주소**에서 국가, 도시, 구 등 상위 정보는 해당 지역을 큰 범위에서 좁은 범위로 점차 세분화하여 특정 위치를 나타냅니다.
         - `국가` - `도시` - `구` - `동` - `번지` - `상세 주소`.
-    - **IP 주소**도 마찬가지로, network ID는 internet 상의 큰 network를, 서브넷 ID는 해당 network 내의 작은 network를, 호스트 ID는 특정 장치를 나타냅니다. 
-        - `network ID` - `서브넷 ID` - `호스트 ID`.
+    - **IP 주소**도 마찬가지로, network ID는 internet 상의 큰 network를, subnet ID는 해당 network 내의 작은 network를, host ID는 특정 장치를 나타냅니다. 
+        - `network ID` - `subnet ID` - `host ID`.
 
 #### 계층적 구조의 장점
 
 1. **효율적인 주소 관리**가 가능합니다.
-   - 각 network는 자신의 network ID를 기반으로 하위 network에 서브넷 ID를 할당할 수 있습니다. 
+   - 각 network는 자신의 network ID를 기반으로 하위 network에 subnet ID를 할당할 수 있습니다. 
    - 이를 통해 중앙 집중식 관리 없이도 각 network가 자율적으로 주소를 할당하고 관리할 수 있습니다.
 
 2. **routing 효율성을 증대**시킵니다.
    - router는 IP 주소의 network ID 부분을 기반으로 data를 전달할 network를 결정합니다. 
-   - 계층적 구조 덕분에 router는 모든 개별 호스트의 주소를 알 필요 없이, network ID를 기준으로 data를 해당 network로 전달하면 됩니다. 
-   - 이는 routing 테이블의 크기를 줄이고 routing 속도를 향상시킵니다.
+   - 계층적 구조 덕분에 router는 모든 개별 host의 주소를 알 필요 없이, network ID를 기준으로 data를 해당 network로 전달하면 됩니다. 
+   - 이는 routing table의 크기를 줄이고 routing 속도를 향상시킵니다.
 
 3. **확장성**이 높습니다.
-   - 새로운 network가 추가될 때, 상위 network로부터 새로운 network ID를 할당받고, 하위 network에 서브넷 ID를 할당하는 방식으로 쉽게 확장할 수 있습니다.
-   - 이러한 유연성은 internet의 급속한 성장을 가능하게 했습니다.
+   - 새로운 network가 추가될 때, 상위 network로부터 새로운 network ID를 할당받고, 하위 network에 subnet ID를 할당하는 방식으로 쉽게 확장할 수 있습니다.
+   - 이러한 유연성이 internet의 빠른 성장을 가능하게 했습니다.
 
 
 
@@ -361,11 +359,11 @@ date: 2024-09-20
     - 자주 사용되는 서비스들은 **표준화된 port 번호**를 사용하며, 이를 통해 클라이언트는 특정 서비스에 접속할 때 해당 port 번호를 사용하여 쉽게 연결할 수 있습니다.
         - 예를 들어, 웹 서버는 `80`, FTP 서버는 `21`, SSH 서버는 `22`.
 
-- Network 계층은 호스트 간의 논리적 통신을 돕지만, **전송 계층은 응용 프로세스 간의 논리적인 통신**을 돕습니다.
+- Network 계층은 host 간의 논리적 통신을 돕지만, **전송 계층은 응용 프로세스 간의 논리적인 통신**을 돕습니다.
     - 실제 data 통신에서는 두 계층이 협력하여 작동합니다.
-        - Network 계층이 data를 목적지 호스트까지 전달하면, 전송 **계층이 해당 호스트 내에서 정확한 응용 프로세스에게 data를 전달**하는 역할을 수행합니다. 
-    - **Network 계층** : **호스트 간 연결**을 맡아, 서로 다른 network에 있는 **호스트**(computer, 서버 등) 간에 data를 전달합니다.
-    - **전송 계층** : **응용 프로세스 간 연결**을 맡아, 같은 호스트 내 또는 다른 호스트에 있는 **응용 프로세스**(실행 중인 program) 간에 data를 전달합니다.
+        - Network 계층이 data를 목적지 host까지 전달하면, 전송 **계층이 해당 host 내에서 정확한 응용 프로세스에게 data를 전달**하는 역할을 수행합니다. 
+    - **Network 계층** : **host 간 연결**을 맡아, 서로 다른 network에 있는 **host**(computer, 서버 등) 간에 data를 전달합니다.
+    - **전송 계층** : **응용 프로세스 간 연결**을 맡아, 같은 host 내 또는 다른 host에 있는 **응용 프로세스**(실행 중인 program) 간에 data를 전달합니다.
 
 
 ### 전송 계층의 sequence 넘버 기반 오류 제어 방식
