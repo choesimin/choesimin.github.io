@@ -1,8 +1,8 @@
 ---
 layout: none
-title: Up Down Game
+title: 업 다운 게임
 date: 2024-09-22
-desc: Guess the number between 1 and 100!
+desc: 1부터 100 사이의 숫자를 맞춰보세요!
 ---
 
 <!DOCTYPE html>
@@ -13,8 +13,8 @@ desc: Guess the number between 1 and 100!
     <title>업 다운 게임</title>
     <style>
         :root {
-            --theme-color: #111111; /* 초기 테마 색상 */
-            --theme-dark-color: #000000; /* 초기 진한 테마 색상 */
+            --theme-color: #111111;
+            --theme-dark-color: #000000;
         }
 
         body {
@@ -35,6 +35,8 @@ desc: Guess the number between 1 and 100!
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             max-width: 400px;
             width: 90%;
+            margin: 20px;
+            box-sizing: border-box;
         }
         h1 {
             color: #4a4a4a;
@@ -102,6 +104,21 @@ desc: Guess the number between 1 and 100!
             appearance: textfield;
             text-align: center;
         }
+
+        @media (max-width: 480px) {
+            .game-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            input, button {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -115,13 +132,15 @@ desc: Guess the number between 1 and 100!
             <button onclick="adjustGuess(1)">+1</button>
             <button onclick="adjustGuess(10)">+10</button>
         </div>
-        <button onclick="checkGuess()">확인</button>
+        <button id="checkButton" onclick="checkGuess()">확인</button>
         <p id="message"></p>
     </div>
 
     <script>
         let targetNumber = Math.floor(Math.random() * 100) + 1;
         let attempts = 0;
+        let lastGuess = null;
+        let gameOver = false;
 
         function generateRandomColor() {
             const r = Math.floor(Math.random() * 128);
@@ -147,7 +166,13 @@ desc: Guess the number between 1 and 100!
 
         function checkGuess() {
             let guess = parseInt(document.getElementById('guessInput').value);
+            
+            if (gameOver || guess === lastGuess) {
+                return;
+            }
+
             attempts++;
+            lastGuess = guess;
 
             if (isNaN(guess) || guess < 1 || guess > 100) {
                 setMessage('1부터 100 사이의 유효한 숫자를 입력해주세요.');
@@ -157,9 +182,10 @@ desc: Guess the number between 1 and 100!
                 setMessage(`${guess}는(은) 너무 높습니다! 다시 시도해보세요.`);
             } else {
                 setMessage(`축하합니다! ${attempts}번 만에 숫자를 맞추셨습니다!`);
-                document.querySelector('button').disabled = true;
+                gameOver = true;
             }
-            changeThemeColor(); // 테마 색상과 배경 색상 변경
+            changeThemeColor();
+            updateCheckButtonState();
         }
 
         function setMessage(msg) {
@@ -172,7 +198,18 @@ desc: Guess the number between 1 and 100!
             if (newValue < 1) newValue = 1;
             if (newValue > 100) newValue = 100;
             input.value = newValue;
+            updateCheckButtonState();
         }
+
+        function updateCheckButtonState() {
+            let guess = parseInt(document.getElementById('guessInput').value);
+            let checkButton = document.getElementById('checkButton');
+            checkButton.disabled = gameOver || guess === lastGuess;
+        }
+
+        updateCheckButtonState();
+
+        document.getElementById('guessInput').addEventListener('input', updateCheckButtonState);
     </script>
 </body>
 </html>
