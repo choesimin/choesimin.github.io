@@ -85,7 +85,7 @@ date: 2024-09-22
 
 ### OSI 7 계층에 대한 오해 : 이론과 실무의 괴리
 
-- **network 참조 model(OSI 7 계층, TCP/IP 4계층)에 대한 여러가지 오해**가 존재합니다.
+- **network 참조 model(OSI 7 계층, TCP/IP 4 계층)에 대한 여러가지 오해**가 존재합니다.
     1. "network 지식 = network 참조 model"이라는 오해.
     2. 모든 protocol/장비가 network 참조 model에 정확히 대응된다는 오해.
     3. network 참조 model이 반드시 지켜야 할 규칙이라는 오해.
@@ -129,7 +129,7 @@ date: 2024-09-22
 
 - 물리 계층에서는 단지 **data를 전달만 할 뿐**, 전송하거나 받으려는 data가 무엇인지, 어떤 오류가 있는지 등에는 전혀 신경 쓰지 않습니다.
     - 물리 계층은 단순히 전기적 신호나 빛 신호를 전송하는 역할만 담당합니다.
-    - data link 개체 간의 bit 전송을 위한 물리적 연결을 설정하고 유지하고 해제하기 위한 수단만을 제공합니다.
+    - Data Link 계층 개체 간의 bit 전송을 위한 물리적 연결을 설정하고 유지하고 해제하기 위한 수단만을 제공합니다.
 
 
 ### 물리 계층에서 수행되는 중요한 일들
@@ -140,7 +140,7 @@ date: 2024-09-22
     - 예를 들어, 경쟁 상태의 해소나 흐름 제어(congestion control) 등.
 
 3. 통신 chennal을 통해 전송되는 사용자 장치의 digital data를 이에 상응하는 analog 신호들로 변환, 변조.
-    - 이 신호들은 구리선이나 광섬유 선을 또는 무선 통신을 통해 전달되는 신호들입니다.
+    - 이 신호들은 유선 통신(구리선, 광섬유 등), 무선 통신을 통해 전달되는 신호들입니다.
     - 예를 들어, SCSI가 여기에 속합니다.
 
 
@@ -174,7 +174,7 @@ date: 2024-09-22
 
 - Data Link 계층의 대표적인 장비로는 switch, bridge 등이 있습니다.
     - Data Link 계층 장비는 **물리적으로 직접 연결된 장치들끼리만 통신을 가능하게 해주는 장비**입니다.
-        - 같은 network 선에 연결된 장치들끼리만 데이터를 주고받을 수 있고, 다른 network에 있는 장치와는 직접 통신할 수 없습니다. 
+        - 같은 network 선에 연결된 장치들끼리만 data를 주고받을 수 있고, 다른 network에 있는 장치와는 직접 통신할 수 없습니다. 
     - 따라서 bridge, switch도 물리적으로 직접 이어진 곳에만 연결할 수 있습니다.
 
 - Data Link 계층은 **network 연결의 핵심**이며, **상위 계층들이 효과적으로 기능할 수 있는 기반**을 제공합니다. 
@@ -258,7 +258,7 @@ date: 2024-09-22
 | **대표 장치** | Router, L3 Switch |
 | **Protocol** | IP, ARP/NDP, RIP, RIP v2, OSPF, IGRP, EIGRP, BGP 등등의 Routing Protocol, AS번호, NAT 등 |
 
-- Network 계층은 internet protocol suite(TCP/IP)의 핵심 계층 중 하나로, **서로 다른 network에 있는 장치들 간의 data 전송을 가능하게 하는 역할**을 합니다.
+- Network 계층은 Internet Protocol Suite(TCP/IP)의 핵심 계층 중 하나로, **서로 다른 network에 있는 장치들 간의 data 전송을 가능하게 하는 역할**을 합니다.
     - 경로를 선택하고 주소를 정한 뒤, 경로에 따라 packet을 전달합니다.
 
 - Network 계층은 **routing**이라는 과정을 통해 data가 출발지에서 목적지까지 최적의 경로를 찾아 전달될 수 있도록 합니다.
