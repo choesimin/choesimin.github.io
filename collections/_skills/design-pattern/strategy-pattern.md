@@ -98,8 +98,8 @@ Strategy <|.. ConcreteStrategyA
 Strategy <|.. ConcreteStrategyB
 Strategy <|.. ConcreteStrategyC
 
-note for Client "Strategy를 사용하는 객체입니다.\n변하지 않는 부분입니다."
-note for Strategy "전략에 대한 interface를 담당하는 객체입니다.\n변하는 부분입니다."
+note for Client "Strategy를 사용하는 객체입니다.<br>변하지 않는 부분입니다."
+note for Strategy "전략에 대한 interface를 담당하는 객체입니다.<br>변하는 부분입니다."
 note for ConcreteStrategyA "전략 구현을 담당하는 객체입니다."
 ```
 

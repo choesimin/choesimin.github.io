@@ -49,19 +49,19 @@ flowchart TD
 one --> two --> three --> four --> five --> six --> seven
 
 subgraph one[장애 내용]
-    q_one([뭐야, 뭐야? 무슨 일이야?]) --> a_one[오늘 오전 10시부터 11시까지 장애가 났어.\n아주 난리였지. 사용자가 결제를 할 수 없었다니까.]
+    q_one([뭐야, 뭐야? 무슨 일이야?]) --> a_one[오늘 오전 10시부터 11시까지 장애가 났어.<br>아주 난리였지. 사용자가 결제를 할 수 없었다니까.]
 end
 
 subgraph two[장애 영향]
-    q_two([그래서 어떻게 됐어?]) --> a_two[결제 시도가 100건이었는데 안 됐어.\n원래는 장바구니에 넣고 1시간 이내에 결제하는 비율이 50% 정돈데,\n이번 건은 정상화 되고 1시간이 지났는데도 10% 밖에 안 돼.\n40%는 날아간 거야.]
+    q_two([그래서 어떻게 됐어?]) --> a_two[결제 시도가 100건이었는데 안 됐어.<br>원래는 장바구니에 넣고 1시간 이내에 결제하는 비율이 50% 정돈데,<br>이번 건은 정상화 되고 1시간이 지났는데도 10% 밖에 안 돼.<br>40%는 날아간 거야.]
 end
 
 subgraph three[장애 원인]
-    q_three([왜 그렇게 됐어?]) --> a_three[server 개발자가 결제 module을 바꾸면서 module interface와 관련한 함수 하나를 바꿨거든.\n근데 그걸 나한테 안 알려줬어. 그러니 내가 맡은 front에서는 기존 함수를 호출하려니 안 된 거야.]
+    q_three([왜 그렇게 됐어?]) --> a_three[server 개발자가 결제 module을 바꾸면서 module interface와 관련한 함수 하나를 바꿨거든.<br>근데 그걸 나한테 안 알려줬어. 그러니 내가 맡은 front에서는 기존 함수를 호출하려니 안 된 거야.]
 end
 
 subgraph four[조치 상황]
-    q_four([넌 어떻게 했는데?]) --> a_four[일단 server 개발자한테 바뀐 함수를 받아서\n내 쪽에서 code를 수정했어.]
+    q_four([넌 어떻게 했는데?]) --> a_four[일단 server 개발자한테 바뀐 함수를 받아서<br>내 쪽에서 code를 수정했어.]
 end
 
 subgraph five[조치 결과]
@@ -69,11 +69,11 @@ subgraph five[조치 결과]
 end
 
 subgraph six[핵심 원인]
-    q_six([누가 잘못한 거야?]) --> a_six[server 개발자가 잘못한 거지.\n함수를 바꾸려면 나한테 말하고 바꿨어야 했는데, 그러지 않았으니까.]
+    q_six([누가 잘못한 거야?]) --> a_six[server 개발자가 잘못한 거지.<br>함수를 바꾸려면 나한테 말하고 바꿨어야 했는데, 그러지 않았으니까.]
 end
 
 subgraph seven[향후 대책]
-    q_seven([그럼 이제 어떻게 할 거야?]) --> a_seven[일단 우리 팀장이 server 쪽 팀장하고 얘기해서 communication 방법을 바꿔야지.\n문서로 하든, 주간 업무 협의를 하든 빨리 결정해서 보고 해야 될거야.]
+    q_seven([그럼 이제 어떻게 할 거야?]) --> a_seven[일단 우리 팀장이 server 쪽 팀장하고 얘기해서 communication 방법을 바꿔야지.<br>문서로 하든, 주간 업무 협의를 하든 빨리 결정해서 보고 해야 될거야.]
 end
 ```
 

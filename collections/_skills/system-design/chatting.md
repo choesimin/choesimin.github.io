@@ -82,7 +82,7 @@ end
 flowchart LR
 
 sender([송신 Client])
-service[[Chatting Service\n1. Message 저장\n2. Message 전달]]
+service[[Chatting Service<br>1. Message 저장<br>2. Message 전달]]
 recipient([수신 Client])
 
 sender -->|Message| service -->|Message| recipient
@@ -105,7 +105,7 @@ key_value_store[(Key-Value 저장소)]
 id_generator[Message ID 생성기]
 push_notification_service[Push 알림 Service]
 
-if_online{수신 Client\n접속 여부}
+if_online{수신 Client<br>접속 여부}
 
 
 sender -->|1| chatting_server_1

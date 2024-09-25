@@ -87,7 +87,7 @@ note right of stateWithRightNote
     이렇게 줄을 바꿉니다.
 end note
 
-note left of stateWithLeftNote : 왼쪽에 기록합니다.\nLine 방식에서는\n이렇게 줄을 바꿉니다.
+note left of stateWithLeftNote : 왼쪽에 기록합니다.<br>Line 방식에서는<br>이렇게 줄을 바꿉니다.
 ```
 
 ```mermaid
@@ -102,7 +102,7 @@ note right of stateWithRightNote
     이렇게 줄을 바꿉니다.
 end note
 
-note left of stateWithLeftNote : 왼쪽에 기록합니다.\nLine 방식에서는\n이렇게 줄을 바꿉니다.
+note left of stateWithLeftNote : 왼쪽에 기록합니다.<br>Line 방식에서는<br>이렇게 줄을 바꿉니다.
 ```
 
 

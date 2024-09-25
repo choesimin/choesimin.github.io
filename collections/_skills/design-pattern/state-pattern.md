@@ -869,7 +869,7 @@ State <|.. HasQuarterState
 State <|.. WinnerState
 
 
-note for State "모든 상태 class에서 사용하는 interface입니다.\nmethod는 뽑기 기계에서 일어날 수 있는 모든 행동들에 직접적으로 대응됩니다."
+note for State "모든 상태 class에서 사용하는 interface입니다.<br>method는 뽑기 기계에서 일어날 수 있는 모든 행동들에 직접적으로 대응됩니다."
 ```
 
 

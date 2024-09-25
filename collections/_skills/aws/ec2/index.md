@@ -54,7 +54,7 @@ subgraph aws[AWS 망]
 end
 
 local --> |Private Key| internet
-internet <--> |VPC의\nInternet gateway| vpc
+internet <--> |VPC의 Internet gateway| vpc
 instance <--> volume
 ```
 

@@ -146,7 +146,7 @@ Client --> Target
 Target <|.. Adapter
 Adapter --> Adaptee
 
-note for Adapter "specificData = convertToSpecificFormat(data);\nreturn adaptee.specificRequest(specificData);"
+note for Adapter "specificData = convertToSpecificFormat(data);<br>return adaptee.specificRequest(specificData);"
 ```
 
 - 합성(composition)된 Adaptee 객체에게 모든 **요청을 위임**하는 방식으로 변환 작업을 합니다.
@@ -214,7 +214,7 @@ Client --> Target
 Target <|-- Adapter
 Adapter --|> Adaptee
 
-note for Adapter "specificData = convertToSpecificFormat(data);\nreturn specificRequest(specificData);"
+note for Adapter "specificData = convertToSpecificFormat(data);<br>return specificRequest(specificData);"
 ```
 
 - Adaptee class를 상속(inheritance)받아, **부모의 method를 호출**하는 방식으로 변환 작업을 합니다.

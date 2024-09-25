@@ -65,11 +65,11 @@ date: 2024-05-29
 ```mermaid
 flowchart LR
 
-node1[Head\nNode 1]
+node1[Head<br>Node 1]
 node2[Node 2]
 node3[Node 3]
 node4[Node 4]
-tail((Tail\nPointer))
+tail((Tail<br>Pointer))
 null((NULL))
 
 node1 --> node2
@@ -143,10 +143,10 @@ struct Node* tail = NULL;    // 초기에는 list가 비어 있어 NULL로 초�
 ```mermaid
 flowchart LR
 
-node1[Head\nNode 1\nData: 5]
-node2[Node 2\nData: 10]
-node3[Node 3\nData: 20]
-node4[Node 4\nData: 30]
+node1[Head<br>Node 1<br>Data: 5]
+node2[Node 2<br>Data: 10]
+node3[Node 3<br>Data: 20]
+node4[Node 4<br>Data: 30]
 null((NULL))
 
 node1 --> node2
@@ -288,10 +288,10 @@ int main() {
 ```mermaid
 flowchart LR
 
-node1[Head\nNode 1\nData: 5]
-node2[Node 2\nData: 10]
-node3[Node 3\nData: 20]
-node4[Node 4\nData: 30]
+node1[Head<br>Node 1<br>Data: 5]
+node2[Node 2<br>Data: 10]
+node3[Node 3<br>Data: 20]
+node4[Node 4<br>Data: 30]
 null((NULL))
 
 node1 <--> node2
@@ -461,10 +461,10 @@ int main() {
 ```mermaid
 flowchart LR
 
-node1[Head\nNode 1\nData: 5]
-node2[Node 2\nData: 10]
-node3[Node 3\nData: 20]
-node4[Node 4\nData: 30]
+node1[Head<br>Node 1<br>Data: 5]
+node2[Node 2<br>Data: 10]
+node3[Node 3<br>Data: 20]
+node4[Node 4<br>Data: 30]
 
 node1 --> node2
 node2 --> node3
@@ -618,10 +618,10 @@ int main() {
 ```mermaid
 flowchart LR
 
-node1[Head\nNode 1\nData: 5]
-node2[Node 2\nData: 10]
-node3[Node 3\nData: 20]
-node4[Node 4\nData: 30]
+node1[Head<br>Node 1<br>Data: 5]
+node2[Node 2<br>Data: 10]
+node3[Node 3<br>Data: 20]
+node4[Node 4<br>Data: 30]
 
 node1 <--> node2
 node2 <--> node3
