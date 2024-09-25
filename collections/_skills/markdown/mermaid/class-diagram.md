@@ -7,7 +7,7 @@ date: 2023-04-09
 
 
 
-- mermaid를 사용해 class diagram을 그릴 수 있습니다.
+- mermaid를 사용해 Class Diagram을 그릴 수 있습니다.
 
 ```mermaid
 ---
