@@ -67,10 +67,11 @@ desc: 1부터 100 사이의 숫자를 맞춰보세요!
             color: white;
             border: none;
             padding: 12px 25px;
-            font-size: 1.2em;
+            font-size: 16px;
             border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.5s ease, transform 0.1s ease;
+            touch-action: manipulation;
         }
         button:hover {
             background-color: var(--theme-dark-color);
@@ -177,9 +178,23 @@ desc: 1부터 100 사이의 숫자를 맞춰보세요!
             if (isNaN(guess) || guess < 1 || guess > 100) {
                 setMessage('1부터 100 사이의 유효한 숫자를 입력해주세요.');
             } else if (guess < targetNumber) {
-                setMessage(`${guess}는(은) 너무 낮습니다! 다시 시도해보세요.`);
+                const difference = targetNumber - guess;
+                if (difference > 20) {
+                    setMessage(`${guess}은(는) 너무 낮습니다. 훨씬 더 높여보세요!`);
+                } else if (difference > 10) {
+                    setMessage(`${guess}은(는) 낮습니다. 높여보세요!`);
+                } else {
+                    setMessage(`${guess}은(는) 조금 낮습니다. 조금만 더 높여보세요!`);
+                }
             } else if (guess > targetNumber) {
-                setMessage(`${guess}는(은) 너무 높습니다! 다시 시도해보세요.`);
+                const difference = guess - targetNumber;
+                if (difference > 20) {
+                    setMessage(`${guess}은(는) 너무 높습니다! 훨씬 더 낮춰보세요!`);
+                } else if (difference > 10) {
+                    setMessage(`${guess}은(는) 높습니다. 낮춰보세요!`);
+                } else {
+                    setMessage(`${guess}은(는) 조금 높습니다. 조금만 더 낮춰보세요!`);
+                }
             } else {
                 setMessage(`축하합니다! ${attempts}번 만에 숫자를 맞추셨습니다!`);
                 gameOver = true;
