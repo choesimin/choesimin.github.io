@@ -302,14 +302,14 @@ p ||--o| a : has
 
 ## Relationship 정의하기
 
-- 두 entity 간의 관계(relationship)는 `o`, `\|`, `{`, `}`를 조합하여 표현할 수 있습니다.
+- 두 entity 간의 관계(relationship)는 `o`, `|`, `{`, `}`를 조합하여 표현할 수 있습니다.
 
 | Value (left) | Value (right) | Meaning |
 | --- | --- | --- |
 | `o` | `o` | zero or one |
-| `\|\|` | `\|\|` | exactly one |
+| `||` | `||` | exactly one |
 | `}o` | `o{` | zero or more (no upper limit) |
-| `}\|` | `{\|` | one or more (no upper limit) |
+| `}|` | `{|` | one or more (no upper limit) |
 
 - 왼쪽과 오른쪽 관계 값을 dash 두 개(`--`)로 잇습니다.
     - 또는 마침표 두 개(`..`)를 사용해 점선으로 이을 수도 있습니다.
@@ -317,9 +317,9 @@ p ||--o| a : has
 | 사용 예시 | `N` : `N` |
 | --- | --- |
 | `o--o` | `0 ~ 1` : `0 ~ 1` |
-| `\|\|--\|\|` | `1` : `1` |
+| `||--||` | `1` : `1` |
 | `}o--o{` | `0 ~ N` : `0 ~ N` |
-| `}\|--{\|` | `1 ~ N` : `1 ~ N` |
+| `}|--{|` | `1 ~ N` : `1 ~ N` |
 
 ```txt
 erDiagram
