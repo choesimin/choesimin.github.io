@@ -311,16 +311,6 @@ p ||--o| a : has
 | `}o` | `o{` | zero or more (no upper limit) |
 | `}|` | `{|` | one or more (no upper limit) |
 
-- 왼쪽과 오른쪽 관계 값을 dash 두 개(`--`)로 잇습니다.
-    - 또는 마침표 두 개(`..`)를 사용해 점선으로 이을 수도 있습니다.
-
-| 사용 예시 | `N` : `N` |
-| --- | --- |
-| `o--o` | `0 ~ 1` : `0 ~ 1` |
-| `||--||` | `1` : `1` |
-| `}o--o{` | `0 ~ N` : `0 ~ N` |
-| `}|--{|` | `1 ~ N` : `1 ~ N` |
-
 ```txt
 erDiagram
 
@@ -335,6 +325,35 @@ CAR ||--o{ NAMED-DRIVER : allows
 PERSON ||--o{ NAMED-DRIVER : is
 ```
 
+- 왼쪽과 오른쪽 관계 값을 dash 두 개(`--`)로 잇습니다.
+    - 또는 마침표 두 개(`..`)를 사용해 점선으로 이을 수도 있습니다.
+
+| 사용 예시 | `N` : `N` |
+| --- | --- |
+| `o--o` | `0 ~ 1` : `0 ~ 1` |
+| `||--||` | `1` : `1` |
+| `}o--o{` | `0 ~ N` : `0 ~ N` |
+| `}|--{|` | `1 ~ N` : `1 ~ N` |
+| `o--||` | `0 ~ 1` : `1` |
+| `||--o{` | `1` : `0 ~ N` |
+| `}o--{|` | `0 ~ N` : `1 ~ N` |
+
+```txt
+erDiagram
+
+CUSTOMER ||--o{ ORDER : places
+ORDER ||--|{ LINE-ITEM : contains
+CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
+
+```mermaid
+erDiagram
+
+CUSTOMER ||--o{ ORDER : places
+ORDER ||--|{ LINE-ITEM : contains
+CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
+
 
 ### Relationship Label 지정하기
 
@@ -342,8 +361,9 @@ PERSON ||--o{ NAMED-DRIVER : is
 erDiagram
 
 <entity-name> <relationship> <entity-name> : <label>
-<entity-name> <relationship> <entity-name> : "<long-label>"
-<entity-name> <relationship> <entity-name> : "<label-line-one><br /><label-line-two>"
+<entity-name> <relationship> <entity-name> : ""
+<entity-name> <relationship> <entity-name> : "<space-separated-label>"
+<entity-name> <relationship> <entity-name> : "<multiple-line-label><br /><multiple-line-label>"
 ```
 
 - 관계 label(relationship label)은 한 단어 이상인 경우, 문자열을 따옴표(`"`)로 묶어야 합니다.
@@ -352,9 +372,24 @@ erDiagram
 - 관계에 label이 없는 경우, 반드시 빈 따옴표(`""`)를 사용해야 합니다.
     - 예를 들어, `""`처럼 표현할 수 있습니다.
 
-- 관계에 여러 줄의 label이 있는 경우, 두 줄 사이에 `<br />`을 사용해야 합니다.
+- 관계에 여러 줄의 label이 있는 경우, 문자열을 따옴표(`"`)로 감싸고, 두 줄 사이에 `<br />`을 사용해야 합니다.
     - 예를 들어, `"first line<br />second line"`처럼 표현할 수 있습니다.
 
+```txt
+erDiagram
+
+CUSTOMER ||--o{ ORDER : ""
+ORDER ||--|{ LINE-ITEM : "contains multiple items"
+CUSTOMER }|..|{ DELIVERY-ADDRESS : "uses<br />multiple<br />addresses"
+```
+
+```mermaid
+erDiagram
+
+CUSTOMER ||--o{ ORDER : ""
+ORDER ||--|{ LINE-ITEM : "contains multiple items"
+CUSTOMER }|..|{ DELIVERY-ADDRESS : "uses<br />multiple<br />addresses"
+```
 
 
 
