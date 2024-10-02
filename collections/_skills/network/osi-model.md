@@ -32,7 +32,7 @@ date: 2024-09-22
 | --- | --- | --- |
 | **L7. 응용 계층 (Application)** | data 표현 및 변환. 사용자 interface 제공(network software UI, 사용자의 입출력 I/O). | HTTP, FTP, IRC, SSH, DNS. |
 | **L6. 표현 계층 (Presentation)** | 사용자의 명령어 완성 및 결과 표현. data 포장(형식 변환), 압축, 암호화. | SSL, SSH, IMAP, FTP, MPEG, JPEG. |
-| **L5. Session 계층 (Session)** | 통신 session 설정(확립), 관리(유지), 종료(중단). 운영체제가 해줌. | API, Sockets, WinSock. |
+| **L5. Session 계층 (Session)** | 통신 session 설정(확립), 관리(유지), 종료(중단). 운영 체제가 해줌. | API, Sockets, WinSock. |
 | **L4. 전송 계층 (Transport)** | data 신뢰성 및 흐름 제어. port 번호 사용. Packet 생성(Assembly, Sequencing, Deassembly, Error detection, Request repeat, Flow control). | TCP, UDP. |
 | **L3. Network 계층 (Network)** | 논리 주소(IP) 부여, 경로 설정(Route). | IP, ICMP, IPSec, IGMP. |
 | **L2. Data Link 계층 (Data Link)** | frame에 물리적 주소(MAC) 부여. 오류 검출, 재전송, 흐름 제어. | Ethernet, PPP, Switch, Bridge. |
