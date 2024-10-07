@@ -1,18 +1,22 @@
 ---
 layout: skill
-title: MongoDB
+title: MongoDB - 빠른 확장이 가능한 NoSQL Database
 date: 2023-12-29
 ---
 
 
 
 
+## MongoDB : 문서 지향적인 NoSQL Database
+
 - MongoDB는 고성능, 고가용성 및 쉬운 확장성을 제공하는 NoSQL, 문서 지향(document-oriented) database입니다.
     - NoSQL은 "Not Only SQL"의 약자로, 전통적인 SQL database와는 다른 특징을 가집니다.
 
+- MongoDB는 빠른 확장이 가능하고, data modeling이 자유로운 특징을 가지고 있습니다.
+    - 이는 개발자가 data 구조를 빠르게 변경하고 확장할 수 있도록 합니다.
 
 
-## BSON 형식으로 Data 저장
+### BSON 형식으로 Data 저장
 
 - MongoDB는 **BSON**(Binary JSON) 형식으로 data를 저장하고 전송합니다.
 
@@ -23,7 +27,7 @@ date: 2023-12-29
     - 예를 들어, binary data, 날짜, 정규 표현식 등.
 
 
-## 자유로운 Schema
+### 자유로운 Schema
     
 - MongoDB는 schema가 고정되어 있지 않습니다.
     - table 구조에 맞추어 data를 넣어야 하는 SQL database와는 반대되는 특징입니다.
