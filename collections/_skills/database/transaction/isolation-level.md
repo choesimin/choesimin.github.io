@@ -1,5 +1,5 @@
 ---
-title: 격리 수준 (Isolation Level)
+title: Transaction 격리 수준 (Isolation Level)
 layout: skill
 date: 2024-10-13
 ---
@@ -24,7 +24,7 @@ date: 2024-10-13
 
 ### Isolation과 Locking
 
-- 격리성(isolation)을 보장하기 위해, database는 **Locking**이라는 mechanism을 사용합니다.
+- 격리성(isolation)을 보장하기 위해, database는 **Locking** mechanism을 기반으로 격리 수준을 조정합니다.
     - transaction이 data에 접근할 때 lock을 걸어 다른 transaction이 해당 data에 동시에 접근하거나 수정하지 못하게 막습니다.
     - 즉, 하나의 transaction이 data에 대해 작업하는 동안 다른 transaction은 그 data에 접근하지 못하도록 하여 data 충돌을 방지하는 것입니다.
 
@@ -152,4 +152,4 @@ date: 2024-10-13
 
 ## Reference
 
-- <https://velog.io/@shasha/Database-transaction-정리>
+- <https://velog.io/@shasha/Database-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%95%EB%A6%AC>
