@@ -60,7 +60,6 @@ date: 2024-10-13
 - 일반적인 online service에서는 `READ COMMITTED`나 `REPEATABLE READ` 중 하나를 사용합니다.
     - 예를 들어, Oracle의 default option은 `READ COMMITTED`이고, MySQL의 default option은 `REPEATABLE READ`입니다.
 
-
 | 수준 | 특징 | 문제점 | 사용 상황 |
 | --- | --- | --- | --- |
 | **1. `READ UNCOMMITTED`** | transaction에서 commit되지 않은 변경 사항도 다른 transaction에서 읽을 수 있음 | Dirty Read 문제 발생 가능 | 주로 성능이 중요한 환경에서 사용되지만, data의 일관성이 중요한 경우에는 권장되지 않음 |
