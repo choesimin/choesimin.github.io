@@ -1,6 +1,6 @@
 ---
-title: Transaction 전파 전략
 layout: skill
+title: Transaction 전파 전략
 date: 2024-10-13
 ---
 

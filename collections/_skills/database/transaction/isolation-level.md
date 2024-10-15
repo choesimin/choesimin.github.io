@@ -1,6 +1,6 @@
 ---
-title: Transaction 격리 수준 (Isolation Level)
 layout: skill
+title: Transaction 격리 수준 (Isolation Level)
 date: 2024-10-13
 ---
 

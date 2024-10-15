@@ -1,6 +1,6 @@
 ---
-title: Transaction - DB 작업의 논리적 단위
 layout: skill
+title: Transaction - DB 작업의 논리적 단위
 date: 2024-10-11
 ---
 
