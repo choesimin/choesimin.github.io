@@ -22,11 +22,12 @@ tail [option] [file_name]
 
 | Option | 설명 |
 | --- | --- |
-| -f | tail을 종료하지 않고 file의 update 내용을 실시간으로 계속 출력합니다. |
-| -n [line_number] | file의 마지막 줄부터 지정한 line 수까지의 내용을 출력합니다. |
-| -c [byte_number] | file의 마지막부터 지정한 byte만큼의 내용을 출력합니다. |
-| -q | file의 header와 상단의 file 이름을 출력하지 않고 내용만 출력합니다. |
-| -v | 출력하기 전에 file의 header와 이름 먼저 출력한 후, 내용을 출력합니다. |
+| `-f` | tail을 종료하지 않고 file의 update 내용을 실시간으로 계속 출력합니다. |
+| `-F` | `-f` option과 유사하지만, file이 삭제되거나 이름이 변경되어도 계속 추적하며, file이 다시 생성되면 자동으로 새 file을 monitoring합니다. |
+| `-n <line_number>` | file의 마지막 줄부터 지정한 line 수까지의 내용을 출력합니다. |
+| `-c <byte_number>` | file의 마지막부터 지정한 byte만큼의 내용을 출력합니다. |
+| `-q` | file의 header와 상단의 file 이름을 출력하지 않고 내용만 출력합니다. |
+| `-v` | 출력하기 전에 file의 header와 이름 먼저 출력한 후, 내용을 출력합니다. |
 
 
 
@@ -36,16 +37,21 @@ tail [option] [file_name]
 
 
 
-## 실시간 log 보기
+## 실시간 Log 보기
 
 ```sh
+# 실시간으로 log 출력
 tail -f mylog.log | grep 192.168.15.86
+
+# option에 대문자 'F'를 사용하면, 열람하고 있던 file의 변경을 추적함
+# file 이름이 바뀌거나 같은 이름의 file이 새로 생성되었을 때 log가 끊기지 않음
+tail -F mylog.log | grep 192.168.15.86
 ```
 
 - mylog file을 실시간으로 access하고 IP address가 192.168.42.12인 행만 추출합니다.
 
 
-## 여러 file을 동시에 확인하기
+## 여러 File을 동시에 확인하기
 
 ```sh
 tail mylog1.log mylog2.log
