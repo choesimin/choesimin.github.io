@@ -14,7 +14,7 @@ date: 2023-04-03
 - 주로 `grep` 명령어와 조합해서 실시간으로 갱신되는 file log를 확인할 때 사용합니다.
 
 
-## 사용법
+### 사용법
 
 ```sh
 tail [option] [file_name]
@@ -40,15 +40,10 @@ tail [option] [file_name]
 ## 실시간 Log 보기
 
 ```sh
-# 실시간으로 log 출력
-tail -f mylog.log | grep 192.168.15.86
-
-# option에 대문자 'F'를 사용하면, 열람하고 있던 file의 변경을 추적함
-# file 이름이 바뀌거나 같은 이름의 file이 새로 생성되었을 때 log가 끊기지 않음
-tail -F mylog.log | grep 192.168.15.86
+tail -f mylog.log    # real-time log 출력
+tail -F mylog.log    # 현재 file을 추적하며 real-time log 출력
+tail -f mylog.log | grep 192.168.15.86    # 실시간으로 IP address가 192.168.42.12인 행만 추출
 ```
-
-- mylog file을 실시간으로 access하고 IP address가 192.168.42.12인 행만 추출합니다.
 
 
 ## 여러 File을 동시에 확인하기
@@ -56,8 +51,6 @@ tail -F mylog.log | grep 192.168.15.86
 ```sh
 tail mylog1.log mylog2.log
 ```
-
-- 각 file의 마지막 부분을 확일할 수 있습니다.
 
 
 
