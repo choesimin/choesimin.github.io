@@ -111,8 +111,8 @@ participant db as Database
 
 t1 ->> db : data 갱신
 t2 ->> db : 갱신된 data 참조
-t1 ->> db : transaction 1 실패로 인해 rollback
-t2 ->> db : transaction 2도 rollback
+t1 ->> db : Transaction 1 실패로 인해 rollback
+t2 ->> db : Transaction 2도 rollback
 ```
 
 - `Transaction 1`이 실패하여 rollback되면, `Transaction 2`는 이미 `Transaction 1`이 갱신한 data를 참조하고 있기 때문에 `Transaction 2`도 rollback되어야 합니다.
@@ -135,8 +135,8 @@ participant db as Database
 
 t1 ->> db : data 갱신 (미완료)
 t2 ->> db : 미완료 data를 참조
-t1 ->> db : transaction 1 실패
-Note over t2 : transaction 2는 잘못된 data를 참조하여 잘못된 결과 도출
+t1 ->> db : Transaction 1 실패
+Note over t2 : Transaction 2는 잘못된 data를 참조하여 잘못된 결과 도출
 ```
 
 - `Transaction 1`이 실패한 후에도 `Transaction 2`는 이미 실패한 data를 기반으로 연산을 수행했기 때문에, `Transaction 2` 역시 오류를 내포할 수밖에 없습니다.
