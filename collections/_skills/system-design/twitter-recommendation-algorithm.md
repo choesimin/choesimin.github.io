@@ -26,7 +26,7 @@ date: 2023-04-16
 
 
 
-## 추천 timeline의 tweet들을 선정하는 algorithm
+## 추천 Timeline의 Tweet들을 선정하는 Algorithm
 
 - Twitter에는 매일 5억개 정도의 tweet들이 게시됩니다.
 - 추천 algorithm은 timeline 상위에 노출시킬 tweet들을 선정합니다.
@@ -42,7 +42,7 @@ title: Tweet들을 선정하는 과정
 ---
 flowchart TD
 
-all(((.................... All Recent Tweets ....................)))
+all(((.......... All Recent Tweets ..........)))
 
 in((In-Network Tweets))
 out((Out-of-Network Tweets))
@@ -76,7 +76,7 @@ result(((Final Tweets)))
 all ---->|follow하는 사람들| in
 all ---->|follow하지 않는 사람들| out
 
-subgraph 1. Candidate Sources : Find relevant tweets 
+subgraph Candidate Sources
 in --> real
 out --> social
 out --> embed
@@ -87,21 +87,21 @@ social ---->|15% of result| candidate
 embed ---->|35% of result| candidate
 candidate ----> heavy
 
-subgraph 2. Ranking : Rank tweets with neural network
+subgraph Ranking
 heavy ---|신경망| heavy
 end
 
 heavy ----> rank
 rank ----> filter0
 
-subgraph 3. Heuristics & Filters : Filter out specific preferences
+subgraph Heuristics & Filters
 filter0 --> filter1 --> filter2 --> filter3 --> filter4 --> filter5 --> filter6
 end
 
 filter6 ----> filter_result
 filter_result ----> mixer
 
-subgraph 4. Mixing : MIx with non-tweets
+subgraph Mixing
 non_tweet --> mixer
 end
 
@@ -116,7 +116,7 @@ mixer ----> result
 
 
 
-## 1. Candidate Sources
+## 1. Candidate Sources : Find relevant tweets 
 
 - 수억 개의 후보 중에서 약 1500개 정도의 관련성 있는 최신 tweet들을 가져오는 작업입니다.
 - In-Network(follow하는 사람들)과 Out-of-Network(follow하지 않는 사람들)에게서 후보를 가져옵니다.
@@ -192,7 +192,7 @@ mixer ----> result
 
 
 
-## 2. Ranking
+## 2. Ranking : Rank tweets with neural network
 
 - 후보 선정이 끝나고, 순위 작업이 시작되는 시점의 pipeline에는 최대 1500개의 후보가 있습니다.
     - 순위 작업에서의 모든 후보들은 동일한 중요도를 가지고 판단됩니다.
@@ -213,7 +213,7 @@ mixer ----> result
 
 
 
-## 3. Heuristics & Filters
+## 3. Heuristics & Filters : Filter out specific preferences
 
 - 순위를 매기고 나면, heuristic과 filter를 적용하여, 다양하고 균형 잡힌 feed들이 생성될 수 있도록 합니다.
     - heuristic algorithm : 불충분한 시간이나 정보로 인하여 합리적인 판단을 할 수 없거나, 체계적이면서 합리적인 판단이 굳이 필요하지 않은 상황에서 빠른 의사결정을 할 수 있도록 고안된 computer altorithm.
@@ -249,7 +249,7 @@ mixer ----> result
 
 
 
-## 4. Mixing
+## 4. Mixing : Mix with non-tweets
 
 - 이 시점에서 Home Mixer는 사용자에게 표시할 최종 tweet들을 가지고 있습니다.
 - 마지막 과정으로, system은 tweet들을 non-tweet(광고, follow할 사람 추천 등)과 섞어 화면에 표시합니다.
