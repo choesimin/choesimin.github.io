@@ -344,6 +344,7 @@ if (employees != null) {
 }
 ```
 
+
 ### Null 대신 `Optional` 객체
 
 - Java8 이상을 사용한다면, `Optional`객체를 사용합니다.

@@ -96,8 +96,10 @@ activate Client
 activate Adapter
 Adapter ->> Adaptee : specificRequest()
 activate Adaptee
+deactivate Adapter
 Adaptee -->> Adapter : return
 deactivate Adaptee
+activate Adapter
 Adapter -->> Client : return
 deactivate Adapter
 deactivate Client

@@ -252,11 +252,11 @@ deactivate f
 
 |  | Rx | Coroutine |
 | --- | --- | --- |
-| 설명 | **리액티브 programming**의 한 형태로, data stream과 그 stream을 처리하는 연산자에 중점을 둡니다. event 기반 비동기 programming model을 제공하며, data를 비동기적으로 생성하고 소비합니다. |  **비동기 code**를 작성하기 쉽게 해주는 구조체로, 함수의 실행을 일시 중단하고 나중에 다시 시작할 수 있는 기능을 제공합니다. 비동기 함수 호출을 동기 code처럼 작성할 수 있게 해줍니다. |
-| 장점 | 강력한 연산자 세트, 복잡한 data 흐름을 쉽게 표현, 다양한 언어 지원. | 직관적인 code 작성, 기존 동기 code와 유사하게 작성 가능, 성능 효율성 높음. |
-| 단점 | 학습 곡선이 가파름, 모든 상황에 적합하지 않음, code 가독성이 떨어질 수 있음. | 복잡한 data stream 처리가 어렵고, Rx처럼 강력한 연산자 세트가 부족함. |
-| 사용 사례 | event stream 처리(UI event, network 응답, database 변경 등), 복잡한 비동기 data 흐름 관리, data를 filtering/변환/결합하는 복잡한 연산 수행. | 간단한 비동기 작업(network 호출, file I/O, 지연 작업 등), 순차적인 비동기 작업 실행, 동시성(concurrency) 관리를 통한 성능 최적화. |
-| 요약 | 복잡한 data stream과 event 기반 비동기 작업에 적합하며, 연산자를 사용한 data 변환과 결합 기능이 강력합니다. | 간단한 비동기 작업을 동기 code처럼 작성할 수 있게 해주며, 순차적인 비동기 작업과 성능 최적화에 유리합니다. |
+| 설명 | **Reactive Programming**의 한 형태로, data stream과 그 stream을 처리하는 연산자에 중점을 둠.<br>event 기반 비동기 programming model을 제공하며, data를 비동기적으로 생성하고 소비함. |  **비동기 code**를 작성하기 쉽게 해주는 구조체로, 함수의 실행을 일시 중단하고 나중에 다시 시작할 수 있는 기능을 제공함.<br>비동기 함수 호출을 동기 code처럼 작성할 수 있게 함. |
+| 장점 | 강력한 연산자 세트.<br>복잡한 data 흐름을 쉽게 표현.<br>다양한 언어 지원. | 직관적인 code 작성.<br>기존 동기 code와 유사하게 작성 가능.<br>성능 효율성 높음. |
+| 단점 | 학습 곡선이 가파름.<br>모든 상황에 적합하지 않음.<br>code 가독성이 떨어질 수 있음. | 복잡한 data stream 처리가 어려움.<br>Rx처럼 강력한 연산자 set가 부족함. |
+| 사용 사례 | event stream 처리(UI event, network 응답, database 변경 등).<br>복잡한 비동기 data 흐름 관리.<br> data를 filtering/변환/결합하는 복잡한 연산 수행. | 간단한 비동기 작업(network 호출, file I/O, 지연 작업 등).<br>순차적인 비동기 작업 실행.<br>동시성(concurrency) 관리를 통한 성능 최적화. |
+| 요약 | 복잡한 data stream과 event 기반 비동기 작업에 적합하며, 연산자를 사용한 data 변환과 결합 기능이 강력함. | 간단한 비동기 작업을 동기 code처럼 작성할 수 있게 해주며, 순차적인 비동기 작업과 성능 최적화에 유리함. |
 
 
 ### Rx (Reactive Extensions) : Data Stream과 비동기 Event Sequence를 다루기 위한 Library
