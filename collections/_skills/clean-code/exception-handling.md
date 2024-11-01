@@ -111,7 +111,7 @@ public class DeviceController {
 
 ## Try-Catch-Finally 문부터 작성하기
 
-- 예외가 발생할 code를 짤 때는, `try-catch-finnaly` 문으로 시작하여 범위를 정의합니다.
+- 예외가 발생할 code를 짤 때는, `try-catch-finally` 문으로 시작하여 범위를 정의합니다.
     - `try` block에서 무슨 일이 생기든, `catch` block은 program 상태를 일관성 있게 유지해야 합니다.
         - transaction과 비슷합니다.
 
@@ -343,6 +343,7 @@ if (employees != null) {
     }
 }
 ```
+
 
 ### Null 대신 `Optional` 객체
 
