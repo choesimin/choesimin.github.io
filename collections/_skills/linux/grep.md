@@ -82,6 +82,13 @@ cat file.txt | grep "$str_a\|$str_b"
 ```
 
 
+### 실행 중인 Java Process를 검색하되, grep 명령어는 제외하기
+
+```sh
+ps -ef | grep java | grep -v grep
+```
+
+
 ### 특정 file에서 문자열을 찾고, 그 결과에서 다시 문자열 찾기
 
 ```sh
