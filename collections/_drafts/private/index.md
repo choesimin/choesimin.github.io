@@ -1,5 +1,5 @@
 ---
-layout: skills
+layout: skill
 title: Private
 date: 2024-10-15
 ---
