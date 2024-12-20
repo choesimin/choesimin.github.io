@@ -11,8 +11,8 @@ date: 2024-05-22
 
 > 동적 memory 할당이란 computer programming에서 **실행 중(runtime)에 사용할 memory 공간을 할당**하는 것을 의미합니다.
 
-- program이 실행되기 위해서는 memory가 필요하며, compiler는 compile 시점에 소스 code를 읽고, 변수 타입들의 크기에 따라 memory를 할당합니다.
-    - 이처럼 program이 실행되기 전, compile 시점에 소스 code를 읽고 memory 공간을 확보하는 것을 **정적 할당(static allocation)**이라고 합니다.
+- program이 실행되기 위해서는 memory가 필요하며, compiler는 compile 시점에 source code를 읽고, 변수 타입들의 크기에 따라 memory를 할당합니다.
+    - 이처럼 program이 실행되기 전, compile 시점에 source code를 읽고 memory 공간을 확보하는 것을 **정적 할당(static allocation)**이라고 합니다.
 
 - **동적 할당(dynamic allocation)**은 compile time이 아닌 program이 실행되는 중인 **runtime에 필요한 만큼의 memory 공간을 확보**하는 것을 의미합니다.
     - 정적 할당과 memory 공간을 확보하는 시점이 다릅니다.

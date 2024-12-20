@@ -71,7 +71,7 @@ date: 2024-10-09
     - 사용자 비밀번호 정책 : 강력한 비밀번호 정책을 설정하여 MySQL을 사용하는 계정의 보안을 강화할 수 있습니다.
         - 비밀번호 복잡성 요구사항, 비밀번호 만료 기간 등을 설정할 수 있습니다.
         - 예를 들어, `ALTER USER 'username'@'localhost' PASSWORD EXPIRE INTERVAL 90 DAY;`는 비밀번호 만료 기간을 90일로 설정하는 명령어입니다.
-    - 감사 logging : MySQL Enterprise Edition에서는 database 활동을 모니터링하고 logging하는 고급 감사 기능을 제공합니다.
+    - 감사 logging : MySQL Enterprise Edition에서는 database 활동을 monitoring하고 logging하는 고급 감사 기능을 제공합니다.
         - database 관리자는 system 보안 강화, 문제 대응, 보안 위협 탐지, 규정 준수를 위한 증거 수집, 성능 최적화 등의 다양한 목적으로 고급 감사 기능을 활용할 수 있습니다.
         - 주요 기능으로는 활동 기록(login/logout, query 실행, data 변경 등), 유연한 구성(flexible configuration), 성능 최적화를 위한 비동기 logging, log file 보안, 규정 준수 지원(GDPR, HIPAA, SOX 등), 분석 및 보고 기능 등이 있습니다.
             - 유연한 구성(flexible configuration)이란 특정 사용자, database, table, 또는 특정 유형의 query(`SELECT`, `INSERT`, `UPDATE`)에 대해서만 감사를 수행하도록 설정할 수 있는 기능입니다.

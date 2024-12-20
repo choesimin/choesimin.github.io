@@ -294,7 +294,7 @@ date: 2024-09-22
     - **장치 식별** : internet에 연결된 수많은 장치들을 구별하여 통신을 가능하게 합니다.
         - 각 장치에 고유한 논리적인 주소 체계(IP 주소)를 부여하여 internet 상에서 식별 가능하도록 합니다.
     - **Data 전달** : data가 정확한 목적지에 도달할 수 있도록 경로 정보를 제공합니다.
-    - **Network 관리** : network 관리자는 IP 주소를 통해 network traffic을 모니터링하고 제어할 수 있습니다.
+    - **Network 관리** : network 관리자는 IP 주소를 통해 network traffic을 monitoring하고 제어할 수 있습니다.
 
 - IP 주소는 크게 IPv4와 IPv6 두 가지 버전으로 나뉩니다.
     - **IPv4** : 32bit 주소 체계로, 약 43억 개의 주소를 생성할 수 있습니다.
