@@ -47,12 +47,12 @@ date: 2023-11-02
 
 - architecture 관점에서 database는 entity가 아닌 세부 사항이기 때문에, architecture의 구성 요소 수준으로 끌어올릴 수 없습니다.
     - 체계화된 data 구조와 data model은 architecture에서 중요하지만, database는 data model이 아닙니다.
-    - data를 회전식 자기 disk 표면에서 이리저리 옮길 뿐인 기술과 system(database)은 architecture에 중요하지 않습니다.
+    - data를 회전식 자기 disk 표면에서 이리저리 옮길 뿐인 기술과 system(database)은 architecture에 중요하지 않습니다.
         - database는 software이자 utility일 뿐입니다.
 
 - 관계형 database는 data를 저장하고 접근하는데 탁월한 기술이지만, 결국 기술일 뿐입니다.
     - data를 table에 행 단위로 배치한다는 자체는 architecture 관점에서 중요하지 않습니다.
-    - 유스케이스는 data 저장 방식을 알아서는 안되며 관여해서도 안 됩니다.
+    - UseCase는 data 저장 방식을 알아서는 안되며 관여해서도 안 됩니다.
     - data가 table 구조를 가진다는 사실은 오직 architecture 경계의 외부에 위치한 최하위 수준의 utility 함수만 알아야 합니다.
 
 - data는 중요하지만 database는 세부 사항입니다.
