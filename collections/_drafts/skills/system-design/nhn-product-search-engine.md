@@ -464,7 +464,7 @@ flowchart TD
 
 #### 부분 색인 Source Code
 
-- MongoDB에 있는 Data를 토대로 부분 색인을 진행합니다.
+- MongoDB에 있는 data를 토대로 부분 색인을 진행합니다.
 
 - 부분 색인도 Bulk API를 사용하며, action 항목이 `UPDATE`인지 `DELETE`인지에 따라 분기하여 다르게 처리합니다.
     - `UPDATE`인 경우에는 해당 document를 수정된 정보로 최신화합니다.
@@ -516,27 +516,68 @@ indexingTargets.forEach { target ->
 
 
 
-## 검색 품질 개선 방안
+## 4. 검색 품질 개선 방안
+
+- 만족할 수 있는 검색 품질에는 여러 기준이 있을 수 있습니다.
+    1. 얼마나 검색이 일치하는가.
+    2. 얼마나 적절하게 형태소 분석이 되는가.
+    3. 사용자 요청에 얼마나 유의미한 용어를 추출해 내는가.
+
+```mermaid
+---
+title : 검색이 잘못된 경우
+---
+flowchart LR
+    user[사용자]
+    search[검색 Engine<br>운 + 동화?]
+
+    user -- "Search Request : 운동화" --> search
+    search -- "Search Response : 동화책?!" --> user
+```
 
 - NHN은 커머스 플랫폼의 검색 품질을 개선하기 위해 **텍스트 분석 기능**과 **검색 쿼리 기능**을 최적화하였습니다.
 
 
-### 텍스트 분석 기능 : 형태소 분석, 사용자 사전, 동의어 사전
+### 텍스트 분석 기능 (with Elasticsearch Analyzer) : 형태소 분석, 사용자 사전, 동의어 사전
 
-- NHN은 Elasticsearch의 analyzer를 통해 포괄적인 텍스트 분석 기능을 구현했습니다.
+- NHN은 Elasticsearch Analyzer를 통해 텍스트 분석 기능을 구현했습니다.
+    - Elasticsearch Analyzer는 색인 시 입력된 data를 term으로 추출하기 위한 과정에 사용됩니다.
+        - 하나의 text를 여러 개의 의미를 가진 최소한의 단어들로 분석합니다.
 
-- 특히, 사용자 사전과 동의어 사전은 지속적인 update가 필요하기 때문에, 자동화된 배포 시스템을 구축했습니다.
-    - 사전 파일이 NHN 클라우드 스토리지에 업로드되면 모든 클러스터 노드에 자동으로 배포되고 적용됩니다.
+```mermaid
+flowchart LR
+    data(Data<br>남성운동화)
+    terms(Terms<br>남성<br>운동화<br>sneakers)
+    data -- "Elasticsearch Analyzer" --> terms
+```
+
+- 특히, 단어의 추가/수정/삭제 작업이 빈번한 **사용자/동의어 사전은 지속적인 update가 필요**하기 때문에, **자동화된 배포 시스템을 구축**했습니다.
+    - 사전 파일이 NHN 클라우드 Object Storage에 업로드되면, Jenkins와 Ansible을 통해, 모든 클러스터 노드에 자동으로 배포되고 적용됩니다.
 
 #### Nori 토크나이저 : 형태소 분석
 
-- Elasticsearch의 **Nori 토크나이저**를 한국어 처리를 위해 도입했습니다.
+- Elasticsearch의 **Nori tokenizer**를 한국어 처리를 위해 도입했습니다.
     - 토크나이저는 검색어를 의미 있는 구성 요소로 효과적으로 분리합니다.
     - 예를 들어, "남성 운동화"라는 검색어는 "남성", "운동", "화" 세 부분으로 토큰화됩니다.
 
+```mermaid
+---
+title : Nori tokenizer
+---
+flowchart LR
+    data[남성운동화]
+    term[남성, 운동, 화]
+    result1[남성 배색 라인 운동화]
+    result2[남성용 기모 트레이닝 바지 운동복]
+    result3[미니백 분리형 홈트 운동기구]
+
+    data -- "Tokenizer" --> term
+    term --> result1 & result2 & result3
+```
+
 #### 사용자 사전 : 단어의 분리 제어
 
-- 유사하지만 관련성은 없는 결과가 함께 표시되는 문제는 **사용자 사전**을 구현하여 해결하였습니다.
+- 유사하지만 관련성은 없는 결과가 함께 표시되는 문제는 **사용자 사전**(`user_dictionary.txt`)을 구현하여 해결하였습니다.
 
 - 초기에는 "운동화"를 검색했을 때 "운동복"이나 "운동기구"와 같은 관련 없는 결과가 함께 표시되는 문제가 있었습니다.
 
@@ -544,30 +585,253 @@ indexingTargets.forEach { target ->
     - 예를 들어, "운동화"라는 단어가 "운동"과 "화"로 분리되면 "운동복", "운동기구" 등 관련 없는 검색 결과가 나올 수 있습니다.
     - 따라서 사용자 사전에 "운동화"를 등록하면 이 단어가 하나의 완전한 단어로 취급되어 더 정확한 검색이 가능해집니다.
 
+```mermaid
+flowchart LR
+    data[남성운동화]
+    term[남성, 운동화]
+
+    data -- "Tokenizer" --> term
+```
+
 #### 동의어 사전 : 같은 의미를 가진 다양한 표현 연결
 
-- 사용자들이 같은 상품을 다양한 방식으로 검색할 수 있도록 포괄적인 **동의어 사전**을 개발했습니다.
+- 사용자들이 같은 상품을 다양한 방식으로 검색할 수 있도록 포괄적인 **동의어 사전**(`synonym.txt`)을 개발했습니다.
     - 예를 들어, 사용자가 "신발"이라는 단어를 검색했을 때 "러닝화", "운동화", "스니커즈" 등 같은 의미를 가진 상품들도 함께 검색될 수 있도록 합니다. 
     - 이를 통해 사용자가 어떤 표현을 사용하더라도 원하는 상품을 찾을 수 있게 됩니다.
 
+| 동의어 사전 예시 |
+| --- |
+| 신발, 운동화, 런닝화, 러닝화, 스니커즈, shoes, sneakers |
+| 물, 생수, 식수, ... |
 
-### 검색 쿼리 개선 전략
+```mermaid
+flowchart LR
+    user[사용자]
+    search[신발 == 운동화 == 스니커즈 == 러닝화 == shoes ...]
+    result1[남성 배색 라인 운동화]
+    result2[여성 발 편한 어글리 슈즈 러닝화]
+    result3[남성 캐주얼 스니커즈]
+    result3[간편한 다이얼 캐주얼 신발]
 
-- 여러 query 전략들의 조합으로 커머스 플랫폼의 검색 정확도와 사용자 경험이 크게 향상되었으며, 검색의 유연성을 유지하면서도 더 정확하고 관련성 높은 상품 검색이 가능해졌습니다.
+    user -- "'신발' 검색" --> search
+    search --> result1 & result2 & result3 & result4
+```
 
-1. **Copy-to 필드 구현** : Elasticsearch의 copy-to 기능을 사용하여 여러 검색 가능한 필드(상품명, 키워드, 브랜드명)를 하나의 필드로 통합했습니다.
-    - 이를 통해 쿼리 구조가 크게 단순화되고 검색 효율성이 향상되었습니다.
+
+### 검색 쿼리 개선 : 더 자연스러운 결과 응답
+
+- 여러 query 전략들의 조합으로 커머스 플랫폼의 검색 정확도와 사용자 경험이 크게 향상되었습니다.
+    - 검색의 유연성을 유지하면서도 더 정확하고 관련성 높은 상품 검색이 가능해졌습니다.
+
+#### Copy_to 기능 구현
+
+- Elasticsearch의 `copy_to` 기능을 사용하여 여러 검색 가능한 필드(상품 이름, 키워드, 브랜드 이름)를 하나의 필드로 통합하여 저장합니다.
+
+```json
+// copy_to 전
+"productName": "스마트 원터치 텀블러 450ml 3종 택1",
+"keywords": [
+    "스마트",
+    "원터치",
+    "텀블러",
+    "450ml",
+    "3종",
+    "택1"
+],
+"displayCategory": {
+    "names": [
+        "주방",
+        "컵/텀블러/보틀",
+        "스테인리스 텀블러"
+    ]
+},
+"marketingPhrases": "무료배송",
+"brand": {
+    "brandName": "NHN Commerce"
+},
+```
+
+```json
+// copy_to 후
+"fields": {
+    "keywordText": [
+        "스마트 원터치 텀블러 450ml 3종 택1",
+        "스마트",
+        "원터치",
+        "텀블러",
+        "450ml",
+        "3종",
+        "택1",
+        "주방",
+        "컵/텀블러/보틀",
+        "스테인리스 텀블러",
+        "무료배송",
+        "NHN Commerce"
+    ]
+}
+```
+
+- copy_to를 사용하여 쿼리 구조가 크게 단순화되고 검색 효율성이 향상됩니다.
     - 여러 필드를 검색하는 복잡한 쿼리를 작성하는 대신, 통합된 단일 필드만 검색하면 됩니다.
 
-2. **Minimum Should Match 구현** : 관련성 없는 검색 결과를 방지하기 위해 minimum_should_match 파라미터를 구현했습니다.
-    - 예를 들어 "김치냉장고"를 검색할 때, 시스템은 이전에는 개별 토큰과 매칭되는 와인냉장고나 김치만두와 같은 관련 없는 상품들을 반환했습니다.
-    - 적절한 임계값으로 minimum_should_match를 구현함으로써 더 관련성 높은 검색 결과를 보장할 수 있게 되었습니다.
+```mermaid
+flowchart LR
+    search_normally[일반적으로 검색하면<br>모든 field들에 대해<br>query를 작성해야 함]
+    subgraph search[검색어]
+        product[productName]
+        keyword[keyword]
+        brand[brandName]
+        keyword_text[keywordText]
+    end
+    search_copy_to[copy_to field로 검색하면<br>하나의 field에 대해서만<br>query를 작성해도 됨]
 
-3. **하이브리드 쿼리 방식** (Match Query + Term Query) : 분석된 검색과 비분석 검색 기능을 모두 활용하는 하이브리드 방식을 구현했습니다.
-    - **Match Query** : 형태소 분석을 위해 검색어를 분석기를 통해 처리합니다.
-    - **Term Query** : 분석 없이 정확한 매칭을 수행합니다.
-    - 하이브리드 방식은 특히 의성어/의태어("폭신폭신" 등)와 같은 특수한 경우를 처리하는 데 유용합니다.
-        - 이러한 용어들이 부사로 인식되어 분석기에 의해 필터링되더라도, term query를 통해 정확한 매칭을 찾을 수 있어 포괄적인 검색 결과를 보장합니다.
+    search_normally <-- "검색" --> product & keyword & brand
+    product & keyword & brand -- "copy_to" --> keyword_text
+    keyword_text <-- "검색" --> search_copy_to
+```
+
+#### Minimum Should Match 구현
+
+- 관련성 없는 검색 결과를 방지하기 위해, `minimum_should_match` 파라미터를 사용합니다.
+    - 예를 들어, "김치냉장고"를 검색할 때, 이전에는 개별 토큰과 매칭되는 "와인냉장고"나 "김치만두"와 같은 관련 없는 상품들을 반환하기도 했습니다.
+        - "김치냉장고"에 대한 token을 "김치"와 "냉장고"로 나누어서 검색하기 때문입니다.
+    - `minimum_should_match` 파라미터는 검색어의 단어들 중 최소한 몇 개가 일치해야 문서가 검색 결과에 포함될지를 지정하며, 어느 정도 관련성 있는 검색 결과를 반환하도록 해줍니다.
+
+- `minimum_should_match` 파라미터는 Elasticsearch의 match 쿼리에서 사용되는 parameter입니다.
+    - `minimum_should_match` 파라미터로 검색의 정확도를 높일 수 있으며, 특히 불필요하게 광범위한 검색 결과를 제한하는 데 유용합니다.
+        - `operator: "and"` 대신 사용하여 좀 더 유연한 검색 조건을 설정할 수 있습니다.
+    - `minimum_should_match: "2"` : 세 단어 중 최소 2개 이상 일치하는 문서만 검색됩니다.
+    - `minimum_should_match: "75%"` : 검색어 단어의 75% 이상이 일치하는 문서만 반환됩니다.
+    - `minimum_should_match: "2<75%"` : 검색어가 2개 이하일 때는 모든 단어가 일치해야 하고, 3개 이상일 때는 75%가 일치해야 합니다.
+
+- 적절한 임계값으로 `minimum_should_match`를 구현함으로써 더 관련성 높은 검색 결과를 보장할 수 있게 되었습니다.
+
+```json
+// 아래의 예시는 모두 "GET products/_search" API에 minimum_should_match parameter를 사용하는 예시
+
+// minimum_should_match 대신 operator 사용
+// 분석된 모든 단어들(김치, 냉장고)이 포함된 상품만 검색
+{
+    "query": {
+        "match": {
+            "keywordText": {
+                "query": "김치냉장고",
+                "operator": "and"
+            }
+        }
+    }
+}
+
+// 기본적인 숫자 지정
+// "고급", "스테인리스", "전기", "밥솥" 중 최소 2개의 단어가 포함된 문서가 검색됨
+{
+    "query": {
+        "match": {
+            "keywordText": {
+                "query": "고급 스테인리스 전기 밥솥",
+                "minimum_should_match": 2
+            }
+        }
+    }
+}
+
+// 백분율 지정
+// 5개 단어 중 60%, 즉 최소 3개의 단어가 일치해야 함
+{
+    "query": {
+        "match": {
+            "keywordText": {
+                "query": "프리미엄 디지털 스마트 터치 에어프라이어",
+                "minimum_should_match": "60%"
+            }
+        }
+    }
+}
+
+// 조건부 로직
+// 검색어가 2단어 이하일 때는 모두 일치해야 하고, 3단어 이상일 때는 75%가 일치해야 함
+{
+    "query": {
+        "match": {
+            "keywordText": {
+                "query": "인공지능 음성인식 스피커",
+                "minimum_should_match": "2<75%"
+            }
+        }
+    }
+}
+
+// 복합 조건
+// 1-3단어 : 모든 단어 일치 필요
+// 4-5단어 : 90% 일치 필요
+// 6단어 이상 : 70% 일치 필요
+{
+    "query": {
+        "match": {
+            "keywordText": {
+                "query": "프리미엄 스마트 홈 시스템 패키지",
+                "minimum_should_match": "3<90% 5<70%"
+            }
+        }
+    }
+}
+
+// 음수 값 사용
+// 전체 검색어에서 1개를 제외한 모든 단어가 일치해야 함
+// 즉, 4개 단어 중 3개가 일치하면 검색 결과에 포함됨
+{
+    "query": {
+        "match": {
+            "keywordText": {
+                "query": "무선 충전 보조배터리 케이스",
+                "minimum_should_match": "-1"
+            }
+        }
+    }
+}
+```
+
+#### 하이브리드 쿼리 방식 : Match Query + Term Query
+
+- 분석된 검색(Match Query)과 비분석 검색(Term Query) 기능을 모두 활용하는 하이브리드 방식을 구현했습니다.
+    - **Match Query** : 형태소 분석을 위해 **검색어를 analyzer를 통해 처리**하여 검색합니다.
+    - **Term Query** : analyzer를 통한 분석 없이 **정확히 일치하는 단어**를 검색합니다.
+
+```mermaid
+---
+title : Match + Term 검색
+---
+
+flowchart LR
+    client[Client]
+    analyzer[Analyzer]
+    elasticsearch[(Elasticsearch)]
+
+    client -- "형태소 분석" --> analyzer -- "Match 검색" --> elasticsearch
+    client -. "Term 검색" .-> elasticsearch
+```
+
+- 하이브리드 방식은 특히 의성어/의태어("폭신폭신" 등)와 같은 특수한 경우를 처리하는 데 유용합니다.
+    - 어떤 용어들이 부사로 인식되어 분석기에 의해 필터링되더라도, term query를 통해 정확한 매칭을 찾을 수 있어 포괄적인 검색 결과를 보장합니다.
+
+```json
+{
+    "query": {
+        "bool": {
+            "should": [
+                { "match": {"keywordText": "폭신폭신"} },
+                { "term": {"keywordList": "폭신폭신"} }
+            ]
+        }
+    }
+}
+```
+
+- Match Query에서 검색되지 않던 "폭신폭신"이라는 단어가, 오히려 Term Query에서는 검색이 되어 Match Query를 보완해줍니다.
+    - Match Query 대상인 `keywordText` 필드에서는 분석기가 "폭신폭신"을 Null로 변환합니다.
+        - "폭신폭신"이라는 단어가 분석기를 통해 부사로 인식되어 무시되었기 때문입니다.
+    - Term Query 대상인 `keywordList` 필드에서는 "폭신폭신"이 그대로 "폭신폭신"으로 유지됩니다.
+        - 검색어가 정확히 일치하는 경우에 결과를 반환하며, 따라서 "폭신폭신"이라는 단어가 포함된 결과도 검색됩니다.
 
 
 
