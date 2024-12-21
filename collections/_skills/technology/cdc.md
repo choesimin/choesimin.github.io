@@ -15,22 +15,22 @@ date: 2024-12-20
 ```mermaid
 flowchart LR
     app1[Application 1]
-    app2[Application 1]
-    app3[Application 1]
+    app2[Application 2]
+    app3[Application 3]
     db[(Database)]
     cdc[[CDC Solution]]
     task[Task]
 
-    app1 & app2 & app3 -- "1. Change Data" --> db
-    db == "2. Capture Data" === cdc
-    cdc -- "3. Do Following Task" --> task
+    app1 & app2 & app3 -- "Change Data" --> db
+    db == "Capture Data" === cdc
+    cdc -- "Do Following Task" --> task
 ```
 
 ### CDC의 활용 사례
 
 1. **Microservice 통합** : CDC를 통해 data 변경 사항을 legacy system에서 microservice 기반 application으로 원활하게 전송할 수 있습니다.
     - microservice를 기존의 monolithic application과 동기화하여, migration 시 발생할 수 있는 data 불일치 문제를 해결합니다.
-    
+
 2. **Data 복제** : database, data lake, data warehouse 등의 저장소에 data를 복제하여, 각 resource가 최신 version data를 보유하도록 할 수 있습니다.
     - data가 분산되어 있거나 data silo 문제가 있는 경우에도, 여러 부서가 동일한 최신 data에 접근하도록 지원할 수 있습니다.
         - data silo : data가 격리되어 특정 조직/부서/단위에서만 정보 접근 및 공유가 가능하여 다른 조직/부서/단위에서는 data가 격리되는 현상.
@@ -110,7 +110,7 @@ flowchart LR
     app3[Application 3]
     app4[Application 4]
 
-    db[(Database\nwith CNC)]
+    db[(Database with CNC)]
     queue>Message Queue]
 
     app1 -- "Change Data 1" --> db
