@@ -322,6 +322,19 @@ runBlocking {
 
 - 안정적인 서비스 운영을 위해, **Alias API를 활용**하여 무중단으로 인덱스를 전환하고, **백업 인덱스 유지**하는 시스템을 구현하여 사용합니다.
 
+```mermaid
+---
+title : 검색용 Index 교체
+---
+flowchart LR
+    alias>Alias<br>alias_product]
+    1201[Index<br>product_20231201]
+    1202[Index<br>product_20231202]
+
+    alias -- "Remove" --> 1201
+    alias -- "Add" --> 1202
+```
+
 ```json
 // API : POST _aliases
 {
@@ -340,19 +353,6 @@ runBlocking {
         }
     ]
 }
-```
-
-```mermaid
----
-title : 검색용 Index 교체
----
-flowchart LR
-    alias>Alias<br>alias_product]
-    1201[Index<br>product_20231201]
-    1202[Index<br>product_20231202]
-
-    alias -- "Remove" --> 1201
-    alias -- "Add" --> 1202
 ```
 
 ```mermaid
