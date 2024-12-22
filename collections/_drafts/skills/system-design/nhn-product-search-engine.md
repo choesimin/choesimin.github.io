@@ -843,20 +843,395 @@ flowchart LR
 
 ## 검색 성능 테스트 결과 비교
 
-- 초기 구현 당시 검색 엔진은 초당 100-200건의 처리량(TPS)과 1.2초 이상의 응답 시간을 보였습니다.
+```
+24:25 다음으로는 검색 성능 테스트 결과 비교입니다 저희는 최초의 검색엔진을 구현을
+24:31 하였을 때 100에서 200 이하의 TPS 그리고 평균 약 1.2초 이상의 응답 속도를 가졌었는데요
+24:38 저희는 초당 약 350건의 동시 요청을 처리할 수 있도록 성능을 개선해야 했습니다이를 통이를 위해서
+24:46 엘라스틱 서치 튜닝을 하고 서버 스케일업 웹캐쉬 도입 등과 같은 여러가지 방안들을 적용하였는데요
+24:55 먼저 성능 향상 방안에 대한 계요에 대해서 먼저 설명을 드리면 엘라스틱
+25:01 클라이언트는 엘라스틱 서치의 노드로 검색을 요청합니다
+25:06 검색을 요청받은 노드는 해당 검색을 클러스터 내 모든 노드로 전달을 하게 되는데요
+25:13 그리고 각 노드에서는 쓰레드풀에 있는 한 개의 스레드를 가지고 한 개의 샤드를 탐색하게
+25:19 됩니다 이를 통해서 저희가 내린 성능 개선
+25:25 방안에 대한 가정은 첫 번째로 샤드 사이즈가 작을수록 스레드가 샤드를 탐색하는데 빨라질
+25:31 것이고요 두 번째 서치스레드가 많을수록 동시 요청 처리수가 많아질 것이라고 생각했습니다
+25:36 그리고 서치 쿼리 응답이 빠를수록 노드별 스펙이 좋을수록 데이터 노드가 많을수록 성능이 개선될
+25:43 것이라고 판단하였습니다
+25:49 그런데 첫 번째 과정 같은 경우에는 먼저 엘라스틱 서치에서는 샤드 한 개의 사이즈를 1에서
+25:55 50gb로 설정할 것을 권장했습니다 그런데 저희의 데이터 사이즈는 약
+26:01 5gb이고이를 노드별 카운터로 나눴을 때는 노드별로 1.6gb의 데이터가 할당이
+26:07 됩니다 저희는 이것을 더 이상 샤드로 쪼갤 필요가 없이 노드별 샤드 하나를 유지하고 나머지
+26:13 테스트를 진행하였는데요 저희가 먼저
+26:20 첫 번째로 적용한 개선 방안은 스레드카운트 설정입니다 화면에서 보이시는 것과 같이 엘라스틱
+26:27 서치 컨피그 파일을 수정함으로써 스레드카운트를 조정을 할 수가 있는데요
+26:33 저희는 최초의 노드별 25개의 가지고
+26:39 초당 400 요청을 10초간 유지하였을 때 성능 결과에 성능 테스트 결과입니다
+26:46 99% 이상의 응답이 1.2초 소요 시간이 걸렸는데요
+26:53 그 이후에 스레드카운트를 10개 늘린 35개로 테스트했을 때
+26:58 약간의 성능 개선 결과를 확인할 수가 있었습니다
+27:05 다음으로는 커리튜닝입니다 쇼핑몰을 이용하시다 보면은 화면과 같은
+27:10 검색 결과를 확인해 보신 적이 있으실 텐데요 카테고리별 상품 개수와 브랜드별 상품
+27:17 개수와 같은 집계성 정보들입니다 저희는 최초의 상품 카테고리를
+27:25 뎁스 1부터 뎁스 5까지 하위 구조를 이루고 있었는데요 이것을 집계하기 위해서는 쿼리와 같이
+27:33 엘라스틱 서치의 서브 애그리게이션을 이용해서 집계를 할 수가 있었습니다 그런데 이렇게 복잡한 쿼리를 실행하는
+27:39 데는 0.5초에서 1.5초에 소요시간이 걸렸습니다
+27:46 저희는 이것을 개선하기 위해서 상품 카테고리를 사진과 같이 하나의
+27:51 필드로 모아서 저장했습니다 그리고 엘라스틱 서치에서는 하나의 필드만
+27:56 애그리게이션 할 수 있도록 쿼리도 개선하였습니다 그 결과 0.3초에서 0.8초로 소요시간을
+28:02 단축시킬 수 있었습니다
+28:08 실제로 커리 튜닝 이전에 단일 검색이 약 1.5초에서 2초가 걸리는 요청에 대한 부하 테스트를
+28:14 진행했는데요 화면에서 보시다시피 굉장히 저조한 테스트 결과가 나타났습니다
+28:21 반면에 쿼리튜닝 이후에 단일 검색이 약 0.4초에서 1초가 걸리는
+28:27 요청에 대해서 부하 테스트를 진행한 결과 굉장히 크게 성능이 개선된 결과를 확인할 수가 있었습니다
+28:38 다음으로는 서버 스케일업입니다 저희는 처음에 노드별 스펙을 8코어 cpu와
+28:43 8gb 메모리로 설정을 하였는데요 이것을 가지고 부하 테스트를 진행을 했을 때 오른쪽 사진과 같이 CPU
+28:50 로드가 100%까지 치솟는 걸 확인할 수가 있었습니다 이로 인해서 응답의 레이턴시가 생기고
+28:58 실제 응답하는 소요 시간도 굉장히 길어지게 되었는데요
+29:03 네 이런 이슈는 저희가 스펙을 16코어 cpu와 16기가바이트로
+29:09 메모리로 스케일업함으로써 해당 이슈를 해결할 수가 있었습니다
+29:16 네 마지막으로 웹캐시 적용입니다 화면에 보이시는 것과 같이
+29:22 여러 개의 웹캐시 툴들 중에서 저희는 저희에게 가장 친숙하고 대중적인 엔진x
+29:28 웹 캐시를 사용하였는데요
+29:33 처음에 검색은 사용자 샤파이 서버 검색엔진 서버 그리고
+29:38 엘라스틱 서치 순으로 검색이 요청과 응답이 이루어졌습니다
+29:45 네 저희는 샷바위 서버와 검색엔진 서버 사이에 엔진x
+29:50 웹케시의 기능을 하는 엔진엑스 서버를 별도로 설치하였는데요
+29:57 실제로 검색 결과가 엔진엑스의 캐시가 되어 있다면 그 뒤에 단계는 모두
+30:02 생략하고 검색 결과를 바로 샤파이 서버로 응답하게 됩니다이를 통해서이를
+30:09 통해서 검색 속도를 굉장히 빠르게 할 수 있었고요 그 위에 보이시는 것과 같이 검색 요청 로그들을 파일 빗을
+30:16 이용하여서 엘라스틱 서치에 저장하였습니다
+30:23 네 왼쪽에 보이시는 사진은 실제 저희 엔진엑스 서버로 들어오는 검색 요청
+30:28 로고들이고요 해당 로그들을 처리하여 캐시율 캐시 현황 그리고 요청 현황
+30:33 등과 같이 시각화조류들을 생성할 수 있었습니다
+30:40 또한 웹캐시 적용 이후에 응답속도 차이입니다 만약 검색 결과가 엔진엑스 서버에 캐시되어
+30:47 있지 않고 140만 건에 대한 굉장히 큰 상품에 대한 검색 결과를
+30:53 요청했을 때는 약 1.1초에서 1.5초에 응답 시간이 걸렸습니다
+31:01 반면에 엔진엑스에 검색 결과가 캐시되어 있는 경우 즉 캐시가 히트했을 경우에는
+31:07 응답 속도를 0.2초에서 0.7초로 굉장히 크게 단축시킬 수 있었습니다
+31:15 저희는 앞서 말씀드린 모든 성능 개선 방안을 적용했을 때
+31:20 개선 이후에는 400에서 500tps 그리고 평균 약 0.7초
+31:26 이하의 응답속도로 성능을 개선할 수가 있었습니다
+```
 
-- 목표였던 초당 350건의 동시 요청 처리를 달성하기 위해 다양한 성능 개선 전략을 실행했습니다.
-    1. Elasticsearch 클러스터 최적화를 진행했습니다.
-        - 샤드 크기와 스레드 수를 조정했는데, 특히 노드당 스레드 수를 25개에서 35개로 증가시켜 성능 향상을 이끌어냈습니다.
-    2. 쿼리 튜닝을 통해 검색 속도를 개선했습니다.
-        - 특히 카테고리별 상품 개수와 같은 집계성 쿼리의 경우, 카테고리 구조를 단순화하고 쿼리를 최적화하여 응답 시간을 0.5-1.5초에서 0.3-0.8초로 단축했습니다.
-    3. 서버 인프라를 강화했습니다.
-        - 노드별 사양을 8코어 CPU/8GB 메모리에서 16코어 CPU/16GB 메모리로 스케일업하여 CPU 부하 문제를 해결했습니다.
-    4. Nginx를 활용한 웹 캐시를 도입했습니다.
-        - 캐시 적용 후 대규모 검색(140만 건)의 응답 시간이 1.1-1.5초에서 캐시 히트 시 0.2-0.7초로 크게 개선되었습니다.
+- 최초의 검색 엔진 성능으로부터, 최소 **분당 20,000건(= 초당 약 350건) 이상의 검색 요청을 처리할 수 있도록 개선**해야 합니다.
 
-- 종합적인 개선 방안을 통해 최종적으로 400-500 TPS의 처리량과 평균 0.7초 이하의 응답 속도를 달성했습니다.
-    - 이는 초기 목표였던 초당 350건의 처리량을 상회하는 성과입니다.
+| 성능 지표 | 초기 성능 | 목표 성능 |
+| --- | --- | --- |
+| **처리량 (TPS)** | 100-200건 | 350건 이상 |
+| **평균 응답 속도** | 1.2초 이상 | 1초 미만 |
+
+```mermaid
+---
+title : 성능 개선 프로세스 흐름도
+---
+flowchart TD
+    initial_state[초기 상태: 100-200 TPS] --> performance_analysis[성능 분석]
+    performance_analysis --> elastic_tuning[엘라스틱서치 튜닝]
+    performance_analysis --> thread_count[스레드 카운트 최적화]
+    performance_analysis --> query_tuning[쿼리 튜닝]
+    performance_analysis --> server_scale[서버 스케일업]
+    performance_analysis --> web_cache[웹 캐시 도입]
+    
+    elastic_tuning --> final_state[최종 상태: 400-500 TPS]
+    thread_count --> final_state
+    query_tuning --> final_state
+    server_scale --> final_state
+    web_cache --> final_state
+```
+
+- 최종적으로 목표로 설정했던 **초당 350건의 동시 요청 처리와 1초 미만의 응답 속도를 모두 달성**하였으며, 안정적인 서비스 운영이 가능한 수준으로 시스템이 개선되었습니다.
+    - **최종 처리량** : 400-500 TPS (초기 대비 2.5배 향상).
+    - **최종 평균 응답 속도** : 0.7초 이하 (초기 대비 40% 단축).
+
+```mermaid
+flowchart LR
+    subgraph initial_metrics[초기 성능]
+        direction LR
+        tps_initial[100-200 TPS]
+        response_initial[응답 속도 1.2초 이상]
+    end
+    
+    subgraph final_metrics[최종 성능]
+        direction LR
+        tps_final[400-500 TPS]
+        response_final[응답 속도 0.7초]
+    end
+    
+    initial_metrics --> improvements((성능 개선 적용)) --> final_metrics
+```
+
+
+### 성능 개선 방안
+
+```mermaid
+---
+title : Elasticsearch 기본 구조
+---
+flowchart LR
+    client([Client])
+    subgraph cluster[Elasticsearch Cluster]
+        subgraph data_node_1[Data Node 1]
+            subgraph thread_pool[Thread Pool]
+                thread_1[Thread]
+                thread_2[Thread]
+                thread_3[Thread]
+            end
+            subgraph shards[Shards]
+                shard_1[1]
+                shard_2[2]
+                shard_3[3]
+            end
+            thread_1 --> shard_1
+            thread_2 --> shard_2
+            thread_3 --> shard_3
+        end
+        data_node_2[Data Node 2]
+        data_node_3[Data Node 3]
+    end
+
+    client -- "Search Request" --> data_node_1
+```
+
+1. **Shard Size가 작을수록** Thread가 Shard를 선택하는 것이 빨라질 것입니다.
+    - 작은 Shard는 메모리에서 더 효율적으로 관리되고 검색될 수 있기 때문에, Thread가 작업할 Shard를 선택하고 할당하는 과정이 더 빨라집니다.
+
+2. **Search Thread가 많을수록** 동시 요청 처리 수가 많아질 것입니다.
+    - 더 많은 Search Thread는 병렬 처리 능력을 향상시켜 동시에 더 많은 검색 요청을 처리할 수 있게 됩니다.
+
+3. **Search Query 응답이 빠를수록** 시스템의 전반적인 처리량(throughput)이 증가할 것입니다.
+    - 각 쿼리의 빠른 응답은 Thread가 더 빨리 다음 작업을 처리할 수 있게 하여, 전체 시스템의 효율성이 향상됩니다.
+
+4. **Node별 Spec이 좋을수록** 개별 쿼리 처리 성능과 전체 시스템의 안정성이 향상될 것입니다.
+    - 더 좋은 하드웨어 사양(CPU, 메모리, 디스크 I/O)은 각 노드에서의 검색 작업 속도를 높이고, 더 많은 부하를 안정적으로 처리할 수 있게 합니다.
+
+5. **Data Node가 많을수록** 시스템의 확장성과 fault tolerance가 향상될 것입니다.
+    - 더 많은 데이터 노드는 작업 부하를 더 넓게 분산시킬 수 있게 하며, 일부 노드에 문제가 발생하더라도 시스템이 계속 작동할 수 있는 중복성을 제공합니다.
+
+```mermaid
+pie title 최초 상태 (100-200 TPS, 평균 1.2초)
+    "t > 1200ms" : 72
+    "800ms < t < 1200ms" : 6
+    "t < 800ms" : 10
+    "failed" : 12
+```
+
+```mermaid
+pie title 개선 이후 (400-500 TPS, 평균 0.7초)
+    "t < 800ms" : 76
+    "800ms < t < 1200ms" : 38
+```
+
+
+### 첫 번째 개선 : 엘라스틱서치 샤드 최적화
+
+- 전체 데이터 크기는 약 5GB이며, 노드당 1.6GB가 할당되었습니다.
+- 엘라스틱서치의 권장 사항(1-50GB/샤드)을 고려하여, 노드당 단일 샤드를 유지하기로 결정하였습니다.
+    - 노드당 1.6GB가 할당되었기 때문에, 권장 범위 내에 이미 들어가 있습니다.
+
+
+### 두 번째 개선 : 스레드 카운트 설정
+
+- 엘라스틱서치 설정 파일의 스레드 풀 설정을 조정하였습니다.
+
+```yaml
+# elasticsearch.yml
+
+cluster.name: es-docker-cluster
+network.host: 0.0.0.0
+
+thread_pool:
+    search:
+        size: 35
+        queue_size: 1000
+```
+
+#### 스레드 카운트 개선 Test : 초당 400 Request (10초간)
+
+- 10초간 초당 400개의 검색을 요청하여 테스트하였으며, 스레드 카운트 조정을 통해 유의미한 성능 변화를 얻었습니다.
+
+```mermaid
+pie title 조정 전 (thread_pool.search.size: 25)
+    "1200ms 초과" : 99
+    "800-1200ms" : 1
+```
+
+```mermaid
+pie title 조정 후 (thread_pool.search.size: 35)
+    "1200ms 초과" : 86
+    "800-1200ms" : 6
+    "800ms 미만" : 8
+```
+
+
+### 세 번째 개선 : Query Tunning
+
+- 복잡한 카테고리 구조를 단순화하여 쿼리 성능을 개선하였습니다.
+
+#### 초기의 복잡한 카테고리 쿼리 : 0.5 ~ 1.5 sec
+
+```txt
+[남성용 배색 운동화]
+
+상품 Category
+    depth 1 : 의류 잡화
+        depth 2 : 신발
+            depth 3 : 남성용 신발
+                depth 4 : 수제화
+                    depth 5 : 운동화
+```
+
+- 초기에는 category가 depth 1부터 5까지 있어, 집계를 위해 sub aggregation을 사용하였습니다.
+    - sub-aggregation은 일반 aggregation보다 느리고 복잡합니다.
+
+```json
+// GET /products/search
+// 응답 시간 : 0.5 ~ 1.5 sec
+{
+    "aggs": {
+        "depth1_count": { "terms": { "field": "displayCategory.depth1" } },
+        "aggs": {
+            "depth2_count": { "terms": { "field": "displayCategory.depth2" } },
+            "aggs": {
+                "depth3_count": { "terms": { "field": "displayCategory.depth3" } },
+                "aggs": {
+                    "depth4_count": { "terms": { "field": "displayCategory.depth4" } },
+                    "aggs": {
+                        "depth5_count": { "terms": { "field": "displayCategory.depth5" } }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+#### 개선된 단순한 카테고리 쿼리 : 0.3 ~ 0.8 sec
+
+```txt
+[남성용 배색 운동화]
+
+상품 Category
+    summaries : 의류 잡화 | 신발 | 남성용 신발 | 수제화 | 운동화
+```
+
+- 개선을 위해 depth로 나뉘어져 있던 상품 category를 하나의 field로 모아서 저장했습니다.
+    - Elasticsearch는 하나의 field만 aggregation할 수 있도록 query가 개선되어, 소요 시간이 0.3초에서 0.8초 사이로 단축되었습니다.
+
+```json
+// GET /products/search
+// 응답 시간 : 0.3 ~ 0.8 sec
+{
+    "aggs": {
+        "displayCategories": {
+            "terms": {
+                "field": "displayCategory.summaries"
+            }
+        }
+    }
+}
+```
+
+#### Query Tunning Test : 초당 400 Request (10초간)
+
+```mermaid
+pie title Query Tuning 이전 (단일 검색 약 1.5 ~ 2초)
+    "t > 1200ms" : 86
+    "800ms < t < 1200ms" : 6
+    "t < 800ms" : 8
+```
+
+```mermaid
+pie title Query Tuning 이후 (단일 검색 약 0.4 ~ 1초)
+    "t < 800ms" : 76
+    "800ms < t < 1200ms" : 38
+```
+
+
+### 네 번째 개선 : 서버 스케일업
+
+- 서버 사양을 8 Core CPU, 8GB Memory에서 16 Core CPU, 16GB Memory로 증설하였습니다.
+- 증설 후 CPU 사용률이 안정화되었고 응답 지연 현상이 해소되었습니다.
+
+#### Server 증설 비교 Test : 초당 200 Request (10초간)
+
+```mermaid
+pie title 증설 이전 (8 Core, 8 GB Memory)
+    "t > 1200ms" : 72
+    "800ms < t < 1200ms" : 6
+    "t < 800ms" : 10
+    "failed" : 12
+```
+
+```mermaid
+pie title 증설 이전 (16 Core, 16 GB Memory)
+    "t < 800ms" : 100
+```
+
+
+### 다섯 번째 개선 : Nginx Web Cache 도입
+
+- Nginx 웹 캐시 시스템을 구축하여 검색 성능을 약 2배 향상시켰습니다.
+    - 추가적으로, cache server에 쌓이는 로그를 이용하여, cache 비율, cache 현황, 그리고 검색 요청 현황을 monitoring할 수 있는 dashboard를 구성하였습니다.
+
+| Cache Miss.. | Cache Hit! |
+| --- | --- |
+| 응답에 1.1 ~ 1.5초 소요 | 응답에 0.2 ~ 0.7초 소요 |
+
+```mermaid
+---
+title : Web Cache 도입 이전
+---
+flowchart TD
+    client([Client])
+    shop_by_server[Shop by Server]
+    search_server[Search Server]
+    elasticsearch[Elasticsearch]
+
+    client -- "검색 요청" --> shop_by_server
+    shop_by_server --> search_server
+    search_server --> elasticsearch
+```
+
+```mermaid
+---
+title : Web Cache 도입 이후
+---
+flowchart TD
+    client([Client])
+    shop_by_server[Shop by Server]
+    search_server[Search Server]
+    elasticsearch[Elasticsearch]
+
+    subgraph nginx[Nginx]
+        nginx_cache[Nginx Cache]
+        nginx_log(cache.log)
+
+        nginx_cache -. "검색 요청 Log 저장" .-> nginx_log
+    end
+
+    if_cache{Cache 확인}
+    filebeat[FileBeat]
+
+    client -- "검색 요청" --> shop_by_server --> nginx_cache --> if_cache
+
+    if_cache -- "Cache Hit!" --> shop_by_server
+    if_cache -- "Cache Miss.." --> search_server --> elasticsearch
+
+    nginx_log -.-> filebeat -. "Log File 전달<br>(for Monitoring)" .-> elasticsearch
+```
+
+
+
+
+---
+
+
+
+
+## 6. 후기
+
+- project는 3명의 검색 엔진 CFT 인원이 **5월 12일에 시작하여 7월 29일에 종료**하였습니다.
+- 현재도 문의 사항과 feedback을 받으면서 수정과 refactoring을 하는 중입니다.
 
 
 
