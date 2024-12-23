@@ -26,6 +26,7 @@ flowchart LR
     cdc -- "Do Following Task" --> task
 ```
 
+
 ### CDC의 활용 사례
 
 1. **Microservice 통합** : CDC를 통해 data 변경 사항을 legacy system에서 microservice 기반 application으로 원활하게 전송할 수 있습니다.
