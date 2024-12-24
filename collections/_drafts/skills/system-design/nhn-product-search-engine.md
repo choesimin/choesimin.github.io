@@ -320,20 +320,7 @@ runBlocking {
 
 ### 전체 색인에서의 Alias API 활용 : 안정적인 서비스 운영
 
-- 안정적인 서비스 운영을 위해, **Alias API를 활용**하여 무중단으로 인덱스를 전환하고, **백업 인덱스 유지**하는 시스템을 구현하여 사용합니다.
-
-```mermaid
----
-title : 검색용 Index 교체
----
-flowchart LR
-    alias>Alias<br>alias_product]
-    1201[Index<br>product_20231201]
-    1202[Index<br>product_20231202]
-
-    alias -- "Remove" --> 1201
-    alias -- "Add" --> 1202
-```
+- 안정적인 서비스 운영을 위해, **Alias API를 활용**하여 무중단으로 인덱스를 전환하고, **백업 인덱스를 유지**하는 시스템을 구현하여 사용합니다.
 
 ```json
 // API : POST _aliases
@@ -353,6 +340,19 @@ flowchart LR
         }
     ]
 }
+```
+
+```mermaid
+---
+title : 검색용 Index 교체
+---
+flowchart LR
+    alias>Alias<br>alias_product]
+    1201[Index<br>product_20231201]
+    1202[Index<br>product_20231202]
+
+    alias -- "Remove" --> 1201
+    alias -- "Add" --> 1202
 ```
 
 ```mermaid
@@ -841,7 +841,7 @@ flowchart LR
 
 
 
-## 검색 성능 테스트 결과 비교
+## 5. 검색 성능 테스트 결과 비교
 
 - 최초의 검색 엔진 성능으로부터, 최소 **분당 20,000건(= 초당 약 350건) 이상의 검색 요청을 처리할 수 있도록 개선**해야 합니다.
 
