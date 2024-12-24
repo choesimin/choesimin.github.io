@@ -138,6 +138,7 @@ service --> queue --> worker_1 & worker_2 & worker_3 & worker_4
     - Circuit Breaker 패턴과 결합하여 장애 전파를 방지합니다.
     - 부분적 장애가 전체 시스템 장애로 확대되는 것을 막습니다.
 
+
 ### 고가용성 (High Availability)
 
 - **중복성(Redundancy)** : 메시지를 여러 노드에 복제하여 저장하고 장애 시 다른 노드에서 처리가 가능합니다.
