@@ -156,10 +156,10 @@ Note over t2 : Transaction 2는 잘못된 data를 참조하여 잘못된 결과 
 
 | 기법 | 주요 특징 | 장점 | 단점 | 적합한 사용 상황 |
 | --- | --- | --- | --- | --- |
-| **Locking** | data에 잠금을 걸어 독점적 사용 | - data 일관성 보장<br>- 구현이 상대적으로 간단 | - 교착 상태 발생 가능<br>- 잠금 단위에 따른 성능 차이 | - data 일관성이 매우 중요한 경우<br>- transaction 충돌이 빈번한 환경 |
-| **Timestamp Ordering** | transaction에 timestamp 부여하여 순서대로 실행 | - 교착 상태 발생 없음<br>- 우선순위 부여 가능 | - Rollback 발생률 높음<br>- 연쇄 복귀 가능성 | - transaction 우선순위가 중요한 경우<br>- 교착 상태를 완전히 피해야 하는 상황 |
-| **Optimistic Concurrency Control** | transaction 종료 후 검증 | - 충돌이 적은 환경에서 높은 성능<br>- 잠금 overhead 없음 | - 충돌 시 rollback 비용 높음<br>- 검증 단계에서 병목 현상 가능 | - 읽기 위주의 transaction이 많은 환경<br>- 충돌 가능성이 낮은 상황 |
-| **Multi-version Concurrency Control** | data의 여러 version 유지 | - 읽기 작업의 병행성 향상<br>- rollback 감소 | - 저장 공간 증가<br>- version 관리 복잡성 | - 읽기와 쓰기 작업이 혼재된 환경<br>- 긴 transaction과 짧은 transaction이 공존하는 상황 |
+| **Locking** | data에 잠금을 걸어 독점적 사용 | data 일관성 보장, 구현이 상대적으로 간단 | 교착 상태 발생 가능, 잠금 단위에 따른 성능 차이 | data 일관성이 매우 중요한 경우, transaction 충돌이 빈번한 환경 |
+| **Timestamp Ordering** | transaction에 timestamp 부여하여 순서대로 실행 | 교착 상태 발생 없음, 우선 순위 부여 가능 | Rollback 발생률 높음, 연쇄 복귀 가능성 | transaction 우선 순위가 중요한 경우, 교착 상태를 완전히 피해야 하는 상황 |
+| **Optimistic Concurrency Control** | transaction 종료 후 검증 | 충돌이 적은 환경에서 높은 성능, 잠금 overhead 없음 | 충돌 시 rollback 비용 높음, 검증 단계에서 병목 현상 가능 | 읽기 위주의 transaction이 많은 환경, 충돌 가능성이 낮은 상황 |
+| **Multi-version Concurrency Control** | data의 여러 version 유지 | 읽기 작업의 병행성 향상, rollback 감소 | 저장 공간 증가, version 관리 복잡성 | 읽기와 쓰기 작업이 혼재된 환경, 긴 transaction과 짧은 transaction이 공존하는 상황 |
 
 
 ### Locking : 잠금 기법

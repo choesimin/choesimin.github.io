@@ -315,7 +315,7 @@ flowchart LR
     - 특히 MySQL을 주 데이터베이스로 사용하는 작은 규모의 애플리케이션이나 프로토타입 개발 시 유용합니다.
     - 구축이 매우 간단하고 빠르지만, **확장성과 기능이 제한적**이므로 대규모 시스템에는 적합하지 않습니다.
 
-| 비교 항목 | Debezium | Apache NiFi | Oracle GoldenGate | Maxwell |
+|  | Debezium | Apache NiFi | Oracle GoldenGate | Maxwell |
 | --- | --- | --- | --- | --- |
 | **주요 특징** | Kafka 생태계와 강력한 통합, 다양한 DB 지원, 대규모 분산 환경에 적합 | 광범위한 데이터 소스 지원, 시각적 관리 도구, 복잡한 데이터 파이프라인 구성 가능 | Enterprise 수준의 안정성과 성능, Oracle 환경에서 특히 강력 | MySQL 특화, 간단한 구조, 소규모 프로젝트에 적합 |
 | **CDC 방식** | Log 기반 CDC (Binary log 직접 읽음), 실시간 변경 감지 | Polling 방식과 Agent 기반 CDC, 다양한 구현 방식 선택 가능 | Log 기반, Trigger 기반, XStream 등 다양한 CDC 옵션 제공 | 단순 Log 기반 CDC (MySQL binary log만 지원) |
