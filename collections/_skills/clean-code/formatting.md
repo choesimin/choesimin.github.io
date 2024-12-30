@@ -129,7 +129,7 @@ lineWidthHistogram.addLine(lineSize, lineCount);
 recordWidestLine(lineSize);
 ```
 
-#### 연산자 우선 순위를 강조하기
+#### 연산자 우선순위를 강조하기
 
 ```java
 (-b + Math.sqrt(determinant)) / (2*a)

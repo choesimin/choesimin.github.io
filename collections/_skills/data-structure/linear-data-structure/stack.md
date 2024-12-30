@@ -41,7 +41,7 @@ date: 2024-05-31
     - 여는 괄호를 Stack에 `push`하고, 닫는 괄호를 만났을 때 Stack에서 `pop`하여 짝이 맞는지 확인합니다.
 
 - **중위 표기식을 후위 표기식으로 변환** : 계산기의 algorithm에서 중위 표기식을 후위 표기식으로 변환할 때 Stack을 사용합니다.
-    - 연산자의 우선 순위를 처리하기 위해 Stack을 활용합니다.
+    - 연산자의 우선순위를 처리하기 위해 Stack을 활용합니다.
 
 - **DFS (Depth-First Search)** : graph 탐색 algorithm인 깊이 우선 탐색에서 Stack을 사용합니다.
     - 재귀적으로 동작하는 DFS는 Stack 자료 구조를 이용하여 graph의 node를 방문합니다.
