@@ -200,6 +200,7 @@ timeline
 | `:set autoindent` | 자동으로 들여쓰기합니다. 줄을 바꿀 때, 바로 아래로 cursor를 떨어뜨립니다. |
 | `:set smartindent` | 자동으로 들여쓰기합니다. 줄을 바꿀 때, tabstop만큼 자동으로 더 띄어서 cursor를 위치시킵니다. |
 | `:set encoding=utf-8` | encoding 방식을 utf-8로 설정합니다. |
+| `:set formatoptions-=r` | 자동 주석 작성 기능을 비활성화 합니다. `//` 또는 `/*` 등의 주석 아래로 줄바꿈할 때, 주석 기호가 자동으로 붙지 않게 합니다. |
 | `:syntax on` | 문법 강조 색상을 적용합니다. |
 
 
