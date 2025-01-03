@@ -57,16 +57,3 @@ date: 2025-01-02
 
 
 
-
-## 예제
-
-```mermaid
-flowchart LR
-    A[Source] --> B[Stream]
-    B --> C[Process]
-    C --> D[Sink]
-    C --> E[Table]
-    E --> F[Query]
-```
-    
-    
