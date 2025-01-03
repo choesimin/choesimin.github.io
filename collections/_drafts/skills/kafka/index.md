@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: skill
 date: 2024-12-31
 title: Apache Kafka
 ---
