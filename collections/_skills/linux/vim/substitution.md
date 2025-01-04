@@ -13,6 +13,9 @@ title: Vim 문자열 치환하기
 :[range]s/pattern/replacement/[options]
 ```
 
+- Vim에서 문자열을 치환하는 명령어에는 `s` keyword를 사용합니다.
+    - 치환을 의미하는 'substitution'의 약자입니다.
+
 - 기본적으로 `:s/pattern/replacement/[options]`의 형태의 명령어를 사용합니다.
     - `:s/hello/world/g`는 현재 줄의 모든 'hello'를 'world'로 바꿉니다.
 
