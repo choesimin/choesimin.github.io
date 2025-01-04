@@ -88,28 +88,28 @@ date: 2024-12-26
 
 |  | 특징 | 처리 방식 | 강점 | 단점 | 활용 사례 |
 | --- | --- | --- | --- | --- | --- |
-| **Confluent ksqlDB** | SQL 기반의 stream 처리 엔진, Kafka와 완벽한 통합, database 기능 포함, 실시간 data 처리와 집계 지원 | 실시간 stream | SQL로 쉽게 stream 처리 가능, 빠른 개발 속도, Kafka 생태계와 통합 용이, 직관적인 개발 경험, Pull 쿼리 지원으로 상태 조회 용이 | Community Edition의 기능 제한, Confluent 종속성, 수평적 확장성의 한계, 복잡한 집계 연산시 성능 제약, 고급 stream 처리 기능 제한 | 실시간 data 변환, 간단한 stream 분석, event 기반 application, 실시간 대시보드, 간단한 ETL |
-| **Apache Kafka Streams** | Kafka 기반의 클라이언트 라이브러리, 상태 저장 처리 지원, 마이크로서비스 친화적, local 상태 저장소 활용 | 실시간 stream | 가벼운 구조, Kafka와 긴밀한 통합, 별도 클러스터 불필요, Exactly-once 처리 보장, 빠른 local 상태 조회 | Java/Scala로 제한된 개발, 대규모 분산 처리에는 제한적, 복잡한 처리 로직 구현시 번거로움, 외부 system 연동 제한적 | 마이크로서비스 기반 실시간 처리, ETL, event 기반 application, 실시간 data pipeline |
-| **Apache Flink** | 순수 stream 처리에 최적화, 정확한 event 시간 처리, batch 처리도 강력 지원, Table API/SQL 지원 | 실시간 stream, batch | 매우 낮은 지연 시간, 정확한 event 처리, 강력한 상태 관리, Checkpoint/Savepoint 기능, SQL 지원 강화 | 높은 학습 곡선, 운영 복잡도가 높음, 초기 설정 복잡, resource 요구사항 높음 | 실시간 이상 거래 감지, 복잡한 event 처리, 대규모 stream 분석, 정확한 시간 기반 분석 |
-| **Apache Spark Structured Streaming** | Spark의 통합 stream 처리 모듈, ML과 통합 용이, 마이크로batch/연속 처리 지원, Project Zen 통한 성능 개선 | 마이크로 batch, 연속 처리 | batch/stream 통합 처리, 풍부한 라이브러리, ML pipeline 통합, SQL 지원, 광범위한 커뮤니티 | 초기 지연 시간 높음, 순수 실시간 처리시 성능 제약, resource 사용량 높음, Memory 관리 복잡 | 대규모 data 분석, ML pipeline, 복잡한 ETL, 실시간 AI 추론 |
-| **Apache Storm** | 순수 stream 처리에 특화, 매우 낮은 지연 시간, 간단한 architecture, Trident API 지원 | 실시간 stream | 매우 낮은 지연 시간, 단순한 architecture, 높은 신뢰성, 쉬운 스케일링, Exactly-once 지원 | 제한된 고급 기능, Flink 대비 기능 부족, 복잡한 상태 관리 제한, 개발 속도 둔화 | 실시간 알림, 간단한 stream 처리, IoT data 처리, 실시간 모니터링 |
-| **Apache Samza** | LinkedIn에서 개발, Kafka와 긴밀한 통합, YARN 기반 resource 관리, 분산 처리 최적화 | 실시간 stream | 강력한 상태 관리, Kafka와 좋은 통합, 확장성, 장애 복구 능력 우수, 처리량 중심 설계 | 제한된 커뮤니티, 상대적으로 적은 사용 사례, 높은 운영 복잡도, 학습 resource 부족 | 메시징 system, 실시간 분석, 대규모 event 처리, 로그 처리 |
-| **Apache NiFi** | 웹 기반 data 흐름 관리, 시각적 프로그래밍 UI, 풍부한 프로세서 라이브러리, Site-to-Site 프로토콜 | data 흐름 중심 | 직관적인 UI, 강력한 data 계보 추적, 다양한 프로토콜 지원, 확장 용이성, 강력한 보안 기능 | 순수 stream 처리에 부적합, 복잡한 변환에 제한적, 높은 Memory 사용량, 대규모 확장시 복잡 | data 수집/라우팅, IoT data 처리, system 간 data 이동, ETL, 보안 중심 data 처리 |
-| **Apache Beam** | 런타임 독립적 통합 모델, 다중 런타임 지원, pipeline 템플릿, 크로스 플랫폼 실행 | 통합 batch/stream | 런타임 교체 가능, 클라우드 중립적, 높은 이식성, 다양한 실행 엔진 지원, 재사용성 높음 | 추상화로 인한 오버헤드, 디버깅 어려움, 런타임별 최적화 필요, 초기 설정 복잡 | 멀티 클라우드 환경, 클라우드 중립적 pipeline, 하이브리드 클라우드 처리, 범용 data
+| **Confluent ksqlDB** | SQL 기반의 stream processing engine, Kafka와 완벽한 통합, database 기능 포함, 실시간 data 처리와 집계 지원 | 실시간 stream | SQL로 쉽게 streaw 처리 가능, 빠른 개발 속도, Kafka 생태계와 통합 용이, 직관적인 개발 경험, pull query 지원으로 상태 조회 용이 | community edition의 기능 제한, Confluent 종속성, 수평적 확장성의 한계, 복잡한 집계 연산 시 성능 제약, 고급 stream 처리 기능 제한 | 실시간 data 변환, 간단한 stream 분석, event 기반 application, 실시간 dashboard, 간단한 ETL |
+| **Apache Kafka Streams** | Kafka 기반의 client library, 상태 저장 처리 지원, microservice 친화적, local 상태 저장소 활용 | 실시간 stream | 가벼운 구조, Kafka와 긴밀한 통합, 별도 cluster 불필요, Exactly-once 처리 보장, 빠른 local 상태 조회 | Java/Scala로 제한된 개발, 대규모 분산 처리에는 제한적, 복잡한 처리 logic 구현시 번거로움, 외부 system 연동 제한적 | microservice 기반 실시간 처리, ETL, event 기반 application, 실시간 data pipeline |
+| **Apache Flink** | 순수 stream 처리에 최적화, 정확한 event 시간 처리, batch 처리도 강력 지원, Table API/SQL 지원 | 실시간 stream, batch | 매우 낮은 지연 시간, 정확한 event 처리, 강력한 상태 관리, checkpoint/savepoint 기능, SQL 지원 강화 | 높은 학습 곡선, 운영 복잡도가 높음, 초기 설정 복잡, resource 요구 사항 높음 | 실시간 이상 거래 감지, 복잡한 event 처리, 대규모 stream 분석, 정확한 시간 기반 분석 |
+| **Apache Spark Structured Streaming** | Spark의 통합 stream 처리 모듈, ML과 통합 용이, Project Zen을 통한 성능 개선 | micro-batch, continuous processing | batch/stream 통합 처리, 풍부한 library, ML pipeline 통합, SQL 지원, 광범위한 community | 초기 지연 시간 높음, 순수 실시간 처리 시 성능 제약, resource 사용량 높음, Memory 관리 복잡 | 대규모 data 분석, ML pipeline, 복잡한 ETL, 실시간 AI 추론 |
+| **Apache Storm** | 순수 stream 처리에 특화, 매우 낮은 지연 시간, 간단한 architecture, Trident API 지원 | 실시간 stream | 매우 낮은 지연 시간, 단순한 architecture, 높은 신뢰성, 쉬운 scaling, Exactly-once 지원 | 제한된 고급 기능, Flink 대비 기능 부족, 복잡한 상태 관리 제한, 개발 속도 둔화 | 실시간 알림, 간단한 stream 처리, IoT data 처리, 실시간 monitoring |
+| **Apache Samza** | LinkedIn에서 개발, Kafka와 긴밀한 통합, YARN 기반 resource 관리, 분산 처리 최적화 | 실시간 stream | 강력한 상태 관리, Kafka와 좋은 통합, 확장성, 장애 복구 능력 우수, 처리량 중심 설계 | 제한된 community, 상대적으로 적은 사용 사례, 높은 운영 복잡도, 학습 resource 부족 | messaging system, 실시간 분석, 대규모 event 처리, log 처리 |
+| **Apache NiFi** | 웹 기반 data 흐름 관리, 시각적 programming UI, 풍부한 processor library, Site-to-Site protocol | data 흐름 중심 | 직관적인 UI, 강력한 data 계보 추적, 다양한 protocol 지원, 확장 용이성, 강력한 보안 기능 | 순수 stream 처리에 부적합, 복잡한 변환에 제한적, 높은 Memory 사용량, 대규모 확장시 복잡 | data 수집/routing, IoT data 처리, system 간 data 이동, ETL, 보안 중심 data 처리 |
+| **Apache Beam** | runtime 독립적 통합 모델, 다중 runtime 지원, pipeline template, cross platform 실행 | 통합 batch/stream | runtime 교체 가능, cloud 중립적, 높은 이식성, 다양한 실행 engine 지원, 재사용성 높음 | 추상화로 인한 overhead, debugging 어려움, runtime별 최적화 필요, 초기 설정 복잡 | multi cloud 환경, cloud 중립적 pipeline, hybrid cloud 처리, 범용 data 처리 |
 
 - **SQL로 간단한 실시간 처리**가 필요하다면 **ksqlDB**를 선택합니다.
     - SQL로 stream 처리를 쉽게 구현할 수 있습니다.
     - Kafka 생태계와 완벽하게 통합됩니다.
     - 개발 속도가 빠르고, 배포가 간편합니다.
-    - event 기반 application의 프로토타이핑에 적합합니다.
+    - event 기반 application의 prototyping에 적합합니다.
     - 단, 복잡한 처리나 대규모 확장성이 필요하다면 부적합합니다.
-        - SQL의 표현력 한계로 복잡한 business 로직 구현이 어렵습니다
-        - Kafka Streams 기반으로 인한 파티션 확장성 제약이 있습니다
-        - SQL 엔진 특성상 대규모 처리 시 resource 사용이 비효율적입니다
+        - SQL의 표현력 한계로 복잡한 business logic 구현이 어렵습니다.
+        - Kafka Streams 기반으로 인한 partition 확장성 제약이 있습니다.
+        - SQL engine 특성상 대규모 처리 시 resource 사용이 비효율적입니다.
 
-- **마이크로서비스 기반 실시간 처리**라면 **Kafka Streams**를 선택합니다.
-    - 마이크로서비스에 쉽게 통합할 수 있습니다.
-    - 경량화된 라이브러리 방식으로 가벼운 처리 환경을 제공합니다.
+- **microservice 기반 실시간 처리**라면 **Kafka Streams**를 선택합니다.
+    - microservice에 쉽게 통합할 수 있습니다.
+    - 경량화된 library 방식으로 가벼운 처리 환경을 제공합니다.
     - Java/Scala 개발 환경에 적합합니다.
     - Kafka 기반 ETL pipeline 구축이 용이합니다.
     - Exactly-once 처리 보장를 보장합니다.
@@ -117,10 +117,10 @@ date: 2024-12-26
     - 독립적인 event 처리 application 개발에 적합합니다.
 
 - **복잡하고 정밀한 실시간 처리**가 필요하다면 **Flink**를 선택합니다.
-    - 밀리초 단위의 초저지연 처리가 가능합니다.
+    - millisecond 단위의 초저지연 처리가 가능합니다.
     - 정밀한 event 시간 기반 처리를 지원합니다.
     - 대규모 상태 관리 기능과 장애 복구 기능을 제공합니다.
-    - 복잡한 event 패턴 감지에 적합합니다.
+    - 복잡한 event pattern 감지에 적합합니다.
     - 실시간 이상 거래 탐지 같은 중요 업무를 안정적으로 처리합니다.
     - batch와 stream 처리를 통합할 수 있습니다.
     - SQL로도 stream 처리를 할 수 있습니다.
@@ -131,36 +131,36 @@ date: 2024-12-26
     - 대용량 data 분석에 적합합니다.
     - SQL로 복잡한 data 처리가 가능합니다.
     - batch와 stream 분석을 통합할 수 있습니다.
-    - 다양한 분석 라이브러리를 활용할 수 있습니다.
+    - 다양한 분석 library를 활용할 수 있습니다.
 
 - **단순하면서도 신뢰성 있는 실시간 처리**가 필요하다면 **Storm**을 선택합니다.
     - 초저지연 실시간 처리가 가능합니다.
     - 단순한 architecture로 실시간 system을 구축할 수 있습니다.
-    - 실시간 알림과 모니터링에 적합합니다.
+    - 실시간 알림과 monitoring에 적합합니다.
     - IoT data를 가볍게 처리할 수 있습니다.
     - system 확장이 용이합니다.
-    - 안정성은 검증되어 있으나, 최신 트렌드 반영은 제한적입니다.
+    - 안정성은 검증되어 있으나, 최신 trend 반영은 제한적입니다.
 
-- **안정적인 대규모 메시징 처리**가 필요하다면 **Samza**를 선택합니다.
+- **안정적인 대규모 messaging 처리**가 필요하다면 **Samza**를 선택합니다.
     - 안정적인 상태 관리 기능을 제공합니다.
-    - Kafka 기반 메시징 system 구축에 적합합니다.
+    - Kafka 기반 messaging system 구축에 적합합니다.
     - 고가용성과 장애 복구가 뛰어납니다.
     - 분산 처리에 최적화되어 있습니다.
-    - 대규모 메시징 처리에 적합합니다.
-    - 대용량 로그 처리에 효과적입니다.
+    - 대규모 messaging 처리에 적합합니다.
+    - 대용량 log 처리에 효과적입니다.
 
 - **시각적인 data pipeline 관리**가 필요하다면 **NiFi**를 선택합니다.
     - GUI 기반으로 data 흐름을 시각적으로 설계할 수 있습니다.
         - 비개발자도 쉽게 data pipeline을 관리할 수 있습니다.
     - 강력한 보안과 추적성을 지원합니다.
-    - 다양한 프로토콜을 지원하여, system 간 data 연동이 쉽습니다.
+    - 다양한 protocol을 지원하여, system 간 data 연동이 쉽습니다.
     - data 이동 경로를 추적할 수 있습니다.
     - IoT data 수집에 적합합니다.
 
-- **클라우드 환경에 구애받지 않는 처리**가 필요하다면 **Beam**을 선택합니다.
-    - 클라우드 중립적이어서, 여러 클라우드 환경에서 실행할 수 있습니다.
-        - 어느 클라우드에 종속되지 않는 pipeline을 만들 수 있습니다.
-    - 다양한 런타임 옵션을 제공하여, 실행 환경을 유연하게 변경할 수 있습니다.
+- **cloud 환경에 구애받지 않는 처리**가 필요하다면 **Beam**을 선택합니다.
+    - cloud 중립적이어서, 여러 cloud 환경에서 실행할 수 있습니다.
+        - 어느 cloud에 종속되지 않는 pipeline을 만들 수 있습니다.
+    - 다양한 runtime option을 제공하여, 실행 환경을 유연하게 변경할 수 있습니다.
     - 이식성과 재사용성이 좋아, 다른 환경으로 쉽게 이전할 수 있습니다.
-    - 하이브리드 클라우드 환경에 적합합니다.
+    - hybrid cloud 환경에 적합합니다.
 
