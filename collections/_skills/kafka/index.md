@@ -13,7 +13,7 @@ title: Apache Kafka
 flowchart TD
     web[Web]
     custom_apps(Custom Apps)
-    microservices{{Microservices}}
+    microservices{Microservices}
     monitoring[Monitoring]
     analytics[Analytics]
 
@@ -24,7 +24,7 @@ flowchart TD
     twitter(Twitter)
     app1[App]
     nosql[(NoSQL)]
-    app2{{App}}
+    app2[App]
     oracle(Oracle)
     caches[(Caches)]
     hadoop(Hadoop)
@@ -44,7 +44,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     producer(Producer)
-    broker{{Broker}}
+    broker[[Broker]]
     consumer(Consumer)
 
     producer --> broker

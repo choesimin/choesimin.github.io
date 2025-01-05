@@ -211,7 +211,7 @@ flowchart TD
     subgraph search_engine[Search Engine]
         engine_batch[Search Engine Batch]
         redis[(Redis)]
-        key{{Redis Key}}
+        key[/Redis Key/]
         elasticsearch[(Elasticsearch)]
     end
     
@@ -406,7 +406,7 @@ flowchart TD
         subgraph scheduled_time[10초마다 실행]
             mongodb[(MongoDB)]
             redis[(Redis)]
-            key{{Redis Key}}
+            key[/Redis Key/]
             elasticsearch[Elasticsearch]
         end
     end
