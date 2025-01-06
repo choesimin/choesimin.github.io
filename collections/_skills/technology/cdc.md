@@ -35,7 +35,7 @@ flowchart LR
 2. **Data 복제** : database, data lake, data warehouse 등의 저장소에 data를 복제하여, 각 resource가 최신 version data를 보유하도록 할 수 있습니다.
     - data가 분산되어 있거나 data silo 문제가 있는 경우에도, 여러 부서가 동일한 최신 data에 접근하도록 지원할 수 있습니다.
         - data silo : data가 격리되어 특정 조직/부서/단위에서만 정보 접근 및 공유가 가능하여 다른 조직/부서/단위에서는 data가 격리되는 현상.
-            - data silo는 부서 간의 단절을 유발하는 등, 기업에 부정적인 영향을 끼칩니다.
+        - data silo는 부서 간의 단절을 유발하는 등, 기업에 부정적인 영향을 끼칩니다.
 
 3. **분석 Dashboard** : CDC는 BI(Business Intelligence)와 같은 목적으로 data 변경 사항을 분석 dashboard에 제공하여, 의사결정을 도울 수 있습니다.
 
@@ -134,9 +134,9 @@ flowchart LR
 
 ### Event 기반 Architecture에 CDC를 적용하는 경우 생기는 단점
 
-- DB 기반으로 event를 발행하면 관리 point가 줄어든다는 장점이 있지만, application 기반으로 message가 발행하지 않기 때문에 생기는 단점도 있습니다.
+- DB 기반으로 event를 발행하면 관리해야 할 지점(management point)이 줄어든다는 장점이 있지만, application 기반으로 message가 발행하지 않기 때문에 생기는 단점도 있습니다.
 
-1. **단일 table에 대한 변경 사항만 capture 가능**합니다.
+1. **단일 table에 대한 변경 사항만 감지(capture) 가능**합니다.
     - table에 있는 row(또는 collection에 있는 document) level에서의 변경 사항을 capture하기 때문에, 여러 table(또는 collection)에 대한 변경 사항을 하나의 message(Kafka topic 등)에 담을 수 없습니다.
     - DB에 담기지 않는 data 변경 사항은 Kafka message에 포함할 수 없습니다.
 
@@ -199,14 +199,14 @@ flowchart LR
 - trigger 기반 CDC는 실시간 data 추적이 필요하지만 system 성능에 큰 제약이 없는 환경에서 효과적입니다.
     - **실시간 Data 동기화**가 필요한 경우 : database의 변경 사항을 즉시 다른 system이나 application에 반영해야 하는 상황에서 적합합니다.
         - 예를 들어, 실시간 data warehouse 동기화나 microservice 간 data 일관성 유지에 활용됩니다.
-    - System이 **충분한 처리 용량을 보유**한 경우 : trigger로 인한 추가적인 processing overhead를 처리할 수 있는 충분한 CPU, memory, storage 용량이 확보된 환경을 의미합니다.
+    - System이 **충분한 처리 용량을 보유**한 경우 : trigger로 인한 추가적인 processing overhead를 처리할 수 있는 충분한 CPU, Memory, storage 용량이 확보된 환경을 의미합니다.
     - Data의 **완전한 감사 추적**이 필요한 경우 : 규제 준수나 보안 요구 사항으로 인해 모든 data 변경 사항의 이력을 상세하게 추적해야 하는 상황에 적합합니다.
         - 금융 거래나 중요 business data의 변경 이력 관리에 특히 유용합니다.
 
 - trigger 기반 CDC는 고성능 transaction과 대용량 data 처리가 필요하거나 system resource가 제한적인 환경에서는 적합하지 않습니다.
     - 고성능의 Transaction 처리가 필요한 경우 : 초당 수천 건 이상의 transaction이 발생하는 환경에서는 **trigger로 인한 지연**이 system 전반의 응답 시간에 부정적인 영향을 미칩니다.
         - 예를 들어, 실시간 결제 system이나 고빈도 거래 system에서는 적합하지 않습니다.
-    - System Resource가 제한적인 경우 : system의 CPU, memory, disk I/O 등의 resource의 사용률이 이미 높은 상황에서는 **trigger로 인한 추가적인 resource 소비**가 system 안정성을 떨어뜨립니다.
+    - System Resource가 제한적인 경우 : system의 CPU, Memory, Disk I/O 등의 resource의 사용률이 이미 높은 상황에서는 **trigger로 인한 추가적인 resource 소비**가 system 안정성을 떨어뜨립니다.
         - 특히 cloud 환경에서 비용 효율성을 고려해야 하는 경우 부담이 될 수 있습니다.
     - 대용량 Data 처리가 필요한 환경 : 대규모 data migration이나 batch 처리 작업이 빈번한 환경에서는 trigger가 **병목 현상**(bottleneck)을 일으킬 수 있습니다.
         - 수백만 건 이상의 record를 처리해야 하는 경우, 각 변경마다 실행되는 trigger는 전체 처리 시간을 크게 증가시킵니다.
@@ -291,44 +291,44 @@ flowchart LR
 
 ## CDC Solution 비교 : Debezium, Apache NiFi, Oracle GoldenGate, Maxwell
 
-- **Oracle GoldenGate**는 **엔터프라이즈 수준의 CDC 솔루션**으로, 대규모 기업 환경에서 가장 큰 강점을 보입니다.
-    - 특히 **Oracle 데이터베이스를 주력**으로 사용하는 금융권이나 대기업에 적합합니다.
-    - **실시간 데이터 복제**가 중요하고, **고가용성이 필수적인 미션 크리티컬한 시스템**에서 탁월한 성능을 발휘합니다.
-    - 다만 **높은 라이선스 비용**과 **복잡한 구축 과정**이 필요하므로, 충분한 예산과 전문 인력이 확보된 조직에서 채택하는 것이 바람직합니다.
+- **Oracle GoldenGate**는 **enterprise 수준의 CDC solution**으로, 대규모 기업 환경에서 가장 큰 강점을 보입니다.
+    - 특히 **Oracle database를 주력**으로 사용하는 금융권이나 대기업에 적합합니다.
+    - **실시간 data 복제**가 중요하고, **고가용성이 필수적인 mission critical system**에서 탁월한 성능을 발휘합니다.
+    - 다만 **높은 license 비용**과 **복잡한 구축 과정**이 필요하므로, 충분한 예산과 전문 인력이 확보된 조직에서 채택하는 것이 바람직합니다.
 
-- **Debezium**은 **오픈소스 진영의 표준**으로, 현대적인 클라우드 네이티브 환경에 가장 적합합니다.
-    - **Kafka 생태계와의 뛰어난 통합성**을 바탕으로, **마이크로서비스 아키텍처**를 채택한 조직이나 **실시간 데이터 파이프라인**을 구축하려는 기업에 이상적입니다.
-        - Kafka를 기반으로 하여 이벤트 기반 아키텍처를 자연스럽게 지원하며, 각 마이크로서비스가 필요한 데이터 변경 사항을 실시간으로 구독할 수 있습니다.
-    - 특히 다양한 데이터베이스를 사용하는 **하이브리드 환경**에서 강점을 보이며, **컨테이너 기반 인프라를 운영하는 조직에 추천**됩니다.
+- **Debezium**은 **open-source 진영의 표준**으로, 현대적인 cloud native 환경에 가장 적합합니다.
+    - **Kafka 생태계와의 뛰어난 통합성**을 바탕으로, **microservice architecture**를 채택한 조직이나 **실시간 data pipeline**을 구축하려는 기업에 이상적입니다.
+        - Kafka를 기반으로 하여 event 기반 architecture를 자연스럽게 지원하며, 각 microservice가 필요한 data 변경 사항을 실시간으로 구독할 수 있습니다.
+    - 특히 다양한 database를 사용하는 **hybrid 환경**에서 강점을 보이며, **container 기반 infra를 운영하는 조직에 추천**됩니다.
         - Kafka 자체가 Kubernetes 환경에 최적화되어 있기 때문입니다.
-            - Kafka의 분산 메시징 시스템은 Kubernetes의 동적 확장성과 자연스럽게 조화를 이룹니다.
-            - 예를 들어, 트래픽이 증가하면 Kubernetes는 자동으로 Debezium 커넥터의 복제본을 추가할 수 있고, Kafka는 이러한 변화를 자연스럽게 수용할 수 있습니다.
-    - 무료로 사용할 수 있지만, **Kafka 인프라 구축과 운영에 대한 전문성이 필요**합니다.
+            - Kafka의 분산 messaging system은 Kubernetes의 동적 확장성과 자연스럽게 조화를 이룹니다.
+            - 예를 들어, traffic이 증가하면 Kubernetes는 자동으로 Debezium connector의 복제본을 추가하게 되고, Kafka는 이러한 변화를 자연스럽게 수용할 수 있습니다.
+    - 무료로 사용할 수 있지만, **Kafka infra 구축과 운영에 대한 전문성이 필요**합니다.
 
-- **Apache NiFi**는 CDC만을 위한 도구가 아닌, **종합적인 데이터 통합 플랫폼**입니다.
-    - 따라서 **단순한 CDC 구현보다는 복잡한 데이터 흐름을 관리해야 하는 환경에 적합**합니다.
-    - 다양한 데이터 소스로부터 정보를 수집하고 변환해야 하는 **데이터 레이크** 구축 프로젝트나, ETL 프로세스가 복잡한 기업에 적합합니다.
-    - **시각적 관리 도구**를 제공하여 데이터 파이프라인을 직관적으로 구성할 수 있다는 장점이 있지만, **구축과 운영의 복잡도**가 높습니다.
+- **Apache NiFi**는 CDC만을 위한 도구가 아닌, **종합적인 data 통합 platform**입니다.
+    - 따라서 **단순한 CDC 구현보다는 복잡한 data 흐름을 관리해야 하는 환경에 적합**합니다.
+    - 다양한 data source로부터 정보를 수집하고 변환해야 하는 **data lake** 구축 project나, ETL process가 복잡한 기업에 적합합니다.
+    - **시각적 관리 도구**를 제공하여 data pipeline을 직관적으로 구성할 수 있다는 장점이 있지만, **구축과 운영의 복잡도**가 높습니다.
 
-- **Maxwell**은 **가장 단순한 CDC 솔루션**으로, **MySQL 환경에 특화**되어 있습니다.
-    - 스타트업이나 소규모 프로젝트에서 빠르게 CDC를 구현해야 할 때 적합합니다.
-    - 특히 MySQL을 주 데이터베이스로 사용하는 작은 규모의 애플리케이션이나 프로토타입 개발 시 유용합니다.
-    - 구축이 매우 간단하고 빠르지만, **확장성과 기능이 제한적**이므로 대규모 시스템에는 적합하지 않습니다.
+- **Maxwell**은 **가장 단순한 CDC solution**으로, **MySQL 환경에 특화**되어 있습니다.
+    - 스타트업이나 소규모 project에서 빠르게 CDC를 구현해야 할 때 적합합니다.
+    - 특히 MySQL을 주 database로 사용하는 작은 규모의 application이나 prototype 개발 시 유용합니다.
+    - 구축이 매우 간단하고 빠르지만, **확장성과 기능이 제한적**이므로 대규모 system에는 적합하지 않습니다.
 
 |  | Debezium | Apache NiFi | Oracle GoldenGate | Maxwell |
 | --- | --- | --- | --- | --- |
-| **주요 특징** | Kafka 생태계와 강력한 통합, 다양한 DB 지원, 대규모 분산 환경에 적합 | 광범위한 데이터 소스 지원, 시각적 관리 도구, 복잡한 데이터 파이프라인 구성 가능 | Enterprise 수준의 안정성과 성능, Oracle 환경에서 특히 강력 | MySQL 특화, 간단한 구조, 소규모 프로젝트에 적합 |
-| **CDC 방식** | Log 기반 CDC (Binary log 직접 읽음), 실시간 변경 감지 | Polling 방식과 Agent 기반 CDC, 다양한 구현 방식 선택 가능 | Log 기반, Trigger 기반, XStream 등 다양한 CDC 옵션 제공 | 단순 Log 기반 CDC (MySQL binary log만 지원) |
-| **성능** | 초당 수만 건 이상 처리, 수평적 확장 가능, Kafka 기반 분산 처리 | 유연한 처리량 조절, Back pressure 지원, Memory 기반 처리 | 대용량 트랜잭션 처리, 초고속 데이터 복제, Global 규모 확장 | 소규모 데이터 처리, 제한된 처리량, 수직적 확장만 가능 |
-| **DB 지원** | MySQL, PostgreSQL, Oracle, SQL Server, MongoDB 등 다양한 DB 지원 | 대부분의 RDBMS, NoSQL, 파일시스템 등 200여 개 데이터 소스 연결 | Oracle, SQL Server, DB2, MySQL, PostgreSQL, Cloud DB 등 | MySQL, MariaDB만 지원 |
-| **확장성** | 높음 (Kafka 기반 분산 아키텍처, 컨테이너 배포 용이) | 높음 (클러스터 기반, 동적 워크로드 조정) | 매우 높음 (Enterprise 수준, Global 규모 확장) | 제한적 (단일 프로세스 구조, 수직적 확장만 가능) |
-| **가용성** | 높음 (자동 장애 감지/복구, 무중단 운영) | 매우 높음 (Zero master 클러스터, 자동 장애 조치) | 매우 높음 (Enterprise 수준 고가용성, 자동화된 장애 관리) | 제한적 (단일 장애점 존재, 수동 개입 필요) |
-| **라이센스** | Apache License 2.0 (무료 상업적 이용 가능) | Apache License 2.0 (무료 상업적 이용 가능) | 상용 라이센스 (Oracle 계약 조건) | MIT License (무료 상업적 이용 가능) |
-| **구축 복잡도** | 중간 (Kafka 인프라 필수, 1-2주 소요) | 높음 (클러스터 환경 구성, 2-3주 소요) | 매우 높음 (Oracle 환경 최적화, 3-4주 소요) | 낮음 (기본 MySQL 설정만 필요, 1-3일 소요) |
-| **모니터링** | Kafka Connect 모니터링, JMX metrics, 웹 기반 관리 | 실시간 웹 UI 대시보드, 세부 metrics 시각화, 중앙집중식 관리 | 전용 관리 콘솔, 상세 성능 metrics, 자동화된 운영 | 기본 로깅 기능, 제한된 상태 정보, 수동 관리 |
-| **커뮤니티** | 대규모 활성 커뮤니티, Red Hat 공식 지원 | 대규모 활성 커뮤니티, Apache 재단 공식 지원 | 전문가 중심 커뮤니티, Oracle 공식 기술 지원 | 소규모 커뮤니티, 제한적 문서화 |
+| **주요 특징** | Kafka 생태계와 강력한 통합, 다양한 DB 지원, 대규모 분산 환경에 적합 | 광범위한 Data Source 지원, 시각적 관리 도구, 복잡한 Data Pipeline 구성 가능 | Enterprise 수준의 안정성과 성능, Oracle 환경에서 특히 강력 | MySQL 특화, 간단한 구조, 소규모 Project에 적합 |
+| **CDC 방식** | Log 기반 CDC (Binary log 직접 읽음), 실시간 변경 감지 | Polling 방식과 Agent 기반 CDC, 다양한 구현 방식 선택 가능 | Log 기반, Trigger 기반, XStream 등 다양한 CDC 옵션 제공 | 단순 Log 기반 CDC (MySQL Binary Log만 지원) |
+| **성능** | 초당 수만 건 이상 처리, 수평적 확장 가능, Kafka 기반 분산 처리 | 유연한 처리량 조절, Back pressure 지원, Memory 기반 처리 | 대용량 Transaction 처리, 초고속 Data 복제, Global 규모 확장 | 소규모 Data 처리, 제한된 처리량, 수직적 확장만 가능 |
+| **DB 지원** | MySQL, PostgreSQL, Oracle, SQL Server, MongoDB 등 다양한 DB 지원 | 대부분의 RDBMS, NoSQL, File System 등 200여 개 Data Source 연결 | Oracle, SQL Server, DB2, MySQL, PostgreSQL, Cloud DB 등 | MySQL, MariaDB만 지원 |
+| **확장성** | 높음 (Kafka 기반 분산 Architecture, Container 배포 용이) | 높음 (Cluster 기반, 동적 Workload 조정) | 매우 높음 (Enterprise 수준, Global 규모 확장) | 제한적 (단일 Process 구조, 수직적 확장만 가능) |
+| **가용성** | 높음 (자동 장애 감지/복구, 무중단 운영) | 매우 높음 (Zero master cluster, 자동 장애 조치) | 매우 높음 (Enterprise 수준 고가용성, 자동화된 장애 관리) | 제한적 (단일 장애점 존재, 수동 개입 필요) |
+| **License** | Apache License 2.0 (무료 상업적 이용 가능) | Apache License 2.0 (무료 상업적 이용 가능) | 상용 License (Oracle 계약 조건) | MIT License (무료 상업적 이용 가능) |
+| **구축 복잡도** | 중간 (Kafka infra 필수, 1-2주 소요) | 높음 (Cluster 환경 구성, 2-3주 소요) | 매우 높음 (Oracle 환경에 최적화, 3-4주 소요) | 낮음 (기본 MySQL 설정만 필요, 1-3일 소요) |
+| **Monitoring** | Kafka Connect Monitoring, JMX metrics, Web 기반 관리 | 실시간 Web UI Dashbaord, 세부 metrics 시각화, 중앙 집중식 관리 | 전용 관리 Console, 상세 성능 metrics, 자동화된 운영 | 기본 logging 기능, 제한된 상태 정보, 수동 관리 |
+| **Community** | 대규모 활성 Community, Red Hat 공식 지원 | 대규모 활성 Community, Apache 재단 공식 지원 | 전문가 중심 Community, Oracle 공식 기술 지원 | 소규모 Community, 제한적 문서화 |
 
-- 조직의 규모, 기술 스택, 예산, 운영 역량을 종합적으로 고려했을 때, **대기업이나 금융권은 Oracle GoldenGate**를, **현대적인 클라우드 환경의 중대형 기업은 Debezium**을, **복잡한 데이터 통합이 필요한 조직은 Apache NiFi**를, 그리고 **소규모 MySQL 프로젝트는 Maxwell**을 선택하는 것이 바람직합니다.
+- 조직의 규모, 기술 stack, 예산, 운영 역량을 종합적으로 고려했을 때, **대기업이나 금융권은 Oracle GoldenGate**를, **현대적인 cloud 환경의 중대형 기업은 Debezium**을, **복잡한 data 통합이 필요한 조직은 Apache NiFi**를, 그리고 **소규모 MySQL project는 Maxwell**을 선택하는 것이 바람직합니다.
 
 
 
