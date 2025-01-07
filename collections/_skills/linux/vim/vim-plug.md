@@ -1,7 +1,7 @@
 ---
 layout: skill
 date: 2025-01-03
-title: vim-plug
+title: vim-plug - Simple Vim Plugin Manager
 ---
 
 
@@ -109,25 +109,19 @@ title: vim-plug
 
 ```vim
 call plug#begin()
-Plug 'chriskempson/base16-vim'
-Plug 'scrooloose/nerdtree'
+Plug 'nanotech/jellybeans.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
-set hlsearch
 set nu
+set hlsearch
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set autoindent
 set encoding=utf-8
 
-colorscheme base16-default-dark
+colorscheme jellybeans
 syntax on
-
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
 ```
 
