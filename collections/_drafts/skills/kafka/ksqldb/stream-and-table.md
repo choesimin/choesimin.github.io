@@ -291,6 +291,36 @@ EMIT CHANGES;
     4. 상태 기반의 모니터링이 필요할 때.
     - 이벤트 데이터(Stream)를 집계하여 상태(Table)로 저장해야할 때, 변환이 필요합니다.
 
+```mermaid
+flowchart TD
+    subgraph kafka_events[Kafka Events]
+        user_purchase_event[User Purchase Event]
+        settings_change_event[Settings Change Event]
+        page_view_event[Page View Event]
+        error_event[Error Event]
+    end
+    subgraph ksqldb_streams[ksqlDB Streams]
+        purchase_stream[Purchase Stream]
+        settings_stream[Settings Stream]
+        page_view_stream[Page View Stream]
+        error_stream[Error Stream]
+    end
+    subgraph ksqldb_tables[ksqlDB Tables]
+        purchase_totals_table[Purchase Totals Table]
+        user_preferences_table[User Preferences Table]
+        traffic_stats_table[Traffic Stats Table]
+        error_counts_table[Error Counts Table]
+    end
+    user_purchase_event --> purchase_stream
+    settings_change_event --> settings_stream
+    page_view_event --> page_view_stream
+    error_event --> error_stream
+    purchase_stream -->|GROUP BY user_id| purchase_totals_table
+    settings_stream -->|LATEST_BY_OFFSET| user_preferences_table
+    page_view_stream -->|WINDOW TUMBLING| traffic_stats_table
+    error_stream -->|WINDOW HOPPING| error_counts_table
+```
+
 #### 실시간 집계가 필요한 경우
 
 ```sql
