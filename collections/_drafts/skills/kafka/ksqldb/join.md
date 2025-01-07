@@ -32,7 +32,7 @@ ksqlDB JOIN의 핵심은 "상태 관리(state management)"입니다. 스트리�
 
 
 
-| 비교 항목 | STREAM-STREAM | STREAM-TABLE | TABLE-TABLE |
+| 비교 항목 | Stream-Stream | Stream-Table | Table-Table |
 | --- | --- | --- | --- |
 | **지원되는 JOIN 유형** | INNER, LEFT OUTER | INNER, LEFT OUTER | INNER, LEFT OUTER, FULL OUTER |
 | **결과물 타입** | STREAM | STREAM | TABLE |
@@ -109,22 +109,29 @@ FROM stream1 s1
     - 지속적으로 실행되며 결과를 스트리밍하는 PUSH Query에서만 JOIN이 가능합니다.
 
 
+### Join의 종류와 각 Join에 대한 지원 범위
 
-### JOIN의 종류 : INNER JOIN, LEFT JOIN, FULL JOIN
+- **WINDOW** : 시간 기반으로 데이터를 그룹화하는 방식입니다.
+    - 스트림 데이터를 특정 시간 간격으로 분할하여 처리하며, 이를 통해 시계열 분석이나 집계 연산을 수행할 수 있습니다.
 
-- INNER JOIN: 양쪽 Record의 키가 같을 때 사용할 수 있는 JOIN
-_ LEFT JOIN: LEFT Record를 기준으로 downStream을 형성한다. 즉 FROM 절의 record가 들어올 때 downStream record를 생성하며, join 할 대상이 없는 경우 null이 된다.
-- FULL JOIN: 양쪽 모두의 Record Stream을 받아서 downStream을 형성한다. 또한 JOIN 할 대상이 없다면 null이 된다.
+- **INNER JOIN** : 두 데이터 스트림에서 조인 키가 일치하는 레코드만을 결과로 생성합니다.
+    - 양쪽 스트림 모두에 매칭되는 데이터가 있는 경우에만 결과가 출력됩니다.
 
+- **LEFT OUTER JOIN** : 왼쪽(FROM 절) 데이터 스트림의 모든 레코드를 기준으로 결과를 생성합니다.
+    - 오른쪽 스트림에서 매칭되는 레코드가 없는 경우, 해당 필드들은 NULL 값으로 채워집니다.
 
+- **RIGHT OUTER JOIN** : 오른쪽 데이터 스트림의 모든 레코드를 기준으로 결과를 생성합니다.
+    - 왼쪽 스트림에서 매칭되는 레코드가 없는 경우, 해당 필드들은 NULL 값으로 채워집니다.
 
-### 각 Join의 지원 범위
+- **FULL OUTER JOIN** : 양쪽 데이터 스트림의 모든 레코드를 결과에 포함시킵니다.
+    - 어느 한쪽에 매칭되는 레코드가 없는 경우, 해당 측의 필드들은 NULL 값으로 채워집니다.
+    - 양쪽 데이터의 완전한 집합을 얻을 수 있습니다.
 
-|  | Window | Inner | Left Outer | Right Outer | Full Outer |
+| Type | WINDOW | INNER | LEFT OUTER | RIGHT OUTER | FULL OUTER |
 | --- | --- | --- | --- | --- | --- |
-| **Stream - Stream** | O | O | O | O | O |
-| **Table - Table** | X | O | O | O | O |
-| **Stream - Table** | X | O | O | X | X |
+| **Stream-Stream** | O | O | O | O | O |
+| **Table-Table** | X | O | O | O | O |
+| **Stream-Table** | X | O | O | X | X |
 
 - Stream과 Table의 Right Outer Join은 지원하지 않습니다.
     - Table의 Key를 기준으로 Join을 수행할 때, Stream에는 동일한 Key를 가진 여러 이벤트가 존재할 수 있기 때문입니다.
@@ -133,9 +140,7 @@ _ LEFT JOIN: LEFT Record를 기준으로 downStream을 형성한다. 즉 FROM �
 
 
 
-
 ---
-
 
 
 
@@ -241,18 +246,15 @@ CREATE STREAM products_rekeyed
 
 
 
-## Stream-Stream, Stream-Table, Table-Table
+## Join 관계 유형 : Stream-Stream, Stream-Table, Table-Table
 
 
+### Stream-Stream Join
 
-ksqlDB의 JOIN은 스트림과 테이블을 결합하는 강력한 기능을 제공합니다. 다음과 같은 주요 JOIN 유형들이 있습니다:
-- OUTER JOIN의 경우 NULL 값 처리에 유의해야 함
-
-1. 스트림-스트림 JOIN (Stream-Stream Join)
 - 두 이벤트 스트림을 조인할 때 사용
 - 조인 윈도우를 반드시 지정해야 함 (WITHIN 절 사용)
 - 스트림-스트림 JOIN의 경우 메모리 사용량에 주의해야 함
-- 예시:
+
 ```sql
 CREATE STREAM orders_enriched AS
   SELECT o.orderid, c.customername, o.itemid
@@ -262,10 +264,12 @@ CREATE STREAM orders_enriched AS
   ON o.customerid = c.customerid;
 ```
 
-2. 스트림-테이블 JOIN (Stream-Table Join)
+
+### Stream-Table Join
+
 - 스트림의 각 이벤트를 테이블의 현재 상태와 조인
 - 윈도우 지정이 필요없음
-- 예시:
+
 ```sql
 CREATE STREAM orders_with_customer_info AS
   SELECT o.orderid, c.customer_name, o.itemid
@@ -274,10 +278,12 @@ CREATE STREAM orders_with_customer_info AS
   ON o.customerid = c.customerid;
 ```
 
-3. 테이블-테이블 JOIN (Table-Table Join)
+
+### Table-Table Join
+
 - 두 테이블의 현재 상태를 조인
 - 양쪽 테이블의 변경사항이 결과에 반영됨
-- 예시:
+
 ```sql
 CREATE TABLE customer_orders AS
   SELECT c.customerid, c.name, count(*) AS order_count
@@ -286,24 +292,6 @@ CREATE TABLE customer_orders AS
   ON c.customerid = o.customerid
   GROUP BY c.customerid, c.name;
 ```
-
-
-
-
-
-
-### Stream-Stream
-
-
-
-### Stream-Table
-
-
-
-### Table-Table
-
-
-
 
 
 
@@ -331,11 +319,6 @@ CREATE STREAM joined AS
 
 
 
-
-
-
-
-
 ---
 
 
@@ -343,18 +326,6 @@ CREATE STREAM joined AS
 
 ## Reference
 
+- <https://docs.confluent.io/platform/current/ksqldb/developer-guide/joins/join-streams-and-tables.html>
 - <https://ojt90902.tistory.com/1103>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
