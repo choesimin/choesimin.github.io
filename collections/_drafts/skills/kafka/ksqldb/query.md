@@ -1,7 +1,7 @@
 ---
 layout: skill
 date: 2025-01-07
-title: ksqlDB의 Query 유형 - Pull, Push, Persistent
+title: ksqlDB의 Query - Pull Query, Push Query, Persistent Query
 ---
 
 
@@ -24,10 +24,9 @@ title: ksqlDB의 Query 유형 - Pull, Push, Persistent
 | **장점** | 빠른 응답, 간단한 구현, 리소스 효율적 | 실시간 업데이트, 유연한 필터링, 이벤트 기반 처리 | 자동화된 처리, 데이터 영구 저장, 복잡한 변환 가능 |
 | **단점** | 제한된 쿼리 범위, 키 기반 조회만 가능 | 연결 관리 필요, 클라이언트 부하 | 높은 리소스 사용, 관리 복잡성 |
 
-```sql
--- 동작 중인 모든 Query 확인하기
-SHOW QUERIES;
-```
+- ksqlDB는 SubQuery를 지원하지 않으며, 앞으로의 지원 계획도 없습니다.
+    - 개발사(Confluent)가 SubQuery를 통한 복잡도는 프로젝트 성격에 맞지 않다고 판단했기 때문입니다.
+    - 대신 SubQuery가 아닌 여러 Query를 Kafka로 통합하는 방향을 지향하고 있습니다.
 
 
 
@@ -341,6 +340,130 @@ flowchart TD
 5. 데이터를 변환/가공합니다.
 6. State Store를 업데이트합니다.
 7. 결과를 새로운 토픽에 저장합니다.
+
+
+
+
+---
+
+
+
+
+## Query 관리를 위한 주요 명령어
+
+- Query 관리 명령어를 통해 Query를 효율적으로 관리하고 모니터링할 수 있습니다.
+- 실제 운영 환경에서는 특히 `SHOW QUERIES`, `EXPLAIN`, `TERMINATE` 등의 명령어를 자주 사용합니다.
+
+
+### Query 조회 관련 명령어
+
+```sql
+-- 실행 중인 모든 쿼리 조회
+SHOW QUERIES;
+
+-- 특정 쿼리 ID의 상세 정보 조회
+EXPLAIN <query_id>;
+
+-- 특정 쿼리의 실행 계획 확인
+EXPLAIN <query>;
+
+-- 스트리밍 쿼리의 현재 상태 확인
+SELECT queryString, state, kafkaTopic 
+FROM KSQL_QUERIES_STREAM 
+EMIT CHANGES;
+```
+
+
+### Query 실행 제어 명령어
+
+```sql
+-- 특정 쿼리 종료
+TERMINATE <query_id>;
+
+-- 특정 쿼리 일시 중지
+PAUSE <query_id>;
+
+-- 일시 중지된 쿼리 재시작
+RESUME <query_id>;
+```
+
+
+### Query 설정 관련 명령어
+
+```sql
+-- 현재 세션의 모든 속성 확인
+SHOW PROPERTIES;
+
+-- 특정 속성 설정
+SET '<property_name>'='<value>';
+
+-- 특정 속성 해제
+UNSET '<property_name>';
+```
+
+
+### Query 분석 및 디버깅
+
+```sql
+-- 쿼리 실행 통계 확인
+DESCRIBE EXTENDED <query_id>;
+
+-- 쿼리 처리량 확인
+SELECT * FROM KSQL_PROCESSING_LOG;
+
+-- 특정 토픽의 메시지 확인
+PRINT '<topic_name>' FROM BEGINNING;
+PRINT '<topic_name>' FROM BEGINNING LIMIT 10;
+```
+
+
+### Query 히스토리 관련
+
+```sql
+-- 실행했던 쿼리 히스토리 조회
+SHOW HISTORY;
+
+-- 특정 시점 이후의 쿼리 히스토리
+SHOW HISTORY FROM_TIME '2024-01-07T00:00:00';
+```
+
+
+### Query 권한 관리
+
+```sql
+-- 사용자 권한 확인
+SHOW ACCESS;
+
+-- 특정 쿼리에 대한 권한 부여
+GRANT SELECT ON STREAM <stream_name> TO <user>;
+```
+
+
+### Query 성능 최적화 도구
+
+```sql
+-- 쿼리 실행 계획 분석
+ANALYZE <query>;
+
+-- 쿼리 성능 통계 확인
+SELECT * FROM KSQL_PROCESSING_LOG 
+WHERE LEVEL='ERROR' 
+EMIT CHANGES;
+```
+
+
+### Query 모니터링
+
+```sql
+-- 리소스 사용량 확인
+DESCRIBE EXTENDED <stream_or_table>;
+
+-- 처리된 레코드 수 확인
+SELECT ROWTIME, ROWKEY, * 
+FROM KSQL_PROCESSING_LOG 
+WHERE LOGGER='processing.log' 
+EMIT CHANGES;
+```
 
 
 
