@@ -1,16 +1,16 @@
 ---
 layout: skill
-title: ksqlDB Value Format - 데이터 직렬화/역직렬화 방식
+title: ksqlDB Value Format - 데이터 직렬화 방식
 date: 2025-01-13
 ---
 
 
 
 
-## Value Format : ksqlDB에서 데이터를 직렬화하고 역직렬화하는 여러 방식
+## Value Format : ksqlDB에서 데이터를 직렬화하고 역직렬화하는 방식
 
-- ksqlDB의 Value Format은 데이터가 어떻게 저장/전송/처리되는지를 결정하는 설정입니다.
-- Value Format은 크게 JSON, AVRO, PROTOBUF로 나뉩니다.
+- ksqlDB의 Value format은 데이터가 어떻게 저장/전송/처리되는지를 결정하는 설정입니다.
+- value format은 크게 JSON, AVRO, PROTOBUF로 나뉩니다.
     - JSON, AVRO, PROTOBUF 모두 ksqlDB에 종속된 것이 아닌, 별개의 데이터 처리 형식/시스템입니다.
     - ksqlDB에서 지원하는 데이터 형식이 JSON, AVRO, PROTOBUF일 뿐입니다.
 
@@ -31,10 +31,47 @@ date: 2025-01-13
 | **주요 단점** | 큰 용량, 수동 스키마 관리, 낮은 성능, 파싱 오버헤드 | 레지스트리 서버 필수, 복잡한 초기 설정, 운영 비용, 낮은 가독성 | 복잡한 설정/관리, 가파른 학습 곡선, 레지스트리 필수, 낮은 가독성 |
 | **권장 사용 환경** | 개발/테스트 환경, 잦은 구조 변경, 소규모 데이터 | 운영 환경, 체계적 스키마 관리, 대용량 데이터 | 극도의 성능 필요, 다중 언어 환경, 대규모 데이터 |
 
+- ksqlDB에서 value format은 Stream과 Table에 대해 지정할 수 있습니다.
+- `CREATE STREAM` 또는 `CREATE TABLE` 문의 `WITH` 절에서 `VALUE_FORMAT` 속성에 `'JSON'`, `'AVRO'`, `'PROTOBUF'` 중 하나를 지정하면 됩니다.
+
+```sql
+-- 스트림 생성 시
+CREATE STREAM stream_name (
+    field1 INTEGER,
+    field2 STRING
+) WITH (
+    KAFKA_TOPIC = 'topic_name',
+    VALUE_FORMAT = 'JSON'  -- 또는 'AVRO', 'PROTOBUF'
+);
+
+-- 테이블 생성 시
+CREATE TABLE table_name (
+    field1 INTEGER,
+    field2 STRING
+) WITH (
+    KAFKA_TOPIC = 'topic_name',
+    VALUE_FORMAT = 'JSON'  -- 또는 'AVRO', 'PROTOBUF'
+);
+```
+
 
 ### JSON (JavaScript Object Notation)
 
 - JSON은 키-값 쌍으로 이루어진 텍스트 기반의 데이터 포맷입니다.
+
+```json
+// JSON
+{
+  "string_value": "Hello World",
+  "number_value": 42,
+  "boolean_value": true,
+  "null_value": null,
+  "array_value": [1, 2, 3],
+  "object_value": {
+    "nested": "value"
+  }
+}
+```
 
 #### JSON의 특징
 
@@ -84,6 +121,27 @@ date: 2025-01-13
 ### AVRO (Apache Avro)
 
 - AVRO는 컴팩트한 직렬화와 풍부한 데이터 구조를 제공하는 포맷입니다.
+
+```avro
+// Avro Schema
+{
+  "type": "record",
+  "name": "Example",
+  "fields": [
+    {"name": "string_value", "type": "string"},
+    {"name": "number_value", "type": "int"},
+    {"name": "boolean_value", "type": "boolean"},
+    {"name": "array_value", "type": {"type": "array", "items": "int"}},
+    {"name": "object_value", "type": {
+      "type": "record",
+      "name": "NestedObject",
+      "fields": [
+        {"name": "nested", "type": "string"}
+      ]
+    }}
+  ]
+}
+```
 
 #### AVRO의 특징
 
@@ -135,6 +193,20 @@ date: 2025-01-13
 ### PROTOBUF (Protocol Buffers)
 
 - PROTOBUF는 Google이 개발한 언어 중립적인 데이터 직렬화 포맷입니다.
+
+```protobuf
+// Protocol Buffer
+message Example {
+  string string_value = 1;
+  int32 number_value = 2;
+  bool boolean_value = 3;
+  repeated int32 array_value = 4;
+  message NestedObject {
+    string nested = 1;
+  }
+  NestedObject object_value = 5;
+}
+```
 
 #### PROTOBUF의 특징
 
