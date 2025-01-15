@@ -109,19 +109,22 @@ title: vim-plug - Simple Vim Plugin Manager
 
 ```vim
 call plug#begin()
-Plug 'nanotech/jellybeans.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'tpope/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
-set nu
 set hlsearch
+set nu
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set autoindent
 set encoding=utf-8
 
-colorscheme jellybeans
+colorscheme base16-default-dark
 syntax on
+
+let g:markdown_fenced_languages = ['html', 'python', 'sql', 'mermaid']
 ```
 
