@@ -108,23 +108,28 @@ title: vim-plug - Simple Vim Plugin Manager
     - NeoVim을 사용한다면 `~/.config/nvim/init.vim` file을 수정해야 합니다.
 
 ```vim
-call plug#begin()
-Plug 'chriskempson/base16-vim'
-Plug 'tpope/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-call plug#end()
+call plug#begin()   " Vim-plug plugin 관리자 시작
+Plug 'chriskempson/base16-vim'    " base16 color scheme
+Plug 'airblade/vim-gitgutter'    " Git 변경 사항을 line number 옆에 표시
+Plug 'tpope/vim-markdown'    " Markdown 문법 highlighting
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}    " Markdown 미리보기 plugin (설치 script 포함)
+call plug#end()    " Vim-plug plugin 관리자 종료
 
-set hlsearch
-set nu
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set autoindent
-set encoding=utf-8
+" 기본 설정
+set number    " Line number 표시
+set hlsearch    " 검색어 highlighting
+set expandtab    " Tab을 Space로 확장
+set tabstop=4    " Tab 너비를 4칸으로 설정
+set autoindent    " 자동 들여쓰기 활성화
+set shiftwidth=4    " 자동 들여쓰기 너비를 4칸으로 설정
+set encoding=utf-8    " UTF-8 encoding 사용
 
-colorscheme base16-default-dark
-syntax on
+" 색상 설정
+colorscheme base16-default-dark    " base16 dark theme 적용
+syntax on    " 문법 highlighting 활성화
 
-let g:markdown_fenced_languages = ['html', 'python', 'sql', 'mermaid']
+" plugin을 위한 추가 설정
+set updatetime=100    " 'airblade/vim-gitgutter' 반응성 향상 (Vim Update 시간을 100ms로 설정)
+let g:markdown_fenced_languages = ['java', 'html', 'python', 'sql', 'mermaid', 'yaml', 'xml', 'json', 'bash', 'groovy']    " 'tpope/vim-markdown' code block highlighting (Markdown code block에서 highlighting할 수 있는 언어 목록 설정)
 ```
 
