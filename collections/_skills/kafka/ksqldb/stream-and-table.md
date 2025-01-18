@@ -1,7 +1,7 @@
 ---
 layout: skill
 date: 2025-01-06
-title: ksqlDB - Stream과 Table
+title: ksqlDB Data Model - Stream과 Table
 ---
 
 
