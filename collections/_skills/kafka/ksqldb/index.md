@@ -94,7 +94,7 @@ date: 2025-01-06
 | **Query 실행** | 지속적으로 실행되며 결과가 계속 update됨 | 한 번 실행되고 결과가 즉시 반환됨 |
 | **시간 개념** | event 시간과 처리 시간을 모두 고려함 | query 실행 시점의 현재 상태만 고려함 |
 | **Join 연산** | Stream-Stream, Stream-Table, Table-Table Join 지원 | Table-Table Join만 지원 |
-| **Window 처리** | 시간 기반 window 연산 기본 제공 | window 함수는 제한적으로 제공 |
+| **Window 처리** | 시간 기반 Window 연산 기본 제공 | Window 함수는 제한적으로 제공 |
 | **상태 관리** | 분산 상태 저장소 필수 | Transaction 기반 상태 관리 |
 | **확장성** | 수평적 확장 용이 (Kafka 기반) | 수직적 확장 중심 |
 | **Data 보존** | event 기록 영구 보존 가능 | 최신 상태만 유지 |
