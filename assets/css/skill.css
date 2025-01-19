@@ -43,9 +43,12 @@ hr {
 }
 
 table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
   border-top: 1px solid var(--border-color);
   border-collapse: collapse;
-  word-break: break-all;
+  word-break: keep-all;
 }
 
 th,
