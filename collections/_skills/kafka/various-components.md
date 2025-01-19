@@ -19,18 +19,18 @@ title: Kafka의 다양한 Componenet들 - Kafka Connnect, Kafka Streams, ksqlDB,
 
 ```mermaid
 mindmap
-  root((Kafka 생태계))
-    apache(Apache Kafka)
-        Kafka Broker
-        Kafka Streams
-        Kafka Connect
-        MirrorMaker
-        Zookeeper
-    confluent(Confluent)
-        Schema Registry
-        ksqlDB
-        Control Center
-        REST Proxy
+    root((Kafka 생태계))
+        apache(Apache Kafka)
+            Kafka Broker
+            Kafka Streams
+            Kafka Connect
+            MirrorMaker
+            Zookeeper
+        confluent(Confluent)
+            Schema Registry
+            ksqlDB
+            Control Center
+            REST Proxy
 ```
 
 
