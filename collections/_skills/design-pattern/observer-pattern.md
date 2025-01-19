@@ -74,7 +74,7 @@ Observer <|.. ConcreteObserver
 Subject --> Observer : observer
 ConcreteObserver --> ConcreteSubject : subject
 
-note for ConcreteObserver "구현한 observer에서 사용할\n기타 method들을 추가할 수도 있습니다."
+note for ConcreteObserver "구현한 observer에서 사용할 기타 method들을 추가할 수도 있습니다."
 ```
 
 

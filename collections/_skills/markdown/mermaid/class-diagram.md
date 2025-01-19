@@ -17,7 +17,7 @@ classDiagram
 
 note "From Duck till Zebra"
 Animal <|-- Duck
-note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
+note for Duck "can fly<br>can swim<br>can dive<br>can help in debugging"
 Animal <|-- Fish
 Animal <|-- Zebra
 Animal : +int age
@@ -114,15 +114,15 @@ note for [class_name] "[memo]"
 
 - `note` keyword를 사용하여, class에 설명을 추가할 수 있습니다.
     - class를 지정하지 않으면 연결선 없이 설명만 추가합니다.
-- 줄바꿈은 `\n`을 사용합니다.
+- 줄바꿈은 `<br>` tag를 사용합니다.
 
 ```txt
 classDiagram
 
 class Class
 
-note "This is not a class memo.\nmemo one.\nmemo two."
-note for Class "This is a class memo.\nmemo one.\nmemo two."
+note "This is not a class memo.<br>memo one.<br>memo two."
+note for Class "This is a class memo.<br>memo one.<br>memo two."
 ```
 
 ```mermaid
@@ -130,8 +130,8 @@ classDiagram
 
 class Class
 
-note "This is not a class memo.\nmemo one.\nmemo two."
-note for Class "This is a class memo.\nmemo one.\nmemo two."
+note "This is not a class memo.<br>memo one.<br>memo two."
+note for Class "This is a class memo.<br>memo one.<br>memo two."
 ```
 
 
