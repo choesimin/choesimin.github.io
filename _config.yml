@@ -10,5 +10,3 @@ collections:
     output: true
   problems:
     output: true
-  games:
-    output: true
