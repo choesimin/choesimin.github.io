@@ -111,11 +111,11 @@ flowchart TD
     type_check[Query Type = Pull]
     state_store[State Store]
 
-    client -->|1. SQL Query| server
-    server -->|2. Check| type_check
-    type_check -->|3. Lookup| state_store
-    state_store -->|4. Return Current State| server
-    server -->|5. Response| client
+    client -->|SQL Query| server
+    server -->|Check| type_check
+    type_check -->|Lookup| state_store
+    state_store -->|Return Current State| server
+    server -->|Response| client
 ```
 
 1. client가 `SELECT` query를 전송합니다.
@@ -196,13 +196,13 @@ flowchart TD
         topics[Kafka Topics]
     end
     
-    client -->|1. SQL Query + EMIT CHANGES| server
-    server -->|2. Check| type_check
-    type_check -->|3. Subscribe| streams
-    streams -->|4. Process| topics
-    topics -->|5. Stream Results| streams
-    streams -->|6. Emit Changes| server
-    server -->|7. Continuous Updates| client
+    client -->|SQL Query + EMIT CHANGES| server
+    server -->|Check| type_check
+    type_check -->|Subscribe| streams
+    streams -->|Process| topics
+    topics -->|Stream Results| streams
+    streams -->|Emit Changes| server
+    server -->|Continuous Updates| client
 ```
 
 1. client가 `EMIT CHANGES`가 포함된 query를 전송합니다.
@@ -321,14 +321,14 @@ flowchart TD
 
     monitoring
 
-    admin -->|1. CREATE TABLE/STREAM AS SELECT| server
-    server -->|2. Register| query
+    admin -->|CREATE TABLE/STREAM AS SELECT| server
+    server -->|Register| query
 
-    query -->|3. Subscribe| streams
-    streams -->|4. Process| source_topics
-    source_topics -->|5. Stream Data| streams
-    streams -->|6. Transform| state_store
-    streams -->|7. Write| target_topic
+    query -->|Subscribe| streams
+    streams -->|Process| source_topics
+    source_topics -->|Stream Data| streams
+    streams -->|Transform| state_store
+    streams -->|Write| target_topic
 
     monitoring -.->|Query Status| query
 ```

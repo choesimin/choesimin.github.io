@@ -35,7 +35,7 @@ user([사용자])
 server[접속 상태 Server]
 store[(Key-Value 저장소)]
 
-user <-->|1. WebSocket Connection| server -->|2. Update User to Online| store
+user <-->|WebSocket Connection| server -->|Update User to Online| store
 ```
 
 ```json
@@ -60,7 +60,7 @@ api_server[API Server]
 presense_server[접속 상태 Server]
 store[(Key-Value 저장소)]
 
-user -->|1. Logout| api_server --> presense_server -->|2. Update User to Offline| store
+user -->|Logout| api_server --> presense_server -->|Update User to Offline| store
 ```
 
 ```json
