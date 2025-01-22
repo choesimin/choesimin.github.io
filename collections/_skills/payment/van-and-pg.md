@@ -127,9 +127,6 @@ flowchart LR
 
 ## Reference
 
-- https://finance3.tistory.com/34?category=779493
-    - VAN
-- https://finance3.tistory.com/43
-    - PG
-- https://finance3.tistory.com/53?category=779493
-    - App to App
+- <https://finance3.tistory.com/34?category=779493>
+- <https://finance3.tistory.com/43>
+- <https://finance3.tistory.com/53?category=779493>
