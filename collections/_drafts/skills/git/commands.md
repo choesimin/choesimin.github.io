@@ -19,19 +19,18 @@ version: 2023-07-12
 
 ```sh
 git add [file_name]
-git add [file_name]
 ```
 
 - staging area에 file을 추가합니다.
 - file의 상태가 `Modified`에서 `Staged`로 변합니다.
 
 | Option | 설명 |
-| - | - |
-| -A | 대화형 mode로 추가합니다. |
-| --interactive | 대화형 mode로 추가합니다. |
-| -i | `--interactive` option과 같습니다. |
-| --patch | file의 일부분만 추가합니다. |
-| -p | `-p` option과 같습니다. |
+| --- | --- |
+| `-A` | 대화형 mode로 추가 |
+| `--interactive` | 대화형 mode로 추가 |
+| `-i` | `--interactive` option과 같음 |
+| `--patch` | file의 일부분만 추가 |
+| `-p` | `-p` option과 같음 |
 
 
 
@@ -40,22 +39,29 @@ git add [file_name]
 
 - 작업 내용을 저장합니다.
 - file의 상태가 `Staged`에서 `Committed`로 변합니다.
-- Git은 Staging Area에 속한 snapshot을 commit함
-    - Staging Area에 넣지 않은 것은 다음에 commit할 수 있음
-    - 나중에 snapshot끼리 비교하거나 예전 snapshot으로 되돌릴 수 있음
+- Git은 staging area에 속한 snapshot을 commit합니다.
+    - staging area에 넣지 않은 것은 이번 commit(저장) 대상에 포함되지 않습니다.
+- commit을 해두면 나중에 snapshot끼리 비교하거나 예전 snapshot으로 되돌릴 수 있습니다.
 
 | Option | 설명 |
-| - | - |
-| -m [message] | commit message를 지정하여 commit합니다. commit message를 수정하도록 편집기가 실행되지 않습니다. |
-| -v | commit message 편집기에 diff message도 추가합니다. |
-| -a | `Tracked` 상태의 file을 자동으로 staging area에 넣습니다. `git add` 명령어를 commit할 때 함께 사용하는 option입니다. |
-| --amend | 기존 commit에 작업 내용을 합치고, commit message를 수정합니다. 기존의 commit에 변경 내용(staging area)을 추가한 새로운 commit을 만들고, 기존 commit을 덮어씁니다. 새로운 commit이기 때문에 commit hash 값도 바뀝니다. |
-| --amend --no-edit | `--amend` option에서 commit message 수정 기능을 사용하지 않습니다. commit message를 수정하도록 편집기가 실행되지 않습니다. |
+| --- | --- |
+| `-m [message]` | commit message를 지정하여 commit (commit message를 수정하도록 편집기가 실행되지 않음) |
+| `-v` | commit message 편집기에 diff message도 추가 |
+| `-a` | `Tracked` 상태의 file을 자동으로 staging area에 넣음 (`git add` 명령어를 commit할 때 함께 사용하는 option) |
+| `--amend` | 기존 commit에 작업 내용을 합치고, commit message를 수정 |
+| `--amend --no-edit` | `--amend` option에서 commit message 수정 기능을 사용하지 않음 (commit message를 수정하도록 편집기가 실행되지 않음) |
+
+- `--amend` option은 기존의 commit에 변경 내용(staging area)을 추가한 새로운 commit을 만들고, 기존 commit을 덮어씁니다.
+    - 새로운 commit이 생성된 것이기 때문에 때문에 commit hash 값도 바뀝니다.
 
 
 
 
 ## `git clone`
+
+```sh
+git clone [repository_url]
+```
 
 - remote repository에 있는 모든 data를 복사합니다.
 - project history를 전부 받아옵니다.
@@ -65,10 +71,10 @@ git add [file_name]
 
 ## `git status`
 
-- file의 상태 확인합니다.
+- file의 상태를 확인합니다.
 
 | Option | 설명 |
-| - | - |
+| --- | --- |
 |--short|상태를 간략하게 보여줌|
 |-s|'--short'와 동일|
 
@@ -77,26 +83,26 @@ git add [file_name]
 # git diff
 
 - 수정했지만 아직 Unstaged 상태인 file을 비교해 볼 수 있음
-    - Working Directory에 있는 것과 Staging Area에 있는 것을 비교
+    - Working Directory에 있는 것과 staging area에 있는 것을 비교
 
 | Option | 설명 |
-| - | - |
-|--staged|Staging Area에 넣은(Staged) file의 변경 부분 보기|
+| --- | --- |
+|--staged|staging area에 넣은(Staged) file의 변경 부분 보기|
 |--cached|'--staged'와 동일|
 
 ---
 
 # git rm
 
-- Tracked 상태의 file을 Staging Area에서 삭제
+- Tracked 상태의 file을 staging area에서 삭제
 - 일반 삭제와의 차이
     - Working Directory에서 file을 삭제 -> Unstaged 상태
     - 'git rm'으로 삭제한 file -> Stated 상태
 
 | Option | 설명 |
-| - | - |
-|-f|이미 file을 수정했거나 Staging Area에 추가했을 때 강제로 삭제|
-|--cached|Staging Area에서만 제거하고 Working Directory에 있는 file은 지우지 않고 남겨두기 (hard disk에 있는 file은 그대로 두고 Git만 추적하지 않게 함)|
+| --- | --- |
+|-f|이미 file을 수정했거나 staging area에 추가했을 때 강제로 삭제|
+|--cached|staging area에서만 제거하고 Working Directory에 있는 file은 지우지 않고 남겨두기 (hard disk에 있는 file은 그대로 두고 Git만 추적하지 않게 함)|
 
 ---
 
@@ -118,7 +124,8 @@ git add [file_name]
 - commit history 조회
 
 | 주요 Option | 설명 |
-| - | - | |--patch|각 commit의 diff 결과 조회|
+| --- | --- |
+|--patch|각 commit의 diff 결과 조회|
 |-p|'--patch'와 동일|
 |--stat|각 commit에서 수정된 file의 통계 정보 조회|
 |--shortstat|--stat 명령의 결과 중에서 수정한 file, 추가된 line, 삭제된 line만 조회|
@@ -133,7 +140,7 @@ git add [file_name]
 |-S <문자열>|해당 문자열이 추가된 commit과 없어진 commit만 검색할 수 있음|
 
 | 조회 범위 Option | 설명 |
-| - | - |
+| --- | --- |
 |-(n)|최근 n 개의 commit만 조회|
 |--since, --after|명시한 날짜 이후의 commit만 조회|
 |--until, --before|명시한 날짜 이전의 commit만 조회|
@@ -160,7 +167,7 @@ git add [file_name]
 - 다른 사람과 같은 branch에서 작업할 때 commit이 뒤섞여버릴 수 있음
 
 | Option | 설명 |
-| - | - |
+| --- | --- |
 |--patch|file 일부만 Stage Area에서 내리기|
 
 ---
@@ -178,7 +185,7 @@ git add [file_name]
 # git checkout
 
 | Option | 설명 |
-| - | - |
+| --- | --- |
 |-- <file>|discard changes in work directory (변경 취소 : Modified 상태 file이 초기화됨)|
 |<tag_name>|tag를 checkout|
 |<branch_name>|해당 branch로 이동|
@@ -353,12 +360,12 @@ git add [file_name]
 - 아직 끝나지 않은 수정 사항을 stack에 잠시 저장했다가 나중에 다시 적용할 수 있음
     - branch가 달라져도 가능
 - Working Directory에서 수정한 file들만 저장
-    - Modified이면서 Tracked 상태일 file과 Staging Area에 있는 file들을 보관해두는 장소
+    - Modified이면서 Tracked 상태일 file과 staging area에 있는 file들을 보관해두는 장소
 
 |||
 |-|-|
 |(save)|stack에 새로운 stash 만들기 (save는 생략 가능)|
-|(save) --keep-index|Staging Area에 있는 file을 stash하지 않음|
+|(save) --keep-index|staging area에 있는 file을 stash하지 않음|
 |(save) --include-untracked|추적 중이지 않은(Untracked) file을 같이 저장|
 |(save) -u|'--include-untracked'와 동일|
 |(save) --patch|수정된 모든 사항을 저장하지 않고, 대화형 prompt가 떠서 변경된 data 중 저장할 것과 저장하지 않을 것을 지정하여 저장|
@@ -418,6 +425,77 @@ git add [file_name]
 |<commit_hash_1>...<commit_hash_3>|commit과 commit 사이의 모든 commit을 가져오기|
 |--continue|충돌이 발생한 경우, 충돌을 해결한 뒤 계속 진행하기|
 |--abort|충돌이 발생한 경우, cherry-pick하기 이전으로 돌아가기|
+
+
+
+
+
+
+
+
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+
+
+
+
+1. 저장소 생성 및 복제
+- git init: 새로운 Git 저장소 생성
+- git clone: 원격 저장소 복제
+
+2. 변경사항 관리
+- git add: 파일을 스테이징 영역에 추가
+- git status: 파일 상태 확인
+- git diff: 파일 변경사항 비교
+- git rm: 파일 삭제
+- git mv: 파일 이름 변경
+
+3. 커밋 관련
+- git commit: 변경사항 커밋
+- git log: 커밋 히스토리 조회
+- git show: 태그와 커밋 정보 조회
+
+4. 브랜치 관리
+- git branch: 브랜치 생성, 삭제, 목록 조회
+- git checkout: 브랜치 전환
+- git merge: 브랜치 병합
+- git rebase: 브랜치 재배치
+- git cherry-pick: 특정 커밋만 선택적으로 적용
+
+5. 원격 저장소 관리
+- git remote: 원격 저장소 관리
+- git fetch: 원격 저장소에서 데이터 가져오기
+- git pull: 원격 저장소에서 데이터 가져오고 병합
+- git push: 원격 저장소로 변경사항 전송
+
+6. 되돌리기 관련
+- git reset: 특정 커밋으로 되돌리기
+- git revert: 특정 커밋만 취소
+- git checkout -- [file]: 작업 디렉토리의 변경사항 취소
+
+7. 임시 저장
+- git stash: 작업 중인 변경사항 임시 저장
+
+8. 태그 관리
+- git tag: 태그 생성 및 관리
+
+9. 작업 영역 정리
+- git clean: 추적되지 않는 파일 삭제
+
+10. 검색
+- git grep: 소스코드 내용 검색
 
 
 
