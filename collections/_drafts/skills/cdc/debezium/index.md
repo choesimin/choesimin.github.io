@@ -70,26 +70,6 @@ date: 2025-01-23
     - 이벤트 평탄화를 통해 복잡한 관계형 데이터를 단순화할 수 있습니다.
 
 
-### Debezium의 여러 가지 사용 방식
-
-- Debezium은 기본적으로 Apache Kafka Connect를 위한 소스 커넥터 세트이지만, 다른 방식으로도 사용할 수 있습니다.
-
-1. **Kafka Connect Source Connector** : Kafka Connect를 통해 Apache Kafka를 이용하여 변경 이벤트를 전송합니다.
-    - 구조 : `Source DB -> Debezium -> Kafka -> Consumer Service`.
-    - Kafka Connect의 source connector로 Debezium을 사용하는, 가장 일반적인 사용 방식입니다.
-    - <https://debezium.io/documentation/reference/stable/architecture.html> 참고.
-
-2. **Debezium Server** : Debezium Server를 사용하여 다른 메시징 인프라로 통해 변경 이벤트를 전송합니다.
-    - 구조 : `Source DB -> Debezium Server -> Other Messaging Service -> Consumer Service`.
-    - Kafka 외의 메시징 서비스를 사용해야 하는 경우 사용합니다.
-    - <https://debezium.io/documentation/reference/stable/operations/debezium-server.html> 참고.
-
-3. **Debezium Engine** : Debezium Engine 라이브러리를 JVM 기반 애플리케이션에 임베드하여 사용합니다.
-    - 구조 : `Source DB -> Debezium Engine in JVM Application`.
-    - messaging service를 통하지 않고, application으로 변경 사항을 바로 전달받고 싶은 경우 사용합니다.
-    - <https://debezium.io/documentation/reference/stable/development/engine.html> 참고.
-
-
 
 
 ---
@@ -97,34 +77,61 @@ date: 2025-01-23
 
 
 
-## CDC가 "Data Detection"이 아닌 "Data Capture"인 이유
+## Debezium Architecture : 여러 가지 사용 방식
 
-- CDC에서는 단순한 변경 감지(detection)를 넘어서, 변경 데이터의 완전한 포착(capture)과 보존이 핵심이기 때문에 'capture'라는 용어를 사용합니다.
+- Debezium은 기본적으로 Apache Kafka Connect를 위한 소스 커넥터 세트이지만, 다른 방식으로도 사용할 수 있습니다.
 
-- **Capture(포착)의 의미** : 데이터 변경사항을 단순히 감지하는 것을 넘어서, 해당 변경 내용을 '붙잡아서 보관'합니다.
-    - 변경된 데이터의 전체 상태를 저장하고 유지합니다.
-    - 변경 이전 값과 이후 값을 모두 포착하여 보존합니다.
-    - 변경이 발생한 정확한 시점과 순서를 포착합니다.
 
-- **Detection(감지)의 의미** : 단순히 "변경이 있었다"는 사실만을 인지하는 개념입니다.
-    - 반면 Capture는 변경 내용 전체를 포착하여 보관하고 추적합니다.
+### 1. Kafka Connect Source Connector ([참고 문서](https://debezium.io/documentation/reference/stable/architecture.html))
 
-- 테이블의 레코드가 변경되었을 때, **Detection과 Capture는 다른 의미를 가지고 동작**합니다.
-    - Detection : "이 레코드가 변경되었다"는 사실만 감지.
-    - Capture : 변경 전 값, 변경 후 값, 변경 시점, 트랜잭션 ID 등 모든 정보를 포착하여 저장.
+```mermaid
+flowchart LR
+    source_db[(Source DB)]
+    debezium[Debezium Source Connector]
+    kafka[Apache Kafka]
+    consumer[Consumer Service]
 
-- 따라서 **실제 CDC 동작에서는 Detection이 아닌 Capture가 필요**합니다.
-    - 데이터베이스 로그를 읽어서 변경사항을 **포착**합니다.
-    - 포착한 변경 데이터를 다른 시스템으로 전달할 수 있도록 **보관**합니다.
-    - **변경 이력**을 시간 순서대로 추적할 수 있게 합니다.
-    - 필요한 경우 특정 시점으로 **롤백**하거나 변경 이력을 **재생**할 수 있습니다.
+    source_db --> debezium
+    debezium --> kafka
+    kafka --> consumer
+```
 
-|  | Capture (포착) | Detection (감지) |
-| --- | --- | --- |
-| **기본 의미** | 대상을 붙잡아서 보관, 발생한 일을 모두 저장, 완전한 상태를 유지 | 발생/존재 여부만 확인, "있다/없다" 체크, 상태 변화 인지 |
-| **처리 방식** | 전체 데이터를 포착하여 저장, 이전/이후 상태를 모두 보관, 시점과 내용을 완전히 보존 | 변화 발생 여부만 감지, 현재 상태만 확인, 발생 시점만 기록 |
-| **데이터 범위** | 변경된 모든 정보, 변경 전후 상태, 시점과 순서 정보, 관련 메타데이터 | 변경 발생 여부, 현재 상태, 발생 시점 |
-| **활용성** | 데이터 복원 가능, 다른 곳으로 전달 가능, 이력 추적 가능, 상세 분석 가능 | 상태 확인만 가능, 단순 알림만 가능, 이력 추적 불가, 상세 분석 불가 |
+- Kafka Connect를 통해 Apache Kafka를 이용하여 변경 이벤트를 전송합니다.
+- Kafka Connect의 source connector로 Debezium을 사용하는, 가장 일반적인 사용 방식입니다.
+
+
+### 2. Debezium Server ([참고 문서](https://debezium.io/documentation/reference/stable/operations/debezium-server.html))
+
+```mermaid
+flowchart LR
+    source_db[(Source DB)]
+    debezium_server[Debezium Server]
+    message[Other Messaging Service]
+    consumer[Consumer Service]
+
+    source_db --> debezium_server
+    debezium_server --> message
+    message --> consumer
+```
+
+- Debezium Server를 사용하여 다른 메시징 인프라로 통해 변경 이벤트를 전송합니다.
+- Kafka 외의 메시징 서비스를 사용해야 하는 경우 사용합니다.
+
+
+### 3. Debezium Engine ([참고 문서](https://debezium.io/documentation/reference/stable/development/engine.html))
+
+```mermaid
+flowchart LR
+    source_db[(Source DB)]
+    subgraph jvm_app[JVM Application]
+        debezium_engine[Debezium Engine]
+    end
+
+    source_db --> debezium_engine
+```
+
+- Debezium Engine 라이브러리를 JVM 기반 애플리케이션에 임베드하여 사용합니다.
+- messaging service를 통하지 않고, application으로 변경 사항을 바로 전달받고 싶은 경우 사용합니다.
 
 
 
