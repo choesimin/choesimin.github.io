@@ -1,5 +1,5 @@
 ---
-layout: skills
+layout: skill
 title: Debezium - 
 date: 2025-01-21
 ---

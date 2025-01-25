@@ -1,5 +1,5 @@
 ---
-layout: skills
+layout: skill
 title: Debezium - Data Change Streamer
 date: 2025-01-23
 ---

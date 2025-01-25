@@ -1,5 +1,5 @@
 ---
-layout: skills
+layout: skill
 title: Debezium MySQL Connector
 date: 2025-01-21
 ---
