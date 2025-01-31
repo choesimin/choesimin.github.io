@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: Debezium Snapshot - 모든 Data Capture
+title: Debezium Snapshot - 전체 Data Capture
 date: 2025-01-31
 ---
 
