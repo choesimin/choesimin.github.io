@@ -27,6 +27,7 @@ date: 2025-01-31
     - **table level lock은 필요한 경우에만 제한적으로 사용**합니다.
 
 - `snapshot.locking.mode` 설정을 통해 상황에 맞는 lock 전략을 선택할 수 있습니다.
+    - MySQL 기준으로 `minimal`, `extended`, `none` 등의 mode를 제공합니다.
     - **`minimal` mode** : schema capture 단계에서만 lock을 획득하고 해제합니다.
     - **`extended` mode** : snapshot이 완료될 때까지 lock을 유지합니다.
     - **`none` mode** : lock을 전혀 사용하지 않습니다.
@@ -72,22 +73,22 @@ date: 2025-01-31
 
 ### MySQL
 
-- **MySQL**은 **global read lock과 REPEATABLE READ isolation level을 사용**합니다.
+- **MySQL**은 **Global Read Lock과 `REPEATABLE READ` isolation level을 사용**합니다.
 
-- **global read lock**은 모든 database의 read 작업을 block합니다.
+- **Global Read Lock**은 모든 database의 read 작업을 block합니다.
     - schema 변경이나 DDL 작업을 차단하여 snapshot 중 구조 변경을 방지합니다.
     - 단기간만 유지되어 서비스 영향도를 최소화합니다.
 
-- **REPEATABLE READ**는 MySQL의 기본 isolation level입니다.
+- `REPEATABLE READ`는 MySQL의 기본 isolation level입니다.
     - transaction이 시작된 시점의 일관된 data를 보장합니다.
     - binlog position과 GTID의 신뢰성을 보장하여 정확한 복제가 가능합니다.
 
 
 ### PostgreSQL
 
-- **PostgreSQL**은 **transaction snapshot과 REPEATABLE READ isolation level을 사용**합니다.
+- **PostgreSQL**은 **Transaction Snapshot과 `REPEATABLE READ` isolation level을 사용**합니다.
 
-- **transaction snapshot**은 특정 시점의 database 상태를 보장합니다.
+- **Transaction Snapshot**은 특정 시점의 database 상태를 보장합니다.
     - MVCC(Multi-Version Concurrency Control)를 통해 동시성을 보장합니다.
     - LSN(Log Sequence Number)을 기준으로 일관된 복제가 가능합니다.
 
@@ -98,9 +99,9 @@ date: 2025-01-31
 
 ### Oracle
 
-- **Oracle**은 **flashback query와 READ COMMITTED isolation level을 사용**합니다.
+- **Oracle**은 **Flashback Query와 `READ COMMITTED` isolation level을 사용**합니다.
 
-- **flashback query**는 과거 시점의 data를 조회하는 기능입니다.
+- **Flashback Query**는 과거 시점의 data를 조회하는 기능입니다.
     - undo segment를 통해 과거 시점의 data를 정확하게 복원합니다.
     - CDC 수행 중 발생하는 변경을 누락 없이 포착합니다.
 
@@ -111,25 +112,25 @@ date: 2025-01-31
 
 ### MongoDB
 
-- **MongoDB**는 **majority read concern과 local read preference를 사용**합니다.
+- **MongoDB**는 **Majority Read Concern과 Local Read Preference를 사용**합니다.
 
-- **majority read concern**은 과반수 node의 동의를 보장합니다.
+- **Majority Read Concern**은 과반수 node의 동의를 보장합니다.
     - replica set 환경에서 data의 정합성을 보장합니다.
     - network partition 상황에서도 안정적인 동작을 보장합니다.
 
-- **local read preference**는 primary node에서만 read를 수행합니다.
+- **Local Read Preference**는 primary node에서만 read를 수행합니다.
     - replication lag으로 인한 data 불일치를 방지합니다.
     - oplog의 순서를 보장하여 정확한 복제가 가능합니다.
 
 
 ### SQL Server
 
-- **SQL Server**는 **snapshot isolation과 READ COMMITTED isolation level을 사용**합니다.
+- **SQL Server**는 **snapshot isolation과 `READ COMMITTED` isolation level을 사용**합니다.
 
 - **snapshot isolation**은 특정 transaction의 변경 사항을 추적합니다.
     - tempdb를 통해 version 관리가 이루어집니다.
-    - transaction log sequence number(LSN)를 기준으로 변경을 추적합니다.
+    - transaction LSN(Log Sequence Number)를 기준으로 변경을 추적합니다.
 
-- **READ COMMITTED**는 SQL Server의 기본 isolation level입니다.
+- `READ COMMITTED`는 SQL Server의 기본 isolation level입니다.
     - transaction의 완료 시점에 일관성을 보장합니다.
     - 변경 data의 추적과 동시성을 모두 고려한 설정입니다.

@@ -1,15 +1,15 @@
 ---
 layout: skill
-title: Debezium Snapshot Mode - Snapshot 방식 설정
+title: Debezium Snapshot Mode - DB 복제 방식
 date: 2025-02-03
 ---
 
 
 
 
-## Snapshot Mode : Initiall Data 동기화 방식 설정하기
+## Snapshot Mode로 Database 복제 방식 설정하기
 
-- `snapshot.mode`는 Debezium이 connector 시작 시 수행할 snapshot의 기준을 지정하는 설정입니다.
+- `snapshot.mode`는 Debezium이 **connector 시작 시 수행할 snapshot의 기준을 지정하는 설정**입니다.
     - snapshot은 database의 구조와 data를 복제하는 작업입니다.
     - snapshot이 완료된 후에는 database의 변경 사항을 stream 형태로 전달합니다.
 
@@ -23,6 +23,8 @@ date: 2025-02-03
 | `configuration_based` | 설정에 따라 결정 | 설정에 따라 결정 | 설정에 따라 결정 | 설정에 따라 결정 |
 | `custom` | 구현에 따라 결정 | 구현에 따라 결정 | 구현에 따라 결정 | 구현에 따라 결정 |
 | `recovery` | schema history topic 복구 시 | O | X | O |
+
+- database마다 지원하는 mode가 다르며, 일부 database는 특정 mode를 지원하지 않아 사용 시 주의가 필요합니다.
 
 
 ### Always Mode : `always`
@@ -155,7 +157,7 @@ date: 2025-02-03
 
 - 모든 snapshot mode를 지원하지만 `no_data` mode는 제한 사항이 있습니다.
 
-#### `no_data` mode 사용 조건
+#### PostgreSQL의 `no_data` mode 사용 조건
 
 - WAL(Write-Ahead Log)을 통해 모든 data를 참조할 수 있어야 합니다.
     - offset이 저장되어 있다면 해당 위치부터 stream을 시작합니다.

@@ -47,7 +47,7 @@ date: 2023-08-06
 4. Network Access를 설정합니다.
     1. VPC를 선택합니다.
     2. 탑재 대상(Mount target)의 가용 영역과 Subnet에 대한 Security Group을 이전 과정에서 EFS를 위해 만든 Security Group으로 지정합니다.
-        - Subnet은 Public Subnet과 Private Subnet 중 어느 것을 선택해도 상관 없습니다.
+        - Subnet은 Public Subnet과 Private Subnet 중 어느 것을 선택해도 상관없습니다.
 5. 생성합니다.
 
 

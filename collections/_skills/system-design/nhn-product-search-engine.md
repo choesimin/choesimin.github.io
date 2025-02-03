@@ -425,7 +425,7 @@ flowchart TD
     - 여러 server module에서 발생하는 상품 수정 사항을 효과적으로 감지하고 전파하기 위해 Kafka를 활용합니다.
 
 2. **임시 저장소 활용** : 수정된 data는 먼저 MongoDB에 임시 저장됩니다.
-    - data를 그냥 바로 Elasticsearch에 넣어도 상관 없지만, 가용성과 재색인 실패 방지를 위해 중간에 MongoDB를 둡니다.
+    - data를 그냥 바로 Elasticsearch에 넣어도 상관없지만, 가용성과 재색인 실패 방지를 위해 중간에 MongoDB를 둡니다.
     - MongoDB는 Elasticsearch server의 장애나 network issue 발생 시에도 data 손실을 방지하기 위한 안전 장치입니다.
     - MongoDB에 저장되는 data는 `UPDATE`와 `DELETE` 두 가지 action type으로 구분되며, 각각 최신 상품 정보와 삭제할 상품 번호를 포함합니다.
 
