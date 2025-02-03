@@ -27,9 +27,9 @@ date: 2025-01-31
     - **table level lock은 필요한 경우에만 제한적으로 사용**합니다.
 
 - `snapshot.locking.mode` 설정을 통해 상황에 맞는 lock 전략을 선택할 수 있습니다.
-    - **minimal mode** : schema capture 단계에서만 lock을 획득하고 해제합니다.
-    - **extended mode** : snapshot이 완료될 때까지 lock을 유지합니다.
-    - **none mode** : lock을 전혀 사용하지 않습니다.
+    - **`minimal` mode** : schema capture 단계에서만 lock을 획득하고 해제합니다.
+    - **`extended` mode** : snapshot이 완료될 때까지 lock을 유지합니다.
+    - **`none` mode** : lock을 전혀 사용하지 않습니다.
         - data 일관성이 보장되지 않을 수 있어 주의가 필요합니다.
 
 

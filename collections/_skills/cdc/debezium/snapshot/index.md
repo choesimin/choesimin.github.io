@@ -45,39 +45,19 @@ date: 2025-01-31
     - **resource 사용을 조절**할 수 있는 설정을 제공합니다.
 
 - snapshot은 **다양한 mode를 제공**하여 상황에 맞는 유연한 설정이 가능합니다.
-    - **Initial mode** : 최초 한 번만 snapshot을 수행합니다.
-    - **Schema only mode** : schema 정보만 capture합니다.
-    - **Never mode** : snapshot을 수행하지 않습니다.
-    - **When needed mode** : 필요한 경우에만 snapshot을 수행합니다.
+    - `initial`, `initial_only`, `never`, `schema_only`, `when_needed`, `custom` 등의 mode를 선택할 수 있습니다.
+    - 각 mode는 **특정 상황에 적합한 동작 방식**을 제공합니다.
 
-
-### Snapshot의 다양한 Mode
-
-| Mode | 주요 기능 | 사용 목적 | 특이 사항 |
+| Snapshot Mode | 핵심 동작 | 적합한 상황 | 부적합한 상황 |
 | --- | --- | --- | --- |
-| **initial** | 최초 실행 시 전체 snapshot, 이후 변경분 capture | 일반적인 CDC 구성, 운영 환경 | 기본 mode, 가장 안정적 |
-| **initial_only** | 전체 snapshot 후 종료 | 일회성 data 이관, test 환경 구성 | 변경분 capture 미수행 |
-| **never** | snapshot 미수행, 변경분만 capture | 기존 동기화 환경 재시작 | log position 정보 필요 |
-| **schema_only** | schema만 snapshot | schema 관리, version 추적 | data 동기화 미수행 |
-| **when_needed** | 필요 시에만 snapshot 수행 | 고가용성 환경, 자동 복구 | 장애 상황 대응 용이 |
-| **custom** | 사용자 정의 snapshot 수행 | 복잡한 business 요구 사항 대응 | 개발 전문 지식 필요 |
-
-- 상황에 맞추어 적절한 mode를 선택하여 사용합니다.
-    - production 환경에서는 `initial` mode가 권장됩니다.
-    - 일회성 data 이관이나 test 환경 구성 시에는 `initial_only` mode를 사용합니다.
-    - disaster recovery 구성 시에는 `never` mode를 사용합니다.
-    - schema 관리 목적으로는 `schema_only` mode를 사용합니다.
-    - 고가용성이 요구되는 환경에서는 `when_needed` mode를 사용합니다.
-    - `custom` mode는 개발 전문 지식이 필요하므로 주의가 필요합니다.
-
-| Mode | Data 복제 | Schema 복제 | 변경분 Capture | 자동 복구 |
-| --- | --- | --- | --- | --- |
-| **initial** | O | O | O | X |
-| **initial_only** | O | O | X | X |
-| **never** | X | O | O | X |
-| **schema_only** | X | O | X | X |
-| **when_needed** | O | O | O | O |
-| **custom** | 설정 가능 | 설정 가능 | 설정 가능 | 설정 가능 |
+| `always` | connector 시작마다 snapshot 실행 | 소규모 database, 주기 동기화 | 대용량 database, 실시간 처리 |
+| `initial` | 최초 시작 시에만 snapshot 실행 | 일반적 CDC 환경, 안정적 운영 | 주기 동기화, offset 관리 어려움 |
+| `initial_only` | snapshot만 실행 후 종료 | 일회성 복제, backup | 실시간 동기화, CDC |
+| `no_data` | schema만 snapshot 실행 | schema 변경 추적, 최소 부하 | 전체 data 동기화 |
+| `when_needed` | offset 없을 때만 snapshot 실행 | 자동 복구 필요, 안정적 운영 | 예측 가능한 동작 필요 |
+| `configuration_based` | 설정 기반 snapshot 실행 | table별 다른 정책 필요 | 단순 복제, resource 제한 |
+| `custom` | 사용자 정의 snapshot 실행 | 특수 요구 사항 | 표준 복제, 개발 resource 제한 |
+| `recovery` | schema history 복구용 실행 | topic 손상 복구, size 정리 | 일반 복제, schema 변경 후 |
 
 
 ### Snapshot 수행 시 고려 사항
@@ -140,9 +120,9 @@ date: 2025-01-31
     - 너무 큰 값은 memory 부하를, 너무 작은 값은 성능 저하를 유발할 수 있습니다.
 
 
-### 모니터링 방안
+### Monitoring 방안
 
-- **JMX**를 통해 snapshot 진행 상황을 모니터링합니다.
+- **JMX**를 통해 snapshot 진행 상황을 monitoring합니다.
     - 진행률, 처리된 record 수, 소요 시간 등을 확인할 수 있습니다.
     - 성능 지표를 수집하여 추세를 분석할 수 있습니다.
 

@@ -21,7 +21,7 @@ date: 2025-01-23
 ### Debezium의 주요 특징
 
 - Debezium은 **Log 기반 CDC** 방식으로 database의 변경 사항을 capture합니다.
-    - **transaction log를 읽어들여 database의 변경 사항을 실시간으로 감지**하고 이를 다른 시스템으로 전달합니다.
+    - **transaction log를 읽어들여 database의 변경 사항을 실시간으로 감지**하고 이를 다른 system으로 전달합니다.
 
 - Log 기반 CDC 방식을 채용하였기에, Log 기반 CDC의 장점을 동일하게 가집니다.
 
