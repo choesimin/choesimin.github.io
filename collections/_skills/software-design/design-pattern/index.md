@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: Design Pattern
+title: Design Pattern - 재사용 가능한 객체 설계하기
 date: 2023-06-04
 ---
 
