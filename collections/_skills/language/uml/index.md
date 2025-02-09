@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: UML
+title: UML - System 시각화하기
 date: 2023-07-02
 ---
 

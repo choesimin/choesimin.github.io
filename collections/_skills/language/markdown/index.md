@@ -1,13 +1,13 @@
 ---
 layout: skill
-title: Markdown
+title: Markdown - 경량 Markup Language
 date: 2023-04-09
 ---
 
 
 
 
-## Markdown - Text 기반 Markup 언어
+## Markdown : Text 기반 Markup 언어
 
 - Markdown은 web contents를 작성하기 위한 경량 Markup 언어입니다.
     - 쉽게 쓰고 읽을 수 있으며, HTML로 변환이 가능합니다.

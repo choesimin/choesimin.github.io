@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: TypeScript
+title: TypeScript - Type 기반 Javascript
 date: 2024-02-25
 ---
 

@@ -1,11 +1,13 @@
 ---
 layout: skill
-title: Java
+title: Java - 객체 지향 Programming Language
 date: 2023-07-18
 ---
 
 
 
+
+## Java : 가장 인기 있는 객체 지향 Programming 언어
 
 - Java는 Sun Microsystems에서 개발하여 1996년에 공식적으로 발표되었습니다.
 - Java의 slogan은 WORA(`Write Once Run Anywhere`)입니다.

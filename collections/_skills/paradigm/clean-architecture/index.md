@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: Clean Architecture
+title: Clean Architecture - 깨끗한 Architecture 설계하기
 date: 2023-11-02
 ---
 

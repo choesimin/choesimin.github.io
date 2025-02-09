@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: CDC
+title: CDC - Change Data Capture
 date: 2024-12-20
 ---
 
