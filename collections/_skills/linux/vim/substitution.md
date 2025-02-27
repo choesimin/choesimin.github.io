@@ -1,13 +1,11 @@
 ---
 layout: skill
 date: 2025-01-04
-title: Vim 문자열 치환하기
+title: Vim에서 문자열 치환하기
 ---
 
 
-
-
-## Vim에서 문자열 치환하기
+## Vim 문자열 치환 명령어 : `:s`
 
 ```txt
 :[range]s/pattern/replacement/[options]
@@ -35,7 +33,7 @@ title: Vim 문자열 치환하기
 | `\r` | Carriage Return |
 
 
-### Option 적용하기
+### 치환 Option 적용하기
 
 - `options` 항목에 치환 시 적용할 option을 설정할 수 있습니다.
 
@@ -55,11 +53,7 @@ title: Vim 문자열 치환하기
     - `gi`는 대소문자 구분 없이 전체 치환합니다.
 
 
-
-
 ---
-
-
 
 
 ## `vimtutor`의 문자열 치환 설명
@@ -124,11 +118,7 @@ title: Vim 문자열 치환하기
     - 모든 확인할 문자열에 대해 변경 수락(`y`)과 거절(`n`) 작업을 진행합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference
