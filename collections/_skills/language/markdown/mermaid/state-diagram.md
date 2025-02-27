@@ -5,6 +5,8 @@ date: 2023-07-02
 ---
 
 
+## Mermaid.js State Diagram
+
 - mermaid를 사용해 State Diagram을 그릴 수 있습니다.
 
 ```mermaid

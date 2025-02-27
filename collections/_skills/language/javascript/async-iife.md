@@ -1,9 +1,11 @@
 ---
 layout: skill
-title: JavaScript - Async 함수 선언 없이 Await 바로 사용하기
+title: JavaScript - await 바로 사용하기
 date: 2024-01-11
 ---
 
+
+## JavaScript : `async` 함수 선언 없이 `await` 바로 사용하기
 
 - `await` keyword는 `async` 함수 안에서만 사용할 수 있기 때문에, 함수 없이 즉시 실행해도 되는 경우에도 `async` 함수를 만들어서 호출해야 합니다.
 

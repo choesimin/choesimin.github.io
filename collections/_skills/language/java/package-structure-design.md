@@ -1,9 +1,11 @@
 ---
 layout: skill
-title: Java - Package 구조 설계 Guide
+title: Java - Package Design Guide
 date: 2023-12-05
 ---
 
+
+## Java Package 구조 설계하기 : Layer vs Domain
 
 - Java의 package 구조는 크게 **Layer Package Structure**와 **Domain Package Structure**로 나뉩니다.
     - Layer Package Structure는 package를 계층(layer)에 따라 분리합니다.

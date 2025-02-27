@@ -5,6 +5,8 @@ date: 2023-07-17
 ---
 
 
+## Java의 문자열 Class
+
 - Java의 String, StringBuffer, StringBuilder class는 모두 문자열을 나타내는 자료형입니다.
 
 | String | StringBuffer | StringBuilder |

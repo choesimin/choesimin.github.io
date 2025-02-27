@@ -1,9 +1,11 @@
 ---
 layout: skill
-title: JavaScript - Truthy/Falsy 값
+title: JavaScript - Truthy/Falsy
 date: 2024-02-28
 ---
 
+
+## Truthy & Falsy
 
 ```javascript
 if (!value) {

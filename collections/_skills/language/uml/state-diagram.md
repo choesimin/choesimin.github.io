@@ -1,17 +1,14 @@
 ---
 layout: skill
-title: State Diagram - 객체의 상태 변화 시각화하기
 date: 2023-06-19
+title: State Diagram - 객체의 상태 변화 시각화하기
+description: State Diagram은 객체의 생명 주기 동안 가질 수 있는 상태의 변화를 분석한 diagram입니다.
 ---
 
 
-- State Diagram이란 하나의 객체가 생명 주기(life cycle) 동안 가질 수 있는 상태의 변화를 분석한 diagram입니다.
+## State Diagram의 구성 요소
 
-
----
-
-
-## 구성 요소
+- State Diagram은 상태(State), 전이(Transition), 선택(Choice), 시작 상태(Initial state), 종료 상태(Final state)로 구성됩니다.
 
 
 ### 시작 상태와 종료 상태

@@ -1,9 +1,11 @@
 ---
 layout: skill
-title: Danfo.js - JavaScript에서 Pandas Library 사용하기
+title: Danfo.js - JavaScript의 Pandas
 date: 2023-08-09
 ---
 
+
+## Danfo.js : JavaScript에서 Pandas Library 사용하기
 
 - Danfo.js는 Open-source JavaScript Library로, 자료(data)를 조작하고 분석하는 작업을 간편하게 수행할 수 있게 해줍니다.
 

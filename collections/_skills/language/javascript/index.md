@@ -5,6 +5,8 @@ date: 2023-12-13
 ---
 
 
+## JavaScript : Browser Interface 개발 언어
+
 - JavaScript는 **browser interface를 만들 때 가장 널리 사용되는 scripting 또는 programming 언어**입니다.
     - JavaScript를 사용하여 정적인 web page에 동적인 기능을 추가할 수 있습니다.
         - HTML, CSS로 정보를 표시(정적)하고, JavaScript로 복잡한 기능(동적)을 구현합니다.

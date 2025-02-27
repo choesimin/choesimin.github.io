@@ -5,6 +5,8 @@ date: 2023-07-17
 ---
 
 
+## Java 개발 환경
+
 | Name | Full Name | 번역 |
 | --- | --- | --- |
 | JDK | Java Development Kit | Java 개발 도구 |
@@ -12,10 +14,7 @@ date: 2023-07-17
 | JVM | Java Virtual Machine | Java 가상 기계 |
 
 
----
-
-
-## 포함 관계 : JVM ⊂ JRE ⊂ JDK
+### 포함 관계 : JVM ⊂ JRE ⊂ JDK
 
 ```txt
 JDK는 JRE를 포함하고, JRE는 JVM을 포함합니다.
@@ -56,16 +55,13 @@ mindmap
 - 사용 목적에 따라 Java SE를 기준으로 기능을 더하거나 뺀 특수 목적 edition이 있습니다.
     - 예를 들어, Java EE, Java ME.
 
-
 #### Java SE : Java Platform, Standard Edition
 
 - 표준 Java platform으로 표준적인 computing 환경을 지원하기 위한 JVM 규격 및 API 집합을 포함합니다.
 
-
 #### Java EE : Java Platform, Enterprise Edition
 
 - Java SE에 WAS(Web Application Server)에서 동작하는 기능을 추가한 platform입니다.
-
 
 #### Jakarta EE : Jakarta, Enterprise Edition
 
@@ -73,7 +69,6 @@ mindmap
 
 - Jakarta EE는 Java EE의 상위 version이지만, 서로 호환되지 않습니다.
     - Jakarta EE로 옮겨가려면 migration이 필요합니다.
-
 
 #### Java ME : Java Platform, Micro Edition
 

@@ -5,6 +5,8 @@ date: 2024-09-25
 ---
 
 
+## Mermaid.js ERD
+
 - mermaid를 사용해 ERD(Entity Relationship Diagram)를 그릴 수 있습니다.
 
 ```txt
