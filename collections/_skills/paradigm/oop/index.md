@@ -5,18 +5,12 @@ date: 2023-11-07
 ---
 
 
-
-
 ## OOP : Object Oriented Programming
 
 - OOP는 **객체 지향 programming**을 의미합니다.
 
 
-
-
 ---
-
-
 
 
 ## 객체 지향에 대한 잘못된 설명
@@ -54,11 +48,7 @@ date: 2023-11-07
     - 다형성을 통해 제어 흐름을 간접적으로 전환하는 규칙을 부과합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -14,11 +14,7 @@ layout: skill
 
 - storage engine에 따라 table data와 index를 저장하는 방식이 다르지만 table 정의는 server에서 담당함
 
-
-
 ---
-
-
 
 ## 종류
 
@@ -30,11 +26,7 @@ layout: skill
 - Federated Engine
 
 
-
-
 ---
-
-
 
 
 ## 선택 시 고려사항
@@ -51,11 +43,7 @@ layout: skill
 - 삽입과 읽기만 하면 된다면 MyISAM으로도 충분하지만 여러 작업이 서로 interrupt 없이 동시에 실행되려면 Row 수준 잠금 기능이 있는 InnoDB engine을 선택해야 함
 
 
-
-
 ---
-
-
 
 
 ## 특정 table이 어떤 storage engine을 사용하는지 확인하기
@@ -107,11 +95,7 @@ Comment: Users and global privileges
 | Comment | 다양한 부수 정보. MyISAM table은 table이 생성되었을 때 설정된 주석이 표시됨. InnoDB table에서는 InnoDB table space에 있는 빈 공간에 대한 정보가 표시됨. table이 view라면 ‘VIEW’라는 문자 표시 |
 
 
-
-
 ---
-
-
 
 
 ## Reference

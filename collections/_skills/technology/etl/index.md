@@ -5,8 +5,6 @@ date: 2024-12-30
 ---
 
 
-
-
 ## ETL : Extract & Transform & Load
 
 - ETL(추출, 변환, 적재)는 **다양한 source data를 대형 중앙 집중식 repository(data warehouse)에 결합하는 과정**입니다.
@@ -54,11 +52,7 @@ flowchart TD
 ```
 
 
-
-
 ---
-
-
 
 
 ## 여러 ETL 처리 방식
@@ -160,11 +154,7 @@ sequenceDiagram
 ```
 
 
-
-
 ---
-
-
 
 
 ## ELT : Extract, Load, Transform
@@ -183,11 +173,7 @@ sequenceDiagram
     - 대량의 **변환 작업은 마지막 분석 단계에서 수행**하도록 남겨두고, 최소한으로만 가공한 원시(raw) data를 data warehouse에 적재해두는 데 초점을 맞춥니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

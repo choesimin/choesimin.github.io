@@ -5,8 +5,6 @@ date: 2023-06-04
 ---
 
 
-
-
 ```txt
 Don’t reinvent the wheel.
 바퀴를 다시 발명하지 마라.
@@ -22,11 +20,7 @@ Don’t reinvent the wheel.
     - pattern을 고쳐서 사용할 때는 고전적인 pattern design과 다른 부분을 문서화해 놓는 것이 좋습니다.
 
 
-
-
 ---
-
-
 
 
 ## Pattern = 일반화하기
@@ -43,11 +37,7 @@ A solution to a problem in a context.
     - 예를 들어, "기능마다 별도의 class를 만들고, 그 기능들로 해야할 일을 한번에 처리해주는 class를 만들자"라고 제안하는 것보다 "Facade Pattern을 써보자"라고 제안하는 쪽이 이해하기 쉽습니다.
 
 
-
-
 ---
-
-
 
 
 ## Design Pattern의 구조
@@ -86,11 +76,7 @@ A solution to a problem in a context.
 - solution은 일련의 제약조건 내에서 목적을 달성할 수 있는 일반적인 설계(design)입니다.
 
 
-
-
 ---
-
-
 
 
 ## Design Pattern의 분류
@@ -176,11 +162,7 @@ A solution to a problem in a context.
     - 따라서 class pattern보다 더 동적이고 유연합니다.
 
 
-
-
 ---
-
-
 
 
 ## Design Pattern의 종류
@@ -335,11 +317,7 @@ A solution to a problem in a context.
 - 한 요청을 2개 이상의 객체에서 처리합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

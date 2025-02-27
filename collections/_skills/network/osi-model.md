@@ -5,8 +5,6 @@ date: 2024-09-22
 ---
 
 
-
-
 ## OSI 7 계층 : Network에서 통신이 일어나는 과정을 7단계로 나눈 것
 
 - **OSI Model**(Open Systems Interconnection Reference Model)은 국제 표준화 기구(ISO)에서 개발한 model로, **computer network protocol design과 통신을 계층으로 나누어 개념적으로 설명한 것**입니다.
@@ -108,11 +106,7 @@ date: 2024-09-22
     - 예를 들어, web 개발 시 HTTP/HTTPS와 같은 protocol 이해가 중요하며, 실무 관점에서 계층별 암기는 상대적으로 덜 중요합니다.
 
 
-
-
 ---
-
-
 
 
 ## Layer 1. 물리 계층 (Physical Layer)
@@ -148,11 +142,7 @@ date: 2024-09-22
     - 예를 들어, SCSI가 여기에 속합니다.
 
 
-
-
 ---
-
-
 
 
 ## Layer 2. Data Link 계층 (Data Link Layer)
@@ -247,11 +237,7 @@ date: 2024-09-22
     - **IP 주소** : network 상에서 할당되는 논리적 주소, internet 통신에 사용.
 
 
-
-
 ---
-
-
 
 
 ## Layer 3. Network 계층 (Network Layer)
@@ -329,11 +315,7 @@ date: 2024-09-22
    - 이러한 유연성이 internet의 빠른 성장을 가능하게 했습니다.
 
 
-
-
 ---
-
-
 
 
 ## 4 계층 - 전송 계층 (Transport Layer)
@@ -454,11 +436,7 @@ date: 2024-09-22
 - **빠른 속도** : 연결 설정 및 오류 처리 과정이 없어 TCP보다 빠른 전송 속도를 제공합니다.
 
 
-
-
 ---
-
-
 
 
 ## 5 계층 - Session 계층 (Session Layer)
@@ -609,14 +587,10 @@ date: 2024-09-22
 
 - 예를 들어, 광섬유 통신, 일부 고속 network 장비 등이 전이중 방식입니다.
     - **광섬유 통신** : 두 개의 광섬유를 사용하여 각각 다른 방향으로 data를 동시에 전송합니다.
-    - **일부 고속 network 장비** : 전이중 방식을 지원하여 대용량 data를 빠르게 처리합니다. 
-
-
+    - **일부 고속 Network 장비** : 전이중 방식을 지원하여 대용량 data를 빠르게 처리합니다. 
 
 
 ---
-
- 
 
 
 ## 6 계층 - 표현 계층 (Presentation Layer)
@@ -693,11 +667,7 @@ date: 2024-09-22
 - **사용자 편의성** : MIME은 사용자가 다양한 종류의 file을 쉽게 주고받을 수 있도록 지원합니다.
 
 
-
-
 ---
-
-
 
 
 ## 7 계층 - 응용 계층 (Application Layer)
@@ -729,11 +699,7 @@ date: 2024-09-22
         - TCP protocol은 web server의 80번 port(well-known port)로 연결하여 통신을 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

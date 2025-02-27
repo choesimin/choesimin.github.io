@@ -5,8 +5,6 @@ date: 2024-02-28
 ---
 
 
-
-
 ## Undefined Type & Null Type
 
 - `undefined`는 '값이 정의되지 않음'을, `null`은 '값이 없음'을 명시적으로 표현합니다.
@@ -26,11 +24,7 @@ let myUndefinedVar: undefined = undefined;
     - 예를 들어, `--strictNullChecks` option을 사용하여 type 안전성을 강화하고, optional chaining과 nullish coalescing를 활용하여 code의 안정성과 가독성을 높일 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## 엄격한(Strict) Null Check : `--strictNullChecks` Compile Option
@@ -82,11 +76,7 @@ function getCustomer(id: number): Customer | null {
 ```
 
 
-
-
 ---
-
-
 
 
 ## TypeScript 3.7 이상에서 지원하는 고급 기능 : Optional Chaining, Nullish Coalescing

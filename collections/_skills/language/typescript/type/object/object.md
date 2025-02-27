@@ -5,8 +5,6 @@ date: 2024-02-29
 ---
 
 
-
-
 ## Object Type : All Non-Primitive Type
 
 - TypeScript에서 `object` type은 **원시 type을 제외한 값**(배열, 함수, 객체 등)을 포함합니다.
@@ -65,11 +63,7 @@ obj = true;    // Error: Type 'boolean' is not assignable to type 'object'.
 ```
 
 
-
-
 ---
-
-
 
 
 ## 지나치게 유연한 `object` Type

@@ -5,8 +5,6 @@ date: 2023-11-28
 ---
 
 
-
-
 - system architecture는 software component와 그 component를 분리하는 경계에 의해 정의되며, 경계는 다양한 형태로 나타납니다.
 
 
@@ -90,11 +88,7 @@ date: 2023-11-28
     - 가능하다면 빈번하게 통신하는 일은 피해야 합니다.
     - 지연(latency)에 따른 문제를 고수준에서 처리할 수 있어야 합니다.
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2024-12-20
 ---
 
 
-
-
 ## Event 기반 Architecture에서 CDC를 사용하는 이유
 
 - data 변경에 대한 event message는 **application 기반으로 발행**할 수도 있고, **DB 기반으로 발행**할 수도 있습니다.
@@ -82,11 +80,7 @@ flowchart LR
         - CDC가 data 변경을 감지하고, event를 자동으로 발행해주기 때문입니다.
 
 
-
-
 ---
-
-
 
 
 ## Event 기반 Architecture에 CDC를 적용하는 경우 생기는 단점
@@ -107,11 +101,7 @@ flowchart LR
 - 따라서 event 기반 architecture를 사용한다고 해서 CDC를 맹목적으로 적용해서는 안 되며, 득과 실을 잘 따져보아야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

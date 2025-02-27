@@ -5,8 +5,6 @@ date: 2023-07-02
 ---
 
 
-
-
 - mermaid를 사용해 State Diagram을 그릴 수 있습니다.
 
 ```mermaid
@@ -27,11 +25,7 @@ crash --> [*]
 ```
 
 
-
-
 ---
-
-
 
 
 ## 상태 정의하기
@@ -106,11 +100,7 @@ note left of stateWithLeftNote : 왼쪽에 기록합니다.<br>Line 방식에서
 ```
 
 
-
-
 ---
-
-
 
 
 ## 시작 상태와 종료 상태 정의하기
@@ -133,11 +123,7 @@ direction LR
 ```
 
 
-
-
 ---
-
-
 
 
 ## 전이 정의하기
@@ -161,11 +147,7 @@ Previous --> Next : action[condition]
 ```
 
 
-
-
 ---
-
-
 
 
 ## 선택 정의하기
@@ -199,11 +181,7 @@ if --> Next2 : Condition 2
 ```
 
 
-
-
 ---
-
-
 
 
 ## Diagram 방향 설정하기
@@ -282,11 +260,7 @@ direction RL
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

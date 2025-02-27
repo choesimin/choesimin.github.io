@@ -43,11 +43,7 @@ version: 2024-01-19
 | 다형성 덕분에 어떤 class든 특정 interface만 구현하면 사용할 수 있습니다. | 나중에 code를 수정해야 할 가능성이 높아지고 유연성이 떨어집니다. |
 
 
-
-
 ---
-
-
 
 
 ## Simple Factory Example : Pizza 가게
@@ -263,11 +259,7 @@ public class PepperoniPizza extends Pizza {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,7 +5,6 @@ date: 2024-02-28
 ---
 
 
-
 ## Type Guard : Type 좁히기(Narrowing)
 
 - type guard는 특정 scope 내에서 **변수의 type을 보다 구체적으로 좁히기 위해 사용**하는 표현식입니다.
@@ -16,11 +15,7 @@ date: 2024-02-28
 - **`typeof`, `instanceof`, `in` keyword를 사용한 type guard**는 JavaScript에서 지원하는 기본적인 type과 class에 대해 사용될 수 있으며, 더 복잡한 type이나 interface에 대해서는 **사용자 정의 type guard**를 사용해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## `typeof` Keyword Type Guard
@@ -63,11 +58,7 @@ function getNumber(value: string | number): void {
 ```
 
 
-
-
 ---
-
-
 
 
 ## `instanceof` Keyword Type Guard
@@ -137,11 +128,7 @@ function printDetails(obj: Person | Animal): void {
 ```
 
 
-
-
 ---
-
-
 
 
 ## `in` Keyword Type Guard
@@ -206,11 +193,7 @@ function learnCourse(material: Book | OnlineLecture) : number | string {
 ```
 
 
-
-
 ---
-
-
 
 
 ## 사용자 정의 Type Guard
@@ -276,11 +259,7 @@ function displayVehicleInfo(vehicle: Car | { type: string }): void {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

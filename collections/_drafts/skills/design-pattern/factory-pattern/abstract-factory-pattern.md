@@ -36,11 +36,7 @@ Abstract Factory Pattern에서는 interface를 이용하여 서로 연관된, �
 
 
 
-
-
 ---
-
-
 
 
 ## Class Diagram
@@ -98,11 +94,7 @@ ProductB2 --> ConcreteFactory2
 ```
 
 
-
-
 ---
-
-
 
 
 ## Abstract Factory Pattern Example : Pizza 가게
@@ -787,11 +779,7 @@ public class FreshClams implements Clams {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

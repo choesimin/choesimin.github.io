@@ -5,8 +5,6 @@ date: 2023-08-26
 ---
 
 
-
-
 ## SVG : Scalable Vector Graphics
 
 - SVG는 HTML 문서에 vector graphic을 그리기 위해 사용되는 XML 기반 web 기술입니다.
@@ -39,11 +37,7 @@ date: 2023-08-26
 - 여러 객체의 grouping과 합성이 가능합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

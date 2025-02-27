@@ -5,8 +5,6 @@ date: 2024-10-24
 ---
 
 
-
-
 ## 병행 제어 : 일관성과 효율성 모두 지키기
 
 - **병행(concurrency)**은 매우 빠르게 여러 transaction 사이를 이동하면서 조금씩 처리를 수행하는 방식입니다.
@@ -24,11 +22,7 @@ date: 2024-10-24
     - **단위 시간당 처리할 수 있는 Transaction 수 최대화** : 주어진 시간 내에 처리할 수 있는 transaction의 수를 늘려 system의 처리량(throughput)을 증가시킴으로써, 전체적인 system의 성능과 효율성을 높입니다.
 
 
-
-
 ---
-
-
 
 
 ## 병행 제어 없는 병행의 문제점
@@ -143,11 +137,7 @@ Note over t2 : Transaction 2는 잘못된 data를 참조하여 잘못된 결과 
 - 현황 파악 오류는 transaction의 무결성과 신뢰성을 저하시킵니다.
 
 
-
-
 ---
-
-
 
 
 ## 병행 제어 기법
@@ -320,11 +310,7 @@ Note over t2 : Transaction 2는 잘못된 data를 참조하여 잘못된 결과 
         - 이를 통해 data 무결성을 유지합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

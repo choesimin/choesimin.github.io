@@ -5,8 +5,6 @@ date: 2024-01-17
 ---
 
 
-
-
 - Decorator Pattern은 기본 객체에 추가적인 기능을 추가할 때 사용됩니다.
     - Decorator Pattern의 주요 목적은 **객체의 기능을 동적으로 확장**하는 것입니다.
     - 기능 확장을 위해 sub class를 만드는 것보다 Decorator Pattern을 적용하는 것이 훨씬 유연합니다.
@@ -23,11 +21,7 @@ date: 2024-01-17
     - 기초 행동을 확장할 수 있는 이유는 모든 옷이 사람의 모양에 맞춰서 만들어져 있기 때문입니다.
 
 
-
-
 ---
-
-
 
 
 ## Class 구조
@@ -146,11 +140,7 @@ class ConcreteDecoratorB extends Decorator {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Decorator Pattern 작동 방식
@@ -189,11 +179,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
 ```
 
 
-
-
 ---
-
-
 
 
 ## Decorator Pattern에서의 상속
@@ -219,11 +205,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
     - component를 감싸는 decorator의 갯수에는 제한이 없기 때문에 super class의 code를 건드리지 않고 행동을 무한히 확장하는 것이 가능합니다.
 
 
-
-
 ---
-
-
 
 
 ## Decorator Pattern의 특징
@@ -279,11 +261,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
     - 객체에 어느 decorator를 먼저 decorating 하느냐에 따라 decorator stack 순서가 결정됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Decorator Pattern과 Proxy Pattern : 용도에 따른 분류
@@ -301,11 +279,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
     - wrapper class와 component class의 관계가 runtime에 정해집니다.
 
 
-
-
 ---
-
-
 
 
 ## Example : 음료에 첨가물을 추가하고 가격 계산하기
@@ -578,11 +552,7 @@ public class Whip extends CondimentDecorator {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2023-09-23
 ---
 
 
-
-
 ## crontab : Linux의 기본 Task Scheduler
 
 - crontab은 Linux에 기본 program으로 설치되어 있는 작업 Scheduler입니다.
@@ -33,11 +31,7 @@ crontab [option]
 | -e | 작업 설정 내용을 관리하는 file을 text editor로 실행합니다.<br>실행 시간을 지정하기 위한 표현식을 사용하여 file 내용을 작성합니다. |
 
 
-
-
 ---
-
-
 
 
 ## `crontab -e`에서 작업 정의하기
@@ -115,11 +109,7 @@ crontab [option]
 | `0 21 * * 1-6` | 월요일부터 토요일까지 21시 0분에 실행합니다. |
 
 
-
-
 ---
-
-
 
 
 ## Reference

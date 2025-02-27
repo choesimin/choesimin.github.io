@@ -5,8 +5,6 @@ date: 2023-04-09
 ---
 
 
-
-
 ## Code Block 작성하기
 
 - code block은 2가지 방법으로 작성할 수 있습니다.
@@ -61,11 +59,7 @@ main( ) {
 > }</code></pre>
 
 
-
-
 ---
-
-
 
 
 ## Inline Code 작성하기

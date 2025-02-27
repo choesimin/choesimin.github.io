@@ -5,8 +5,6 @@ date: 2023-11-05
 ---
 
 
-
-
 ## DIP (Dependency Inversion Principle) : 의존 관계 역전 원칙
 
 ```txt
@@ -178,11 +176,7 @@ Map<int, String> myMap = new HashMap()<>;
 ```
 
 
-
-
 ---
-
-
 
 
 ## DIP 적용해보기
@@ -365,11 +359,7 @@ class Character {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

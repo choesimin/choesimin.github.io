@@ -5,17 +5,11 @@ date: 2023-07-23
 ---
 
 
-
-
 - EC2 Instance의 root volume을 늘릴 수 있습니다.
 - root volume은 additional volume과 달리 확장하고 나면 다시 줄일 수 없습니다.
 
 
-
-
 ---
-
-
 
 
 ## Root Volume 확장하는 방법
@@ -40,11 +34,7 @@ date: 2023-07-23
     - `df -h` 명령어로 현재 사용 중인 용량을 확인합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

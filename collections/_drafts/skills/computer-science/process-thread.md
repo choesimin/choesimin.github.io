@@ -105,11 +105,7 @@ version: 2023-05-08
 
 
 
-
-
 ---
-
-
 
 
 ## Thread
@@ -126,11 +122,7 @@ version: 2023-05-08
 - 운영체제적으로 한 process 안의 thread들은 stack 공간을 제외한 process의 나머지 공간과 system resource를 공유함
 
 
-
-
 ---
-
-
 
 
 ## 장점
@@ -156,11 +148,7 @@ version: 2023-05-08
 
 
 
-
-
 ---
-
-
 
 
 ## Reference

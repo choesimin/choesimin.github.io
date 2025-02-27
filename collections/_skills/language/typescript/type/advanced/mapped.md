@@ -5,8 +5,6 @@ date: 2024-03-04
 ---
 
 
-
-
 ## Mapped Type
 
 - Mapped Type은 TypeScript에서 **기존의 type을 기반으로 새로운 type을 생성하는 방법을 제공**합니다.
@@ -64,11 +62,7 @@ const person: PartialPerson = {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Mapped Type 응용 : 다른 고급 Type과 함께 사용하기

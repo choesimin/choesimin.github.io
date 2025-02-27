@@ -5,8 +5,6 @@ date: 2023-04-03
 ---
 
 
-
-
 ## tail : File의 꼬리
 
 - file의 마지막 행을 기준으로 지정한 행까지의 내용을 출력해주는 명령어입니다.
@@ -30,11 +28,7 @@ tail [option] [file_name]
 | `-v` | 출력하기 전에 file의 header와 이름 먼저 출력한 후, 내용을 출력합니다. |
 
 
-
-
 ---
-
-
 
 
 ## 실시간 Log 보기
@@ -53,11 +47,7 @@ tail mylog1.log mylog2.log
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

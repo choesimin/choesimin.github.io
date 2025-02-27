@@ -5,8 +5,6 @@ date: 2023-11-05
 ---
 
 
-
-
 ## SRP (Single Responsibility Principle) : 단일 책임 원칙
 
 ```txt
@@ -42,11 +40,7 @@ date: 2023-11-05
     - 역할에 따라 class 나누어 책임을 적절히 분배하는 것이 각 class의 의미를 파악하기 더 쉽게 하여(code 가독성 향상), 유지 보수를 용이하게 합니다.
 
 
-
-
 ---
-
-
 
 
 ## SRP 적용해보기 (Facade Pattern)
@@ -221,11 +215,7 @@ class EmployeeSaver {
 ```
 
 
-
-
 ---
-
-
 
 
 ## SRP 적용 주의 사항
@@ -291,11 +281,7 @@ class Transaction
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

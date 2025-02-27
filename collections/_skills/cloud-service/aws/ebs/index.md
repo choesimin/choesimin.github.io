@@ -5,8 +5,6 @@ date: 2023-07-23
 ---
 
 
-
-
 ## EBS : Elastic Block Store
 
 - EBS는 block 수준의 storage volume을 제공합니다.
@@ -25,11 +23,7 @@ date: 2023-07-23
     - additional volume : 추가 공간을 확보하기 위한 추가 volume입니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

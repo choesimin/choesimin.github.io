@@ -5,8 +5,6 @@ date: 2023-11-23
 ---
 
 
-
-
 ## 작성 순서
 
 ```mermaid
@@ -16,11 +14,7 @@ select[SELECT] --> from[FROM] --> join[JOIN, ON] --> where[WHERE] --> group[GROU
 ```
 
 
-
-
 ---
-
-
 
 
 ## 실행 순서

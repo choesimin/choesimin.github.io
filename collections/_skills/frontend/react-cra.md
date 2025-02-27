@@ -5,8 +5,6 @@ date: 2023-11-30
 ---
 
 
-
-
 ## CRA (Create React App)
 
 - CRA([create-react-app](https://github.com/facebook/create-react-app))는 **Facebook에서 제공하는 React Boilerplate code**입니다.
@@ -85,11 +83,7 @@ my-app
 | `index.js` | Web pack에서 aplication의 시작점(entry point)이 되는 file입니다.<br>application을 실행하는 **main program**으로, application의 초기 설정 및 loading 절차를 담당합니다. |
 
 
-
-
 ---
-
-
 
 
 ## Reference

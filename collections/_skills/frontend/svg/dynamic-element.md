@@ -5,8 +5,6 @@ date: 2023-09-11
 ---
 
 
-
-
 - SVG 도형을 JavaScript를 이용하여 동적으로 그릴 때는 namespace를 반드시 지정해주어야 합니다.
 - namespace는 `http://www.w3.org/2000/svg`으로 지정하며, 이는 HTML 문서에게 "여기에 SVG 요소를 만들겠습니다"라고 말하는 것과 같습니다.
 
@@ -62,11 +60,7 @@ svg.appendChild(rect);
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

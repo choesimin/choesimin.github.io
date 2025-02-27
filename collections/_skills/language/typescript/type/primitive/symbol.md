@@ -5,9 +5,6 @@ date: 2024-02-28
 ---
 
 
-
-
-
 ## Symbol Type
 
 - JavaScript의 symbol type은 ES6(ES2015)에서 도입된, **변경 불가능한 원시(primitive) type**입니다.
@@ -21,11 +18,7 @@ date: 2024-02-28
     - symbol type의 동작 방식, 사용 방법은 정적 typing을 제외하고 JavaScript와 모두 동일합니다.
 
 
-
-
 ---
-
-
 
 
 ## 일반 Symbol : `Symbol()`
@@ -110,11 +103,7 @@ console.log(JSON.stringify(myObject));
 ```
 
 
-
-
 ---
-
-
 
 
 ## 전역 Symbol : `Symbol.for()`와 `Symbol.keyFor()`
@@ -160,11 +149,7 @@ console.log(symbolKey);    // 'globalSymbol'
 - `globalSymbol` symbol이 'globalSymbol'이라는 key로 전역 symbol registry에 등록되어 있기 때문에 `symbolKey`는 'globalSymbol'이라는 문자열을 반환합니다.
 
 
-
-
 ---
-
-
 
 
 ## Well-Known Symbol : 사전 정의된 Symbol
@@ -259,11 +244,7 @@ for (let value of iterableObj) {
 - `next` method는 처음에는 "Hello"를, 두 번째에는 "World"를 반환하고, 그 다음에는 `done`을 `true`로 설정하여 반복이 종료되었음을 나타냅니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

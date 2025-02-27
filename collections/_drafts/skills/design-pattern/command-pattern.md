@@ -12,11 +12,7 @@ date: 2024-02-06
 - Command Pattern을 적용하면 명령을 쉽게 추가하거나 변경할 수 있으며, 실행 취소(undo), 재실행, queuing, logging 등 다양한 기능을 구현할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Class 구조
@@ -211,11 +207,7 @@ public class Receiver {
 
 
 
-
-
 ---
-
-
 
 
 ## Command Pattern 활용
@@ -261,11 +253,7 @@ class Command {
 
 
 
-
-
 ---
-
-
 
 
 ## Example : Remote Controller
@@ -999,11 +987,7 @@ public class CeilingFan {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

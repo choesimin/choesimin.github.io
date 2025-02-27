@@ -5,8 +5,6 @@ date: 2023-08-23
 ---
 
 
-
-
 ## `gzip` : 압축하기
 
 - 단일 file/stream 무손실 data 압축 utility입니다.
@@ -42,11 +40,7 @@ gzip -9v [file_name]    # 가장 높은 압축률로 정보를 출력하며 압�
 ```
 
 
-
-
 ---
-
-
 
 
 ## `gunzip` : 압축 해제하기
@@ -70,11 +64,7 @@ gzip -d [gz_file_name]
 ```
 
 
-
-
 ---
-
-
 
 
 ## 여러 개의 `.gz` file에서 특정 단어를 검색하기
@@ -91,11 +81,7 @@ zgrep [search_keyword] *[common_file_name_string]*.gz
 - 검색 문자열에 띄어쓰기가 포함되어 있다면, 문자열을 쌍따옴표(`"`)로 감쌉니다.
 
 
-
-
 ---
-
-
 
 
 ## 헷갈리기 쉬운 `gzip`과 `tar`의 차이
@@ -115,11 +101,7 @@ zgrep [search_keyword] *[common_file_name_string]*.gz
 - `tar`의 option에서 `gzip` 실행 여부를 지정할 수 있기 때문에, `gzip`이 단독으로 쓰일 경우는 많지 않습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

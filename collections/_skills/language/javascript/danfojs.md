@@ -5,8 +5,6 @@ date: 2023-08-09
 ---
 
 
-
-
 - Danfo.js는 Open-source JavaScript Library로, 자료(data)를 조작하고 분석하는 작업을 간편하게 수행할 수 있게 해줍니다.
 
 - Danfo.js는 Python의 대표적인 data 분석 및 조작 library인 Pandas를 본따 만들어졌습니다.
@@ -17,11 +15,7 @@ date: 2023-08-09
     - 예를 들어, Danfo.js의 자료형(`DataFrame`)을 TensorFlow.js의 자료형(`Tensor`)으로, 또는 그 반대로 간단하게 변환할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Danfo.js의 기능
@@ -62,11 +56,7 @@ date: 2023-08-09
 - CSV, Excel, JSON file로 저장된 data를 불러와서 `DataFrame`으로 변환하여 사용할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Danfo.js의 자료형 : `Series`와 `DataFrame`
@@ -100,11 +90,7 @@ var dataFrame = new dfd.DataFrame([
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

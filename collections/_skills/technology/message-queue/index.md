@@ -5,8 +5,6 @@ date: 2024-12-24
 ---
 
 
-
-
 ## Message Queue : System 간 비동기 통신을 위한 Message 중개 Middleware
 
 - Message Queue에서 Queue란 선입선출(FIFO, First-In-First-Out) 구조를 가진 자료 구조입니다.
@@ -85,11 +83,7 @@ service --> queue --> worker_1 & worker_2 & worker_3 & worker_4
 - Kafka, Pulsar 등이 Event Broker입니다.
 
 
-
-
 ---
-
-
 
 
 ## Message Queue의 장점
@@ -185,11 +179,7 @@ service --> queue --> worker_1 & worker_2 & worker_3 & worker_4
     - cloud 환경에서 필요에 따라 resource를 동적으로 할당할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Message Queue Solution 비교 : Redis, ActiveMQ, RabbitMQ, Kafka, Pulsar
@@ -232,11 +222,7 @@ service --> queue --> worker_1 & worker_2 & worker_3 & worker_4
 - **경량화된 messaging**이 필요한 경우에는 **Redis**가 적합합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

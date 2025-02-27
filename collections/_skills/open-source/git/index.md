@@ -5,8 +5,6 @@ date: 2025-02-09
 ---
 
 
-
-
 ## Git : 가장 보편적인 Version Control System
 
 - git은 software 개발에서 **source code의 version을 관리하는 system**입니다.
@@ -30,11 +28,7 @@ date: 2025-02-09
     - **Repository**는 version history가 저장되는 공간입니다.
 
 
-
-
 ---
-
-
 
 
 ## Git의 기본 명령어
@@ -56,11 +50,7 @@ date: 2025-02-09
 - `git pull` : remote repository의 변경 사항을 local repository로 가져오기.
 
 
-
-
 ---
-
-
 
 
 ## Git의 Branch 관리
@@ -74,11 +64,7 @@ date: 2025-02-09
     - 충돌(conflict)이 발생하면 수동으로 해결해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Git의 기타 주요 기능
@@ -96,11 +82,7 @@ date: 2025-02-09
     - `git diff` 명령으로 변경된 내용을 비교할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Git의 고급 기능

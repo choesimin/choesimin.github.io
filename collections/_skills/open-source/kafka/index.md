@@ -5,8 +5,6 @@ title: Apache Kafka - Message Queue System
 ---
 
 
-
-
 ## Apache Kafka : 성능과 기능이 좋은 Message Queue
 
 ```mermaid
@@ -55,11 +53,7 @@ flowchart LR
     - Producer application과 Conumer application 사이에 위치하여 Message를 전달합니다.
 
 
-
-
 ---
-
-
 
 
 ## Kafka의 기본 구성 요소
@@ -146,11 +140,7 @@ flowchart TB
     - **자동화된 복구 process**를 통해 system의 안정성을 유지합니다.
 
 
-
-
 ---
-
-
 
 
 ## Kafka 도입 Guide
@@ -200,11 +190,7 @@ flowchart TB
     - 전역적(global) 순서 보장이 필요한 경우 단일 partition을 사용해야 하며, 이는 처리량 제한으로 이어질 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

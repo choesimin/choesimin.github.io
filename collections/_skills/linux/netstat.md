@@ -5,8 +5,6 @@ date: 2024-11-01
 ---
 
 
-
-
 ## `netstat` : Network 상태 조회하기
 
 ```sh
@@ -21,11 +19,7 @@ netstat -tln
         - 성능 monitoring과 보안 점검에도 사용합니다.
 
 
-
-
 ---
-
-
 
 
 ## `netstat` 명령어 사용법

@@ -5,8 +5,6 @@ date: 2023-08-04
 ---
 
 
-
-
 - `mysqldump`는 MySQL의 대표적인 Logical backup program미여, storage engine에 상관없이 data를 backup할 수 있습니다.
 
 - `mysqldump`는 기본적으로 dump를 하려고 하는 table에 대한 `SELECT` 권한, dump하려는 View에 대한 `SHOW VIEW` 권한, dump하려는 Trigger에 대한 `TRIGGER` 권한을 가지고 있어야 합니다.
@@ -16,11 +14,7 @@ date: 2023-08-04
 - dump file을 복원할 때도, 복원 계정은 dump file을 생성했을 때 가졌던 모든 권한을 가지고 있어야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Backup하기
@@ -49,11 +43,7 @@ mysqldump [option] [database_name] [table_name_1] [table_name_2] [table_name_3] 
 ```
 
 
-
-
 ---
-
-
 
 
 ## 복원하기
@@ -83,11 +73,7 @@ passowrd : 123456
 ```
 
 
-
-
 ---
-
-
 
 
 ## Backup Option
@@ -199,11 +185,7 @@ passowrd : 123456
 | `net_buffer_length` | client와 server 사이 buffer의 initial size를 결정하는 variable입니다.<br>여러 data를 하나의 `INSERT` 구문으로 작성하고자 하는 경우 늘려줘야 합니다. |
 
 
-
-
 ---
-
-
 
 
 ## Reference

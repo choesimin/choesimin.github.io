@@ -5,8 +5,6 @@ date: 2023-11-05
 ---
 
 
-
-
 ## LSP (Liskov Substitution Principle) : Liskov 치환 원칙
 
 - Liskov 치환 원칙은 sub type(하위 유형)은 언제나 super type(기반이 되는 유형)으로 교체할 수 있어야 한다는 원칙입니다.
@@ -66,11 +64,7 @@ void modify(Collection data){
 ```
 
 
-
-
 ---
-
-
 
 
 ## LSP 적용해보기
@@ -217,11 +211,7 @@ public class Main {
 ```
 
 
-
-
 ---
-
-
 
 
 ## LSP 적용 주의 사항
@@ -237,11 +227,7 @@ public class Main {
 - 또한 상위 class의 기능을 이용하거나 재사용하고 싶다면, 상속(inheritnace)보다는 합성(composition)으로 구성하는 것이 대부분 더 낫습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

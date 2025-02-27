@@ -5,8 +5,6 @@ date: 2024-03-04
 ---
 
 
-
-
 ## `unknown` Type : Type-safe하게 모든 Type의 값 할당하기
 
 - `unknown` type은 TypeScript 3.0 version에서 도입되었습니다.
@@ -63,11 +61,7 @@ if (typeof value === "string") {    // type guard
 - `unknown` type은 type을 사전에 알 수 없는 경우나 외부 data source로부터 data를 받아올 때 유용하게 사용될 수 있으며, 이후에 적절한 type 검사를 통해 안전하게 사용할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## 다양한 `unknown` Type 사용 방법

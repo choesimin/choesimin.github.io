@@ -5,8 +5,6 @@ date: 2023-04-16
 ---
 
 
-
-
 - 2023년 3월 31일, Twitter는 home timeline의 **"For You" feed 추천 Algorithm**을 Github와 자사의 기술 blog에 공개했습니다.
     - algorithm source code : <https://github.com/twitter/the-algorithm>
     - machine learning source code : <https://github.com/twitter/the-algorithm-ml>
@@ -19,11 +17,7 @@ date: 2023-04-16
 - 이 글은 추천 algorithm에 대해 설명합니다.
 
 
-
-
 ---
-
-
 
 
 ## 추천 Timeline의 Tweet들을 선정하는 Algorithm
@@ -109,11 +103,7 @@ mixer ----> result
 ```
 
 
-
-
 ---
-
-
 
 
 ## 1. Candidate Sources : Find relevant tweets 
@@ -185,11 +175,7 @@ mixer ----> result
 | NBA | 70,000,000 |
 
 
-
-
 ---
-
-
 
 
 ## 2. Ranking : Rank tweets with neural network
@@ -206,11 +192,7 @@ mixer ----> result
     - 각 label은 참여 확률(probability of engagement)을 나타냅니다.
 
 
-
-
 ---
-
-
 
 
 ## 3. Heuristics & Filters : Filter out specific preferences
@@ -242,11 +224,7 @@ mixer ----> result
     - 현재 device에 있는 tweet들이 오래되었는지 확인하고, 편집된 version의 tweet들로 바꾸라는 명령을 보냅니다.
 
 
-
-
 ---
-
-
 
 
 ## 4. Mixing : Mix with non-tweets
@@ -255,11 +233,7 @@ mixer ----> result
 - 마지막 과정으로, system은 tweet들을 non-tweet(광고, follow할 사람 추천 등)과 섞어 화면에 표시합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

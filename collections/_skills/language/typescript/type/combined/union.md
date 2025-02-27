@@ -5,8 +5,6 @@ date: 2024-03-02
 ---
 
 
-
-
 ## Union Type - 여러 Type 중 하나 선택하기
 
 - union type은 **서로 다른 여러 type 중 하나가 될 수 있는 값을 정의**할 때 사용하는 고급 type입니다. 
@@ -131,11 +129,7 @@ if (isFish(pet)) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## 다양한 조합의 Union Type
@@ -289,11 +283,7 @@ type Container<T> = T | T[];
 ```
 
 
-
-
 ---
-
-
 
 
 ## Union Type 활용하기
@@ -407,11 +397,7 @@ function Content(props: Props) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Discriminated Union Pattern

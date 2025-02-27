@@ -5,8 +5,6 @@ title: ksqlDB의 Query - Pull Query, Push Query, Persistent Query
 ---
 
 
-
-
 ## ksqlDB의 Query Type : Pull, Push, Persistent
 
 - ksqlDB에는 세 가지 종류의 query 유형이 존재합니다.
@@ -29,11 +27,7 @@ title: ksqlDB의 Query - Pull Query, Push Query, Persistent Query
     - 대신 subquery가 아닌 여러 query를 Kafka로 통합하는 방향을 지향하고 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Pull Query : 현재의 상태만을 조회하기
@@ -125,11 +119,7 @@ flowchart TD
 5. client에 즉시 응답합니다.
 
 
-
-
 ---
-
-
 
 
 ## Push Query : 실시간 상태 변화를 구독하기
@@ -213,11 +203,7 @@ flowchart TD
 6. client에 실시간으로 전송합니다.
 
 
-
-
 ---
-
-
 
 
 ## Persistent Query : 영속화되는 query 결과
@@ -342,11 +328,7 @@ flowchart TD
 7. 결과를 새로운 topic에 저장합니다.
 
 
-
-
 ---
-
-
 
 
 ## Query 관리를 위한 주요 명령어
@@ -466,11 +448,7 @@ EMIT CHANGES;
 ```
 
 
-
-
 ---
-
-
 
 
 ## Referene

@@ -5,8 +5,6 @@ date: 2023-11-01
 ---
 
 
-
-
 - Singleton Pattern은 해당 class의 instance가 하나만 만들어지고, 어디서든지 그 instance에 접근할 수 있도록 하기 위한 pattern입니다.
 
 - 하나만 있어도 되는 객체를 만들 때 사용할 수 있습니다.
@@ -55,11 +53,7 @@ date: 2023-11-01
     - sub class를 만들려면 base class에서 registry 역할을 하는 것을 구현해 놓아야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Class 구조
@@ -102,11 +96,7 @@ class Singleton {
 - 일반적인 class를 만들 때와 마찬가지로 다양한 data와 method를 사용할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## 구현
@@ -267,11 +257,7 @@ public class SingletonClient {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Example : Chocolate 공장의 Chocolate Boiler
@@ -347,11 +333,7 @@ public class ChocolateController {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

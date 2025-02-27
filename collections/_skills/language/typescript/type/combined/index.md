@@ -5,8 +5,6 @@ date: 2024-03-02
 ---
 
 
-
-
 ## Combined Type : 두 개 이상의 Type들이 조합된 Type
 
 - TypeScript는 **다양한 type들을 조합**해 복잡한 type checking을 가능하게 하는 고급 type 기능을 제공합니다.
@@ -66,11 +64,7 @@ logMessage(101);    // Number message: 101
 - `logMessage` 함수는 이 union type을 매개 변수로 받아, type에 따라 다른 작업을 수행합니다.
 
 
-
-
 ---
-
-
 
 
 ## Intersection Type과 Union Type의 차이점

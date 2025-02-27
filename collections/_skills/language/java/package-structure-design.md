@@ -5,8 +5,6 @@ date: 2023-12-05
 ---
 
 
-
-
 - Java의 package 구조는 크게 **Layer Package Structure**와 **Domain Package Structure**로 나뉩니다.
     - Layer Package Structure는 package를 계층(layer)에 따라 분리합니다.
     - Domain Package Structure는 package를 업무(domain)에 따라 분리합니다.
@@ -16,11 +14,7 @@ date: 2023-12-05
     - 규모가 크고 domain이 많은 경우, Domain Package Structure를 선택합니다.
 
 
-
-
 ---
-
-
 
 
 ## Layer Package Structure
@@ -86,11 +80,7 @@ application
     - 규모가 커지면, 수십 개의 class 사이에서 관련된 domain class 하나를 찾아야 할 수도 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Domain Package Structure
@@ -153,11 +143,7 @@ application
     - 따라서 내부적으로 합의된 domain 분류 기준이 있어야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Package 구조 설계 예시 : 청구/결제 Service
@@ -297,11 +283,7 @@ application
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

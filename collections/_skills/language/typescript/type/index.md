@@ -5,8 +5,6 @@ date: 2024-03-25
 ---
 
 
-
-
 ## TypeScript의 다양한 자료형
 
 - TypeScript는 JavaScript의 모든 type들을 포함하여 다양한 type들을 지원합니다.

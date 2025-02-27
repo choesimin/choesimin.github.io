@@ -5,8 +5,6 @@ date: 2023-07-18
 ---
 
 
-
-
 ## VPC : Virtual Private Cloud
 
 - VPC는 사용자의 AWS 계정 전용 가상 network입니다.
@@ -26,11 +24,7 @@ date: 2023-07-18
 | VPC FLow Logs | VPC에서 발생하는 log를 기록합니다. |
 
 
-
-
 ---
-
-
 
 
 ## Custom VPC 설정하는 과정
@@ -69,11 +63,7 @@ date: 2023-07-18
     - `Edit subnet associations`에서 연결합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

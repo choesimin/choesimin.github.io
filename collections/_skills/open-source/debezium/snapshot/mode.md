@@ -5,8 +5,6 @@ date: 2025-02-03
 ---
 
 
-
-
 ## Snapshot Mode로 Database 복제 방식 설정하기
 
 - `snapshot.mode`는 Debezium이 **connector 시작 시 수행할 snapshot의 기준을 지정하는 설정**입니다.
@@ -135,11 +133,7 @@ date: 2025-02-03
 | **부적합**한 상황 | 일반적인 data 복제, schema가 변경된 환경 |
 
 
-
-
 ---
-
-
 
 
 ## Database별 예외 사항

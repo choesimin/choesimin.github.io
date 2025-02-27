@@ -5,8 +5,6 @@ date: 2024-12-20
 ---
 
 
-
-
 ## CDC (Change Data Capture) : DB의 변경 감지하기
 
 - CDC(Change Data Capture)는 **DB에 있는 data에 대한 변경을 감지해 필요한 후속 처리(data 전송/공유 등)를 자동화하는 기법**을 통칭합니다.
@@ -50,11 +48,7 @@ flowchart LR
     - 이 경우, 일반적으로 Elasticsearch에 indexing하기 위해 CDC를 사용합니다.
 
 
-
-
 ---
-
-
 
 
 ## CDC가 "Change Data Detection"이 아닌 "Change Data Capture"인 이유
@@ -87,11 +81,7 @@ flowchart LR
 | **활용성** | data 복원 가능, 다른 곳으로 전달 가능, 이력 추적 가능, 상세 분석 가능 | 상태 확인만 가능, 단순 알림만 가능, 이력 추적 불가, 상세 분석 불가 |
 
 
-
-
 ---
-
-
 
 
 ## 여러 가지 CDC 작동 방식
@@ -219,11 +209,7 @@ flowchart LR
     - 그러나 transaction의 정확성이 중요하거나 실시간 변경 감지가 필요한 system에서는 사용해선 안 됩니다.
     
 
-
-
 ---
-
-
 
 
 ## CDC Solution 비교 : Debezium, Apache NiFi, Oracle GoldenGate, Maxwell
@@ -268,11 +254,7 @@ flowchart LR
 - 조직의 규모, 기술 stack, 예산, 운영 역량을 종합적으로 고려했을 때, **대기업이나 금융권은 Oracle GoldenGate**를, **현대적인 cloud 환경의 중대형 기업은 Debezium**을, **복잡한 data 통합이 필요한 조직은 Apache NiFi**를, 그리고 **소규모 MySQL project는 Maxwell**을 선택하는 것이 바람직합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2023-07-18
 ---
 
 
-
-
 ## Java : 가장 인기 있는 객체 지향 Programming 언어
 
 - Java는 Sun Microsystems에서 개발하여 1996년에 공식적으로 발표되었습니다.
@@ -16,11 +14,7 @@ date: 2023-07-18
 - 대표적인 객체 지향 programming 언어입니다.
 
 
-
-
 ---
-
-
 
 
 ## Web 출현과 Java의 발전
@@ -31,11 +25,7 @@ date: 2023-07-18
     - Java의 뛰어난 이식성은 Web 개발에 적합합니다.
 
 
-
-
 ---
-
-
 
 
 ## Java의 특징
@@ -71,11 +61,7 @@ date: 2023-07-18
 - 고급 기능을 구현하는 code를 직접 작성하는 대신 검증된 open source library를 사용할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Java Program의 실행
@@ -111,11 +97,7 @@ library --> loader
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

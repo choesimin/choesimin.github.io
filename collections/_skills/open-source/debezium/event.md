@@ -5,8 +5,6 @@ date: 2025-01-31
 ---
 
 
-
-
 ## Database 종류와 상관없이 통일된 Debezium Event
 
 - Debezium event는 envelope pattern을 기반으로 구성됩니다.
@@ -94,11 +92,7 @@ date: 2025-01-31
     - `email`만 변경되고 `name`은 변경되지 않았다는 것을 쉽게 파악할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Create Update Delete Event
@@ -201,11 +195,7 @@ date: 2025-01-31
 ```
 
 
-
-
 ---
-
-
 
 
 ## Source Metadata 상세 정보

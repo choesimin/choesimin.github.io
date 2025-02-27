@@ -5,8 +5,6 @@ date: 2024-02-22
 ---
 
 
-
-
 ## System Design : 요구 사항을 만족시키는 전체 구조를 체계적으로 정의하는 과정
 
 - System Design(system 설계)란, 복잡한 **system의 구조, 구성 요소, interface, data, process 등을 정의하는 과정**입니다.

@@ -5,8 +5,6 @@ date: 2023-11-02
 ---
 
 
-
-
 ## VAN & PG : 카드 결제의 중계자
 
 - **VAN사는 카드사와 가맹점 사이에서 결제 승인을 중개하는 역할**을 합니다.
@@ -43,11 +41,7 @@ flowchart LR
     - 실물 카드 없이 온라인상에서 이루어지는 결제를 처리하기 위한 구조입니다.
 
 
-
-
 ---
-
-
 
 
 ## VAN : Value-Added Network
@@ -86,11 +80,7 @@ flowchart LR
 - 한국에는 한국 정보통신, Nice 정보통신, KSNET, SMARTRO, KIS 정보통신 등의 VAN사가 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## PG : Payment Gateway
@@ -118,11 +108,7 @@ flowchart LR
 - 한국에는 PAYGATE, INICIS, NICE 등의 PG사가 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

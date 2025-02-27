@@ -5,8 +5,6 @@ date: 2023-12-29
 ---
 
 
-
-
 ## MongoDB : 문서 지향적인 NoSQL Database
 
 - MongoDB는 고성능, 고가용성 및 쉬운 확장성을 제공하는 NoSQL, 문서 지향(document-oriented) database입니다.
@@ -40,11 +38,7 @@ date: 2023-12-29
     - shema를 변경할 때는 data의 일관성이 깨지지 않도록 주의해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## MongoDB의 구조 : Database ⊃ Collection ⊃ Document
@@ -123,11 +117,7 @@ date: 2023-12-29
 | value | key에 연결되는 값이며, 다양한 data 유형일 수 있습니다. |
 
 
-
-
 ---
-
-
 
 
 ## Reference

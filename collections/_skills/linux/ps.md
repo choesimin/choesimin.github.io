@@ -5,8 +5,6 @@ date: 2024-11-05
 ---
 
 
-
-
 ## `ps` : Process Status 확인하기
 
 - `ps` 명령어는 **현재 system에서 실행 중인 process의 상태를 확인**할 수 있는 Unix 및 Linux 기반 system에서 사용되는 명령어입니다.
@@ -46,11 +44,7 @@ ps --help
 | `--sort=[key]` | 지정한 key(`%cpu`, `%mem` 등)를 기준으로 정렬 |
 
 
-
-
 ---
-
-
 
 
 ## 사용 예시

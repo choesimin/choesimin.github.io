@@ -5,8 +5,6 @@ date: 2024-08-01
 ---
 
 
-
-
 ## Coroutine : Co + Routine
 
 - Coroutine은 **상호 협력하는 routine**이라는 의미를 가지며, 동시성 programming(concurrency programming)을 지원하는 개념입니다.
@@ -52,11 +50,7 @@ date: 2024-08-01
     - 일련의 명령을 협력적이고 동시성 있게 실행할 수 있는 방식으로 확장합니다.
 
 
-
-
 ---
-
-
 
 
 ## Coroutine의 특징 및 장점
@@ -111,11 +105,7 @@ date: 2024-08-01
 - 가독성이 좋아지면 debugging과 유지 보수가 용이해지고, 개발자의 생산성 역시 높아집니다.
 
 
-
-
 ---
-
-
 
 
 ## 일반 함수 호출과 Coroutine 비교
@@ -237,11 +227,7 @@ deactivate f
     - main routine과 subroutine이 대등한 관계로, 특정 시점에 상대방의 code를 실행하며 협력하는 구조를 가집니다.
 
 
-
-
 ---
-
-
 
 
 ## Rx vs Coroutine
@@ -322,11 +308,7 @@ fun main() = runBlocking {
     - `await`를 사용하여 결과를 기다릴 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

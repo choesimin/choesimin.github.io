@@ -5,8 +5,6 @@ date: 2023-12-30
 ---
 
 
-
-
 ## Database 조회
 
 ### 모든 Database 목록 출력
@@ -27,11 +25,7 @@ db
 db.status()
 ```
 
-
-
 ---
-
-
 
 
 ## Database 생성 및 사용
@@ -45,11 +39,7 @@ use database_name
 - `use`를 통해 생성한 database는 그 안에 최소 한 개의 document가 있어야 `show dbs` 명령어를 통해 확인할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Database 삭제
@@ -62,11 +52,7 @@ db.dropDatabase()
     - 지우기 전에 `use database_name` 명령어를 사용하여 database를 선택합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2023-07-08
 ---
 
 
-
-
 ## cp : File, Directory 복사하기
 
 - CoPy의 약자입니다.

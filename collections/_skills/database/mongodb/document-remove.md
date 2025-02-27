@@ -5,8 +5,6 @@ date: 2024-01-03
 ---
 
 
-
-
 ## [remove](https://www.mongodb.com/docs/manual/reference/method/db.collection.remove/)
 
 ```js
@@ -25,11 +23,7 @@ db.books.remove({"name":"def"});    // 'name'이 'def'인 모든 document 삭제
 ```
 
 
-
-
 ---
-
-
 
 
 ## [deleteOne](https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteOne/), [deleteMany](https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteMany/)
@@ -50,12 +44,7 @@ db.monsters.deleteOne({name: 'Zerp'});
 ```
 
 
-
-
-
 ---
-
-
 
 
 ## Reference

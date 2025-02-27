@@ -5,8 +5,6 @@ date: 2024-03-12
 ---
 
 
-
-
 ## 조건부 Type : 특정 조건에 따라 Type 결정하기
 
 - 조건부(conditional) type은 TypeScript에서 **특정 조건에 따라 type을 결정**할 수 있게 해주는 고급 type system의 기능입니다.
@@ -42,11 +40,7 @@ type Example2 = RegExp extends Animal ? number : string;    // type Example2 = s
 - `Dog extends Animal`에 따라 type이 `number`인지 `string`인지 결정됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Generic Type과 함께 사용하기
@@ -126,11 +120,7 @@ type ElementType<T> = T extends any[] ? ElementType<T[number]> : T;    // Error
 ```
 
 
-
-
 ---
-
-
 
 
 ## 분산적인 조건부 Type (Distributive Conditional Type)
@@ -199,11 +189,7 @@ function f2<T extends string | undefined>(x: T, y: NonNullable<T>) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## 조건부 Type의 Type 추론 : `infer` Keyword
@@ -295,11 +281,7 @@ type AgeType = PropertyType<Example, 'age'>;    // number
     - 만약 `T`에 `K` key가 없다면, `never` type을 반환합니다.
 
 
-
-
 ---
-
-
 
 
 ## 다양한 조건부 Type 사용 예시
@@ -361,11 +343,7 @@ type Test = ReturnType<typeof f1>;    // string | number
 - 따라서 `Test` type은 `string | number` union type이 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

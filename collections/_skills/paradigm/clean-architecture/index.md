@@ -5,8 +5,6 @@ date: 2023-11-02
 ---
 
 
-
-
 ## Architecture
 
 - software system의 architecture란 **system을 구축했던 사람들이 만들어낸 system의 형태**입니다.
@@ -37,11 +35,7 @@ date: 2023-11-02
 - UseCase에 중점을 두며, 지엽적인 관심사에 대한 결합은 분리시킵니다.
 
 
-
-
 ---
-
-
 
 
 ## 개발자가 지켜야 할 가치 : 행위와 구조
@@ -120,11 +114,7 @@ structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program
 | **중요하지 않은 일** | 3 | 4 |
 
 
-
-
 ---
-
-
 
 
 ## Architecture를 위한 투쟁
@@ -136,11 +126,7 @@ structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program
 - 이러한 상황이 발생하도록 용납했다면, 이는 결국 개발팀이 스스로 옳다고 믿는 가치를 위해 충분히 투쟁하지 않았다는 뜻일 것입니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

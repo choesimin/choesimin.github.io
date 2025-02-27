@@ -5,8 +5,6 @@ date: 2023-04-06
 ---
 
 
-
-
 ```mermaid
 ---
 title: 수정하고 싶은 상황
@@ -26,11 +24,7 @@ commit
     - 기존의 remote commit 내역과 local에서 수정한 commit 내역이 다르기 때문입니다.
 
 
-
-
 ---
-
-
 
 
 ## 과거의 Commit을 수정하는 법
@@ -66,11 +60,7 @@ commit
 - 수정한 file에서 충돌이 발생하면 해결해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ title: Kafka의 다양한 Componenet들 - Kafka Connnect, Kafka Streams, ksqlDB,
 ---
 
 
-
-
 ## Apache Kafka Component
 
 - Apache Kafka는 현대적인 data pipeline의 중추적인 역할을 담당하는 분산 streaming platform입니다.
@@ -89,11 +87,7 @@ mindmap
     - 다양한 programming 언어에서 Kafka 접근을 용이하게 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Component 선택 및 활용 Guide

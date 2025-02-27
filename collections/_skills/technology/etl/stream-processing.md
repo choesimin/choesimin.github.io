@@ -5,8 +5,6 @@ date: 2024-12-26
 ---
 
 
-
-
 ## Stream Data Processing : 끊임없이 발생하는 정보를 실시간으로 처리하기
 
 - **실시간 stream data을 정제하는 작업**은 stream 처리 방식의 ETL(Extract, Transform, Load) 과정 중 **Transform(변환) 단계**와 관련이 깊습니다.
@@ -42,11 +40,7 @@ date: 2024-12-26
     - batch 처리에서는 error가 발생하면 전체 batch를 재실행할 수 있었습니다. 
 
 
-
-
 ---
-
-
 
 
 ## Stateless Processing vs Stateful Processing
@@ -77,11 +71,7 @@ date: 2024-12-26
         - 이 구조에서는 network 통신의 overhead가 불가피하기 때문에 어느 정도 buffering이 필요합니다.
 
 
-
-
 ---
-
-
 
 
 ## Stream Data Processing Solution 비교

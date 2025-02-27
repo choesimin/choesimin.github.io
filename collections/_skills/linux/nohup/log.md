@@ -5,8 +5,6 @@ date: 2023-04-05
 ---
 
 
-
-
 ## nohup의 log
 
 - nohup을 사용하면 기본적으로 `nohup.out`에 표준 출력을 쌓습니다.
@@ -52,11 +50,7 @@ nohup ./my_shellscript.sh > /dev/null
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

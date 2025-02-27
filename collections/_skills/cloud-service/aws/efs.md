@@ -5,7 +5,6 @@ date: 2023-08-06
 ---
 
 
-
 ## EFS : Elastic File System
 
 - NFS와 동일합니다.
@@ -16,11 +15,7 @@ date: 2023-08-06
 - Instance의 가용 영역이 달라도 같은 EFS를 공유할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## EFS를 생성하여 EC2 Instance에 연결하기
@@ -60,11 +55,7 @@ date: 2023-08-06
     - 예를 들어, `sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport [efs_public_domain_address]:/ efs`
 
 
-
-
 ---
-
-
 
 
 ## Reference

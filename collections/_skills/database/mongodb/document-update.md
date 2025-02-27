@@ -5,16 +5,10 @@ date: 2024-01-05
 ---
 
 
-
-
 - 검색 조건에 해당하는 document의 내용을 수정합니다.
 
 
-
-
 ---
-
-
 
 
 ## [update](https://www.mongodb.com/docs/manual/reference/method/db.collection.update/)
@@ -86,11 +80,7 @@ db.books.update({
 ```
 
 
-
-
 ---
-
-
 
 
 ## [updateOne](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/), [updateMany](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/), [replaceOne](https://www.mongodb.com/docs/manual/reference/method/db.collection.replaceOne/)
@@ -105,11 +95,7 @@ db.books.update({
 | `replaceOne` | document를 통째로 다른 것으로 대체합니다.<br>`update` method에 `$set`을 쓰지 않았을 때와 같습니다. |
 
 
-
-
 ---
-
-
 
 
 ## [findAndModify](https://www.mongodb.com/docs/manual/reference/method/db.collection.findAndModify/)
@@ -145,11 +131,7 @@ db.monsters.findAndModify({
 });
 ```
 
-
-
 ---
-
-
 
 
 ## [findOneAndUpdate](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOneAndUpdate/), [findOneAndReplace](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOneAndReplace/)
@@ -168,11 +150,7 @@ db.monsters.findOneAndUpdate(
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2024-02-28
 ---
 
 
-
-
 ## String(문자) Type
 
 - TypeScript의 `string` type은 **text data를 다루기 위해 사용**됩니다.
@@ -78,11 +76,7 @@ console.log(emojiString);    // 😀 😃 😄 😁
 ```
 
 
-
-
 ---
-
-
 
 
 ## `string`과 `String`의 차이

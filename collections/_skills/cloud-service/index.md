@@ -5,8 +5,6 @@ date: 2025-02-09
 ---
 
 
-
-
 ## Cloud Service : Network로 Computing Resource 같이 쓰기
 
 - Cloud Service는 computing 자원의 공유 pool에 network(internet)로 접근할 수 있게 하는 model입니다.
@@ -15,11 +13,7 @@ date: 2025-02-09
 - computing resource에는 CPU, RAM, network, server, storage, application, service 등이 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Cloud Service의 종류 : Packaged Software, IaaS, PaaS, SaaS

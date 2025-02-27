@@ -5,8 +5,6 @@ date: 2024-10-09
 ---
 
 
-
-
 ## MySQL : Famous Open Source RDBMS
 
 - MySQL은 전 세계적으로 가장 널리 사용되는 **관계형 database 관리 system(RDBMS)**로, 무료로 사용할 수 있는 open source software입니다.

@@ -5,8 +5,6 @@ date: 2023-11-28
 ---
 
 
-
-
 - Hexagonal Architecture, DCI(Data, Context, Interaction), BCE(Boundary-Control-Entity)와 같은 system architecture에 관련된 여러 생각들은 모두 **계층 분리를 통한 관심사의 분리**를 목표로 하며, 비슷한 특징을 가지고 있습니다.
 
 | 계층 분리의 장점 | 설명 |
@@ -104,11 +102,7 @@ enterprise_business_logic
 - 모든 세부 사항이 위치하는 곳으로, Web과 database도 세부 사항이므로 이를 외부에 위치시켜 피해를 최소화합니다.
 
 
-
-
 ---
-
-
 
 
 ## (번외) Component 기반의 분리
@@ -139,11 +133,7 @@ databsae --> entity
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

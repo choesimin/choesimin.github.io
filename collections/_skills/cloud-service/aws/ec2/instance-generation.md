@@ -5,16 +5,10 @@ date: 2023-07-16
 ---
 
 
-
-
 - 사용 목적과 운영 환경에 따라서 여러 가지 option들을 설정하여 적합한 Instance를 만듭니다.
 
 
-
-
 ---
-
-
 
 
 ## Instance 생성하는 방법
@@ -113,11 +107,7 @@ echo "<h1>Hello, EC2.</h1>" > /var/www/html/index.html
     - 예를 들어, seoul region의 경우, Free tier는 'a'와 'c'로 끝나는 Subnet만 사용할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

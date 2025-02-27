@@ -59,11 +59,7 @@ js에선 함수가 일급시민이기 때문에 함수형 프로그래밍으루�
 
 
 
-
-
 ---
-
-
 
 
 
@@ -122,11 +118,7 @@ console.log(typeof null);    // "object" 엄밀히 따지면 null은 object형�
 console.log(typeof undefined);    // "undefined"
 ```
 
-
-
 ---
-
-
 
 ## alert, prompt, confirm
 
@@ -3449,11 +3441,7 @@ console.log(...gen2());    // "Hello, W o r l d !"
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

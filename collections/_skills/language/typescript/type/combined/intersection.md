@@ -5,8 +5,6 @@ date: 2024-03-02
 ---
 
 
-
-
 ## Intersection Type - 객체 합치기
 
 - TypeScript의 intersection type은 **여러 type들을 결합해, 모든 type의 속성(property)을 포함하는 복합 type을 생성**합니다.
@@ -61,11 +59,7 @@ type ProductOrder = Product & Order;    // Error : type 충돌
 - 따라서, `ProductOrder` type을 사용하여 객체를 생성하려고 할 때, 오류가 발생합니다.
 
 
-
-
 ---
-
-
 
 
 ## Intersection Type 활용하기
@@ -196,11 +190,7 @@ console.log(merged);    // { name: "John", age: 30 }
 ```
 
 
-
-
 ---
-
-
 
 
 ## 원시 Type의 Intersection : 가능하지만 쓸모없음

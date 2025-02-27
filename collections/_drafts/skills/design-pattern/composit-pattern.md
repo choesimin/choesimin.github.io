@@ -135,11 +135,7 @@ Leaf .. Leaf : Leaf에는 자식이 없음. \nLeaf에서는 그 안에 들어있
 ```
 
 
-
-
 ---
-
-
 
 
 # Example : 복잡한 Menu
@@ -594,11 +590,7 @@ public class NullIterator implements Iterator<MenuComponent> {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

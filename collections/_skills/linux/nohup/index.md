@@ -5,8 +5,6 @@ date: 2023-04-05
 ---
 
 
-
-
 ## nohup : No Hang Up
 
 - program을 daemon의 형태로 실행시킵니다.
@@ -24,11 +22,7 @@ nohup [program_command]
 - 실행하고자 하는 program 명령어 앞에 `nohup`를 붙이면 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## `nohup` + `&` : 가장 안전하게 background에서 실행하는 방법
@@ -63,11 +57,7 @@ shopt | grep huponexit
 - `huponexit off`라고 나오면 `&`만으로만 program을 실행해도 session 연결 종료 시에 program이 종료되지 않습니다.
 
 
-
-
 ---
-
-
 
 
 ## background에 떠 있는 process 종료하는 방법
@@ -79,11 +69,7 @@ shopt | grep huponexit
     - `kill -9 [process_id]`
 
 
-
-
 ---
-
-
 
 
 ## Reference

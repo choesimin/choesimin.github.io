@@ -5,8 +5,6 @@ date: 2025-01-02
 ---
 
 
-
-
 ## Message/Event 전달 보증 수준 (Event Delivery Guarantees)
 
 - Message Queue의 message 처리 보장 방식은 크게 At Most Once(최대 1회), At Least Once(최소 1회), Exactly Once(정확히 1회) 전달 방식이 있으며, 이는 **message 발행자(Producer)가 보낸 message를 수신자(Consumer)가 받을 때 몇 번이나 전달되는지를 보장하는 수준**을 의미합니다.
@@ -108,11 +106,7 @@ flowchart TD
     - 결제 system, 계좌 이체 처리, 재고 관리, 법적 문서 처리 system 등.
 
 
-
-
 ---
-
-
 
 
 ## Message 처리 보장을 위한 핵심 Mechanism

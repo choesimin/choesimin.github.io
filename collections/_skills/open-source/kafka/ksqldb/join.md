@@ -5,8 +5,6 @@ date: 2025-01-07
 ---
 
 
-
-
 ## Join : 실시간 Data를 실시간으로 결합하기
 
 - ksqlDB는 **Stream-Stream, Stream-Table, Table-Table 간의 Join 기능**을 제공하고 있습니다.
@@ -97,11 +95,7 @@ ksqlDB의 Join = raw event data + contextual data = Meaningful Business Data
     - 예를 들어, 주문 system에서 사용자 정보가 일시적으로 누락되더라도 주문 자체의 data는 보존할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## ksqlDB Join 제약 조건
@@ -197,11 +191,7 @@ CREATE STREAM products_rekeyed
 - Kafka Producer는 기본적으로 Hash algorithm을 통해 key를 partitioning하지만, Producer 구현 시 Hash algorithm 외에 다른 partition 분배 전략을 사용할 수도 있어, 서로 다른 전략을 사용하는 상황을 주의해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Join 관계 유형 : Stream-Stream, Stream-Table, Table-Table
@@ -439,11 +429,7 @@ EMIT CHANGES;
 ```
 
 
-
-
 ---
-
-
 
 
 ## N-Way Join : 세 개 이상 Join하기
@@ -532,11 +518,7 @@ EMIT CHANGES;
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

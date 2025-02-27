@@ -5,8 +5,6 @@ date: 2023-04-19
 ---
 
 
-
-
 ```txt
 class나 module을 변경할 이유는 하나여야 한다.
 ```
@@ -19,11 +17,7 @@ class나 module을 변경할 이유는 하나여야 한다.
     - 이름이 너무 길거나 모호하다면, 책임이 너무 많기 때문입니다.
 
 
-
-
 ---
-
-
 
 
 ## Class와 응집도(Cohesion)
@@ -43,11 +37,7 @@ class나 module을 변경할 이유는 하나여야 한다.
 - class가 쪼개지면서, program에 점점 더 체계가 잡히고, 구조가 투명해지게 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Class 요소 정의 순서 ([Java 관례](https://www.oracle.com/java/technologies/javase/codeconventions-fileorganization.html#1852))
@@ -76,11 +66,7 @@ class나 module을 변경할 이유는 하나여야 한다.
         2. private method 2-2
 
 
-
-
 ---
-
-
 
 
 ## Reference

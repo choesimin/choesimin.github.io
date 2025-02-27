@@ -5,8 +5,6 @@ date: 2024-09-25
 ---
 
 
-
-
 - mermaid를 사용해 ERD(Entity Relationship Diagram)를 그릴 수 있습니다.
 
 ```txt
@@ -74,11 +72,7 @@ MANUFACTURER ||--o{ CAR : makes
 ```
 
 
-
-
 ---
-
-
 
 
 ## 구성 요소
@@ -105,12 +99,7 @@ MANUFACTURER ||--o{ CAR : makes
     - 이는 곧 `ROOM }|--|| PROPERTY : contained by`와 같은 의미를 가지며, 이는 두 번째 entity(`second-entity`)의 관점에서는 첫 번째 entity(`first-entity`)에 포함되는(`contained by`) 관계라고 유추할 수 있습니다.
 
 
-
-
 ---
-
-
-
 
 
 ## Entity 정의하기
@@ -293,11 +282,7 @@ p ||--o| a : has
 ```
 
 
-
-
 ---
-
-
 
 
 ## Relationship 정의하기
@@ -391,11 +376,7 @@ ORDER ||--|{ LINE-ITEM : "contains multiple items"
 CUSTOMER }|..|{ DELIVERY-ADDRESS : "uses<br />multiple<br />addresses"
 ```
 
-
-
 ---
-
-
 
 
 ## Reference

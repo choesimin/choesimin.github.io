@@ -5,8 +5,6 @@ date: 2024-03-02
 ---
 
 
-
-
 ## Literal Type - 특정 값을 지정하기
 
 - TypeScript의 literal type은 **특정 값만을 가질 수 있는 변수**를 선언할 때 사용합니다.
@@ -77,11 +75,7 @@ submitButton.color = "yellow";    // Error: Type '"yellow"' is not assignable to
 ```
 
 
-
-
 ---
-
-
 
 
 ## Literal Union Type : Literal Type으로 만든 Union Type
@@ -193,11 +187,7 @@ function performAction(action: Action) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Generic Literal Union Type : 더 유연하게 값을 제한하기

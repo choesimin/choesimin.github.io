@@ -5,8 +5,6 @@ date: 2023-07-23
 ---
 
 
-
-
 ## IAM : Identify and Access Management
 
 - IAM은 AWS의 여러 기능에 대한 사용자의 접근을 제어합니다.

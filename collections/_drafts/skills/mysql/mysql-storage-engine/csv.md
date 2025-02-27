@@ -10,11 +10,7 @@ layout: skill
 - 마찬가지로 CSV table에 data를 기록하면 외부 program이 이를 바로 읽을 수 있음
 
 
-
-
 ---
-
-
 
 
 ## Reference

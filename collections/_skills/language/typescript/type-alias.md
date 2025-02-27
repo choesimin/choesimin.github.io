@@ -5,8 +5,6 @@ date: 2024-02-27
 ---
 
 
-
-
 ## Type Alias : Type에 이름 붙이기
 
 - type alias는 **기존에 존재하는 하나 이상의 type에 새로운 이름을 부여**하는, TypeScript의 강력한 type system을 활용한 기능 중 하나입니다.
@@ -32,11 +30,7 @@ type Person = {
     - 대신, intersection type을 사용하여 type을 결합할 수는 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Type Alias 사용하기
@@ -133,11 +127,7 @@ type ColorfulCircle = Circle & Colorful;
 ```
 
 
-
-
 ---
-
-
 
 
 ## 비슷하지만 다른 Type Alias와 Interface
@@ -230,11 +220,7 @@ type clientType = Getters<Client>;
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

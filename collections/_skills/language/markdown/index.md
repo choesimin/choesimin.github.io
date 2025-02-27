@@ -5,8 +5,6 @@ date: 2023-04-09
 ---
 
 
-
-
 ## Markdown : Text 기반 Markup 언어
 
 - Markdown은 web contents를 작성하기 위한 경량 Markup 언어입니다.

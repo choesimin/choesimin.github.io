@@ -5,8 +5,6 @@ date: 2024-03-03
 ---
 
 
-
-
 ## `enum` (Enumeration) Type : 열거형 Type
 
 - TypeScript에서 `enum` type은 **명명된 숫자 상수의 집합**을 정의할 때 사용됩니다.
@@ -88,11 +86,7 @@ type Toggle = true | false;    // 기본 boolean type을 사용하는 것과 동
 | 사용을 권장하는 경우 | `enum` 값을 반복하거나, `enum`의 값들을 runtime에 조작해야 하는 경우.<br>특정 범주에 속하는 명확한 option 집합을 표현해야 할 때.<br>TypeScript와 JavaScript 간의 호환성이 중요한 경우. | type이 간단하고, runtime에서의 사용이 필요하지 않을 때(더 가볍고 간결한 code를 유지할 수 있음).<br>최종 bundle 크기를 최소화하고자 할 때(web application의 loading 시간과 성능 최적화에 유리). |
 
 
-
-
 ---
-
-
 
 
 ## `enum` 사용 방법
@@ -204,11 +198,7 @@ enum SecondEnum {
 ```
 
 
-
-
 ---
-
-
 
 
 ## `enum` Type의 고급 기능 활용

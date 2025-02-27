@@ -5,19 +5,13 @@ date: 2024-12-21
 ---
 
 
-
-
 ## NHN의 Commerce Platform을 위한 상품 검색 Engine 설계
 
 - NHN FORWARD 22 행사에서 발표한 "Elasticsearch를 이용한 상품 검색 Engine 개발 일지" 내용을 정리한 글입니다.
     - 발표 영상은 [YouTube](https://youtu.be/fBfUr_8Pq8A)를 참고해주세요.
 
 
-
-
 ---
-
-
 
 
 ## 1. 검색 Engine 도입 배경
@@ -55,11 +49,7 @@ date: 2024-12-21
     - Beats를 통한 data 수집만으로 충분했기 때문입니다.
 
 
-
-
 ---
-
-
 
 
 ## 2. 검색 Engine Architecture
@@ -166,11 +156,7 @@ flowchart TD
 - system 운영을 위해서 Elasticsearch, Kibana, Beats 등의 Elastic Stack의 세 가지 핵심 기술을 활용하고 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## 3. Data 색인 구조
@@ -511,11 +497,7 @@ indexingTargets.forEach { target ->
     - 매일 수행되는 전체 색인 작업을 통해 새롭게 추가된 동의어가 자동으로 인식되므로, 검색 품질을 지속적으로 개선할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## 4. 검색 품질 개선 방안
@@ -836,11 +818,7 @@ flowchart LR
         - 검색어가 정확히 일치하는 경우에 결과를 반환하며, 따라서 "폭신폭신"이라는 단어가 포함된 결과도 검색됩니다.
 
 
-
-
 ---
-
-
 
 
 ## 5. 검색 성능 Test 결과 비교
@@ -1153,11 +1131,7 @@ flowchart TD
 ```
 
 
-
-
 ---
-
-
 
 
 ## 6. 후기
@@ -1166,11 +1140,7 @@ flowchart TD
 - 현재도 문의 사항과 feedback을 받으면서 수정과 refactoring을 하는 중입니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

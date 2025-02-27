@@ -5,8 +5,6 @@ date: 2024-10-07
 ---
 
 
-
-
 ## Database : Data 저장소
 
 - database는 **data를 체계적으로 저장하고 관리하는 system**입니다.

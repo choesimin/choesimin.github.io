@@ -5,8 +5,6 @@ date: 2025-01-23
 ---
 
 
-
-
 ## Debezium : Database의 변경 사항을 실시간으로 감지하고 전달하기
 
 > Debezium is a set of distributed services to capture changes in your databases so that your applications can see those changes and respond to them. Debezium records all row-level changes within each database table in a change event stream, and applications simply read these streams to see the change events in the same order in which they occurred.
@@ -70,11 +68,7 @@ date: 2025-01-23
     - event 평탄화를 통해 복잡한 관계형 data를 단순화할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Debezium Architecture : 여러 가지 사용 방식
@@ -134,11 +128,7 @@ flowchart LR
 - messaging service를 통하지 않고, application으로 변경 사항을 바로 전달받고 싶은 경우 사용합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

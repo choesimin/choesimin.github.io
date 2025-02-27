@@ -5,8 +5,6 @@ date: 2024-03-08
 ---
 
 
-
-
 ## Optional Property : 필수가 아닌 속성
 
 - TypeScript에서 optional property(선택적 속성)는 **객체의 특정 속성이 필수가 아님**을 나타내는 방법입니다.

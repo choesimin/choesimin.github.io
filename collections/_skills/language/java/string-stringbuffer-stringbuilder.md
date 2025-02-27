@@ -5,8 +5,6 @@ date: 2023-07-17
 ---
 
 
-
-
 - Java의 String, StringBuffer, StringBuilder class는 모두 문자열을 나타내는 자료형입니다.
 
 | String | StringBuffer | StringBuilder |
@@ -17,11 +15,7 @@ date: 2023-07-17
 | **문자열 연산이 적고 조회 연산이 많은 환경**에 적합합니다. | **문자열 연산이 많은 multi thread 환경**에서 적합합니다. | **문자열 연산이 많은 single thread 환경**에서 적합합니다. 또는 **동기화가 필요하지 않은 multi thread 환경**에서 적합니다. |
 
 
-
-
 ---
-
-
 
 
 ## StringBuffer & StringBuilder : Mutable Class
@@ -46,11 +40,7 @@ date: 2023-07-17
     - 동기화를 고려하지 않기 때문에 single thread 환경에서 StringBuffer에 비해 연산 처리가 빠릅니다.
 
 
-
-
 ---
-
-
 
 
 ## String : Immutable(불변하는) Class
@@ -94,11 +84,7 @@ String s = (new StringBuilder("Here is")).append("samples").toString();
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

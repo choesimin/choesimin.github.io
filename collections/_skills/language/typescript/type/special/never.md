@@ -5,8 +5,6 @@ date: 2024-03-04
 ---
 
 
-
-
 ## `never` Type
 
 - TypeScript의 `never` type은 함수나 method가 정상적으로 종료되지 않을 때 사용되는 type입니다.
@@ -29,11 +27,7 @@ date: 2024-03-04
     3. **compiler 최적화** : `never` type을 통해 compiler는 code의 도달할 수 없는 영역을 더 쉽게 식별하고, 최적화할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## `never` Type의 주요 사용 사례

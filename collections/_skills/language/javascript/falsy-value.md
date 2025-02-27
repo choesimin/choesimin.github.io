@@ -5,8 +5,6 @@ date: 2024-02-28
 ---
 
 
-
-
 ```javascript
 if (!value) {
     // value가 falsy 값인 경우 실행될 code
@@ -17,11 +15,7 @@ if (!value) {
     - 이 code pattern은 JavaScript에서 흔하게 사용되며, code의 가독성과 유지 보수성을 높이는 데 도움이 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Falsy Value

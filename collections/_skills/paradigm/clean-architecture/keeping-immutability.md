@@ -5,19 +5,13 @@ date: 2023-11-16
 ---
 
 
-
-
 - **race condition(경합 조건), deadlock(교착 상태), concurrent update(동시 갱신) 문제는 모두 가변 변수로 인해 발생**합니다.
     - 만약 어떠한 변수도 갱신되지 않는다면 application에서 마주치는 모든 동시성 문제는 발생하지 않습니다.
 
 - 따라서 불변성을 유지하는 것이 architecture에 더 이롭습니다.
 
 
-
-
 ---
-
-
 
 
 ## 가변성의 분리
@@ -32,11 +26,7 @@ date: 2023-11-16
 - 분리를 위해서 최대한 많은 처리를 불변 component로 옮기고, 가변 component에서는 code를 최대한 빼냅니다
 
 
-
-
 ---
-
-
 
 
 ## 완전한 불변성 : Event Sourcing
@@ -56,11 +46,7 @@ date: 2023-11-16
     - 매일 자정에 상태를 계산한 후 저장하고, 그 이후 transaction만을 갖고 있게 하는 것도 방법 중 하나입니다.
 
 
-
-
 ---
-
-
 
 
 ## 불변성 유지 Programming
@@ -94,11 +80,7 @@ public class Squint {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

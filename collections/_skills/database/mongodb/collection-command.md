@@ -5,8 +5,6 @@ date: 2024-01-02
 ---
 
 
-
-
 ## Collection 조회
 
 - 해당 database의 모든 collection(table)을 조회합니다.
@@ -16,11 +14,7 @@ show collections
 ```
 
 
-
-
 ---
-
-
 
 
 ## Collection 생성
@@ -58,11 +52,7 @@ db.createCollection(
 ```
 
 
-
-
 ---
-
-
 
 
 ## Collection 삭제
@@ -82,11 +72,7 @@ db.book.drop()
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

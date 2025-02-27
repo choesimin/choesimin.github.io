@@ -13,11 +13,7 @@ date: 2024-10-13
 - 주로 Spring Framework에서 사용되며, `@Transactional` 어노테이션의 `propagation` 속성을 사용하여 트랜잭션 전파 전략을 지정합니다.
 
 
-
-
 ---
-
-
 
 
 ## 7가지 전파 전략

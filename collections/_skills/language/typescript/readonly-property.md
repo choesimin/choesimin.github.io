@@ -5,8 +5,6 @@ date: 2024-03-11
 ---
 
 
-
-
 ## `readonly` : 읽기 전용 속성
 
 - TypeScript는 개발자가 class, interface, type alias에서 **property를 수정할 수 없게 만드는** `readonly` 한정자를 제공합니다.
@@ -63,11 +61,7 @@ person.name = "Bob";    // Error: Cannot assign to 'name' because it is a read-o
 - `ReadonlyPerson` interface의 모든 property는 `readonly`로 선언되어 있어, 객체가 처음 생성될 때 이후에는 수정할 수 없습니다.
 
 
-
-
 ---
-
-
 
 
 ## `readonly`에 관한 Utility Type
@@ -114,11 +108,7 @@ a[0] = 4;    // Error: Index signature in type 'readonly number[]' only permits 
 ```
 
 
-
-
 ---
-
-
 
 
 ## `const`와 `readonly`

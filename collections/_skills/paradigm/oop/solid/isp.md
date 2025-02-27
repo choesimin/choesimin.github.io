@@ -5,8 +5,6 @@ date: 2023-11-05
 ---
 
 
-
-
 ## ISP (Interface Segregation Principle) : Interface 분리 원칙
 
 ```txt
@@ -106,11 +104,7 @@ IPets <|.. Rabbit
 ```
 
 
-
-
 ---
-
-
 
 
 ## ISP 적용해보기
@@ -346,11 +340,7 @@ class GalaxyS8 implements IPhone {
 ```
 
 
-
-
 ---
-
-
 
 
 ## ISP 원칙 적용 주의 사항
@@ -404,11 +394,7 @@ class 관리자 {
 - 따라서 처음 설계부터 기능의 변화를 고려하고 interface를 설계해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

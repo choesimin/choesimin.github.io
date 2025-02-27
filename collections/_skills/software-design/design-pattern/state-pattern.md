@@ -5,8 +5,6 @@ date: 2024-03-06
 ---
 
 
-
-
 ## State Pattern : 객체의 상태에 따라 행동 바꾸기
 
 - State Pattern은 **객체의 상태 변화에 따라 해당 객체의 행동이 바뀌어야 할 때** 유용한 객체 지향 design pattern입니다.
@@ -66,11 +64,7 @@ end
 ```
 
 
-
-
 ---
-
-
 
 
 ## State Pattern 구현
@@ -242,11 +236,7 @@ class Client {
 ```
 
 
-
-
 ---
-
-
 
 
 ## 비슷하지만 다른 Strategy Pattern과 State Pattern
@@ -268,11 +258,7 @@ class Client {
 | 전략 객체는 **그 전략만의 알고리즘 동작을 정의 및 수행**함.<br>(만일 전략을 상태화하면 class 폭발이 일어날 수 있음.) | 상태 객체는 상태가 적용되는 **대상 객체가 할 수 있는 모든 행동들을 정의 및 수행**함. |
 
 
-
-
 ---
-
-
 
 
 ## Example : Mobile 청구서
@@ -743,11 +729,7 @@ public class Bill {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Example : 뽑기 기계
@@ -1336,11 +1318,7 @@ public class GumballMachine {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

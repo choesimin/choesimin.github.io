@@ -5,8 +5,6 @@ date: 2024-01-03
 ---
 
 
-
-
 - document 목록 또는 단건을 조회합니다.
 
 ```js
@@ -20,11 +18,7 @@ db.collection.findOne();
 | [`findOne`](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOne/) | document 단건을 조회합니다.<br>`find` method로 찾은 것 중에 첫 번째 것을 선택(`find()[0]`)한 것과 같습니다. |
 
 
-
-
 ---
-
-
 
 
 ## 검색 (첫 번째 인자)
@@ -153,11 +147,7 @@ db.books.find({$where: "this.name == 'A' || this.hits <= 50"});    // JavaScript
 ```
 
 
-
-
 ---
-
-
 
 
 ## Projection (두 번째 인자)
@@ -191,11 +181,7 @@ db.books.find({$and: [{'name': 'A'}]}, {'author': {$slice: 1}});
 ```
 
 
-
-
 ---
-
-
 
 
 ## 정렬 (`sort`)
@@ -216,11 +202,7 @@ db.books.find().sort({"hits": -1});
 ```
 
 
-
-
 ---
-
-
 
 
 ### Formatting (`pretty`)
@@ -235,11 +217,7 @@ db.collection.findOne().pretty();
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

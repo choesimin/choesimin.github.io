@@ -5,8 +5,6 @@ date: 2024-02-29
 ---
 
 
-
-
 ## 배열 Type : Type이 같은 값들의 집합
 
 - TypeScript의 배열 type은 강력한 type checking 기능을 제공하여, **배열 내의 모든 요소가 동일한 type**을 갖도록 합니다.
@@ -37,11 +35,7 @@ let fruits: Array<string> = ["Apple", "Orange", "Banana"];
 ```
 
 
-
-
 ---
-
-
 
 
 ## 다양한 형태의 배열
@@ -98,11 +92,7 @@ let mixed: (number | string)[] = [1, "two", 3, "four"];
 ```
 
 
-
-
 ---
-
-
 
 
 ## 배열 활용하기

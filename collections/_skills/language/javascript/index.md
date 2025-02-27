@@ -5,7 +5,6 @@ date: 2023-12-13
 ---
 
 
-
 - JavaScript는 **browser interface를 만들 때 가장 널리 사용되는 scripting 또는 programming 언어**입니다.
     - JavaScript를 사용하여 정적인 web page에 동적인 기능을 추가할 수 있습니다.
         - HTML, CSS로 정보를 표시(정적)하고, JavaScript로 복잡한 기능(동적)을 구현합니다.
@@ -25,11 +24,7 @@ date: 2023-12-13
     - JavaScript를 이용해 server나 mobile app 등을 만드는 것도 가능합니다.
 
 
-
-
 ---
-
-
 
 
 ## JavaScript의 특징
@@ -73,11 +68,7 @@ date: 2023-12-13
     - 예를 들어, Node.js를 사용하여 server application을 만들 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## JavaScript 표준
@@ -104,11 +95,7 @@ date: 2023-12-13
 | ES9 (ECMAScript 2018) | 2018 | Object Rest/Spread property. |
 
 
-
-
 ---
-
-
 
 
 ## JavaScript와 Browser
@@ -160,11 +147,7 @@ date: 2023-12-13
         - 이 제약사항 역시 사용자의 보안을 위해 만들어졌습니다.
 
 
-
-
 ---
-
-
 
 
 ## JavaScript의 API
@@ -202,11 +185,7 @@ date: 2023-12-13
 2. Google 지도 API와 OpenStreetMap API로 web site에 지도를 삽입하고, 지도 관련 기능을 추가할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## JavaScript를 구동하는 다양한 Engine
@@ -247,11 +226,7 @@ parse --> compile --> run
     - 최적화 과정을 거치면서 script 실행 속도는 더욱 더 빨라집니다.
 
 
-
-
 ---
-
-
 
 ## JavaScript로 변환이 가능한 다른 언어들
 
@@ -272,11 +247,7 @@ parse --> compile --> run
     - Google이 개발하였습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

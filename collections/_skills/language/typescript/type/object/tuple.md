@@ -5,8 +5,6 @@ date: 2024-02-29
 ---
 
 
-
-
 ## Tuple Type : 갯수와 Type이 정해진 배열 Type
 
 - TypeScript에서 tuple은 고정된 개수의 요소와 각 요소의 type이 정해진 배열 type입니다.
@@ -92,11 +90,7 @@ readonlyPerson[0] = "Bob";    // Error: Index signature in type 'readonly [strin
 - `readonly` tuple은 data의 불변성을 유지해야 할 때 유용하며, 이러한 tuple의 요소는 생성 시에만 할당할 수 있고, 이후에는 변경할 수 없습니다.
 
 
-
-
 ---
-
-
 
 
 ## Tuple 고급 기능

@@ -5,8 +5,6 @@ date: 2024-02-25
 ---
 
 
-
-
 ## Type Declaration
 
 - **사전에 type을 선언**(type declaration)하여 변수나 함수의 type을 명시하는 작업은 code의 가독성, 예측성, 안정성을 향상시킵니다.
@@ -15,11 +13,7 @@ date: 2024-02-25
 - VisualStudioCode와 같은 도구를 사용하면, code 작성 시점에 오류를 검출할 수 있어서 개발 효율이 대폭 향상됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Type을 선언하는 방법
@@ -61,11 +55,7 @@ console.log(multiply1(true, 1));    // error TS2345: Argument of type 'true' is 
 ```
 
 
-
-
 ---
-
-
 
 
 ## 다양한 Type에 대한 선언 예시
@@ -152,11 +142,7 @@ const person: Person = new Person();    // Person type
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

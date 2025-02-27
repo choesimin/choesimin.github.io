@@ -5,8 +5,6 @@ date: 2023-08-29
 ---
 
 
-
-
 - **`<path>` 요소**를 사용하여 기본 도형보다 복잡한 모양의 **path 도형**을 그릴 수 있습니다.
 - path 도형은 기본 도형(직사각형, 원, 직선 등)에서 사용하는 `x`, `y`, `fill`, `stroke`, `stroke-width` 속성을 기본적으로 지원합니다.
 - 복잡한 path 도형을 그릴 때는 Adobe Illustrator와 같은 vector drawing tool 사용을 권장합니다.
@@ -18,11 +16,7 @@ date: 2023-08-29
 </svg>
 
 
-
-
 ---
-
-
 
 
 ## Paths Data(`d`) 속성으로 Path 그리기
@@ -122,11 +116,7 @@ date: 2023-08-29
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

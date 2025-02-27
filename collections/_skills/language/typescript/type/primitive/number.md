@@ -5,8 +5,6 @@ date: 2024-02-28
 ---
 
 
-
-
 ## Number(숫자) Type
 
 - TypeScript에서 `number` type은 JavaScript의 **숫자**를 나타내는 type입니다.
@@ -56,11 +54,7 @@ function safeDivide(a: number, b: number): number {
 ```
 
 
-
-
 ---
-
-
 
 
 ## 특별한 숫자 값 : `NaN`, `Infinity`, `-Infinity`

@@ -5,8 +5,6 @@ date: 2025-02-09
 ---
 
 
-
-
 ## Software Design : Software 설계하기
 
 - software design(설계)은 요구 사항을 실제 구현 가능한 blueprint(청사진)으로 변환하는 과정입니다.
@@ -35,11 +33,7 @@ date: 2025-02-09
     - 설계의 quality를 평가합니다.
 
 
-
-
 ---
-
-
 
 
 ## Design Principle : 여러 가지 설계 원칙

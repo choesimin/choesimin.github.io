@@ -5,8 +5,6 @@ date: 2023-07-02
 ---
 
 
-
-
 ## Unified Modeling Language
 
 - UML은 **표준화된**(Unified) **모형을 만드는**(Modeling) **언어**(Language)를 의미합니다.
@@ -32,11 +30,7 @@ date: 2023-07-02
     - 그러나 UML은 modeling 언어일 뿐 방법론은 아닙니다.
 
 
-
-
 ---
-
-
 
 
 ## UML의 종류
@@ -57,11 +51,7 @@ date: 2023-07-02
 | **State Machine Diagram** | instance의 상태 변화를 표현 |
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2024-10-11
 ---
 
 
-
-
 ## Transaction : DB의 상태를 변경시키는 작업의 단위
 
 - database에서 transaction은 database 내에서 수행되는 **작업의 논리적 단위**로, **여러 개의 작업(query)이 하나의 단위로 묶여 처리되는 것**을 의미합니다.
@@ -38,11 +36,7 @@ date: 2024-10-11
     - system에 장애가 발생하더라도, transaction이 완료된 내용은 손실되지 않도록 보장되어야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

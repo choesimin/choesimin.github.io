@@ -5,8 +5,6 @@ date: 2024-09-30
 ---
 
 
-
-
 ## Network & Device
 
 - **network**는 두 대 이상의 computer나 장치가 상호 연결되어 data를 주고받을 수 있는 구조를 말합니다.

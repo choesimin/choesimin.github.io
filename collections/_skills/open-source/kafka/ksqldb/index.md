@@ -5,8 +5,6 @@ date: 2025-01-06
 ---
 
 
-
-
 ## ksqlDB : Kafka Event Streaming Database
 
 - ksqlDB는 Apache Kafka를 위해 특별히 설계된 database로, **streaming data를 실시간으로 처리하고 분석할 수 있는 event streaming database**입니다.
@@ -103,11 +101,7 @@ date: 2025-01-06
 | **Schema** | schema 진화 지원 | 엄격한 schema 제약 |
 
 
-
-
 ---
-
-
 
 
 ## ksqlDB Architecture Component

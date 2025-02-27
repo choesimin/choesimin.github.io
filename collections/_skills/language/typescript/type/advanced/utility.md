@@ -5,8 +5,6 @@ date: 2024-03-03
 ---
 
 
-
-
 ## Utility Type
 
 - TypeScript의 utility type은 type system 내에서 **type을 효과적으로 재사용하고 조작하기 위해 설계된 built-in(내장) type 집합**입니다.
@@ -56,11 +54,7 @@ date: 2024-03-03
     - project의 요구 사항이 변경되어 type을 수정하거나 확장해야 할 때 유연하게 대응할 수 있도록 해줍니다.
 
 
-
-
 ---
-
-
 
 
 ## Utility Type의 종류

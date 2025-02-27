@@ -5,8 +5,6 @@ date: 2023-08-15
 ---
 
 
-
-
 ## Canvas 요소 : `<canvas>`
 
 ```html
@@ -73,11 +71,7 @@ date: 2023-08-15
 ```
 
 
-
-
 ---
-
-
 
 
 ## Canvas에 도형 그리는 방법
@@ -225,12 +219,7 @@ context.strokeText("HTML5", 80, 150);
 ```
 
 
-
-
-
 ---
-
-
 
 
 ## Reference

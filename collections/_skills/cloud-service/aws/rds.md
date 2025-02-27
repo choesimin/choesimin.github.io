@@ -5,8 +5,6 @@ date: 2023-07-23
 ---
 
 
-
-
 ## RDS : Relational Database Service
 
 - 관계형 database에 대한 완전 관리형 service입니다.
@@ -16,11 +14,7 @@ date: 2023-07-23
     - EC2 Instance는 computing에, RDS Instance는 storage에 초첨이 맞춰져 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## RDS를 만드는 과정
@@ -101,11 +95,7 @@ date: 2023-07-23
 - minor version 자동 upgrade 여부를 설정합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2023-09-06
 ---
 
 
-
-
 - DB 또는 table lock이 걸렸을 때, 먼저 두 가지 경우를 확인해야 합니다.
     1. Slow Query
     2. Transactional Lock
@@ -14,11 +12,7 @@ date: 2023-09-06
 - 먼저 process list를 학인하여 slow query가 있는지 확인하고, slow query가 없다면 table lock transaction을 확인합니다.
 
 
-
-
 ---
-
-
 
 
 ## Lock 정보 조회하기
@@ -44,11 +38,7 @@ SHOW OPEN TABLES WHERE in_use > 0;
 ```
 
 
-
-
 ---
-
-
 
 
 ## Lock 해제하기
@@ -109,11 +99,7 @@ kill query 938;    -- kill query [process_id];
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,16 +5,10 @@ date: 2023-08-04
 ---
 
 
-
-
 - TensorFlow.js는 TensorFlow(Python machine learning library)의 기능을 제공하는 JavaScript library입니다.
 
 
-
-
 ---
-
-
 
 
 ## TensorFlow.js로 지도 학습 구현하기
@@ -34,11 +28,7 @@ date: 2023-08-04
     - 분류의 종속 변수는 One-Hot Encoding하여 사용해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## 1. TensorFlow.js Import
@@ -68,11 +58,7 @@ const tf = require('@tensorflow/tfjs')
 ```
 
 
-
-
 ---
-
-
 
 
 ## 2. 학습 Data 준비하기
@@ -148,11 +134,7 @@ var trainTensorY = tf.tensor(trainY);
 ```
 
 
-
-
 ---
-
-
 
 
 ## 3. Model 정의하기
@@ -228,11 +210,7 @@ model.compile(compileParam);
 ```
 
 
-
-
 ---
-
-
 
 
 ## 4. Model 학습시키기
@@ -282,11 +260,7 @@ model.save('localstorage://sample');
 ```
 
 
-
-
 ---
-
-
 
 
 ## 5. Model 이용하기
@@ -330,11 +304,7 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## 회귀 예제 1. 독립 변수와 종속 변수가 한 개
@@ -547,11 +517,7 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## 분류 예제 1. 3개의 범주로 분류하기
@@ -652,11 +618,7 @@ tf.loadLayersModel('downloads://sample').then(function (model) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

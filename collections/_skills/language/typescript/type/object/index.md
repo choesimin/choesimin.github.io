@@ -5,7 +5,6 @@ date: 2024-02-29
 ---
 
 
-
 ## Object Type : 객체 Type
 
 - TypeScript의 객체 type을 활용하여, type system 안에서 **복잡한 data 구조를 설계**할 수 있습니다.

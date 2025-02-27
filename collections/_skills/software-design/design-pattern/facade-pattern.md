@@ -5,8 +5,6 @@ date: 2024-02-08
 ---
 
 
-
-
 - Facade Pattern은 **복잡한 system에 대한 단순한 interface를 제공**하는 pattern입니다.
     - facade는 '건물의 정면'을 의미하는 단어입니다.
     - facade object는 자신의 뒤 편에 존재하는 subsystem들의 복잡한 기능들을 통합하여, 간략화된 기능(interface)를 client에게 제공합니다.
@@ -27,11 +25,7 @@ date: 2024-02-08
     - Facade Pattern은 어떤 subsystem에 대한 단순한 interface를 제공하기 위한 용도입니다.
 
 
-
-
 ---
-
-
 
 
 ## Class 구조
@@ -52,11 +46,7 @@ Facade --> SubSystem5
 - `SubSystem` : 복잡한 하위 system 입니다.
 
 
-
-
 ---
-
-
 
 
 ## Example : File Reader
@@ -140,11 +130,7 @@ public class Main {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Example : Home Theater
@@ -693,11 +679,7 @@ public class PopcornPopper {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

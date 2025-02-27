@@ -5,8 +5,6 @@ date: 2024-02-29
 ---
 
 
-
-
 ## 함수 Type : 함수의 Signature 정의하기
 
 - 함수 type은 **함수의 매개 변수와 반환 값의 type을 정의**하는 데 사용합니다.
@@ -21,11 +19,7 @@ let myFunction: (param1: type1, param2: type2) => returnType;
 ```
 
 
-
-
 ---
-
-
 
 
 ## 함수 Type의 다양한 사용 예시

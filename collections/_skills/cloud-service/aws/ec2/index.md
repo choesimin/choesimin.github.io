@@ -5,8 +5,6 @@ date: 2023-07-16
 ---
 
 
-
-
 ## EC2 : Elastic Compute Cloud
 
 - EC2는 안전하고 크기 조정이 가능한 computing 자원(resource)을 Cloud에서 제공하는 Web service입니다.
@@ -17,11 +15,7 @@ date: 2023-07-16
     - 'Elastic Compute Cloud'의 'Compute'가 '연산'을 의미하기 때문에, computing 자원에 대한 포괄적인 제어권을 제공합니다.
 
 
-
-
 ---
-
-
 
 
 ## 가동 중인 EC2 Instance에 접속하기 위한 환경
@@ -72,11 +66,7 @@ instance <--> volume
 | Volume | 저장 장치입니다. Instance와 연결되어 있습니다. On-premise와 달리 저장 장치가 Instance 밖에 위치합니다. |
 
 
-
-
 ---
-
-
 
 
 ## Instance의 IP 종류
@@ -96,11 +86,7 @@ instance <--> volume
 - Instance에 실제로 설정된 IP입니다.
 
 
-
-
 ---
-
-
 
 
 ## EC2 관련 Resource
@@ -123,11 +109,7 @@ instance <--> volume
     - Instance에 연결할 때 두 개의 key pair를 맞추어 인증합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

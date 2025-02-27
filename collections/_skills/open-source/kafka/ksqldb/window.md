@@ -5,8 +5,6 @@ date: 2025-01-16
 ---
 
 
-
-
 ## ksqlDB Window : 시간 기반 Data 분석
 
 - Window는 **시간을 기준으로 data를 grouping하는 방법**입니다.
@@ -51,11 +49,7 @@ date: 2025-01-16
     - 집계 연산의 단위가 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Window의 종류
@@ -209,11 +203,7 @@ EMIT CHANGES;
 ```
 
 
-
-
 ---
-
-
 
 
 ## ksqlDB Window의 공통 Option
@@ -386,11 +376,7 @@ CREATE STREAM user_events (
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

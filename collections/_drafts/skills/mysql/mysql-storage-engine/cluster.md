@@ -9,11 +9,7 @@ layout: skill
 - primary key 사용시 최상의 속도를 제공함
 
 
-
-
 ---
-
-
 
 
 ## Reference

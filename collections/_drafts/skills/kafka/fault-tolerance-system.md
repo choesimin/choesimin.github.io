@@ -101,15 +101,7 @@ sequenceDiagram
 
 
 
-
-
-
-
 ---
-
-
-
-
 
 ## Controller Broker의 선출 과정
 

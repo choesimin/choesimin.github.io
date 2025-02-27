@@ -56,11 +56,7 @@ suspend fun preparePost(): Token {
     - C#처럼 `async`와 `await`가 문법의 일부인 언어와는 다릅니다.
 
 
-
-
 ---
-
-
 
 
 ## 전통적인 비동기 처리 방식들 (Coroutine을 선택해야 할 이유)
@@ -210,11 +206,7 @@ fun preparePostAsync(): Single<Token> {
     - 따라서 Rx와 Coroutine은 상황에 맞추어 선택해 사용하면 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -48,11 +48,7 @@ SELECT @@GLOBAL.GTID_EXECUTED;
     - 전환 전 모든 트랜잭션이 완료되어야 합니다.
 
 
-
-
 ---
-
-
 
 
 # MySQL GTID 설정하기

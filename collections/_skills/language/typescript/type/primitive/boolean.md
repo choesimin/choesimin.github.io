@@ -5,8 +5,6 @@ date: 2024-02-28
 ---
 
 
-
-
 ## Boolean Type : True/False
 
 - `boolean` type은 **참(`true`) 또는 거짓(`false`)의 논리적 값**으로 표현됩니다.
@@ -56,11 +54,7 @@ if (!isAllowed) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Boolean을 사용한 복잡한 예제 : 사용자 검증

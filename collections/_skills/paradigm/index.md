@@ -5,8 +5,6 @@ date: 2025-02-09
 ---
 
 
-
-
 ## Paradigm : Thinking Framework
 
 - paradigm은 특정 시대의 사람들이 가지는 인식이나 사고의 체계를 의미합니다.
@@ -48,11 +46,7 @@ date: 2025-02-09
     - paradigm shift 과정에서 사회적 혼란과 저항이 나타날 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Programming Paradigm : Programming Framework
@@ -62,11 +56,7 @@ date: 2025-02-09
     - 각 paradigm은 고유한 문제 해결 방식과 추상화 방법을 제시합니다.
 
 
-
-
 ---
-
-
 
 
 ## 주요 Programming Paradigm

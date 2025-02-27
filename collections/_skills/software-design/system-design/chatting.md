@@ -5,8 +5,6 @@ date: 2024-02-22
 ---
 
 
-
-
 - text chatting system을 설계합니다.
     - chatting은 크게 1:1 chatting, group chatting으로 나뉩니다.
     - 대표적인 text chatting service로 KakaoTalk, Line, Slack, Facebook messenger 등이 있습니다.
@@ -67,11 +65,7 @@ end
     - API Service는 일반적인 Web Application과 같고, Third-Party Service는 기능을 연동하여 사용하기만 하면 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Chatting Message 처리 흐름
@@ -193,11 +187,7 @@ message_sync_queue --> recipient
 ```
 
 
-
-
 ---
-
-
 
 
 ## Client와 Chatting Server 간의 연결 유지하기
@@ -329,11 +319,7 @@ end
     - message를 보낼 때와 받을 때 모두 같은 Protocol을 사용할 수 있게 되므로, 구현이 단순하고 직관적이게 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Chatting System Database
@@ -433,11 +419,7 @@ ORDER BY message_id ASC;
 3. 조회 결과를 사용자의 단말기에 보관하고, `cur_max_message_id`를 최신 `message_id`로 갱신합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

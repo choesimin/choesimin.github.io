@@ -5,8 +5,6 @@ date: 2024-02-28
 ---
 
 
-
-
 ## Type Casting : Type 변환하기
 
 - type casting은 **변수의 type을 명시적으로 변환**하는 것입니다.
@@ -46,11 +44,7 @@ let strLength: number = (someValue as string).length;
 - `someValue as string`은 `someValue`를 `string` type으로 casting하고 있음을 나타냅니다.
 
 
-
-
 ---
-
-
 
 
 ## Type Casting 활용 예제 : `HTMLInputElement`
@@ -78,11 +72,7 @@ const val = $input.value;
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

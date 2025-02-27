@@ -5,8 +5,6 @@ date: 2024-02-25
 ---
 
 
-
-
 ## TypeScript = JavaScript + Type Check
 
 - TypeScript는 **AltJS**(Alternative JavaScript) 중 하나입니다.
@@ -41,11 +39,7 @@ object --> function --> never
 ```
 
 
-
-
 ---
-
-
 
 
 ## TypeScript의 주요 특징 : 정적 Typing
@@ -98,11 +92,7 @@ sum('x', 'y');    // error TS2345: Argument of type '"x"' is not assignable to p
     - 이는 대규모 project 개발에 크게 도움이 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## TypeScript의 특징 : 객체 지향 Programming 지원
@@ -111,11 +101,7 @@ sum('x', 'y');    // error TS2345: Argument of type '"x"' is not assignable to p
 - Java, C# 등의 class 기반 객체 지향 언어에 익숙한 개발자가 JavaScript Project를 수행하는 데 진입 장벽을 낮추는 효과도 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## TypeScript의 특징 : 도구의 지원을 받을 수 있음
@@ -126,11 +112,7 @@ sum('x', 'y');    // error TS2345: Argument of type '"x"' is not assignable to p
 - 도구의 지원은 대규모 project를 위한 필수 요소이기도 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

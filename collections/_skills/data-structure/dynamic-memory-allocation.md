@@ -5,8 +5,6 @@ date: 2024-05-22
 ---
 
 
-
-
 ## 동적 Memory 할당 (Dynamic Memory Allocation)
 
 > 동적 memory 할당이란 computer programming에서 **실행 중(runtime)에 사용할 memory 공간을 할당**하는 것을 의미합니다.
@@ -59,11 +57,7 @@ date: 2024-05-22
     - Garbage Collector가 없기 때문에 개발자가 직접 memory 할당 및 해제를 관리해야 하며, 개발자의 실수로 인해 memory 관리 문제가 발생할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## C 언어의 Memory 영역
@@ -117,11 +111,7 @@ date: 2024-05-22
     - 순환 algorithm에서 종종 **"Stack Overflow" alert message**가 뜨는 것은, 많은 함수 호출 때문에 Stack 영역이 너무 커졌기 때문입니다.
 
 
-
-
 ---
-
-
 
 
 ## C 언어의 동적 할당
@@ -333,11 +323,7 @@ int main() {
 2. **중복 해제 방지** : 이미 해제된 memory를 다시 해제하려고 하면 정의되지 않은 동작이 발생할 수 있기 때문에, 이를 방지하기 위해 pointer를 `NULL`로 설정합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

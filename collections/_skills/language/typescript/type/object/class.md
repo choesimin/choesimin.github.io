@@ -5,19 +5,13 @@ date: 2024-02-26
 ---
 
 
-
-
 ## Class
 
 - TypeScript가 지원하는 class는 **JavaScript ES6의 class와 유사**하지만, 몇 가지 **TypeScript만의 고유한 확장 기능**이 있습니다.
     - TypeScript의 class는 정적 typing과 몇 가지 추가 기능을 제공하여 class를 더욱 강력하고 안전하게 만듭니다.
 
 
-
-
 ---
-
-
 
 
 ## Class Definition
@@ -74,11 +68,7 @@ person.walk();    // Lee is walking
 ```
 
 
-
-
 ---
-
-
 
 
 ## 접근 제한자 (Access Modifier)
@@ -192,11 +182,7 @@ console.log(foo);    // Foo {}
 ```
 
 
-
-
 ---
-
-
 
 
 ## 읽기 전용 속성 (Readonly Property)
@@ -229,11 +215,7 @@ new Foo().log();
 ```
 
 
-
-
 ---
-
-
 
 
 ## Static Member
@@ -300,11 +282,7 @@ console.log(foo2.instanceCounter);    // error TS2339: Property 'instanceCounter
 ```
 
 
-
-
 ---
-
-
 
 
 ## 추상 Class (Abstract Class)
@@ -347,11 +325,7 @@ myDog.move();
 ```
 
 
-
-
 ---
-
-
 
 
 ## Interface 구현 (`implements`)
@@ -432,11 +406,7 @@ myPhone.disconnect();
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

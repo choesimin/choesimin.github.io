@@ -5,8 +5,6 @@ date: 2024-02-27
 ---
 
 
-
-
 ## Primitive Type : 원시 Type
 
 - TypeScript의 원시(primitive) type은 JavaScript의 원시 type을 기반으로 합니다.

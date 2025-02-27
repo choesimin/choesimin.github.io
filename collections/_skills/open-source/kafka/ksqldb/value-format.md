@@ -5,8 +5,6 @@ date: 2025-01-13
 ---
 
 
-
-
 ## Value Format : ksqlDB에서 Data를 직렬화하고 역직렬화하는 방식
 
 - ksqlDB의 Value format은 **data가 어떻게 저장/전송/처리되는지를 결정하는 설정**입니다.
@@ -248,11 +246,7 @@ message Example {
     - logging과 monitoring이 복잡합니다.
 
 
-
-
 ---
-
-
 
 
 ## Value Format 선택 기준

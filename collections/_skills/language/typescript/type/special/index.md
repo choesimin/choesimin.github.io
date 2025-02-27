@@ -5,8 +5,6 @@ date: 2024-03-04
 ---
 
 
-
-
 ## 특수 Type : 독특한 역할을 수행하는 Type
 
 - TypeScript의 특수 type은 **type system에서 독특한 역할을 수행**하는 type들을 말합니다.

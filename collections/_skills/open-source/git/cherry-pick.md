@@ -5,8 +5,6 @@ date: 2024-03-21
 ---
 
 
-
-
 ## `cherry-pick` : 다른 Branch의 Commit을 현재 Branch에 적용하기
 
 - `git cherry-pick`은 **다른 branch에서 commit을 선택하여 현재 branch에 적용하고 싶을 때 사용**합니다.
@@ -48,11 +46,7 @@ git cherry-pick <first_commit_hash>^..<last_commit_hash>
 ```
 
 
-
-
 ---
-
-
 
 
 ## `cherry-pick` 충돌이 발생하는 경우

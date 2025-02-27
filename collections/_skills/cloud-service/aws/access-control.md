@@ -5,8 +5,6 @@ date: 2023-07-31
 ---
 
 
-
-
 ## Security Group과 Network ACL
 
 | Security Group | Network ACL |

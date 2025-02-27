@@ -5,8 +5,6 @@ date: 2023-07-16
 ---
 
 
-
-
 ## AWS : Amazon Web Services
 
 - AWS는 Amazon에서 제공하는 Cloud service입니다.
@@ -46,11 +44,7 @@ date: 2023-07-16
 - AWS에서 해야 할 작업의 내용을 API를 이용한 script로 작성하여 실행할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

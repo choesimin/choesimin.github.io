@@ -5,8 +5,6 @@ date: 2024-10-02
 ---
 
 
-
-
 ## `nslookup` : DNS Server Query Tool
 
 ```bash
@@ -22,11 +20,7 @@ nslookup naver.com
 - `nslookup`은 1983년에 개발된 오래된 도구로, `dig`나 `host`와 같은 최신 도구를 사용할 수도 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## `nslookup`의 응답 구조
@@ -98,11 +92,7 @@ ns4.google.com has AAAA address 2001:4860:4802:38::a
 ```
 
 
-
-
 ---
-
-
 
 
 ## `nslookup` 사용법

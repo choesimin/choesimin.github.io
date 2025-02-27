@@ -19,11 +19,7 @@ version: 2023-05-08
         - Heap Memory
 
 
-
-
 ---
-
-
 
 
 ## Code 영역
@@ -39,11 +35,7 @@ version: 2023-05-08
 - CPU는 Code 영역에 저장된 명령어를 하나씩 가져가서 처리합니다.
 
 
-
-
 ---
-
-
 
 
 ## Data 영역
@@ -62,11 +54,7 @@ version: 2023-05-08
     2. 초기화되지 않은 변수 영역 (uninitialized data segment)
 
 
-
-
 ---
-
-
 
 
 ## Stack 영역
@@ -106,11 +94,7 @@ version: 2023-05-08
     - Variables cannot be resized
 
 
-
-
 ---
-
-
 
 
 ## Heap 영역
@@ -175,11 +159,7 @@ version: 2023-05-08
     - 그런 작은 memory 공간을 compiler가 자동으로 관리하는 것보다 programmer가 관리하는 것이 더 효율적인 경우가 많음
 
 
-
-
 ---
-
-
 
 
 ## Reference

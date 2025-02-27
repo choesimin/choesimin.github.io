@@ -5,8 +5,6 @@ date: 2024-02-26
 ---
 
 
-
-
 ## Interface : 객체 계약서
 
 - TypeScript의 interface는 **변수, 함수, class가 특정 구조와 type을 갖추도록 명시**하는 데 사용됩니다.
@@ -21,11 +19,7 @@ date: 2024-02-26
     - TypeScript는 interface를 통해 개발자가 더 명확하고 유지 보수가 용이한 code를 작성할 수 있도록 합니다.
 
 
-
-
 ---
-
-
 
 
 ## 변수와 Interface
@@ -73,11 +67,7 @@ console.log(todos);    // [ { id: 1, content: 'typescript', completed: false } ]
 ```
 
 
-
-
 ---
-
-
 
 
 ## 함수와 Interface
@@ -100,11 +90,7 @@ console.log(squareFunc(10));    // 100
 ```
 
 
-
-
 ---
-
-
 
 
 ## Class와 Interface
@@ -180,11 +166,7 @@ greeter(me);    // Hello Lee
 - **다중 상속이 필요하거나 type check만이 목적이라면 interface**를, **구현을 공유하고 싶다면 추상 class**를 사용하는 것이 좋습니다.
 
 
-
-
 ---
-
-
 
 
 ## 선택적 속성 (Optional Property)
@@ -211,11 +193,7 @@ console.log(userInfo);
 ```
 
 
-
-
 ---
-
-
 
 
 ## Interface 상속 (Interface 확장)
@@ -280,11 +258,7 @@ const developer: Developer = {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

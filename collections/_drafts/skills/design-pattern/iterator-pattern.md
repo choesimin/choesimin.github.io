@@ -103,11 +103,7 @@ ConcreteIterator .. ConcreteIterator : 반복 작업 중에 \n현재 위치를 �
 ```
 
 
-
-
 ---
-
-
 
 
 # Example : 'Pancake House'와 '객체마을 식당'의 합병
@@ -673,11 +669,7 @@ public class MenuItem {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

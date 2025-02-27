@@ -5,8 +5,6 @@ date: 2024-02-28
 ---
 
 
-
-
 ## BigInt Type : 매우 큰 정수
 
 - `bigint`는 JavaScript와 TypeScript에서 **매우 큰 정수**를 나타내기 위한 원시(primitive) type입니다.
@@ -62,11 +60,7 @@ let sumOfBigIntAndNumber = bigInt1 + normalNumber;    // Error : 'bigint'와 'nu
 ```
 
 
-
-
 ---
-
-
 
 
 ## BigInt의 사용 예제 : Unique ID 생성

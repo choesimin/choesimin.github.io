@@ -71,11 +71,7 @@ ConcreteClass .. ConcreteClass : 여러 개가 있을 수 있음. \n각 class에
 ```
 
 
-
-
 ---
-
-
 
 
 # Example : Barista의 Coffee와 Tea 제조법
@@ -402,11 +398,7 @@ public class Tea {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

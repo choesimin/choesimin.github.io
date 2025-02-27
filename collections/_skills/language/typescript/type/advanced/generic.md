@@ -5,8 +5,6 @@ date: 2024-03-04
 ---
 
 
-
-
 ## Generic Type : Type을 Parameter처럼 사용하기
 
 - generic type은 **type을 parameter처럼 사용**하여, 다양한 type에 대해 작동할 수 있는 함수, class, interface 등을 생성할 수 있게 해주는 기능입니다.
@@ -75,11 +73,7 @@ myGenericNumber.add = function(x, y) { return x + y; };
 - `myGenericNumber` instance는 `number` type을 사용하여 생성되며, 이로 인해 해당 instance의 `zeroValue` property와 `add` method는 모두 `number` type을 사용하게 됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Generic Constraint : 제약 조건 (`extends`)
@@ -130,11 +124,7 @@ function createItem<T extends Identifiable & Nameable>(item: T): T {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Generic Default Type Parameter : 기본 값

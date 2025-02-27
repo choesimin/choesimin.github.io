@@ -5,8 +5,6 @@ date: 2024-02-14
 ---
 
 
-
-
 - 사용해야 하는 interface가 현재의 system과 호환되지 않는다고 해서 꼭 현재의 system을 변경해야 하는 것은 아닙니다.
 
 - Adapter Pattern은 **서로 다른 interface를 가지는 두 객체를 연결**하여 사용할 수 있도록 하는 design pattern입니다.
@@ -63,11 +61,7 @@ adapter -->|변환된 요청| adaptee
     - Facade Pattern는 interface를 단순하게 바꾸는 것이 목적입니다.
 
 
-
-
 ---
-
-
 
 
 ## Class 구조
@@ -256,11 +250,7 @@ class Adaptee {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Example : Java의 InputStreamReader
@@ -320,11 +310,7 @@ InputStreamReader --> System
 - Adapter Pattern에서 `InputStreamReader` class는 Adapter, `System.in`는 Adaptee, `Reader`는 Target interface입니다.
 
 
-
-
 ---
-
-
 
 
 ## Example : 오리 Adapter로 감싼 칠면조
@@ -513,11 +499,7 @@ public class SuperDrone implements Drone {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

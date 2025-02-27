@@ -5,8 +5,6 @@ date: 2023-08-08
 ---
 
 
-
-
 - 기계 학습은 computer가 스스로 학습하여 문제를 해결하는 algorithm을 연구하는 분야입니다.
     - computer는 data를 통해 학습하고, 학습 결과를 바탕으로 예측이나 결정을 내릴 수 있습니다.
 
@@ -19,11 +17,7 @@ date: 2023-08-08
     - 예를 들어, 환자의 건강 상태 예측(의료), 주가 예측(금융), 자율 주행 자동차, 음성 인식, 얼굴 인식 등.
 
 
-
-
 ---
-
-
 
 
 ## 기계 학습의 종류
@@ -117,11 +111,7 @@ data --> classification[[분류]] --> classification_result(내일이 더운지 
     - 예를 들어, 신뢰 할당 문제(credit assignment problem)와 탐색-이용 dilemma(exploration-exploitation dilemma) 등.
     
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2023-11-05
 ---
 
 
-
-
 | 약어 | 이름 | 설명 |
 | --- | --- | --- |
 | SRP | Single Responsibility Principle | 단일 책임 원칙 |
@@ -28,11 +26,7 @@ date: 2023-11-05
 - Design Pattern, 표준화 작업, Architecture 설계 등등, SOLID 원칙은 이미 다양한 곳에 적용되고 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

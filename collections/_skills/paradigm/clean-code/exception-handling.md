@@ -5,8 +5,6 @@ date: 2023-04-19
 ---
 
 
-
-
 ## 튼튼하고 깨끗한 Code
 
 - code는 읽기 쉬울 뿐만 아니라, 안정성도 높아야 합니다.
@@ -16,11 +14,7 @@ date: 2023-04-19
     - 따라서 오류 처리를 program 논리와 분리해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Error Code보다 Exception을 사용하기
@@ -102,11 +96,7 @@ public class DeviceController {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Try-Catch-Finally 문부터 작성하기
@@ -162,11 +152,7 @@ void sendFinishTalk() throws SendFailException {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Unchecked Exception을 사용하기
@@ -188,11 +174,7 @@ void sendFinishTalk() throws SendFailException {
 | FileNotFoundException, ClassNotFoundException, IOException, SQLException, ... | RuntimeException, NullPointerException, IllegalArgumentException, ArrayIndexOutOfBoundsException, ... |
 
 
-
-
 ---
-
-
 
 
 ## 예외에 의미를 제공하기
@@ -205,11 +187,7 @@ void sendFinishTalk() throws SendFailException {
     - stacktrace만으로 원인을 찾을 수도 있지만, 보기 힘들고, 찾는 데에 오래 걸립니다.
 
 
-
-
 ---
-
-
 
 
 ## 호출자를 고려해 Exception Class를 정의하기
@@ -289,11 +267,7 @@ try {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Null을 반환/전달하지 않기
@@ -372,11 +346,7 @@ if (s != null) {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

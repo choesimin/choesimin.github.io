@@ -5,8 +5,6 @@ date: 2024-05-21
 ---
 
 
-
-
 ## 추상 자료형 : Interface와 구현을 분리하여 추상화 계층을 둔 것
 
 - 추상 자료형(Abstract Data Type, ADT)은 **data와 data에 대한 연산을 정의**하지만, **data가 실제로 어떻게 구현되는지는 숨깁니다.**
@@ -27,11 +25,7 @@ date: 2024-05-21
     - interface는 data type과 그 연산의 명세(specification)를 포함합니다.
 
 
-
-
 ---
-
-
 
 
 ## 추상 자료형의 예시 : Stack(ADT)
@@ -126,11 +120,7 @@ int main() {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

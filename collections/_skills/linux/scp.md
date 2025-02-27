@@ -5,8 +5,6 @@ date: 2023-04-03
 ---
 
 
-
-
 ## scp : 안전한 원격 전송 Protocol
 
 - SecureCoPy의 약자입니다.
@@ -31,11 +29,7 @@ scp [option] [source] [destination]
 | -a | archive mode로 복사합니다. |
 
 
-
-
 ---
-
-
 
 
 ## 보내기 : Local -> Remote
@@ -66,11 +60,7 @@ scp -r test_directory root@192.168.159.129:/tmp/test_client
 - `-r` option을 사용합니다.
 
 
-
-
 ---
-
-
 
 
 ## 받기 : Remote -> Local
@@ -100,11 +90,7 @@ scp -r root@192.168.159.129:/tmp/test_client/test_directory /tmp
 - `-r` option을 사용합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

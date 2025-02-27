@@ -5,8 +5,6 @@ date: 2023-04-09
 ---
 
 
-
-
 ## Link 넣기
 
 - link는 대괄호와 소괄호를 사용하여 표현합니다.
@@ -26,11 +24,7 @@ date: 2023-04-09
 > <https://google.com>
 
 
-
-
 ---
-
-
 
 
 ## Image 넣기
@@ -48,11 +42,7 @@ date: 2023-04-09
 ![Google](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/500px-Google_2015_logo.svg.png)
 
 
-
-
 ---
-
-
 
 
 ## Reference

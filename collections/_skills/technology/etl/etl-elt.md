@@ -5,8 +5,6 @@ date: 2024-12-21
 ---
 
 
-
-
 ## ETL과 ELT
 
 ```mermaid
@@ -118,11 +116,7 @@ flowchart LR
     - 따라서 기업이 ELT process를 사용한다면, 항상 data를 masking하고 암호화하여 system에 대한 보안 조치를 취해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

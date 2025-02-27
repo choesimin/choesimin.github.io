@@ -5,8 +5,6 @@ date: 2024-02-27
 ---
 
 
-
-
 ## Type 추론 : Compiler의 Type 자동 결정 기능
 
 - TypeScript의 type 추론(type inference)은 **code에서 type을 명시적으로 지정하지 않아도 TypeScript compiler가 자동으로 type 정보를 유추하는 기능**입니다.
@@ -82,11 +80,7 @@ let output = identity("myString");    // output은 string type으로 추론됨
 ```
 
 
-
-
 ---
-
-
 
 
 ## Type 추론이 불가능한 경우 : `any` Type
@@ -107,11 +101,7 @@ console.log(typeof foo);    // boolean
 - 그러나 `any` type은 TypeScript를 사용하는 장점을 없애기 때문에, 사용하지 않는 편이 좋습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

@@ -5,8 +5,6 @@ date: 2024-01-10
 ---
 
 
-
-
 - Observer Pattern은 객체의 상태 변화를 관찰하는 객체들에게 자동으로 알리는 방식으로, 객체 간의 결합도를 낮추고 상호 작용을 관리하는 design pattern입니다.
 
 - Observer Pattern에서는 한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 모든 객체들한테 연락이 가고, 자동으로 내용이 갱신되는 방식으로 작동합니다.
@@ -30,11 +28,7 @@ date: 2024-01-10
     - 구독자(observer)가 신문 구독을 해지(observer 해제)하면, 출판사(subject)는 더 이상 구독자(observer)에게 신문(data)을 보내지 않습니다.
 
 
-
-
 ---
-
-
 
 
 ## Class 구조
@@ -78,11 +72,7 @@ note for ConcreteObserver "구현한 observer에서 사용할 기타 method들�
 ```
 
 
-
-
 ---
-
-
 
 
 ## Observer Parttern의 느슨한 결합
@@ -111,11 +101,7 @@ note for ConcreteObserver "구현한 observer에서 사용할 기타 method들�
     - 서로 느슨하게 결합되어 있기 때문에 subject 또는 observer interface를 구현한다는 조건만 만족된다면 변경에 의한 문제는 발생하지 않습니다.
 
 
-
-
 ---
-
-
 
 
 ## Example : Weather Monitoring Application
@@ -405,11 +391,7 @@ public class ForecastDisplay implements Observer, DisplayElement {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

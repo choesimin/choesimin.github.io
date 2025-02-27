@@ -5,8 +5,6 @@ date: 2025-01-31
 ---
 
 
-
-
 ## Debezium Snapshot : Database의 초기 상태를 복사하기
 
 - snapshot은 **source database의 전체 data를 특정 시점에 한꺼번에 capture하는 Debezium의 핵심 기능**입니다.
@@ -77,11 +75,7 @@ date: 2025-01-31
     - **buffer에 저장된 변경 사항들은 snapshot 완료 직후 순차적으로 처리**됩니다.
 
 
-
-
 ---
-
-
 
 
 ## Snapshot 활용하기
@@ -135,11 +129,7 @@ date: 2025-01-31
     - alert 설정을 통해 이상 상황에 신속하게 대응할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Snapshot 시 발생 가능한 문제와 해결 방안

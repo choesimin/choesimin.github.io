@@ -5,8 +5,6 @@ date: 2023-04-09
 ---
 
 
-
-
 - mermaid를 사용해 Class Diagram을 그릴 수 있습니다.
 
 ```mermaid
@@ -40,11 +38,7 @@ class Zebra{
 ```
 
 
-
-
 ---
-
-
 
 
 ## Class 정의하기
@@ -135,11 +129,7 @@ note for Class "This is a class memo.<br>memo one.<br>memo two."
 ```
 
 
-
-
 ---
-
-
 
 
 ## Class Member 정의하기
@@ -302,11 +292,7 @@ class Class {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Class 관계 정의하기
@@ -370,11 +356,7 @@ NoLabelA --|> NoLabelB
 ```
 
 
-
-
 ---
-
-
 
 
 ## Diagram 방향 설정하기
@@ -453,11 +435,7 @@ Begin --|> End
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

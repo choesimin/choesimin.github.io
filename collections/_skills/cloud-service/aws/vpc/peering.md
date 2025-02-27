@@ -5,8 +5,6 @@ date: 2023-07-16
 ---
 
 
-
-
 ## VPC Peering
 
 - peering이란 서로 다른 VPC에 있는 Instance 간의 통신을 가능하게 해주는 것입니다.
@@ -20,11 +18,7 @@ date: 2023-07-16
     - IP가 충돌하기 때문입니다.
 
 
-
-
 ---
-
-
 
 
 ### VPC PCX : VPC 간의 중개자
@@ -48,11 +42,7 @@ pcx --> route
     - routing table에 PCX를 등록합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

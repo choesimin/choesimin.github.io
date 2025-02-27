@@ -5,8 +5,6 @@ title: vim-plug - Simple Vim Plugin Manager
 ---
 
 
-
-
 ## vim-plug : Vim Plugin Manager
 
 - **vim-plug**는 여러 Vim plugin들을 최소한의 설정으로 관리할 수 있게 해주는 **plugin manager 중 하나**입니다.
@@ -32,12 +30,7 @@ title: vim-plug - Simple Vim Plugin Manager
     - NeoVim은 Lua라는 언어로 작성됩니다.
 
 
-
-
 ---
-
-
-
 
 
 ## vim-plug의 장점
@@ -73,11 +66,7 @@ title: vim-plug - Simple Vim Plugin Manager
         - Vim의 `.vimrc` file 내용을 NeoVim의 `init.vim` file에 그대로 사용 가능합니다.
 
 
-
-
 ---
-
-
 
 
 ## 주요 명령어
@@ -95,11 +84,7 @@ title: vim-plug - Simple Vim Plugin Manager
     - 해당 plugin의 directory를 삭제합니다.
 
 
-
-
 ---
-
-
 
 
 ## vim-plug 설정 예시

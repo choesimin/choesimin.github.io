@@ -5,8 +5,6 @@ date: 2024-05-21
 ---
 
 
-
-
 ## 단순 자료 구조 : Program에서 가장 기본적이고 필수적인 Data Type
 
 - 단순 자료 구조(Primitive Data Structure)는 **가장 기본적인 형태의 data** 저장 및 처리를 제공하는 자료형입니다.

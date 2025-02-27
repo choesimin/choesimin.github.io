@@ -48,11 +48,7 @@ date: 2025-02-10
 | `panels` | 시각화 구성 요소 | panel structure array |
 
 
-
-
 ---
-
-
 
 
 ## Panel 작성 문법
@@ -199,11 +195,7 @@ date: 2025-02-10
 
 
 
-
-
 ---
-
-
 
 
 ## Reference

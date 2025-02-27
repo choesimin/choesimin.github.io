@@ -20,11 +20,7 @@ layout: skill
 - 주로 많은 양의 log data를 저장하고 읽는 데에 사용합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

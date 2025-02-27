@@ -5,8 +5,6 @@ date: 2024-03-04
 ---
 
 
-
-
 ## `any` Type : TypeScript의 Type Check 기능 우회하기
 
 - TypeScript에서 `any` type은 **가장 유연한 type**으로, **어떤 종류의 값도 할당할 수 있습니다.**
@@ -33,11 +31,7 @@ let d = looselyTyped.a.b.c.d;    // any type을 사용하면, 모든 하위 속�
 ```
 
 
-
-
 ---
-
-
 
 
 ## `any` Type 사용 최소화 전략

@@ -5,8 +5,6 @@ date: 2023-04-03
 ---
 
 
-
-
 ## grep : 문자열 검색 명령어
 
 - 특정 file에서 지정한 문자열이나 정규표현식을 포함한 행을 출력해주는 명령어입니다.
@@ -48,11 +46,7 @@ grep [option] [pattern] [file_name]
 | `fgrep` | 문자열 pattern 검색 (`grep -F`와 동일) | X |
 
 
-
-
 ---
-
-
 
 
 ## grep의 다양한 사용 예시
@@ -137,11 +131,7 @@ grep [aA]pple [file_name]
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

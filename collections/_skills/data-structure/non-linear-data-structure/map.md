@@ -5,8 +5,6 @@ date: 2024-06-27
 ---
 
 
-
-
 ## Map : Key와 Value 쌍으로 이루어진 자료 구조
 
 ```js
@@ -82,11 +80,7 @@ mindmap
 - **remove(key)** : key-value 쌍(주어진 key + 해당 key에 대응하는 값)을 Map에서 제거합니다.
 
 
-
-
 ---
-
-
 
 
 ## HashMap 구현하기
@@ -232,11 +226,7 @@ int main() {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

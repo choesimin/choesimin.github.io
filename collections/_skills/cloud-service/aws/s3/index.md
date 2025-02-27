@@ -5,8 +5,6 @@ date: 2023-08-06
 ---
 
 
-
-
 ## S3 : Simple Storage Service
 
 - Amazon의 Cloud 객체 저장 service입니다.
@@ -15,11 +13,7 @@ date: 2023-08-06
     - 따라서 file의 외부 접근을 혀용할 때는 항상 경고 문구가 표시되고, 사용자는 이에 동의해야 합니다.
 
 
-
-
 ---
-
-
 
 
 ## S3 Bucket 생성 과정
@@ -56,11 +50,7 @@ date: 2023-08-06
 - Bucket Key 활성화 여부를 선택합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

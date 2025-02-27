@@ -5,8 +5,6 @@ date: 2024-01-24
 ---
 
 
-
-
 - scroll시 section 단위로 화면을 깔끔하게 scroll하고 싶을 때, CSS의 `scroll-snap-align` 속성을 사용합니다.
 
 - `scroll-snap-align` 속성을 사용하면, scroll할 때 화면이 요소의 상단/중단/하단으로 자동으로 맞춰지도록 설정할 수 있습니다.
@@ -20,11 +18,7 @@ date: 2024-01-24
         - 예를 들어, `scroll-snap-type: y mandatory;`는 수직 scroll에 smap을 강제로 적용하겠다는 의미입니다. 
 
 
-
-
 ---
-
-
 
 
 ## 사용 예시

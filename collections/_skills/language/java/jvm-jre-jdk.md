@@ -5,8 +5,6 @@ date: 2023-07-17
 ---
 
 
-
-
 | Name | Full Name | 번역 |
 | --- | --- | --- |
 | JDK | Java Development Kit | Java 개발 도구 |
@@ -14,11 +12,7 @@ date: 2023-07-17
 | JVM | Java Virtual Machine | Java 가상 기계 |
 
 
-
-
 ---
-
-
 
 
 ## 포함 관계 : JVM ⊂ JRE ⊂ JDK
@@ -33,11 +27,7 @@ JDK는 JRE를 포함하고, JRE는 JVM을 포함합니다.
 - **JVM**은 compile한 code를 최종적으로 실행합니다.
 
 
-
-
 ---
-
-
 
 
 ## JDK : Java Development Kit
@@ -91,11 +81,7 @@ mindmap
     - 예를 들어, mobile phone, PDA, set-top box 등.
 
 
-
-
 ---
-
-
 
 
 ## JRE : Java Runtime Environment
@@ -110,11 +96,7 @@ mindmap
     - memory 및 기타 system 자원을 관리합니다.
 
 
-
-
 ---
-
-
 
 
 ## JVM : Java Virtual Machine
@@ -210,11 +192,7 @@ windows_run_file --> windows_run
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

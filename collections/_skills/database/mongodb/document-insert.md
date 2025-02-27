@@ -5,7 +5,6 @@ date: 2024-01-03
 ---
 
 
-
 - 단건 또는 다건의 document를 collection에 삽입합니다.
 
 ```js
@@ -57,11 +56,7 @@ db.book.insert({
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

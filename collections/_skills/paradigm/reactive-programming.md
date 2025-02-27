@@ -5,8 +5,6 @@ date: 2024-07-29
 ---
 
 
-
-
 ## Reactive Programming : Data 변화에 반응하여 비동기적으로 처리하기
 
 - Reactive Programming은 **data의 흐름과 변화에 대응**하여 **비동기적으로 data를 처리**하는 programming paradigm입니다.
@@ -61,11 +59,7 @@ date: 2024-07-29
 	- 장애가 발생하더라도 탄력적으로 대응할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Rx : ReactiveX : Reactive eXtentions
@@ -173,11 +167,7 @@ observable.subscribe(
 ```
 
 
-
-
 ---
-
-
 
 
 ## RxJava : Java에서 Reactive Programming 구현하기
@@ -471,11 +461,7 @@ public class StockPriceUI {
 ```
 
 
-
-
 ---
-
-
 
 
 ## Reference

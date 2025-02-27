@@ -27,11 +27,7 @@ Repeater, Hub, Lan Card(NIC), Modem, Bridge, Router, Switch, Gateway, Firewall
     - network 장비는 **OSI 7 계층 model에 따라 각기 다른 계층에서 작동**하며, 이를 통해 복잡한 network 구조를 체계적으로 관리할 수 있습니다.
 
 
-
-
 ---
-
-
 
 ## 주요 Network 장비
 
@@ -135,11 +131,7 @@ Repeater, Hub, Lan Card(NIC), Modem, Bridge, Router, Switch, Gateway, Firewall
 
 
 
-
-
 ---
-
-
 
 
 

@@ -5,8 +5,6 @@ date: 2024-03-04
 ---
 
 
-
-
 ## `void` Type : 함수가 명시적으로 값을 반환하지 않을 때
 
 - `void` type은 함수가 명시적으로 값을 반환하지 않을 때 사용하는 type입니다.
@@ -90,11 +88,7 @@ async function saveToDatabase(data: any): Promise<void> {
 ```
 
 
-
-
 ---
-
-
 
 
 ## `void`와 `undefined`, `null`의 관계

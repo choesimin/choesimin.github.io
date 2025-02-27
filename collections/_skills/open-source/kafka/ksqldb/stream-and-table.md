@@ -5,8 +5,6 @@ title: ksqlDB Data Model - Stream과 Table
 ---
 
 
-
-
 ## Stream & Table : ksqlDB Data Model
 
 - ksqlDB의 Stream과 Table은 **data를 처리하는 두 가지 주요 추상화 model**입니다.
@@ -28,11 +26,7 @@ title: ksqlDB Data Model - Stream과 Table
     - **update model인 Table**은 **최신 상태만 유지**하기 때문에, **상태 기반 처리에 적합**합니다.
 
 
-
-
 ---
-
-
 
 
 ## Stream : 무한히 지속되는 Event의 흐름
@@ -131,11 +125,7 @@ EMIT CHANGES;
 ```
 
 
-
-
 ---
-
-
 
 
 ## Table : 특정 시점의 상태
@@ -249,11 +239,7 @@ EMIT CHANGES;
 ```
 
 
-
-
 ---
-
-
 
 
 ## Stream을 Table로 변환하기
@@ -436,4 +422,3 @@ CREATE TABLE error_counts AS
 
 - 각 service의 error 발생 횟수를 실시간으로 monitoring합니다.
 - 특정 임계값을 넘으면 경고를 발생시키는 용도로 활용합니다.
-

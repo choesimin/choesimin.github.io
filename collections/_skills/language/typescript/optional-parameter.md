@@ -5,8 +5,6 @@ date: 2024-03-09
 ---
 
 
-
-
 ## Optional Parameter : 필수가 아닌 매개 변수
 
 - optional parameter(선택적 매개 변수)는 함수에 전달할 수도 있고 **생략할 수도 있는 매개 변수**입니다.
@@ -67,11 +65,7 @@ console.log(greet("Bob", "Hi"));    // Hi, Bob!
 - `undefined`에 대한 typee guard를 통해 optional property를 생략했을 때도 함수가 예상대로 동작하도록 할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Default Parameter : 더 안전한 Optional Parameter

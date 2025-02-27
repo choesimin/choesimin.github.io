@@ -5,8 +5,6 @@ date: 2024-05-31
 ---
 
 
-
-
 ## Deque - Stack과 Queue를 합친 것
 
 - Deque(Double-ended Queue)는 양 끝에서 삽입과 삭제가 모두 가능한 자료 구조입니다.
@@ -26,11 +24,7 @@ date: 2024-05-31
 - **deleteLast()** : Deque의 뒤쪽에서 item을 삭제합니다.
 
 
-
-
 ---
-
-
 
 
 ## 배열로 Deque 구현하기
@@ -190,11 +184,7 @@ int main() {
 ```
 
 
-
-
 ---
-
-
 
 
 ## 연결 List로 Deque 구현하기

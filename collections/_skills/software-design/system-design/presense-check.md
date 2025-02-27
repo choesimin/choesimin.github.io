@@ -5,19 +5,13 @@ date: 2024-02-22
 ---
 
 
-
-
 - 사용자의 접속 상태를 표시하는 것은 SNS 또는 chatting application의 핵심적 기능힙니다.
 
 - 접속 상태 server(presense server)를 통해 사용자의 상태를 관리합니다.
     - 접속 상태 server는 client와 WebSocket으로 통신하는 실시간(real-time) service입니다.
 
 
-
-
 ---
-
-
 
 
 ## 사용자 Login/Logout
@@ -73,11 +67,7 @@ user -->|Logout| api_server --> presense_server -->|Update User to Offline| stor
 ```
 
 
-
-
 ---
-
-
 
 
 ## 접속 장애
@@ -133,11 +123,7 @@ s ->> kv : Update to Offline
         - key-value 저장소에 보관된 사용자의 **`status`를 'offline'으로 갱신**하여 처리합니다.
 
 
-
-
 ---
-
-
 
 
 ## 상태 정보의 전송
@@ -176,11 +162,7 @@ channel_ad -.-|구독| user_d
     - 이런 성능 문제를 해소하는 방법으로 'service 또는 group에 입장하는 순간에만 상태 정보를 읽어가게 하는 것'이나, '수동으로(manual) 접속 상태를 갱신하도록 유도하는 것' 등이 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

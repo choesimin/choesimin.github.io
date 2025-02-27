@@ -5,8 +5,6 @@ date: 2025-02-10
 ---
 
 
-
-
 ## Grafana : Data Visualization & Monitoring Tool
 
 - Grafana는 **system monitoring과 분석을 위한 open source visualization platform**입니다.
@@ -62,11 +60,7 @@ date: 2025-02-10
         - predictive maintenance를 위한 패턴을 분석합니다.
 
 
-
-
 ---
-
-
 
 
 ## Grafana의 다양한 기능들
@@ -196,11 +190,7 @@ mindmap
     - dashboard와 data source를 code로 관리할 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Monitoring Tool 비교

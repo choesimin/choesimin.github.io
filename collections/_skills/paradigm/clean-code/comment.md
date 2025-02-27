@@ -5,8 +5,6 @@ date: 2023-04-18
 ---
 
 
-
-
 ## 주석은 필요악
 
 - 좋은 code는 **표현력이 풍부하고 깔끔하며 주석이 거의 없는 code**입니다.
@@ -39,11 +37,7 @@ if ((employee.flags & HOURLY_FLAG) && (employee.age > 65)) { ... }
 ```
 
 
-
-
 ---
-
-
 
 
 ## 주석이 필요하거나 유익한 경우
@@ -75,11 +69,7 @@ if ((employee.flags & HOURLY_FLAG) && (employee.age > 65)) { ... }
     - 공개 API는 설명이 필요합니다.
 
 
-
-
 ---
-
-
 
 
 ## 나쁜 주석
@@ -142,11 +132,7 @@ if ((employee.flags & HOURLY_FLAG) && (employee.age > 65)) { ... }
     - Javadocs 주석이 요구하는 형식으로 인해 보기 싫고 산만해집니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

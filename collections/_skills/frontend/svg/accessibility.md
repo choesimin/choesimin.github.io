@@ -5,8 +5,6 @@ date: 2023-08-20
 ---
 
 
-
-
 - 그림(image), 소리(sound), 문자(text), 상호 작용(interaction) 등의 매체(multimedia)는 사용자가 이해하기 쉽게 정보를 간소화하고 분명하게 만들어 전달하기 때문에 그 자체로 접근성이 좋습니다.
 - 그러나 그림이나 문자 같은 그려진 내용(rendered contents)는 비가시적 장치(non-visual device) 사용자에 대한 접근성이 매우 떨어집니다.
     - 예를 들어, 시각 장애인과 같이 audio 장치만 사용할 수 있는 환경의 사용자는 그림으로부터 정보를 얻을 수 없습니다.
@@ -14,11 +12,7 @@ date: 2023-08-20
 - SVG는 alternative equivalent로써 여러 가지 metadata를 포함하고 있기 때문에, SVG의 사용은 접근성을 높입니다.
 
 
-
-
 ---
-
-
 
 
 ## SVG의 특징 1 : Vector Graphic
@@ -48,11 +42,7 @@ date: 2023-08-20
 | 구조 정보의 유무 | SVG는 구조 정보를 가지고 있습니다.<br>SVG를 구성하는 vector graphic component들의 역할과 배치, vector graphic component를 구성하는 path, color 등의 정보로 전체 image의 구조적인 특징을 설명할 수 있습니다. | PNG는 구조 정보를 가지고 있지 않습니다.<br>각 좌표의 pixel이 어떤 색상값을 가졌는지만 알 수 있으며, pixel들의 색상값만으로는 구조적인 특징을 설명할 수 없습니다. |
 
 
-
-
 ---
-
-
 
 
 ## SVG의 특징 2 : XML
@@ -90,11 +80,7 @@ date: 2023-08-20
     - 예를 들어, MathML 문서에서 SVG를 사용하여 방정식을 배치하고 graph를 그릴 수 있습니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference

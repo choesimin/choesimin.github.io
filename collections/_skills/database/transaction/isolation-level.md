@@ -5,8 +5,6 @@ date: 2024-10-13
 ---
 
 
-
-
 ## 격리 수준 : 동시성 제어를 위한 설정
 
 - database에서 **격리 수준(Isolation Level)**은 **동시에 여러 transaction이 처리될 때 transaction끼리 얼마나 서로 고립되어 있는지를 나타내는 개념**입니다.
@@ -40,11 +38,7 @@ date: 2024-10-13
 	- **Pessimistic Locking** : 충돌 가능성이 높을 때는 transaction 초기에 lock을 걸고 다른 transaction의 접근을 막는 방식입니다.
 
 
-
-
 ---
-
-
 
 
 ## 4가지 격리 수준
@@ -143,11 +137,7 @@ date: 2024-10-13
         - 특히 돈과 관련된 system에서는 data 일관성이 매우 중요합니다.
 
 
-
-
 ---
-
-
 
 
 ## Reference
