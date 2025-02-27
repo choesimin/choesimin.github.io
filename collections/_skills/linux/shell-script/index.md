@@ -5,7 +5,12 @@ date: 2024-05-18
 ---
 
 
+## Shell Script : Shell Command Programming
+
 - Shell Script는 UNIX 계열 운영 체제에서 **명령어를 모아 놓은 Text File**입니다.
+    - Shell Script는 **shell command를 사용하여 programming하는 것**을 의미합니다.
+
+- Shell Script는 `.sh` 확장자를 가지며, script 내용은 `#!/bin/bash`로 시작합니다.
 
 - Shell Script를 통해 사용자는 반복적인 작업을 자동화하고, system 관리 작업을 쉽게 할 수 있습니다.
     - 반복적인 명령어 입력을 script에 정의하여 **자동화**할 수 있습니다.

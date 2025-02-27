@@ -5,7 +5,7 @@ title: vim-plug - Simple Vim Plugin Manager
 ---
 
 
-## vim-plug : Vim Plugin Manager
+## vim-plug : 가장 간단한 Vim Plugin Manager
 
 - **vim-plug**는 여러 Vim plugin들을 최소한의 설정으로 관리할 수 있게 해주는 **plugin manager 중 하나**입니다.
     - `.vimrc` file에서 plugin을 선언적으로 관리합니다.

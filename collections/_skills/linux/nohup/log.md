@@ -5,7 +5,7 @@ date: 2023-04-05
 ---
 
 
-## nohup의 log
+## `nohup`의 Log
 
 - nohup을 사용하면 기본적으로 `nohup.out`에 표준 출력을 쌓습니다.
 
@@ -25,7 +25,7 @@ nohup ./my_shellscript.sh > nohup_script.out
     - redirection(`>`, `>>`)을 이용합니다.
 
 
-### 표준 출력과 표준 오류를 각각 다른 file에 쓰기
+### 표준 출력과 표준 오류를 각각 다른 File에 쓰기
 
 ```sh
 nohup ./my_shellscript.sh 1 > my_shellscript.out 2 > my_shellscript.err &
@@ -34,7 +34,7 @@ nohup ./my_shellscript.sh 1 > my_shellscript.out 2 > my_shellscript.err &
 - 표준 오류(2)는 my_shellscript.err file로 redirection합니다.
 
 
-### 표준 출력과 표준 오류를 같은 file에 쓰기
+### 표준 출력과 표준 오류를 같은 File에 쓰기
 
 ```sh
 nohup ./my_shellscript.sh > my_shellscript.log 2>&1 &
@@ -43,7 +43,7 @@ nohup ./my_shellscript.sh > my_shellscript.log 2>&1 &
 - 표준 오류(2)도 표준 출력(1)이 쓰여지는 file에 redirection합니다.
 
 
-### 표준 출력(log)을 기록하고 싶지 않을 때
+### 표준 출력(Log)을 기록하고 싶지 않을 때
 
 ```sh
 nohup ./my_shellscript.sh > /dev/null

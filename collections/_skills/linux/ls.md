@@ -1,11 +1,11 @@
 ---
 layout: skill
-title: ls - Terminal에서 File 목록 출력하기
+title: ls - File 목록 보기
 date: 2023-04-04
 ---
 
 
-## ls : 목록을 출력하는 명령어
+## `ls` : Terminal에서 File 목록을 출력하는 명령어
 
 - 'list'의 줄임말입니다.
 - directory에 있는 file 목록 정보를 확인합니다.
@@ -47,7 +47,10 @@ ls -alSrh
 ---
 
 
-## 현재 위치의 File 목록 출력하기
+## 사용 예시
+
+
+### 현재 위치의 File 목록 출력하기
 
 ```sh
 ls
@@ -55,7 +58,7 @@ ls -l
 ```
 
 
-## Directory 안의 File 출력하기
+### Directory 안의 File 출력하기
 
 ```sh
 ls /
@@ -64,7 +67,7 @@ ls -l /home
 ```
 
 
-## Directory 내용을 File에 저장하기
+### Directory 내용을 File에 저장하기
 
 ```sh
 ls > file.txt
@@ -72,7 +75,7 @@ ls > file.txt
 - redirection 연산자(`>`, `>>`)를 사용합니다.
 
 
-## 검색하기
+### 검색하기
 
 ```sh
 ls v*.c

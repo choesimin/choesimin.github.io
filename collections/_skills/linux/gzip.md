@@ -1,7 +1,16 @@
 ---
 layout: skill
-title: gzip, gunzip - File을 압축하고 해제하기
+title: gzip, gunzip - File 압축/해제
 date: 2023-08-23
+---
+
+
+## `gzip`과 `gunzip` : Linux에서 File을 압축하고 해제하기
+
+- `gzip`은 file을 압축하는 명령어입니다.
+- `gunzip`은 `gzip`으로 압축한 file을 해제하는 명령어입니다.
+
+
 ---
 
 
@@ -67,7 +76,7 @@ gzip -d [gz_file_name]
 ---
 
 
-## 여러 개의 `.gz` file에서 특정 단어를 검색하기
+## 여러 개의 `.gz` File에서 특정 단어를 검색하기
 
 - `gzip` 명령어와 `grep` 명령어를 함께 사용하거나, `zgrep` 명령어를 사용하여 압축된 file 내의 문자열을 검색할 수 있습니다.
     - `gzip -c`는 `zcat`과 동일하게 동작합니다.

@@ -31,7 +31,10 @@ tail [option] [file_name]
 ---
 
 
-## 실시간 Log 보기
+## 사용 예사
+
+
+### 실시간 Log 보기
 
 ```sh
 tail -f mylog.log    # real-time log 출력
@@ -40,7 +43,7 @@ tail -f mylog.log | grep 192.168.15.86    # 실시간으로 IP address가 192.16
 ```
 
 
-## 여러 File을 동시에 확인하기
+### 여러 File을 동시에 확인하기
 
 ```sh
 tail mylog1.log mylog2.log

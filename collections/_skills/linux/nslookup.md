@@ -1,11 +1,11 @@
 ---
 layout: skill
-title: nslookup - Domain 이름으로 IP 주소 확인하기
+title: nslookup - DNS Server Query Tool
 date: 2024-10-02
 ---
 
 
-## `nslookup` : DNS Server Query Tool
+## `nslookup` : Domain 이름으로 IP 주소 확인하기
 
 ```bash
 nslookup example.com
@@ -60,7 +60,6 @@ Address: 2404:6800:4004:801::200e    # IPv6 주소
         - 즉, 이 응답은 임시 저장된(cached) data를 기반으로 제공되는 경우가 많습니다.
         - DNS server는 다른 권위 있는 server로부터 받은 정보를 임시 저장(caching)하고 있다가, 이후에 동일한 요청이 있을 때 그 data를 반환합니다.
     - 보통 사용자가 일반 DNS server(공용 DNS server 등)를 사용하여 조회할 때 나타나는 응답입니다.
-
 
 #### 권위 있는 Name Server 조회하기
 

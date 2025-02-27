@@ -1,11 +1,11 @@
 ---
 layout: skill
-title: netstat - Network 통계 조회 명령어
+title: netstat - Network 상태 조회하기
 date: 2024-11-01
 ---
 
 
-## `netstat` : Network 상태 조회하기
+## `netstat` : Network 통계 조회 명령어
 
 ```sh
 # LISTEN 상태의 TCP 연결 조회하기

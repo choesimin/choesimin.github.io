@@ -5,12 +5,10 @@ date: 2023-07-08
 ---
 
 
-## cp : File, Directory 복사하기
+## `cp` : File, Directory 복사하기
 
 - CoPy의 약자입니다.
 - file, directory를 복사하는 Linux 명령어입니다.
-
-
 
 
 ### 사용법

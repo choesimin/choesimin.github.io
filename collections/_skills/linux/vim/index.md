@@ -7,14 +7,9 @@ date: 2023-07-20
 
 ## Vim : 개선된 Vi
 
-```txt
-          ∧
-          |
-          |
-<-- h  j  k  l -->
-       |
-       |
-       ∨
+```sh
+vi file_name.txt
+vim file_name.txt
 ```
 
 - Linux의 대표적인 편집기인 vi와 호환되는 text 편집기입니다.
@@ -99,6 +94,16 @@ timeline
 
 
 ## Cursor 이동시키기
+
+```txt
+          ∧
+          |
+          |
+<-- h  j  k  l -->
+       |
+       |
+       ∨
+```
 
 - cursor를 이동시키는 방법은 기준에 따라 여러 가지가 있습니다.
 

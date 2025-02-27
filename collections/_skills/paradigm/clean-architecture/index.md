@@ -1,11 +1,11 @@
 ---
 layout: skill
-title: Clean Architecture - 깨끗한 Architecture 설계하기
+title: Clean Architecture
 date: 2023-11-02
 ---
 
 
-## Architecture
+## Architecture 설계 : 비용을 낮추고 품질을 높이기
 
 - software system의 architecture란 **system을 구축했던 사람들이 만들어낸 system의 형태**입니다.
     - architecture는 system을 component로 분할하는 방법, 분할된 component를 배치하는 방법, component의 의사소통하는 방식에 따라 정해집니다.
@@ -77,7 +77,6 @@ Software는 Soft(부드러운)와 Ware(제품)의 합성어입니다.
     - '기능의 동작'보다 '변경이 쉬운 구조'가 더 중요합니다.
     - '변경에 드는 비용'이 '변경으로 창출되는 수익'을 초과하는 경우, 현실적으로 수정이 불가능한 system이 됩니다.
     - 기능에만 집중하다 보면, 구조의 가치가 떨어져 현실적으로 변경이 불가능해지는 상황에 빠질 수 있습니다.
-
  
 ```mermaid
 flowchart TD
@@ -89,7 +88,6 @@ structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program
 
 - 기능의 긴급성이 아닌 architecture의 중요성을 설득하는 일은 개발자가 책임져야 합니다.
     - 업무 관리자는 보통 architecture의 중요성을 평가할만한 능력을 가지지 못하기 때문입니다.
-
 
 #### 개발 우선순위
 
@@ -105,8 +103,7 @@ structure([구조, 즉 architecture를 우선한 경우]) --> structure1[program
 - 업무 관리자와 개발자가 흔히 하는 실수는 '긴급하지만 중요하지 않은 일'을 첫 번째로 격상시키는 것입니다.
 - 기능의 긴급성이 아닌 architecture의 중요성을 설득하는 일은 software 개발팀이 책임져야 합니다.
 
-
-##### Eisenhower Matrix
+#### Eisenhower Matrix
 
 |  | 긴급한 일 | 긴급하지 않은 일 |
 | --- | --- | --- |

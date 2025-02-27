@@ -204,7 +204,7 @@ service --> queue --> worker_1 & worker_2 & worker_3 & worker_4
 | --- | --- | --- | --- | --- | --- |
 | **Messaging 모델** | 분산 log stream (event를 시간 순서대로 저장하는 log 중심 구조) | 분산 Pub/Sub (segment 기반 storage로 유연한 topic 관리) | AMQP 기반 Broker (Exchange를 통한 유연한 routing 지원) | JMS 기반 Broker (Point-to-Point와 Pub/Sub 모두 지원) | Pub/Sub (단순하지만 빠른 message 배포) |
 | **최대 Message 크기** | 무제한 (기본 1MB, 설정으로 조정 가능) | 무제한 (기본 5MB, 설정으로 조정 가능) | 제한적 (기본 128MB, 성능 고려 시 1MB 이하 권장) | 제한적 (기본 64MB, Memory 제약 고려 필요) | 제한적 (기본 512MB, Memory 상황에 따라 제한) |
-| **순서 보장** | Partition 단위 (partition 내에서만 순서 보장, key 설정으로 제어) | Partition 단위 (partition 내 순서 보장, key 기반 routing) | FIFO Queue 단위 (queue 단위로 완벽한 순서 보장) | FIFO Queue 단위 (queue 단위 순서 보장, 우선 순위 설정 가능) | 미보장 (Pub/Sub 특성상 순서 보장이 어려움) |
+| **순서 보장** | Partition 단위 (partition 내에서만 순서 보장, key 설정으로 제어) | Partition 단위 (partition 내 순서 보장, key 기반 routing) | FIFO Queue 단위 (queue 단위로 완벽한 순서 보장) | FIFO Queue 단위 (queue 단위 순서 보장, 우선순위 설정 가능) | 미보장 (Pub/Sub 특성상 순서 보장이 어려움) |
 | **영속성** | Disk 기반 (log segment file로 저장, 보관 기간 설정) | Disk 기반 (BookKeeper를 통한 분산 저장, 계층화된 storage) | Disk 기반 (Memory와 Disk 혼합 사용, transaction 지원) | Disk 기반 (KahaDB 저장소 사용, transaction 지원) | Memory 기반 (RDB/AOF로 선택적 영속성 제공) |
 | **최대 처리량** | ~100만 msg/s (batch 처리로 높은 처리량 달성) | ~100만 msg/s (segment 기반 처리로 높은 확장성) | ~10만 msg/s (단일 node 기준, cluster로 확장 가능) | ~10만 msg/s (JVM 기반으로 처리량 제한) | ~100만 msg/s (In-memory 처리로 높은 성능) |
 | **지연 시간** | Millisecond 단위 (batch 처리로 인한 추가 지연 발생 가능) | Millisecond 단위 (storage 계층으로 인한 약간의 overhead) | Microsecond 단위 (단순한 Broker 구조로 빠른 전달) | Millisecond 단위 (JVM 환경으로 인한 기본 지연 존재) | Microsecond 단위 (In-memory 처리로 매우 빠른 응답) |

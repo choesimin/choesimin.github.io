@@ -1,9 +1,11 @@
 ---
 layout: skill
-title: Clean Architecture - Architecture 계층 분리하기
+title: Clean Architecture - 계층 분리
 date: 2023-11-28
 ---
 
+
+## Architecture 계층 분리하기
 
 - Hexagonal Architecture, DCI(Data, Context, Interaction), BCE(Boundary-Control-Entity)와 같은 system architecture에 관련된 여러 생각들은 모두 **계층 분리를 통한 관심사의 분리**를 목표로 하며, 비슷한 특징을 가지고 있습니다.
 
@@ -16,7 +18,7 @@ date: 2023-11-28
 | 외부 Agency에 대한 독립성 | 업무 규칙은 외부의 interface에 대해 전혀 알지 못합니다. |
 
 
-## 계층 경계를 횡단하는 Data
+### 계층 경계를 횡단하는 Data
 
 - 경계를 가로질러 data를 전달할 때, **data는 항상 내부의 계층에서 사용하기에 가장 편리한 형태**여야 합니다.
     - 경계(계층)를 횡단하는 data는 간단한 data 구조로 이루어지며, 구조체나 DTO 등 원하는 형태를 선택할 수 있습니다.
@@ -24,7 +26,7 @@ date: 2023-11-28
     - data 구조가 의존성을 가져서 의존성 규칙을 어기게 해선 안 됩니다.
 
 
-## 의존성 규칙
+### 의존성 규칙
 
 - source code 의존성은 항상 내부 계층을 향하며, 내부로 이동할수록 추상화와 정책의 수준이 높아집니다.
     - 가장 외부에 있는 계층은 저수준의 세부 사항이며, 내부로 이동할수록 점점 더 추상화되고 더 높은 수준의 정책들을 캡슐화(encapsulation)합니다.
@@ -34,7 +36,10 @@ date: 2023-11-28
     - 내부 계층에 속한 요소는 외부 계층에 속한 어떤 것(예를 들어, 함수, class, 변수 등의 모든 software entity)도 알지 못합니다.
 
 
-## Architecture 계층 Diagram
+---
+
+
+## Architecture Layer Diagram
 
 - 상황에 따라서 더 많은 계층이 필요할 수도 있으며, 아래의 diagram은 예시입니다.
 
@@ -62,6 +67,7 @@ end
 framework_and_driver --> interface_adapter --> application_business_logic --> 
 enterprise_business_logic
 ```
+
 
 ### Enterprise 업무 규칙 계층 : Entity
 

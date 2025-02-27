@@ -5,20 +5,20 @@ date: 2023-04-03
 ---
 
 
-## grep : 문자열 검색 명령어
+## `grep` : 문자열 검색 명령어
 
 - 특정 file에서 지정한 문자열이나 정규표현식을 포함한 행을 출력해주는 명령어입니다.
 - `tail`, `ls` 등 다양한 명령어와 조합하여 응용하는 경우가 많습니다.
 
 
-## 사용법
+### 사용법
 
 ```sh
 grep [option] [pattern] [file_name]
 ```
 
 
-## grep option
+### Option
 
 | Option | 설명 |
 | --- | --- |
@@ -37,7 +37,7 @@ grep [option] [pattern] [file_name]
 | `-B` [number] | 결과부터 위로 몇줄까지 표시할지 설정합니다. |
 
 
-## grep의 종류
+### `grep`의 종류
 
 | 명령어 | 설명 | 정규표현식 사용 가능 여부 |
 | --- | --- | --- |
@@ -49,17 +49,17 @@ grep [option] [pattern] [file_name]
 ---
 
 
-## grep의 다양한 사용 예시
+## `grep`의 다양한 사용 예시
 
 
-### 실시간 log 보기
+### 실시간 Log 보기
 
 ```sh
 tail -f mylog.log | grep 192.168.15.86
 ```
 
 
-### 특정 file에서 여러 개의 문자열 찾기
+### 특정 File에서 여러 개의 문자열 찾기
 
 ```sh
 cat file.txt | grep "A\|B"
@@ -76,21 +76,21 @@ cat file.txt | grep "$str_a\|$str_b"
 ```
 
 
-### 실행 중인 Java Process를 검색하되, grep 명령어는 제외하기
+### 실행 중인 Java Process를 검색하되, `grep` 명령어는 제외하기
 
 ```sh
 ps -ef | grep java | grep -v grep
 ```
 
 
-### 특정 file에서 문자열을 찾고, 그 결과에서 다시 문자열 찾기
+### 특정 File에서 문자열을 찾고, 그 결과에서 다시 문자열 찾기
 
 ```sh
 cat mylog.txt | grep 'Apple' | grep 'Juice'
 ```
 
 
-### grep한 결과 값 txt file로 저장하기
+### `grep`한 결과 값 TXT File로 저장하기
 
 ```sh
 grep -n 'Apple' mylog.txt > result.txt

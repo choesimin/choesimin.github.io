@@ -1,11 +1,13 @@
 ---
 layout: skill
-title: Clean Architecture - 정책 (Policy)
+title: Clean Architecture - 정책
 date: 2023-11-02
 ---
 
 
-- software system이란 정책을 기술한 것이며, **정책은 모든 업무 규칙(business logic)과 절차(process)를 구체화합니다.**
+## 정책 : Software의 핵심 가치
+
+- software system이란 정책(policy)을 기술한 것이며, **정책은 모든 업무 규칙(business logic)과 절차(process)를 구체화합니다.**
     - 하나의 정책은 이 정책을 서술하는 여러 개의 작은 정책들로 쪼갤 수 있습니다.
     - system의 본질적인 가치는 세부 사항이 아닌 정책에 있습니다.
 

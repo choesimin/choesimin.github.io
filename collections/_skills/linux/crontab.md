@@ -1,11 +1,11 @@
 ---
 layout: skill
-title: crontab - Task Scheduler로 주기적인 작업 관리하기
+title: crontab - Linux Task Scheduler
 date: 2023-09-23
 ---
 
 
-## crontab : Linux의 기본 Task Scheduler
+## `crontab` : Task Scheduler로 주기적인 작업 관리하기
 
 - crontab은 Linux에 기본 program으로 설치되어 있는 작업 Scheduler입니다.
 
@@ -21,6 +21,7 @@ date: 2023-09-23
 ```sh
 crontab [option]
 ```
+
 
 ### Option
 

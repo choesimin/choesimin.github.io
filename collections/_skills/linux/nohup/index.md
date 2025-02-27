@@ -5,15 +5,13 @@ date: 2023-04-05
 ---
 
 
-## nohup : No Hang Up
+## `nohup` : No Hang Up
 
 - program을 daemon의 형태로 실행시킵니다.
     - logout으로 session과의 연결이 종료되어도 program이 종료되지 않습니다.
 
 
-
-
-## 사용법
+### `nohup` 사용법
 
 ```sh
 nohup [program_command]
@@ -47,7 +45,7 @@ nohup ./my_shellscript.sh &
         - 특정 version 이상부터 session이 끊어져도 program이 종료되지 않는 option이 default로 바뀌었기 때문입니다.
 
 
-### `shopt` : `&`의 default option을 확인하기
+### `shopt` : `&`의 Default Option 확인하기
 
 ```sh
 shopt | grep huponexit
@@ -60,7 +58,7 @@ shopt | grep huponexit
 ---
 
 
-## background에 떠 있는 process 종료하는 방법
+## Background에 떠 있는 Process 종료하는 방법
 
 1. `ps` 명령어로 `process_id`를 알아냅니다.
     - `ps -ef | grep my_shellscript.sh`

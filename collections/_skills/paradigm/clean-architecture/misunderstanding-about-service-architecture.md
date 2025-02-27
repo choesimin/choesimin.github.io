@@ -5,13 +5,14 @@ date: 2023-11-29
 ---
 
 
-## Service Architecture
+## Service 지향 Architecture와 MicroService Architecture
 
 - **Service 지향 Architecture**와 **MicroService Architecture**가 큰 인기를 끌고 있습니다.
     - Service 지향 Architecture(SOA, Service Oriented Architecture)는 대규모 computer system을 구축할 때의 개념으로, 업무 상의 일 처리에 해당하는 software 기능을 service로 판단하여 그 service를 network 상에 연동하여 system 전체를 구축해 나가는 방법론입니다.
     - MicroService Architecture는 application을 느슨하게 결합된 service의 모임으로 구조화하는 service 지향 architecture(SOA) style의 일종인 software 개발 기법입니다.
 
 - service를 사용하면, 상호 결합이 철저하게 분리되고 개발과 배포 독립성을 지원하는 것처럼 보이지만, 이는 일부만 맞는 말입니다.
+
 - 단순히 application의 행위를 분리할 뿐인 service라면 값비싼 함수 호출에 불과하며, architecture 관점에서 꼭 중요하다고 볼 수 없습니다.
     - system architecture는 의존성 규칙을 준수하며 고수준의 정책을 저수준의 정책으로부터 분리하는 경계에 의해 정의됩니다.
         - service를 사용한다는 사실만으로는 본질적으로 architecture에 해당하지 않습니다.
