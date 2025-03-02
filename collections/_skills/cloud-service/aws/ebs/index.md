@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Amazon EBS - EC2 Instance의 용량 관리하기
 date: 2023-07-23
+title: Amazon EBS - EC2 Instance의 용량 관리하기
+description: Amazon EBS는 EC2 Instance의 용량을 관리하는 데 사용됩니다.
 ---
 
 

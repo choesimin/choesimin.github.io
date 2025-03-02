@@ -1,17 +1,14 @@
 ---
 layout: skill
-title: Amazon S3 - S3로 정적 Website 구축하기
 date: 2023-08-13
----
-
-
-- S3를 사용하여 정적 Website를 구축할 수 있습니다.
-
-
+title: Amazon S3로 정적 Website 구축하기
+description: S3를 사용하여 정적 Website를 구축할 수 있습니다.
 ---
 
 
 ## S3로 정적 Website 만드는 과정
+
+- S3를 사용한 Website는 HTML, CSS, JavaScript 등의 정적 파일로 구성됩니다.
 
 
 ### 1. S3 Bucket 만들기

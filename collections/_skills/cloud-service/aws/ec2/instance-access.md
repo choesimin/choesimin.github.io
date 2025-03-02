@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Amazon EC2 - Instance에 접속하기
 date: 2023-07-16
+title: Amazon EC2 - Instance에 접속하기
+description: EC2 Instance에 접속하기 위해서는 SSH를 사용합니다.
 ---
 
 

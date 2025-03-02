@@ -1,21 +1,42 @@
 ---
 layout: skill
-title: AWS AutoScaling - 부하에 따라 Instance 갯수를 자동으로 조정하기
 date: 2023-07-30
+title: AWS AutoScaling - 부하에 따라 Instance 갯수를 자동으로 조정하기
+description: AWS의 AutoScaling service는 수평적 확장과 축소를 통해 application의 부하(load)를 처리할 수 있는 정확한 수의 instance를 보유하도록 보장합니다.
 ---
 
 
-- AWS의 AutoScaling service는 수평적 확장과 축소를 통해 application의 부하(load)를 처리할 수 있는 정확한 수의 instance를 보유하도록 보장합니다.
-    - CloudWatch가 현재 상황을 지표와 비교하여, Instance의 갯수를 자동으로 조정합니다.
+## EC2 AutoScaling
+
+- AutoScaling은 application의 부하에 따라 Instance의 갯수를 자동으로 조정하는 서비스입니다.
+    - application의 부하가 증가하면 Instance를 늘리고, 부하가 감소하면 Instance를 줄입니다.
+    - 이를 통해 application의 부하를 처리할 수 있는 최적의 Instance 갯수를 유지합니다.
+
+- AutoScaling은 EC2 Instance를 기반으로 동작합니다.
+    - 따라서 AutoScaling Group을 생성할 때는 EC2 Instance를 먼저 생성해야 합니다.
+    - AWS에서는 CloudWatch가 현재 상황을 지표와 비교하여, Instance의 갯수를 자동으로 조정합니다.
+
+
+### Scaling의 종류 : Scale Out/In vs Scale Up/Down
 
 | Scale Out/In | Scale Up/Down |
 | --- | --- |
-| 수평적인 확장과 축소입니다. server의 수를 조정합니다. | 수직적인 확장과 축소입니다. server의 성능을 조정합니다. |
+| 수평적인 확장과 축소 | 수직적인 확장과 축소 |
+| server의 수를 늘리거나 줄임 | server의 성능을 늘리거나 줄임 |
+
+- Scale Out/In은 AutoScaling에서 사용하는 용어입니다.
+    - application의 부하에 따라 server의 수를 늘리거나 줄입니다.
+
+- Scale Up/Down은 server의 성능을 늘리거나 줄이는 것을 의미합니다.
+    - server의 성능을 늘리기 위해, server의 CPU, Memory, Disk 등을 늘립니다.
 
 
+---
 
 
 ## AutoScaling 설정하는 방법
+
+- AWS의 AutoScaling 기능은 EC2 Instance와 CloudWatch를 기반으로 동작합니다.
 
 
 ### 1. EC2 Instance의 Image 만들기

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Amazon EFS - 탄력적인 완전 관리형 NFS
 date: 2023-08-06
+title: Amazon EFS - 탄력적인 완전 관리형 NFS
+description: Amazon EFS는 탄력적인 완전 관리형 NFS(Network File System)입니다.
 ---
 
 

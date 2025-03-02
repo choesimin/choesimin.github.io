@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: AWS - Amazon Web Services
 date: 2023-07-16
+title: AWS - Amazon Web Services
+description: AWS는 Amazon에서 제공하는 Cloud service입니다.
 ---
 
 

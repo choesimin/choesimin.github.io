@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: Amazon EBS - 새로운 Volume을 만들어 EC2 Instance에 연결하기
 date: 2023-07-23
+title: Amazon EBS - 새로운 Volume을 만들어 EC2 Instance에 연결하기
+description: Amazon EBS의 새로운 Volume을 만들어 EC2 Instance에 추가할 수 있습니다.
 ---
 
+
+## Elastic Block Store : EC2 Instance Volume
 
 - EBS의 새로운 Volume을 만들어 EC2 Instance에 추가(mount)할 수 있습니다.
 

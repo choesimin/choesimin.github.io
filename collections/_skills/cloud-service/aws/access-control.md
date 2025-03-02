@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: AWS Instance에 대한 접근을 제어하는 방법 - Security group, Network ACL
 date: 2023-07-31
+title: AWS Instance에 대한 접근 제어 - Security group, Network ACL
+description: AWS Instance에 대한 접근 제어를 위해 Security group과 Network ACL을 사용할 수 있습니다.
 ---
 
 

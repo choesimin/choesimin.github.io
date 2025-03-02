@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Amazon RDS - 완전 관리형 RDB 사용하기
 date: 2023-07-23
+title: Amazon RDS - 완전 관리형 RDB 사용하기
+description: Amazon RDS는 관계형 database에 대한 완전 관리형 service입니다.
 ---
 
 

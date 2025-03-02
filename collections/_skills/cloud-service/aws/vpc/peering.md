@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Amazon VPC Peering - VPC끼리 연결하기
 date: 2023-07-16
+title: Amazon VPC Peering - VPC끼리 연결하기
+description: Amazon VPC Peering을 사용하여 서로 다른 VPC를 연결할 수 있습니다.
 ---
 
 

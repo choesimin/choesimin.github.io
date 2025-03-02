@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Cloud Service
 date: 2025-02-09
+title: Cloud Service
+description: Cloud Service는 Network로 Computing Resource를 공유하는 model이며, Packaged Software, IaaS, PaaS, SaaS로 나뉩니다.
 ---
 
 

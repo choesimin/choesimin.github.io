@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Amazon EC2 - Cloud Virtual Machine
 date: 2023-07-16
+title: Amazon EC2 - Cloud Virtual Machine
+description: EC2는 cloud에서 computing resource를 제공하는 Web service입니다.
 ---
 
 

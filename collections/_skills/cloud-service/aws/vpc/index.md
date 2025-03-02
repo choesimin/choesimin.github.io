@@ -1,13 +1,13 @@
 ---
 layout: skill
-title: Amazon VPC - 격리된 가상 Network
 date: 2023-07-18
+title: Amazon VPC - 격리된 가상 Network
+description: VPC는 사용자의 AWS 계정 전용 가상 network입니다.
 ---
 
 
 ## VPC : Virtual Private Cloud
 
-- VPC는 사용자의 AWS 계정 전용 가상 network입니다.
 - **VPC를 만드는 것**은 **IP 주소 범위를 설정하는 것**입니다.
 
 - AWS에서 기본으로 제공되는 VPC가 있습니다.
