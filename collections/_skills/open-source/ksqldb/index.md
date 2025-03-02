@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: ksqlDB - Kafka를 위한 Streaming Database
+title: ksqlDB - Kafka 기반의 Streaming Database
 date: 2025-01-06
 ---
 

@@ -22,7 +22,7 @@ date: 2024-05-18
 ---
 
 
-## 예제 : 간단한 백업 script
+## 예제 : Simple Backup script
 
 - directory의 file을 backup하는 간단한 Shell Script입니다.
     - `SOURCE_DIR`의 모든 file을 `BACKUP_DIR`로 복사하여 backup합니다.

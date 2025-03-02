@@ -1,6 +1,6 @@
 ---
 layout: skill
-title: nohup - Background에서 Program 실행시키기
+title: nohup - Background Program 실행시키기
 date: 2023-04-05
 ---
 
