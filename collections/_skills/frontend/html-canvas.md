@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: HTML Canvas - Pixel로 그림 그리기
 date: 2023-08-15
+title: HTML Canvas - Pixel로 그림 그리기
+description: HTML5의 Canvas 요소를 사용하여 Pixel 단위로 그림을 그릴 수 있습니다.
 ---
 
 

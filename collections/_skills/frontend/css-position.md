@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: CSS Position - 요소 배치하기
 date: 2023-05-13
+title: CSS Position - 요소 배치하기
+description: CSS의 position 속성은 문서 상에 요소를 배치하는 방법을 지정합니다.
 ---
 
 

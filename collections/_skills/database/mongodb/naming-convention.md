@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: MongoDB Naming 관습 (Database, Collection, Field)
 date: 2024-01-16
+title: MongoDB Naming 관습 (Database, Collection, Field)
+description: MongoDB에서 Database, Collection, Field의 이름을 지을 때, 지켜야 하는 naming 규칙이 있습니다.
 ---
 
 

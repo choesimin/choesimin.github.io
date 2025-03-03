@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: MySQL Comment - Table과 Column의 주석 조회하기
 date: 2023-07-30
+title: MySQL Comment - Table과 Column의 주석 조회하기
+description: MySQL의 information_schema table을 사용하여 table과 column의 주석을 조회할 수 있습니다.
 ---
 
+
+## MySQL의 주석
 
 - table과 column에 대해 작성한 주석(comment)은 `information_scheme` table에 저장됩니다.
     - 사용자가 `information_schema`의 table을 조회하는 데 필요한 권한이 있어야 합니다.

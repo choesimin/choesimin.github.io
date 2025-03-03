@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 자료 구조 - Stack
 date: 2024-05-31
+title: 자료 구조 - Stack
+description: Stack은 data를 순서대로 쌓아 올리는 자료 구조로, 후입선출(LIFO, Last In First Out) 원칙을 따릅니다.
 ---
 
 

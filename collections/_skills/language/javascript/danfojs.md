@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Danfo.js - JavaScript의 Pandas
 date: 2023-08-09
+title: Danfo.js - JavaScript의 Pandas
+description: Danfo.js는 JavaScript에서 AI를 위한 자료를 조작하고 분석하는 데 사용됩니다.
 ---
 
 

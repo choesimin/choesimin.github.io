@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 자료 구조 - Deque
 date: 2024-05-31
+title: 자료 구조 - Deque
+description: Deque는 양 끝에서 삽입과 삭제가 모두 가능한 Queue입니다.
 ---
 
 

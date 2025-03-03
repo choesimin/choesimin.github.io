@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Language
 date: 2025-02-09
+title: Language
+description: 언어는 인간의 소통 수단이자 문화적 표현 방식입니다.
 ---
 
 

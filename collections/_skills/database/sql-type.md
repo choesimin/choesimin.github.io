@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Database 조작 명령어 - DDL, DML, DCL, TCL
 date: 2025-02-03
+title: Database 조작 명령어 - DDL, DML, DCL, TCL
+description: Database를 조작하는 여러 SQL 명령어는 DDL, DML, DCL, TCL로 분류됩니다.
 ---
 
 

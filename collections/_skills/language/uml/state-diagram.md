@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: State Diagram - 객체의 상태 변화 시각화하기
 date: 2023-06-19
+title: State Diagram - 객체의 상태 변화 시각화하기
+description: State Diagram은 객체의 상태 변화를 시각화하는 UML의 한 종류로, 상태, 전이, 선택으로 구성됩니다.
 ---
 
 

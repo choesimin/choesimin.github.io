@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: MongoDB - 빠른 확장이 가능한 NoSQL Database
 date: 2023-12-29
+title: MongoDB - 빠른 확장이 가능한 NoSQL Database
+description: MongoDB는 문서 지향적인 database입니다.
 ---
 
 

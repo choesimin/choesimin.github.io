@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Network 장비
 date: 2024-09-30
+title: Network 장비
+description: Network 장비는 network를 구축하고 관리하는 데 필요한 장비로, network의 성능과 보안을 유지하는 데 중요한 역할을 합니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 단순 자료 구조 (Primitive Data Structure)
 date: 2024-05-21
+title: 단순 자료 구조 (Primitive Data Structure)
+description: 단순 자료 구조는 가장 기본적이고 필수적인 Data Type을 저장하고 처리하는 자료 구조입니다.
 ---
 
 

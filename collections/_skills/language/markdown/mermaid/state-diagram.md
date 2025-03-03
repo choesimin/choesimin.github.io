@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Mermaid.js - Markdown 문서에 State Diagram 그리기
 date: 2023-07-02
+title: Mermaid.js - Markdown 문서에 State Diagram 그리기
+description: Markdown 문서에 Mermaid.js를 사용하여 State Diagram을 그릴 수 있습니다.
 ---
 
 

@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: SVG - Path 도형 그리기
 date: 2023-08-29
+title: SVG - Path 도형 그리기
+description: SVG의 Path 도형으로 복잡한 모양을 그릴 수 있습니다.
 ---
 
+
+## Path 도형 : 복잡한 모양 그리기
 
 - **`<path>` 요소**를 사용하여 기본 도형보다 복잡한 모양의 **path 도형**을 그릴 수 있습니다.
 - path 도형은 기본 도형(직사각형, 원, 직선 등)에서 사용하는 `x`, `y`, `fill`, `stroke`, `stroke-width` 속성을 기본적으로 지원합니다.

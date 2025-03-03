@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Java - Package Design Guide
 date: 2023-12-05
+title: Java - Package Design Guide
+description: Java package 구조를 설계할 때, Layer Package Structure와 Domain Package Structure 중 하나를 선택할 수 있습니다.
 ---
 
 

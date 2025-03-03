@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: Frontend
 date: 2024-02-06
+title: Frontend
+description: Web Frontend는 web application 또는 web site의 UI(User Interface)를 담당하는 부분을 가리킵니다.
 ---
 
+
+## Web Frontend 개발하기
 
 - Web Frontend는 web application 또는 web site의 UI(User Interface)를 담당하는 부분을 가리킵니다.
     - Frontend는 사용자가 web page를 방문하고 상호 작용하는 부분을 구축하고 표시하는 역할을 합니다.

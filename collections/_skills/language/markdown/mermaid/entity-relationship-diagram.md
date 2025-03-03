@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Mermaid.js - Markdown 문서에 ERD 그리기
 date: 2024-09-25
+title: Mermaid.js - Markdown 문서에 ERD 그리기
+description: Markdown 문서에 Mermaid.js를 사용하여 Entity Relationship Diagram(ERD)을 그릴 수 있습니다.
 ---
 
 

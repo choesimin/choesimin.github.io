@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 추상 자료형 (ADT, Abstract Data Type)
 date: 2024-05-21
+title: 추상 자료형 (ADT, Abstract Data Type)
+description: 추상 자료형은 data와 data에 대한 연산을 정의하지만, data가 실제로 어떻게 구현되는지는 숨깁니다.
 ---
 
 

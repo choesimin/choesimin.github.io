@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: JavaScript - Truthy/Falsy
 date: 2024-02-28
+title: JavaScript - Truthy/Falsy
+description: JavaScript에는 참과 거짓을 나타내는 Truthy와 Falsy 개념이 있습니다.
 ---
 
 

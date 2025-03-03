@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: React - Project 시작 Template 사용하기 (CRA)
 date: 2023-11-30
+title: React - Project 시작 Template 사용하기 (CRA)
+description: CRA(Create React App)는 Facebook에서 제공하는 React Boilerplate code입니다.
 ---
 
 
@@ -19,7 +20,7 @@ date: 2023-11-30
         - 예를 들어, components, hooks, pages, ...
 
 
-## CRA 사용 방법
+### CRA 사용 방법
 
 ```sh
 npx create-react-app my-app
@@ -32,7 +33,7 @@ npm start
     - `npx`는 5.2.0 version 이상의 `npm`에서 사용할 수 있습니다.
 
 
-## CRA 초기 Project 구조
+### CRA 초기 Project 구조
 
 - CRA로 project를 생성하면 React 개발을 위한 folder와 file이 자동으로 생성됩니다.
 
@@ -56,8 +57,7 @@ my-app
     └── serviceWorker.js
 ```
 
-
-### `public` Folder
+#### `public` Folder
 
 - 정적(static) file들이 위치합니다.
 - image, CSS, HTML, JavaScript file처럼 내용이 고정되어 있어서, 별도의 처리 없이 file 내용을 그대로 보여줄 수 있는 file들이 저장됩니다.
@@ -67,8 +67,7 @@ my-app
 | `index.html` | Web site의 **기본 page**로 사용됩니다.<br>처음 접속할 때, 자동으로 load되어 화면에 표시됩니다. |
 | `menifest.json` | PWA((Progressive Web Apps))에 필수적으로 포함되어야하는 file입니다.<br>PWA란 Web과 Native App이 가진 단점을 개선하는 새로운 형태의 Web app을 의미합니다. |
 
-
-### `src` Folder
+#### `src` Folder
 
 - React application의 주요 개발 영역입니다.
 - application을 구성하는 주요 code file들이 위치합니다.

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: MySQL Query 작성/실행 순서
 date: 2023-11-23
+title: MySQL Query 작성/실행 순서
+description: MySQL query의 작성 순서와 실행 순서가 다릅니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 병행 제어 (Concurrency Control)
 date: 2024-10-24
+title: 병행 제어 (Concurrency Control)
+description: 병행 제어는 여러 transaction이 동시에 database에 접근할 때 발생하는 문제를 해결하기 위한 기법으로, database의 일관성과 효율성을 유지합니다.
 ---
 
 

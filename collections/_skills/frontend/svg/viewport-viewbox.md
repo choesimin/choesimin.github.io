@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: SVG - Viewport와 Viewbox
 date: 2023-08-24
+title: SVG - Viewport와 Viewbox
+description: SVG의 viewport와 viewbox는 graphic 영역을 markup하기 위해 사용합니다.
 ---
 
+
+## Viewport와 Viewbox
 
 - SVG Spec에서 최상위 요소인 `<svg>`는 graphic 영역을 markup하기 위해 사용합니다.
 - SVG의 graphic 요소들은 기본적으로 무한한 크기의 canvas에 그려집니다.

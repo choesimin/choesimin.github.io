@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Repeater - 신호를 증폭시키는 장비
 date: 2024-09-30
+title: Repeater - 신호를 증폭시키는 장비
+description: 중계기는 전기 신호를 증폭하여 전송 거리를 연장하는 network 장비로, network의 성능을 유지하는 데 중요한 역할을 합니다.
 ---
 
 

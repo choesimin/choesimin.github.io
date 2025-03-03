@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: HTML Layout - 화면 구조 설계하기
 date: 2023-05-11
+title: HTML Layout - 화면 구조 설계하기
+description: HTML layout은 구성 요소를 배치하는 작업을 의미합니다.
 ---
 
 

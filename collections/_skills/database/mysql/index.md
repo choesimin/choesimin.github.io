@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: MySQL - 가장 많이 사용되는 RDBMS
 date: 2024-10-09
+title: MySQL - 가장 많이 사용되는 RDBMS
+description: MySQL은 전 세계적으로 가장 널리 사용되는 RDBMS입니다.
 ---
 
 

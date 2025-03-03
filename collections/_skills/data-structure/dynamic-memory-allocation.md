@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: C 언어의 동적 Memory 할당
 date: 2024-05-22
+title: C 언어의 동적 Memory 할당
+description: C 언어에서는 동적 Memory 할당을 통해 runtime에 필요한 memory 공간을 할당합니다.
 ---
 
 

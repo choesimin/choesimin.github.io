@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Network
 date: 2024-09-03
+title: Network
+description: Network는 통신 및 Data 교환을 허용하는 연결된 장치의 System으로, 정보 공유, 자원 공유, 협업, 통신을 가능하게 합니다.
 ---
 
 

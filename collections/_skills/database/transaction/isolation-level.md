@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Transaction 격리 수준 (Isolation Level)
 date: 2024-10-13
+title: Transaction 격리 수준 (Isolation Level)
+description: Database transaction의 격리 수준(Isolation Level)은 동시성 제어를 위한 설정으로, 여러 transaction이 동시에 실행될 때 서로의 영향을 얼마나 고립시키는지를 나타냅니다.
 ---
 
 

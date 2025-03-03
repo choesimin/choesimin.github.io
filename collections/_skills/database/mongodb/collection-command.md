@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: MongoDB Collection 명령어 (조회, 생성, 삭제)
 date: 2024-01-02
+title: MongoDB Collection 명령어 (조회, 생성, 삭제)
+description: MongoDB Collection 명령어를 사용하여 Collection을 조회, 생성, 삭제할 수 있습니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: uber JAR - 모든 의존성을 하나의 JAR로 관리하기
 date: 2025-01-17
+title: uber JAR - 모든 의존성을 하나의 JAR로 관리하기
+description: 하나의 JAR file로 모든 의존성을 관리하기 위해 uber JAR를 사용할 수 있습니다.
 ---
 
 

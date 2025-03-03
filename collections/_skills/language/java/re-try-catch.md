@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Java - 실패하면 재시도하는 2가지 방법
 date: 2023-07-20
+title: Java - 실패하면 재시도하는 2가지 방법
+description: Java에서 실패했을 때 재시도하는 방법으로 반복문과 재귀 함수를 사용하는 2가지 방법이 있습니다.
 ---
 
 

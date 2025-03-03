@@ -1,22 +1,20 @@
 ---
 layout: skill
-title: HTML 한글 Typing 효과 직접 만들기 (JavaScript)
 date: 2024-01-11
+title: HTML 한글 Typing 효과 직접 만들기
+description: JavaScript로 한글 typing 효과를 직접 만들 수 있습니다.
 ---
 
+
+## 한글 Typing 효과
 
 - 두벌식 자판으로 한글을 typing하는 효과를 줄 수 있습니다.
     - 초성, 중성, 종성이 분리되어 차례대로 입력됩니다.
 
-- typing 효과 library 사용하는 것도 좋은 방법입니다.
-
-- 이 글에서는 순수 JavaScript로 typing 효과를 만드는 방법을 소개합니다.
+- 순수 JavaScript로 typing 효과를 만들 수 있지만, typing 효과 library 사용하는 것도 좋은 방법입니다.
 
 
----
-
-
-## 함수 호출부
+### 함수 호출부
 
 ```html
 <div id="target"></div>
@@ -31,9 +29,7 @@ date: 2024-01-11
 ```
 
 
-
-
-## 함수 선언부
+### 함수 선언부
 
 ```js
 String.prototype.toKorChars = function () {

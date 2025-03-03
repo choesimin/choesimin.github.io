@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 자료 구조 - Map
 date: 2024-06-27
+title: 자료 구조 - Map
+description: Map은 key와 value 쌍으로 이루어진 자료 구조로, key를 사용해 value를 효율적으로 검색할 수 있습니다.
 ---
 
 

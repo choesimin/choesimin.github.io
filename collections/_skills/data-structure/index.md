@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Data Structure
 date: 2024-05-21
+title: Data Structure
+description: 자료 구조는 data를 효율적으로 저장하고 관리하기 위한 구조를 의미합니다.
 ---
 
 

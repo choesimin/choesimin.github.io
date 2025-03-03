@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: SVG - Vector 기반 Image
 date: 2023-08-26
+title: SVG - Vector 기반 Image
+description: SVG는 vector로 그려지는, XML 기반의 Web graphic입니다.
 ---
 
 

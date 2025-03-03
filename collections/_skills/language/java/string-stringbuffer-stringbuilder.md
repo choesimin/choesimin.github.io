@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Java - String, StringBuffer, StringBuilder
 date: 2023-07-17
+title: Java - String, StringBuffer, StringBuilder
+description: Java에서 문자열을 다루기 위해 String, StringBuffer, StringBuilder class를 사용할 수 있으며, 각 class는 다른 특징을 가지고 있어 사용 목적에 따라 선택해야 합니다.
 ---
 
 

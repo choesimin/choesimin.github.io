@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Java - 객체 지향 Programming Language
 date: 2023-07-18
+title: Java - 객체 지향 Programming Language
+description: Java는 객체 지향 Programming 언어로, WORA(Write Once Run Anywhere)를 지향합니다.
 ---
 
 

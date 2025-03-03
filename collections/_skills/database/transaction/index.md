@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Transaction - DB 작업의 논리적 단위
 date: 2024-10-11
+title: Transaction - DB 작업의 논리적 단위
+description: Transaction은 DB의 상태를 변경시키는 작업의 단위로, 여러 개의 작업(query)이 하나의 단위로 묶여 처리되는 것을 의미합니다.
 ---
 
 

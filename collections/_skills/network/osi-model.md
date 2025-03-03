@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: OSI Model (OSI 7 계층)
 date: 2024-09-22
+title: OSI Model (OSI 7 계층)
+description: OSI Model은 network 통신 과정을 7개의 계층으로 나눈 것으로, 각 계층은 특정 기능을 수행하도록 정의된 framework입니다.
 ---
 
 

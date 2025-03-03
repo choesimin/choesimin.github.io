@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TensorFlow.js - JavaScript로 지도 학습 구현하기
 date: 2023-08-04
+title: TensorFlow.js - JavaScript로 지도 학습 구현하기
+description: TensorFlow.js를 사용하여 JavaScript로 지도 학습을 구현할 수 있습니다.
 ---
 
 

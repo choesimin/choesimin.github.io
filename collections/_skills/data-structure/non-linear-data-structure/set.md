@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 자료 구조 - Set
 date: 2024-07-18
+title: 자료 구조 - Set
+description: Set은 중복과 순서가 없는 Data 집합입니다.
 ---
 
 

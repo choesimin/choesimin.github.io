@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: JavaScript - Web 개발 언어
 date: 2023-12-13
+title: JavaScript - Web 개발 언어
+description: JavaScript는 Web 개발에서 가장 널리 사용되는 programming language입니다.
 ---
 
 

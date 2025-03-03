@@ -1,11 +1,14 @@
 ---
 layout: skill
-title: CSS Scroll Snap - Scroll할 때 자동 Snap하여 화면을 Page 시작점에 맞추기 (scroll-snap-align start)
 date: 2024-01-24
+title: CSS Scroll Snap - 화면 단위로 Scroll하기
+description: CSS의 scroll-snap-align 속성을 사용하여 scroll할 때 화면을 요소의 시작 부분에 맞추어 깔끔하게 scroll할 수 있습니다.
 ---
 
 
-- scroll시 section 단위로 화면을 깔끔하게 scroll하고 싶을 때, CSS의 `scroll-snap-align` 속성을 사용합니다.
+## Scroll할 때 자동 Snap하여 화면을 Page 시작점에 맞추기
+
+- scroll할 때 section 단위로 화면을 깔끔하게 scroll하고 싶다면, CSS의 `scroll-snap-align` 속성을 사용합니다.
 
 - `scroll-snap-align` 속성을 사용하면, scroll할 때 화면이 요소의 상단/중단/하단으로 자동으로 맞춰지도록 설정할 수 있습니다.
     - `scroll-snap-align` 속성에서의 'snap'은 '붙음'을 의미합니다.

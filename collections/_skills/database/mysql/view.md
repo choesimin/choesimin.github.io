@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: MySQL View - 가상 Table을 만들어 명령문에 연결하기
 date: 2023-08-04
+title: MySQL View - 가상 Table을 만들어 명령문에 연결하기
+description: MySQL에서 View는 가상 table로, data를 실제로 저장하지 않고 보여주는데 중점을 둔 기능입니다.
 ---
 
+
+## MySQL View : Data를 실제로 저장하지 않고 보여주는 기능
 
 - View는 MySQL 5.0부터 사용 가능한 특정 명령문에 연결되는 가상 table이며, data를 실제로 저장하지 않고 오직 보여주는데 중점을 둔 기능입니다.
     - SELECT, WEHRE, SubQuery, UNION, JOIN 등 다양한 결합과 조건으로 만들어진 data를 View에 넣어, 편리하고 빠르게 data에 접근하도록 할 수 있습니다.

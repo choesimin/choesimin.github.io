@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: MySQL Backup - Data를 Backup하고 복원하기
 date: 2023-08-04
+title: MySQL Backup - Data를 Backup하고 복원하기
+description: MySQL의 data를 미리 backup해두고, 필요할 때 다시 복원할 수 있습니다.
 ---
 
+
+## MySQL Backup
 
 - `mysqldump`는 MySQL의 대표적인 Logical backup program미여, storage engine에 상관없이 data를 backup할 수 있습니다.
 

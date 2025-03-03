@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: UML - System 시각화하기
 date: 2023-07-02
+title: UML - System 시각화하기
+description: UML은 표준화된 모형을 만드는 언어로, program 설계를 시각화하여 소통을 원활하게 합니다.
 ---
 
 

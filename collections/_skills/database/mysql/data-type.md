@@ -1,13 +1,8 @@
 ---
 layout: skill
-title: MySQL Data Type - 자료형
 date: 2023-07-27
----
-
-
-- MySQL은 숫자, 문자, 날짜, 시간, JSON 등에 대한 자료형을 지원합니다.
-
-
+title: MySQL Data Type - 자료형
+description: MySQL은 숫자, 문자, 날짜, 시간, JSON 등에 대한 자료형을 지원합니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 자료 구조 - Queue
 date: 2024-05-31
+title: 자료 구조 - Queue
+description: Queue는 먼저 들어온 것을 먼저 내보내는 자료 구조로, 선입선출(FIFO, First In First Out) 원칙을 따릅니다.
 ---
 
 

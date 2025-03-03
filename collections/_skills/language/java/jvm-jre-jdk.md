@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Java - JDK, JRE, JVM
 date: 2023-07-17
+title: Java - JDK, JRE, JVM
+description: Java 개발 환경에는 JDK, JRE, JVM이 있습니다.
 ---
 
 
@@ -9,9 +10,9 @@ date: 2023-07-17
 
 | Name | Full Name | 번역 |
 | --- | --- | --- |
-| JDK | Java Development Kit | Java 개발 도구 |
-| JRE | Java Runtime Environment | Java 실행 환경 |
-| JVM | Java Virtual Machine | Java 가상 기계 |
+| **JDK** | Java Development Kit | Java 개발 도구 |
+| **JRE** | Java Runtime Environment | Java 실행 환경 |
+| **JVM** | Java Virtual Machine | Java 가상 기계 |
 
 
 ### 포함 관계 : JVM ⊂ JRE ⊂ JDK

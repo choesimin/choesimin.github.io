@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 자료 구조 - 연결 List (Linked List)
 date: 2024-05-29
+title: 자료 구조 - 연결 List (Linked List)
+description: Linked List는 data 요소들이 서로 연결된 자료 구조로, 동적으로 크기를 조절할 수 있습니다.
 ---
 
 

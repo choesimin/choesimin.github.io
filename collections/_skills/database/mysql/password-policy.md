@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: MySQL - 사용자의 비밀번호 정책 설정하기
 date: 2024-10-09
+title: MySQL - 사용자의 비밀번호 정책 설정하기
+description: MySQL의 validate_password plugin을 사용하여 사용자 계정의 비밀번호 정책을 설정하여 보안을 강화할 수 있습니다.
 ---
 
 

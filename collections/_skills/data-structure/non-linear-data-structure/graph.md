@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 자료 구조 - Graph
 date: 2024-06-02
+title: 자료 구조 - Graph
+description: Graph는 여러 개의 정점과 그 점들을 잇는 간선으로 구성된 network 구조로, 다양한 관계를 modeling하는 데 사용됩니다.
 ---
 
 
