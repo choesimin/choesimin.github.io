@@ -1,11 +1,12 @@
 ---
 layout: skill
-title: System 설계 - 전체 구조 정의하기
 date: 2024-02-22
+title: System 설계 - 전체 구조 정의하기
+description: System Design은 요구 사항을 만족시키는 전체 구조를 체계적으로 정의하는 과정입니다.
 ---
 
 
-## System Design : 요구 사항을 만족시키는 전체 구조를 체계적으로 정의하는 과정
+## System Design
 
 - System Design(system 설계)란, 복잡한 **system의 구조, 구성 요소, interface, data, process 등을 정의하는 과정**입니다.
     - system이 특정 요구 사항을 만족시키기 위해 어떻게 작동해야 하는지 결정합니다.

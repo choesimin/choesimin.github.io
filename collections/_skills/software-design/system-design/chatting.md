@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: Text Chatting System 설계
 date: 2024-02-22
+title: Text Chatting System 설계
+description: 1:1 chatting, group chatting을 할 수 있는 text chatting system을 설계합니다.
 ---
 
+
+## Text Chatting System 설계
 
 - text chatting system을 설계합니다.
     - chatting은 크게 1:1 chatting, group chatting으로 나뉩니다.
@@ -370,7 +373,6 @@ group_message {
     - `chennal_id`는 Partition Key로도 사용합니다.
         - group chatting에 적용될 모든 질의는 특정 channel을 대상으로 할 것이기 때문입니다.
 
-
 #### `message_id` : Sequencial Primary Key
 
 - **message의 고유한 식별값**(`message_id`)은 정렬 가능해야 하며 **시간 순서와 일치**해야 합니다.
@@ -381,7 +383,6 @@ group_message {
 - 따라서 Snowflake 같은 전역적 64-bit 순서 번호 생성기(global sequence number generator)로 **시간 순서의 고유한 sequence를 발급받아 `message_id`에 사용**합니다.
     - ID 유일성은 같은 group 안에서만 보증하면 충분하기 때문에, local sequence number generator(지역적 순서 번호 생성기)를 사용해도 됩니다.
         - message 사이의 순서는 같은 channel, 혹은 같은 1:1 chatting session 안에서만 유지되면 충분합니다.
-
 
 #### 사용자 단말기에 없는 Message를 조회하여 동기화하기
 

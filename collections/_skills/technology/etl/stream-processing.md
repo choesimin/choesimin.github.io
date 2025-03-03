@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Stream Data Processing - 실시간으로 들어오는 정보 처리하기
 date: 2024-12-26
+title: Stream Data Processing - 실시간으로 들어오는 정보 처리하기
+description: Stream Data Processing은 끊임없이 발생하는 정보를 실시간으로 처리하는 방식입니다.
 ---
 
 

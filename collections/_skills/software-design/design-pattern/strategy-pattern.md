@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: Strategy Pattern - 상황에 맞추어 객체의 행동 바꾸기
 date: 2023-07-03
+title: Strategy Pattern - 상황에 맞추어 객체의 행동 바꾸기
+description: Strategy Pattern은 객체의 행동을 정의하고, 각 행동을 캡슐화하여 교환할 수 있도록 만듭니다.
 ---
 
+
+## Strategy Pattern
 
 - Strategy Pattern을 이용하면 algorithm을 상황에 따라 변경해가며 사용할 수 있습니다.
     - 동일한 목적을 지닌 algorithm group을 정의하고 각각을 캡슐화(encapsulation)하여 group 내의 algorithm을 교환해서 사용할 수 있도록 합니다.
@@ -18,17 +21,22 @@ date: 2023-07-03
 ---
 
 
-## 장점
+## Strategy Pattern의 장점
+
+- Strategy Pattern에는 code 중복이 줄어들고, 전략 확장이 용이하며, runtime에 전략 결정과 교체가 가능하다는 장점이 있습니다.
+
 
 ### Code 중복이 줄어듦
 
 - algorithm마다 사용되는 code의 중복을 방지할 수 있습니다.
     - algorithm의 변경 부분만 concrete strategy로 빼내어 구현했기 때문입니다.
 
+
 ### 전략 확장이 용이함
 
 - 새로운 전략을 추가하더라도 기존 code를 변경하지 않습니다.
 - 새로운 algorithm을 추가하려면 새로운 객체를 추가하면 됩니다.
+
 
 ### Runtime에 전략 결정과 교체가 가능함
 
@@ -36,7 +44,13 @@ date: 2023-07-03
     - client가 strategy interface에 의존하고 있기 때문에 strategy 구현체를 교체하기 쉽습니다.
 
 
-## 단점
+---
+
+
+## Strategy Pattern의 단점
+
+- Strategy Pattern에는 복잡도가 증가한다는 것과, client가 구체적인 전략에 대해 모두 알고 있어야 한다는 단점이 있습니다.
+
 
 ### 복잡도 증가
 
@@ -46,6 +60,7 @@ date: 2023-07-03
 - logic을 단순히 client에 if-else로 분리해서 그 안에 구현하는 게 보기 편할 수도 있습니다.
     - 한 눈에 들어오는 짧은 code에서는 Strategy Pattern을 사용하는 것이 오히려 가독성을 떨어뜨립니다.
     - 예를 들어, 분기가 2개인 경우에는 if-else를 사용하는 것이 더 나을 수 있습니다.
+
 
 ### Client가 구체적인 전략(concrete strategy)에 대해 알고 있어야 함
 

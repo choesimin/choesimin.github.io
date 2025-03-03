@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: CDC - Change Data Capture
 date: 2024-12-20
+title: CDC - Change Data Capture
+description: CDC(Change Data Capture)는 DB의 변경 사항을 감지하고 필요한 후속 처리를 자동화하는 기법입니다.
 ---
 
 

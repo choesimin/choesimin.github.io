@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ETL - Data를 추출하고, 변환하고, 적재하기
 date: 2024-12-30
+title: ETL - Data를 추출하고, 변환하고, 적재하기
+description: ETL은 다양한 source data를 data warehouse에 결합하는 과정입니다.
 ---
 
 

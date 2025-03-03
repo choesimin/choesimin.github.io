@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: Adapter Pattern - 호환되지 않는 Interface를 변환하여 연결하기
 date: 2024-02-14
+title: Adapter Pattern - 호환되지 않는 Interface를 변환하여 연결하기
+description: Adapter Pattern은 서로 다른 interface를 가진 class들이 상호 작용할 수 있도록 하는 design pattern입니다.
 ---
 
+
+## Adapter Pattern
 
 - 사용해야 하는 interface가 현재의 system과 호환되지 않는다고 해서 꼭 현재의 system을 변경해야 하는 것은 아닙니다.
 

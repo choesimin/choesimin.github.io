@@ -1,11 +1,12 @@
 ---
 layout: skill
-title: Message Queue - Data 전달 중개자
 date: 2024-12-24
+title: Message Queue - Data 전달 중개자
+description: Message Queue는 System 간 비동기 통신을 위한 Message 중개 Middleware입니다.
 ---
 
 
-## Message Queue : System 간 비동기 통신을 위한 Message 중개 Middleware
+## Message Queue
 
 - Message Queue에서 Queue란 선입선출(FIFO, First-In-First-Out) 구조를 가진 자료 구조입니다.
     - Queue 는 2개의 끝을 가지며 각각은 입구와 출구입니다.

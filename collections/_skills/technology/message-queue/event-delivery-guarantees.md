@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Message 전달 보증 수준 - 처리를 보장하는 3가지 방식
 date: 2025-01-02
+title: Message 전달 보증 수준 - 처리를 보장하는 3가지 방식
+description: Message 전달 보증 수준은 Message Queue의 message 처리 보장 방식을 의미하며, 크게 At Most Once, At Least Once, Exactly Once 전달 방식이 있습니다.
 ---
 
 

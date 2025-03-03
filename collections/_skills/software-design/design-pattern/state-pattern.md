@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: State Pattern - 상태에 따라 행동 바꾸기
 date: 2024-03-06
+title: State Pattern - 상태에 따라 행동 바꾸기
+description: State Pattern은 객체의 상태에 따라 객체가 하는 행동을 변경하는 design pattern입니다.
 ---
 
 

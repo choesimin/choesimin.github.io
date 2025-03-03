@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: 사용자 접속 상태 표시 System 설계
 date: 2024-02-22
+title: 사용자 접속 상태 표시 System 설계
+description: 접속 상태 server를 통해 사용자의 상태를 관리하고, 접속 상태를 표시하는 방법과 접속 장애에 대응하는 방법을 설계합니다.
 ---
 
+
+## 사용자의 접속 상태 표시하기
 
 - 사용자의 접속 상태를 표시하는 것은 SNS 또는 chatting application의 핵심적 기능힙니다.
 
@@ -15,6 +18,9 @@ date: 2024-02-22
 
 
 ## 사용자 Login/Logout
+
+- 사용자가 service에 접속하거나 service를 떠날 때, 사용자의 접속 상태를 변경해야 합니다.
+    - 사용자가 접속 중인지, 미접속 상태인지를 알 수 있어야 합니다.
 
 
 ### Login
@@ -40,6 +46,7 @@ user <-->|WebSocket Connection| server -->|Update User to Online| store
     }
 }
 ```
+
 
 ### Logout
 

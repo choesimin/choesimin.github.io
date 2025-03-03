@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: Decorator Pattern - 객체의 기능을 동적으로 확장하기
 date: 2024-01-17
+title: Decorator Pattern - 객체의 기능을 동적으로 확장하기
+description: Decorator Pattern은 객체의 기능을 동적으로 확장할 때 사용되는 구조적 design pattern입니다.
 ---
 
+
+## Decorator Pattern
 
 - Decorator Pattern은 기본 객체에 추가적인 기능을 추가할 때 사용됩니다.
     - Decorator Pattern의 주요 목적은 **객체의 기능을 동적으로 확장**하는 것입니다.

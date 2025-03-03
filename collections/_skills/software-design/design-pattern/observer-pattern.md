@@ -1,11 +1,14 @@
 ---
 layout: skill
-title: Observer Pattern - 객체 상태 변화에 대한 알림 받기
 date: 2024-01-10
+title: Observer Pattern - 객체 상태 변화에 대한 알림 받기
+description: Observer Pattern은 관찰자들이 관찰하고 있는 대상자의 상태 변화가 있을 때마다 대상자는 직접 목록의 각 관찰자들에게 통지하고, 관찰자들은 알림을 받아 조치를 취하는 행동 pattern입니다.
 ---
 
 
-- Observer Pattern은 객체의 상태 변화를 관찰하는 객체들에게 자동으로 알리는 방식으로, 객체 간의 결합도를 낮추고 상호 작용을 관리하는 design pattern입니다.
+## Observer Pattern
+
+- Observer Pattern은 객체의 상태 변화를 관찰하는 객체들에게 자동으로 알리는 방식으로 객체 간의 결합도를 낮추고 상호 작용을 관리하는 design pattern입니다.
 
 - Observer Pattern에서는 한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 모든 객체들한테 연락이 가고, 자동으로 내용이 갱신되는 방식으로 작동합니다.
     - 따라서, 객체들 사이에서 일대다(one-to-many) 의존성을 정의하게 됩니다.

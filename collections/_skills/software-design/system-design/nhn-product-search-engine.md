@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: NHN의 상품 검색 Engine 설계
 date: 2024-12-21
+title: NHN의 상품 검색 Engine 설계
+description: NHN의 Commerce Platform을 위한 상품 검색 Engine 설계에 대한 내용을 정리한 글입니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ETL과 ELT의 차이
 date: 2024-12-21
+title: ETL과 ELT의 차이
+description: ETL은 추출, 변환, 적재 순서로 data를 처리하고, ELT는 추출, 적재, 변환 순서로 data를 처리합니다.
 ---
 
 

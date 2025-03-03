@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: Twitter의 Tweet 추천 Algorithm
 date: 2023-04-16
+title: Twitter의 Tweet 추천 Algorithm
+description: Twitter의 home timeline의 "For You" feed 추천 Algorithm을 설명합니다.
 ---
 
+
+## Twitter가 Tweet을 추천하는 방법
 
 - 2023년 3월 31일, Twitter는 home timeline의 **"For You" feed 추천 Algorithm**을 Github와 자사의 기술 blog에 공개했습니다.
     - algorithm source code : <https://github.com/twitter/the-algorithm>

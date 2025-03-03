@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: Design Pattern - 재사용 가능한 객체 설계하기
 date: 2023-06-04
+title: Design Pattern - 재사용 가능한 객체 설계하기
+description: Design Pattern은 software design 과정에서 자주 발생하는 문제들에 대한 전형적인 해결책입니다.
 ---
 
+
+## Design Pattern
 
 ```txt
 Don’t reinvent the wheel.
@@ -167,8 +170,13 @@ A solution to a problem in a context.
 
 ## Design Pattern의 종류
 
+- design pattern은 크게 생성, 구조, 행위로 분류됩니다.
+
 
 ### 생성 Pattern
+
+- 객체 생성에 관련된 pattern입니다.
+    - 객체 instance 생성을 위한 pattern입니다.
 
 #### Builder Pattern
 
@@ -203,6 +211,8 @@ A solution to a problem in a context.
 
 
 ### 구조 Pattern
+
+- class나 객체를 조합해 더 큰 구조를 만드는 pattern입니다.
 
 #### Bridge Pattern
 
@@ -253,6 +263,8 @@ A solution to a problem in a context.
 
 
 ### 행위 Pattern
+
+- 객체나 class 사이의 algorithm이나 책임 분배(역할 분담)에 관련된 pattern입니다.
 
 #### Mediator Pattern
 

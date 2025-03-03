@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Event 기반 Architecture와 CDC
 date: 2024-12-20
+title: Event 기반 Architecture와 CDC
+description: CDC는 Event 기반 Architecture에서 사용하기 좋은 기술입니다.
 ---
 
 

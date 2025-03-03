@@ -1,9 +1,12 @@
 ---
 layout: skill
-title: 기계 학습 (Machine Learning)
 date: 2023-08-08
+title: 기계 학습 (Machine Learning)
+description: 기계 학습은 인공 지능의 하위 범주로, 신경망을 활용하여 pattern을 인식하고 이러한 pattern 식별 역량을 개선하는 computer의 process를 의미합니다.
 ---
 
+
+## 기계 학습 (Machine Learning)
 
 - 기계 학습은 computer가 스스로 학습하여 문제를 해결하는 algorithm을 연구하는 분야입니다.
     - computer는 data를 통해 학습하고, 학습 결과를 바탕으로 예측이나 결정을 내릴 수 있습니다.

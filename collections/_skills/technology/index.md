@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Technology
 date: 2025-02-09
+title: Technology
+description: 기술은 문제를 해결하기 위해 존재합니다.
 ---
 
 
