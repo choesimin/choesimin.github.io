@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: netstat - Network 상태 조회하기
 date: 2024-11-01
+title: netstat - Network 상태 조회하기
+description: netstat은 network 상태를 조회하는 명령어입니다.
 ---
 
 

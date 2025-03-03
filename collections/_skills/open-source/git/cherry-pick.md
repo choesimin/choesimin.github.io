@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Git - Commit을 가져와 현재 Branch 뒤에 붙이기 (cherry-pick)
 date: 2024-03-21
+title: Git - Commit을 가져와 현재 Branch 뒤에 붙이기 (cherry-pick)
+description: cherry-pick 명령어를 사용하여, 다른 Branch의 Commit을 현재 Branch에 적용할 수 있습니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Grafana - Data를 시각화하고 Monitoring하기
 date: 2025-02-10
+title: Grafana - Data를 시각화하고 Monitoring하기
+description: Grafana는 Data Visualization과 Monitoring을 위한 open source platform입니다.
 ---
 
 

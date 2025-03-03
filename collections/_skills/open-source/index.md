@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Open Source
 date: 2025-02-09
+title: Open Source
+description: Open Source는 software의 source code를 공개하여 누구나 사용하고 수정할 수 있는 software 개발 방식입니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Payment
 date: 2023-12-30
+title: Payment
+description: 지급 결제란 상품이나 서비스를 구매하는 과정에서 대금을 지불하는 행위를 의미합니다.
 ---
 
 

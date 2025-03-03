@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Vim - Terminal에서 Text 편집하기
 date: 2023-07-20
+title: Vim - Terminal에서 Text 편집하기
+description: Vim은 terminal에서 text를 편집할 수 있는 CLI 기반의 text editor입니다.
 ---
 
 

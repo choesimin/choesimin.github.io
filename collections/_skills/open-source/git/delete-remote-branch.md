@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Git - Remote Branch 삭제하기
 date: 2024-05-29
+title: Git - Remote Branch 삭제하기
+description: Git 명령어를 사용하여 원격에 있는 저장소의 branch를 삭제할 수 있습니다.
 ---
 
 

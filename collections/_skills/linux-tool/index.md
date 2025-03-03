@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Linux Tool
 date: 2025-03-02
+title: Linux Tool
+description: Linux에는 terminal에서 명령어로 사용할 수 있는 다양한 도구들이 있습니다.
 ---
 
 

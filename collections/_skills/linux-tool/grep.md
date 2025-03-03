@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: grep - File에서 문자열 검색하기
 date: 2023-04-03
+title: grep - File에서 문자열 검색하기
+description: grep은 file에서 지정한 문자열이나 정규표현식을 포함한 행을 출력해주는 명령어입니다.
 ---
 
 

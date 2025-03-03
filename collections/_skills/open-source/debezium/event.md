@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Debezium Event - DB 통합 CUD Event
 date: 2025-01-31
+title: Debezium Event - DB 통합 CUD Event
+description: Debezium은 Database의 변경 사항을 통합하여 event로 전달합니다.
 ---
 
 

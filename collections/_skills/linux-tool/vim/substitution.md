@@ -2,6 +2,7 @@
 layout: skill
 date: 2025-01-04
 title: Vim에서 문자열 치환하기
+description: Vim의 치환 명령어를 사용하여 문자열을 원하는 문자열로 바꿀 수 있습니다.
 ---
 
 

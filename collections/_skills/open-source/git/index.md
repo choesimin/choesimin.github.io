@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Git - Source Code의 Version 관리하기
 date: 2025-02-09
+title: Git - Source Code의 Version 관리하기
+description: Git은 source code의 version을 관리하는 system으로, 여러 개발자가 동시에 작업할 수 있도록 협업 기능을 제공합니다.
 ---
 
 

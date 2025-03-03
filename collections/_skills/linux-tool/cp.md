@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: cp - Linux에서 File 복사하기
 date: 2023-07-08
+title: cp - Linux에서 File 복사하기
+description: cp는 file, directory를 복사하는 Linux 명령어입니다.
 ---
 
 

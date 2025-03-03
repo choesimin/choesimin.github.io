@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ksqlDB Value Format - Data 직렬화 방식
 date: 2025-01-13
+title: ksqlDB Value Format - Data 직렬화 방식
+description: ksqlDB의 Value Format을 설정하여, Data를 직렬화하고 역직렬화하는 방식을 결정할 수 있습니다.
 ---
 
 

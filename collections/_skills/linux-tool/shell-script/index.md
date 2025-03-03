@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Shell Script - 반복 작업 자동화하기
 date: 2024-05-18
+title: Shell Script - 반복 작업 자동화하기
+description: Shell Script를 사용하여 반복적인 작업을 자동화할 수 있습니다.
 ---
 
 

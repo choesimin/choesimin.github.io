@@ -2,6 +2,7 @@
 layout: skill
 date: 2025-01-07
 title: ksqlDB의 Query - Pull Query, Push Query, Persistent Query
+description: ksqlDB에는 Pull Query, Push Query, Persistent Query 세 가지 query 유형이 존재합니다.
 ---
 
 

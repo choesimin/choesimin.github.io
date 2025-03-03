@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: nohup - Background Program 실행시키기
 date: 2023-04-05
+title: nohup - Background Program 실행시키기
+description: nohup은 program을 background에서 실행시키는 명령어입니다.
 ---
 
 

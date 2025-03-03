@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ksqlDB의 Join (Stream-Stream, Stream-Table, Table-Table)
 date: 2025-01-07
+title: ksqlDB의 Join - Stream과 Table의 실시간 결합
+description: ksqlDB는 Stream-Stream, Stream-Table, Table-Table 간의 Join을 지원하여 실시간 data를 실시간으로 결합할 수 있습니다.
 ---
 
 

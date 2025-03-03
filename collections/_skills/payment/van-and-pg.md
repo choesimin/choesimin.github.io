@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: VAN, PG - 결제 대행사
 date: 2023-11-02
+title: VAN, PG - 결제 대행사
+description: VAN과 PG는 카드 결제의 중계자로, 가맹점과 카드사 사이에서 결제 승인을 중개하는 역할을 합니다.
 ---
 
 

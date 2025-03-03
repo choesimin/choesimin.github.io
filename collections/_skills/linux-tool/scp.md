@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: scp - Terminal에서 File을 원격으로 전송하기
 date: 2023-04-03
+title: scp - Terminal에서 File을 원격으로 전송하기
+description: scp는 안전한 원격 전송 protocol로, file과 directory를 원격지로 보내거나 받을 때 사용합니다.
 ---
 
 

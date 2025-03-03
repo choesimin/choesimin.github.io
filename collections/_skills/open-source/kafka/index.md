@@ -2,6 +2,7 @@
 layout: skill
 date: 2024-12-31
 title: Apache Kafka - Message Queue System
+description: Apache Kafka는 대용량 실시간 data 처리에 특화된 분산 streaming platform입니다.
 ---
 
 

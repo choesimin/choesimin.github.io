@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ls - File 목록 보기
 date: 2023-04-04
+title: ls - File 목록 보기
+description: ls는 terminal에서 file list을 출력하는 명령어입니다.
 ---
 
 

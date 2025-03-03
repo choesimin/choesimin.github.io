@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: tail - File의 마지막 부분 출력하기
 date: 2023-04-03
+title: tail - File의 마지막 부분 출력하기
+description: tail은 file의 마지막 부분을 출력하는 명령어입니다.
 ---
 
 

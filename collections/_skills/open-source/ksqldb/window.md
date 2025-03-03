@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ksqlDB Window - 시간 기준으로 Data Group 만들기
 date: 2025-01-16
+title: ksqlDB Window - 시간 기준으로 Data Group 만들기
+description: ksqlDB Window를 사용하여 시간을 기준으로 data를 grouping하고 분석할 수 있습니다.
 ---
 
 

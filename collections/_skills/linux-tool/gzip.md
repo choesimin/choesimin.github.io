@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: gzip, gunzip - File 압축/해제
 date: 2023-08-23
+title: gzip, gunzip - File 압축/해제
+description: gzip은 file을 압축하고, gunzip은 gzip으로 압축한 file을 해제합니다.
 ---
 
 

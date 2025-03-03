@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Debezium Snapshot - 전체 Data Capture
 date: 2025-01-31
+title: Debezium Snapshot - 전체 Data Capture
+description: Debezium의 Snapshot 기능을 활용하여 Database의 초기 상태를 복사할 수 있습니다.
 ---
 
 

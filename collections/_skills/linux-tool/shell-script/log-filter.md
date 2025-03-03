@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Linux에서 Log Filter 만들기
 date: 2024-05-18
+title: Linux에서 Log Filter 만들기
+description: log file에서 keyword를 간편하게 검색할 수 있는 log filter script를 작성합니다.
 ---
 
 

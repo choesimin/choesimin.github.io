@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Debezium Snapshot Mode - DB 복제 방식
 date: 2025-02-03
+title: Debezium Snapshot Mode - DB를 복제하는 여러 방식
+description: Debezium의 Snapshot Mode를 설정하여 Database의 복제 방식을 지정할 수 있습니다.
 ---
 
 

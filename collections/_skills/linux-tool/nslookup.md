@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: nslookup - DNS Server Query Tool
 date: 2024-10-02
+title: nslookup - DNS Server Query Tool
+description: nslookup은 domain 이름을 IP 주소로 변환하거나 IP 주소에서 domain 이름을 검색하는 network 진단 명령어입니다.
 ---
 
 

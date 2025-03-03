@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: crontab - Linux Task Scheduler
 date: 2023-09-23
+title: crontab - Linux Task Scheduler
+description: crontab은 Linux에 기본 program으로 설치되어 있는 task scheduler입니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ps - Process 상태 확인
 date: 2024-11-05
+title: ps - Process 상태 확인
+description: ps는 system에서 실행 중인 process의 상태를 확인하는 명령어입니다.
 ---
 
 

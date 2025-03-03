@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ksqlDB - Kafka 기반의 Streaming Database
 date: 2025-01-06
+title: ksqlDB - Kafka 기반의 Streaming Database
+description: ksqlDB는 streaming data를 실시간으로 처리하고 분석할 수 있는 Kafka 기반 event streaming database입니다.
 ---
 
 

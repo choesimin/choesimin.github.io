@@ -2,6 +2,7 @@
 layout: skill
 date: 2025-01-03
 title: vim-plug - Simple Vim Plugin Manager
+description: vim-plug는 Vim의 plugin을 관리하는 가장 간단한 plugin manager 중 하나입니다.
 ---
 
 

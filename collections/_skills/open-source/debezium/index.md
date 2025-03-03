@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Debezium - Data Change Streamer
 date: 2025-01-23
+title: Debezium - Data Change Streamer
+description: Debezium은 database의 변경 사항을 실시간으로 감지하고 전달하는 Open Source project입니다.
 ---
 
 
