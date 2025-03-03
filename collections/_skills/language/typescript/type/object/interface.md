@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Object Type - Interface (객체 계약서)
 date: 2024-02-26
+title: TypeScript Interface Type - 객체 계약서
+description: TypeScript의 Interface는 객체가 가져야 할 구조와 type을 정의하는 데 사용되며, 객체의 property와 method를 명시하여 객체의 일관성을 유지할 수 있도록 합니다.
 ---
 
 

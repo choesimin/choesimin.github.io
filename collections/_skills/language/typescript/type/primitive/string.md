@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Primitive Type - String (문자열)
 date: 2024-02-28
+title: TypeScript String Type - 문자열
+description: TypeScript의 String Type은 text data를 다루기 위해 사용되며, 문자(character)와 문자열(string)을 표현, 저장, 조작할 수 있습니다.
 ---
 
 

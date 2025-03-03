@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript - 읽기 전용 속성 (Read Only Property)
 date: 2024-03-11
+title: TypeScript Read Only Property - 읽기 전용 속성 
+description: TypeScript의 Read Only Property는 객체의 특정 속성을 수정할 수 없게 만드는 방법으로, 객체 생성 후 해당 속성의 값을 변경할 수 없습니다.
 ---
 
 

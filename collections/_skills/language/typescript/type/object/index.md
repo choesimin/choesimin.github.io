@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Object Type (객체 Type)
 date: 2024-02-29
+title: TypeScript Object Type - 객체로 관리되는 Type들
+description: TypeScript의 객체 Type은 객체의 구조를 정의하는 데 사용되며, 객체, 배열, 함수, class instance 등 다양한 객체를 다룰 수 있습니다.
 ---
 
 

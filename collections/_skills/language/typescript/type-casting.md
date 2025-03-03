@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript - Type Casting (Type 변환하기)
 date: 2024-02-28
+title: TypeScript Type Casting - Type 변환하기
+description: TypeScript의 Type Casting은 변수의 type을 명시적으로 변환하는 기능으로, type assertion과 비슷하게 사용할 수 있습니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript - Type Alias (Type 별칭)
 date: 2024-02-27
+title: TypeScript Type Alias - Type 별칭
+description: TypeScript의 Type Alias는 기존 type에 새로운 이름을 부여하여, 복잡한 type 구조를 간결하게 표현하고 가독성을 높일 수 있는 기능입니다.
 ---
 
 

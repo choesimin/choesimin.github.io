@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Special Type - Any (Type Check 우회하기)
 date: 2024-03-04
+title: TypeScript Any Type - Type Check 우회하기
+description: TypeScript의 Any Type은 모든 종류의 값이 할당 가능한 가장 유연한 type으로, Type Check를 우회할 수 있습니다.
 ---
 
 

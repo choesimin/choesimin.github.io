@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Primitive Type - Number (숫자)
 date: 2024-02-28
+title: TypeScript Number Type - 숫자
+description: TypeScript의 Number Type은 JavaScript의 숫자를 나타내는 Type으로, 정수, 실수, NaN, Infinity, -Infinity 등을 포함합니다.
 ---
 
 

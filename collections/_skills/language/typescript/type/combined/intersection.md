@@ -1,11 +1,12 @@
 ---
 layout: skill
-title: TypeScript Combined Type - Intersection (객체 속성 합치기)
 date: 2024-03-02
+title: TypeScript Intersection Type - 객체 속성 합치기
+description: TypeScript의 Intersection Type은 여러 type을 결합하여 모든 type의 속성을 포함하는 복합 type을 생성하는 기능으로, 다양한 객체의 특성을 통합하거나 확장할 때 유용합니다.
 ---
 
 
-## Intersection Type - 객체 합치기
+## Intersection Type : 객체 합치기
 
 - TypeScript의 intersection type은 **여러 type들을 결합해, 모든 type의 속성(property)을 포함하는 복합 type을 생성**합니다.
     - 다양한 interface나 type들의 특성을 통합하여, **필요한 모든 속성을 가진 새로운 type을 정의**할 때 사용됩니다.

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Object Type - Function (함수 Signature)
 date: 2024-02-29
+title: TypeScript Function Type - 함수 Signature
+description: TypeScript의 함수 Type은 함수의 Signature를 정의하는 데 사용되며, 함수의 매개 변수와 반환 값의 type을 명시적으로 선언하여 code의 안정성과 가독성을 향상시킵니다.
 ---
 
 

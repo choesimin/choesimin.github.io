@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Object Type - Class (객체 설계도)
 date: 2024-02-26
+title: TypeScript Class Type - 객체 설계도
+description: TypeScript의 class는 객체의 설계도로, 객체의 속성과 method를 정의하고, 객체를 생성하기 위한 template 역할을 합니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Advanced Type - Utility Type (Type을 조작하기 위한 내장 Type)
 date: 2024-03-03
+title: TypeScript Utility Type - Type을 조작하기 위한 내장 Type
+description: Utility Type은 type을 효과적으로 재사용하고 조작하기 위해 설계된 내장 type 집합으로, 개발자가 선언적이고 간결한 방식으로 기존 type을 변형하여 새로운 type을 생성할 수 있게 해주는 Partial, Readonly, Record 등의 미리 정의된 type들입니다.
 ---
 
 

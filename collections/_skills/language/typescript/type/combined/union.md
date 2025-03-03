@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Combined Type - Union (여러 Type 허용하기)
 date: 2024-03-02
+title: TypeScript Union Type - 여러 Type 허용하기
+description: TypeScript의 Union Type은 여러 type 중 하나가 될 수 있는 값을 정의할 때 사용하는 고급 type으로, 여러 type을 하나의 type으로 결합하여 다양한 상황에서 유용하게 사용됩니다.
 ---
 
 

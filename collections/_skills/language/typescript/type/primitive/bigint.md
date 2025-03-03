@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Primitive Type - BigInt (매우 큰 정수)
 date: 2024-02-28
+title: TypeScript BigInt Type - 매우 큰 정수
+description: TypeScript의 BigInt type은 매우 큰 정수를 나타내기 위한 원시 type으로, 매우 큰 숫자를 다루거나 정밀한 숫자 계산이 필요한 경우에 유용하게 사용됩니다.
 ---
 
 

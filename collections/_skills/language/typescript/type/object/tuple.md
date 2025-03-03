@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Object Type - Tuple (고정 배열)
 date: 2024-02-29
+title: TypeScript Tuple Type - 고정 배열
+description: TypeScript의 Tuple Type은 고정된 개수의 요소와 각 요소의 type이 정해진 배열 type으로, 서로 다른 type의 data를 grouping하여 관리할 수 있습니다.
 ---
 
 

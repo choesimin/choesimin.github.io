@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript - Optional Parameter (선택적 매개 변수)
 date: 2024-03-09
+title: TypeScript Optional Parameter - 선택적 매개 변수
+description: TypeScript의 Optional Parameter는 함수에 전달할 수도 있고 생략할 수도 있는 매개 변수로, 더 유연한 함수 호출이 가능하며, 매개 변수가 없는 경우 함수 내부에서 따로 처리합니다.
 ---
 
 

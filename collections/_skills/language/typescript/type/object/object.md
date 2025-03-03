@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Object Type - Object (객체)
 date: 2024-02-29
+title: TypeScript Object Type - 객체 자체를 나타내는 Type
+description: TypeScript의 object Type은 원시 type을 제외한 모든 객체를 포함하는 type으로, 객체, 배열, 함수, class instance 등 다양한 객체를 다룰 수 있습니다.
 ---
 
 

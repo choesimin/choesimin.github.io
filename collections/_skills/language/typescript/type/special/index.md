@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Special Type (특수 Type)
 date: 2024-03-04
+title: TypeScript Special Type - 특수 Type
+description: TypeScript의 특수 type은 type system에서 독특한 역할을 수행하는 type들을 말하며, any, void, unknown, never type이 있습니다.
 ---
 
 

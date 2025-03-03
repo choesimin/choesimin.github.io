@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Special Type - Never (절대 발생할 수 없는 값)
 date: 2024-03-04
+title: TypeScript Never Type - 절대 발생할 수 없는 값
+description: TypeScript의 Never Type은 함수나 method가 정상적으로 종료되지 않을 때 사용되는 type으로, 어떤 값도 가질 수 없는 절대 발생할 수 없는 값의 type을 의미합니다.
 ---
 
 

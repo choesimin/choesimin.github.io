@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript - Type Declaration (변수/함수의 Type 선언하기)
 date: 2024-02-25
+title: TypeScript Type Declaration - 변수/함수의 Type 선언하기
+description: TypeScript에서는 변수나 함수의 type을 선언하여, code의 가독성, 예측성, 안정성을 향상시킬 수 있습니다.
 ---
 
 

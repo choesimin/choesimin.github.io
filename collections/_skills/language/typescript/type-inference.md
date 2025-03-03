@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript - Type Inference (Type 추론)
 date: 2024-02-27
+title: TypeScript Type Inference - Type 추론
+description: TypeScript의 Type 추론은 Compiler가 code를 분석하여 type을 자동으로 결정하는 기능으로, type 선언을 생략하더라도 type을 추론할 수 있습니다.
 ---
 
 

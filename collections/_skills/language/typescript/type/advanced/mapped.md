@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Advanced Type - Mapped Type (기존 Type으로 새로운 Type 생성하기)
 date: 2024-03-04
+title: TypeScript Mapped Type - 기존 Type으로 새로운 Type 생성하기
+description: Mapped Type은 TypeScript에서 기존 타입의 속성들을 변형하여 새로운 타입을 생성하는 기능입니다.
 ---
 
 

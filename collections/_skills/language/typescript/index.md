@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript - Type 기반 Javascript
 date: 2024-02-25
+title: TypeScript - Type 기반 Javascript
+description: TypeScript는 Microsoft에서 개발한 JavaScript의 Superset으로, 정적 Typing, 객체 지향 Programming, 도구의 지원을 통해 JavaScript의 단점을 보완하고 code의 안정성, 가독성, 유지 보수성을 향상시킵니다.
 ---
 
 

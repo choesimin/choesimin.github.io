@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Primitive Type - Undefined and Null (정의되지 않았거나 없는 값)
 date: 2024-02-28
+title: TypeScript Undefined와 Null Type - 정의되지 않았거나 없는 값
+description: TypeScript의 Undefined Type과 Null Type은 값이 정의되지 않았거나 없음을 나타내며, 변수 초기화, 함수 반환 값, strict null check 등 다양한 상황에서 사용됩니다.
 ---
 
 

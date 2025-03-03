@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Object Type - Array (배열)
 date: 2024-02-29
+title: TypeScript Array Type - 배열
+description: TypeScript의 배열 Type은 Type이 같은 값들의 집합을 나타내며, 배열 내의 모든 요소가 동일한 type을 갖도록 하는 type checking 기능을 제공합니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Special Type - Void (함수가 값을 반환하지 않을 때)
 date: 2024-03-04
+title: TypeScript Void Type - 함수가 값을 반환하지 않을 때
+description: TypeScript의 Void Type은 함수가 명시적으로 값을 반환하지 않을 때 사용하는 type으로, 함수의 목적이 반환 값이 아닌 어떤 동작을 수행하는 것임을 나타냅니다.
 ---
 
 

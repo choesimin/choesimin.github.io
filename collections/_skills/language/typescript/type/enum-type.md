@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Enum Type (관련된 상수들의 집합)
 date: 2024-03-03
+title: TypeScript Enum Type - 관련된 상수들의 집합
+description: TypeScript의 Enum Type은 관련된 상수들의 집합을 정의할 때 사용되며, 숫자 열거형과 문자열 열거형 두 가지 유형이 있습니다.
 ---
 
 

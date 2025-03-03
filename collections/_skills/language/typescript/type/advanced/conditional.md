@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Advanced Type - Conditional Type (조건에 따라 Type 결정하기)
 date: 2024-03-12
+title: TypeScript Conditional Type - 조건에 따라 Type 결정하기
+description: 조건부 type은 TypeScript에서 삼항 연산자와 유사한 구문을 사용하여 특정 조건에 따라 type을 동적으로 결정하는 고급 기능으로, 복잡한 type 관계를 표현하고 많은 유틸리티 type의 기반이 됩니다.
 ---
 
 

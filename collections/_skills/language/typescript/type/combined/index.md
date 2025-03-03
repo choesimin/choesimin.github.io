@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Combined Type (여러 Type이 조합된 Type)
 date: 2024-03-02
+title: TypeScript Combined Type - 여러 Type이 조합된 Type
+description: TypeScript는 Intersection type과 Union type을 통해 다양한 type들을 조합하여 복잡한 type checking을 가능하게 하는 고급 type 기능을 제공합니다.
 ---
 
 

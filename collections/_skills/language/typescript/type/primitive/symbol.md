@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Primitive Type - Symbol (고유 값)
 date: 2024-02-28
+title: TypeScript Symbol Type - 고유 값
+description: TypeScript의 Symbol Type은 변경 불가능한 고유한 값을 나타내며, 객체 속성의 key로 사용되어 이름 충돌을 방지하고 Metaprogramming 기능을 제공합니다.
 ---
 
 

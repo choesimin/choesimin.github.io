@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Primitive Type - Boolean (참과 거짓)
 date: 2024-02-28
+title: TypeScript Boolean Type - 참과 거짓
+description: TypeScript의 Boolean Type은 참(true) 또는 거짓(false)의 논리적 값으로 표현되며, 조건문, 제어 흐름, 논리 연산 등 program의 흐름을 결정하는 데 주로 사용됩니다.
 ---
 
 

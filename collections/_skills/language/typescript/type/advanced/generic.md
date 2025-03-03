@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Advanced Type - Generic Type (Type을 Parameter처럼 사용하기)
 date: 2024-03-04
+title: TypeScript Generic Type - Type을 Parameter처럼 사용하기
+description: Generic Type은 type을 parameter럼 사용하여 다양한 type에 대해 작동할 수 있는 재사용 가능한 함수, class, interface를 만들 수 있게 해주는 기능으로, type 안전성을 유지하면서 code의 유연성을 제공합니다.
 ---
 
 

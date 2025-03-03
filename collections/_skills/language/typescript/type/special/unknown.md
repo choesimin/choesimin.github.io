@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Special Type - Unknown (Type 안전성이 있는 Any Type)
 date: 2024-03-04
+title: TypeScript Unknown Type - Type 안전성이 있는 Any Type
+description: TypeScript의 Unknown Type은 Type-safe하게 모든 Type의 값을 할당할 수 있으며, 사용하기 전에 Type을 확인해야 하는 Type입니다.
 ---
 
 

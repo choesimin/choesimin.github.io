@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: TypeScript Literal Type (특정한 값)
 date: 2024-03-02
+title: TypeScript Literal Type - 특정한 값
+description: TypeScript의 Literal Type은 특정 값을 지정할 때 사용하는 type으로, 변수가 정확히 그 값만을 가질 수 있음을 명시적으로 표현할 수 있습니다.
 ---
 
 
