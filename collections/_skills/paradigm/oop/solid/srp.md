@@ -1,14 +1,15 @@
 ---
 layout: skill
-title: SRP - 단일 책임 원칙
 date: 2023-11-05
+title: SRP - 단일 책임 원칙
+description: 객체를 변경해야 할 이유는 오직 한 가지여야 합니다.
 ---
 
 
 ## SRP (Single Responsibility Principle) : 단일 책임 원칙
 
 ```txt
-단일 module은 변경의 이유가 하나, 오직 하나뿐이여야 한다.
+단일 module은 변경의 이유가 하나, 오직 하나뿐이어야 한다.
 ```
 
 - 단일 책임 원칙(SRP)는 **객체는 단 하나의 책임만 가져야 한다**는 원칙을 말합니다.

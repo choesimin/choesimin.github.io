@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 동시성 Programming - 여러 작업을 동시에 수행하기
 date: 2024-07-31
+title: 동시성 Programming - 여러 작업을 동시에 수행하기
+description: 동시성 Programming을 통해 자원을 더 효율적으로 활용하고, system 성능을 향상시킬 수 있습니다.
 ---
 
 

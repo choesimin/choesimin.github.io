@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Code - 좋은 함수 만들기
 date: 2023-04-20
+title: Clean Code - 좋은 함수 만들기
+description: 함수는 한 가지만 해야 합니다.
 ---
 
 

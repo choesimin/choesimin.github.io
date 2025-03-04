@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: 객체 지향 설계를 하기 위한 간단한 Tip
 date: 2023-06-06
+title: 객체 지향 설계를 하기 위한 간단한 Tip
+description: 객체 지향 설계를 위한 구체적인 방법들이 있습니다.
 ---
 
 

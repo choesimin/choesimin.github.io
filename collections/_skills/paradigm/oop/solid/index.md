@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: SOLID 원칙
 date: 2023-11-05
+title: SOLID 원칙
+description: SOLID 원칙은 객체 지향 설계의 5가지 원칙입니다.
 ---
 
 

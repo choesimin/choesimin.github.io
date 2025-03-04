@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: OCP - 개방 폐쇄 원칙
 date: 2023-11-05
+title: OCP - 개방 폐쇄 원칙
+description: 확장에는 열려 있어야 하고, 변경에는 닫혀 있어야 합니다.
 ---
 
 

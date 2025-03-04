@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: OOP - 합성 관계와 집합 관계
 date: 2024-01-16
+title: OOP - 합성 관계와 집합 관계
+description: 합성과 집합을 이용하여 전체와 부분 관계를 나타낼 수 있습니다.
 ---
 
 

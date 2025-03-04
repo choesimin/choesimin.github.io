@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Couroutine - 상호 협력하는 Routine
 date: 2024-08-01
+title: Couroutine - 상호 협력하는 Routine
+description: Coroutine을 사용하여 비동기 작업을 더 간결하고 효율적으로 처리할 수 있습니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: LSP - Liskov 치환 원칙
 date: 2023-11-05
+title: LSP - Liskov 치환 원칙
+description: 하위 유형은 언제나 상위 유형으로 교체할 수 있어야 합니다.
 ---
 
 

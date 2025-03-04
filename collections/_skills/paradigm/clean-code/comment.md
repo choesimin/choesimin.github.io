@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Code - 주석 사용하지 않기
 date: 2023-04-18
+title: Clean Code - 주석 사용하지 않기
+description: 좋은 code는 그 자체로 표현력이 풍부한 code입니다.
 ---
 
 

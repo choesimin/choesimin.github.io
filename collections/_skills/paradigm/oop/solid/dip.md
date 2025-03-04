@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: DIP - 의존 관계 역전 원칙
 date: 2023-11-05
+title: DIP - 의존 관계 역전 원칙
+description: 고수준 module은 저수준 module의 구현에 의존해서는 안됩니다.
 ---
 
 

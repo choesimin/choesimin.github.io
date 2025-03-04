@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Code - 오류를 잘 처리하는 법
 date: 2023-04-19
+title: Clean Code - 오류를 잘 처리하는 법
+description: 올바른 오류 처리를 통해 code의 안정성 뿐만 아니라 가독성도 함께 높일 수 있습니다.
 ---
 
 

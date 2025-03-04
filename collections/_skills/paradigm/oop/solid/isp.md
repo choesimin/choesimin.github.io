@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: ISP - Interface 분리 원칙
 date: 2023-11-05
+title: ISP - Interface 분리 원칙
+description: client는 자신이 이용하지 않는 method에 의존하지 않아야 합니다.
 ---
 
 

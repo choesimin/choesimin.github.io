@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Code - 객체와 자료 구조를 구분하여 사용하기
 date: 2023-04-19
+title: Clean Code - 객체와 자료 구조를 구분하여 사용하기
+description: 객체와 자료 구조는 언뜻 보기에 비슷하지만, 사실은 서로 반대되는 특징을 가지고 있습니다.
 ---
 
 

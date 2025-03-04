@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Code - 읽기 좋은 Code Formatting
 date: 2023-04-19
+title: Clean Code - 읽기 좋은 Code Formatting
+description: 일관된 code format을 통해 가독성을 높이면, 유지 보수성과 확장성도 함께 높일 수 있습니다.
 ---
 
 
@@ -97,6 +98,8 @@ date: 2023-04-19
 
 ## 가로 형식 맞추기
 
+- code의 가로 길이는 한 화면에 들어가야 합니다.
+
 
 ### 짧은 행을 유지하기
 
@@ -104,6 +107,8 @@ date: 2023-04-19
 
 
 ### 가로 공백과 밀집도
+
+- 가로 공백은 밀집된 code를 풀어줍니다.
 
 #### 가로 공백을 사용해 밀접한 개념과 느슨한 개념을 표현하기
 
@@ -152,7 +157,7 @@ b*b - 4*a*c
 
 ## Team 규칙
 
-- team은 한 가지 규칙에 합의해야 하며, 모든 팀원은 그 규칙에 따라야 합니다.
+- team은 한 가지 규칙에 합의해야 하며, 모든 구성원은 그 규칙에 따라야 합니다.
 
 - 좋은 software system은 일관적입니다.
     - 한 source file에서 봤던 형식이 다른 source file에도 쓰이리라는 신뢰감을 독자에게 줄 수 있어야 합니다.

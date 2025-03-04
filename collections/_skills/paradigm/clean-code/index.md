@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Code - 깨끗한 Code 작성하기
 date: 2023-04-18
+title: Clean Code - 깨끗한 Code 작성하기
+description: 현재와 미래 모두를 위해 clean code를 작성해야 합니다.
 ---
 
 
