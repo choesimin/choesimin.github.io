@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture
 date: 2023-11-02
+title: Clean Architecture
+description: system 수명과 관련된 비용은 최소화하고, programmer의 생산성은 최대화할 수 있는 architecture가 좋은 architecture입니다.
 ---
 
 

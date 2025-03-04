@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 정책과 세부 사항
 date: 2023-11-02
+title: Clean Architecture - 정책과 세부 사항
+description: software system은 추상화 수준에 따라서 정책과 세부 사항으로 분리할 수 있습니다.
 ---
 
 

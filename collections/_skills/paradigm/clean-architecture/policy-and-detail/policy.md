@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 정책
 date: 2023-11-02
+title: Clean Architecture - 정책
+description: System의 본질적인 가치는 정책에 있습니다.
 ---
 
 

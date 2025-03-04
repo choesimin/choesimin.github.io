@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 경계 횡단하기
 date: 2023-11-28
+title: Clean Architecture - 경계 횡단하기
+description: Architecture에서 경계를 가로질러 통신하는 일은 필수적이기 때문에, 경계 횡단에 대한 부분도 잘 설계해야 합니다.
 ---
 
 

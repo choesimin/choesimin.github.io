@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 부분적 경계
 date: 2023-11-28
+title: Clean Architecture - 부분적 경계
+description: Architecture 경계를 부분적으로 구현하여, 경계 구축에 대한 비용을 줄이면서 필요한 만큼의 경계만 만들 수 있습니다.
 ---
 
 

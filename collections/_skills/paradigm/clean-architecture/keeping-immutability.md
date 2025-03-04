@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 불변성 유지하기
 date: 2023-11-16
+title: Clean Architecture - 불변성 유지하기
+description: 불변성을 유지하면 동시성 문제를 해결할 수 있습니다.
 ---
 
 

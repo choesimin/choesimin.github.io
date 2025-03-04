@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 객체 지향 설계
 date: 2023-11-05
+title: Clean Architecture - 객체 지향 설계
+description: source code 뿐만 아니라, architecture를 설계할 때도 객체 지향적으로 구성해야 합니다.
 ---
 
 

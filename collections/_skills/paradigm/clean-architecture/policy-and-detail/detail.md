@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 세부 사항
 date: 2023-11-02
+title: Clean Architecture - 세부 사항
+description: 세부 사항은 정책과 무관한 것으로, 정책이 갖는 행위에는 영향을 미치지 않습니다.
 ---
 
 

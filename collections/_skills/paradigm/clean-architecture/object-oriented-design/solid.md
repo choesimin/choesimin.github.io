@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Architecture 관점에서 보는 SOLID 원칙
 date: 2023-11-05
+title: Architecture 관점에서 보는 SOLID 원칙
+description: Architecture 설계에도 SOLID 원칙을 적용할 수 있습니다.
 ---
 
 

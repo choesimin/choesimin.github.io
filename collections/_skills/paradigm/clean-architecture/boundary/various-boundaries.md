@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 다양한 형태의 경계들
 date: 2023-11-28
+title: Clean Architecture - 다양한 형태의 경계들
+description: System Architecture의 경계를 다양한 방식으로 나누어, software component를 분리할 수 있습니다.
 ---
 
 

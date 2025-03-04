@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 경계 구축 비용
 date: 2023-11-30
+title: Clean Architecture - 경계 구축 비용
+description: Architecture에서 경계를 구축하는 데에는 비용이 들어가기 때문에 경계를 어디에 둘지, 어떻게 구현할지를 신중하게 결정해야 합니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - Architecture 경계
 date: 2023-11-28
+title: Clean Architecture - Architecture 경계
+description: Clean Architecture에서 경계는 관련성 있는 것과 없는 것을 분리하여, software 요소를 서로 분리하고, 경계 한편에 있는 요소가 반대편에 있는 요소를 알지 못하도록 막습니다.
 ---
 
 

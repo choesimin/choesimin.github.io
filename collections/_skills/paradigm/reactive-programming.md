@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Reactive Programming - 비동기적으로 Data Stream을 다루는 방법
 date: 2024-07-29
+title: Reactive Programming - 비동기적으로 Data Stream을 다루는 방법
+description: Reactive Programming은 data stream과 변경 사항 전파를 중심으로하는 비동기 programming paradigm입니다.
 ---
 
 

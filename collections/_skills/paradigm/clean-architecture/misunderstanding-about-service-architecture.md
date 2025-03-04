@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - Service Architecture에 대한 오해
 date: 2023-11-29
+title: Clean Architecture - Service Architecture에 대한 오해
+description: SOA와 MicroService는 만능 solution이 아닙니다.
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Paradigm
 date: 2025-02-09
+title: Paradigm
+description: Paradigm이란, 한 시대의 사람들의 견해나 사고를 근본적으로 규정하고 있는 인식의 체계, 또는 사물에 대한 이론적인 틀이나 체계를 의미합니다.
 ---
 
 

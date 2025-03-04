@@ -1,7 +1,8 @@
 ---
 layout: skill
-title: Clean Architecture - 계층 분리
 date: 2023-11-28
+title: Clean Architecture - 계층 분리
+description: 관심사에 따라 계층을 분리하여, system을 유지 보수하기 쉽게 만들 수 있습니다.
 ---
 
 
