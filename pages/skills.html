@@ -8,7 +8,7 @@ permalink: /skills
   <head>
     <title>기술시민</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="기술 지식을 기록합니다." />
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
     <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
@@ -88,10 +88,10 @@ permalink: /skills
         font-size: 24px;
       }
 
-      #skills ul.root li > span {
+      #skills ul.root li > sup {
         font-size: 12px;
         margin-left: 10px;
-        opacity: 0.5;
+        opacity: 0.8;
       }
 
       #simin {
@@ -175,12 +175,13 @@ permalink: /skills
             listItem.id = index.name;
 
             var anchor = document.createElement("a");
-            anchor.innerHTML = index.name;
+            anchor.textContent = index.name;
             anchor.href = index.url;
             listItem.appendChild(anchor);
-            var span = document.createElement("span");
-            span.innerHTML = index.date;
-            listItem.appendChild(span);
+            
+            var sup = document.createElement("sup");
+            sup.textContent = index.date;
+            listItem.appendChild(sup);
           } else {
             listItem.innerHTML = node.name + " (You must add category index file)";
           }
@@ -195,12 +196,13 @@ permalink: /skills
 
         } else {
           var anchor = document.createElement("a");
-          anchor.innerHTML = node.name;
+          anchor.textContent = node.name;
           anchor.href = node.url;
           listItem.appendChild(anchor);
-          var span = document.createElement("span");
-          span.innerHTML = node.date;
-          listItem.appendChild(span);
+
+          var sup = document.createElement("sup");
+          sup.textContent = node.date;
+          listItem.appendChild(sup);
           list.appendChild(listItem);
         }
       }
