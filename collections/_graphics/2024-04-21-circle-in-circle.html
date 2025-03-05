@@ -42,7 +42,6 @@ description: 원 안에 있는 원은 원을 원합니다.
 
   <body>
     <script>
-      // circle.js 내용
       class Circle {
         constructor(parent = null) {
           if (parent === null) {
@@ -91,10 +90,7 @@ description: 원 안에 있는 원은 원을 원합니다.
       function getRandomColor() {
         return "#" + Math.floor(Math.random() * 16777215).toString(16);
       }
-    </script>
 
-    <script>
-      // app.js 내용
       class App {
         constructor() {
           this.canvas = document.createElement("canvas");

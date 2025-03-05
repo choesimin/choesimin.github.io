@@ -43,7 +43,6 @@ description: 공은 밖으로 나가고 싶습니다.
 
 <body>
   <script>
-    // Ball 클래스 정의
     class Ball {
       constructor(stageWidth, stageHeight, radius, speed) {
         this.radius = radius;
@@ -83,7 +82,6 @@ description: 공은 밖으로 나가고 싶습니다.
       }
     }
 
-    // App 클래스 정의
     class App {
       constructor() {
         this.canvas = document.createElement('canvas');
@@ -117,7 +115,6 @@ description: 공은 밖으로 나가고 싶습니다.
       }
     }
 
-    // 페이지 로드 시 App 초기화
     window.onload = () => {
       new App();
     };
