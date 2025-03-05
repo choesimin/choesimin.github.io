@@ -148,7 +148,7 @@ layout: none
           var categoryName = category.querySelector('a').innerHTML;
 
           var categoryIndex = document.createElement('a');
-          categoryIndex.href = '#' + convertNameToId(categoryName);
+          categoryIndex.href = '#' + categoryName;
           categoryIndex.innerHTML = categoryName;
           index.appendChild(categoryIndex);
         }
@@ -163,7 +163,7 @@ layout: none
           node.children = node.children.filter(child => !child.isIndex);
 
           if (index != undefined) {
-            listItem.id = convertNameToId(index.name);
+            listItem.id = index.name;
 
             var anchor = document.createElement("a");
             anchor.innerHTML = index.name;
@@ -271,10 +271,6 @@ layout: none
         {% endfor %}
 
         return pages;
-      }
-
-      function convertNameToId(name) {
-        return name.replace(/[^a-zA-Z0-9가-힣]/g, "-").toLowerCase();
       }
     </script>
   </body>
