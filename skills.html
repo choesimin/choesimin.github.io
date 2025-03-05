@@ -259,11 +259,11 @@ layout: none
         var pages = [];
 
         {% for skill in site.skills %}
-        var id = "{{ skill.id }}".split("/");
+        var path = "{{ skill.path }}".replace("_skills/", "").split("/");
 
         pages.push({
-          category: id.slice(2, id.length - 1),
-          name: id[id.length - 1],
+          category: path.slice(0, path.length - 1),
+          name: path[path.length - 1].replace(".md", ""),
           title: "{{ skill.title }}",
           date: "{{ skill.date | date: '%Y-%m-%d' }}",
           url: "{{ skill.url | relative_url }}",
