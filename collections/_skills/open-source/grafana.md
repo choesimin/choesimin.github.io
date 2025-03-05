@@ -75,3 +75,165 @@ date: 2025-02-10
     - predictive maintenance를 위한 패턴을 분석합니다.
 
 
+---
+
+
+## Grafana의 다양한 기능들
+
+```mermaid
+mindmap
+    root((Grafana))
+        (Data Sources)
+            (Time Series DB)
+                (Prometheus)
+                (InfluxDB)
+                (Graphite)
+            (SQL DB)
+                (MySQL)
+                (PostgreSQL)
+            (Cloud Services)
+                (AWS CloudWatch)
+                (Azure Monitor)
+                (Google Cloud)
+        (Visualization)
+            (Dashboard)
+                (Panels)
+                    (Graph)
+                    (Stat)
+                    (Table)
+                    (Heatmap)
+                (Template Variables)
+                (Annotations)
+        (Alerting)
+            (Alert Rules)
+                (Threshold)
+                (Multiple Conditions)
+            (Notifications)
+                (Email)
+                (Slack)
+                (Webhook)
+            (Alert History)
+        (User Management)
+            (Teams)
+                (Team Roles)
+                (Resource Sharing)
+            (Permissions)
+                (Role Based Access)
+                (Folder Permissions)
+            (Authentication)
+                (Internal Auth)
+                (LDAP)
+                (OAuth)
+        (Integration)
+            (HTTP API)
+                (Dashboard API)
+                (Data Source API)
+            (Plugins)
+                (Data Source Plugins)
+                (Panel Plugins)
+                (App Plugins)
+            (Provisioning)
+                (Dashboard)
+                (Data Source)
+                (Alert)
+```
+
+
+### Data Sources : Data 수집 관련 기능
+
+- **다양한 data source 연동**을 지원합니다.
+    - Prometheus, InfluxDB, Graphite 등 time series database를 지원합니다.
+    - MySQL, PostgreSQL 등 SQL database를 지원합니다.
+    - AWS CloudWatch, Azure Monitor, Google Cloud 등 cloud service를 지원합니다.
+    - custom data source plugin 개발이 가능합니다.
+
+- **data query 기능**을 제공합니다.
+    - 복잡한 data 분석을 위한 다양한 query 문법을 지원합니다.
+    - query 결과를 실시간으로 확인하고 수정할 수 있습니다.
+    - data source별로 최적화된 query editor를 제공합니다.
+
+
+### Visualization : Data 시각화 관련 기능
+
+- **다양한 형태의 시각화 panel**을 제공합니다.
+    - graph, gauge, heat map, histogram 등 여러 형태의 시각화가 가능합니다.
+    - dashboard에 여러 panel을 배치하여 복합적인 monitoring 환경을 구성합니다.
+    - template variable을 통해 동적인 dashboard 구성이 가능합니다.
+
+- **직관적인 dashboard** 구성이 가능합니다.
+    - annotation을 통해 중요 event를 시각적으로 표시합니다.
+    - panel을 자유롭게 배치하고 크기를 조절할 수 있습니다.
+    - dashboard를 folder로 구조화하여 체계적으로 관리합니다.
+
+
+### Alerting : Monitoring 및 Alert 관련 기능
+
+- **alert system**을 제공합니다.
+    - 복잡한 조건의 alert rule 설정이 가능합니다.
+    - threshold 기반의 alert 조건을 설정할 수 있습니다.
+    - 다중 조건을 조합하여 alert rule을 생성할 수 있습니다.
+
+- **다양한 notification** 기능을 제공합니다.
+    - email, Slack, webhook 등 다양한 channel을 통해 alert을 전송합니다.
+    - notification 방식을 상세하게 설정할 수 있습니다.
+    - alert history를 통해 과거 alert을 추적하고 분석합니다.
+
+
+### User Management : User 및 권한 관리 기능
+
+- **체계적인 team 관리**가 가능합니다.
+    - team 기반의 resource 관리를 지원합니다.
+    - team 내부에서 role을 부여하여 권한을 세분화합니다.
+    - folder 단위로 접근 권한을 설정할 수 있습니다.
+
+- **안전한 인증과 접근 제어**를 제공합니다.
+    - internal authentication, LDAP, OAuth 등 다양한 인증 방식을 지원합니다.
+    - session 기반의 접근 제어를 제공합니다.
+    - API key를 통한 안전한 접근을 지원합니다.
+
+
+### Integration : 외부 System 연동 기능
+
+- **확장성 있는 plugin system**을 제공합니다.
+    - data source plugin을 통해 새로운 data source를 추가할 수 있습니다.
+    - panel plugin을 통해 새로운 시각화 방식을 추가할 수 있습니다.
+    - app plugin을 통해 새로운 기능을 추가할 수 있습니다.
+
+- **자동화와 integration**을 지원합니다.
+    - provisioning을 통해 설정을 자동화할 수 있습니다.
+    - HTTP API를 통해 프로그래밍 방식의 접근이 가능합니다.
+    - dashboard와 data source를 code로 관리할 수 있습니다.
+
+
+---
+
+
+## Monitoring Tool 비교
+
+| 평가 항목 | Grafana | Datadog | Prometheus UI |
+| --- | --- | --- | --- |
+| **특징** | open source 기반 시각화 도구 | 통합 관제 SaaS | metric 수집 특화 도구 |
+| **주요 장점** | 다양한 data source 연동, Plugin 기반 확장 | 자동화된 monitoring, ML 기반 anomaly 탐지 | 높은 확장성, 안정적인 metric 수집 |
+| **주요 단점** | 초기 설정 복잡, 높은 learning curve | 높은 비용, vendor lock-in | UI 기능 부족, 제한적인 시각화 |
+| **사용 난이도** | 중 (직관적 UI, 복잡한 설정) | 하 (자동화된 설정, 쉬운 UI) | 상 (복잡한 query, 높은 학습 난이도) |
+| **설치 방식** | On-premise, Cloud | Cloud | On-premise |
+| **가격** | 무료, Enterprise 유료 | 구독형 과금 | 무료 |
+| **License** | AGPL v3.0 | 상용 License | Apache 2.0 |
+
+
+### 사용 난이도 책정 근거
+
+- **Grafana** : 중간 난이도.
+    - 초기 설정이 복잡하지만, dashboard 구성과 panel 설정이 직관적입니다.
+    - plugin 설치와 data source 연동에는 system 지식이 필요합니다.
+    - query 작성에는 SQL이나 PromQL 등의 이해가 필요합니다.
+
+- **Datadog** : 낮은 난이도.
+    - SaaS 형태로 제공되어 초기 설정이 간단합니다.
+    - UI가 직관적이고 자동화된 기능이 많습니다.
+    - 기본 제공되는 dashboard template이 풍부합니다.
+
+- **Prometheus UI** : 높은 난이도.
+    - query 언어인 PromQL의 learning curve가 높습니다.
+    - metric 수집을 위한 exporter 설정이 복잡합니다.
+    - alert rule 설정과 관리가 복잡합니다.

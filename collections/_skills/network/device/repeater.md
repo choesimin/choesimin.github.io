@@ -59,3 +59,10 @@ D --> E[수신기]
 - **최적의 배치** : 신호 감쇠가 시작되기 전에 repeater를 설치하여 최적의 신호 증폭 환경을 만들어야 합니다.
 
 
+---
+
+
+## Reference
+
+- <https://ko.wikipedia.org/wiki/중계기>
+- <https://blog.naver.com/emulticom/221277758544>

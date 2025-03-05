@@ -54,3 +54,11 @@ date: 2023-11-05
     - 개발 독립성 : system의 module을 독립적으로 배포할 수 있게 되면, 서로 다른 team에서 각 module을 독립적으로 개발할 수 있습니다.
 
 
+---
+
+
+## Reference
+
+- Clean Architecture (도서) - Robert C. Martin
+- <https://mangkyu.tistory.com/272>
+- <https://mangkyu.tistory.com/274>

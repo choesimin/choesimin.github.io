@@ -34,3 +34,10 @@ date: 2023-11-30
     - 목표는 경계의 구현 비용이 무시해서 생기는 비용보다 적어지는 그 변곡점에서 경계를 구현하는 것입니다.
 
 
+---
+
+
+## Reference
+
+- Clean Architecture (도서) - Robert C. Martin
+- <https://mangkyu.tistory.com/276>

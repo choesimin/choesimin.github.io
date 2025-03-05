@@ -34,3 +34,11 @@ date: 2023-12-29
 - **주로 회원과의 업무가 발생**합니다.
 
 
+---
+
+
+## Reference
+
+- <https://blesswisdom.tistory.com/entry/신용카드의-매입사와-발급사>
+- <https://gofood.tistory.com/417>
+- <https://tosspayments-dev.oopy.io/d5db2cfe-5ce1-4f21-8654-f35e459ead6c>

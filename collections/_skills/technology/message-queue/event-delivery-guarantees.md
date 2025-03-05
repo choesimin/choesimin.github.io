@@ -108,3 +108,30 @@ flowchart TD
     - 결제 system, 계좌 이체 처리, 재고 관리, 법적 문서 처리 system 등.
 
 
+---
+
+
+## Message 처리 보장을 위한 핵심 Mechanism
+
+- message 처리 보장을 위해 여러 핵심적인 mechanism을 적용할 수 있습니다.
+
+1. **Message 영속성** (Message Persistence) : message를 Disk에 저장.
+    - message를 Disk에 저장하여 system 장애 발생 시에도 data 손실을 방지합니다.
+    - Memory와 Disk를 적절히 활용하여 성능과 안정성의 균형을 유지합니다.
+
+2. **확인 응답 Mechanism** (Acknowledgment) : message 수신 및 처리 완료 확인.
+    - message 수신 및 처리 완료를 명시적으로 확인합니다.
+    - 자동 확인(Auto-ACK)과 수동 확인(Manual-ACK) 방식을 상황에 따라 선택할 수 있습니다.
+
+3. **재시도 Mechanism** (Retry Mechanism) : 실패 시 재시도.
+    - message 전달 실패 시 자동으로 재시도합니다.
+    - 재시도 횟수와 간격을 설정하여 system 부하를 조절할 수 있습니다.
+
+4. **실패 Message Queue** (Dead Letter Queue) : 실패 message 별도 보관.
+    - 지속적인 처리 실패 message를 별도로 보관합니다.
+    - 문제 분석과 수동 개입을 위한 message 보관소 역할을 수행합니다.
+
+5. **Transaction 관리** (Transaction Management) : data 일관성 보장.
+    - message 발행과 소비 과정에서 data 일관성을 보장합니다.
+    - 분산 transaction을 통해 여러 system 간의 작업을 원자적으로 처리합니다.
+

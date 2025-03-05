@@ -40,3 +40,12 @@ date: 2023-11-29
     - monolithic이나 component 기반으로도 대규모 enterprise system을 구축할 수 있다는 사실은 역사적으로 증명되어 왔습니다.
 
 
+---
+
+
+## Reference
+
+- Clean Architecture (도서) - Robert C. Martin
+- <https://mangkyu.tistory.com/276>
+- <https://ko.wikipedia.org/wiki/서비스_지향_아키텍처>
+- <https://ko.wikipedia.org/wiki/마이크로서비스>

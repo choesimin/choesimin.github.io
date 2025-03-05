@@ -37,4 +37,39 @@ date: 2023-11-28
 
 ```mermaid
 classDiagram
-Business Rules <-- GUI : 
+Business Rules <-- GUI : ---- Boundary ----
+Business Rules <-- DB : ---- Boundary ----
+```
+
+#### 업무 규칙과 Database 사이의 경계
+
+- 업무 규칙은 database와 관련된 나머지 세부 사항에 대해 어떤 것도 알아서는 안 됩니다.
+
+```mermaid
+classDiagram
+Business Rules --> Database Interface
+<<interface>> Database Interface
+Database Interface <-- Database Access : ---- Boundary ----
+Database Access --> Database
+```
+
+#### 업무 규칙과 GUI 사이의 경계
+
+- system의 행위를 입출력이 지닌 행위와 똑같이 생각해서는 안 됩니다.
+    - system의 행위에서 입력과 출력은 중요하지 않습니다.
+- `GUI`는 다른 종류의 interface로 얼마든지 교체할 수 있으며, `Business Rules`은 이에 대해 영향을 받지 않아야 합니다.
+
+```mermaid
+classDiagram
+Business Rules <-- GUI : ---- Boundary ----
+```
+
+
+---
+
+
+## Reference
+
+- Clean Architecture (도서) - Robert C. Martin
+- <https://mangkyu.tistory.com/276>
+- <https://hwannny.tistory.com/37>

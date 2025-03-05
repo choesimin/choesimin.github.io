@@ -89,3 +89,26 @@ mindmap
     - 다양한 programming 언어에서 Kafka 접근을 용이하게 합니다.
 
 
+---
+
+
+## Component 선택 및 활용 Guide
+
+- component는 독립적으로, 또는 조합하여 사용할 수 있으며, 각 조직의 요구 사항과 기술 stack에 따라 적절히 선택하여 활용할 수 있습니다.
+
+1. **기본 Messaging System** : Kafka Broker.
+    - 단순한 pub-sub(발행/구독) model이 필요한 경우 **Kafka Broker**만으로 충분합니다.
+    - 고가용성이 필요한 경우 여러 broker로 cluster를 구성합니다.
+
+2. **실시간 Data 처리** : Kafka Streams, ksqlDB.
+    - 실시간 처리가 필요한 경우 **Kafka Streams**나 **ksqlDB**를 활용합니다.
+    - Java/Scala 개발자는 Kafka Streams를, SQL 친화적인 개발자는 ksqlDB를 선택합니다.
+
+3. **Data 통합** : Kafka Connect.
+    - 외부 system과의 연동이 필요한 경우 **Kafka Connect**를 사용합니다.
+    - 많은 수의 connector가 이미 개발되어 있어 재사용이 가능합니다.
+
+4. **Enterprise 확장** : Schema Registry, Control Center.
+    - 대규모 운영 환경에서는 **Schema Registry**와 **Control Center**가 필수적입니다.
+    - REST Proxy는 다양한 client 지원이 필요한 경우에 도입합니다.
+
