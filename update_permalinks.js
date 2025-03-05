@@ -44,8 +44,7 @@ try {
 
     // 각 파일에 permalink 추가
     files.forEach((file, index) => {
-        const filePath = path.join(skillsDir, file);
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = fs.readFileSync(file, 'utf8');
 
         // 이미 permalink가 있는지 확인
         if (content.includes('permalink:')) {
@@ -66,7 +65,7 @@ try {
         }
 
         // 파일에 저장
-        fs.writeFileSync(filePath, newContent, 'utf8');
+        fs.writeFileSync(file, newContent, 'utf8');
         console.log(`${file}: permalink: /${index + 1} 추가 완료`);
     });
 
