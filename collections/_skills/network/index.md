@@ -40,3 +40,32 @@ date: 2024-09-03
     - 긍정적인 측면을 극대화하고 부정적인 영향을 최소화하기 위해서는 올바른 사용 습관과 윤리 의식, 그리고 사회적 노력이 필요합니다. 
 
 
+---
+
+
+## Internet에서 Network의 목적 : 쉽고 간편하며 빠른 자원(정보) 공유
+
+1. program이나 data를 공유하여 사용할 수 있습니다.
+    - 독립적으로 사용하는 computer(stand-alone 방식)에서 작성된 data를 전송하려면 flash memory 등의 이동식 저장 매체를 사용해야 합니다.
+    - 하지만 network를 구성하게 되면 data를 쉽게 전송하거나 download 받을 수 있습니다.
+    - 따라서 멀리 떨어져 있어도 network로 연결이 되어있으면 data를 쉽게 공유할 수 있습니다.
+
+2. printer 또는 scanner 등의 주변 장치를 공유하여 사용할 수 있습니다.
+    - 사무실에 있는 모든 computer마다 printer를 구매하여 직접 연결하게 되면 많은 비용이 들어갑니다.
+    - 한 대의 printer를 network에 연결하여 여러 computer에서 공유하여 사용함으로써 비용을 줄이고 업무의 효율성을 높일 수 있습니다.
+    - 예를 들어, 학교의 모든 computer를 교내 network에 연결하면, 모든 computer에서 교내 network에 연결된 모든 printer를 사용할 수 있게 됩니다.
+
+3. internet 회선을 공유하여 여러 대의 computer가 편리하게 internet을 사용할 수 있습니다.
+    - 예를 들어, 전용선을 사용하는 학교에서 실습실에 network로 연결된 여러 대의 computer가 동시에 internet을 사용할 수 잇습니다.
+
+4. data를 쉽게 backup할 수 있습니다.
+    - computer에서 중요한 data를 network에 연결된 공유 저장 장치(cloud 등)에 저장해 두면, virus나 computer 고장 등으로 인하여 computer에 있는 data가 손상되더라도 쉽게 복원할 수 있습니다.
+    - 특히 최신의 좋은 backup server는 file을 덮어쓰지 않고 시간대별로 저장해 두어, 특정 시점으로 복원하는 것도 가능합니다.
+
+
+---
+
+
+## Reference
+
+- <https://velog.io/@mingle-mongle/computer-network>

@@ -56,3 +56,52 @@ if (!isAllowed) {
 ```
 
 
+---
+
+
+## Boolean을 사용한 복잡한 예제 : 사용자 검증
+
+```typescript
+interface User {
+    age: number;
+    hasPermission: boolean;
+    isAccountActive: boolean;
+}
+
+function canUserPerformAction(user: User, actionRequiredAge: number, needsPermission: boolean): boolean {
+    // 계정 활성 상태 확인
+    if (!user.isAccountActive) {
+        console.log("User's account is not active.");
+        return false;
+    }
+
+    // 필요한 나이보다 사용자의 나이가 적은지 확인
+    if (user.age < actionRequiredAge) {
+        console.log(`User needs to be at least ${actionRequiredAge} years old.`);
+        return false;
+    }
+
+    // 특정 작업을 수행하기 위해 특별한 권한이 필요한지 확인
+    if (needsPermission && !user.hasPermission) {
+        console.log("User does not have the required permission.");
+        return false;
+    }
+
+    // 모든 조건을 통과했다면, 사용자는 작업을 수행할 수 있음
+    return true;
+}
+
+const user: User = {
+    age: 20,
+    hasPermission: false,
+    isAccountActive: true
+};
+
+const actionRequiredAge = 18;
+const needsPermission = true;
+
+// 사용자가 특정 작업을 수행할 수 있는지 여부를 결정함
+const canPerform = canUserPerformAction(user, actionRequiredAge, needsPermission);
+
+console.log(`Can user perform action? ${canPerform}`);
+```

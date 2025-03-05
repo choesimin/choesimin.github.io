@@ -27,4 +27,10 @@ cp [option] [source...] [destination]
 ### Option
 
 | Option | 설명 |
-| 
+| --- | --- |
+| -a | 원본 file의 속성, link 정보도 함께 복사합니다. |
+| -p | 원본 file의 소유자, group, 권한, 시간 정보를 그대로 복사합니다. |
+| -f | 복사 위치에 file이 존재하는 경우 덮어씁니다. |
+| -r | 원본 file의 하위 file까지 복사합니다. |
+| -v | 현재 작업을 표시합니다. |
+| -b | file이 이미 있는 경우, backup file을 생성합니다. |

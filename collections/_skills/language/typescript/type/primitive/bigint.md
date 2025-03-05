@@ -62,3 +62,17 @@ let sumOfBigIntAndNumber = bigInt1 + normalNumber;    // Error : 'bigint'와 'nu
 ```
 
 
+---
+
+
+## BigInt의 사용 예제 : Unique ID 생성
+
+```typescript
+function generateUniqueId(): bigint {
+    let timestamp: bigint = BigInt(new Date().getTime());
+    let random: bigint = BigInt(Math.floor(Math.random() * 10000));
+    return timestamp * 10000n + random;
+}
+
+console.log(generateUniqueId());
+```

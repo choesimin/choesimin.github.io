@@ -29,3 +29,78 @@ date: 2024-03-04
     3. **compiler 최적화** : `never` type을 통해 compiler는 code의 도달할 수 없는 영역을 더 쉽게 식별하고, 최적화할 수 있습니다.
 
 
+---
+
+
+## `never` Type의 주요 사용 사례
+
+
+### 절대 반환되지 않는 함수
+
+- 함수가 무한 loop에 빠지거나, 항상 예외를 발생시키는 경우 해당 함수의 반환 type으로 `never`를 사용할 수 있습니다.
+
+```typescript
+function throwError(errorMsg: string): never {
+    throw new Error(errorMsg);
+}
+
+function infiniteLoop(): never {
+    while (true) {}
+}
+```
+
+
+### 완전 검사 (Exhaustive Check)
+
+- `never` type을 사용하여 특정 조건에서 code가 도달할 수 없음을 명시적으로 표현할 수 있습니다.
+    - type guard에서 type 좁히기(narrowing)를 적용해, **모든 가능한 case를 처리했는지 확인**합니다.
+    - 모든 case를 처리한 후 남는 code 영역에 도달했다면(논리적 오류), `never` type을 통해 오류 상황을 감지할 수 있습니다.
+
+- `switch` 문의 `default` 영역에서 `never` type을 사용하여, 모든 가능한 case를 처리했음을 compiler에게 보장할 수 있습니다.
+
+```typescript
+type Shape = Circle | Square;
+
+function getArea(shape: Shape): number {
+    switch (shape.kind) {
+        case "circle":
+            return Math.PI * shape.radius ** 2;
+        case "square":
+            return shape.sideLength * shape.sideLength;
+        default:
+            // 여기에 도달했다면, 모든 가능한 case를 처리했음을 의미함
+            // 이 경우, shape는 never type이 됨
+            const exhaustiveCheck: never = shape;
+            return exhaustiveCheck;    // 이 code는 실행되지 않음 (compiler error)
+    }
+}
+```
+
+```typescript
+type Action = { type: 'INCREMENT' } | { type: 'DECREMENT' } | { type: 'RESET' };
+
+function performAction(action: Action) {
+    switch (action.type) {
+        case 'INCREMENT':
+            console.log('Incrementing');
+            break;
+        case 'DECREMENT':
+            console.log('Decrementing');
+            break;
+        case 'RESET':
+            console.log('Resetting');
+            break;
+        default:
+            const exhaustiveCheck: never = action;
+            break;
+    }
+}
+
+performAction({ type: 'INCREMENT' });
+performAction({ type: 'DECREMENT' });
+performAction({ type: 'RESET' });
+```
+
+- `default` case에 도달하는 것은 `Action` type에 정의되지 않은 새로운 행동 type이 추가되었고, 해당 case를 처리하지 않았음을 의미합니다.
+- `default` case에서 `action` 변수의 type을 `never`로 명시함으로써, 모든 가능한 행동 type을 처리했다는 것을 compile time에 보장합니다.
+- 만약 새로운 행동 type이 `Action` union type에 추가되면, `exhaustiveCheck`에 할당하는 과정에서 compile 오류가 발생하여, 개발자가 이를 인지하고 적절한 처리 logic을 추가할 수 있도록 돕습니다.

@@ -90,3 +90,53 @@ async function saveToDatabase(data: any): Promise<void> {
 ```
 
 
+---
+
+
+## `void`와 `undefined`, `null`의 관계
+
+- `void` type은 다른 type과는 달리, 변수에 할당할 수 있는 값이 매우 제한적입니다.
+- TypeScript에서 `void` type의 변수에 할당할 수 있는 유일한 값은 `undefined`와 `null`입니다.
+    - `null`은 `strictNullChecks` option이 비활성화된 경우에만 할당할 수 있습니다.
+- 하지만, 일반적으로 `void` type을 변수에 사용하는 것보다는 함수의 반환 type으로 사용하는 경우가 훨씬 더 많습니다.
+
+```typescript
+function logMessage(message: string): void {
+    console.log(message);
+}
+
+let unusable: void = undefined;
+```
+
+- `void`를 반환 type으로 사용하는 함수가 `undefined`를 명시적으로 반환하는 것도 일반적이지 않습니다.
+- `void` type을 가진 함수에서 `return`문을 사용할 수는 있지만, 어떤 값도 반환하지 않아야 합니다.
+
+```typescript
+function doNothing(): void {
+    return;    // OK
+    return undefined;    // OK, but not recommended
+    return null;    // Error if strictNullChecks is enabled
+}
+```
+
+
+### `void`와 `undefined`
+
+- `void` type 함수는 기술적으로 `undefined`를 반환할 수 있습니다.
+    - TypeScript에서 함수가 반환 값을 명시하지 않으면 자동으로 `undefined`를 반환합니다.
+
+- 그러나 `void`를 반환 type으로 명시한 함수에서 `return undefined;`를 사용하는 것은 권장되지 않습니다.
+    - `undefined` 값을 반환하는 것은 `void`의 의도와 상충될 수 있으며, 함수의 반환 값에 대한 의도를 혼란스럽게 만들 수 있습니다.
+
+- `void` 함수에서는 가능한 `return;`만 사용하거나, `return`문을 전혀 사용하지 않는 것이 좋습니다.
+
+
+### `void`와 `null`
+
+- `void` type은 `undefined`와 `null`을 엄격하게 구분합니다.
+    - 두 type에 대한 `void`의 동작이 다릅니다.
+
+- `strictNullChecks` option이 활성화된 TypeScript 환경에서는 `void` type 함수에서 `null`을 반환하려고 시도하면 type error가 발생합니다.
+    - 반대로 `strictNullChecks` option이 비활성화된 경우에는 `null` 반환이 가능합니다.
+
+- `strictNullChecks`가 활성화되면, `null`은 `void` type에 할당할 수 없으며, 이는 type 안전성을 강화하는 데 도움을 줍니다.

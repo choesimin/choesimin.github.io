@@ -33,3 +33,71 @@ let d = looselyTyped.a.b.c.d;    // any type을 사용하면, 모든 하위 속�
 ```
 
 
+---
+
+
+## `any` Type 사용 최소화 전략
+
+- `any` type은 TypeScript의 type check를 우회할 수 있는 유연한 도구이지만, type 안정성을 저해할 수 있으므로 신중하게 사용해야 합니다.
+- TypeScript의 다양한 type system 기능을 활용하여 `any` 사용을 최소화하고, project의 type 안정성과 가독성을 향상시키는 것이 좋습니다.
+- `any` type을 사용하고 있다면 점진적으로 구체적인 type으로 변경해 나가야 합니다.
+
+
+### `any` Type 대신 고려할 수 있는 Type들
+
+#### `unknown` Type
+
+- `unknown` type은 `any`와 비슷하게 모든 종류의 값을 할당할 수 있지만, `unknown` type에 할당된 변수는 사용하기 전에 해당 변수의 type을 확인해야 합니다.
+    - `unknown` type 변수 사용 전 type을 확인하는 과정은, type 안정성을 높이는 데 도움이 됩니다.
+
+```typescript
+let value: unknown;
+value = "Hello";    // OK
+value = 123;    // OK
+
+if (typeof value === "string") {
+    console.log(value.toUpperCase());    // type check 후 사용
+}
+```
+
+#### Generic Type
+
+- 함수나 class 등에서 입력 type을 미리 정의하지 않고, 사용 시점에 type을 결정할 수 있습니다.
+- generic을 사용하면 유연함을 유지하면서도 type 안정성을 향상시킬 수 있습니다.
+
+```typescript
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let output = identity("myString");    // output은 string type
+```
+
+#### Union Type
+
+- 두 개 이상의 type 중 하나일 수 있는 변수의 type을 지정할 때 사용합니다.
+- union type은 `any` type보다 type을 더 명확하게 제한할 수 있습니다.
+
+```typescript
+let myVar: number | string;
+myVar = "Hello";    // OK
+myVar = 123;    // OK
+```
+
+
+### `any` Type 사용을 막는 Compiler Option : `noImplicitAny`
+
+- `noImplicitAny` option은 TypeScript의 type checker가 변수, 매개 변수, 반환 값 등의 type을 자동으로 `any`로 추론하지 못하게 막습니다.
+    - 개발자가 명시적으로 type을 선언하지 않았을 때, compiler가 오류를 발생시킵니다.
+
+- `noImplicitAny` option을 통해 `any` type의 사용을 줄이고, TypeScript의 type 추론(type inferenece) 기능에 의존하지 않는 명확한 type 선언을 장려할 수 있습니다.
+
+```json
+{
+    "compilerOptions": {
+        "noImplicitAny": true
+    }
+}
+```
+
+- `tsconfig.json` file에서 `noImplicitAny` option을 `true`로 설정하여 활성화할 수 있습니다.
