@@ -5,11 +5,11 @@ const path = require('path');
 function getAllFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
-    
+
     list.forEach(file => {
         const filePath = path.join(dir, file);
         const stat = fs.statSync(filePath);
-        
+
         if (stat && stat.isDirectory()) {
             // 하위 디렉토리의 파일들을 재귀적으로 추가
             results = results.concat(getAllFiles(filePath));
@@ -18,7 +18,7 @@ function getAllFiles(dir) {
             results.push(filePath);
         }
     });
-    
+
     return results;
 }
 
@@ -31,39 +31,46 @@ console.log(`Skills directory: ${skillsDir}`);
 try {
     const files = getAllFiles(skillsDir)
         .filter(file => file.endsWith('.md'))
-        .sort(); // 파일 이름 기준으로 정렬
+        .sort(() => Math.random() - 0.5); // 파일을 랜덤한 순서로 정렬
+
+    // 파일 목록 출력
+    files.forEach((file, index) => {
+        // 상대 경로로 변환하여 출력
+        const relativePath = path.relative(skillsDir, file);
+        console.log(`${index + 1}. ${relativePath}`);
+    });
 
     console.log(`총 ${files.length}개의 마크다운 파일을 찾았습니다.`);
 
-    // // 각 파일에 permalink 추가
-    // files.forEach((file, index) => {
-    //     const filePath = path.join(skillsDir, file);
-    //     const content = fs.readFileSync(filePath, 'utf8');
+    // 각 파일에 permalink 추가
+    files.forEach((file, index) => {
+        const filePath = path.join(skillsDir, file);
+        const content = fs.readFileSync(filePath, 'utf8');
 
-    //     // 이미 permalink가 있는지 확인
-    //     if (content.includes('permalink:')) {
-    //         console.log(`${file}: 이미 permalink가 존재합니다.`);
-    //         return;
-    //     }
+        // 이미 permalink가 있는지 확인
+        if (content.includes('permalink:')) {
+            console.log(`${file}: 이미 permalink가 존재합니다.`);
+            return;
+        }
 
-    //     // YAML 프론트매터가 있는지 확인
-    //     const hasYamlFrontMatter = content.startsWith('---');
+        // YAML 프론트매터가 있는지 확인
+        const hasYamlFrontMatter = content.startsWith('---');
 
-    //     let newContent;
-    //     if (hasYamlFrontMatter) {
-    //         // 첫 번째 '---' 다음에 permalink 추가
-    //         newContent = content.replace('---', `---\npermalink: /${index + 1}`);
-    //     } else {
-    //         // YAML 프론트매터가 없으면 새로 추가
-    //         newContent = `---\npermalink: /${index + 1}\n---\n\n${content}`;
-    //     }
+        let newContent;
+        if (hasYamlFrontMatter) {
+            // 첫 번째 '---' 다음에 permalink 추가
+            newContent = content.replace('---', `---\npermalink: /${index + 1}`);
+        } else {
+            // YAML 프론트매터가 없으면 새로 추가
+            newContent = `---\npermalink: /${index + 1}\n---\n\n${content}`;
+        }
 
-    //     // 파일에 저장
-    //     fs.writeFileSync(filePath, newContent, 'utf8');
-    //     console.log(`${file}: permalink: /${index + 1} 추가 완료`);
-    // });
+        // 파일에 저장
+        fs.writeFileSync(filePath, newContent, 'utf8');
+        console.log(`${file}: permalink: /${index + 1} 추가 완료`);
+    });
 
-    // console.log('모든 파일에 permalink 추가를 완료했습니다.');
+    console.log('모든 파일에 permalink 추가를 완료했습니다.');
 } catch (error) {
     console.error('오류 발생:', error);
 }
