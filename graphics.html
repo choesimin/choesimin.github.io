@@ -62,8 +62,6 @@ layout: none
             {% endfor %}
         ];
 
-        console.log(pages);
-
         document.body.innerHTML = pages.map(page => {
             return `<a href="${page.url}">
                 <h2>${page.title}</h2>
