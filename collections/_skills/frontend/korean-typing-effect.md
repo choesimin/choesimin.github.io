@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-01-11
+permalink: /191
 title: HTML 한글 Typing 효과 직접 만들기
 description: JavaScript로 한글 typing 효과를 직접 만들 수 있습니다.
+date: 2024-01-11
 ---
 
 

@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-07-30
+permalink: /218
 title: MySQL Comment - Table과 Column의 주석 조회하기
 description: MySQL의 information_schema table을 사용하여 table과 column의 주석을 조회할 수 있습니다.
+date: 2023-07-30
 ---
 
 
@@ -15,30 +16,3 @@ description: MySQL의 information_schema table을 사용하여 table과 column�
 - table 및 column 주석이 설정되어 있지 않으면, 조회 결과 빈 값일 수 있습니다.
 
 
----
-
-
-## Table Comment 조회하기
-
-```sql
-SELECT table_name, table_comment
-FROM information_schema.tables
-WHERE table_schema = 'db_name' AND table_name = 'table_name';
-```
-
-
-## Column Comment 조회하기
-
-```sql
-SELECT table_name, column_name, column_comment
-FROM information_schema.columns
-WHERE table_schema = 'db_name' AND table_name = 'table_name';
-```
-
-
----
-
-
-## Reference
-
-- <https://extbrain.tistory.com/97>

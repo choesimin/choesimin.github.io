@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-07-16
+permalink: /43
 title: Amazon EC2 - Instance에 접속하기
 description: EC2 Instance에 접속하기 위해서는 SSH를 사용합니다.
+date: 2023-07-16
 ---
 
 
@@ -27,9 +28,3 @@ chmod 400 my-key.pem
 ```
 
 
----
-
-
-## Reference
-
-- <https://www.youtube.com/watch?v=fytZgsmGwk8>

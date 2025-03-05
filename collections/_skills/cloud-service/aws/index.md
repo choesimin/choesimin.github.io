@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-07-16
+permalink: /1
 title: AWS - Amazon Web Services
 description: AWS는 Amazon에서 제공하는 Cloud service입니다.
+date: 2023-07-16
 ---
 
 
@@ -45,9 +46,3 @@ description: AWS는 Amazon에서 제공하는 Cloud service입니다.
 - AWS에서 해야 할 작업의 내용을 API를 이용한 script로 작성하여 실행할 수 있습니다.
 
 
----
-
-
-## Reference
-
-- AWS Cloud 핵심 Service 활용 및 ECS EKS 개발 환경 구축 (강의) - 이한기

@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-07-02
+permalink: /51
 title: UML - System 시각화하기
 description: UML은 표준화된 모형을 만드는 언어로, program 설계를 시각화하여 소통을 원활하게 합니다.
+date: 2023-07-02
 ---
 
 
@@ -31,31 +32,3 @@ description: UML은 표준화된 모형을 만드는 언어로, program 설계�
     - 그러나 UML은 modeling 언어일 뿐 방법론은 아닙니다.
 
 
----
-
-
-## UML의 종류
-
-| UML | 설명 |
-| --- | --- |
-| **Class Diagram** | class 명세와 class 간의 관계를 표현 |
-| **Composite Structure Diagram** | 전체-부분 구조를 가진 class를 실행할 때의 구조를 표현 |
-| **Component Diagram** | hardware와 network 등 system의 물리 구조를 표현 |
-| **Object Diagram** | instance 간의 연관 관계를 표현 |
-| **Package Diagram** | package 간의 연관 관계를 표현 |
-| **Activity Diagram** | 일련의 처리에 있어 제어의 흐름을 표현 |
-| **Sequence Diagram** | instance 간의 상호 작용을 시계열로 표현 |
-| **Communication Diagram** | instance 간의 상호 작용을 구조 중심으로 표현 |
-| **Interaction Overview Diagram** | 조건에 따라 다르게 동작을 하는 sequence diagram을 activity diagram 안에 포함하여 표현 |
-| **Timing Diagram** | instance 간의 상태 전이와 상호 작용을 시간 제약으로 표현 |
-| **UseCase Diagram** | system이 제공하는 기능과 이용자의 관계를 표현 |
-| **State Machine Diagram** | instance의 상태 변화를 표현 |
-
-
----
-
-
-## Reference
-
-- <https://asfirstalways.tistory.com/95>
-- <https://namu.wiki/w/UML>

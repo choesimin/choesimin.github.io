@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-01-24
+permalink: /3
 title: CSS Scroll Snap - 화면 단위로 Scroll하기
 description: CSS의 scroll-snap-align 속성을 사용하여 scroll할 때 화면을 요소의 시작 부분에 맞추어 깔끔하게 scroll할 수 있습니다.
+date: 2024-01-24
 ---
 
 
@@ -21,45 +22,3 @@ description: CSS의 scroll-snap-align 속성을 사용하여 scroll할 때 화�
         - 예를 들어, `scroll-snap-type: y mandatory;`는 수직 scroll에 smap을 강제로 적용하겠다는 의미입니다. 
 
 
----
-
-
-## 사용 예시
-
-```html
-<!DOCTYPE html>
-<html>
-
-<head>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        main {
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
-            height: 100vh;
-        }
-
-        section {
-            width: 100%;
-            height: 100vh;
-            scroll-snap-align: start;
-        }
-    </style>
-</head>
-
-<body>
-    <main>
-        <section style="background-color:black;"></section>
-        <section style="background-color:white;"></section>
-        <section style="background-color:black;"></section>
-        <section style="background-color:white;"></section>
-        <section style="background-color:black;"></section>
-    </main>
-</body>
-
-</html>
-```

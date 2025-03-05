@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-08-26
+permalink: /217
 title: SVG - Vector 기반 Image
 description: SVG는 vector로 그려지는, XML 기반의 Web graphic입니다.
+date: 2023-08-26
 ---
 
 
@@ -28,19 +29,4 @@ description: SVG는 vector로 그려지는, XML 기반의 Web graphic입니다.
 - SVG는 세 가지 유형의 Graphic 객체를 제공합니다.
 
 | Graphic Object | 설명 |
-| --- | --- |
-| Vector Graphic Shape | 직선과 곡선으로 이루어진 도형을 표현합니다. |
-| Image | 그림, 사진을 표현합니다. |
-| Text | 문자를 표현합니다. |
-
-- SVG Graphic 객체는 내용 수정, 꾸미기가 가능합니다.
-- 객체를 다른 유형의 객체로 변환할 수 있습니다.
-- 여러 객체의 grouping과 합성이 가능합니다.
-
-
----
-
-
-## Reference
-
-- <https://www.w3.org/TR/SVG2/>
+| 

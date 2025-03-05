@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-12-18
+permalink: /86
 title: Writing
 description: 글쓰기는 인간의 가장 근본적인 창조적 활동입니다.
+date: 2024-12-18
 ---
 
 

@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-09-11
+permalink: /226
 title: SVG - JavaScript를 이용하여 SVG 요소를 동적으로 추가하기
 description: SVG 요소를 JavaScript를 통해 동적으로 추가할 때는 namespace를 지정해주어야 합니다.
+date: 2023-09-11
 ---
 
 
@@ -61,9 +62,3 @@ svg.appendChild(rect);
 ```
 
 
----
-
-
-## Reference
-
-- <https://www.motiontricks.com/creating-dynamic-svg-elements-with-javascript/>

@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-02-27
+permalink: /148
 title: TypeScript Advanced Type - Type 관리를 위한 고급 기능들
 description: TypeScript의 고급 type system은 Generic type, Utility type, Conditional type, Mapped type 등을 통해 code의 재사용성, 유지 보수성, type 안전성을 향상시키는 도구를 제공합니다.
+date: 2024-02-27
 ---
 
 

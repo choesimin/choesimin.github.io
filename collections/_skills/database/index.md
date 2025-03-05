@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-10-07
+permalink: /194
 title: Database
 description: Database는 data를 체계적으로 저장하고 관리하는 system입니다.
+date: 2024-10-07
 ---
 
 

@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-11-28
+permalink: /94
 title: Clean Architecture - 다양한 형태의 경계들
 description: System Architecture의 경계를 다양한 방식으로 나누어, software component를 분리할 수 있습니다.
+date: 2023-11-28
 ---
 
 
@@ -91,9 +92,3 @@ description: System Architecture의 경계를 다양한 방식으로 나누어, 
     - 가능하다면 빈번하게 통신하는 일은 류류해야 합니다.
     - 지연(latency)에 따른 문제를 고수준에서 처리할 수 있어야 합니다.
 
----
-
-
-## Reference
-
-- Clean Architecture (도서) - Robert C. Martin

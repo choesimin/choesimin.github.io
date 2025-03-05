@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2025-02-09
+permalink: /232
 title: Language
 description: 언어는 인간의 소통 수단이자 문화적 표현 방식입니다.
+date: 2025-02-09
 ---
 
 
@@ -33,42 +34,3 @@ description: 언어는 인간의 소통 수단이자 문화적 표현 방식입�
     - 언어를 통해 공동체 의식과 소속감을 느낍니다.
 
 
----
-
-
-## Programming Language
-
-- 개발자는 programming language를 사용하여 program을 작성합니다.
-
-
-### 기술적 관점의 Programming Language
-
-- programming language는 개발자가 computer와 소통하는 핵심 수단입니다.
-    - computer는 binary 형태의 기계어만 이해할 수 있습니다.
-    - programming language는 개발자가 작성한 code를 computer가 이해할 수 있는 기계어로 변환합니다.
-
-- programming language는 개발자의 생각을 computer에 전달하는 도구입니다.
-    - 문제를 해결하기 위한 algorithm을 명확하게 표현합니다.
-    - 복잡한 business logic을 체계적으로 구조화합니다.
-
-
-### 인문학적 관점의 Programming Language
-
-- programming language는 개발자의 창의성을 표현하는 예술의 수단입니다.
-    - 하나의 문제를 해결하는 방식은 개발자마다 다양합니다.
-    - code를 통해 개발자만의 독특한 문제 해결 방식을 표현합니다.
-
-- programming language는 동료 개발자와 소통하는 의사소통의 수단입니다.
-    - code를 통해 개발자의 의도와 생각을 다른 개발자에게 전달합니다.
-    - code review를 통해 서로의 관점을 공유하고 토론합니다.
-
-
-### 철학적 관점의 Programming Language
-
-- programming language는 논리적 사고의 구체화 도구입니다.
-    - 추상적인 개념을 명확한 logic으로 구조화합니다.
-    - 복잡한 현실 세계의 문제를 단순화하여 model화합니다.
-
-- programming language는 개발자의 사고 체계를 반영합니다.
-    - 문제를 바라보는 관점과 해결 방식이 code에 반영됩니다.
-    - 개발자의 철학과 가치관이 code 구조와 style에 나타납니다.

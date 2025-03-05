@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-05-18
+permalink: /7
 title: Shell Script - 반복 작업 자동화하기
 description: Shell Script를 사용하여 반복적인 작업을 자동화할 수 있습니다.
+date: 2024-05-18
 ---
 
 
@@ -20,25 +21,3 @@ description: Shell Script를 사용하여 반복적인 작업을 자동화할 �
     - 다른 program과 쉽게 통합할 수 있기 때문에 **확장성**이 좋습니다.
 
 
----
-
-
-## 예제 : Simple Backup script
-
-- directory의 file을 backup하는 간단한 Shell Script입니다.
-    - `SOURCE_DIR`의 모든 file을 `BACKUP_DIR`로 복사하여 backup합니다.
-
-```sh
-#!/bin/bash
-
-SOURCE_DIR="/path/to/source"
-BACKUP_DIR="/path/to/backup"
-
-if [ ! -d "$BACKUP_DIR" ]; then
-  mkdir -p "$BACKUP_DIR"
-fi
-
-cp -r "$SOURCE_DIR"/* "$BACKUP_DIR"
-
-echo "Backup 성공."
-```

@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2025-01-23
+permalink: /124
 title: Debezium - Data Change Streamer
 description: Debezium은 database의 변경 사항을 실시간으로 감지하고 전달하는 Open Source project입니다.
+date: 2025-01-23
 ---
 
 
@@ -69,70 +70,3 @@ description: Debezium은 database의 변경 사항을 실시간으로 감지하�
     - event 평탄화를 통해 복잡한 관계형 data를 단순화할 수 있습니다.
 
 
----
-
-
-## Debezium Architecture : 여러 가지 사용 방식
-
-- Debezium은 기본적으로 Apache Kafka Connect를 위한 source connector set이지만, 다른 방식으로도 사용할 수 있습니다.
-
-
-### 1. Kafka Connect Source Connector ([참고 문서](https://debezium.io/documentation/reference/stable/architecture.html))
-
-```mermaid
-flowchart LR
-    source_db[(Source DB)]
-    debezium[Debezium Source Connector]
-    kafka[Apache Kafka]
-    consumer[Consumer Service]
-
-    source_db --> debezium
-    debezium --> kafka
-    kafka --> consumer
-```
-
-- Kafka Connect를 통해 Apache Kafka를 이용하여 변경 event를 전송합니다.
-- Kafka Connect의 source connector로 Debezium을 사용하는, 가장 일반적인 사용 방식입니다.
-
-
-### 2. Debezium Server ([참고 문서](https://debezium.io/documentation/reference/stable/operations/debezium-server.html))
-
-```mermaid
-flowchart LR
-    source_db[(Source DB)]
-    debezium_server[Debezium Server]
-    message[Other Messaging Service]
-    consumer[Consumer Service]
-
-    source_db --> debezium_server
-    debezium_server --> message
-    message --> consumer
-```
-
-- Debezium Server를 사용하여 다른 messaging infra로 통해 변경 event를 전송합니다.
-- Kafka 외의 messaging service를 사용해야 하는 경우 사용합니다.
-
-
-### 3. Debezium Engine ([참고 문서](https://debezium.io/documentation/reference/stable/development/engine.html))
-
-```mermaid
-flowchart LR
-    source_db[(Source DB)]
-    subgraph jvm_app[JVM Application]
-        debezium_engine[Debezium Engine]
-    end
-
-    source_db --> debezium_engine
-```
-
-- Debezium Engine library를 JVM 기반 application에 embed하여 사용합니다.
-- messaging service를 통하지 않고, application으로 변경 사항을 바로 전달받고 싶은 경우 사용합니다.
-
-
----
-
-
-## Reference
-
-- <https://debezium.io/documentation/reference/stable/index.html>
-- <https://debezium.io/documentation/reference/stable/features.html>

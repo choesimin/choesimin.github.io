@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-02-28
+permalink: /14
 title: TypeScript Type Casting - Type 변환하기
 description: TypeScript의 Type Casting은 변수의 type을 명시적으로 변환하는 기능으로, type assertion과 비슷하게 사용할 수 있습니다.
+date: 2024-02-28
 ---
 
 
@@ -45,37 +46,3 @@ let strLength: number = (someValue as string).length;
 - `someValue as string`은 `someValue`를 `string` type으로 casting하고 있음을 나타냅니다.
 
 
----
-
-
-## Type Casting 활용 예제 : `HTMLInputElement`
-
-```typescript
-const $input = document.querySelector('input["type="text"]');
-const val = $input.value;    // TS2339: Property 'value' does not exist on type 'Element'.
-```
-
-- `document.querySelector` method는 `Element | null` type의 값을 반환합니다.
-- `$input`은 `Element | null` type이며, `$input.value`를 실행하면 compile 오류가 발생합니다.
-    - `Element` 또는 `null` type에는 `value`라는 property가 존재하지 않기 때문입니다.
-- **`value` property는 `HTMLInputElement` type(`Element` type의 하위 type)에만 존재하므로, type casting이 필요합니다.**
-
-```typescript
-// 'as' keyword 사용
-const $input = document.querySelector('input["type="text"]') as HTMLInputElement;
-const val = $input.value;
-```
-
-```typescript
-// '<>' 연산자 사용
-const $input = <HTMLInputElement>document.querySelector('input["type="text"]');
-const val = $input.value;
-```
-
-
----
-
-
-## Reference
-
-- <https://poiemaweb.com/typescript-typing>

@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-02-28
+permalink: /227
 title: TypeScript BigInt Type - 매우 큰 정수
 description: TypeScript의 BigInt type은 매우 큰 정수를 나타내기 위한 원시 type으로, 매우 큰 숫자를 다루거나 정밀한 숫자 계산이 필요한 경우에 유용하게 사용됩니다.
+date: 2024-02-28
 ---
 
 
@@ -61,17 +62,3 @@ let sumOfBigIntAndNumber = bigInt1 + normalNumber;    // Error : 'bigint'와 'nu
 ```
 
 
----
-
-
-## BigInt의 사용 예제 : Unique ID 생성
-
-```typescript
-function generateUniqueId(): bigint {
-    let timestamp: bigint = BigInt(new Date().getTime());
-    let random: bigint = BigInt(Math.floor(Math.random() * 10000));
-    return timestamp * 10000n + random;
-}
-
-console.log(generateUniqueId());
-```

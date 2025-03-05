@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-03-21
+permalink: /4
 title: Git - Commit을 가져와 현재 Branch 뒤에 붙이기 (cherry-pick)
 description: cherry-pick 명령어를 사용하여, 다른 Branch의 Commit을 현재 Branch에 적용할 수 있습니다.
+date: 2024-03-21
 ---
 
 
@@ -46,37 +47,4 @@ git cherry-pick <commit_hash_1> <commit_hash_2> <commit_hash_3>
 git cherry-pick <first_commit_hash>^..<last_commit_hash>
 ```
 
-
----
-
-
-## `cherry-pick` 충돌이 발생하는 경우
-
-- `cherry-pick`을 사용할 때 **대상 commit이 현재 branch의 기반 code와 크게 다르다면** 충돌이 발생할 수 있습니다.
-    - 충돌이 발생하는 경우, Git은 사용자에게 충돌을 해결하라고 요청하며, 충돌을 해결하고 commit을 완료해야 합니다.
-
-1. **충돌 확인** : 먼저 충돌이 발생한 file을 확인합니다.
-    - Git은 충돌이 발생한 file을 명령어 출력을 통해 알려줍니다.
-
-2. **충돌 해결** : 충돌이 발생한 file을 열고, Git이 표시한 충돌 부분을 찾습니다.
-    - Git은 충돌하는 부분을 `<<<<<<<`, `=======`, `>>>>>>>`로 감싸 표시합니다.
-    - 표시된 부분에서 현재 branch의 변경 사항과 `cherry-pick`하려는 commit의 변경 사항을 비교하여 적절히 수정합니다.
-
-3. **충돌 해결 후 file 추가** : 충돌을 해결한 후, 수정된 file을 staging area에 추가합니다.
-    - file을 staging area에 추가하는 작업은 `git add <file_name>` 명령어로 수행합니다.
-
-4. **cherry-pick 완료** : 충돌이 해결되고 모든 file이 staging area에 추가되면, `git cherry-pick --continue`를 실행하여 cherry-pick 과정을 완료합니다.
-    - `git cherry-pick --continue` 명령은 충돌 없이 적용할 수 있었던 변경 사항을 현재 branch에 commit합니다.
-
-5. **충돌 해결 확인** : 충돌을 해결한 후에 원래 의도했던 변경 사항이 정확하게 적용되었는지 확인합니다.
-    - 충돌 해결 과정에서 의도치 않게 code가 누락될 수 있으므로, 충돌 해결 후에는 반드시 변경 사항을 검토해야 합니다.
-
-
-### 충돌 해결 중 `cherry-pick` 작업을 중단하고 싶을 때
-
-- `git cherry-pick --abort` : `cherry-pick` 작업을 중단합니다.
-    - `cherry-pick` 시도를 취소하고, **작업을 시작하기 전 상태로 branch를 복원**합니다.
-
-- `git cherry-pick --quit` : `cherry-pick` 작업을 일시적으로 중단합니다.
-    - `cherry-pick` 과정을 중단하지만, 현재까지의 변경 사항은 유지합니다.
 

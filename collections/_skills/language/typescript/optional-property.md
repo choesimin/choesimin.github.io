@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-03-08
+permalink: /145
 title: TypeScript Optional Property - 선택적 속성
 description: TypeScript의 Optional Property는 객체의 특정 속성이 필수가 아님을 나타내는 방법으로, 객체 생성 시 해당 속성을 생략할 수 있습니다. Optional Property를 사용하여 type의 안정성을 유지하면서도 다양한 상황에 대응할 수 있는 유연한 code를 작성할 수 있습니다.
+date: 2024-03-08
 ---
 
 

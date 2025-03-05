@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-11-28
+permalink: /70
 title: Clean Architecture - 경계 횡단하기
 description: Architecture에서 경계를 가로질러 통신하는 일은 필수적이기 때문에, 경계 횡단에 대한 부분도 잘 설계해야 합니다.
+date: 2023-11-28
 ---
 
 
@@ -21,45 +22,4 @@ description: Architecture에서 경계를 가로질러 통신하는 일은 필�
 
 ```mermaid
 classDiagram
-Client --> Service : ---- Boundary ----
-Client --> Data : ---- Boundary ----
-Service --> Data
-<<DS>> Data
-class Service {
-    function()
-}
-```
-
-
-### 역방향 경계 횡단
-
-- 제어 흐름과 반대 방향으로 의존성을 역전하는 경우이며, 고수준 client가 저수준 service를 호출합니다.
-    - runtime 의존성은 compile time 의존성과는 반대가 됩니다.
-
-- 정적 link된 monolitic 구조의 실행 file이라도 이렇게 규칙적인 방식으로 구조를 분리하면 장점이 많습니다.
-    - team들은 서로의 영역에 침범하지 않은 채, 자신만의 component를 독립적으로 작업할 수 있습니다.
-    - 고수준 component는 저수준 세부 사항으로부터 독립적으로 유지됩니다.
-
-```mermaid
-classDiagram
-Client --> Service
-Client --> Data
-Service <-- ServiceImpl : ---- Boundary ----
-Data <|-- ServiceImpl : ---- Boundary ----
-<<DS>> Data
-class Service {
-    <<interface>>
-    function()
-}
-class ServiceImpl {
-    function()
-}
-```
-
-
----
-
-
-## Reference
-
-- Clean Architecture (도서) - Robert C. Martin
+Client --> Service : 

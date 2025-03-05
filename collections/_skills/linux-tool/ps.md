@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-11-05
+permalink: /121
 title: ps - Process 상태 확인
 description: ps는 system에서 실행 중인 process의 상태를 확인하는 명령어입니다.
+date: 2024-11-05
 ---
 
 
@@ -32,57 +33,4 @@ ps --help
 ### 주요 Option
 
 | Option | 설명 |
-| --- | --- |
-| `aux` (all, user, tty) | system의 모든 process를 사용자, CPU 및 Memory 사용량, 실행된 명령어와 함께 표시 |
-| `-e` (every) | system의 모든 process를 표시 |
-| `-A` (all) | system의 모든 process를 표시 (`-e`와 동일) |
-| `-f` (full) | 상세한 형식(full format)으로 process 정보를 표시 |
-| `-l` (long) | 긴 형식(long format)으로 process 정보를 표시 |
-| `-c` (command) | CMD format을 축소하여 실행된 명령어와 관련된 간단한 정보 표시 |
-| `-u` (user) | 현재 사용자가 실행한 process만 표시 |
-| `-h` (hierarchical) | process를 tree 형태로 표시 |
-| `--forest` | process를 tree 형태로 표시 |
-| `--sort=[key]` | 지정한 key(`%cpu`, `%mem` 등)를 기준으로 정렬 |
-
-
----
-
-
-## 사용 예시
-
-
-### System의 모든 Process 보기
-
-```sh
-ps -e    # 모든 process 표시
-ps -ef    # 모든 process를 더 상세하게 출력
-ps aux    # 모든 process를 사용자, CPU 및 Memory 사용량, 실행된 명령어와 함께 출력
-```
-
-
-### CPU 또는 Memory 사용량 기준으로 정렬하기
-
-```sh
-ps aux --sort=%cpu    # CPU 사용량이 낮은 순서대로 정렬 (오름차순)
-ps aux --sort=%mem    # Memory 사용량이 낮은 순서대로 정렬 (오름차순)
-
-ps aux --sort=-%cpu    # CPU 사용량이 높은 순서대로 정렬 (내림차순)
-ps aux --sort=-%mem    # Memory 사용량이 높은 순서대로 정렬 (내림차순)
-```
-
-
-### 모든 Process의 부모-자식 관계 보기
-
-```sh
-ps -ef --forest
-```
-
-
-### 모든 Process 중 특정 Keyword를 가진 행만 출력하기
-
-- pipe 연산자(`|`)와 `grep` 명령어를 사용하여 특정 keyword를 가진 행만 출력할 수 있습니다.
-
-```sh
-ps aux | grep java
-ps -ef | grep java
-```
+| 

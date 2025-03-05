@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2025-01-03
+permalink: /103
 title: vim-plug - Simple Vim Plugin Manager
 description: vim-plug는 Vim의 plugin을 관리하는 가장 간단한 plugin manager 중 하나입니다.
+date: 2025-01-03
 ---
 
 
@@ -30,92 +31,4 @@ description: vim-plug는 Vim의 plugin을 관리하는 가장 간단한 plugin m
 - VimScript 또는 Python, Ruby 등의 언어로 작성됩니다.
     - NeoVim은 Lua라는 언어로 작성됩니다.
 
-
----
-
-
-## vim-plug의 장점
-
-- vim-plug는 단일 file로 구성되어 있습니다.
-    - 설치 과정이 단순합니다.
-    - 초기 설정이 최소화되어 있습니다.
-    - system 의존성이 거의 없습니다.
-
-- plugin 관리가 직관적입니다.
-    - `.vimrc`(또는 `init.vim`) file에서 모든 plugin을 한눈에 확인할 수 있습니다.
-    - 명령어가 단순하고 기억하기 쉽습니다.
-    - plugin의 추가와 제거가 용이합니다.
-
-- 병렬 설치를 지원합니다.
-    - 여러 plugin을 동시에 download합니다.
-    - 설치 시간이 크게 단축됩니다.
-    - network 자원을 효율적으로 사용합니다.
-
-- 지연(lazy) loading 기능을 제공합니다.
-    - 필요한 시점에만 plugin을 load합니다.
-    - Vim의 시작 시간이 단축됩니다.
-    - Memory 사용량이 최적화됩니다.
-
-- 조건부 loading을 설정할 수 있습니다.
-    - 특정 file 형식에 대해서만 plugin을 load합니다.
-    - 특정 명령어 실행 시에만 plugin을 load합니다.
-    - system 환경에 따라 plugin을 선택적으로 load합니다.
-
-- Vim과 NeoVim에 모두 사용할 수 있습니다.
-    - vim-plug는 Vim과 NeoVim을 모두 지원합니다.
-    - 따라서 Vim에서 NeoVim으로 migration할 때, 설정을 고치지 않고 그대로 가져갈 수 있습니다.
-        - Vim의 `.vimrc` file 내용을 NeoVim의 `init.vim` file에 그대로 사용 가능합니다.
-
-
----
-
-
-## 주요 명령어
-
-- `:PlugInstall` : 설정된 plugin을 설치합니다.
-    - 새로 추가한 plugin만 설치됩니다.
-    - 이미 설치된 plugin은 건너뜁니다.
-
-- `:PlugUpdate` : plugin을 최신 version으로 update합니다.
-    - 모든 plugin의 update 상태를 확인합니다.
-    - 변경 사항이 있는 plugin만 update합니다.
-
-- `:PlugClean` : 제거된 plugin을 삭제합니다.
-    - `.vimrc`에서 제거된 plugin을 찾습니다.
-    - 해당 plugin의 directory를 삭제합니다.
-
-
----
-
-
-## vim-plug 설정 예시
-
-- Vim의 config file인 `~/.vimrc` file의 예시입니다.
-    - NeoVim을 사용한다면 `~/.config/nvim/init.vim` file을 수정해야 합니다.
-
-```vim
-call plug#begin()   " Vim-plug plugin 관리자 시작
-Plug 'chriskempson/base16-vim'    " base16 color scheme
-Plug 'airblade/vim-gitgutter'    " Git 변경 사항을 line number 옆에 표시
-Plug 'tpope/vim-markdown'    " Markdown 문법 highlighting
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}    " Markdown 미리보기 plugin (설치 script 포함)
-call plug#end()    " Vim-plug plugin 관리자 종료
-
-" 기본 설정
-set number    " Line number 표시
-set hlsearch    " 검색어 highlighting
-set expandtab    " Tab을 Space로 확장
-set tabstop=4    " Tab 너비를 4칸으로 설정
-set autoindent    " 자동 들여쓰기 활성화
-set shiftwidth=4    " 자동 들여쓰기 너비를 4칸으로 설정
-set encoding=utf-8    " UTF-8 encoding 사용
-
-" 색상 설정
-colorscheme base16-default-dark    " base16 dark theme 적용
-syntax on    " 문법 highlighting 활성화
-
-" plugin을 위한 추가 설정
-set updatetime=100    " 'airblade/vim-gitgutter' 반응성 향상 (Vim Update 시간을 100ms로 설정)
-let g:markdown_fenced_languages = ['java', 'html', 'python', 'sql', 'mermaid', 'yaml', 'xml', 'json', 'bash', 'groovy']    " 'tpope/vim-markdown' code block highlighting (Markdown code block에서 highlighting할 수 있는 언어 목록 설정)
-```
 

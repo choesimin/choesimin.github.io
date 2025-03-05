@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-10-11
+permalink: /223
 title: Transaction - DB 작업의 논리적 단위
 description: Transaction은 DB의 상태를 변경시키는 작업의 단위로, 여러 개의 작업(query)이 하나의 단위로 묶여 처리되는 것을 의미합니다.
+date: 2024-10-11
 ---
 
 
@@ -37,9 +38,3 @@ description: Transaction은 DB의 상태를 변경시키는 작업의 단위로,
     - system에 장애가 발생하더라도, transaction이 완료된 내용은 손실되지 않도록 보장되어야 합니다.
 
 
----
-
-
-## Reference
-
-- <https://velog.io/@shasha/Database-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%95%EB%A6%AC>

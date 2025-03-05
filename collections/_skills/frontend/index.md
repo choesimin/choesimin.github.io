@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-02-06
+permalink: /64
 title: Frontend
 description: Web Frontend는 web application 또는 web site의 UI(User Interface)를 담당하는 부분을 가리킵니다.
+date: 2024-02-06
 ---
 
 

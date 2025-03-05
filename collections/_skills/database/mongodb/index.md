@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-12-29
+permalink: /30
 title: MongoDB - 빠른 확장이 가능한 NoSQL Database
 description: MongoDB는 문서 지향적인 database입니다.
+date: 2023-12-29
 ---
 
 
@@ -39,88 +40,3 @@ description: MongoDB는 문서 지향적인 database입니다.
     - shema를 변경할 때는 data의 일관성이 깨지지 않도록 주의해야 합니다.
 
 
----
-
-
-## MongoDB의 구조 : Database ⊃ Collection ⊃ Document
-
-```js
-"database": {
-    "collection": [
-        {
-            "_id": ObjectId("id"),
-            "field": "value",
-            "field": "value"
-        },
-        {
-            "_id": ObjectId("id"),
-            "field": "value",
-            "field": "value"
-        },
-        // ...
-    ],
-    "users": [    // 다른 schema의 document들을 포함하는 collection 예시
-        {    
-            "_id": ObjectId("5ffdf95c4707303c4d6f57a0"),
-            "username": "john_doe",
-            "email": "john@example.com",
-            "age": 30
-        },
-        {
-            "_id": ObjectId("5ffdf95c4707303c4d6f57a1"),
-            "name": "Jane Doe",
-            "email": "jane@example.com",
-            "address": {
-                "city": "New York",
-                "state": "NY"
-            }
-        },
-        {
-            "_id": ObjectId("5ffdf95c4707303c4d6f57a2"),
-            "username": "bob_smith",
-            "age": 25,
-            "skills": ["JavaScript", "Python", "MongoDB"]
-        }
-    ],
-    // ...
-},
-"database": {
-    // ...
-},
-// ...
-```
-
-
-### Database
-
-- MongoDB는 여러 개의 database를 지원합니다.
-- 각 database는 별개의 공간을 가지며, 서로 독립적으로 관리됩니다.
-- database는 collection의 집합체입니다.
-
-
-### Collection
-
-- MongoDB의 collection은 RDBMS에서의 table에 해당합니다.
-- collection은 document의 집합체입니다.
-
-
-### Document
-
-- document는 MongoDB에서의 기본 data 단위입니다.
-    - RDBMS에서의 row에 해당합니다.
-- 각 document는 collection에 저장되고, 고유한 식별자인 `ObjectId`를 가지고 있습니다.
-- document는 JSON 형식으로 표현되며, field(key-value)의 집합체입니다.
-    - field는 document 내의 data를 나타내며, key와 value 쌍으로 이루어진 data 단위입니다.
-
-| Field의 구성 요소 | 설명 |
-| --- | --- |
-| key | field의 고유한 이름이며, 해당 field를 식별하는 데에 사용됩니다. |
-| value | key에 연결되는 값이며, 다양한 data 유형일 수 있습니다. |
-
-
----
-
-
-## Reference
-
-- <https://colevelup.tistory.com/45>

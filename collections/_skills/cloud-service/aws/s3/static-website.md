@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-08-13
+permalink: /230
 title: Amazon S3로 정적 Website 구축하기
 description: S3를 사용하여 정적 Website를 구축할 수 있습니다.
+date: 2023-08-13
 ---
 
 
@@ -56,9 +57,3 @@ description: S3를 사용하여 정적 Website를 구축할 수 있습니다.
     3. S3 Bucket 주소를 선택합니다.
 
 
----
-
-
-## Reference
-
-- AWS Cloud 핵심 Service 활용 및 ECS EKS 개발 환경 구축 (강의) - 이한기

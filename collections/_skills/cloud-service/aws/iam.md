@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-07-23
+permalink: /93
 title: Amazon IAM - 사용자의 접근 권한 제어하기
 description: AWS의 IAM을 사용하여 사용자의 접근 권한을 제어할 수 있습니다.
+date: 2023-07-23
 ---
 
 

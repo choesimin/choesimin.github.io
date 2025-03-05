@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-02-27
+permalink: /126
 title: TypeScript Type Inference - Type 추론
 description: TypeScript의 Type 추론은 Compiler가 code를 분석하여 type을 자동으로 결정하는 기능으로, type 선언을 생략하더라도 type을 추론할 수 있습니다.
+date: 2024-02-27
 ---
 
 
@@ -81,30 +82,3 @@ let output = identity("myString");    // output은 string type으로 추론됨
 ```
 
 
----
-
-
-## Type 추론이 불가능한 경우 : `any` Type
-
-- type 선언을 생략하고 값도 할당하지 않아서 type을 추론할 수 없으면, **자동으로 `any` type**이 됩니다.
-
-```typescript
-let foo;    // let foo: any
-
-foo = 'Hello';
-console.log(typeof foo);    // string
-
-foo = true;
-console.log(typeof foo);    // boolean
-```
-
-- `any` type의 변수는 JavaScript의 `var` keyword로 선언된 변수처럼, **어떤 type의 값도 재할당이 가능**합니다.
-- 그러나 `any` type은 TypeScript를 사용하는 장점을 없애기 때문에, 사용하지 않는 편이 좋습니다.
-
-
----
-
-
-## Reference
-
-- <https://poiemaweb.com/typescript-typing>

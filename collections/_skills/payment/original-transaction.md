@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-11-02
+permalink: /108
 title: 원거래
 description: 원거래란 관련된 부가적인 거래가 생길 때, 그 부가적인 거래의 부모가 되는 원래의 거래입니다.
+date: 2023-11-02
 ---
 
 

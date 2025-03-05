@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-07-16
+permalink: /210
 title: Amazon VPC Peering - VPC끼리 연결하기
 description: Amazon VPC Peering을 사용하여 서로 다른 VPC를 연결할 수 있습니다.
+date: 2023-07-16
 ---
 
 
@@ -19,33 +20,3 @@ description: Amazon VPC Peering을 사용하여 서로 다른 VPC를 연결할 �
     - IP가 충돌하기 때문입니다.
 
 
----
-
-
-### VPC PCX : VPC 간의 중개자
-
-```mermaid
-flowchart TB
-
-vpc1[VPC : 172.31.x.x]
-vpc2[VPC : 10.0.x.x]
-pcx(((PCX)))
-route[Routing table]
-
-vpc1 -.- pcx
-vpc2 -.- pcx
-pcx --> route
-```
-
-- 다른 VPC를 peering하기 위해 중개자 역할의 **PCX**(Peering Connection)를 생성합니다.
-- PCX를 생성할 때는 **요청자(Requester) VPC**와 **수락자(Accepter) VPC**를 설정합니다.
-- PCX를 생성한 후에, 실제로 통신할 수 있도록 PCX를 routing table에 연결합니다.
-    - routing table에 PCX를 등록합니다.
-
-
----
-
-
-## Reference
-
-- AWS Cloud 핵심 Service 활용 및 ECS EKS 개발 환경 구축 (강의) - 이한기

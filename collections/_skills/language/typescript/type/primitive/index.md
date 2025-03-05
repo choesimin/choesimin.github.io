@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-02-27
+permalink: /235
 title: TypeScript Primitive Type - 원시 Type
 description: TypeScript의 Primitive Type은 원시적인 값을 나타내는 Type으로, number, string, boolean, undefined, null, symbol, bigint 등이 포함됩니다.
+date: 2024-02-27
 ---
 
 

@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-03-09
+permalink: /202
 title: TypeScript Optional Parameter - 선택적 매개 변수
 description: TypeScript의 Optional Parameter는 함수에 전달할 수도 있고 생략할 수도 있는 매개 변수로, 더 유연한 함수 호출이 가능하며, 매개 변수가 없는 경우 함수 내부에서 따로 처리합니다.
+date: 2024-03-09
 ---
 
 
@@ -66,32 +67,3 @@ console.log(greet("Bob", "Hi"));    // Hi, Bob!
 - `undefined`에 대한 typee guard를 통해 optional property를 생략했을 때도 함수가 예상대로 동작하도록 할 수 있습니다.
 
 
----
-
-
-## Default Parameter : 더 안전한 Optional Parameter
-
-- parameter에 기본 값을 설정하면, 함수 호출 시 **매개 변수를 생략했을 때 기본 값이 사용됩니다**.
-    - **기본 값을 가진 매개 변수는 자동으로 optional parameter가 되기 때문에, 별도로 `?` 기호를 추가할 필요가 없습니다.**
-
-- 기본 값이 없는 optional parameter와 마찬가지로, 기본 값을 가진 매개 변수는 **함수 매개 변수 목록의 끝에 위치**해야 합니다.
-
-- **매개 변수 뒤에 `=` 연산자와 기본 값으로 지정할 값을 작성**하여 parameter에 기본 값을 설정합니다.
-
-```typescript
-function functionName(param: type = defaultValue, ...): returnType {
-    // 함수 본문
-}
-```
-
-```typescript
-function greet(name: string, greeting: string = "Hello"): string {
-  return `${greeting}, ${name}!`;
-}
-
-console.log(greet("Alice"));    //  Hello, Alice!
-console.log(greet("Bob", "Hi"));    // Hi, Bob!
-```
-
-- `greeting` 매개 변수는 선택적으로 처리되며, 기본 값으로 `"Hello"`가 지정됩니다.
-- 함수를 호출할 때 `greeting` 매개 변수를 생략하면, 기본 값 `"Hello"`가 사용됩니다.

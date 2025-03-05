@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2023-11-30
+permalink: /38
 title: Clean Architecture - 경계 구축 비용
 description: Architecture에서 경계를 구축하는 데에는 비용이 들어가기 때문에 경계를 어디에 둘지, 어떻게 구현할지를 신중하게 결정해야 합니다.
+date: 2023-11-30
 ---
 
 
@@ -33,10 +34,3 @@ description: Architecture에서 경계를 구축하는 데에는 비용이 들�
     - 목표는 경계의 구현 비용이 무시해서 생기는 비용보다 적어지는 그 변곡점에서 경계를 구현하는 것입니다.
 
 
----
-
-
-## Reference
-
-- Clean Architecture (도서) - Robert C. Martin
-- <https://mangkyu.tistory.com/276>

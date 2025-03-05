@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-01-11
+permalink: /69
 title: JavaScript - await 바로 사용하기
 description: JavaScript에서 async 함수 선언 없이 await를 바로 사용할 수 있습니다.
+date: 2024-01-11
 ---
 
 
@@ -28,10 +29,3 @@ description: JavaScript에서 async 함수 선언 없이 await를 바로 사용�
 ```
 
 
----
-
-
-## Reference
-
-- <https://ko.javascript.info/intro>
-- <https://developer.mozilla.org/ko/docs/Learn/JavaScript/First_steps/What_is_JavaScript>

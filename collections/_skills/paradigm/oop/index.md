@@ -1,16 +1,11 @@
 ---
 layout: skill
-date: 3001-01-01
+permalink: /164
 title: 객체 지향 Programming (OOP)
+date: 3001-01-01
 ---
 
 
 
 
 
----
-
-
-## Reference
-
-- Clean Architecture (도서) - Robert C. Martin

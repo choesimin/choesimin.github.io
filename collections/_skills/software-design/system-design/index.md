@@ -1,8 +1,9 @@
 ---
 layout: skill
-date: 2024-02-22
+permalink: /59
 title: System 설계 - 전체 구조 정의하기
 description: System Design은 요구 사항을 만족시키는 전체 구조를 체계적으로 정의하는 과정입니다.
+date: 2024-02-22
 ---
 
 
