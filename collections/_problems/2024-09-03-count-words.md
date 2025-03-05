@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /289
 title: 단어의 개수
 category: baekjoon
 tags: string

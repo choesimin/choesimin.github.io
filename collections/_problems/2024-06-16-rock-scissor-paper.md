@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /249
 title: 가위 바위 보
 category: programmers
 tags: implementation

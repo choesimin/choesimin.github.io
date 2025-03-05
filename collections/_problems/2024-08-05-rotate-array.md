@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /283
 title: 배열 회전시키기
 category: programmers
 tags: deque

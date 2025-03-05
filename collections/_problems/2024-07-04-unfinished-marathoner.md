@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /267
 title: 완주하지 못한 선수
 category: programmers
 tags: map

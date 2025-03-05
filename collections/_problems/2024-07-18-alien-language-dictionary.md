@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /272
 title: 외계어 사전
 category: programmers
 tags: set

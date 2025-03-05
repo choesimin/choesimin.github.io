@@ -57,7 +57,7 @@ layout: none
                 title: "{{ graphic.title }}",
                 date: "{{ graphic.date | date: '%Y-%m-%d' }}",
                 url: "{{ graphic.url | relative_url }}",
-                desc: "{{ graphic.desc }}",
+                description: "{{ graphic.description }}",
             },
             {% endfor %}
         ];
@@ -65,7 +65,7 @@ layout: none
         document.body.innerHTML = pages.map(page => {
             return `<a href="${page.url}">
                 <h2>${page.title}</h2>
-                <p>${page.desc}</p>
+                <p>${page.description}</p>
                 <p class='date'>${page.date}</p>
             </a>`
         }).join("<br>");

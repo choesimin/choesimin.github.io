@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /281
 title: 요세푸스 문제
 category: baekjoon
 tags: queue

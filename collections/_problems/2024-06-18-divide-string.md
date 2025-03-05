@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /252
 title: 문자열 나누기
 category: programmers
 tags: string

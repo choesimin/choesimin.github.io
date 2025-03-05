@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /253
 title: 로또의 최고 순위와 최저 순위
 category: programmers
 tags: implementation

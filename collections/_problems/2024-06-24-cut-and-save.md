@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /257
 title: 잘라서 배열로 저장하기
 category: programmers
 tags: array

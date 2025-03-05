@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /250
 title: 자릿수 더하기
 category: programmers
 tags: string

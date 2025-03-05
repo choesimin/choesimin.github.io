@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /268
 title: 숫자 문자열과 영단어
 category: programmers
 tags: map

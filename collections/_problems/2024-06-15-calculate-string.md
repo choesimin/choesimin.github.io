@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /241
 title: 문자열 계산하기
 category: programmers
 tags: string

@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /274
 title: 최빈값 구하기
 category: programmers
 tags: map

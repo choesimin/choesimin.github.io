@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /261
 title: 가장 큰 수 찾기
 category: programmers
 tags: array

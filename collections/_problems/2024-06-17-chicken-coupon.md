@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /251
 title: 치킨 쿠폰
 category: programmers
 tags: implementation

@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /248
 title: 문자열 밀기
 category: programmers
 tags: string

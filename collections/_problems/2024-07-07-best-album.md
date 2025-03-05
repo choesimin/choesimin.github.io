@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /270
 title: 베스트앨범
 category: programmers
 tags: map

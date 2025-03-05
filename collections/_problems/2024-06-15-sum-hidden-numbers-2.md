@@ -1,5 +1,6 @@
 ---
 layout: problem
+permalink: /243
 title: 숨어있는 숫자의 덧셈 (2)
 category: programmers
 tags: string
