@@ -82,3 +82,155 @@ mindmap
 - **remove(key)** : key-value 쌍(주어진 key + 해당 key에 대응하는 값)을 Map에서 제거합니다.
 
 
+---
+
+
+## HashMap 구현하기
+
+- Map ADT를 구현한 자료 구조로 HashMap이 있습니다.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define TABLE_SIZE 100
+
+typedef struct {
+    char *key;
+    char *value;
+} Entry;
+
+typedef struct {
+    Entry **entries;
+} HashMap;
+
+unsigned int hash(const char *key) {
+    unsigned long int value = 0;
+    unsigned int i = 0;
+    unsigned int key_len = strlen(key);
+
+    for (; i < key_len; ++i) {
+        value = value * 37 + key[i];
+    }
+    value = value % TABLE_SIZE;
+    return value;
+}
+
+Entry *create_entry(const char *key, const char *value) {
+    Entry *entry = (Entry *)malloc(sizeof(Entry));
+    entry->key = strdup(key);
+    entry->value = strdup(value);
+    return entry;
+}
+
+HashMap *create_table() {
+    HashMap *hashMap = (HashMap *)malloc(sizeof(HashMap));
+    hashMap->entries = (Entry **)malloc(sizeof(Entry *) * TABLE_SIZE);
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        hashMap->entries[i] = NULL;
+    }
+    return hashMap;
+}
+
+void put(HashMap *hashMap, const char *key, const char *value) {
+    unsigned int slot = hash(key);
+
+    Entry *entry = hashMap->entries[slot];
+
+    if (entry == NULL) {
+        hashMap->entries[slot] = create_entry(key, value);
+        return;
+    }
+
+    Entry *prev;
+    while (entry != NULL) {
+        if (strcmp(entry->key, key) == 0) {
+            free(entry->value);
+            entry->value = strdup(value);
+            return;
+        }
+        prev = entry;
+        entry = entry->next;
+    }
+
+    prev->next = create_entry(key, value);
+}
+
+char *get(HashMap *hashMap, const char *key) {
+    unsigned int slot = hash(key);
+    Entry *entry = hashMap->entries[slot];
+
+    while (entry != NULL) {
+        if (strcmp(entry->key, key) == 0) {
+            return entry->value;
+        }
+        entry = entry->next;
+    }
+
+    return NULL;
+}
+
+void remove(HashMap *hashMap, const char *key) {
+    unsigned int slot = hash(key);
+    Entry *entry = hashMap->entries[slot];
+    Entry *prev = NULL;
+
+    while (entry != NULL) {
+        if (strcmp(entry->key, key) == 0) {
+            if (prev == NULL) {
+                hashMap->entries[slot] = entry->next;
+            } else {
+                prev->next = entry->next;
+            }
+            free(entry->key);
+            free(entry->value);
+            free(entry);
+            return;
+        }
+        prev = entry;
+        entry = entry->next;
+    }
+}
+
+void free_table(HashMap *hashMap) {
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        Entry *entry = hashMap->entries[i];
+        while (entry != NULL) {
+            Entry *temp = entry;
+            entry = entry->next;
+            free(temp->key);
+            free(temp->value);
+            free(temp);
+        }
+    }
+    free(hashMap->entries);
+    free(hashMap);
+}
+
+int main() {
+    HashMap *map = create_table();
+
+    put(map, "name", "Alice");
+    put(map, "age", "25");
+    put(map, "city", "New York");
+
+    printf("name : %s\n", get(map, "name"));
+    printf("age : %s\n", get(map, "age"));
+    printf("city : %s\n", get(map, "city"));
+
+    remove(map, "age");
+    printf("age after deletion : %s\n", get(map, "age"));
+
+    free_table(map);
+    return 0;
+}
+```
+
+
+---
+
+
+## Reference
+
+- <https://healthcoding.tistory.com/51>
