@@ -1,0 +1,145 @@
+---
+layout: none
+permalink: /296
+title: 원의 원
+description: 원 안에 있는 원은 원을 원합니다.
+---
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge, chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+
+    <style>
+      * {
+        outline: 0;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: black;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      // circle.js 내용
+      class Circle {
+        constructor(parent = null) {
+          if (parent === null) {
+            const stageWitdh = document.body.clientWidth;
+            const stageHeight = document.body.clientHeight;
+
+            this.x = stageWitdh / 2;
+            this.y = stageHeight / 2;
+            this.radius =
+              (stageWitdh > stageHeight ? stageHeight : stageWitdh) * (0.95 / 2);
+            this.color = "#FFFFFF";
+            this.velocity = 0;
+          } else {
+            this.parent = parent;
+            this.color = parent.color === "#000000" ? "#FFFFFF" : "#000000";
+            this.velocity = parent.velocity + 0.03;
+          }
+
+          this.angle = 0;
+        }
+
+        updatePosition() {
+          if (this.parent) {
+            const radius = this.parent.radius * 0.7;
+
+            this.x =
+              this.parent.x + (this.parent.radius - radius) * Math.cos(this.angle);
+            this.y =
+              this.parent.y + (this.parent.radius - radius) * Math.sin(this.angle);
+            this.radius = radius;
+          }
+
+          this.angle += this.velocity;
+        }
+
+        animate(ctx) {
+          this.updatePosition();
+
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        }
+      }
+
+      function getRandomColor() {
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+      }
+    </script>
+
+    <script>
+      // app.js 내용
+      class App {
+        constructor() {
+          this.canvas = document.createElement("canvas");
+          document.body.appendChild(this.canvas);
+          this.ctx = this.canvas.getContext("2d");
+
+          this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
+
+          this.circles = [];
+
+          window.addEventListener("resize", this.resize.bind(this), false);
+          this.resize();
+
+          document.body.addEventListener("click", () => {
+            this.addCircle();
+          });
+
+          window.requestAnimationFrame(this.animate.bind(this));
+        }
+
+        resize() {
+          this.stageWidth = document.body.clientWidth;
+          this.stageHeight = document.body.clientHeight;
+
+          this.canvas.width = this.stageWidth * this.pixelRatio;
+          this.canvas.height = this.stageHeight * this.pixelRatio;
+          this.ctx.scale(this.pixelRatio, this.pixelRatio);
+
+          this.circles = [new Circle()];
+          this.addCircle();
+        }
+
+        animate(t) {
+          window.requestAnimationFrame(this.animate.bind(this));
+          this.circles.forEach((circle) => circle.animate(this.ctx));
+        }
+
+        addCircle() {
+          this.circles.push(new Circle(this.circles.at(-1)));
+        }
+      }
+
+      window.onload = () => {
+        new App();
+      };
+    </script>
+  </body>
+</html>

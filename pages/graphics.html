@@ -1,5 +1,6 @@
 ---
 layout: none
+permalink: /graphics
 ---
 
 <!DOCTYPE html>
@@ -50,26 +51,13 @@ layout: none
 </head>
 
 <body>
-    <script>
-        const pages = [
-            {% for graphic in site.graphics %}
-            {
-                title: "{{ graphic.title }}",
-                date: "{{ graphic.date | date: '%Y-%m-%d' }}",
-                url: "{{ graphic.url | relative_url }}",
-                description: "{{ graphic.description }}",
-            },
-            {% endfor %}
-        ];
-
-        document.body.innerHTML = pages.map(page => {
-            return `<a href="${page.url}">
-                <h2>${page.title}</h2>
-                <p>${page.description}</p>
-                <p class='date'>${page.date}</p>
-            </a>`
-        }).join("<br>");
-    </script>
+    {% for graphic in site.graphics %}
+    <a href="{{ graphic.url | relative_url }}">
+        <h2>{{ graphic.title }}</h2>
+        <p>{{ graphic.description }}</p>
+        <p class="date">{{ graphic.date | date: '%Y-%m-%d' }}</p>
+    </a>
+    {% endfor %}
 </body>
 
 </html>
