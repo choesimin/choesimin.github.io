@@ -25,3 +25,9 @@ date: 2023-07-23
     - additional volume : 추가 공간을 확보하기 위한 추가 volume입니다.
 
 
+---
+
+
+## Reference
+
+- AWS Cloud 핵심 Service 활용 및 ECS EKS 개발 환경 구축 (강의) - 이한기
