@@ -38,3 +38,9 @@ date: 2024-10-11
     - system에 장애가 발생하더라도, transaction이 완료된 내용은 손실되지 않도록 보장되어야 합니다.
 
 
+---
+
+
+## Reference
+
+- <https://velog.io/@shasha/Database-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%95%EB%A6%AC>

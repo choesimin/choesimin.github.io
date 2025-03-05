@@ -22,3 +22,45 @@ date: 2024-01-24
         - 예를 들어, `scroll-snap-type: y mandatory;`는 수직 scroll에 smap을 강제로 적용하겠다는 의미입니다. 
 
 
+---
+
+
+## 사용 예시
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        main {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        section {
+            width: 100%;
+            height: 100vh;
+            scroll-snap-align: start;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section style="background-color:black;"></section>
+        <section style="background-color:white;"></section>
+        <section style="background-color:black;"></section>
+        <section style="background-color:white;"></section>
+        <section style="background-color:black;"></section>
+    </main>
+</body>
+
+</html>
+```
