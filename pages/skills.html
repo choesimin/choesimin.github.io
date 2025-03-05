@@ -67,6 +67,13 @@ permalink: /skills
         padding: 5px 20px;
       }
 
+      #random {
+        display: inline-block;
+        margin-right: 30px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
       #skills a {
         text-decoration-line: none;
       }
@@ -111,7 +118,9 @@ permalink: /skills
         <div></div>
       </section>
       <div id="index">
+        <span id="random" title="무작위 기술 문서로 이동">Random 🎲</span>
         <a href="{{ '/problems' | relative_url }}"><b>Algorithm PS (C++)</b></a>
+        <br>
       </div>
       <article id="skills"></article>
     </main>
@@ -272,6 +281,13 @@ permalink: /skills
 
         return pages;
       }
+
+      document.getElementById('random').addEventListener('click', function() {
+        const randomIndex = Math.floor(Math.random() * pages.length);
+        const randomPage = pages[randomIndex];
+
+        window.location.href = randomPage.url;
+      });
     </script>
   </body>
 </html>
