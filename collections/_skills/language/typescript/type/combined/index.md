@@ -66,3 +66,14 @@ logMessage(101);    // Number message: 101
 - `logMessage` 함수는 이 union type을 매개 변수로 받아, type에 따라 다른 작업을 수행합니다.
 
 
+---
+
+
+## Intersection Type과 Union Type의 차이점
+
+- intersection type은 복잡한 type을 정확하게 표현할 수 있게 하는 반면, union type은 함수나 변수가 더 다양한 type을 유연하게 처리할 수 있도록 합니다.
+
+| Intersection Type | Union Type |
+| --- | --- |
+| 서로 다른 type들을 결합하여 모든 type의 특성을 포함하는 새로운 type을 정의함 | 여러 type 중 하나의 type을 가질 수 있는 type을 정의함 |
+| **'그리고(And)'의 개념**으로, 여러 type의 특성을 **모두 만족**해야 함 | **'또는(Or)'의 개념**으로, 정의된 type 중 **하나만 만족**하면 됨 |

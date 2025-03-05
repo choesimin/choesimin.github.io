@@ -64,3 +64,62 @@ const person: PartialPerson = {
 ```
 
 
+---
+
+
+## Mapped Type 응용 : 다른 고급 Type과 함께 사용하기
+
+- TypeScript에서 mapped type을 활용할 수 있는 방법과 응용 사례는 다양합니다.
+
+
+### 조건부 Type과의 결합
+
+- mapped type은 조건부 type과 결합하여 특정 조건에 따라 type을 다르게 할당할 수 있습니다.
+    - 예를 들어, 특정 type만 읽기 전용으로 만들고 싶을 때 사용할 수 있습니다.
+
+```typescript
+type ConditionalReadonly<T> = {
+    [P in keyof T]: T[P] extends Function ? T[P] : Readonly<T[P]>;
+};
+```
+
+- `T[P]`가 `Function` type을 상속한다면 그대로 두고, 그렇지 않은 경우에는 `Readonly<T[P]>`를 적용합니다.
+
+
+### Template Literal Type과의 결합
+
+- mapped type은 template literal type과 결합하여 속성의 이름을 동적으로 생성할 수 있습니다.
+- 이를 통해 기존 type의 속성을 기반으로 새로운 속성 이름을 생성하는 것이 가능합니다.
+
+```typescript
+// 각 속성 이름 앞에 `get`을 붙이고 `Method`를 뒤에 붙여 새로운 메소드 이름 생성
+type PropertyNames<T> = {
+    [P in keyof T as `get${Capitalize<string & P>}Method`]: () => T[P]
+};
+```
+
+```typescript
+// 기존 type의 속성 이름에 접두사 추가
+type PrefixedPerson = {
+    [P in keyof Person as `prefixed_${string & P}`]: Person[P]
+}
+
+const person: PrefixedPerson = {
+    prefixed_name: "John",
+    prefixed_age: 30
+};
+```
+
+
+### Utility Type 확장
+
+- mapped type은 기존 utility type을 확장하거나 변형하여 새로운 utility type을 만드는 데 사용될 수 있습니다.
+    - 예를 들어, `Partial`과 `Readonly`를 결합한 새로운 utility type을 정의할 수 있습니다.
+
+```typescript
+type PartialReadonly<T> = {
+    [P in keyof T]?: Readonly<T[P]>;
+};
+```
+
+- `PartialReadonly` type은 객체의 모든 속성을 선택적이면서 동시에 읽기 전용으로 만듭니다.

@@ -29,3 +29,10 @@ date: 2024-01-11
 ```
 
 
+---
+
+
+## Reference
+
+- <https://ko.javascript.info/intro>
+- <https://developer.mozilla.org/ko/docs/Learn/JavaScript/First_steps/What_is_JavaScript>
