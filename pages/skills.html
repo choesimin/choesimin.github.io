@@ -106,6 +106,33 @@ permalink: /skills
         margin-left: 10px;
         opacity: 0.8;
       }
+
+      /* 하위 목록 세로선 */
+      #skills ul ul li {
+        position: relative;
+        margin-left: 10px;
+      }
+      #skills ul ul li::before {
+        content: "";
+        position: absolute;
+        left: -15px;
+        top: 5px;
+        height: 100%;
+        width: 1px;
+        background-color: var(--border-color);
+      }
+      #skills ul ul li::after {
+        content: "";
+        position: absolute;
+        left: -15px;
+        top: 17px;
+        width: 10px;
+        height: 1px;
+        background-color: var(--border-color);
+      }
+      #skills ul ul li:last-child::before {
+        height: 12px;
+      }
     </style>
   </head>
 
