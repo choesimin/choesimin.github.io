@@ -154,11 +154,9 @@ permalink: /skills
       var index = document.getElementById('index');
       list.querySelector(".root").childNodes.forEach(category => {
         if (category.tagName === 'LI') {
-          var categoryName = category.querySelector('a').innerHTML;
-
           var categoryIndex = document.createElement('a');
-          categoryIndex.href = '#' + categoryName;
-          categoryIndex.innerHTML = categoryName;
+          categoryIndex.href = '#' + category.id;
+          categoryIndex.innerHTML = category.querySelector('a').innerHTML;
           index.appendChild(categoryIndex);
         }
       });
@@ -172,7 +170,7 @@ permalink: /skills
           node.children = node.children.filter(child => !child.isIndex);
 
           if (index != undefined) {
-            listItem.id = index.name;
+            listItem.id = index.category[index.category.length - 1];
 
             var anchor = document.createElement("a");
             anchor.textContent = index.name;
@@ -247,6 +245,7 @@ permalink: /skills
           name: page.title,
           date: page.date,
           url: page.url,
+          category: page.category,
           isIndex: page.name === "index"
         }
         return makeMultiDepthNode(page.category, leaf, 1);
