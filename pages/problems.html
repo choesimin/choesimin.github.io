@@ -1,15 +1,17 @@
 ---
 layout: none
-permalink: problems
+permalink: /problems
 ---
 
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <title>C++ Algorithm PS</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
-    <meta name="description" content="C++를 사용하여 해결한 Algorithm 문제들을 공유합니다." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="C++를 사용하여 해결한 알고리즘 문제들입니다." />
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
     <style>
       body {
         font-family: "Noto Sans KR", sans-serif;
@@ -33,7 +35,7 @@ permalink: problems
   <body>
     <main>
       <h1>Algorithm Problem Solving <small>with C++</small></h1>
-      <h4><a href="{{ '/skills' | relative_url }}">기술시민으로 돌아가기</a></h4>
+      <a href="{{ '/skills' | relative_url }}">기술시민으로 돌아가기</a>
       <ul>
         {% for problem in site.problems %}
         <li>
