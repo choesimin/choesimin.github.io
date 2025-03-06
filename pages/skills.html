@@ -144,19 +144,22 @@ permalink: /skills
       var root = groupNodes(nodes);
 
       var list = document.createElement("ul");
-      makeList(root, list);
-
-      list.removeChild(list.querySelector("li"));
-      list.querySelector("ul").className = "root";
-      document.getElementById("skills").innerHTML = list.innerHTML;
-
+      list.className = "root";
+      
+      if (root.children && root.children.length > 0) {
+        for (var i = 0; i < root.children.length; i++) {
+          makeList(root.children[i], list);
+        }
+      }
+      
+      document.getElementById("skills").appendChild(list);
 
       var index = document.getElementById('index');
-      list.querySelector(".root").childNodes.forEach(category => {
+      list.childNodes.forEach(category => {
         if (category.tagName === 'LI') {
           var categoryIndex = document.createElement('a');
           categoryIndex.href = '#' + category.id;
-          categoryIndex.innerHTML = category.querySelector('a').innerHTML;
+          categoryIndex.innerHTML = category.querySelector('a')?.innerHTML || category.textContent;
           index.appendChild(categoryIndex);
         }
       });
@@ -181,17 +184,17 @@ permalink: /skills
             sup.textContent = index.date;
             listItem.appendChild(sup);
           } else {
-            listItem.innerHTML = node.name + " (You must add category index file)";
+            listItem.textContent = node.name;
           }
           list.appendChild(listItem);
 
-          var childList = document.createElement("ul");
-          for (var i = 0; i < node.children.length; i++) {
-            makeList(node.children[i], childList);
+          if (node.children.length > 0) {
+            var childList = document.createElement("ul");
+            for (var i = 0; i < node.children.length; i++) {
+              makeList(node.children[i], childList);
+            }
+            listItem.appendChild(childList);
           }
-
-          list.appendChild(childList);
-
         } else {
           var anchor = document.createElement("a");
           anchor.textContent = node.name;
@@ -204,7 +207,6 @@ permalink: /skills
           list.appendChild(listItem);
         }
       }
-
 
       function groupNodes(nodes) {
         var root = { name: "root" };
