@@ -212,6 +212,7 @@
       await mermaid.run({ querySelector: ".language-mermaid" });
     }
 
+
     const title = document.getElementById("title");
     const date = document.getElementById("date");
     const description = document.getElementById("description");
@@ -219,9 +220,9 @@
     type(date, '{{ page.date | date: "%Y년 %-m월 %e일" }}', 80);
     type(description, '{{ page.description }}', 10);
 
-    const indexList = document
-      .getElementById("index")
-      .getElementsByTagName("ul")[0];
+
+    const indexList = document.getElementById("index").getElementsByTagName("ul")[0];
+    const indexButton = document.querySelector("#index > button");
 
     function toggleIndex() {
       if (indexList.style.display === "block") {
@@ -230,6 +231,17 @@
         indexList.style.display = "block";
       }
     }
+
+    document.addEventListener('click', function(event) {
+      if (
+        indexList.style.display === "block" && 
+        !indexList.contains(event.target) && 
+        event.target !== indexButton
+      ) {
+        indexList.style.display = "none";
+      }
+    });
+
 
     const headers = document.querySelectorAll("h2,h3,h4,h5,h6");
     for (let i = 0; i < headers.length; i++) {
@@ -251,14 +263,11 @@
       });
     }
 
+
     const progressBar = document.getElementById("progressBar");
-    let scrolling;
     window.onscroll = function () {
-      var winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      var height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       var scrolled = (winScroll / height) * 100;
 
       progressBar.style.width = scrolled + "%";
