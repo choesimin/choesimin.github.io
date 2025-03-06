@@ -107,7 +107,7 @@ permalink: /skills
         opacity: 0.8;
       }
 
-      /* 하위 목록 세로선 */
+      /* 하위 목록 표시선 */
       #skills ul ul li {
         position: relative;
         margin-left: 10px;
@@ -132,6 +132,17 @@ permalink: /skills
       }
       #skills ul ul li:last-child::before {
         height: 12px;
+      }
+
+      /* 선택된 목록 강조 */
+      #skills li:target > a,
+      #skills li:target > ul > li > a {
+        font-weight: bold;
+        color: var(--highlight-color);
+      }
+      #skills li:target > ul > li::before,
+      #skills li:target > ul > li::after {
+        background-color: var(--highlight-color);
       }
     </style>
   </head>
