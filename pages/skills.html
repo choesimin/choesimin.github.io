@@ -170,7 +170,7 @@ permalink: /skills
           node.children = node.children.filter(child => !child.isIndex);
 
           if (index != undefined) {
-            listItem.id = index.category[index.category.length - 1];
+            listItem.id = index.category.join('-');
 
             var anchor = document.createElement("a");
             anchor.textContent = index.name;

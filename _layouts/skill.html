@@ -188,12 +188,13 @@
       </div>
 
       <div id="related">
-        {% assign original_url = page.url %}
-        {% assign parts = page.url | split: "/skills/" %}
-        {% assign path = parts[1] | split: "/" %}
-        {% assign new_path = path[0] %}
-        {% assign new_url = site.url | append: "/skills#" | append: new_path %}
-        <a href="{{ new_url }}">관련 글 보러가기 > #{{ new_path }}</a>
+        {% assign file_path = page.path %}
+        {% assign path_parts = file_path | remove: "_skills/" | split: "/" %}
+        {% assign file_name = path_parts | last %}
+        {% assign path_without_file = path_parts | pop %}
+        {% assign category_id = path_without_file | join: "-" %}
+        {% assign new_url = site.url | append: "/skills#" | append: category_id %}
+        <a href="{{ new_url }}">관련 글 보러가기 > #{{ category_id }}</a>
       </div>
     </main>
     {% include footer.html %}
