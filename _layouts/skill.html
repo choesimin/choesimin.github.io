@@ -111,16 +111,15 @@
         z-index: 100;
       }
 
-      #index > a {
+      #index > button {
         float: right;
-        margin: 0;
-        padding: 0;
-        font-size: 40px;
-        line-height: 1;
-      }
-
-      #index a:hover {
+        font-size: 16px;
+        background: var(--background-color);
+        border: 1px solid var(--border-color);
         cursor: pointer;
+      }
+      #index > button:hover {
+        background: var(--background-highlight-color);
       }
 
       #index ul {
@@ -128,7 +127,7 @@
         margin: 0;
         padding: 20px 25px;
         position: absolute;
-        top: 40px;
+        top: 25px;
         right: 0px;
         max-height: 450px;
         overflow-y: auto;
@@ -177,7 +176,7 @@
 
       <div id="content">
         <div id="index">
-          <a onclick="toggleIndex()">≡</a>
+          <button type="button" onclick="toggleIndex()">Index</button>
           <ul></ul>
         </div>
         <article>{{ content }}</article>
