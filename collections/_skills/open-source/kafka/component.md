@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /193
-title: Kafka의 다양한 Componenet들 - Kafka Connnect, Kafka Streams, ksqlDB, ...
+title: Kafka 기반의 다양한 Componenet들 - Kafka Connnect, Kafka Streams, ksqlDB, ...
 description: Apache Kafka 생태계에는 Kafka Connect, Kafka Streams, ksqlDB, Schema Registry, Control Center 등, 다양한 component들이 존재합니다.
 date: 2025-01-05
 ---
