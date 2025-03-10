@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /125
-title: Git - 여러 Commit들을 하나로 합치기 (rebase)
+title: Git의 여러 Commit들을 하나로 합치기 (rebase)
 description: Git의 rebase 명령어를 사용하여 여러 개의 commit을 하나로 합칠 수 있습니다.
 date: 2023-04-06
 ---
