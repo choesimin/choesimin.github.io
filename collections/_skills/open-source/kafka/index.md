@@ -151,6 +151,8 @@ flowchart LR
 - **Kafka는 Broker** 역할을 수행하며, 일종의 **Message Queue**입니다.
     - Producer application과 Conumer application 사이에 위치하여 Message를 전달합니다.
 
+- 여러 대의 broker server로 **Kafka cluster**를 구성하여, 더 많은 data를 처리할 수도 있습니다.
+
 ```mermaid
 flowchart TB
     subgraph kafka_cluster[Kafka Cluster]
@@ -189,10 +191,6 @@ flowchart TB
     topic2_part2 <-. "replicate" .-> topic2_part3
 ```
 
-- **Cluster** : 여러 대의 server가 하나의 system처럼 동작하는 **분산 환경을 구성**합니다.
-    - 높은 가용성과 확장성을 제공하며, 대용량 data 처리가 가능한 구조를 만듭니다.
-    - **각각의 server는 독립적으로 동작**하면서도 **전체적으로는 단일 system처럼 운영**됩니다.
-
 - **Producer** : **data를 생성하고 Kafka system에 전달**하는 application입니다.
     - **message를 특정 topic으로 발행**하며, **partition에 data를 분배하는 역할**을 수행합니다.
     - **Kafka에서 제공하는 Producer API를 활용하여 구현**됩니다.
@@ -200,6 +198,10 @@ flowchart TB
 - **Consumer** : Producer가 발행한 **message를 Broker로부터 가져와 처리**하는 application입니다.
     - **하나 이상의 topic을 구독하여 message를 소비**할 수 있습니다.
     - Consumer group을 통해 병렬 처리도 가능합니다.
+
+- **Cluster** : 여러 대의 broker server가 하나의 system처럼 동작하는 **분산 환경을 구성**합니다.
+    - 높은 가용성과 확장성을 제공하며, 대용량 data 처리가 가능한 구조를 만듭니다.
+    - **각각의 server는 독립적으로 동작**하면서도 **전체적으로는 단일 system처럼 운영**됩니다.
 
 - **Broker** : **Producer와 Consumer 사이에서 message를 중계하는 Kafka server**입니다.
     - 각 Broker는 고유한 `broker.id`를 가지며, **cluster의 일부로 동작**합니다.

@@ -116,21 +116,6 @@
         border-right: transparent;
       }
 
-      #related {
-        margin-top: 10px;
-        text-align: right;
-      }
-
-      #related a {
-        text-decoration: none;
-        opacity: 0.8;
-      }
-
-      #related a:hover {
-        text-decoration: underline;
-        opacity: 1;
-      }
-
       #content {
         position: relative;
       }
@@ -177,13 +162,29 @@
       }
 
       #stamp {
-        margin: 40px 0;
+        margin-top: 70px;
         display: flex;
         justify-content: flex-end;
       }
 
       #stamp img {
         width: 80px;
+      }
+
+      #related {
+        margin-top: 50px;
+        text-align: right;
+      }
+
+      #related a {
+        font-weight: bolder;
+        text-decoration: none;
+      }
+
+      div.giscus {
+        margin: 0 auto;
+        margin-top: 50px;
+        max-width: 800px;
       }
     </style>
   </head>
@@ -197,16 +198,6 @@
       <p id="date">&nbsp</p>
       <p id="description">&nbsp</p>
 
-      <div id="related">
-        {% assign file_path = page.path %}
-        {% assign path_parts = file_path | remove: "_skills/" | split: "/" %}
-        {% assign file_name = path_parts | last %}
-        {% assign path_without_file = path_parts | pop %}
-        {% assign category_id = path_without_file | join: "-" %}
-        {% assign new_url = site.url | append: "/skills#" | append: category_id %}
-        <a href="{{ new_url }}">관련 글 보러가기 > #{{ category_id }}</a>
-      </div>
-
       <div id="content">
         <div id="index">
           <button type="button" onclick="toggleIndex()">Index</button>
@@ -219,9 +210,18 @@
         <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}" alt="Stamp" />
       </div>
 
-      <div class="giscus"></div>
+      <div id="related">
+        {% assign file_path = page.path %}
+        {% assign path_parts = file_path | remove: "_skills/" | split: "/" %}
+        {% assign file_name = path_parts | last %}
+        {% assign path_without_file = path_parts | pop %}
+        {% assign category_id = path_without_file | join: "-" %}
+        {% assign new_url = site.url | append: "/skills#" | append: category_id %}
+        <a href="{{ new_url }}">관련 글 보러가기 > #{{ category_id }}</a>
+      </div>
     </main>
 
+    <div class="giscus"></div>
 
     {% include footer.html %}
   </body>
