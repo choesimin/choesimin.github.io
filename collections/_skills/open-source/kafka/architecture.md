@@ -4,6 +4,7 @@ permalink: /
 title: Kafka Architecture - Cluster, Broker, Topic, Partition, Segment
 description: Kafka는 cluster, broker, topic, partition, segment로 이루어져 있습니다.
 date: 2025-03-10
+published: false
 ---
 
 
