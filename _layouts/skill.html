@@ -144,7 +144,7 @@
       #index ul {
         display: none;
         margin: 0;
-        padding: 30px 50px;
+        padding: 30px 45px;
         position: absolute;
         top: 40px;
         right: 0px;
@@ -152,7 +152,7 @@
         overflow-y: auto;
         background-color: var(--background-color);
         border: 1px solid var(--border-color);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
       }
 
       #index ul li {
@@ -164,23 +164,18 @@
       }
 
       #stamp {
-        margin-top: 70px;
+        margin-top: 20px;
         display: flex;
         justify-content: flex-end;
-      }
-
-      #stamp img {
-        width: 80px;
-      }
-
-      #related {
-        margin-top: 50px;
-        text-align: right;
       }
 
       #related a {
         font-weight: bolder;
         text-decoration: none;
+      }
+
+      #stamp img {
+        width: 70px;
       }
 
       div.giscus {
@@ -208,9 +203,7 @@
         <article>{{ content }}</article>
       </div>
 
-      <div id="stamp">
-        <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}" alt="Stamp" />
-      </div>
+      <hr>
 
       <div id="related">
         {% assign file_path = page.path %}
@@ -219,11 +212,15 @@
         {% assign path_without_file = path_parts | pop %}
         {% assign category_id = path_without_file | join: "-" %}
         {% assign new_url = site.url | append: "/skills#" | append: category_id %}
-        <a href="{{ new_url }}">관련 글 보러가기 > #{{ category_id }}</a>
+        <a href="{{ new_url }}">글 더 보러가기 > <code>{{ category_id }}</code></a>
       </div>
-    </main>
 
-    <div class="giscus"></div>
+      <div id="stamp">
+        <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}" alt="Stamp" />
+      </div>
+
+      <div class="giscus"></div>
+    </main>
 
     {% include footer.html %}
   </body>
