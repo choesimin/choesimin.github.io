@@ -111,7 +111,7 @@ date: 2024-09-22
 ---
 
 
-## Layer 1. 물리 계층 (Physical Layer)
+## 1 계층 - 물리 계층 (Physical Layer)
 
 | 특징 | 설명 |
 | --- | --- |
@@ -147,7 +147,7 @@ date: 2024-09-22
 ---
 
 
-## Layer 2. Data Link 계층 (Data Link Layer)
+## 2 계층 - Data Link 계층 (Data Link Layer)
 
 | 특징 | 설명 |
 | --- | --- |
@@ -242,7 +242,7 @@ date: 2024-09-22
 ---
 
 
-## Layer 3. Network 계층 (Network Layer)
+## 3 계층 - Network 계층 (Network Layer)
 
 | 특징 | 설명 |
 | --- | --- |
