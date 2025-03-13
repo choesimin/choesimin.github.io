@@ -189,7 +189,7 @@ SHOW BINARY LOGS;
 
 - 현재 server에 존재하는 모든 binary log file 목록을 확인합니다.
 
-```
+```txt
 +---------------+-----------+-----------+
 | Log_name      | File_size | Encrypted |
 +---------------+-----------+-----------+
@@ -210,7 +210,7 @@ SHOW VARIABLES LIKE 'datadir';
 
 - binary log file이 기본 경로에 저장된 경우 이 directory에 위치합니다.
 
-```
+```txt
 +---------------+----------------+
 | Variable_name | Value          |
 +---------------+----------------+
