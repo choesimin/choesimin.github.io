@@ -164,9 +164,13 @@
       }
 
       #stamp {
-        margin-top: 20px;
+        margin-top: 100px;
         display: flex;
         justify-content: flex-end;
+      }
+
+      #stamp img {
+        width: 70px;
       }
 
       #related a {
@@ -174,14 +178,8 @@
         text-decoration: none;
       }
 
-      #stamp img {
-        width: 70px;
-      }
-
       div.giscus {
-        margin: 0 auto;
-        margin-top: 50px;
-        max-width: 800px;
+        margin-top: 100px;
       }
     </style>
   </head>
@@ -203,6 +201,10 @@
         <article>{{ content }}</article>
       </div>
 
+      <div id="stamp">
+        <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}" alt="Stamp" />
+      </div>
+
       <hr>
 
       <div id="related">
@@ -213,10 +215,6 @@
         {% assign category_id = path_without_file | join: "-" %}
         {% assign new_url = site.url | append: "/skills#" | append: category_id %}
         <a href="{{ new_url }}">글 더 보러가기 > <code>{{ category_id }}</code></a>
-      </div>
-
-      <div id="stamp">
-        <img src="{{ '/assets/img/skill-stamp/original.png' | relative_url }}" alt="Stamp" />
       </div>
 
       <div class="giscus"></div>
