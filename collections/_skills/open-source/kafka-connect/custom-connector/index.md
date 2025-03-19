@@ -12,7 +12,10 @@ date: 2025-03-18
 - Kafka Connect는 외부 system과 Kafka 간의 data 연동을 쉽게 해주는 framework이며, **Connector는 Kafka Connect에서 실제 data를 이동시키는 plugin** 역할을 합니다.
 
 - **custom connector**는 기존에 제공되는 connector로 충족할 수 없는 요구 사항을 위해 **직접 개발한 connector**입니다.
-    - **Kafka Connect API를 활용**하여 connector를 직접 구현할 수 있습니다.
+    - **Kafka Connect API를 활용**하여 custom connector를 직접 구현할 수 있습니다.
+    - custom connector는 크게 **`Connector` class와 `Task` class로 구성**되며, 두 class 모두 Kafka Connect API의 interface를 구현해야 합니다.
+        - `Connector` class는 전체 data 이동 작업을 관리하는 책임을 가집니다.
+        - `Task` class는 `Connector`가 생성하며 실제 data 전송 작업을 수행합니다.
 
 - custom connector는 표준 connector와 동일하게 **source connector와 sink connector로 구분**됩니다.
     - source connector : 외부 system에서 data를 가져와 Kafka topic으로 전송합니다.
@@ -106,15 +109,19 @@ dependencies {
 ### 2. Connector class 구현
 
 - source connector는 `SourceConnector`, sink connector는 `SinkConnector` class를 확장(`extends`)합니다.
+    - `org.apache.kafka.connect.source.SourceConnector` 또는 `org.apache.kafka.connect.sink.SinkConnector`를 상속합니다.
 
-- `config()` method를 통해 필요한 설정 항목을 정의합니다.
-- `start()`, `stop()` method에서 resource 초기화 및 정리 작업을 구현합니다.
-- `taskClass()`에서 처리할 task class를 지정합니다.
-- `taskConfigs()`에서 병렬 처리를 위한 task 설정을 생성합니다.
+- 모든 resource는 `start()` method에서 초기화하고 `stop()` method에서 정리해야 합니다.
+
+- connector는 `taskConfigs(maxTasks)`를 통해 여러 task를 생성할 수 있습니다.
+    - 각 task는 독립적으로 동작하여 병렬 처리가 가능합니다.
+    - task 수는 connector 구성에 따라 결정되며, 처리량에 따라 조정할 수 있습니다.
+    - task는 서로 다른 worker node에서 실행될 수 있어 분산 처리가 가능합니다.
 
 ```java
 public class CustomSourceConnector extends SourceConnector {
 /* public class CustomSinkConnector extends SinkConnector { */
+
     private Map<String, String> configProps;
 
     @Override
@@ -130,7 +137,7 @@ public class CustomSourceConnector extends SourceConnector {
 
     @Override
     public List<Map<String, String>> taskConfigs(int maxTasks) {
-        List<Map<String, String>> taskConfigs = new ArrayList<>();
+        final List<Map<String, String>> taskConfigs = new ArrayList<>(maxTasks);
         for (int i = 0; i < maxTasks; i++) {
             taskConfigs.add(configProps);
         }
@@ -154,15 +161,38 @@ public class CustomSourceConnector extends SourceConnector {
 }
 ```
 
+#### Connector Class 필수 Method
+
+- `version()` : connector version을 반환합니다.
+- `start(Map<String, String> props)` : connector를 초기화합니다.
+    - resource 초기화 작업을 구현합니다.
+- `taskClass()` : task 구현 class를 반환합니다.
+- `taskConfigs(int maxTasks)` : 병렬 처리를 위한 task 구성 정보를 생성합니다.
+- `stop()` : connector를 정상적으로 종료합니다.
+    - resource 정리 작업을 구현합니다.
+- `config()` : connector 구성을 정의합니다.
+    - 필요한 설정 항목을 정의합니다.
+
 
 ### 3. Task class 구현
 
-- Source Task는 `SourceTask`, Sink Task는 `SinkTask` class를 확장합니다.
+- Source Task는 `SourceTask`, Sink Task는 `SinkTask` class를 확장(`extends`)합니다.
+    - `org.apache.kafka.connect.source.SourceTask` 또는 `org.apache.kafka.connect.sink.SinkTask`를 상속합니다.
 
 - connector class와 마찬가지로, `start()`, `stop()` method에서 resource 초기화 및 정리 작업을 구현합니다.
-- Source Task이냐, Sink Task이냐에 따라 `poll()` 또는 `put()` method를 구현합니다.
+
+- Source Task이냐, Sink Task이냐에 따라, `poll()` 또는 `put()` method를 구현합니다.
     - Source Task의 경우, `poll()` method에서 외부 system에서 data를 읽어 `SourceRecord`로 변환합니다.
     - Sink Task의 경우, `put()` method에서 Kafka에서 받은 data를 외부 system에 기록합니다.
+
+- task는 병렬 처리를 위해 **상태 비저장(stateless) 방식**으로 구현해야 합니다.
+    - 여러 task가 동시에 실행되어도 서로 영향을 주지 않아야 합니다.
+    - task는 독립적으로 동작하며, task 간의 상태 공유는 피해야 합니다.
+
+- task 실행 중 error가 발생하면 Kafka Connect framework가 error를 처리합니다.
+    - 일시적인 error는 자동으로 retry됩니다.
+    - 지속적인 error가 발생하면 task가 중지되고, Connector의 상태가 `FAILED`로 변경됩니다.
+    - Kafka Connect framework는 실패한 task를 재시작하거나, 필요시 새로운 worker node에서 task를 시작합니다.
 
 ```java
 public class CustomSourceTask extends SourceTask {
@@ -197,6 +227,15 @@ public class CustomSourceTask extends SourceTask {
     }
 }
 ```
+
+#### Task Class 필수 Method
+
+- `version()` : task 버전을 반환합니다.
+- `start(Map<String, String> props)` : task를 초기화합니다.
+- `stop()` : task를 정상적으로 종료합니다.
+- (Source Task) `poll()` : source system에서 data를 가져옵니다.
+- (Sink Task) `put(Collection<SinkRecord> records)` : kafka에서 data를 가져와 대상 system에 저장합니다.
+- (Sink Task) `flush(Map<TopicPartition, OffsetAndMetadata> offsets)` : 처리된 data를 대상 system에 확정합니다.
 
 
 ### 4. JAR File Packaging
@@ -301,4 +340,113 @@ cp build/libs/custom-connector.jar /usr/share/java/
 # custom connector 등록
 curl -X POST -H "Content-Type: application/json" --data @connector-config.json http://localhost:8083/connectors
 ```
+
+
+---
+
+
+## Custom Connector의 생명 주기와 Method 호출 순서
+
+```mermaid
+sequenceDiagram
+    participant connect_cluster as Connect Cluster
+    participant connector as Connector
+    participant task as Task
+    participant kafka as Kafka
+    participant external_system as External System
+
+    connect_cluster->>connector: config()
+    connect_cluster->>connector: start(props)
+    connector->>connector: taskClass()
+    connector->>connector: taskConfigs(maxTasks)
+    connect_cluster->>task: new Task()
+    connect_cluster->>task: start(props)
+
+    alt SourceConnector
+        loop polling
+            task->>external_system: Data 읽기
+            task->>task: poll()
+            task->>kafka: Data 전송
+        end
+    else SinkConnector
+        loop consume
+            kafka->>task: Data 수신
+            task->>task: put(records)
+            task->>external_system: Data 쓰기
+            task->>task: flush(offsets)
+        end
+    end
+
+    connect_cluster->>task: stop()
+    connect_cluster->>connector: stop()
+
+```
+
+
+### Connector와 Task의 Life Cycle
+
+- **Connector 생명 주기** : `start()` -> `config()` -> `taskClass()` -> `taskConfigs(maxTasks)` -> `stop()`.
+    1. Kafka Connect cluster가 시작되면 설정된 connector를 load합니다.
+    2. `config()` method를 호출하여 connector 구성 정보를 확인합니다.
+    3. `start(props)` method를 호출하여 connector를 초기화합니다.
+    4. connector는 `taskClass()`를 통해 사용할 task class를 정의합니다.
+    5. connector는 `taskConfigs(maxTasks)`를 통해 생성할 task 수와 각 task 구성을 결정합니다.
+    6. connector가 중지될 때 `stop()` method가 호출됩니다.
+
+- **Task 생명 주기** : `start()` -> `poll()` or `put(records)` -> `flush(offsets)` -> `stop()`.
+    1. Connector가 지정한 task class의 instance가 생성됩니다.
+    2. 각 task는 `start(props)` method로 초기화됩니다.
+    3. task는 구성된 작업 유형에 따라 동작합니다.
+    4. task가 중지될 때 `stop()` method가 호출됩니다.
+
+
+### Source/Sink Task의 동작 흐름
+
+- **Source Task 동작 흐름** : `start()` -> `poll()` -> `stop()`.
+    1. `start(props)` : task 초기화.
+        - source system 연결 설정.
+        - 구성 정보 저장.
+        - 필요한 resource 초기화.
+    2. `poll()` : data 가져오기.
+        - source system에서 data 읽기.
+        - record 변환 및 생성.
+        - 읽은 위치(offset) 추적.
+    3. Connect framework가 `poll()`에서 반환된 record를 Kafka topic으로 전송.
+    4. `stop()` : task 종료.
+        - resource 정리.
+        - 연결 종료.
+
+- **Sink Task 동작 흐름** : `start()` -> `put(records)` -> `flush(offsets)` -> `stop()`.
+    1. `start(props)` : task 초기화.
+        - sink system 연결 설정.
+        - 구성 정보 저장.
+        - 필요한 resource 초기화.
+    2. Connect framework가 Kafka topic에서 data를 가져옴.
+    3. `put(records)` : 가져온 record 처리.
+        - record 변환.
+        - sink system에 data 쓰기.
+    4. `flush(offsets)` : 처리된 data 확정.
+        - 대상 system에 변경 사항 반영.
+        - transaction 완료.
+    5. `stop()` : task 종료.
+        - resource 정리.
+        - 연결 종료.
+
+
+### 실제 Data Flow
+
+- **Source Connector Data Flow** : `external system` -> `task.poll()` -> `SourceRecord` -> `Kafka topic`.
+    1. external system의 data 변경.
+    2. task의 `poll()` method 호출.
+    3. 변경된 data를 가져와 SourceRecord로 변환.
+    4. Connect framework가 SourceRecord를 Kafka topic으로 전송.
+    5. 전송 완료 후 다시 `poll()` 호출하여 1~4 반복.
+
+- **Sink Connector Data Flow** : Kafka topic -> SinkRecord -> task.put() -> external system.
+    1. Kafka topic에 새로운 data 도착.
+    2. Connect framework가 data를 가져와 SinkRecord로 변환.
+    3. task의 `put(records)` method 호출.
+    4. data 변환 후 external system에 저장.
+    5. `flush(offsets)` method 호출하여 처리된 data 확정.
+    6. offset commit 후 저장 완료.
 
