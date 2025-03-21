@@ -385,7 +385,8 @@ public class DataConverter {
 ---
 
 
-## Service Provider 설정
+## SPI(Service Provider Interface) 설정
+
 
 - `src/main/resources/META-INF/services/org.apache.kafka.connect.sink.SinkConnector` file을 생성하고 connector class 이름을 등록합니다.
     - 이 file이 없으면 Kafka Connect에서 custom connector class를 찾지 못해 실행할 수 없습니다.
@@ -694,4 +695,8 @@ public record UpdateField(String indexName, String filterKey, String filterValue
         );
     }
 }
+```
+
+```txt
+com.hiworks.UpdateByQuerySinkConnector
 ```
