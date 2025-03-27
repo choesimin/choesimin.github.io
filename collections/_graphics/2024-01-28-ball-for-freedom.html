@@ -83,6 +83,11 @@ description: 공은 밖으로 나가고 싶습니다.
           this.y += this.vy;
         }
       }
+      
+      setSpeed(speed) {
+        this.vx = Math.sign(this.vx) * speed;
+        this.vy = Math.sign(this.vy) * speed;
+      }
     }
 
     class App {
@@ -95,9 +100,29 @@ description: 공은 밖으로 나가고 싶습니다.
         window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
 
-        this.ball = new Ball(this.stageWidth, this.stageHeight, 40, 20);
+        this.defaultSpeed = 20;
+        this.highSpeed = 100;
+        this.ball = new Ball(this.stageWidth, this.stageHeight, 40, this.defaultSpeed);
+        
+        this.canvas.addEventListener('mousedown', this.onPress.bind(this), false);
+        this.canvas.addEventListener('mouseup', this.onRelease.bind(this), false);
+        this.canvas.addEventListener('mouseleave', this.onRelease.bind(this), false);
+        
+        this.canvas.addEventListener('touchstart', this.onPress.bind(this), false);
+        this.canvas.addEventListener('touchend', this.onRelease.bind(this), false);
+        this.canvas.addEventListener('touchcancel', this.onRelease.bind(this), false);
 
         window.requestAnimationFrame(this.animate.bind(this));
+      }
+
+      onPress(e) {
+        this.ball.setSpeed(this.highSpeed);
+        e.preventDefault();
+      }
+      
+      onRelease(e) {
+        this.ball.setSpeed(this.defaultSpeed);
+        e.preventDefault();
       }
 
       resize() {
