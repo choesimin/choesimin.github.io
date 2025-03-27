@@ -349,18 +349,18 @@ curl -X POST -H "Content-Type: application/json" --data @connector-config.json h
 
 ```mermaid
 sequenceDiagram
-    participant connect_cluster as Connect Cluster
+    participant kafka_connect as Kafka Connect<br>(Cluster)
     participant connector as Connector
     participant task as Task
     participant kafka as Kafka
     participant external_system as External System
 
-    connect_cluster->>connector: config()
-    connect_cluster->>connector: start(props)
+    kafka_connect->>connector: config()
+    kafka_connect->>connector: start(props)
     connector->>connector: taskClass()
     connector->>connector: taskConfigs(maxTasks)
-    connect_cluster->>task: new Task()
-    connect_cluster->>task: start(props)
+    kafka_connect->>task: new Task()
+    kafka_connect->>task: start(props)
 
     alt SourceConnector
         loop polling
@@ -377,9 +377,8 @@ sequenceDiagram
         end
     end
 
-    connect_cluster->>task: stop()
-    connect_cluster->>connector: stop()
-
+    kafka_connect->>task: stop()
+    kafka_connect->>connector: stop()
 ```
 
 
