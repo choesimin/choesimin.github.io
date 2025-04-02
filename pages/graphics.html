@@ -7,7 +7,7 @@ permalink: /graphics
 <html lang="ko">
 
 <head>
-    {% include google-analytics-head.html %}
+    {% include google-analytics.html %}
     <title>Interactive Web Graphic</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,7 +51,6 @@ permalink: /graphics
 </head>
 
 <body>
-    {% include google-analytics-body.html %}
     {% for graphic in site.graphics %}
     <a href="{{ graphic.url | relative_url }}">
         <h2>{{ graphic.title }}</h2>

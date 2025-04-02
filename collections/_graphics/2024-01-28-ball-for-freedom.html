@@ -9,7 +9,7 @@ description: 공은 밖으로 나가고 싶습니다.
 <html lang="ko">
 
 <head>
-  {% include google-analytics-head.html %}
+  {% include google-analytics.html %}
   <title>{{ page.title }}</title>
   <meta charset="utf-8" />
   <meta name="description" content="{{ page.description }}" />
@@ -46,7 +46,6 @@ description: 공은 밖으로 나가고 싶습니다.
 </head>
 
 <body>
-  {% include google-analytics-body.html %}
   <script>
     class Ball {
       constructor(stageWidth, stageHeight, radius, speed) {

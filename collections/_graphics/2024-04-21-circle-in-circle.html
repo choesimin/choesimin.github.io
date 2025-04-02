@@ -8,7 +8,7 @@ description: 원 안에 있는 원은 원을 원합니다.
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    {% include google-analytics-head.html %}
+    {% include google-analytics.html %}
     <title>{{ page.title }}</title>
     <meta charset="utf-8" />
     <meta name="description" content="{{ page.description }}" />
@@ -42,7 +42,6 @@ description: 원 안에 있는 원은 원을 원합니다.
   </head>
 
   <body>
-    {% include google-analytics-body.html %}
     <script>
       class Circle {
         constructor(parent = null) {
