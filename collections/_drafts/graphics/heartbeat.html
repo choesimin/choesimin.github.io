@@ -38,20 +38,11 @@
       let cols, rows;
       let particles = [];
       
-      // 심장 박동 관련
+      // 파동 관련
+      let waves = []; // 여러 파동을 저장할 배열
       let heartbeatTime = 0;
       const heartbeatInterval = 150; // 기본(느린) 심장 박동 간격 (프레임)
       const heartbeatDuration = 15; // 심장 박동 지속 시간 (프레임)
-      let heartbeatStrength = 0; // 현재 심장 박동 강도
-      let isHeartbeating = false;
-      let waveProgress = 0; // 파동 진행 정도 (0~1)
-      
-      // 파동 중심점 (기본은 화면 중앙)
-      let waveOriginX;
-      let waveOriginY;
-      
-      // 현재 파동이 자동인지 클릭에 의한 것인지 구분
-      let isAutoHeartbeat = true;
       
       // 동일한 기본 색상 사용
       const baseColor = '#800000'; // 진한 붉은색
@@ -64,10 +55,6 @@
         // 그리드 점 계산
         cols = Math.floor(canvas.width / gridSize) + 2;
         rows = Math.floor(canvas.height / gridSize) + 2;
-        
-        // 기본 파동 중심점을 화면 중앙으로 설정
-        waveOriginX = canvas.width / 2;
-        waveOriginY = canvas.height / 2;
         
         createParticles();
       }
@@ -97,54 +84,38 @@
         }
       }
       
-      // 심장 박동 시작 함수 (클릭/터치 시 호출)
-      function triggerHeartbeat(x, y) {
-        // 파동 중심점 업데이트
-        waveOriginX = x;
-        waveOriginY = y;
-        
-        // 클릭에 의한 파동임을 표시
-        isAutoHeartbeat = false;
-        
-        // 파동 시작
-        startBeat();
+      // 파동 생성 함수
+      function createWave(x, y, isAuto = false) {
+        waves.push({
+          x: x,
+          y: y,
+          progress: 0,
+          strength: 1.0,
+          isAuto: isAuto
+        });
       }
       
-      // 개별 박동 시작 함수
-      function startBeat() {
-        isHeartbeating = true;
-        heartbeatStrength = 1.0;
-        waveProgress = 0; // 파동 시작
-        heartbeatTime = 0;
-      }
-      
-      // 심장 박동 업데이트 함수
-      function updateHeartbeat() {
-        // 자동 박동 업데이트
+      // 파동 업데이트 함수
+      function updateWaves() {
+        // 자동 파동 처리
         heartbeatTime++;
-        
-        if (!isHeartbeating && heartbeatTime >= heartbeatInterval) {
-          // 자동 박동 시작
-          isAutoHeartbeat = true;
-          
-          // 자동 박동의 경우 중심점을 화면 중앙으로 재설정
-          waveOriginX = canvas.width / 2;
-          waveOriginY = canvas.height / 2;
-          
-          startBeat();
+        if (heartbeatTime >= heartbeatInterval) {
+          // 자동 파동 생성
+          createWave(canvas.width / 2, canvas.height / 2, true);
+          heartbeatTime = 0;
         }
         
-        // 현재 박동 진행 중
-        if (isHeartbeating) {
-          // 박동 업데이트
-          heartbeatStrength -= 1.0 / heartbeatDuration;
-          waveProgress += 1.0 / heartbeatDuration; // 파동 진행
+        // 모든 파동 업데이트
+        for (let i = waves.length - 1; i >= 0; i--) {
+          const wave = waves[i];
           
-          // 박동 종료
-          if (heartbeatStrength <= 0) {
-            isHeartbeating = false;
-            heartbeatStrength = 0;
-            waveProgress = 1.0; // 파동 완료
+          // 파동 진행
+          wave.progress += 1.0 / heartbeatDuration;
+          wave.strength -= 1.0 / heartbeatDuration;
+          
+          // 완료된 파동 제거
+          if (wave.strength <= 0) {
+            waves.splice(i, 1);
           }
         }
       }
@@ -157,25 +128,28 @@
         ctx.fillStyle = 'rgba(5, 5, 5, 0.15)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        updateHeartbeat();
+        updateWaves();
+        
+        // 최대 거리 계산 (화면 대각선 길이의 절반)
+        const maxDistance = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height) / 2;
         
         // 파티클 업데이트 및 그리기
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
           
           // 기본 위치로부터의 변위 계산
-          let offsetX = 0;
-          let offsetY = 0;
+          let totalOffsetX = 0;
+          let totalOffsetY = 0;
+          let maxWaveStrength = 0;
           
-          // 심장 박동 효과
-          if (isHeartbeating) {
-            // 파동 중심점에서의 거리 계산
-            const dx = p.originalX - waveOriginX;
-            const dy = p.originalY - waveOriginY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+          // 모든 파동의 효과 누적
+          for (let j = 0; j < waves.length; j++) {
+            const wave = waves[j];
             
-            // 최대 거리 계산 (화면 대각선 길이의 절반)
-            const maxDistance = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height) / 2;
+            // 파동 중심점에서의 거리 계산
+            const dx = p.originalX - wave.x;
+            const dy = p.originalY - wave.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
             
             // 거리 비율 (0: 중심점, 1: 최대 거리)
             const distanceRatio = distance / maxDistance;
@@ -184,7 +158,7 @@
             const waveWidth = 0.2;
             
             // 현재 파동이 도달한 거리 비율 (0: 중심점, 1: 최대 거리)
-            const waveReachRatio = waveProgress;
+            const waveReachRatio = wave.progress;
             
             // 파동 효과 계산 (파동이 현재 위치를 지나가고 있는지)
             const distanceFromWave = Math.abs(distanceRatio - waveReachRatio);
@@ -199,57 +173,48 @@
               waveStrength *= (1 - distanceRatio * 0.3);
               
               // 시간에 따른 감쇠 적용 (시간이 지날수록 약해짐)
-              waveStrength *= heartbeatStrength;
+              waveStrength *= wave.strength;
+              
+              if (waveStrength > 0) {
+                // 파동 방향 계산 (중심에서 바깥쪽으로)
+                const angle = Math.atan2(dy, dx);
+                
+                // 파동 강도에 따른 이동 거리
+                const pulseStrength = waveStrength * 15;
+                
+                // 이동 벡터 계산 및 누적
+                totalOffsetX += Math.cos(angle) * pulseStrength;
+                totalOffsetY += Math.sin(angle) * pulseStrength;
+                
+                // 가장 강한 파동 효과 추적 (색상 변화에 사용)
+                if (waveStrength > maxWaveStrength) {
+                  maxWaveStrength = waveStrength;
+                }
+              }
             }
-            
-            if (waveStrength > 0) {
-              // 파동 방향 계산 (중심에서 바깥쪽으로)
-              const angle = Math.atan2(dy, dx);
-              
-              // 파동 강도에 따른 이동 거리
-              const pulseStrength = waveStrength * 15; // 이동 거리 증가
-              
-              // 이동 벡터 계산
-              offsetX = Math.cos(angle) * pulseStrength;
-              offsetY = Math.sin(angle) * pulseStrength;
-              
-              // 색상 변화 (더 밝은 빨간색으로)
-              const intensity = Math.min(255, 100 + waveStrength * 155);
-              p.color = `rgb(${intensity}, ${intensity / 5}, ${intensity / 8})`;
-            } else {
-              p.color = p.baseColor;
-            }
+          }
+          
+          // 색상 변화 (가장 강한 파동 효과 기준)
+          if (maxWaveStrength > 0) {
+            const intensity = Math.min(255, 100 + maxWaveStrength * 155);
+            p.color = `rgb(${intensity}, ${intensity / 5}, ${intensity / 8})`;
           } else {
             p.color = p.baseColor;
           }
           
           // 위치 업데이트
-          p.vx = p.vx * 0.9 + (p.originalX + offsetX - p.x) * 0.1;
-          p.vy = p.vy * 0.9 + (p.originalY + offsetY - p.y) * 0.1;
+          p.vx = p.vx * 0.9 + (p.originalX + totalOffsetX - p.x) * 0.1;
+          p.vy = p.vy * 0.9 + (p.originalY + totalOffsetY - p.y) * 0.1;
           
           p.x += p.vx;
           p.y += p.vy;
           
           // 사각형 크기 계산
           let size = p.size;
-          if (isHeartbeating) {
-            // 중심점에서의 거리 계산
-            const dx = p.originalX - waveOriginX;
-            const dy = p.originalY - waveOriginY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            const maxDistance = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height) / 2;
-            const distanceRatio = distance / maxDistance;
-            
-            // 파동이 현재 위치에 도달했는지 계산
-            const waveReachRatio = waveProgress;
-            const distanceFromWave = Math.abs(distanceRatio - waveReachRatio);
-            const waveWidth = 0.2;
-            
-            // 파동에 의한 크기 변화
-            if (distanceFromWave < waveWidth) {
-              const waveStrength = 1 - (distanceFromWave / waveWidth);
-              size += waveStrength * heartbeatStrength * gridSize * 0.4;
-            }
+          
+          // 파동 효과에 따른 크기 변화
+          if (maxWaveStrength > 0) {
+            size += maxWaveStrength * gridSize * 0.4;
           }
           
           // 그리기
@@ -260,9 +225,17 @@
           ctx.fillRect(p.x - safeSize/2, p.y - safeSize/2, safeSize, safeSize);
         }
         
-        // 심장박동 시 화면 전체에 적용되는 펄스 효과
-        if (isHeartbeating && heartbeatStrength > 0.5) {
-          ctx.fillStyle = `rgba(128, 0, 0, ${heartbeatStrength * 0.1})`;
+        // 화면 전체에 적용되는 펄스 효과
+        // 가장 강한 파동 찾기
+        let maxStrength = 0;
+        for (let i = 0; i < waves.length; i++) {
+          if (waves[i].strength > maxStrength && waves[i].strength > 0.5) {
+            maxStrength = waves[i].strength;
+          }
+        }
+        
+        if (maxStrength > 0) {
+          ctx.fillStyle = `rgba(128, 0, 0, ${maxStrength * 0.1})`;
           ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
       }
@@ -283,8 +256,8 @@
           y = e.clientY;
         }
         
-        // 클릭/터치 위치에서 파동 시작
-        triggerHeartbeat(x, y);
+        // 클릭/터치 위치에서 파동 생성
+        createWave(x, y, false);
       }
       
       // 마우스 이벤트 등록
