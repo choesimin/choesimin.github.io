@@ -41,9 +41,10 @@
       // 심장 박동 관련
       let heartbeatTime = 0;
       const heartbeatInterval = 60; // 심장 박동 간격 (프레임)
-      const heartbeatDuration = 10; // 심장 박동 지속 시간 (프레임)
+      const heartbeatDuration = 20; // 심장 박동 지속 시간 (프레임) - 지속 시간 늘림
       let heartbeatStrength = 0; // 현재 심장 박동 강도
       let isHeartbeating = false;
+      let waveProgress = 0; // 파동 진행 정도 (0~1)
       
       // 붉은색 계열 색상 팔레트
       const colors = ['#8B0000', '#800000', '#A52A2A', '#B22222', '#3D0C02'];
@@ -96,14 +97,17 @@
           // 심장 수축 시작
           isHeartbeating = true;
           heartbeatStrength = 1.0;
+          waveProgress = 0; // 파동 시작
           heartbeatTime = 0;
         } else if (isHeartbeating) {
           // 심장 수축 진행 중
           heartbeatStrength -= 1.0 / heartbeatDuration;
+          waveProgress += 1.0 / heartbeatDuration; // 파동 진행
           
           if (heartbeatStrength <= 0) {
             isHeartbeating = false;
             heartbeatStrength = 0;
+            waveProgress = 1.0; // 파동 완료
           }
         }
       }
@@ -132,38 +136,52 @@
           
           // 심장 박동 효과
           if (isHeartbeating) {
-            // 화면 전체가 파동치는 효과
+            // 화면 중앙에서의 거리 계산
             const dx = p.originalX - centerX;
             const dy = p.originalY - centerY;
-            
-            // 거리에 따른 시간 지연 - 중심에서 바깥으로 파동이 퍼지는 효과
             const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // 최대 거리 계산 (화면 대각선 길이의 절반)
             const maxDistance = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height) / 2;
+            
+            // 거리 비율 (0: 중앙, 1: 최대 거리)
             const distanceRatio = distance / maxDistance;
             
-            // 거리에 따른 지연 파동 계산
-            let pulseDelay = distanceRatio * 0.5; // 최대 0.5초 지연
-            let adjustedStrength = heartbeatStrength;
+            // 파동 두께 (0~1 사이, 작을수록 좁은 파동)
+            const waveWidth = 0.2;
             
-            if (pulseDelay < heartbeatStrength) {
-              // 파동이 아직 이 위치에 도달하지 않음
-              adjustedStrength = 0;
-            } else {
-              // 파동이 이 위치에 도달함
-              adjustedStrength = 1 - (pulseDelay - heartbeatStrength) * 2;
-              if (adjustedStrength < 0) adjustedStrength = 0;
-              if (adjustedStrength > 1) adjustedStrength = 1;
+            // 현재 파동이 도달한 거리 비율 (0: 중앙, 1: 최대 거리)
+            const waveReachRatio = waveProgress;
+            
+            // 파동 효과 계산 (파동이 현재 위치를 지나가고 있는지)
+            const distanceFromWave = Math.abs(distanceRatio - waveReachRatio);
+            
+            // 파동 강도 계산 (파동 중앙에 가까울수록 강함)
+            let waveStrength = 0;
+            if (distanceFromWave < waveWidth) {
+              // 파동 내부에 있을 때
+              waveStrength = 1 - (distanceFromWave / waveWidth);
+              
+              // 거리에 따른 감쇠 적용 (멀수록 약해짐)
+              waveStrength *= (1 - distanceRatio * 0.3);
+              
+              // 시간에 따른 감쇠 적용 (시간이 지날수록 약해짐)
+              waveStrength *= heartbeatStrength;
             }
             
-            // 중심에서 바깥으로 퍼지는 파동
-            if (adjustedStrength > 0) {
+            if (waveStrength > 0) {
+              // 파동 방향 계산 (중앙에서 바깥쪽으로)
               const angle = Math.atan2(dy, dx);
-              const pulseStrength = adjustedStrength * 8;
-              offsetX += Math.cos(angle) * pulseStrength;
-              offsetY += Math.sin(angle) * pulseStrength;
               
-              // 색상 변화
-              const intensity = Math.min(255, 100 + adjustedStrength * 155);
+              // 파동 강도에 따른 이동 거리
+              const pulseStrength = waveStrength * 15; // 이동 거리 증가
+              
+              // 이동 벡터 계산
+              offsetX = Math.cos(angle) * pulseStrength;
+              offsetY = Math.sin(angle) * pulseStrength;
+              
+              // 색상 변화 (더 밝은 빨간색으로)
+              const intensity = Math.min(255, 100 + waveStrength * 155);
               p.color = `rgb(${intensity}, ${intensity / 5}, ${intensity / 8})`;
             } else {
               p.color = p.baseColor;
@@ -182,16 +200,23 @@
           // 사각형 크기 계산
           let size = p.size;
           if (isHeartbeating) {
-            // 심장 박동 시 크기 변화
+            // 중앙에서의 거리 계산
             const dx = p.originalX - centerX;
             const dy = p.originalY - centerY;
             const distance = Math.sqrt(dx * dx + dy * dy);
             const maxDistance = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height) / 2;
             const distanceRatio = distance / maxDistance;
             
-            // 거리에 따른 박동 크기 변화
-            let beatSize = heartbeatStrength * gridSize * 0.2 * (1 - distanceRatio);
-            size += beatSize;
+            // 파동이 현재 위치에 도달했는지 계산
+            const waveReachRatio = waveProgress;
+            const distanceFromWave = Math.abs(distanceRatio - waveReachRatio);
+            const waveWidth = 0.2;
+            
+            // 파동에 의한 크기 변화
+            if (distanceFromWave < waveWidth) {
+              const waveStrength = 1 - (distanceFromWave / waveWidth);
+              size += waveStrength * heartbeatStrength * gridSize * 0.4;
+            }
           }
           
           // 그리기
