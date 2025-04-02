@@ -40,19 +40,11 @@
       
       // 심장 박동 관련
       let heartbeatTime = 0;
-      const maxHeartbeatInterval = 120; // 기본(느린) 심장 박동 간격 (프레임)
-      const minHeartbeatInterval = 30; // 최소(빠른) 심장 박동 간격 (프레임)
-      let currentHeartbeatInterval = maxHeartbeatInterval; // 현재 심장 박동 간격
-      const heartbeatDuration = 20; // 심장 박동 지속 시간 (프레임)
+      const heartbeatInterval = 150; // 기본(느린) 심장 박동 간격 (프레임)
+      const heartbeatDuration = 15; // 심장 박동 지속 시간 (프레임)
       let heartbeatStrength = 0; // 현재 심장 박동 강도
       let isHeartbeating = false;
       let waveProgress = 0; // 파동 진행 정도 (0~1)
-      
-      // 마우스/터치 상태 관련
-      let isPressed = false; // 마우스/터치 눌림 상태
-      let pressStartTime = 0; // 마우스/터치 시작 시간
-      const maxSpeedupTime = 60; // 최대 속도에 도달하는 시간 (프레임)
-      const speedCooldownRate = 0.05; // 속도가 원래대로 돌아오는 속도 (프레임당)
       
       // 동일한 기본 색상 사용
       const baseColor = '#800000'; // 진한 붉은색
@@ -94,57 +86,42 @@
         }
       }
       
+      // 심장 박동 시작 함수 (클릭/터치 시 호출)
+      function triggerHeartbeat() {
+        // 이미 박동 중이면 무시하지 않음 (즉시 새 박동 시작)
+        startBeat();
+      }
+      
+      // 개별 박동 시작 함수
+      function startBeat() {
+        isHeartbeating = true;
+        heartbeatStrength = 1.0;
+        waveProgress = 0; // 파동 시작
+        heartbeatTime = 0;
+      }
+      
       // 심장 박동 업데이트 함수
       function updateHeartbeat() {
-        // 마우스/터치 상태에 따라 박동 간격 조절
-        updateHeartbeatInterval();
-        
+        // 자동 박동 업데이트
         heartbeatTime++;
         
-        if (heartbeatTime >= currentHeartbeatInterval) {
-          // 심장 수축 시작
-          isHeartbeating = true;
-          heartbeatStrength = 1.0;
-          waveProgress = 0; // 파동 시작
-          heartbeatTime = 0;
-        } else if (isHeartbeating) {
-          // 심장 수축 진행 중
+        if (!isHeartbeating && heartbeatTime >= heartbeatInterval) {
+          // 자동 박동 시작
+          startBeat();
+        }
+        
+        // 현재 박동 진행 중
+        if (isHeartbeating) {
+          // 박동 업데이트
           heartbeatStrength -= 1.0 / heartbeatDuration;
           waveProgress += 1.0 / heartbeatDuration; // 파동 진행
           
+          // 박동 종료
           if (heartbeatStrength <= 0) {
             isHeartbeating = false;
             heartbeatStrength = 0;
             waveProgress = 1.0; // 파동 완료
           }
-        }
-      }
-      
-      // 심장 박동 간격 업데이트 함수
-      function updateHeartbeatInterval() {
-        if (isPressed) {
-          // 마우스/터치 누르고 있을 때 점점 빨라짐
-          pressStartTime++;
-          
-          // 속도 변화율 계산 (0~1 사이)
-          const speedupRate = Math.min(1, pressStartTime / maxSpeedupTime);
-          
-          // 현재 간격 계산 (선형 보간)
-          currentHeartbeatInterval = maxHeartbeatInterval - 
-            (maxHeartbeatInterval - minHeartbeatInterval) * speedupRate;
-        } else {
-          // 마우스/터치 놓았을 때 천천히 원래 속도로 돌아감
-          if (currentHeartbeatInterval < maxHeartbeatInterval) {
-            currentHeartbeatInterval += (maxHeartbeatInterval - minHeartbeatInterval) * speedCooldownRate;
-            
-            // 최대값 제한
-            if (currentHeartbeatInterval > maxHeartbeatInterval) {
-              currentHeartbeatInterval = maxHeartbeatInterval;
-            }
-          }
-          
-          // 누르기 시작 시간 초기화
-          pressStartTime = 0;
         }
       }
       
@@ -268,31 +245,21 @@
           ctx.fillStyle = `rgba(128, 0, 0, ${heartbeatStrength * 0.1})`;
           ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
-        
-        // 현재 심장 박동 속도 시각화 (디버깅용, 필요시 주석 해제)
-        /*
-        const speedRatio = 1 - ((currentHeartbeatInterval - minHeartbeatInterval) / (maxHeartbeatInterval - minHeartbeatInterval));
-        ctx.fillStyle = `rgba(255, 255, 255, 0.3)`;
-        ctx.fillRect(20, 20, 200 * speedRatio, 10);
-        */
       }
       
-      // 마우스/터치 이벤트 리스너
-      function handleStart() {
-        isPressed = true;
-      }
-      
-      function handleEnd() {
-        isPressed = false;
+      // 클릭/터치 이벤트 핸들러
+      function handleTap() {
+        triggerHeartbeat();
       }
       
       // 마우스 이벤트 등록
-      canvas.addEventListener('mousedown', handleStart);
-      window.addEventListener('mouseup', handleEnd);
+      canvas.addEventListener('click', handleTap);
       
       // 터치 이벤트 등록
-      canvas.addEventListener('touchstart', handleStart);
-      window.addEventListener('touchend', handleEnd);
+      canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault(); // 기본 터치 동작 방지
+        handleTap();
+      });
       
       // 초기화 및 애니메이션 시작
       resize();
