@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>파티클 심장 박동</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #050505;
+    }
+    
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    window.onload = function() {
+      const canvas = document.createElement('canvas');
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      
+      // 파티클 속성
+      const gridSize = 25;
+      let cols, rows;
+      let particles = [];
+      
+      // 심장 박동 관련
+      let heartbeatTime = 0;
+      const heartbeatInterval = 60; // 심장 박동 간격 (프레임)
+      const heartbeatDuration = 10; // 심장 박동 지속 시간 (프레임)
+      let heartbeatStrength = 0; // 현재 심장 박동 강도
+      let isHeartbeating = false;
+      
+      // 붉은색 계열 색상 팔레트
+      const colors = ['#8B0000', '#800000', '#A52A2A', '#B22222', '#3D0C02'];
+      
+      // 캔버스 리사이즈 함수
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // 그리드 점 계산
+        cols = Math.floor(canvas.width / gridSize) + 2;
+        rows = Math.floor(canvas.height / gridSize) + 2;
+        
+        createParticles();
+      }
+      
+      // 파티클 생성 함수
+      function createParticles() {
+        particles = [];
+        
+        for (let y = 0; y < rows; y++) {
+          for (let x = 0; x < cols; x++) {
+            const px = x * gridSize;
+            const py = y * gridSize;
+            
+            // 각 점마다 랜덤 색상 할당
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            particles.push({
+              x: px,
+              y: py,
+              originalX: px,
+              originalY: py,
+              vx: 0,
+              vy: 0,
+              color: color,
+              baseColor: color,
+              size: gridSize * 0.4,
+              minSize: 1
+            });
+          }
+        }
+      }
+      
+      // 심장 박동 업데이트 함수
+      function updateHeartbeat() {
+        heartbeatTime++;
+        
+        if (heartbeatTime >= heartbeatInterval) {
+          // 심장 수축 시작
+          isHeartbeating = true;
+          heartbeatStrength = 1.0;
+          heartbeatTime = 0;
+        } else if (isHeartbeating) {
+          // 심장 수축 진행 중
+          heartbeatStrength -= 1.0 / heartbeatDuration;
+          
+          if (heartbeatStrength <= 0) {
+            isHeartbeating = false;
+            heartbeatStrength = 0;
+          }
+        }
+      }
+      
+      // 애니메이션 함수
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        // 배경 그리기
+        ctx.fillStyle = 'rgba(5, 5, 5, 0.15)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        updateHeartbeat();
+        
+        // 화면 중앙에서의 거리와 방향 계산 위한 변수
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        
+        // 파티클 업데이트 및 그리기
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          
+          // 기본 위치로부터의 변위 계산
+          let offsetX = 0;
+          let offsetY = 0;
+          
+          // 심장 박동 효과
+          if (isHeartbeating) {
+            // 화면 전체가 파동치는 효과
+            const dx = p.originalX - centerX;
+            const dy = p.originalY - centerY;
+            
+            // 거리에 따른 시간 지연 - 중심에서 바깥으로 파동이 퍼지는 효과
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const maxDistance = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height) / 2;
+            const distanceRatio = distance / maxDistance;
+            
+            // 거리에 따른 지연 파동 계산
+            let pulseDelay = distanceRatio * 0.5; // 최대 0.5초 지연
+            let adjustedStrength = heartbeatStrength;
+            
+            if (pulseDelay < heartbeatStrength) {
+              // 파동이 아직 이 위치에 도달하지 않음
+              adjustedStrength = 0;
+            } else {
+              // 파동이 이 위치에 도달함
+              adjustedStrength = 1 - (pulseDelay - heartbeatStrength) * 2;
+              if (adjustedStrength < 0) adjustedStrength = 0;
+              if (adjustedStrength > 1) adjustedStrength = 1;
+            }
+            
+            // 중심에서 바깥으로 퍼지는 파동
+            if (adjustedStrength > 0) {
+              const angle = Math.atan2(dy, dx);
+              const pulseStrength = adjustedStrength * 8;
+              offsetX += Math.cos(angle) * pulseStrength;
+              offsetY += Math.sin(angle) * pulseStrength;
+              
+              // 색상 변화
+              const intensity = Math.min(255, 100 + adjustedStrength * 155);
+              p.color = `rgb(${intensity}, ${intensity / 5}, ${intensity / 8})`;
+            } else {
+              p.color = p.baseColor;
+            }
+          } else {
+            p.color = p.baseColor;
+          }
+          
+          // 위치 업데이트
+          p.vx = p.vx * 0.9 + (p.originalX + offsetX - p.x) * 0.1;
+          p.vy = p.vy * 0.9 + (p.originalY + offsetY - p.y) * 0.1;
+          
+          p.x += p.vx;
+          p.y += p.vy;
+          
+          // 사각형 크기 계산
+          let size = p.size;
+          if (isHeartbeating) {
+            // 심장 박동 시 크기 변화
+            const dx = p.originalX - centerX;
+            const dy = p.originalY - centerY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const maxDistance = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height) / 2;
+            const distanceRatio = distance / maxDistance;
+            
+            // 거리에 따른 박동 크기 변화
+            let beatSize = heartbeatStrength * gridSize * 0.2 * (1 - distanceRatio);
+            size += beatSize;
+          }
+          
+          // 그리기
+          ctx.fillStyle = p.color;
+          const safeSize = Math.max(size, 1);
+          
+          // 사각형 그리기
+          ctx.fillRect(p.x - safeSize/2, p.y - safeSize/2, safeSize, safeSize);
+        }
+        
+        // 심장박동 시 화면 전체에 적용되는 펄스 효과
+        if (isHeartbeating && heartbeatStrength > 0.5) {
+          ctx.fillStyle = `rgba(128, 0, 0, ${heartbeatStrength * 0.1})`;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      
+      // 초기화 및 애니메이션 시작
+      resize();
+      window.addEventListener('resize', resize);
+      animate();
+    };
+  </script>
+</body>
+</html>
