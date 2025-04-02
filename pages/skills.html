@@ -6,6 +6,7 @@ permalink: /skills
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    {% include google-analytics-head.html %}
     <title>기술시민</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -148,7 +149,8 @@ permalink: /skills
   </head>
 
   <body>
-    {% include header.html %}
+    {% include google-analytics-body.html %}
+    {% include skill-header.html %}
     <a id="simin" href="{{ '/' | relative_url }}">SIMIN</a>
     <main>
       <section id="intro">
@@ -166,7 +168,7 @@ permalink: /skills
       </div>
       <article id="skills"></article>
     </main>
-    {% include footer.html %}
+    {% include skill-footer.html %}
     <script>
       const description = document.getElementById('intro').getElementsByTagName('p')[0];
       const searchSection = document.getElementById('search');
