@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>초고밀도 방사형 다채로운 직선 시각화</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+        }
+        
+        .line {
+            position: absolute;
+            transform-origin: center bottom;
+            background-color: #fff;
+            left: 300px;
+            top: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="radial"></div>
+
+    <script>
+        const container = document.getElementById('radial');
+        const totalLines = 50000; // 선의 개수를 대폭 증가
+        const centerX = 300;
+        const centerY = 300;
+        const maxRadius = 290;
+        
+        function getRandomColor() {
+            const hue = Math.floor(Math.random() * 360);
+            const saturation = 70 + Math.floor(Math.random() * 30);
+            const lightness = 40 + Math.floor(Math.random() * 30);
+            return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        }
+        
+        let lineCount = 0;
+        
+        // 더 많은 반경 범위로 나누기
+        const totalRanges = 40;
+        
+        for (let radiusRange = 0; radiusRange < totalRanges; radiusRange++) {
+            const minRadius = radiusRange * (maxRadius / totalRanges);
+            const maxRadiusForRange = minRadius + (maxRadius / totalRanges);
+            
+            // 반경이 클수록 훨씬 더 많은 선 생성
+            const baseCount = 500;
+            const radiusFactor = 1 + (radiusRange * 2 / totalRanges);
+            const linesInThisRange = Math.floor(baseCount * radiusFactor);
+            
+            for (let i = 0; i < linesInThisRange; i++) {
+                if (lineCount >= totalLines) break;
+                
+                const line = document.createElement('div');
+                line.className = 'line';
+                
+                // 이 범위 내에서 무작위 반경
+                const radius = minRadius + Math.random() * (maxRadius / totalRanges);
+                // 완전히 무작위 각도
+                const angle = Math.random() * 360;
+                
+                // 선을 더 작고 얇게
+                const length = 2 + Math.random() * 10;
+                const thickness = 0.5 + Math.random() * 1.5;
+                
+                line.style.height = `${length}px`;
+                line.style.width = `${thickness}px`;
+                line.style.backgroundColor = getRandomColor();
+                
+                line.style.transform = `translate(-50%, 0) rotate(${angle}deg) translateY(-${radius}px)`;
+                
+                container.appendChild(line);
+                lineCount++;
+            }
+        }
+        
+        console.log(`총 생성된 선의 개수: ${lineCount}`);
+    </script>
+</body>
+</html>
