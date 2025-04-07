@@ -7,3 +7,4 @@ gem "kramdown-parser-gfm" if ENV["JEKYLL_VERSION"] == "~> 3.9"
 gem 'csv'
 gem 'logger'
 gem 'base64'
+gem "webrick"
