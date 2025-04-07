@@ -1,9 +1,21 @@
+---
+layout: none
+permalink: /305
+title: 디지털 라이프
+description: 아날로그 사람들
+---
+
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>파티클 심장 박동</title>
+  {% include google-analytics.html %}
+  <title>{{ page.title }}</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="{{ page.description }}" />
+  <meta http-equiv="X-UA-Compatible" content="IE-edge, chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
   <style>
     * {
       margin: 0;
@@ -33,33 +45,27 @@
       document.body.appendChild(canvas);
       const ctx = canvas.getContext('2d');
       
-      // 파티클 속성
       const gridSize = 25;
       let cols, rows;
       let particles = [];
       
-      // 파동 관련
-      let waves = []; // 여러 파동을 저장할 배열
+      let waves = [];
       let heartbeatTime = 0;
-      const heartbeatInterval = 150; // 기본(느린) 심장 박동 간격 (프레임)
-      const heartbeatDuration = 15; // 심장 박동 지속 시간 (프레임)
+      const heartbeatInterval = 150;
+      const heartbeatDuration = 15;
       
-      // 동일한 기본 색상 사용
-      const baseColor = '#800000'; // 진한 붉은색
+      const baseColor = '#800000';
       
-      // 캔버스 리사이즈 함수
       function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        // 그리드 점 계산
         cols = Math.floor(canvas.width / gridSize) + 2;
         rows = Math.floor(canvas.height / gridSize) + 2;
         
         createParticles();
       }
       
-      // 파티클 생성 함수
       function createParticles() {
         particles = [];
         
@@ -75,7 +81,7 @@
               originalY: py,
               vx: 0,
               vy: 0,
-              color: baseColor, // 모든 파티클에 동일한 색상 적용
+              color: baseColor,
               baseColor: baseColor,
               size: gridSize * 0.4,
               minSize: 1
@@ -84,7 +90,6 @@
         }
       }
       
-      // 파동 생성 함수
       function createWave(x, y, isAuto = false) {
         waves.push({
           x: x,
@@ -95,98 +100,67 @@
         });
       }
       
-      // 파동 업데이트 함수
       function updateWaves() {
-        // 자동 파동 처리
         heartbeatTime++;
         if (heartbeatTime >= heartbeatInterval) {
-          // 자동 파동 생성
           createWave(canvas.width / 2, canvas.height / 2, true);
           heartbeatTime = 0;
         }
         
-        // 모든 파동 업데이트
         for (let i = waves.length - 1; i >= 0; i--) {
           const wave = waves[i];
           
-          // 파동 진행
           wave.progress += 1.0 / heartbeatDuration;
           wave.strength -= 1.0 / heartbeatDuration;
           
-          // 완료된 파동 제거
           if (wave.strength <= 0) {
             waves.splice(i, 1);
           }
         }
       }
       
-      // 애니메이션 함수
       function animate() {
         requestAnimationFrame(animate);
         
-        // 배경 그리기
         ctx.fillStyle = 'rgba(5, 5, 5, 0.15)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         updateWaves();
         
-        // 최대 거리 계산 (화면 대각선 길이의 절반)
         const maxDistance = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height) / 2;
         
-        // 파티클 업데이트 및 그리기
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
           
-          // 기본 위치로부터의 변위 계산
           let totalOffsetX = 0;
           let totalOffsetY = 0;
           let maxWaveStrength = 0;
           
-          // 모든 파동의 효과 누적
           for (let j = 0; j < waves.length; j++) {
             const wave = waves[j];
             
-            // 파동 중심점에서의 거리 계산
             const dx = p.originalX - wave.x;
             const dy = p.originalY - wave.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
             
-            // 거리 비율 (0: 중심점, 1: 최대 거리)
             const distanceRatio = distance / maxDistance;
-            
-            // 파동 두께 (0~1 사이, 작을수록 좁은 파동)
             const waveWidth = 0.2;
-            
-            // 현재 파동이 도달한 거리 비율 (0: 중심점, 1: 최대 거리)
             const waveReachRatio = wave.progress;
-            
-            // 파동 효과 계산 (파동이 현재 위치를 지나가고 있는지)
             const distanceFromWave = Math.abs(distanceRatio - waveReachRatio);
             
-            // 파동 강도 계산 (파동 중앙에 가까울수록 강함)
             let waveStrength = 0;
             if (distanceFromWave < waveWidth) {
-              // 파동 내부에 있을 때
               waveStrength = 1 - (distanceFromWave / waveWidth);
-              
-              // 거리에 따른 감쇠 적용 (멀수록 약해짐)
               waveStrength *= (1 - distanceRatio * 0.3);
-              
-              // 시간에 따른 감쇠 적용 (시간이 지날수록 약해짐)
               waveStrength *= wave.strength;
               
               if (waveStrength > 0) {
-                // 파동 방향 계산 (중심에서 바깥쪽으로)
                 const angle = Math.atan2(dy, dx);
-                
-                // 파동 강도에 따른 이동 거리
                 const pulseStrength = waveStrength * 15;
                 
-                // 이동 벡터 계산 및 누적
                 totalOffsetX += Math.cos(angle) * pulseStrength;
                 totalOffsetY += Math.sin(angle) * pulseStrength;
                 
-                // 가장 강한 파동 효과 추적 (색상 변화에 사용)
                 if (waveStrength > maxWaveStrength) {
                   maxWaveStrength = waveStrength;
                 }
@@ -194,7 +168,6 @@
             }
           }
           
-          // 색상 변화 (가장 강한 파동 효과 기준)
           if (maxWaveStrength > 0) {
             const intensity = Math.min(255, 100 + maxWaveStrength * 155);
             p.color = `rgb(${intensity}, ${intensity / 5}, ${intensity / 8})`;
@@ -202,31 +175,24 @@
             p.color = p.baseColor;
           }
           
-          // 위치 업데이트
           p.vx = p.vx * 0.9 + (p.originalX + totalOffsetX - p.x) * 0.1;
           p.vy = p.vy * 0.9 + (p.originalY + totalOffsetY - p.y) * 0.1;
           
           p.x += p.vx;
           p.y += p.vy;
           
-          // 사각형 크기 계산
           let size = p.size;
           
-          // 파동 효과에 따른 크기 변화
           if (maxWaveStrength > 0) {
             size += maxWaveStrength * gridSize * 0.4;
           }
           
-          // 그리기
           ctx.fillStyle = p.color;
           const safeSize = Math.max(size, 1);
           
-          // 사각형 그리기
           ctx.fillRect(p.x - safeSize/2, p.y - safeSize/2, safeSize, safeSize);
         }
         
-        // 화면 전체에 적용되는 펄스 효과
-        // 가장 강한 파동 찾기
         let maxStrength = 0;
         for (let i = 0; i < waves.length; i++) {
           if (waves[i].strength > maxStrength && waves[i].strength > 0.5) {
@@ -240,36 +206,28 @@
         }
       }
       
-      // 클릭/터치 이벤트 핸들러
       function handleTap(e) {
-        // 마우스/터치 위치 계산
         let x, y;
         
         if (e.type === 'touchstart') {
-          // 터치 이벤트
           const touch = e.touches[0];
           x = touch.clientX;
           y = touch.clientY;
         } else {
-          // 마우스 이벤트
           x = e.clientX;
           y = e.clientY;
         }
         
-        // 클릭/터치 위치에서 파동 생성
         createWave(x, y, false);
       }
       
-      // 마우스 이벤트 등록
       canvas.addEventListener('click', handleTap);
-      
-      // 터치 이벤트 등록
+
       canvas.addEventListener('touchstart', function(e) {
-        e.preventDefault(); // 기본 터치 동작 방지
+        e.preventDefault();
         handleTap(e);
       });
       
-      // 초기화 및 애니메이션 시작
       resize();
       window.addEventListener('resize', resize);
       animate();
