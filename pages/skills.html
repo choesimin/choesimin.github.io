@@ -239,8 +239,11 @@ permalink: /
             listItem.appendChild(document.createTextNode(node.name));
           }
 
+          // Calculate total count of all descendant documents
+          var totalDescendants = countAllDescendants(node);
+          
           var childCount = document.createElement("span");
-          childCount.textContent = ` (${node.children.length})`;
+          childCount.textContent = ` (${totalDescendants})`;
           childCount.style.marginLeft = "5px";
           childCount.style.color = "gray";
           listItem.appendChild(childCount);
@@ -277,6 +280,26 @@ permalink: /
           listItem.appendChild(sup);
           list.appendChild(listItem);
         }
+      }
+
+      // Add this new function to count all descendants
+      function countAllDescendants(node) {
+        if (!node.children) {
+          return 1; // Leaf node counts as 1
+        }
+        
+        let count = 0;
+        for (let child of node.children) {
+          if (child.children) {
+            // For nodes with children, recursively count their descendants
+            count += countAllDescendants(child);
+          } else {
+            // For leaf nodes, add 1
+            count += 1;
+          }
+        }
+        
+        return count;
       }
 
       function groupNodes(nodes) {
