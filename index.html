@@ -132,6 +132,32 @@ layout: none
         background-color: var(--border-color);
       }
 
+      /* List item hover effect */
+      #skills ul li:hover > span:first-child {
+        color: var(--highlight-color);
+        transition: color 0.2s ease;
+      }
+      
+      /* Smaller count numbers */
+      #skills ul li span[style*="color: gray"] {
+        font-size: 0.85em;
+        color: #999 !important;
+      }
+      
+      /* Toggle text styling (펼치기/감추기) */
+      #skills ul li span[style*="color: blue"] {
+        color: #777 !important;
+        font-size: 0.75em;
+        padding: 2px 5px;
+        border-radius: 3px;
+        transition: background-color 0.2s ease;
+      }
+      
+      /* Toggle text hover effect */
+      #skills ul li span[style*="color: blue"]:hover {
+        background-color: #eee;
+      }
+
       /* 선택된 목록 강조 */
       #skills li:target > a,
       #skills li:target > ul > li > a {
@@ -280,7 +306,7 @@ layout: none
               e.stopPropagation();
               if (childList.style.display === "none") {
                 childList.style.display = "block";
-                toggleText.textContent = "접기";
+                toggleText.textContent = "감추기";
               } else {
                 childList.style.display = "none";
                 toggleText.textContent = "펼치기";
