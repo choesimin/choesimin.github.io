@@ -18,13 +18,13 @@ date: 2025-02-03
 | `always` | connector 시작 시마다 | O | O | O |
 | `initial` | offset이 없는 경우 | O | O | O |
 | `initial_only` | offset이 없는 경우 | O | O | X |
-| `no_data` | connector 시작 시마다 | O | X | O |
+| `no_data` | connector 시작 시마다 (schema만) | O | X | O |
 | `when_needed` | offset이나 log 위치 사용 불가 시 | O | O | O |
 | `configuration_based` | 설정에 따라 결정 | 설정에 따라 결정 | 설정에 따라 결정 | 설정에 따라 결정 |
 | `custom` | 구현에 따라 결정 | 구현에 따라 결정 | 구현에 따라 결정 | 구현에 따라 결정 |
 | `recovery` | schema history topic 복구 시 | O | X | O |
 
-- database마다 지원하는 mode가 다르며, 일부 database는 특정 mode를 지원하지 않아 사용 시 주의가 필요합니다.
+- database마다 지원하는 mode가 다르며, 일부 database는 특정 mode를 지원하지 않기 때문에 사용 시 주의가 필요합니다.
 
 
 ### Always Mode : `always`

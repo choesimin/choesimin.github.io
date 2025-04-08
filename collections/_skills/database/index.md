@@ -1,13 +1,13 @@
 ---
 layout: skill
 permalink: /194
-title: Database
+title: Database - Well-designed Data Storage
 description: Database는 data를 체계적으로 저장하고 관리하는 system입니다.
 date: 2024-10-07
 ---
 
 
-## Database : Data 저장소
+## Database : Data를 "잘" 저장하기
 
 - database는 **data를 체계적으로 저장하고 관리하는 system**입니다.
     - 여러 사용자가 동시에 data를 조회하고 수정할 수 있습니다.

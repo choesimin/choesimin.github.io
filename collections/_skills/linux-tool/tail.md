@@ -33,7 +33,9 @@ tail [option] [file_name]
 ---
 
 
-## 사용 예사
+## 사용 예시
+
+- `mylog.log`라는 file을 확인하는 예시입니다.
 
 
 ### 실시간 Log 보기

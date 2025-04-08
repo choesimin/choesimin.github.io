@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /129
-title: Paradigm
+title: Paradigm - 사고의 틀
 description: Paradigm이란, 한 시대의 사람들의 견해나 사고를 근본적으로 규정하고 있는 인식의 체계, 또는 사물에 대한 이론적인 틀이나 체계를 의미합니다.
 date: 2025-02-09
 ---

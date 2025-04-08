@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /80
-title: Software Design
+title: Software 설계 - 청사진 그리기
 description: 요구 사항을 실제 구현 가능한 설계도로 변환하는 과정을 software design이라고 합니다.
 date: 2025-02-09
 ---

@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /183
-title: Linux Tool
+title: Linux Tool - 유용한 CLI 도구들
 description: Linux에는 terminal에서 명령어로 사용할 수 있는 다양한 도구들이 있습니다.
 date: 2025-03-02
 ---

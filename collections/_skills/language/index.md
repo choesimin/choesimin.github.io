@@ -1,13 +1,13 @@
 ---
 layout: skill
 permalink: /232
-title: Language
+title: 언어 - 가장 기본적인 표현 도구
 description: 언어는 인간의 소통 수단이자 문화적 표현 방식입니다.
 date: 2025-02-09
 ---
 
 
-## 언어 (Language)
+## 언어 : Language
 
 - 언어는 인간이 생각과 감정을 전달하는 **기본적인 소통 수단**입니다.
     - 내면의 생각을 외부로 표현하는 방법을 제공합니다.
@@ -37,7 +37,7 @@ date: 2025-02-09
 ---
 
 
-## Programming Language
+## 개발 언어 : Programming Language
 
 - 개발자는 programming language를 사용하여 program을 작성합니다.
 

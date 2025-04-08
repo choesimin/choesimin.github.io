@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /222
-title: Cloud Service
+title: Cloud Service - Resource Networking
 description: Cloud Service는 Network로 Computing Resource를 공유하는 model이며, Packaged Software, IaaS, PaaS, SaaS로 나뉩니다.
 date: 2025-02-09
 ---

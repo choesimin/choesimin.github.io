@@ -1,8 +1,8 @@
 ---
 layout: skill
 permalink: /184
-title: Network
-description: Network는 통신 및 Data 교환을 허용하는 연결된 장치의 System으로, 정보 공유, 자원 공유, 협업, 통신을 가능하게 합니다.
+title: Network - 장치를 연결하는 체계
+description: network는 통신 및 data 교환을 허용하는 연결된 장치의 system으로, 정보 공유, 자원 공유, 협업, 통신을 가능하게 합니다.
 date: 2024-09-03
 ---
 

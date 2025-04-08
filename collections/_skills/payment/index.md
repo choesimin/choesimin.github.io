@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /20
-title: Payment
+title: 지급 결제 - Payment and Settlement
 description: 지급 결제란 상품이나 서비스를 구매하는 과정에서 대금을 지불하는 행위를 의미합니다.
 date: 2023-12-30
 ---

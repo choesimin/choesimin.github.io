@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /114
-title: 기계 학습 (Machine Learning)
+title: 기계 학습 - 스스로 학습하는 기계
 description: 기계 학습은 인공 지능의 하위 범주로, 신경망을 활용하여 pattern을 인식하고 이러한 pattern 식별 역량을 개선하는 computer의 process를 의미합니다.
 date: 2023-08-08
 ---

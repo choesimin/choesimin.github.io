@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /86
-title: Writing
+title: 글쓰기 - 근본적인 창조 활동
 description: 글쓰기는 인간의 가장 근본적인 창조적 활동입니다.
 date: 2024-12-18
 ---

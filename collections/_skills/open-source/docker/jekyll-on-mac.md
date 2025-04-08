@@ -98,6 +98,14 @@ WARNING: The requested image's platform (linux/amd64) does not match the detecte
     - ARM architecture용 Jekyll image를 사용하거나 multiplatform image를 활용할 수 있습니다.
 
 
+### `Permission denied` 오류 발생 시
+
+- 실행 시, `_site`, `.jekyll-cache` directory에 대해 `Permission denied` 오류가 발생할 수 있습니다.
+
+- 이 경우, `_site`, `.jekyll-cache` directory를 삭제하고 다시 실행하면 됩니다.
+    - Jekyll이 자동으로 생성하는 directory이기 때문에, 삭제해도 상관없습니다.
+
+
 ---
 
 
