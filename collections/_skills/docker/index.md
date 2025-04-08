@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /306
-title: Docker - 실행 환경 쉽게 구축하기
+title: Docker
 description: Docker는 application을 개발, 배포, 실행하기 위한 open source platform입니다.
 date: 2025-04-07
 ---
