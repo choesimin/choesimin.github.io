@@ -105,6 +105,8 @@ permalink: /
         position: relative;
         margin-left: 10px;
       }
+
+      /* Keep the vertical lines but remove horizontal lines */
       #skills ul li::before {
         content: "";
         position: absolute;
@@ -114,17 +116,9 @@ permalink: /
         width: 1px;
         background-color: var(--border-color);
       }
-      #skills ul li::after {
-        content: "";
-        position: absolute;
-        left: -15px;
-        top: 14px;
-        width: 10px;
-        height: 1px;
-        background-color: var(--border-color);
-      }
+
       #skills ul li:last-child::before {
-        height: 9px;
+        height: 20px;
       }
 
       /* 선택된 목록 강조 */
@@ -177,7 +171,7 @@ permalink: /
         </div>
         <div id="searchResult"></div>
         <article id="skills"></article>
-        <a href="{{ '/problems' | relative_url }}"><b>> C++ 알고리즘 문제 풀이 모음</b></a>
+        <a href="{{ '/problems' | relative_url }}"><b>C++ 알고리즘 문제 풀이 모음</b></a>
       </section>
       <section id="graphic">
         <h2>Graphic</h2>
@@ -219,15 +213,14 @@ permalink: /
       function makeList(node, list) {
         var listItem = document.createElement("li");
 
+        var toggleIcon = document.createElement("span");
+        toggleIcon.textContent = node.children ? "v" : "-";
+        toggleIcon.style.marginRight = "5px";
+        listItem.appendChild(toggleIcon);
+
         if (node.children != undefined) {
           var index = node.children.filter(child => child.isIndex)[0];
           node.children = node.children.filter(child => !child.isIndex);
-
-          // Add toggle icon
-          var toggleIcon = document.createElement("span");
-          toggleIcon.textContent = "v"; // Default to collapsed state
-          toggleIcon.style.marginRight = "5px";
-          listItem.appendChild(toggleIcon);
 
           if (index != undefined) {
             listItem.id = index.category.join('-');
@@ -242,9 +235,10 @@ permalink: /
             listItem.appendChild(sup);
           } else {
             listItem.textContent = node.name;
+            listItem.removeChild(listItem.childNodes[1]);
+            listItem.appendChild(document.createTextNode(node.name));
           }
 
-          // Add child count
           var childCount = document.createElement("span");
           childCount.textContent = ` (${node.children.length})`;
           childCount.style.marginLeft = "5px";
@@ -255,21 +249,20 @@ permalink: /
 
           if (node.children.length > 0) {
             var childList = document.createElement("ul");
-            childList.style.display = "none"; // Initially hide child list
+            childList.style.display = "none";
             for (var i = 0; i < node.children.length; i++) {
               makeList(node.children[i], childList);
             }
             listItem.appendChild(childList);
 
-            // Add toggle functionality
             listItem.addEventListener("click", function (e) {
-              e.stopPropagation(); // Prevent event bubbling
+              e.stopPropagation();
               if (childList.style.display === "none") {
                 childList.style.display = "block";
-                toggleIcon.textContent = "-"; // Change icon to collapsed state
+                toggleIcon.textContent = "-";
               } else {
                 childList.style.display = "none";
-                toggleIcon.textContent = "v"; // Change icon to expanded state
+                toggleIcon.textContent = "v";
               }
             });
           }
