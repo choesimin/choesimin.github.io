@@ -106,19 +106,31 @@ permalink: /
         margin-left: 10px;
       }
 
-      /* Keep the vertical lines but remove horizontal lines */
+      /* Vertical lines */
       #skills ul li::before {
         content: "";
         position: absolute;
         left: -15px;
-        top: 5px;
+        top: 0;
         height: 100%;
         width: 1px;
         background-color: var(--border-color);
       }
 
+      /* Last child vertical line adjustment */
       #skills ul li:last-child::before {
-        height: 20px;
+        height: 14px;
+      }
+
+      /* Add horizontal lines */
+      #skills ul li::after {
+        content: "";
+        position: absolute;
+        left: -15px;
+        top: 10px;
+        width: 10px;
+        height: 1px;
+        background-color: var(--border-color);
       }
 
       /* 선택된 목록 강조 */
@@ -212,44 +224,59 @@ permalink: /
 
       function makeList(node, list) {
         var listItem = document.createElement("li");
-
-        var toggleIcon = document.createElement("span");
-        toggleIcon.textContent = node.children ? "v" : "-";
-        toggleIcon.style.marginRight = "5px";
-        listItem.appendChild(toggleIcon);
-
+        
         if (node.children != undefined) {
           var index = node.children.filter(child => child.isIndex)[0];
           node.children = node.children.filter(child => !child.isIndex);
-
+      
+          // Create the main content container (left side)
+          var contentContainer = document.createElement("span");
+          contentContainer.style.display = "inline-block";
+          
           if (index != undefined) {
             listItem.id = index.category.join('-');
-
+      
             var anchor = document.createElement("a");
             anchor.textContent = index.name;
             anchor.href = index.url;
-            listItem.appendChild(anchor);
-
+            contentContainer.appendChild(anchor);
+      
             var sup = document.createElement("sup");
             sup.textContent = index.date;
-            listItem.appendChild(sup);
+            contentContainer.appendChild(sup);
           } else {
-            listItem.textContent = node.name;
-            listItem.removeChild(listItem.childNodes[1]);
-            listItem.appendChild(document.createTextNode(node.name));
+            contentContainer.textContent = node.name;
           }
-
+          
+          listItem.appendChild(contentContainer);
+          
+          // Create the right-aligned container for count and toggle
+          var rightContainer = document.createElement("span");
+          rightContainer.style.float = "right";
+          rightContainer.style.display = "inline-block";
+          
           // Calculate total count of all descendant documents
           var totalDescendants = countAllDescendants(node);
           
           var childCount = document.createElement("span");
-          childCount.textContent = ` (${totalDescendants})`;
-          childCount.style.marginLeft = "5px";
+          childCount.textContent = `(${totalDescendants})`;
+          childCount.style.marginRight = "10px";
           childCount.style.color = "gray";
-          listItem.appendChild(childCount);
-
+          rightContainer.appendChild(childCount);
+          
+          // Only add toggle text if node has children
+          if (node.children && node.children.length > 0) {
+            var toggleText = document.createElement("span");
+            toggleText.textContent = "펼치기";
+            toggleText.style.color = "blue";
+            toggleText.style.cursor = "pointer";
+            toggleText.style.fontSize = "0.8em";
+            rightContainer.appendChild(toggleText);
+          }
+          
+          listItem.appendChild(rightContainer);
           list.appendChild(listItem);
-
+      
           if (node.children.length > 0) {
             var childList = document.createElement("ul");
             childList.style.display = "none";
@@ -257,24 +284,26 @@ permalink: /
               makeList(node.children[i], childList);
             }
             listItem.appendChild(childList);
-
+      
+            // Add click event to the entire list item for better UX
             listItem.addEventListener("click", function (e) {
               e.stopPropagation();
               if (childList.style.display === "none") {
                 childList.style.display = "block";
-                toggleIcon.textContent = "-";
+                toggleText.textContent = "접기";
               } else {
                 childList.style.display = "none";
-                toggleIcon.textContent = "v";
+                toggleText.textContent = "펼치기";
               }
             });
           }
         } else {
+          // For leaf nodes, no toggle or count
           var anchor = document.createElement("a");
           anchor.textContent = node.name;
           anchor.href = node.url;
           listItem.appendChild(anchor);
-
+      
           var sup = document.createElement("sup");
           sup.textContent = node.date;
           listItem.appendChild(sup);
