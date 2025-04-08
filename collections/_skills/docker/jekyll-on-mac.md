@@ -1,6 +1,6 @@
 ---
 layout: skill
-permalink: /305
+permalink: /307
 title: Mac에서 Docker로 Jekyll 개발 환경 설정하기
 description: Github Pages 등의 Jekyll 기반 site 개발 환경을 Docker로 구축하면, 다른 program과의 의존성 문제 없이 더 쉽게 구축할 수 있습니다.
 date: 2025-04-07
