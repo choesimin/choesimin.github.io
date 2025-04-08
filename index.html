@@ -1,6 +1,5 @@
 ---
 layout: none
-permalink: /
 ---
 
 <!DOCTYPE html>
@@ -143,29 +142,6 @@ permalink: /
       #skills li:target > ul > li::after {
         background-color: var(--highlight-color);
       }
-
-      /* Graphic */
-      #graphic {
-          margin: 0;
-          padding: 0;
-          font-family: "Noto Sans KR", sans-serif;
-          text-align: center;
-      }
-      #graphic a {
-          display: block;
-          text-decoration: none;
-          color: inherit;
-          padding: 20px;
-          margin: 20px;
-      }
-      #graphic a:hover {
-          background-color: black;
-          color: white;
-      }
-      #graphic a p.date {
-          font-size: 0.8rem;
-          color: gray;
-      }
     </style>
   </head>
 
@@ -183,7 +159,21 @@ permalink: /
         </div>
         <div id="searchResult"></div>
         <article id="skills"></article>
-        <a href="{{ '/problems' | relative_url }}"><b>C++ 알고리즘 문제 풀이 모음</b></a>
+        <ul>
+          <li>알고리즘 문제 풀이 모음</li>
+          <ul>
+            {% for problem in site.problems %}
+            <li>
+              <a href="{{ problem.url | relative_url }}">
+                {{ problem.category | capitalize }}
+                <b>{{ problem.title }}</b>
+                <small>({{ problem.tags }})</small>
+                <sup><small>{{ problem.date | date: '%Y.%m.%d' }}</small></sup>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </ul>
       </section>
       <section id="graphic">
         <h2>Graphic</h2>
