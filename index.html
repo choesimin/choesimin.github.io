@@ -301,9 +301,9 @@ layout: none
             }
             listItem.appendChild(childList);
       
-            // Add click event to the entire list item for better UX
-            listItem.addEventListener("click", function (e) {
-              e.stopPropagation();
+            // Update event handling - only toggle on the toggleText element
+            toggleText.addEventListener("click", function (e) {
+              e.stopPropagation(); // Prevent event from bubbling up
               if (childList.style.display === "none") {
                 childList.style.display = "block";
                 toggleText.textContent = "감추기";
@@ -312,6 +312,17 @@ layout: none
                 toggleText.textContent = "펼치기";
               }
             });
+            
+            // Remove the click event from the whole list item
+            listItem.removeEventListener("click", function(){});
+            
+            // Add navigation to the content container if it has a link
+            if (index != undefined) {
+              contentContainer.addEventListener("click", function(e) {
+                e.stopPropagation();
+                window.location.href = index.url;
+              });
+            }
           }
         } else {
           // For leaf nodes, no toggle or count
