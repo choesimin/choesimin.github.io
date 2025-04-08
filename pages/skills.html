@@ -1,6 +1,6 @@
 ---
 layout: none
-permalink: /skills
+permalink: /
 ---
 
 <!DOCTYPE html>
@@ -26,36 +26,59 @@ permalink: /skills
         text-decoration: none;
       }
 
-      #search {
-        text-align: center;
+      #brunch {
+        position: fixed;
+        top: 8px;
+        right: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      #insta {
+        position: fixed;
+        top: 30px;
+        right: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
       }
 
-      #search input {
-        padding: 10px 0;
-        width: 300px;
+      #searchInput {
+        flex: auto;
+      }
+
+      #searchInput h2 {
+        display: inline-block;
+        margin-bottom: 0;
+        line-height: 1;
+      }
+
+      #searchInput input {
+        display: inline-block;
+        margin-left: 10px;
+        padding-left: 10px;
+        width: 150px;
         background-color: var(--background-color);
-        text-align: center;
         color: inherit;
         border: none;
         border-bottom: 1px solid var(--background-highlight-color);
         transition: 0.3s;
       }
 
-      #search input:focus {
-        width: 100%;
+      #searchInput input:focus {
+        width: calc(100% - 300px);
         border-color: 1px solid var(--border-color);
       }
 
-      #search div {
-        margin-top: 20px;
+      #searchResult {
         background-color: var(--background-color);
       }
 
-      #search div li {
+      #searchResult li {
         list-style: none;
       }
 
-      #search div li a {
+      #searchResult li a {
         text-decoration: none;
       }
 
@@ -66,6 +89,7 @@ permalink: /skills
       #skills ul {
         list-style: none;
         padding-left: 16px;
+        margin-top: 0;
       }
 
       #skills ul sup {
@@ -111,27 +135,65 @@ permalink: /skills
       #skills li:target > ul > li::after {
         background-color: var(--highlight-color);
       }
+
+      /* Graphic */
+      #graphic {
+          margin: 0;
+          padding: 0;
+          font-family: "Noto Sans KR", sans-serif;
+          text-align: center;
+      }
+      #graphic a {
+          display: block;
+          text-decoration: none;
+          color: inherit;
+          padding: 20px;
+          margin: 20px;
+      }
+      #graphic a:hover {
+          background-color: black;
+          color: white;
+      }
+      #graphic a p.date {
+          font-size: 0.8rem;
+          color: gray;
+      }
     </style>
   </head>
 
   <body>
-    <a id="simin" href="{{ '/' | relative_url }}">SIMIN</a>
+    <header>
+      <a id="simin" href="{{ '/' | relative_url }}"></a>
+      <a id="brunch" href="https://brunch.co.kr/@simin" target="_blank">brunchstory</a>
+      <a id="insta" href="https://www.instagram.com/simin_sees" target="_blank">instagram</a>
+    </header>
     <main>
-      <section id="search">
-        <input type="text" placeholder="title, url, yyyy-mm-dd" />
-        <div></div>
+      <section id="note">
+        <div id="searchInput">
+          <h2>Note</h2>
+          <input type="text" placeholder="title, url, yyyy-mm-dd" />
+        </div>
+        <div id="searchResult"></div>
+        <article id="skills"></article>
+        <a href="{{ '/problems' | relative_url }}"><b>> C++ 알고리즘 문제 풀이 모음</b></a>
       </section>
-      <a href="{{ '/problems' | relative_url }}"><b>Algorithm PS 보러가기 (C++)</b></a>
+      <section id="graphic">
+        <h2>Graphic</h2>
+        {% for graphic in site.graphics %}
+        <a href="{{ graphic.url | relative_url }}">
+          <h2>{{ graphic.title }}</h2>
+          <p>{{ graphic.description }}</p>
+          <p class="date">{{ graphic.date | date: '%Y-%m-%d' }}</p>
+        </a>
+        {% endfor %}
+      </section>
 
-      <article id="skills"></article>
     </main>
     {% include skill-footer.html %}
     <script>
-      const searchSection = document.getElementById('search');
-
       SimpleJekyllSearch({
-        searchInput: searchSection.getElementsByTagName('input')[0],
-        resultsContainer: searchSection.getElementsByTagName('div')[0],
+        searchInput: document.getElementById('searchInput'),
+        resultsContainer: document.getElementById('searchResult'),
         json: '/assets/json/skill-search.json',
         searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
       });
