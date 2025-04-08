@@ -101,6 +101,7 @@ permalink: /
 
       /* 하위 목록 표시선 */
       #skills ul li {
+        cursor: pointer; /* Add pointer cursor for clickable items */
         position: relative;
         margin-left: 10px;
       }
@@ -222,6 +223,12 @@ permalink: /
           var index = node.children.filter(child => child.isIndex)[0];
           node.children = node.children.filter(child => !child.isIndex);
 
+          // Add toggle icon
+          var toggleIcon = document.createElement("span");
+          toggleIcon.textContent = "v"; // Default to collapsed state
+          toggleIcon.style.marginRight = "5px";
+          listItem.appendChild(toggleIcon);
+
           if (index != undefined) {
             listItem.id = index.category.join('-');
 
@@ -229,21 +236,42 @@ permalink: /
             anchor.textContent = index.name;
             anchor.href = index.url;
             listItem.appendChild(anchor);
-            
+
             var sup = document.createElement("sup");
             sup.textContent = index.date;
             listItem.appendChild(sup);
           } else {
             listItem.textContent = node.name;
           }
+
+          // Add child count
+          var childCount = document.createElement("span");
+          childCount.textContent = ` (${node.children.length})`;
+          childCount.style.marginLeft = "5px";
+          childCount.style.color = "gray";
+          listItem.appendChild(childCount);
+
           list.appendChild(listItem);
 
           if (node.children.length > 0) {
             var childList = document.createElement("ul");
+            childList.style.display = "none"; // Initially hide child list
             for (var i = 0; i < node.children.length; i++) {
               makeList(node.children[i], childList);
             }
             listItem.appendChild(childList);
+
+            // Add toggle functionality
+            listItem.addEventListener("click", function (e) {
+              e.stopPropagation(); // Prevent event bubbling
+              if (childList.style.display === "none") {
+                childList.style.display = "block";
+                toggleIcon.textContent = "-"; // Change icon to collapsed state
+              } else {
+                childList.style.display = "none";
+                toggleIcon.textContent = "v"; // Change icon to expanded state
+              }
+            });
           }
         } else {
           var anchor = document.createElement("a");
