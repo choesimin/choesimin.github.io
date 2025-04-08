@@ -1,7 +1,7 @@
 ---
 layout: skill
 permalink: /306
-title: Docker
+title: Docker - Container 단위로 Application 관리하기
 description: Docker는 application을 개발, 배포, 실행하기 위한 open source platform입니다.
 date: 2025-04-07
 ---
