@@ -82,6 +82,12 @@ footer {
     position: fixed;
     overflow-y: auto;
     font-size: 0.95em;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
 }
 
 /* Main content area */
@@ -133,7 +139,7 @@ footer {
 #algorithmList li,
 #graphicList li,
 #storyList li {
-    margin: 5px 0;
+    margin-top: 6px;
 }
 
 #noteList a,
@@ -144,12 +150,7 @@ footer {
 }
 
 /* Graphic list styling */
-#graphicList li {
-    margin-bottom: 5px;
-}
-
 #graphicList a {
-    text-decoration: none;
     display: block;
 }
 
@@ -194,6 +195,7 @@ footer {
 
 #searchResult li {
     list-style: none;
+    margin-top: 6px;
 }
 
 #searchResult li a {
