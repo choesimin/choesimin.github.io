@@ -32,30 +32,28 @@ String.prototype.toKorChars = function () {
     return chars;
 }
 
-function type(element, text, interval = 50) {
-    let charUnits = [];
+/**
+ * Animates text being typed
+ * @param {HTMLElement} element - The DOM element to type text into
+ * @param {string} text - The text to type
+ * @param {number} speed - Typing speed (lower is faster)
+ */
+function type(element, text, speed = 50) {
+  if (!text) {
+    element.style.display = "none";
+    return;
+  }
 
-    text = text.split('');
-    for (let i = 0; i < text.length; i++) {
-        charUnits[i] = text[i].toKorChars();
+  element.style.display = "block";
+  element.innerHTML = "&nbsp;";
+  
+  let i = 0;
+  const timer = setInterval(() => {
+    if (i < text.length) {
+      element.innerHTML = text.substring(0, i + 1);
+      i++;
+    } else {
+      clearInterval(timer);
     }
-
-    let charIndex = 0;
-    let unitIndex = 0;
-
-    text = '';
-    let typing = setInterval(function () {
-        if (charIndex <= charUnits.length - 1) {
-            element.innerText = text + charUnits[charIndex][unitIndex];
-            unitIndex++;
-            if (unitIndex === charUnits[charIndex].length) {
-                text += charUnits[charIndex][unitIndex - 1];
-                charIndex++;
-                unitIndex = 0;
-            }
-        } else {
-            clearInterval(typing);
-            return;
-        }
-    }, interval);
+  }, speed);
 }

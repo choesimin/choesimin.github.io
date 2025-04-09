@@ -7,7 +7,7 @@ date: 2025-03-02
 ---
 
 
-## Linux Tool : 명령어로 사용하하는 유용한 도구들
+## Linux Tool : 명령어로 사용하는 유용한 도구들
 
 - Linux 운영 체제에서는 대부분 terminal에서 CLI(Command Line Interface) 기반으로 작업을 수행합니다.
 

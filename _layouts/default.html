@@ -22,6 +22,11 @@
       referrerpolicy="no-referrer"></script>
 
     <link rel="stylesheet" href="{{ '/assets/css/default.css' | relative_url }}" />
+    {% if layout.additional_css %}
+      {% for css in layout.additional_css %}
+        <link rel="stylesheet" href="{{ css | relative_url }}" />
+      {% endfor %}
+    {% endif %}
     {% if page.additional_css %}
       {% for css in page.additional_css %}
         <link rel="stylesheet" href="{{ css | relative_url }}" />
@@ -105,6 +110,11 @@
     {% include footer.html %}
 
     <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
+    {% if layout.additional_js %}
+      {% for js in layout.additional_js %}
+        <script src="{{ js | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
     {% if page.additional_js %}
       {% for js in page.additional_js %}
         <script src="{{ js | relative_url }}"></script>
