@@ -24,94 +24,31 @@ layout: none
         text-decoration: none;
       }
 
-      #brunch {
-        position: fixed;
-        top: 8px;
-        right: 8px;
-        font-size: 20px;
+      /* Remove individual position styling for brunch and insta as they'll be in the Story category */
+      #brunch, #insta {
+        display: none;
+      }
+
+      /* Category styling */
+      .category-container {
+        margin-bottom: 20px;
+      }
+      
+      .category-header {
+        cursor: pointer;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-color);
         font-weight: bold;
-        text-decoration: none;
+        font-size: 1.2em;
       }
-      #insta {
-        position: fixed;
-        top: 30px;
-        right: 8px;
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: none;
-      }
-
-      #searchInput {
-        flex: auto;
-      }
-
-      #searchInput h2 {
-        display: inline-block;
-        margin: 0;
-        line-height: 1;
-        vertical-align: middle;
-      }
-
-      #searchInput input {
-        display: inline-block;
-        margin-left: 10px;
-        padding-left: 10px;
-        width: 150px;
-        background-color: var(--background-color);
-        color: inherit;
-        border: none;
-        border-bottom: 1px solid var(--background-highlight-color);
-        transition: 0.3s;
-      }
-
-      #searchInput input:focus {
-        width: calc(100% - 300px);
-        border-color: 1px solid var(--border-color);
-      }
-
-      #searchResult {
-        background-color: var(--background-color);
-      }
-
-      #searchResult li {
-        list-style: none;
-      }
-
-      #searchResult li a {
-        text-decoration: none;
-      }
-
-      #notes a {
-        text-decoration-line: none;
-      }
-
-      #notes ul {
-        list-style: none;
-        padding-left: 16px;
-        margin-top: 0;
-      }
-
-      /* Smaller count numbers */
-      #notes ul li span[style*="color: gray"] {
+      
+      .count-display {
+        margin-right: 10px;
+        color: gray;
         font-size: 0.85em;
-        color: #999 !important;
       }
       
-      /* Toggle text styling (펼치기/감추기) */
-      #notes ul li span[style*="color: blue"] {
-        color: #777 !important;
-        font-size: 0.75em;
-        padding: 2px 5px;
-        border-radius: 3px;
-        transition: background-color 0.2s ease;
-      }
-      
-      /* Toggle text hover effect */
-      #notes ul li span[style*="color: blue"]:hover {
-        background-color: #eee;
-      }
-      
-      /* Toggle icon transform */
+      /* Toggle icon styling */
       .toggle-icon {
         display: inline-block;
         transition: transform 0.2s ease;
@@ -120,36 +57,46 @@ layout: none
       .toggle-icon.open {
         transform: rotate(180deg);
       }
-
-      /* 선택된 목록 강조 */
-      #notes li:target > a,
-      #notes li:target > ul > li > a {
-        font-weight: bold;
-        color: var(--highlight-color);
-      }
-      #notes li:target > ul > li::before,
-      #notes li:target > ul > li::after {
-        background-color: var(--highlight-color);
+      
+      /* List styling for all categories */
+      #notes ul, #algorithmList, #graphicList, #storyList {
+        list-style: none;
+        padding-left: 16px;
+        margin-top: 8px;
       }
       
-      /* Algorithm section styling */
-      .algorithm-container {
-        margin-top: 20px;
-        margin-bottom: 20px;
+      #notes a, #algorithmList a, #graphicList a, #storyList a {
+        text-decoration-line: none;
       }
       
-      .algorithm-header {
-        cursor: pointer;
-        padding: 5px 0;
-        border-bottom: 1px solid var(--border-color);
+      /* Search input styling */
+      #noteSearch {
+        margin: 10px 0;
       }
       
-      #algorithmList li {
-        margin: 8px 0;
-        position: relative;
+      #noteSearch input {
+        padding: 5px 10px;
+        width: 100%;
+        background-color: var(--background-color);
+        color: inherit;
+        border: none;
+        border-bottom: 1px solid var(--background-highlight-color);
+        transition: 0.3s;
       }
       
-      #algorithmList li a {
+      #noteSearch input:focus {
+        border-color: 1px solid var(--border-color);
+      }
+      
+      #searchResult {
+        background-color: var(--background-color);
+      }
+      
+      #searchResult li {
+        list-style: none;
+      }
+      
+      #searchResult li a {
         text-decoration: none;
       }
     </style>
@@ -162,18 +109,32 @@ layout: none
       <a id="insta" href="https://www.instagram.com/simin_sees" target="_blank">instagram</a>
     </header>
     <main>
-      <section id="note">
-        <div id="searchInput">
-          <h2>Note</h2>
-          <input type="text" placeholder="title, url, yyyy-mm-dd" />
+      <section id="categories">
+        <div class="category-container">
+          <div class="category-header">
+            <span style="display: inline-block">Note</span>
+            <span style="float: right">
+              <span class="count-display" id="noteCount"></span>
+              <span style="color: blue; cursor: pointer; font-size: 0.8em;" class="category-toggle" data-target="notes">
+                <span class="toggle-icon">▾</span>
+              </span>
+            </span>
+          </div>
+          <div id="noteSearch" style="display: none;">
+            <input type="text" placeholder="title, url, yyyy-mm-dd" />
+            <div id="searchResult"></div>
+          </div>
+          <article id="notes" style="display: none;"></article>
         </div>
-        <div id="searchResult"></div>
-        <article id="notes"></article>
-        <div class="algorithm-container">
-          <div class="algorithm-header">
-            <span style="display: inline-block">알고리즘 문제 풀이 모음</span>
-            <span style="float: right; color: blue; cursor: pointer; font-size: 0.8em;" id="algorithmToggle">
-              <span class="toggle-icon">▾</span>
+
+        <div class="category-container">
+          <div class="category-header">
+            <span style="display: inline-block">Algorithm</span>
+            <span style="float: right">
+              <span class="count-display" id="algorithmCount"></span>
+              <span style="color: blue; cursor: pointer; font-size: 0.8em;" class="category-toggle" data-target="algorithmList">
+                <span class="toggle-icon">▾</span>
+              </span>
             </span>
           </div>
           <ul id="algorithmList" style="display: none; list-style: none; padding-left: 16px;">
@@ -189,29 +150,67 @@ layout: none
             {% endfor %}
           </ul>
         </div>
-      </section>
-      <section id="graphic">
-        <h2>Graphic</h2>
-        {% for graphic in site.graphics %}
-        <a href="{{ graphic.url | relative_url }}">
-          <h2>{{ graphic.title }}</h2>
-          <p>{{ graphic.description }}</p>
-          <p class="date">{{ graphic.date | date: '%Y-%m-%d' }}</p>
-        </a>
-        {% endfor %}
-      </section>
 
+        <div class="category-container">
+          <div class="category-header">
+            <span style="display: inline-block">Graphic</span>
+            <span style="float: right">
+              <span class="count-display" id="graphicCount"></span>
+              <span style="color: blue; cursor: pointer; font-size: 0.8em;" class="category-toggle" data-target="graphicList">
+                <span class="toggle-icon">▾</span>
+              </span>
+            </span>
+          </div>
+          <ul id="graphicList" style="display: none; list-style: none; padding-left: 16px;">
+            {% for graphic in site.graphics %}
+            <li>
+              <a href="{{ graphic.url | relative_url }}">
+                <b>{{ graphic.title }}</b>
+                <p>{{ graphic.description }}</p>
+                <small>{{ graphic.date | date: '%Y.%m.%d' }}</small>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="category-container">
+          <div class="category-header">
+            <span style="display: inline-block">Story</span>
+            <span style="float: right">
+              <span class="count-display" id="storyCount"></span>
+              <span style="color: blue; cursor: pointer; font-size: 0.8em;" class="category-toggle" data-target="storyList">
+                <span class="toggle-icon">▾</span>
+              </span>
+            </span>
+          </div>
+          <ul id="storyList" style="display: none; list-style: none; padding-left: 16px;">
+            <li>
+              <a href="https://brunch.co.kr/@simin" target="_blank">
+                <b>Brunch Story</b>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/simin_sees" target="_blank">
+                <b>Instagram</b>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
+
     {% include footer.html %}
     <script>
+      // Initialize Simple Jekyll Search
       SimpleJekyllSearch({
-        searchInput: document.getElementById('searchInput'),
+        searchInput: document.querySelector('#noteSearch input'),
         resultsContainer: document.getElementById('searchResult'),
         json: '/assets/json/note-search.json',
         searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
       });
 
-
+      // Set up note tree
       var pages = getPages();
       var nodes = makeNodes(pages);
       var root = groupNodes(nodes);
@@ -227,6 +226,69 @@ layout: none
       
       document.getElementById("notes").appendChild(list);
 
+      // Count items in each category
+      function updateCounts() {
+        // Count notes
+        var notesCount = countAllDescendants(root);
+        document.getElementById("noteCount").textContent = "(" + notesCount + ")";
+        
+        // Count algorithms
+        var algorithmsCount = document.querySelectorAll('#algorithmList li').length;
+        document.getElementById("algorithmCount").textContent = "(" + algorithmsCount + ")";
+        
+        // Count graphics
+        var graphicsCount = document.querySelectorAll('#graphicList li').length;
+        document.getElementById("graphicCount").textContent = "(" + graphicsCount + ")";
+        
+        // Count stories (fixed at 2 for Brunch and Instagram)
+        document.getElementById("storyCount").textContent = "(2)";
+      }
+      
+      // Add category toggle functionality
+      document.querySelectorAll('.category-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var targetId = this.getAttribute('data-target');
+          var targetElement = document.getElementById(targetId);
+          var icon = this.querySelector('.toggle-icon');
+          
+          // Handle note search display for "Note" category
+          if (targetId === 'notes') {
+            var searchElement = document.getElementById('noteSearch');
+            if (targetElement.style.display === 'none') {
+              searchElement.style.display = 'block';
+              targetElement.style.display = 'block';
+              icon.classList.add('open');
+            } else {
+              searchElement.style.display = 'none';
+              targetElement.style.display = 'none';
+              icon.classList.remove('open');
+            }
+          } else {
+            if (targetElement.style.display === 'none') {
+              targetElement.style.display = 'block';
+              icon.classList.add('open');
+            } else {
+              targetElement.style.display = 'none';
+              icon.classList.remove('open');
+            }
+          }
+        });
+        
+        // Make the whole header clickable
+        var header = toggle.closest('.category-header');
+        header.addEventListener('click', function(e) {
+          // Only trigger if the click wasn't on the toggle itself
+          if (!e.target.closest('.category-toggle')) {
+            toggle.click();
+          }
+        });
+      });
+
+      // Call updateCounts after the page loads
+      window.addEventListener('load', updateCounts);
+      
+      // The rest of your existing functions remain unchanged
       function makeList(node, list) {
         var listItem = document.createElement("li");
         
@@ -429,20 +491,6 @@ layout: none
 
         return pages;
       }
-      
-      // Add algorithm toggle functionality
-      document.getElementById('algorithmToggle').addEventListener('click', function() {
-        var list = document.getElementById('algorithmList');
-        var icon = this.querySelector('.toggle-icon');
-        
-        if (list.style.display === 'none') {
-          list.style.display = 'block';
-          icon.classList.add('open');
-        } else {
-          list.style.display = 'none';
-          icon.classList.remove('open');
-        }
-      });
     </script>
   </body>
 </html>
