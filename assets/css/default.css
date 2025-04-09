@@ -81,7 +81,6 @@ footer {
     height: 100vh;
     position: fixed;
     overflow-y: auto;
-    font-weight: normal;
     font-size: 0.95em;
 }
 
@@ -110,7 +109,6 @@ footer {
 .count-display {
     margin-left: 8px;
     font-size: 0.7em;
-    font-weight: normal;
 }
 
 /* Toggle icon styling */
@@ -131,12 +129,18 @@ footer {
     padding-left: 12px;
 }
 
+#noteList li,
+#algorithmList li,
+#graphicList li,
+#storyList li {
+    margin: 5px 0;
+}
+
 #noteList a,
 #algorithmList a,
 #graphicList a,
 #storyList a {
     text-decoration-line: none;
-    font-weight: normal;
 }
 
 /* Graphic list styling */
@@ -151,7 +155,6 @@ footer {
 
 #graphicList .graphic-title {
     display: block;
-    font-weight: normal;
 }
 
 #graphicList .graphic-description {
@@ -203,5 +206,4 @@ footer {
     margin-top: 5px;
     border-bottom: 1px solid var(--border-color, black);
     font-size: 0.9em;
-    font-weight: normal;
 }
