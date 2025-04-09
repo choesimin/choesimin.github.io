@@ -9,7 +9,7 @@ layout: none
     <title>SIMIN</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="시민의 지식 저장소" />
+    <meta name="description" content="시민의 개인 블로그" />
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.9.2/simple-jekyll-search.min.js" integrity="sha512-gABzh+zgo1Eh5HMdD2IMOjeaQAjl9v/MrA3xbZnMTRR5wC4x3WxurJo6yg5EWj1zfNz0qoXK/rKVP5Are0E4QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
@@ -46,21 +46,6 @@ layout: none
         padding: 20px;
         padding-top: 60px; /* Space for the header/logo */
         flex: 1;
-      }
-
-      #simin {
-        position: fixed;
-        top: 8px;
-        left: 8px;
-        letter-spacing: -2px;
-        font-size: 30px;
-        font-weight: bold;
-        text-decoration: none;
-      }
-
-      /* Remove individual position styling for brunch and insta as they'll be in the Story category */
-      #brunch, #insta {
-        display: none;
       }
 
       /* Category styling */
@@ -157,11 +142,6 @@ layout: none
   </head>
 
   <body>
-    <header>
-      <a id="simin" href="{{ '/' | relative_url }}"></a>
-      <a id="brunch" href="https://brunch.co.kr/@simin" target="_blank">brunchstory</a>
-      <a id="insta" href="https://www.instagram.com/simin_sees" target="_blank">instagram</a>
-    </header>
     <div class="sidebar">
       <section id="categories">
         <div class="category-container">
@@ -175,7 +155,7 @@ layout: none
             </span>
           </div>
           <div id="noteSearch" style="display: none;">
-            <input type="text" placeholder="title, url, yyyy-mm-dd" />
+            <input type="text" placeholder="title, url" />
             <div id="searchResult"></div>
           </div>
           <article id="notes" style="display: none;"></article>
@@ -198,7 +178,6 @@ layout: none
                 {{ problem.category | capitalize }}
                 <b>{{ problem.title }}</b>
                 <small>({{ problem.tags }})</small>
-                <small>{{ problem.date | date: '%Y.%m.%d' }}</small>
               </a>
             </li>
             {% endfor %}
@@ -221,7 +200,6 @@ layout: none
               <a href="{{ graphic.url | relative_url }}">
                 <b>{{ graphic.title }}</b>
                 <p>{{ graphic.description }}</p>
-                <small>{{ graphic.date | date: '%Y.%m.%d' }}</small>
               </a>
             </li>
             {% endfor %}
@@ -261,115 +239,127 @@ layout: none
 
     {% include footer.html %}
     <script>
-      // Initialize Simple Jekyll Search
-      SimpleJekyllSearch({
-        searchInput: document.querySelector('#noteSearch input'),
-        resultsContainer: document.getElementById('searchResult'),
-        json: '/assets/json/note-search.json',
-        searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
+      document.addEventListener('DOMContentLoaded', function() {
+        initSearchAndNavigation();
       });
 
-      // Set up note tree
-      var pages = getPages();
-      var nodes = makeNodes(pages);
-      var root = groupNodes(nodes);
+      function initSearchAndNavigation() {
+        // Initialize Simple Jekyll Search
+        SimpleJekyllSearch({
+          searchInput: document.querySelector('#noteSearch input'),
+          resultsContainer: document.getElementById('searchResult'),
+          json: '/assets/json/note-search.json',
+          searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
+        });
 
-      var list = document.createElement("ul");
-      list.className = "root";
-      
-      if (root.children && root.children.length > 0) {
-        for (var i = 0; i < root.children.length; i++) {
-          makeList(root.children[i], list);
-        }
+        // Set up note tree
+        const pages = getPages();
+        const nodes = makeNodes(pages);
+        const root = groupNodes(nodes);
+        createNotesList(root);
+
+        // Count items in each category and update counts
+        updateCounts(root);
+        
+        // Add category toggle functionality
+        setupCategoryToggles();
       }
-      
-      document.getElementById("notes").appendChild(list);
+
+      function createNotesList(root) {
+        const list = document.createElement("ul");
+        list.className = "root";
+        
+        if (root.children && root.children.length > 0) {
+          root.children.forEach(child => {
+            makeList(child, list);
+          });
+        }
+        
+        document.getElementById("notes").appendChild(list);
+      }
 
       // Count items in each category
-      function updateCounts() {
+      function updateCounts(root) {
         // Count notes
-        var notesCount = countAllDescendants(root);
+        const notesCount = countAllDescendants(root);
         document.getElementById("noteCount").textContent = "(" + notesCount + ")";
         
         // Count algorithms
-        var algorithmsCount = document.querySelectorAll('#algorithmList li').length;
+        const algorithmsCount = document.querySelectorAll('#algorithmList li').length;
         document.getElementById("algorithmCount").textContent = "(" + algorithmsCount + ")";
         
         // Count graphics
-        var graphicsCount = document.querySelectorAll('#graphicList li').length;
+        const graphicsCount = document.querySelectorAll('#graphicList li').length;
         document.getElementById("graphicCount").textContent = "(" + graphicsCount + ")";
         
         // Count stories (fixed at 2 for Brunch and Instagram)
         document.getElementById("storyCount").textContent = "(2)";
       }
       
-      // Add category toggle functionality
-      document.querySelectorAll('.category-toggle').forEach(function(toggle) {
-        toggle.addEventListener('click', function(e) {
-          e.stopPropagation();
-          var targetId = this.getAttribute('data-target');
-          var targetElement = document.getElementById(targetId);
-          var icon = this.querySelector('.toggle-icon');
+      function setupCategoryToggles() {
+        document.querySelectorAll('.category-toggle').forEach(function(toggle) {
+          toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleCategory(this);
+          });
           
-          // Handle note search display for "Note" category
-          if (targetId === 'notes') {
-            var searchElement = document.getElementById('noteSearch');
-            if (targetElement.style.display === 'none') {
-              searchElement.style.display = 'block';
-              targetElement.style.display = 'block';
-              icon.classList.add('open');
-            } else {
-              searchElement.style.display = 'none';
-              targetElement.style.display = 'none';
-              icon.classList.remove('open');
+          // Make the whole header clickable
+          const header = toggle.closest('.category-header');
+          header.addEventListener('click', function(e) {
+            // Only trigger if the click wasn't on the toggle itself
+            if (!e.target.closest('.category-toggle')) {
+              toggle.click();
             }
-          } else {
-            if (targetElement.style.display === 'none') {
-              targetElement.style.display = 'block';
-              icon.classList.add('open');
-            } else {
-              targetElement.style.display = 'none';
-              icon.classList.remove('open');
-            }
-          }
+          });
         });
-        
-        // Make the whole header clickable
-        var header = toggle.closest('.category-header');
-        header.addEventListener('click', function(e) {
-          // Only trigger if the click wasn't on the toggle itself
-          if (!e.target.closest('.category-toggle')) {
-            toggle.click();
-          }
-        });
-      });
+      }
 
-      // Call updateCounts after the page loads
-      window.addEventListener('load', updateCounts);
+      function toggleCategory(toggleElement) {
+        const targetId = toggleElement.getAttribute('data-target');
+        const targetElement = document.getElementById(targetId);
+        const icon = toggleElement.querySelector('.toggle-icon');
+        
+        // Handle note search display for "Note" category
+        if (targetId === 'notes') {
+          const searchElement = document.getElementById('noteSearch');
+          if (targetElement.style.display === 'none') {
+            searchElement.style.display = 'block';
+            targetElement.style.display = 'block';
+            icon.classList.add('open');
+          } else {
+            searchElement.style.display = 'none';
+            targetElement.style.display = 'none';
+            icon.classList.remove('open');
+          }
+        } else {
+          if (targetElement.style.display === 'none') {
+            targetElement.style.display = 'block';
+            icon.classList.add('open');
+          } else {
+            targetElement.style.display = 'none';
+            icon.classList.remove('open');
+          }
+        }
+      }
       
-      // The rest of your existing functions remain unchanged
       function makeList(node, list) {
-        var listItem = document.createElement("li");
+        const listItem = document.createElement("li");
         
         if (node.children != undefined) {
-          var index = node.children.filter(child => child.isIndex)[0];
+          let index = node.children.filter(child => child.isIndex)[0];
           node.children = node.children.filter(child => !child.isIndex);
       
           // Create the main content container (left side)
-          var contentContainer = document.createElement("span");
+          const contentContainer = document.createElement("span");
           contentContainer.style.display = "inline-block";
           
           if (index != undefined) {
             listItem.id = index.category.join('-');
       
-            var anchor = document.createElement("a");
+            const anchor = document.createElement("a");
             anchor.textContent = index.name;
             anchor.href = index.url;
             contentContainer.appendChild(anchor);
-      
-            var small = document.createElement("small");
-            small.textContent = index.date;
-            contentContainer.appendChild(small);
           } else {
             contentContainer.textContent = node.name;
           }
@@ -377,14 +367,14 @@ layout: none
           listItem.appendChild(contentContainer);
           
           // Create the right-aligned container for count and toggle
-          var rightContainer = document.createElement("span");
+          const rightContainer = document.createElement("span");
           rightContainer.style.float = "right";
           rightContainer.style.display = "inline-block";
           
           // Calculate total count of all descendant documents
-          var totalDescendants = countAllDescendants(node);
+          const totalDescendants = countAllDescendants(node);
           
-          var childCount = document.createElement("span");
+          const childCount = document.createElement("span");
           childCount.textContent = `(${totalDescendants})`;
           childCount.style.marginRight = "10px";
           childCount.style.color = "gray";
@@ -392,10 +382,10 @@ layout: none
           
           // Only add toggle text if node has children
           if (node.children && node.children.length > 0) {
-            var toggleText = document.createElement("span");
+            const toggleText = document.createElement("span");
             
             // Create toggle icon element
-            var toggleIcon = document.createElement("span");
+            const toggleIcon = document.createElement("span");
             toggleIcon.className = "toggle-icon";
             toggleIcon.textContent = "▾";
             
@@ -410,27 +400,20 @@ layout: none
           list.appendChild(listItem);
       
           if (node.children.length > 0) {
-            var childList = document.createElement("ul");
+            const childList = document.createElement("ul");
             childList.style.display = "none";
-            for (var i = 0; i < node.children.length; i++) {
-              makeList(node.children[i], childList);
-            }
+            
+            node.children.forEach(child => {
+              makeList(child, childList);
+            });
+            
             listItem.appendChild(childList);
       
             // Update event handling - only toggle on the toggleText element
             toggleText.addEventListener("click", function (e) {
               e.stopPropagation(); // Prevent event from bubbling up
-              if (childList.style.display === "none") {
-                childList.style.display = "block";
-                toggleText.querySelector('.toggle-icon').classList.add('open');
-              } else {
-                childList.style.display = "none";
-                toggleText.querySelector('.toggle-icon').classList.remove('open');
-              }
+              toggleTreeNode(childList, toggleText);
             });
-            
-            // Remove the click event from the whole list item
-            listItem.removeEventListener("click", function(){});
             
             // Add navigation to the content container if it has a link
             if (index != undefined) {
@@ -442,19 +425,25 @@ layout: none
           }
         } else {
           // For leaf nodes, no toggle or count
-          var anchor = document.createElement("a");
+          const anchor = document.createElement("a");
           anchor.textContent = node.name;
           anchor.href = node.url;
           listItem.appendChild(anchor);
-      
-          var sup = document.createElement("sup");
-          sup.textContent = node.date;
-          listItem.appendChild(sup);
           list.appendChild(listItem);
         }
       }
 
-      // Add this new function to count all descendants
+      function toggleTreeNode(childList, toggleText) {
+        if (childList.style.display === "none") {
+          childList.style.display = "block";
+          toggleText.querySelector('.toggle-icon').classList.add('open');
+        } else {
+          childList.style.display = "none";
+          toggleText.querySelector('.toggle-icon').classList.remove('open');
+        }
+      }
+
+      // Count all descendants
       function countAllDescendants(node) {
         if (!node.children) {
           return 1; // Leaf node counts as 1
@@ -475,20 +464,24 @@ layout: none
       }
 
       function groupNodes(nodes) {
-        var root = { name: "root" };
+        const root = { name: "root" };
         root.children = nodes;
-
         return groupNode(root);
       }
 
       function groupNode(node) {
-        var categories = Array.from(new Set(node.children.filter(child => child.children != undefined).map(child => child.name)));
+        const categories = Array.from(new Set(
+          node.children
+            .filter(child => child.children != undefined)
+            .map(child => child.name)
+        ));
 
-        for (var i = 0; i < categories.length; i++) {
-          var category = categories[i];
-          var groupedNode = {
+        categories.forEach(category => {
+          const groupedNode = {
             name: category,
-            children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
+            children: node.children
+                      .filter(child => child.name === category)
+                      .flatMap(child => child.children)
           };
 
           node.children = node.children.filter(child => child.name != category);
@@ -497,21 +490,18 @@ layout: none
           if (groupedNode.children != undefined) {
             groupNode(groupedNode);
           }
-        }
+        });
 
         return node;
       }
 
-
       function makeNodes(pages) {
-        var nodes = pages.map(page => makeNode(page));
-        return nodes;
+        return pages.map(page => makeNode(page));
       }
 
       function makeNode(page) {
-        var leaf = {
+        const leaf = {
           name: page.title,
-          date: page.date,
           url: page.url,
           category: page.category,
           isIndex: page.name === "index"
@@ -520,30 +510,28 @@ layout: none
       }
 
       function makeMultiDepthNode(category, child, indent) {
-        var node = {
+        const node = {
           name: category[category.length - indent],
           children: [child]
         };
 
-        while (indent < category.length) {
-          indent++;
-          return makeMultiDepthNode(category, node, indent);
+        if (indent < category.length) {
+          return makeMultiDepthNode(category, node, indent + 1);
         }
 
         return node;
       }
 
       function getPages() {
-        var pages = [];
+        const pages = [];
 
         {% for notes in site.notes %}
-        var path = "{{ notes.path }}".replace("_notes/", "").split("/");
+        const path = "{{ notes.path }}".replace("_notes/", "").split("/");
 
         pages.push({
           category: path.slice(0, path.length - 1),
           name: path[path.length - 1].replace(".md", ""),
           title: "{{ notes.title }}",
-          date: "{{ notes.date | date: '%Y-%m-%d' }}",
           url: "{{ notes.url | relative_url }}",
         });
         {% endfor %}
