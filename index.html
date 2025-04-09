@@ -91,52 +91,6 @@ layout: none
         margin-top: 0;
       }
 
-      #notes ul sup {
-        font-size: 10px;
-        margin-left: 10px;
-        opacity: 0.8;
-      }
-
-      /* 하위 목록 표시선 */
-      #notes ul li {
-        cursor: pointer; /* Add pointer cursor for clickable items */
-        position: relative;
-        margin-left: 10px;
-      }
-
-      /* Vertical lines */
-      #notes ul li::before {
-        content: "";
-        position: absolute;
-        left: -15px;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        background-color: var(--border-color);
-      }
-
-      /* Last child vertical line adjustment */
-      #notes ul li:last-child::before {
-        height: 15px;
-      }
-
-      /* Add horizontal lines */
-      #notes ul li::after {
-        content: "";
-        position: absolute;
-        left: -15px;
-        top: 14px;
-        width: 10px;
-        height: 1px;
-        background-color: var(--border-color);
-      }
-
-      /* List item hover effect */
-      #notes ul li:hover > span:first-child {
-        color: var(--highlight-color);
-        transition: color 0.2s ease;
-      }
-      
       /* Smaller count numbers */
       #notes ul li span[style*="color: gray"] {
         font-size: 0.85em;
@@ -155,6 +109,16 @@ layout: none
       /* Toggle text hover effect */
       #notes ul li span[style*="color: blue"]:hover {
         background-color: #eee;
+      }
+      
+      /* Toggle icon transform */
+      .toggle-icon {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+      
+      .toggle-icon.open {
+        transform: rotate(180deg);
       }
 
       /* 선택된 목록 강조 */
@@ -208,7 +172,9 @@ layout: none
         <div class="algorithm-container">
           <div class="algorithm-header">
             <span style="display: inline-block">알고리즘 문제 풀이 모음</span>
-            <span style="float: right; color: blue; cursor: pointer; font-size: 0.8em;" id="algorithmToggle">펼치기</span>
+            <span style="float: right; color: blue; cursor: pointer; font-size: 0.8em;" id="algorithmToggle">
+              <span class="toggle-icon">▾</span>
+            </span>
           </div>
           <ul id="algorithmList" style="display: none; list-style: none; padding-left: 16px;">
             {% for problem in site.problems %}
@@ -217,7 +183,7 @@ layout: none
                 {{ problem.category | capitalize }}
                 <b>{{ problem.title }}</b>
                 <small>({{ problem.tags }})</small>
-                <sup><small>{{ problem.date | date: '%Y.%m.%d' }}</small></sup>
+                <small>{{ problem.date | date: '%Y.%m.%d' }}</small>
               </a>
             </li>
             {% endfor %}
@@ -280,9 +246,9 @@ layout: none
             anchor.href = index.url;
             contentContainer.appendChild(anchor);
       
-            var sup = document.createElement("sup");
-            sup.textContent = index.date;
-            contentContainer.appendChild(sup);
+            var small = document.createElement("small");
+            small.textContent = index.date;
+            contentContainer.appendChild(small);
           } else {
             contentContainer.textContent = node.name;
           }
@@ -306,7 +272,13 @@ layout: none
           // Only add toggle text if node has children
           if (node.children && node.children.length > 0) {
             var toggleText = document.createElement("span");
-            toggleText.textContent = "펼치기";
+            
+            // Create toggle icon element
+            var toggleIcon = document.createElement("span");
+            toggleIcon.className = "toggle-icon";
+            toggleIcon.textContent = "▾";
+            
+            toggleText.appendChild(toggleIcon);
             toggleText.style.color = "blue";
             toggleText.style.cursor = "pointer";
             toggleText.style.fontSize = "0.8em";
@@ -329,10 +301,10 @@ layout: none
               e.stopPropagation(); // Prevent event from bubbling up
               if (childList.style.display === "none") {
                 childList.style.display = "block";
-                toggleText.textContent = "감추기";
+                toggleText.querySelector('.toggle-icon').classList.add('open');
               } else {
                 childList.style.display = "none";
-                toggleText.textContent = "펼치기";
+                toggleText.querySelector('.toggle-icon').classList.remove('open');
               }
             });
             
@@ -461,12 +433,14 @@ layout: none
       // Add algorithm toggle functionality
       document.getElementById('algorithmToggle').addEventListener('click', function() {
         var list = document.getElementById('algorithmList');
+        var icon = this.querySelector('.toggle-icon');
+        
         if (list.style.display === 'none') {
           list.style.display = 'block';
-          this.textContent = '감추기';
+          icon.classList.add('open');
         } else {
           list.style.display = 'none';
-          this.textContent = '펼치기';
+          icon.classList.remove('open');
         }
       });
     </script>
