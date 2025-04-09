@@ -2,17 +2,29 @@
 <html lang="ko">
   <head>
     {% include google-analytics.html %}
-    <title>{% if page.title %}{{ page.title }} | {% endif %}SIMIN</title>
+
+    <title>
+      {% if page.title %}
+        {{ page.title }} |
+      {% endif %}
+      {{ site.title }}
+    </title>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}시민의 개인 블로그{% endif %}" />
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.9.2/simple-jekyll-search.min.js" integrity="sha512-gABzh+zgo1Eh5HMdD2IMOjeaQAjl9v/MrA3xbZnMTRR5wC4x3WxurJo6yg5EWj1zfNz0qoXK/rKVP5Are0E4QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.9.2/simple-jekyll-search.min.js"
+      integrity="sha512-gABzh+zgo1Eh5HMdD2IMOjeaQAjl9v/MrA3xbZnMTRR5wC4x3WxurJo6yg5EWj1zfNz0qoXK/rKVP5Are0E4QQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
     <link rel="stylesheet" href="{{ '/assets/css/default.css' | relative_url }}" />
-    <link rel="stylesheet" href="{{ '/assets/css/sidebar.css' | relative_url }}" />
     {% if page.additional_css %}
       {% for css in page.additional_css %}
-      <link rel="stylesheet" href="{{ css | relative_url }}" />
+        <link rel="stylesheet" href="{{ css | relative_url }}" />
       {% endfor %}
     {% endif %}
   </head>
@@ -55,12 +67,12 @@
           </div>
           <ul id="graphicList" style="display: none; list-style: none; padding-left: 16px;">
             {% for graphic in site.graphics %}
-            <li>
-              <a href="{{ graphic.url | relative_url }}">
-                <b>{{ graphic.title }}</b>
-                <p>{{ graphic.description }}</p>
-              </a>
-            </li>
+              <li>
+                <a href="{{ graphic.url | relative_url }}">
+                  <b>{{ graphic.title }}</b>
+                  <p>{{ graphic.description }}</p>
+                </a>
+              </li>
             {% endfor %}
           </ul>
         </div>
@@ -74,20 +86,16 @@
           </div>
           <ul id="storyList" style="display: none; list-style: none; padding-left: 16px;">
             <li>
-              <a href="https://brunch.co.kr/@simin" target="_blank">
-                <b>Brunch Story</b>
-              </a>
+              <a href="https://brunch.co.kr/@simin" target="_blank">Brunch Story</a>
             </li>
             <li>
-              <a href="https://www.instagram.com/simin_sees" target="_blank">
-                <b>Instagram</b>
-              </a>
+              <a href="https://www.instagram.com/simin_sees" target="_blank">Instagram</a>
             </li>
           </ul>
         </div>
       </section>
     </div>
-    
+
     <div class="main-content">
       <main>
         {{ content }}
@@ -95,10 +103,11 @@
     </div>
 
     {% include footer.html %}
-    <script src="{{ '/assets/js/sidebar.js' | relative_url }}"></script>
+
+    <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
     {% if page.additional_js %}
       {% for js in page.additional_js %}
-      <script src="{{ js | relative_url }}"></script>
+        <script src="{{ js | relative_url }}"></script>
       {% endfor %}
     {% endif %}
   </body>

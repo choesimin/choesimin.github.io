@@ -1,3 +1,7 @@
+---
+layout: none
+---
+
 // Initialize Simple Jekyll Search
 SimpleJekyllSearch({
   searchInput: document.querySelector('#noteSearch input'),
@@ -31,10 +35,10 @@ function groupAlgorithms() {
   var algorithmProblems = [
     {% for problem in site.problems %}
     {
-      url: "{{ problem.url | relative_url }}",
-      category: "{{ problem.category }}",
-      title: "{{ problem.title }}",
-      tags: "{{ problem.tags }}"
+url: "{{ problem.url | relative_url }}",
+category: "{{ problem.category }}",
+title: "{{ problem.title }}",
+tags: "{{ problem.tags }}"
     },
     {% endfor %}
   ];
@@ -43,7 +47,7 @@ function groupAlgorithms() {
   var categories = {};
   algorithmProblems.forEach(function(problem) {
     if (!categories[problem.category]) {
-      categories[problem.category] = [];
+categories[problem.category] = [];
     }
     categories[problem.category].push(problem);
   });
@@ -57,11 +61,11 @@ function groupAlgorithms() {
     var categoryHeader = document.createElement('div');
     categoryHeader.className = 'algorithm-category-header';
     categoryHeader.innerHTML = `
-      <span style="display: inline-block">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
-      <span style="float: right">
-        <span class="count-display" style="color: black">${categories[category].length}</span>
-        <span class="toggle-icon" style="color: black">▾</span>
-      </span>
+<span style="display: inline-block">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
+<span style="float: right">
+  <span class="count-display" style="color: black">${categories[category].length}</span>
+  <span class="toggle-icon" style="color: black">▾</span>
+</span>
     `;
     categoryDiv.appendChild(categoryHeader);
     
@@ -72,14 +76,14 @@ function groupAlgorithms() {
     problemList.style.paddingLeft = '16px';
     
     categories[category].forEach(function(problem) {
-      var listItem = document.createElement('li');
-      listItem.innerHTML = `
-        <a href="${problem.url}">
-          <b>${problem.title}</b>
-          <small>(${problem.tags})</small>
-        </a>
-      `;
-      problemList.appendChild(listItem);
+var listItem = document.createElement('li');
+listItem.innerHTML = `
+  <a href="${problem.url}">
+    <b>${problem.title}</b>
+    <small>(${problem.tags})</small>
+  </a>
+`;
+problemList.appendChild(listItem);
     });
     
     categoryDiv.appendChild(problemList);
@@ -87,15 +91,15 @@ function groupAlgorithms() {
     
     // Add toggle functionality
     categoryHeader.addEventListener('click', function() {
-      var list = this.nextElementSibling;
-      var icon = this.querySelector('.toggle-icon');
-      if (list.style.display === 'none') {
-        list.style.display = 'block';
-        icon.classList.add('open');
-      } else {
-        list.style.display = 'none';
-        icon.classList.remove('open');
-      }
+var list = this.nextElementSibling;
+var icon = this.querySelector('.toggle-icon');
+if (list.style.display === 'none') {
+  list.style.display = 'block';
+  icon.classList.add('open');
+} else {
+  list.style.display = 'none';
+  icon.classList.remove('open');
+}
     });
   }
 }
@@ -130,26 +134,26 @@ document.querySelectorAll('.category-header').forEach(function(header) {
     
     // Find the content element to toggle
     if (targetContainer.querySelector('#notes')) {
-      targetId = 'notes';
-      var searchElement = document.getElementById('noteSearch');
-      var targetElement = document.getElementById(targetId);
-      
-      if (targetElement.style.display === 'none') {
-        searchElement.style.display = 'block';
-        targetElement.style.display = 'block';
-      } else {
-        searchElement.style.display = 'none';
-        targetElement.style.display = 'none';
-      }
+targetId = 'notes';
+var searchElement = document.getElementById('noteSearch');
+var targetElement = document.getElementById(targetId);
+
+if (targetElement.style.display === 'none') {
+  searchElement.style.display = 'block';
+  targetElement.style.display = 'block';
+} else {
+  searchElement.style.display = 'none';
+  targetElement.style.display = 'none';
+}
     } else if (targetContainer.querySelector('#algorithmList')) {
-      targetElement = document.getElementById('algorithmList');
-      toggleDisplay(targetElement);
+targetElement = document.getElementById('algorithmList');
+toggleDisplay(targetElement);
     } else if (targetContainer.querySelector('#graphicList')) {
-      targetElement = document.getElementById('graphicList');
-      toggleDisplay(targetElement);
+targetElement = document.getElementById('graphicList');
+toggleDisplay(targetElement);
     } else if (targetContainer.querySelector('#storyList')) {
-      targetElement = document.getElementById('storyList');
-      toggleDisplay(targetElement);
+targetElement = document.getElementById('storyList');
+toggleDisplay(targetElement);
     }
   });
 });
@@ -181,14 +185,14 @@ function makeList(node, list) {
     contentContainer.style.display = "inline-block";
     
     if (index != undefined) {
-      listItem.id = index.category.join('-');
+listItem.id = index.category.join('-');
 
-      var anchor = document.createElement("a");
-      anchor.textContent = index.name;
-      anchor.href = index.url;
-      contentContainer.appendChild(anchor);
+var anchor = document.createElement("a");
+anchor.textContent = index.name;
+anchor.href = index.url;
+contentContainer.appendChild(anchor);
     } else {
-      contentContainer.textContent = node.name;
+contentContainer.textContent = node.name;
     }
     
     listItem.appendChild(contentContainer);
@@ -209,53 +213,53 @@ function makeList(node, list) {
     
     // Only add toggle text if node has children
     if (node.children && node.children.length > 0) {
-      var toggleText = document.createElement("span");
-      
-      // Create toggle icon element
-      var toggleIcon = document.createElement("span");
-      toggleIcon.className = "toggle-icon";
-      toggleIcon.textContent = "▾";
-      
-      toggleText.appendChild(toggleIcon);
-      toggleText.style.color = "black";
-      toggleText.style.cursor = "pointer";
-      toggleText.style.fontSize = "0.8em";
-      rightContainer.appendChild(toggleText);
+var toggleText = document.createElement("span");
+
+// Create toggle icon element
+var toggleIcon = document.createElement("span");
+toggleIcon.className = "toggle-icon";
+toggleIcon.textContent = "▾";
+
+toggleText.appendChild(toggleIcon);
+toggleText.style.color = "black";
+toggleText.style.cursor = "pointer";
+toggleText.style.fontSize = "0.8em";
+rightContainer.appendChild(toggleText);
     }
     
     listItem.appendChild(rightContainer);
     list.appendChild(listItem);
 
     if (node.children.length > 0) {
-      var childList = document.createElement("ul");
-      childList.style.display = "none";
-      for (var i = 0; i < node.children.length; i++) {
-        makeList(node.children[i], childList);
-      }
-      listItem.appendChild(childList);
+var childList = document.createElement("ul");
+childList.style.display = "none";
+for (var i = 0; i < node.children.length; i++) {
+  makeList(node.children[i], childList);
+}
+listItem.appendChild(childList);
 
-      // Update event handling - only toggle on the toggleText element
-      toggleText.addEventListener("click", function (e) {
-        e.stopPropagation(); // Prevent event from bubbling up
-        if (childList.style.display === "none") {
-          childList.style.display = "block";
-          toggleText.querySelector('.toggle-icon').classList.add('open');
-        } else {
-          childList.style.display = "none";
-          toggleText.querySelector('.toggle-icon').classList.remove('open');
-        }
-      });
-      
-      // Remove the click event from the whole list item
-      listItem.removeEventListener("click", function(){});
-      
-      // Add navigation to the content container if it has a link
-      if (index != undefined) {
-        contentContainer.addEventListener("click", function(e) {
-          e.stopPropagation();
-          window.location.href = index.url;
-        });
-      }
+// Update event handling - only toggle on the toggleText element
+toggleText.addEventListener("click", function (e) {
+  e.stopPropagation(); // Prevent event from bubbling up
+  if (childList.style.display === "none") {
+    childList.style.display = "block";
+    toggleText.querySelector('.toggle-icon').classList.add('open');
+  } else {
+    childList.style.display = "none";
+    toggleText.querySelector('.toggle-icon').classList.remove('open');
+  }
+});
+
+// Remove the click event from the whole list item
+listItem.removeEventListener("click", function(){});
+
+// Add navigation to the content container if it has a link
+if (index != undefined) {
+  contentContainer.addEventListener("click", function(e) {
+    e.stopPropagation();
+    window.location.href = index.url;
+  });
+}
     }
   } else {
     // For leaf nodes, no toggle or count
@@ -276,11 +280,11 @@ function countAllDescendants(node) {
   let count = 0;
   for (let child of node.children) {
     if (child.children) {
-      // For nodes with children, recursively count their descendants
-      count += countAllDescendants(child);
+// For nodes with children, recursively count their descendants
+count += countAllDescendants(child);
     } else {
-      // For leaf nodes, add 1
-      count += 1;
+// For leaf nodes, add 1
+count += 1;
     }
   }
   
@@ -300,15 +304,15 @@ function groupNode(node) {
   for (var i = 0; i < categories.length; i++) {
     var category = categories[i];
     var groupedNode = {
-      name: category,
-      children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
+name: category,
+children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
     };
 
     node.children = node.children.filter(child => child.name != category);
     node.children.push(groupedNode);
 
     if (groupedNode.children != undefined) {
-      groupNode(groupedNode);
+groupNode(groupedNode);
     }
   }
 

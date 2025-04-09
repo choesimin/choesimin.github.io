@@ -1,81 +1,199 @@
-:root {
-  --background-color: #ffffff;
-  --background-highlight-color: #eeeeee;
-  --color: #000000;
-  --highlight-color: #000000;
-  --border-color: #000000;
-  --sidebar-background: #ffffff;
-}
-
 html {
-  scroll-padding-top: 100px;
-  scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--background-color);
-  color: var(--color);
-  font-family: "Noto Sans KR", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 a {
-  color: inherit;
+    color: inherit;
 }
 
 a:hover {
-  color: var(--highlight-color);
+    color: black;
 }
 
 textarea:focus,
 button:focus,
 input:focus {
-  outline: none;
+    outline: none;
 }
 
 *:focus {
-  outline: none;
+    outline: none;
 }
 
 hr {
-  margin: 60px 0;
-  border-style: solid;
-  border-width: 1px 0 0 0;
+    margin: 60px 0;
+    border-style: solid;
+    border-width: 1px 0 0 0;
 }
 
 table {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  border-top: 1px solid var(--border-color);
-  border-collapse: collapse;
-  word-break: keep-all;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+    word-break: keep-all;
 }
 
 th,
 td {
-  border-bottom: 1px solid var(--border-color);
-  border-left: 1px solid var(--border-color);
-  padding: 5px 10px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    padding: 5px 10px;
 }
 
 th:first-child,
 td:first-child {
-  border-left: none;
+    border-left: none;
 }
 
 main {
-  margin: 0 auto;
-  padding: 10px;
-  max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 800px;
 
-  line-height: 2;
-  word-break: keep-all;
-  overflow-wrap: break-word;
+    line-height: 2;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 footer {
-  text-align: center;
-  padding-bottom: 100px;
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    padding: 0 20px;
+    background-color: white;
+    border-right: 1px solid black;
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+    /* Space for the header/logo */
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 290px;
+    /* sidebar width + padding */
+    padding: 60px 20px 20px;
+    /* Space for the header/logo */
+    flex: 1;
+}
+
+/* Category styling */
+.category-container {
+    margin-bottom: 20px;
+}
+
+.category-header {
+    cursor: pointer;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color, black);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.count-display {
+    margin-right: 10px;
+    font-size: 0.7em;
+}
+
+/* Toggle icon styling */
+.toggle-icon {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.toggle-icon.open {
+    transform: rotate(180deg);
+}
+
+/* List styling for all categories */
+#notes ul,
+#algorithmList,
+#graphicList,
+#storyList {
+    list-style: none;
+    padding-left: 16px;
+    margin-top: 8px;
+}
+
+#notes a,
+#algorithmList a,
+#graphicList a,
+#storyList a {
+    text-decoration-line: none;
+}
+
+/* Search input styling */
+#noteSearch {
+    margin: 10px 0;
+}
+
+#noteSearch input {
+    padding: 5px 10px;
+    width: 100%;
+    background-color: var(--background-color, white);
+    color: inherit;
+    border: none;
+    border-bottom: 1px solid var(--background-highlight-color, black);
+    transition: 0.3s;
+}
+
+#noteSearch input:focus {
+    border-color: var(--border-color, black);
+    outline: none;
+}
+
+#searchResult {
+    background-color: var(--background-color, white);
+}
+
+#searchResult li {
+    list-style: none;
+}
+
+#searchResult li a {
+    text-decoration: none;
+}
+
+/* Algorithm category styling */
+.algorithm-category-header {
+    cursor: pointer;
+    padding: 5px 0;
+    margin-top: 5px;
+    border-bottom: 1px solid var(--border-color, black);
+    font-size: 0.9em;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding-top: 50px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-top: 20px;
+    }
 }
