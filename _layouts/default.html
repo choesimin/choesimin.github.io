@@ -1,146 +1,20 @@
----
-layout: default
-title: Home
-description: SIMIN's personal blog
----
-
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     {% include google-analytics.html %}
-    <title>SIMIN</title>
+    <title>{% if page.title %}{{ page.title }} | {% endif %}SIMIN</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="시민의 개인 블로그" />
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}시민의 개인 블로그{% endif %}" />
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.9.2/simple-jekyll-search.min.js" integrity="sha512-gABzh+zgo1Eh5HMdD2IMOjeaQAjl9v/MrA3xbZnMTRR5wC4x3WxurJo6yg5EWj1zfNz0qoXK/rKVP5Are0E4QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="{{ '/assets/css/default.css' | relative_url }}" />
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        min-height: 100vh;
-      }
-
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100;
-        width: 100%;
-      }
-
-      /* Sidebar styling */
-      .sidebar {
-        width: 250px;
-        padding: 20px;
-        background-color: var(--sidebar-background, #ffffff);
-        border-right: 1px solid var(--border-color, #000000);
-        height: 100vh;
-        position: fixed;
-        overflow-y: auto;
-        padding-top: 60px; /* Space for the header/logo */
-      }
-
-      /* Main content area */
-      .main-content {
-        margin-left: 290px; /* sidebar width + padding */
-        padding: 20px;
-        padding-top: 60px; /* Space for the header/logo */
-        flex: 1;
-      }
-
-      /* Category styling */
-      .category-container {
-        margin-bottom: 20px;
-      }
-      
-      .category-header {
-        cursor: pointer;
-        padding: 10px 0;
-        border-bottom: 1px solid var(--border-color, #000000);
-        font-weight: bold;
-        font-size: 1.2em;
-      }
-      
-      .count-display {
-        margin-right: 10px;
-        font-size: 0.7em;
-      }
-      
-      /* Toggle icon styling */
-      .toggle-icon {
-        display: inline-block;
-        transition: transform 0.2s ease;
-      }
-      
-      .toggle-icon.open {
-        transform: rotate(180deg);
-      }
-      
-      /* List styling for all categories */
-      #notes ul, #algorithmList, #graphicList, #storyList {
-        list-style: none;
-        padding-left: 16px;
-        margin-top: 8px;
-      }
-      
-      #notes a, #algorithmList a, #graphicList a, #storyList a {
-        text-decoration-line: none;
-      }
-      
-      /* Search input styling */
-      #noteSearch {
-        margin: 10px 0;
-      }
-      
-      #noteSearch input {
-        padding: 5px 10px;
-        width: 100%;
-        background-color: var(--background-color, #ffffff);
-        color: inherit;
-        border: none;
-        border-bottom: 1px solid var(--background-highlight-color, #000000);
-        transition: 0.3s;
-      }
-      
-      #noteSearch input:focus {
-        border-color: var(--border-color, #000000);
-        outline: none;
-      }
-      
-      #searchResult {
-        background-color: var(--background-color, #ffffff);
-      }
-      
-      #searchResult li {
-        list-style: none;
-      }
-      
-      #searchResult li a {
-        text-decoration: none;
-      }
-
-      /* Responsive design for mobile */
-      @media (max-width: 768px) {
-        body {
-          flex-direction: column;
-        }
-        
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-          padding-top: 50px;
-        }
-        
-        .main-content {
-          margin-left: 0;
-          padding-top: 20px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="{{ '/assets/css/sidebar.css' | relative_url }}" />
+    {% if page.additional_css %}
+      {% for css in page.additional_css %}
+      <link rel="stylesheet" href="{{ css | relative_url }}" />
+      {% endfor %}
+    {% endif %}
   </head>
 
   <body>
@@ -213,7 +87,19 @@ description: SIMIN's personal blog
         </div>
       </section>
     </div>
+    
     <div class="main-content">
       <main>
-        <h1>Welcome to SIMIN's Blog</h1>
-<p>This is a personal blog containing notes, algorithms, graphics, and stories.</p>
+        {{ content }}
+      </main>
+    </div>
+
+    {% include footer.html %}
+    <script src="{{ '/assets/js/sidebar.js' | relative_url }}"></script>
+    {% if page.additional_js %}
+      {% for js in page.additional_js %}
+      <script src="{{ js | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>

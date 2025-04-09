@@ -1,9 +1,10 @@
 :root {
   --background-color: #ffffff;
   --background-highlight-color: #eeeeee;
-  --color: #111111;
+  --color: #000000;
   --highlight-color: #000000;
-  --border-color: #aaaaaa;
+  --border-color: #000000;
+  --sidebar-background: #ffffff;
 }
 
 html {
