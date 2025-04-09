@@ -63,8 +63,7 @@ layout: none
       
       .count-display {
         margin-right: 10px;
-        color: gray;
-        font-size: 0.85em;
+        font-size: 0.7em;
       }
       
       /* Toggle icon styling */
@@ -149,9 +148,6 @@ layout: none
             <span style="display: inline-block">Note</span>
             <span style="float: right">
               <span class="count-display" id="noteCount"></span>
-              <span style="color: blue; cursor: pointer; font-size: 0.8em;" class="category-toggle" data-target="notes">
-                <span class="toggle-icon">▾</span>
-              </span>
             </span>
           </div>
           <div id="noteSearch" style="display: none;">
@@ -166,9 +162,6 @@ layout: none
             <span style="display: inline-block">Algorithm</span>
             <span style="float: right">
               <span class="count-display" id="algorithmCount"></span>
-              <span style="color: blue; cursor: pointer; font-size: 0.8em;" class="category-toggle" data-target="algorithmList">
-                <span class="toggle-icon">▾</span>
-              </span>
             </span>
           </div>
           <ul id="algorithmList" style="display: none; list-style: none; padding-left: 16px;">
@@ -185,14 +178,10 @@ layout: none
         </div>
 
         <div class="category-container">
-        <div class="category-container">
           <div class="category-header">
             <span style="display: inline-block">Graphic</span>
             <span style="float: right">
               <span class="count-display" id="graphicCount"></span>
-              <span style="color: blue; cursor: pointer; font-size: 0.8em;" class="category-toggle" data-target="graphicList">
-                <span class="toggle-icon">▾</span>
-              </span>
             </span>
           </div>
           <ul id="graphicList" style="display: none; list-style: none; padding-left: 16px;">
@@ -201,7 +190,6 @@ layout: none
               <a href="{{ graphic.url | relative_url }}">
                 <b>{{ graphic.title }}</b>
                 <p>{{ graphic.description }}</p>
-                <small>{{ graphic.date | date: '%Y.%m.%d' }}</small>
               </a>
             </li>
             {% endfor %}
@@ -213,9 +201,6 @@ layout: none
             <span style="display: inline-block">Story</span>
             <span style="float: right">
               <span class="count-display" id="storyCount"></span>
-              <span style="color: blue; cursor: pointer; font-size: 0.8em;" class="category-toggle" data-target="storyList">
-                <span class="toggle-icon">▾</span>
-              </span>
             </span>
           </div>
           <ul id="storyList" style="display: none; list-style: none; padding-left: 16px;">
@@ -269,60 +254,60 @@ layout: none
       function updateCounts() {
         // Count notes
         var notesCount = countAllDescendants(root);
-        document.getElementById("noteCount").textContent = "(" + notesCount + ")";
+        document.getElementById("noteCount").textContent = notesCount;
         
         // Count algorithms
         var algorithmsCount = document.querySelectorAll('#algorithmList li').length;
-        document.getElementById("algorithmCount").textContent = "(" + algorithmsCount + ")";
+        document.getElementById("algorithmCount").textContent = algorithmsCount;
         
         // Count graphics
         var graphicsCount = document.querySelectorAll('#graphicList li').length;
-        document.getElementById("graphicCount").textContent = "(" + graphicsCount + ")";
+        document.getElementById("graphicCount").textContent = graphicsCount;
         
         // Count stories (fixed at 2 for Brunch and Instagram)
-        document.getElementById("storyCount").textContent = "(2)";
+        document.getElementById("storyCount").textContent = "2";
       }
-      
-      // Add category toggle functionality
-      document.querySelectorAll('.category-toggle').forEach(function(toggle) {
-        toggle.addEventListener('click', function(e) {
-          e.stopPropagation();
-          var targetId = this.getAttribute('data-target');
-          var targetElement = document.getElementById(targetId);
-          var icon = this.querySelector('.toggle-icon');
+
+      // Add category toggle functionality for top-level categories
+      document.querySelectorAll('.category-header').forEach(function(header) {
+        header.addEventListener('click', function(e) {
+          // Get the container that follows this header
+          var targetContainer = this.parentElement;
+          var targetId;
           
-          // Handle note search display for "Note" category
-          if (targetId === 'notes') {
+          // Find the content element to toggle
+          if (targetContainer.querySelector('#notes')) {
+            targetId = 'notes';
             var searchElement = document.getElementById('noteSearch');
+            var targetElement = document.getElementById(targetId);
+            
             if (targetElement.style.display === 'none') {
               searchElement.style.display = 'block';
               targetElement.style.display = 'block';
-              icon.classList.add('open');
             } else {
               searchElement.style.display = 'none';
               targetElement.style.display = 'none';
-              icon.classList.remove('open');
             }
-          } else {
-            if (targetElement.style.display === 'none') {
-              targetElement.style.display = 'block';
-              icon.classList.add('open');
-            } else {
-              targetElement.style.display = 'none';
-              icon.classList.remove('open');
-            }
-          }
-        });
-        
-        // Make the whole header clickable
-        var header = toggle.closest('.category-header');
-        header.addEventListener('click', function(e) {
-          // Only trigger if the click wasn't on the toggle itself
-          if (!e.target.closest('.category-toggle')) {
-            toggle.click();
+          } else if (targetContainer.querySelector('#algorithmList')) {
+            targetElement = document.getElementById('algorithmList');
+            toggleDisplay(targetElement);
+          } else if (targetContainer.querySelector('#graphicList')) {
+            targetElement = document.getElementById('graphicList');
+            toggleDisplay(targetElement);
+          } else if (targetContainer.querySelector('#storyList')) {
+            targetElement = document.getElementById('storyList');
+            toggleDisplay(targetElement);
           }
         });
       });
+
+      function toggleDisplay(element) {
+        if (element.style.display === 'none') {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      }
 
       // Call updateCounts after the page loads
       window.addEventListener('load', updateCounts);
@@ -346,10 +331,6 @@ layout: none
             anchor.textContent = index.name;
             anchor.href = index.url;
             contentContainer.appendChild(anchor);
-      
-            var small = document.createElement("small");
-            small.textContent = index.date;
-            contentContainer.appendChild(small);
           } else {
             contentContainer.textContent = node.name;
           }
@@ -426,10 +407,6 @@ layout: none
           anchor.textContent = node.name;
           anchor.href = node.url;
           listItem.appendChild(anchor);
-      
-          var sup = document.createElement("sup");
-          sup.textContent = node.date;
-          listItem.appendChild(sup);
           list.appendChild(listItem);
         }
       }
@@ -491,7 +468,6 @@ layout: none
       function makeNode(page) {
         var leaf = {
           name: page.title,
-          date: page.date,
           url: page.url,
           category: page.category,
           isIndex: page.name === "index"
@@ -523,7 +499,6 @@ layout: none
           category: path.slice(0, path.length - 1),
           name: path[path.length - 1].replace(".md", ""),
           title: "{{ notes.title }}",
-          date: "{{ notes.date | date: '%Y-%m-%d' }}",
           url: "{{ notes.url | relative_url }}",
         });
         {% endfor %}
