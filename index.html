@@ -167,6 +167,27 @@ layout: none
       #notes li:target > ul > li::after {
         background-color: var(--highlight-color);
       }
+      
+      /* Algorithm section styling */
+      .algorithm-container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      
+      .algorithm-header {
+        cursor: pointer;
+        padding: 5px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      #algorithmList li {
+        margin: 8px 0;
+        position: relative;
+      }
+      
+      #algorithmList li a {
+        text-decoration: none;
+      }
     </style>
   </head>
 
@@ -184,9 +205,12 @@ layout: none
         </div>
         <div id="searchResult"></div>
         <article id="notes"></article>
-        <ul>
-          <li>알고리즘 문제 풀이 모음</li>
-          <ul>
+        <div class="algorithm-container">
+          <div class="algorithm-header">
+            <span style="display: inline-block">알고리즘 문제 풀이 모음</span>
+            <span style="float: right; color: blue; cursor: pointer; font-size: 0.8em;" id="algorithmToggle">펼치기</span>
+          </div>
+          <ul id="algorithmList" style="display: none; list-style: none; padding-left: 16px;">
             {% for problem in site.problems %}
             <li>
               <a href="{{ problem.url | relative_url }}">
@@ -198,7 +222,7 @@ layout: none
             </li>
             {% endfor %}
           </ul>
-        </ul>
+        </div>
       </section>
       <section id="graphic">
         <h2>Graphic</h2>
@@ -433,6 +457,18 @@ layout: none
 
         return pages;
       }
+      
+      // Add algorithm toggle functionality
+      document.getElementById('algorithmToggle').addEventListener('click', function() {
+        var list = document.getElementById('algorithmList');
+        if (list.style.display === 'none') {
+          list.style.display = 'block';
+          this.textContent = '감추기';
+        } else {
+          list.style.display = 'none';
+          this.textContent = '펼치기';
+        }
+      });
     </script>
   </body>
 </html>
