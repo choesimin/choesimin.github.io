@@ -13,6 +13,41 @@ layout: none
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.9.2/simple-jekyll-search.min.js" integrity="sha512-gABzh+zgo1Eh5HMdD2IMOjeaQAjl9v/MrA3xbZnMTRR5wC4x3WxurJo6yg5EWj1zfNz0qoXK/rKVP5Are0E4QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        min-height: 100vh;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        width: 100%;
+      }
+
+      /* Sidebar styling */
+      .sidebar {
+        width: 250px;
+        padding: 20px;
+        background-color: var(--sidebar-background, #f5f5f5);
+        border-right: 1px solid var(--border-color, #e0e0e0);
+        height: 100vh;
+        position: fixed;
+        overflow-y: auto;
+        padding-top: 60px; /* Space for the header/logo */
+      }
+
+      /* Main content area */
+      .main-content {
+        margin-left: 290px; /* sidebar width + padding */
+        padding: 20px;
+        padding-top: 60px; /* Space for the header/logo */
+        flex: 1;
+      }
+
       #simin {
         position: fixed;
         top: 8px;
@@ -36,7 +71,7 @@ layout: none
       .category-header {
         cursor: pointer;
         padding: 10px 0;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color, #e0e0e0);
         font-weight: bold;
         font-size: 1.2em;
       }
@@ -76,19 +111,20 @@ layout: none
       #noteSearch input {
         padding: 5px 10px;
         width: 100%;
-        background-color: var(--background-color);
+        background-color: var(--background-color, #fff);
         color: inherit;
         border: none;
-        border-bottom: 1px solid var(--background-highlight-color);
+        border-bottom: 1px solid var(--background-highlight-color, #ddd);
         transition: 0.3s;
       }
       
       #noteSearch input:focus {
-        border-color: 1px solid var(--border-color);
+        border-color: var(--border-color, #999);
+        outline: none;
       }
       
       #searchResult {
-        background-color: var(--background-color);
+        background-color: var(--background-color, #fff);
       }
       
       #searchResult li {
@@ -97,6 +133,25 @@ layout: none
       
       #searchResult li a {
         text-decoration: none;
+      }
+
+      /* Responsive design for mobile */
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+        }
+        
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          padding-top: 50px;
+        }
+        
+        .main-content {
+          margin-left: 0;
+          padding-top: 20px;
+        }
       }
     </style>
   </head>
@@ -107,7 +162,7 @@ layout: none
       <a id="brunch" href="https://brunch.co.kr/@simin" target="_blank">brunchstory</a>
       <a id="insta" href="https://www.instagram.com/simin_sees" target="_blank">instagram</a>
     </header>
-    <main>
+    <div class="sidebar">
       <section id="categories">
         <div class="category-container">
           <div class="category-header">
@@ -197,7 +252,12 @@ layout: none
           </ul>
         </div>
       </section>
-    </main>
+    </div>
+    <div class="main-content">
+      <main>
+        <!-- Main content goes here -->
+      </main>
+    </div>
 
     {% include footer.html %}
     <script>
