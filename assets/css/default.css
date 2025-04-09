@@ -81,7 +81,8 @@ footer {
     height: 100vh;
     position: fixed;
     overflow-y: auto;
-    /* Space for the header/logo */
+    font-weight: normal;
+    font-size: 0.95em;
 }
 
 /* Main content area */
@@ -103,12 +104,13 @@ footer {
     padding: 10px 0;
     border-bottom: 1px solid var(--border-color, black);
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 .count-display {
-    margin-right: 10px;
+    margin-left: 8px;
     font-size: 0.7em;
+    font-weight: normal;
 }
 
 /* Toggle icon styling */
@@ -121,45 +123,70 @@ footer {
     transform: rotate(180deg);
 }
 
-/* List styling for all categories */
-#notes ul,
-#algorithmList,
+#noteList ul,
+#algorithmList ul,
 #graphicList,
 #storyList {
     list-style: none;
-    padding-left: 16px;
-    margin-top: 8px;
+    padding-left: 12px;
 }
 
-#notes a,
+#noteList a,
 #algorithmList a,
 #graphicList a,
 #storyList a {
     text-decoration-line: none;
+    font-weight: normal;
+}
+
+/* Graphic list styling */
+#graphicList li {
+    margin-bottom: 5px;
+}
+
+#graphicList a {
+    text-decoration: none;
+    display: block;
+}
+
+#graphicList .graphic-title {
+    display: block;
+    font-weight: normal;
+}
+
+#graphicList .graphic-description {
+    display: block;
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 2px;
 }
 
 /* Search input styling */
 #noteSearch {
     margin: 10px 0;
+    width: 100%;
 }
 
 #noteSearch input {
-    padding: 5px 10px;
     width: 100%;
+    box-sizing: border-box;
+    padding: 5px 10px;
     background-color: var(--background-color, white);
     color: inherit;
     border: none;
-    border-bottom: 1px solid var(--background-highlight-color, black);
+    border-bottom: 1px solid #dddddd;
     transition: 0.3s;
 }
 
 #noteSearch input:focus {
-    border-color: var(--border-color, black);
+    border-color: #999999;
     outline: none;
 }
 
 #searchResult {
+    display: none;
     background-color: var(--background-color, white);
+    padding: 10px;
 }
 
 #searchResult li {
@@ -170,30 +197,11 @@ footer {
     text-decoration: none;
 }
 
-/* Algorithm category styling */
 .algorithm-category-header {
     cursor: pointer;
     padding: 5px 0;
     margin-top: 5px;
     border-bottom: 1px solid var(--border-color, black);
     font-size: 0.9em;
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding-top: 50px;
-    }
-
-    .main-content {
-        margin-left: 0;
-        padding-top: 20px;
-    }
+    font-weight: normal;
 }

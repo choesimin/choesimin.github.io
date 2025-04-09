@@ -40,10 +40,10 @@
             </span>
           </div>
           <div id="noteSearch" style="display: none;">
-            <input type="text" placeholder="title, url" />
+            <input type="text" placeholder="search" />
             <div id="searchResult"></div>
           </div>
-          <article id="notes" style="display: none;"></article>
+          <div id="noteList" style="display: none;"></div>
         </div>
 
         <div class="category-container">
@@ -69,8 +69,8 @@
             {% for graphic in site.graphics %}
               <li>
                 <a href="{{ graphic.url | relative_url }}">
-                  <b>{{ graphic.title }}</b>
-                  <p>{{ graphic.description }}</p>
+                  <span class="graphic-title">{{ graphic.title }}</span>
+                  <span class="graphic-description">{{ graphic.description }}</span>
                 </a>
               </li>
             {% endfor %}

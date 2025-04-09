@@ -7,7 +7,39 @@ SimpleJekyllSearch({
   searchInput: document.querySelector('#noteSearch input'),
   resultsContainer: document.getElementById('searchResult'),
   json: '/assets/json/note-search.json',
-  searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
+  searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`,
+  // Only search through titles
+  keys: ['title']
+});
+
+// Add event listeners to hide/show note list based on search state
+document.querySelector('#noteSearch input').addEventListener('input', function(e) {
+  var noteList = document.getElementById('noteList');
+  var searchResults = document.getElementById('searchResult');
+  
+  if (this.value.trim() !== '') {
+    // When search input has text, hide note list and show search results
+    noteList.style.display = 'none';
+    searchResults.style.display = 'block';
+  } else {
+    // When search input is empty, show note list and hide search results
+    noteList.style.display = 'block';
+    searchResults.style.display = 'none';
+  }
+});
+
+// Clear search and show note list when clicking outside search area
+document.addEventListener('click', function(e) {
+  var searchInput = document.querySelector('#noteSearch input');
+  var searchResults = document.getElementById('searchResult');
+  var noteList = document.getElementById('noteList');
+  
+  // If click is outside search area and search is active
+  if (!searchInput.contains(e.target) && !searchResults.contains(e.target) && searchInput.value.trim() !== '') {
+    searchInput.value = '';
+    searchResults.style.display = 'none';
+    noteList.style.display = 'block';
+  }
 });
 
 // Set up note tree
@@ -24,7 +56,7 @@ if (root.children && root.children.length > 0) {
   }
 }
 
-document.getElementById("notes").appendChild(list);
+document.getElementById("noteList").appendChild(list);
 
 // Group algorithm items by category
 function groupAlgorithms() {
@@ -63,8 +95,8 @@ categories[problem.category] = [];
     categoryHeader.innerHTML = `
 <span style="display: inline-block">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
 <span style="float: right">
-  <span class="count-display" style="color: black">${categories[category].length}</span>
-  <span class="toggle-icon" style="color: black">▾</span>
+  <span class="count-display">${categories[category].length}</span>
+  <span class="toggle-icon">▾</span>
 </span>
     `;
     categoryDiv.appendChild(categoryHeader);
@@ -73,14 +105,14 @@ categories[problem.category] = [];
     var problemList = document.createElement('ul');
     problemList.style.display = 'none';
     problemList.style.listStyle = 'none';
-    problemList.style.paddingLeft = '16px';
+    problemList.style.paddingLeft = '12px';  // Standardized padding
     
     categories[category].forEach(function(problem) {
 var listItem = document.createElement('li');
 listItem.innerHTML = `
   <a href="${problem.url}">
-    <b>${problem.title}</b>
-    <small>(${problem.tags})</small>
+    ${problem.title}
+    <small style="font-size: 0.85em; color: #666;">(${problem.tags})</small>
   </a>
 `;
 problemList.appendChild(listItem);
@@ -133,27 +165,27 @@ document.querySelectorAll('.category-header').forEach(function(header) {
     var targetId;
     
     // Find the content element to toggle
-    if (targetContainer.querySelector('#notes')) {
-targetId = 'notes';
-var searchElement = document.getElementById('noteSearch');
-var targetElement = document.getElementById(targetId);
+    if (targetContainer.querySelector('#noteList')) {
+      targetId = 'noteList';
+      var searchElement = document.getElementById('noteSearch');
+      var targetElement = document.getElementById(targetId);
 
-if (targetElement.style.display === 'none') {
-  searchElement.style.display = 'block';
-  targetElement.style.display = 'block';
-} else {
-  searchElement.style.display = 'none';
-  targetElement.style.display = 'none';
-}
+      if (targetElement.style.display === 'none') {
+        searchElement.style.display = 'block';
+        targetElement.style.display = 'block';
+      } else {
+        searchElement.style.display = 'none';
+        targetElement.style.display = 'none';
+      }
     } else if (targetContainer.querySelector('#algorithmList')) {
-targetElement = document.getElementById('algorithmList');
-toggleDisplay(targetElement);
+      targetElement = document.getElementById('algorithmList');
+      toggleDisplay(targetElement);
     } else if (targetContainer.querySelector('#graphicList')) {
-targetElement = document.getElementById('graphicList');
-toggleDisplay(targetElement);
+      targetElement = document.getElementById('graphicList');
+      toggleDisplay(targetElement);
     } else if (targetContainer.querySelector('#storyList')) {
-targetElement = document.getElementById('storyList');
-toggleDisplay(targetElement);
+      targetElement = document.getElementById('storyList');
+      toggleDisplay(targetElement);
     }
   });
 });
@@ -175,6 +207,7 @@ function toggleDisplay(element) {
 // Note tree functions
 function makeList(node, list) {
   var listItem = document.createElement("li");
+  listItem.style.position = "relative"; // Add relative positioning to list items
   
   if (node.children != undefined) {
     var index = node.children.filter(child => child.isIndex)[0];
@@ -183,83 +216,85 @@ function makeList(node, list) {
     // Create the main content container (left side)
     var contentContainer = document.createElement("span");
     contentContainer.style.display = "inline-block";
+    contentContainer.style.width = "85%"; // Limit width of title to prevent overflow
+    contentContainer.style.wordWrap = "break-word"; // Allow word wrapping
     
     if (index != undefined) {
-listItem.id = index.category.join('-');
+      listItem.id = index.category.join('-');
 
-var anchor = document.createElement("a");
-anchor.textContent = index.name;
-anchor.href = index.url;
-contentContainer.appendChild(anchor);
+      var anchor = document.createElement("a");
+      anchor.textContent = index.name;
+      anchor.href = index.url;
+      contentContainer.appendChild(anchor);
     } else {
-contentContainer.textContent = node.name;
+      contentContainer.textContent = node.name;
     }
     
     listItem.appendChild(contentContainer);
     
     // Create the right-aligned container for count and toggle
     var rightContainer = document.createElement("span");
-    rightContainer.style.float = "right";
+    rightContainer.style.position = "absolute"; // Position absolutely within the list item
+    rightContainer.style.right = "0";
+    rightContainer.style.top = "0";
     rightContainer.style.display = "inline-block";
     
-    // Calculate total count of all descendant documents
+    // Calculate total descendants 
     var totalDescendants = countAllDescendants(node);
     
     var childCount = document.createElement("span");
-    childCount.textContent = `(${totalDescendants})`;
-    childCount.style.marginRight = "10px";
-    childCount.style.color = "black";
+    childCount.className = "count-display";
+    childCount.textContent = totalDescendants;
     rightContainer.appendChild(childCount);
     
     // Only add toggle text if node has children
     if (node.children && node.children.length > 0) {
-var toggleText = document.createElement("span");
+      var toggleText = document.createElement("span");
+      toggleText.style.marginLeft = "5px";
 
-// Create toggle icon element
-var toggleIcon = document.createElement("span");
-toggleIcon.className = "toggle-icon";
-toggleIcon.textContent = "▾";
+      // Create toggle icon element
+      var toggleIcon = document.createElement("span");
+      toggleIcon.className = "toggle-icon";
+      toggleIcon.textContent = "▾";
 
-toggleText.appendChild(toggleIcon);
-toggleText.style.color = "black";
-toggleText.style.cursor = "pointer";
-toggleText.style.fontSize = "0.8em";
-rightContainer.appendChild(toggleText);
+      toggleText.appendChild(toggleIcon);
+      toggleText.style.cursor = "pointer";
+      rightContainer.appendChild(toggleText);
     }
     
     listItem.appendChild(rightContainer);
     list.appendChild(listItem);
 
     if (node.children.length > 0) {
-var childList = document.createElement("ul");
-childList.style.display = "none";
-for (var i = 0; i < node.children.length; i++) {
-  makeList(node.children[i], childList);
-}
-listItem.appendChild(childList);
+      var childList = document.createElement("ul");
+      childList.style.display = "none";
+      for (var i = 0; i < node.children.length; i++) {
+        makeList(node.children[i], childList);
+      }
+      listItem.appendChild(childList);
 
-// Update event handling - only toggle on the toggleText element
-toggleText.addEventListener("click", function (e) {
-  e.stopPropagation(); // Prevent event from bubbling up
-  if (childList.style.display === "none") {
-    childList.style.display = "block";
-    toggleText.querySelector('.toggle-icon').classList.add('open');
-  } else {
-    childList.style.display = "none";
-    toggleText.querySelector('.toggle-icon').classList.remove('open');
-  }
-});
+      // Update event handling - only toggle on the toggleText element
+      toggleText.addEventListener("click", function (e) {
+        e.stopPropagation(); // Prevent event from bubbling up
+        if (childList.style.display === "none") {
+          childList.style.display = "block";
+          toggleText.querySelector('.toggle-icon').classList.add('open');
+        } else {
+          childList.style.display = "none";
+          toggleText.querySelector('.toggle-icon').classList.remove('open');
+        }
+      });
 
-// Remove the click event from the whole list item
-listItem.removeEventListener("click", function(){});
+      // Remove the click event from the whole list item
+      listItem.removeEventListener("click", function(){});
 
-// Add navigation to the content container if it has a link
-if (index != undefined) {
-  contentContainer.addEventListener("click", function(e) {
-    e.stopPropagation();
-    window.location.href = index.url;
-  });
-}
+      // Add navigation to the content container if it has a link
+      if (index != undefined) {
+        contentContainer.addEventListener("click", function(e) {
+          e.stopPropagation();
+          window.location.href = index.url;
+        });
+      }
     }
   } else {
     // For leaf nodes, no toggle or count
