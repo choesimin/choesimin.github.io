@@ -1,10 +1,10 @@
 Gem::Specification.new do |spec|
   spec.name     = "simin"
-  spec.version  = "0.0.0"
-  spec.authors  = ["Choe Simin"]
-  spec.email    = ["choesimin961009@gmail.com"]
+  spec.version  = "1.0.0"
+  spec.authors  = ["simin"]
+  spec.email    = ["simmmmmmin@gmail.com"]
 
-  spec.summary  = "tech blog custom theme"
+  spec.summary  = "simin blog custom theme"
   spec.homepage = "https://github.com/choesimin"
   spec.license  = "MIT"
 

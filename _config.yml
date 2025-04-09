@@ -1,8 +1,5 @@
 title: SIMIN
-author: 최시민
-
 collections_dir: collections
-
 collections:
   notes:
     output: true
