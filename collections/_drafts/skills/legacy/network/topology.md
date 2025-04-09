@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Network 주요 장비
 date: 2024-09-27
 ---

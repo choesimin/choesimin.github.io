@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 date: 2025-01-03
 title: Kafka의 장애 대응 체계
 ---

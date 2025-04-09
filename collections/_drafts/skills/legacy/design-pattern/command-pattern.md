@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Command Pattern - 
 date: 2024-02-06
 ---

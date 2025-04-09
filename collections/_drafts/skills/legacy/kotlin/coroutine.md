@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Kotlin Coroutine 개념 - 비동기 작업을 처리하는 방법
 date: 2024-08-01
 ---

@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: MySQL Query - LIMIT와 OFFSET
 date: 2023-11-23
 ---

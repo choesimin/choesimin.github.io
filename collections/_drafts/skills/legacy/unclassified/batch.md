@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 ---
 
 # Batch Processing : 일괄 처리

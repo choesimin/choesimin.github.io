@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Abstract Factory Pattern - 합성을 이용한 Factory Pattern
 version: 2023-05-23
 ---

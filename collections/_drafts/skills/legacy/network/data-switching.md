@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Data 교환 방식의 종류 - 회선/Packet/Message 교환 방식
 date: 2024-09-02
 ---

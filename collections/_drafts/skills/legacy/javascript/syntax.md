@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: JavaScript 문법
 date: 2023-12-12
 ---

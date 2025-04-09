@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Git - 명령어 총 정리
 version: 2023-07-12
 ---

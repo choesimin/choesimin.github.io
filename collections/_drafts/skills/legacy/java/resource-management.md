@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Java에서 자원을 효율적으로 관리하기 - AutoCloseable, Try-With-Resources
 date: 2025-01-17
 ---

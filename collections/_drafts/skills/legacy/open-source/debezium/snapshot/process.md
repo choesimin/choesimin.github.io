@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Debezium Snapshot의 동작 과정
 date: 2025-01-31
 ---

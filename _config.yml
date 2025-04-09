@@ -4,7 +4,7 @@ author: 최시민
 collections_dir: collections
 
 collections:
-  skills:
+  notes:
     output: true
   graphics:
     output: true

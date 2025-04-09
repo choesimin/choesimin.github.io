@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Grafana - JSON Model로 Dashbaord 그리기
 date: 2025-02-10
 ---

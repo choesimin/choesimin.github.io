@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Kafka Conenct - 
 date: 2025-01-19
 ---

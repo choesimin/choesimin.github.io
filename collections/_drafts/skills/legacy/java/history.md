@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 ---
 
 # 1장 Java의 발전 과정

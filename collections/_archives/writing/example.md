@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 date: yyyy-mm-dd
 title: 글의 제목 - 주제에 대한 간단한 설명
 description: 여기에는 글 전체에 대한 요약 설명을 한 줄로 작성합니다.

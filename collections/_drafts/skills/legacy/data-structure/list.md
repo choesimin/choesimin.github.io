@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Data Structure
 date: 2024-03-26
 ---

@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 permalink: /
 title: Kafka Consumer Group - 
 description: 

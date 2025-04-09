@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Network의 종류
 date: 2024-09-02
 ---

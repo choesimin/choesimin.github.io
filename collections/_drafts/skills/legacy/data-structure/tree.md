@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: 자료 구조 - Tree
 date: 2024-06-04
 ---

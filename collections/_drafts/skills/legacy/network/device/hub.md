@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Hub - 모든 Port에 신호를 전달하는 장비
 date: 2024-10-07
 ---

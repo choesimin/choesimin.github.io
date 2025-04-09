@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: WebSocket Protocol
 date: 2024-02-19
 ---

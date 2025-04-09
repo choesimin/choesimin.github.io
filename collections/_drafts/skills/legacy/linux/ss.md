@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: netstat - 네트워크 상태 확인
 date: 2024-10-02
 ---

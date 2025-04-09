@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 ---
 
 # Identity(동일성) & Equality(동등성)

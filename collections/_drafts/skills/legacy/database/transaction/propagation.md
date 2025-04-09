@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Transaction 전파 전략
 date: 2024-10-13
 ---

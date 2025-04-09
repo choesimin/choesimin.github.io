@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: 은행 결제 (Firm Banking, Open Banking, Internet Banking)
 date: 2024-09-25
 ---

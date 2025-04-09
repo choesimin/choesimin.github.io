@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 ---
 
 # Application Programming Interface

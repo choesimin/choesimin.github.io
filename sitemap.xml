@@ -10,15 +10,8 @@ layout: none
         <priority>1.0</priority>
     </url>
 
-    {% assign sections = "skills,problems,graphics" | split: "," %}
+    {% assign sections = "notes,problems,graphics" | split: "," %}
     {% for section in sections %}
-    <url>
-        <loc>{{ site.url }}/{{ section }}</loc>
-        <lastmod>2025-03-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
     {% assign posts = site[section] %}
     {% for post in posts %}
     <url>

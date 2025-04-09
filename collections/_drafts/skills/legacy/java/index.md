@@ -1,3 +1,3 @@
 ---
-layout: skill
+layout: note
 ---

@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Debezium Snapshot의 안정성 보장 전략
 date: 2025-01-31
 ---

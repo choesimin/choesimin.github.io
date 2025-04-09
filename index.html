@@ -13,7 +13,6 @@ layout: none
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.9.2/simple-jekyll-search.min.js" integrity="sha512-gABzh+zgo1Eh5HMdD2IMOjeaQAjl9v/MrA3xbZnMTRR5wC4x3WxurJo6yg5EWj1zfNz0qoXK/rKVP5Are0E4QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ '/assets/js/typing-effect.js' | relative_url }}"></script>
-    <link rel="stylesheet" href="{{ '/assets/css/skill.css' | relative_url }}" />
     <style>
       #simin {
         position: fixed;
@@ -82,31 +81,31 @@ layout: none
         text-decoration: none;
       }
 
-      #skills a {
+      #notes a {
         text-decoration-line: none;
       }
 
-      #skills ul {
+      #notes ul {
         list-style: none;
         padding-left: 16px;
         margin-top: 0;
       }
 
-      #skills ul sup {
+      #notes ul sup {
         font-size: 10px;
         margin-left: 10px;
         opacity: 0.8;
       }
 
       /* 하위 목록 표시선 */
-      #skills ul li {
+      #notes ul li {
         cursor: pointer; /* Add pointer cursor for clickable items */
         position: relative;
         margin-left: 10px;
       }
 
       /* Vertical lines */
-      #skills ul li::before {
+      #notes ul li::before {
         content: "";
         position: absolute;
         left: -15px;
@@ -117,12 +116,12 @@ layout: none
       }
 
       /* Last child vertical line adjustment */
-      #skills ul li:last-child::before {
+      #notes ul li:last-child::before {
         height: 15px;
       }
 
       /* Add horizontal lines */
-      #skills ul li::after {
+      #notes ul li::after {
         content: "";
         position: absolute;
         left: -15px;
@@ -133,19 +132,19 @@ layout: none
       }
 
       /* List item hover effect */
-      #skills ul li:hover > span:first-child {
+      #notes ul li:hover > span:first-child {
         color: var(--highlight-color);
         transition: color 0.2s ease;
       }
       
       /* Smaller count numbers */
-      #skills ul li span[style*="color: gray"] {
+      #notes ul li span[style*="color: gray"] {
         font-size: 0.85em;
         color: #999 !important;
       }
       
       /* Toggle text styling (펼치기/감추기) */
-      #skills ul li span[style*="color: blue"] {
+      #notes ul li span[style*="color: blue"] {
         color: #777 !important;
         font-size: 0.75em;
         padding: 2px 5px;
@@ -154,18 +153,18 @@ layout: none
       }
       
       /* Toggle text hover effect */
-      #skills ul li span[style*="color: blue"]:hover {
+      #notes ul li span[style*="color: blue"]:hover {
         background-color: #eee;
       }
 
       /* 선택된 목록 강조 */
-      #skills li:target > a,
-      #skills li:target > ul > li > a {
+      #notes li:target > a,
+      #notes li:target > ul > li > a {
         font-weight: bold;
         color: var(--highlight-color);
       }
-      #skills li:target > ul > li::before,
-      #skills li:target > ul > li::after {
+      #notes li:target > ul > li::before,
+      #notes li:target > ul > li::after {
         background-color: var(--highlight-color);
       }
     </style>
@@ -184,7 +183,7 @@ layout: none
           <input type="text" placeholder="title, url, yyyy-mm-dd" />
         </div>
         <div id="searchResult"></div>
-        <article id="skills"></article>
+        <article id="notes"></article>
         <ul>
           <li>알고리즘 문제 풀이 모음</li>
           <ul>
@@ -213,12 +212,12 @@ layout: none
       </section>
 
     </main>
-    {% include skill-footer.html %}
+    {% include footer.html %}
     <script>
       SimpleJekyllSearch({
         searchInput: document.getElementById('searchInput'),
         resultsContainer: document.getElementById('searchResult'),
-        json: '/assets/json/skill-search.json',
+        json: '/assets/json/note-search.json',
         searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`
       });
 
@@ -236,7 +235,7 @@ layout: none
         }
       }
       
-      document.getElementById("skills").appendChild(list);
+      document.getElementById("notes").appendChild(list);
 
       function makeList(node, list) {
         var listItem = document.createElement("li");
@@ -420,15 +419,15 @@ layout: none
       function getPages() {
         var pages = [];
 
-        {% for skill in site.skills %}
-        var path = "{{ skill.path }}".replace("_skills/", "").split("/");
+        {% for notes in site.notes %}
+        var path = "{{ notes.path }}".replace("_notes/", "").split("/");
 
         pages.push({
           category: path.slice(0, path.length - 1),
           name: path[path.length - 1].replace(".md", ""),
-          title: "{{ skill.title }}",
-          date: "{{ skill.date | date: '%Y-%m-%d' }}",
-          url: "{{ skill.url | relative_url }}",
+          title: "{{ notes.title }}",
+          date: "{{ notes.date | date: '%Y-%m-%d' }}",
+          url: "{{ notes.url | relative_url }}",
         });
         {% endfor %}
 

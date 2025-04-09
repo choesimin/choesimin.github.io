@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    {% include google-analytics.html %}
+    <title>{{ page.title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ page.description }}" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    {% include giscus.html %}
+    <script src="{{ '/assets/js/typing-effect.js' | relative_url }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css" />
+    <link rel="stylesheet" href="{{ '/assets/css/default.css' | relative_url }}" />
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: var(--highlight-color);
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin-top: 60px;
+      }
+
+      h4,
+      h5,
+      h6 {
+        margin-top: 40px;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      ol,
+      ul {
+        padding-left: 20px;
+      }
+
+      code.hljs {
+        border: 1px solid var(--border-color);
+        line-height: 1.2;
+      }
+
+      code.language-plaintext:not(.hljs) {
+        color: var(--highlight-color);
+        background-color: var(--background-highlight-color);
+        border-radius: 3px;
+        padding: 2px 3px;
+      }
+
+      blockquote {
+        margin: 0;
+        padding: 4px 20px;
+        border-left: 5px solid var(--border-color);
+        background-color: var(--background-highlight-color);
+      }
+
+      article > ul > li {
+        padding: 10px 0;
+      }
+
+      article > ol > li {
+        padding: 10px 0;
+      }
+
+      #progressBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 4px;
+        background-color: var(--color);
+        z-index: 100;
+      }
+
+      #title {
+        min-height: 50px;
+        padding-top: 50px;
+        margin-bottom: 0px;
+        line-height: 1;
+        text-align: center;
+      }
+
+      #date {
+        height: 40px;
+        font-size: 17px;
+        opacity: 0.8;
+        text-align: center;
+      }
+
+      #description {
+        margin-top: 20px;
+        padding: 5px 20px;
+        border: 1px solid var(--border-color);
+        border-left: transparent;
+        border-right: transparent;
+      }
+
+      #content {
+        position: relative;
+      }
+
+      #index {
+        position: sticky;
+        top: 10px;
+        z-index: 100;
+      }
+
+      #index > button {
+        float: right;
+        font-size: 16px;
+        padding: 5px 10px;
+        color: var(--color);
+        background: var(--background-color);
+        border: 1px solid var(--border-color);
+        cursor: pointer;
+      }
+      #index > button:hover {
+        color: var(--highlight-color);
+        background: var(--background-highlight-color);
+      }
+
+      #index ul {
+        display: none;
+        margin: 0;
+        padding: 30px 45px;
+        position: absolute;
+        top: 40px;
+        right: 0px;
+        max-height: 450px;
+        overflow-y: auto;
+        background-color: var(--background-color);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      #index ul li {
+        list-style: none;
+      }
+
+      #index ul li a {
+        text-decoration: none;
+      }
+
+      #stamp {
+        margin-top: 100px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      #stamp img {
+        width: 70px;
+      }
+
+      #related a {
+        font-weight: bolder;
+        text-decoration: none;
+      }
+
+      div.giscus {
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div id="progressBar"></div>
+
+      <h1 id="title">&nbsp</h1>
+      <p id="date">&nbsp</p>
+      <p id="description">&nbsp</p>
+
+      <div id="content">
+        <div id="index">
+          <button type="button" onclick="toggleIndex()">Index</button>
+          <ul></ul>
+        </div>
+        <article>{{ content }}</article>
+      </div>
+
+      <hr>
+
+      <div class="giscus"></div>
+    </main>
+
+    {% include footer.html %}
+  </body>
+
+  <script>
+    hljs.highlightAll();
+    renderMermaid();
+
+    async function renderMermaid() {
+      mermaid.initialize({
+        theme: "neutral",
+        startOnLoad: false,
+        securityLevel: "loose",
+      });
+      await mermaid.run({ querySelector: ".language-mermaid" });
+    }
+
+
+    const title = document.getElementById("title");
+    const date = document.getElementById("date");
+    const description = document.getElementById("description");
+    type(title, "{{ page.title }}");
+    type(date, '{{ page.date | date: "%Y년 %-m월 %e일" }}', 80);
+    type(description, '{{ page.description }}', 10);
+
+
+    const indexList = document.getElementById("index").getElementsByTagName("ul")[0];
+    const indexButton = document.querySelector("#index > button");
+
+    function toggleIndex() {
+      if (indexList.style.display === "block") {
+        indexList.style.display = "none";
+      } else {
+        indexList.style.display = "block";
+      }
+    }
+
+    document.addEventListener('click', function(event) {
+      if (
+        indexList.style.display === "block" && 
+        !indexList.contains(event.target) && 
+        event.target !== indexButton
+      ) {
+        indexList.style.display = "none";
+      }
+    });
+
+
+    const headers = document.querySelectorAll("h2,h3,h4,h5,h6");
+    for (let i = 0; i < headers.length; i++) {
+      const header = headers[i];
+
+      const anchor = document.createElement("a");
+      anchor.innerHTML = header.innerText;
+      anchor.href = "#" + header.id;
+
+      const item = document.createElement("li");
+      item.appendChild(anchor);
+      item.style.marginLeft =
+        (parseInt(header.tagName.replace("H", "")) - 2) * 15 + "px";
+
+      indexList.appendChild(item);
+
+      item.getElementsByTagName("a")[0].addEventListener("click", (e) => {
+        toggleIndex();
+      });
+    }
+
+
+    const progressBar = document.getElementById("progressBar");
+    window.onscroll = function () {
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+
+      progressBar.style.width = scrolled + "%";
+    };
+  </script>
+</html>

@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Debezium - 
 date: 2025-01-21
 ---

@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Factory Method Pattern - 상속을 이용한 Factory Pattern
 version: 2023-05-23
 ---

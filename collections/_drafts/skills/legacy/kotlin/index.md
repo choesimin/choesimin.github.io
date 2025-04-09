@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: Kotlin
 date: 2024-08-01
 ---

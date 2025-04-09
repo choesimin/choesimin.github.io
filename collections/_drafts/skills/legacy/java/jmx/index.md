@@ -1,5 +1,5 @@
 ---
-layout: skill
+layout: note
 title: JMX - Java의 Monitoring API
 date: 2025-02-07
 ---
