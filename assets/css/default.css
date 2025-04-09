@@ -150,6 +150,10 @@ footer {
 }
 
 /* Graphic list styling */
+#graphicList li {
+    margin-top: 10px;
+}
+
 #graphicList a {
     display: block;
 }
