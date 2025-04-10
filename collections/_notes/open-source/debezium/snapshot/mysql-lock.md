@@ -80,6 +80,7 @@ date: 2025-04-10
 ## InnoDB Snapshot : MVCC
 
 - InnoDB engine에서 Debezium은 MVCC(Multi-Version Concurrency Control) 기능을 활용하여 table lock 없이 일관된 snapshot을 생성합니다.
+    - 더 정확히는 table lock을 아주 짧은 시간 동안만 사용합니다.
 
 - Debezium의 InnoDB table snapshot 과정은 "lock -> binlog 위치 확인 -> 즉시 unlock -> transaction 시작 -> schema와 data 읽기 -> transaction commit"의 순서로 진행됩니다.
     1. 짧은 시간 동안 `FLUSH TABLES WITH READ LOCK` 명령을 실행하여 binlog 위치만 획득합니다.
