@@ -37,37 +37,17 @@ hr {
     border-width: 1px 0 0 0;
 }
 
-table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    border-top: 1px solid black;
-    border-collapse: collapse;
-    word-break: keep-all;
-}
-
-th,
-td {
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    padding: 5px 10px;
-}
-
-th:first-child,
-td:first-child {
-    border-left: none;
-}
-
 main {
     flex: 1;
     line-height: 2;
     word-break: keep-all;
     overflow-wrap: break-word;
+    padding: 20px;
 }
 
 footer {
-    text-align: left;
-    padding-bottom: 100px;
+    padding: 20px;
+    border-top: 1px solid black;
 }
 
 /* Sidebar styling */
@@ -104,7 +84,7 @@ footer {
 }
 
 .logo a:hover {
-    text-decoration: none; /* Override the general link hover for logo */
+    text-decoration: underline;
 }
 
 /* Introduction styling */
@@ -229,23 +209,26 @@ footer {
     outline: none;
 }
 
+/* Remove redundant styling for search results */
 #searchResult {
-    display: none;
     background-color: var(--background-color, white);
-    padding: 10px;
+    padding: 10px 0;
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 0;
+    padding-left: 12px;
 }
 
+/* Clean up search result styling */
 #searchResult li {
     list-style: none;
-    margin-top: 6px;
+    margin-bottom: 5px;
 }
 
 #searchResult li a {
     text-decoration: none;
-}
-
-#searchResult li a:hover {
-    text-decoration: underline;
+    display: block;
 }
 
 .algorithm-category-header {
@@ -265,13 +248,9 @@ footer {
     float: right;
 }
 
+/* Clean up general styling */
 .hidden {
     display: none;
-}
-
-.list-unstyled {
-    list-style: none;
-    padding-left: 12px;
 }
 
 /* Classes for note tree styling */
@@ -309,5 +288,5 @@ footer {
     flex-direction: column;
     min-height: 100vh;
     flex: 1;
-    padding: 0 30px;
+    padding: 0;
 }

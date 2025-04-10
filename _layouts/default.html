@@ -52,11 +52,11 @@
               <span class="count-display" id="noteCount"></span>
             </span>
           </div>
-          <div id="noteSearch" class="hidden">
-            <input type="text" placeholder="search" />
-            <div id="searchResult"></div>
+          <div id="noteSearch">
+            <input type="text" placeholder="Search notes..." />
+            <ul id="searchResult" class="hidden"></ul>
           </div>
-          <div id="noteList" class="hidden"></div>
+          <div id="noteList"></div>
         </div>
 
         <div class="category-container">
@@ -114,7 +114,7 @@
         {{ content }}
       </main>
 
-      {% include footer.html %}
+      <footer>(C) {{ "now" | date: "%Y" }}. {{ site.title }} all rights reserved.</footer>
     </div>
 
     <script src="{{ '/assets/js/default.js' | relative_url }}"></script>

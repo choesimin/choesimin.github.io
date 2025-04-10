@@ -3,39 +3,41 @@ layout: none
 ---
 
 // Initialize Simple Jekyll Search
-SimpleJekyllSearch({
-  searchInput: document.querySelector('#noteSearch input'),
-  resultsContainer: document.getElementById('searchResult'),
-  json: '/assets/json/note-search.json',
-  searchResultTemplate: `<li><a href="{{ site.url }}{url}">{title}</a></li>`,
-  // Only search through titles
-  keys: ['title']
-});
-
-// Add event listeners to hide/show note list based on search state
-document.querySelector('#noteSearch input').addEventListener('input', function(e) {
-  var noteList = document.getElementById('noteList');
-  var searchResults = document.getElementById('searchResult');
+document.addEventListener('DOMContentLoaded', function() {
+  SimpleJekyllSearch({
+    searchInput: document.querySelector('#noteSearch input'),
+    resultsContainer: document.getElementById('searchResult'),
+    json: '/assets/json/note-search.json',
+    searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 30,
+    fuzzy: false
+  });
   
-  if (this.value.trim() !== '') {
-    // When search input has text, hide note list and show search results
-    noteList.classList.add('hidden');
-    searchResults.classList.remove('hidden');
-  } else {
-    // When search input is empty, show note list and hide search results
-    noteList.classList.remove('hidden');
-    searchResults.classList.add('hidden');
-  }
+  // Simplified search display handler
+  document.querySelector('#noteSearch input').addEventListener('input', function(e) {
+    var noteList = document.getElementById('noteList');
+    var searchResults = document.getElementById('searchResult');
+    
+    if (this.value.trim() !== '') {
+      noteList.classList.add('hidden');
+      searchResults.classList.remove('hidden');
+    } else {
+      noteList.classList.remove('hidden');
+      searchResults.classList.add('hidden');
+    }
+  });
 });
 
-// Clear search and show note list when clicking outside search area
+// Simplify click handler
 document.addEventListener('click', function(e) {
   var searchInput = document.querySelector('#noteSearch input');
   var searchResults = document.getElementById('searchResult');
   var noteList = document.getElementById('noteList');
   
-  // If click is outside search area and search is active
-  if (!searchInput.contains(e.target) && !searchResults.contains(e.target) && searchInput.value.trim() !== '') {
+  if (searchInput && !searchInput.contains(e.target) && 
+      searchResults && !searchResults.contains(e.target) && 
+      searchInput.value.trim() !== '') {
     searchInput.value = '';
     searchResults.classList.add('hidden');
     noteList.classList.remove('hidden');
@@ -68,7 +70,7 @@ if (root.children && root.children.length > 0) {
 
 document.getElementById("noteList").appendChild(list);
 
-// Group algorithm items by category
+// Clean up algorithm display logic
 function groupAlgorithms() {
   var algorithmList = document.getElementById('algorithmList');
   algorithmList.innerHTML = '';
@@ -77,19 +79,22 @@ function groupAlgorithms() {
   var algorithmProblems = [
     {% for problem in site.problems %}
     {
-url: "{{ problem.url | relative_url }}",
-category: "{{ problem.category }}",
-title: "{{ problem.title }}",
-tags: "{{ problem.tags }}"
+      url: "{{ problem.url | relative_url }}",
+      category: "{{ problem.category }}",
+      title: "{{ problem.title }}",
+      tags: "{{ problem.tags }}"
     },
     {% endfor %}
   ];
+  
+  // Skip empty algorithm collections
+  if (algorithmProblems.length === 0) return;
   
   // Group problems by category
   var categories = {};
   algorithmProblems.forEach(function(problem) {
     if (!categories[problem.category]) {
-categories[problem.category] = [];
+      categories[problem.category] = [];
     }
     categories[problem.category].push(problem);
   });
@@ -103,43 +108,43 @@ categories[problem.category] = [];
     var categoryHeader = document.createElement('div');
     categoryHeader.className = 'algorithm-category-header';
     categoryHeader.innerHTML = `
-<span class="display-inline-block">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
-<span class="float-right">
-  <span class="count-display">${categories[category].length}</span>
-  <span class="toggle-icon">▾</span>
-</span>
+      <span class="display-inline-block">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
+      <span class="float-right">
+        <span class="count-display">${categories[category].length}</span>
+        <span class="toggle-icon">▾</span>
+      </span>
     `;
     categoryDiv.appendChild(categoryHeader);
     
     // Create list of problems
     var problemList = document.createElement('ul');
-    problemList.classList.add('hidden', 'list-unstyled');
+    problemList.classList.add('hidden');
     
     categories[category].forEach(function(problem) {
-var listItem = document.createElement('li');
-listItem.innerHTML = `
-  <a href="${problem.url}">
-    ${problem.title}
-    <small class="algorithm-tag">(${problem.tags})</small>
-  </a>
-`;
-problemList.appendChild(listItem);
+      var listItem = document.createElement('li');
+      listItem.innerHTML = `
+        <a href="${problem.url}">
+          ${problem.title}
+          <small class="algorithm-tag">(${problem.tags})</small>
+        </a>
+      `;
+      problemList.appendChild(listItem);
     });
     
     categoryDiv.appendChild(problemList);
     algorithmList.appendChild(categoryDiv);
     
-    // Add toggle functionality - make the whole header and count clickable
+    // Add toggle functionality
     categoryHeader.addEventListener('click', function() {
-var list = this.nextElementSibling;
-var icon = this.querySelector('.toggle-icon');
-if (list.classList.contains('hidden')) {
-  list.classList.remove('hidden');
-  icon.classList.add('open');
-} else {
-  list.classList.add('hidden');
-  icon.classList.remove('open');
-}
+      var list = this.nextElementSibling;
+      var icon = this.querySelector('.toggle-icon');
+      if (list.classList.contains('hidden')) {
+        list.classList.remove('hidden');
+        icon.classList.add('open');
+      } else {
+        list.classList.add('hidden');
+        icon.classList.remove('open');
+      }
     });
   }
 }
