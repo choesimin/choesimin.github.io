@@ -102,11 +102,13 @@
       </section>
     </aside>
 
-    <main>
-      {{ content }}
-    </main>
+    <div class="content-wrapper">
+      <main>
+        {{ content }}
+      </main>
 
-    {% include footer.html %}
+      {% include footer.html %}
+    </div>
 
     <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
     {% if layout.additional_js %}
