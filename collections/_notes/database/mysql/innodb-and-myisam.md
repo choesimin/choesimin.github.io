@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /
+permalink: /311
 title: MySQL InnoDB와 MyISAM 비교
 description: InnoDB는 transaction과 row-level 잠금을 지원하는 안전한 engine이고, MyISAM은 읽기에 최적화된 단순한 table-level 잠금 engine입니다.
 date: 2024-04-10
