@@ -7,11 +7,11 @@ tags: string
 source: https://school.programmers.co.kr/learn/courses/30/lessons/120902
 ---
 
-# 문제 설명
+## 문제 설명
 
 `my_string`은 "3 + 5"처럼 문자열로 된 수식입니다. 문자열 `my_string`이 매개변수로 주어질 때, 수식을 계산한 값을 return 하는 solution 함수를 완성해주세요.
 
-# 제한사항
+## 제한사항
 
 - 연산자는 +, -만 존재합니다.
 - 문자열의 시작과 끝에는 공백이 없습니다.
@@ -25,21 +25,21 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/120902
 - return type 은 정수형입니다.
 - `my_string`의 숫자와 연산자는 공백 하나로 구분되어 있습니다.
 
-# 입출력 예
+## 입출력 예
 
 | my_string | result |
 | --- | --- |
 | "3 + 4" | 7 |
 
-# 입출력 예 설명
+## 입출력 예 설명
 
-## 입출력 예 #1
+### 입출력 예 #1
 
 - 3 + 4 = 7을 return 합니다.
 
 ---
 
-# Solution
+## Solution
 
 ```cpp
 #include <iostream>

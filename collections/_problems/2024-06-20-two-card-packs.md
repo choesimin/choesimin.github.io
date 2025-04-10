@@ -7,7 +7,7 @@ tags: implementation
 source: https://school.programmers.co.kr/learn/courses/30/lessons/159994
 ---
 
-# 문제 설명
+## 문제 설명
 
 코니는 영어 단어가 적힌 카드 뭉치 두 개를 선물로 받았습니다. 코니는 다음과 같은 규칙으로 카드에 적힌 단어들을 사용해 원하는 순서의 단어 배열을 만들 수 있는지 알고 싶습니다.
 
@@ -20,7 +20,7 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/159994
 
 문자열로 이루어진 배열 `cards1`, `cards2`와 원하는 단어 배열 `goal`이 매개변수로 주어질 때, `cards1`과 `cards2`에 적힌 단어들로 `goal`를 만들 있다면 "Yes"를, 만들 수 없다면 "No"를 return하는 solution 함수를 완성해주세요.
 
-# 제한사항
+## 제한사항
 
 - 1 ≤ `cards1`의 길이, `cards2`의 길이 ≤ 10
     - 1 ≤ `cards1[i]`의 길이, `cards2[i]`의 길이 ≤ 10
@@ -30,26 +30,26 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/159994
     - `goal`의 원소는 `cards1`과 `cards2`의 원소들로만 이루어져 있습니다.
 - `cards1`, `cards2`, `goal`의 문자열들은 모두 알파벳 소문자로만 이루어져 있습니다.
 
-# 입출력 예
+## 입출력 예
 
 | cards1 | cards2 | goal | result |
 | --- | --- | --- | --- |
 | ["i", "drink", "water"] | ["want", "to"] | ["i", "want", "to", "drink", "water"] | "Yes" |
 | ["i", "water", "drink"] | ["want", "to"] | ["i", "want", "to", "drink", "water"] | "No" |
 
-# 입출력 예 설명
+## 입출력 예 설명
 
-## 입출력 예 #1
+### 입출력 예 #1
 
 본문과 같습니다.
 
-## 입출력 예 #2
+### 입출력 예 #2
 
 `cards1`에서 "i"를 사용하고 `cards2`에서 "want"와 "to"를 사용하여 "i want to"까지는 만들 수 있지만 "water"가 "drink"보다 먼저 사용되어야 하기 때문에 해당 문장을 완성시킬 수 없습니다. 따라서 "No"를 반환합니다.
 
 ---
 
-# Solution
+## Solution
 
 ```cpp
 #include <iostream>

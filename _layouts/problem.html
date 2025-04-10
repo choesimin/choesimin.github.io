@@ -1,100 +1,21 @@
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    {% include google-analytics.html %}
-    <title>{{ page.title }}</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content='{{ page.category | capitalize }} "{{ page.title }}" 문제의 풀이 과정입니다.' />
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script src="https://giscus.app/client.js"
-        data-repo="choesimin/comment"
-        data-repo-id="R_kgDOOEolww"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOOEolw84Cnp_U"
-        data-mapping="url"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="noborder_light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-    </script>
-    <script>
-      hljs.highlightAll();
-    </script>
-    <style>
-      body {
-        font-family: "Noto Sans KR", sans-serif;
-        line-height: 1.6;
-      }
-      main {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      a {
-        color: black;
-      }
-      table,
-      th,
-      td {
-        border: 1px solid;
-        border-collapse: collapse;
-      }
-      th,
-      td {
-        padding: 2px 10px;
-      }
-      hr {
-        margin: 50px 0;
-      }
-      h1:not(:first-child) {
-        margin-top: 50px;
-      }
-      code.language-plaintext:not(.hljs) {
-        background-color: gainsboro;
-        border-radius: 3px;
-        padding: 2px 3px;
-      }
-      #source {
-        word-break: break-all;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <h1>{{ page.title }}</h1>
-      <p>
-        날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}
-        <br />
-        기술 : {{ page.tags }}
-        <br />
-        언어 : C++
-        <br />
-        출처 : <a href="{{ page.source }}" target="_blank" id="source">{{page.source}}</a>
-        <sup><small>{{ page.category }}</small></sup>
-      </p>
-      <hr />
-      {{ content }}
-      <hr />
-      <div class="giscus"></div>
-    </main>
-  </body>
-  <script>
-    renderMermaid();
+---
+layout: default
+additional_css:
+  - /assets/css/note.css
+---
 
-    async function renderMermaid() {
-      mermaid.initialize({
-        theme: "neutral",
-        startOnLoad: false,
-        securityLevel: "loose",
-      });
-      await mermaid.run({ querySelector: ".language-mermaid" });
-    }
-  </script>
-</html>
+<h1>{{ page.title }}</h1>
+<p>날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}</p>
+<p>기술 : {{ page.tags }}</p>
+<p>언어 : C++</p>
+<p>출처 : <a href="{{ page.source }}" target="_blank" id="source">{{page.source}}</a> <sup><small>{{ page.category }}</small></sup></p>
+
+<hr>
+
+{{ content }}
+
+<hr>
+
+{% include giscus.html %}
+{% include mermaid.html %}
+{% include highlight.html %}

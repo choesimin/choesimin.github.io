@@ -7,7 +7,7 @@ tags: string
 source: https://school.programmers.co.kr/learn/courses/30/lessons/140108
 ---
 
-# 문제 설명
+## 문제 설명
 
 문자열 `s`가 입력되었을 때 다음 규칙을 따라서 이 문자열을 여러 문자열로 분해하려고 합니다.
 
@@ -18,12 +18,12 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/140108
 
 문자열 `s`가 매개변수로 주어질 때, 위 과정과 같이 문자열들로 분해하고, 분해한 문자열의 개수를 return 하는 함수 solution을 완성하세요.
 
-# 제한사항
+## 제한사항
 
 - 1 ≤ `s`의 길이 ≤ 10,000
 - `s`는 영어 소문자로만 이루어져 있습니다.
 
-# 입출력 예
+## 입출력 예
 
 | s | result |
 | --- | --- |
@@ -31,23 +31,23 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/140108
 | "abracadabra" | 6 |
 | "aaabbaccccabba" | 3 |
 
-# 입출력 예 설명
+## 입출력 예 설명
 
-## 입출력 예 #1
+### 입출력 예 #1
 
 `s`="banana"인 경우 ba - na - na와 같이 분해됩니다.
 
-## 입출력 예 #2
+### 입출력 예 #2
 
 `s`="abracadabra"인 경우 ab - ra - ca - da - br - a와 같이 분해됩니다.
 
-## 입출력 예 #3
+### 입출력 예 #3
 
 `s`="aaabbaccccabba"인 경우 aaabbacc - ccab - ba와 같이 분해됩니다.
 
 ---
 
-# Solution
+## Solution
 
 ```cpp
 #include <iostream>

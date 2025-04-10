@@ -7,7 +7,7 @@ tags: map
 source: https://school.programmers.co.kr/learn/courses/30/lessons/118666
 ---
 
-# 문제 설명
+## 문제 설명
 
 나만의 카카오 성격 유형 검사지를 만들려고 합니다.  
 성격 유형 검사는 다음과 같은 4개 지표로 성격 유형을 구분합니다. 성격은 각 지표에서 두 유형 중 하나로 결정됩니다.
@@ -59,7 +59,7 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/118666
 
 질문마다 판단하는 지표를 담은 1차원 문자열 배열 `survey`와 검사자가 각 질문마다 선택한 선택지를 담은 1차원 정수 배열 `choices`가 매개변수로 주어집니다. 이때, 검사자의 성격 유형 검사 결과를 지표 번호 순서대로 return 하도록 solution 함수를 완성해주세요.
 
-# 제한사항
+## 제한사항
 
 - 1 ≤ `survey`의 길이 ( = `n`) ≤ 1,000
     - `survey`의 원소는 `"RT", "TR", "FC", "CF", "MJ", "JM", "AN", "NA"` 중 하나입니다.
@@ -79,16 +79,16 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/118666
 | 6 | 동의 |
 | 7 | 매우 동의 |
 
-# 입출력 예
+## 입출력 예
 
 | survey | choices | result |
 | --- | --- | --- |
 | `["AN", "CF", "MJ", "RT", "NA"]` | [5, 3, 2, 7, 5] | `"TCMA"` |
 | `["TR", "RT", "TR"]` | [7, 1, 3] | `"RCJA"` |
 
-# 입출력 예 설명
+## 입출력 예 설명
 
-## 입출력 예 #1
+### 입출력 예 #1
 
 1번 질문의 점수 배치는 아래 표와 같습니다.
 
@@ -175,7 +175,7 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/118666
 
 따라서 `"TCMA"`를 return 해야 합니다.
 
-## 입출력 예 #2
+### 입출력 예 #2
 
 1번부터 3번까지 질문의 성격 유형 점수를 합치면 아래 표와 같습니다.
 
@@ -193,7 +193,7 @@ source: https://school.programmers.co.kr/learn/courses/30/lessons/118666
 
 ---
 
-# Solution
+## Solution
 
 {% raw %}
 ```cpp
