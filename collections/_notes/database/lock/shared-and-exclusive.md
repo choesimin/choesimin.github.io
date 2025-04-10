@@ -14,7 +14,7 @@ date: 2025-04-10
 - 공유 잠금과 배타 잠금은 database에서 transaction의 동시성 제어를 위한 핵심 mechanism입니다.
     - 두 잠금 방식은 각각 다른 목적으로 사용되며 서로 다른 특성을 가집니다.
 
-- 공유 잠금과 배타 잠금은 잠금 수준(level)과는 무관하며, database의 환경과 설정에 따라 다르게 동작할 수 있습니다.
+- 공유 잠금과 배타 잠금은 잠금 수준(locking level)과는 무관하며, database의 환경과 설정에 따라 다르게 동작할 수 있습니다.
     - 예를 들어, MySQL InnoDB에서는 row-level lock을 기본으로 사용하기 때문에, 공유 잠금과 배타 잠금 모두 row-level lock으로 설정됩니다.
     - 반면, MyISAM에서는 table-level lock을 사용하므로 공유 잠금과 배타 잠금 모두 table-level lock으로 설정됩니다.
 
