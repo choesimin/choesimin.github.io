@@ -129,7 +129,7 @@ problemList.appendChild(listItem);
     categoryDiv.appendChild(problemList);
     algorithmList.appendChild(categoryDiv);
     
-    // Add toggle functionality
+    // Add toggle functionality - make the whole header and count clickable
     categoryHeader.addEventListener('click', function() {
 var list = this.nextElementSibling;
 var icon = this.querySelector('.toggle-icon');
@@ -275,16 +275,15 @@ function makeList(node, list) {
       }
       listItem.appendChild(childList);
 
-      // Update event handling - only toggle on the toggleText element
+      // Make both count and toggle icon clickable for toggling
+      // Add click handling for toggle icon
       toggleText.addEventListener("click", function (e) {
-        e.stopPropagation(); // Prevent event from bubbling up
-        if (childList.classList.contains("hidden")) {
-          childList.classList.remove("hidden");
-          toggleText.querySelector('.toggle-icon').classList.add('open');
-        } else {
-          childList.classList.add("hidden");
-          toggleText.querySelector('.toggle-icon').classList.remove('open');
-        }
+        toggleChildList(e, childList, toggleText);
+      });
+      
+      // Add click handling for the count display
+      childCount.addEventListener("click", function (e) {
+        toggleChildList(e, childList, toggleText);
       });
 
       // Remove the click event from the whole list item
@@ -305,6 +304,18 @@ function makeList(node, list) {
     anchor.href = node.url;
     listItem.appendChild(anchor);
     list.appendChild(listItem);
+  }
+}
+
+// Helper function to toggle child list visibility
+function toggleChildList(e, childList, toggleText) {
+  e.stopPropagation(); // Prevent event from bubbling up
+  if (childList.classList.contains("hidden")) {
+    childList.classList.remove("hidden");
+    toggleText.querySelector('.toggle-icon').classList.add('open');
+  } else {
+    childList.classList.add("hidden");
+    toggleText.querySelector('.toggle-icon').classList.remove('open');
   }
 }
 
