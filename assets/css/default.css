@@ -213,3 +213,50 @@ footer {
     border-bottom: 1px solid var(--border-color, black);
     font-size: 0.9em;
 }
+
+/* Classes to replace inline styles */
+.display-inline-block {
+    display: inline-block;
+}
+
+.float-right {
+    float: right;
+}
+
+.hidden {
+    display: none;
+}
+
+.list-unstyled {
+    list-style: none;
+    padding-left: 12px;
+}
+
+/* Classes for note tree styling */
+.list-item-relative {
+    position: relative;
+}
+
+.content-container {
+    display: inline-block;
+    width: 85%;
+    word-wrap: break-word;
+}
+
+.right-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+}
+
+.toggle-margin-left {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* Algorithm tag styling */
+.algorithm-tag {
+    font-size: 0.85em;
+    color: #666;
+}

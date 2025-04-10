@@ -19,12 +19,12 @@ document.querySelector('#noteSearch input').addEventListener('input', function(e
   
   if (this.value.trim() !== '') {
     // When search input has text, hide note list and show search results
-    noteList.style.display = 'none';
-    searchResults.style.display = 'block';
+    noteList.classList.add('hidden');
+    searchResults.classList.remove('hidden');
   } else {
     // When search input is empty, show note list and hide search results
-    noteList.style.display = 'block';
-    searchResults.style.display = 'none';
+    noteList.classList.remove('hidden');
+    searchResults.classList.add('hidden');
   }
 });
 
@@ -37,10 +37,20 @@ document.addEventListener('click', function(e) {
   // If click is outside search area and search is active
   if (!searchInput.contains(e.target) && !searchResults.contains(e.target) && searchInput.value.trim() !== '') {
     searchInput.value = '';
-    searchResults.style.display = 'none';
-    noteList.style.display = 'block';
+    searchResults.classList.add('hidden');
+    noteList.classList.remove('hidden');
   }
 });
+
+// Initialize progress bar
+const progressBar = document.getElementById("progressBar");
+window.onscroll = function () {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+
+  progressBar.style.width = scrolled + "%";
+};
 
 // Set up note tree
 var pages = getPages();
@@ -93,8 +103,8 @@ categories[problem.category] = [];
     var categoryHeader = document.createElement('div');
     categoryHeader.className = 'algorithm-category-header';
     categoryHeader.innerHTML = `
-<span style="display: inline-block">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
-<span style="float: right">
+<span class="display-inline-block">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
+<span class="float-right">
   <span class="count-display">${categories[category].length}</span>
   <span class="toggle-icon">▾</span>
 </span>
@@ -103,16 +113,14 @@ categories[problem.category] = [];
     
     // Create list of problems
     var problemList = document.createElement('ul');
-    problemList.style.display = 'none';
-    problemList.style.listStyle = 'none';
-    problemList.style.paddingLeft = '12px';  // Standardized padding
+    problemList.classList.add('hidden', 'list-unstyled');
     
     categories[category].forEach(function(problem) {
 var listItem = document.createElement('li');
 listItem.innerHTML = `
   <a href="${problem.url}">
     ${problem.title}
-    <small style="font-size: 0.85em; color: #666;">(${problem.tags})</small>
+    <small class="algorithm-tag">(${problem.tags})</small>
   </a>
 `;
 problemList.appendChild(listItem);
@@ -125,11 +133,11 @@ problemList.appendChild(listItem);
     categoryHeader.addEventListener('click', function() {
 var list = this.nextElementSibling;
 var icon = this.querySelector('.toggle-icon');
-if (list.style.display === 'none') {
-  list.style.display = 'block';
+if (list.classList.contains('hidden')) {
+  list.classList.remove('hidden');
   icon.classList.add('open');
 } else {
-  list.style.display = 'none';
+  list.classList.add('hidden');
   icon.classList.remove('open');
 }
     });
@@ -170,12 +178,12 @@ document.querySelectorAll('.category-header').forEach(function(header) {
       var searchElement = document.getElementById('noteSearch');
       var targetElement = document.getElementById(targetId);
 
-      if (targetElement.style.display === 'none') {
-        searchElement.style.display = 'block';
-        targetElement.style.display = 'block';
+      if (targetElement.classList.contains('hidden')) {
+        searchElement.classList.remove('hidden');
+        targetElement.classList.remove('hidden');
       } else {
-        searchElement.style.display = 'none';
-        targetElement.style.display = 'none';
+        searchElement.classList.add('hidden');
+        targetElement.classList.add('hidden');
       }
     } else if (targetContainer.querySelector('#algorithmList')) {
       targetElement = document.getElementById('algorithmList');
@@ -197,17 +205,17 @@ window.addEventListener('load', function() {
 });
 
 function toggleDisplay(element) {
-  if (element.style.display === 'none') {
-    element.style.display = 'block';
+  if (element.classList.contains('hidden')) {
+    element.classList.remove('hidden');
   } else {
-    element.style.display = 'none';
+    element.classList.add('hidden');
   }
 }
 
 // Note tree functions
 function makeList(node, list) {
   var listItem = document.createElement("li");
-  listItem.style.position = "relative"; // Add relative positioning to list items
+  listItem.classList.add("list-item-relative");
   
   if (node.children != undefined) {
     var index = node.children.filter(child => child.isIndex)[0];
@@ -215,9 +223,7 @@ function makeList(node, list) {
 
     // Create the main content container (left side)
     var contentContainer = document.createElement("span");
-    contentContainer.style.display = "inline-block";
-    contentContainer.style.width = "85%"; // Limit width of title to prevent overflow
-    contentContainer.style.wordWrap = "break-word"; // Allow word wrapping
+    contentContainer.classList.add("content-container");
     
     if (index != undefined) {
       listItem.id = index.category.join('-');
@@ -234,10 +240,7 @@ function makeList(node, list) {
     
     // Create the right-aligned container for count and toggle
     var rightContainer = document.createElement("span");
-    rightContainer.style.position = "absolute"; // Position absolutely within the list item
-    rightContainer.style.right = "0";
-    rightContainer.style.top = "0";
-    rightContainer.style.display = "inline-block";
+    rightContainer.classList.add("right-container");
     
     // Calculate total descendants 
     var totalDescendants = countAllDescendants(node);
@@ -250,7 +253,7 @@ function makeList(node, list) {
     // Only add toggle text if node has children
     if (node.children && node.children.length > 0) {
       var toggleText = document.createElement("span");
-      toggleText.style.marginLeft = "5px";
+      toggleText.classList.add("toggle-margin-left");
 
       // Create toggle icon element
       var toggleIcon = document.createElement("span");
@@ -258,7 +261,6 @@ function makeList(node, list) {
       toggleIcon.textContent = "▾";
 
       toggleText.appendChild(toggleIcon);
-      toggleText.style.cursor = "pointer";
       rightContainer.appendChild(toggleText);
     }
     
@@ -267,7 +269,7 @@ function makeList(node, list) {
 
     if (node.children.length > 0) {
       var childList = document.createElement("ul");
-      childList.style.display = "none";
+      childList.classList.add("hidden");
       for (var i = 0; i < node.children.length; i++) {
         makeList(node.children[i], childList);
       }
@@ -276,11 +278,11 @@ function makeList(node, list) {
       // Update event handling - only toggle on the toggleText element
       toggleText.addEventListener("click", function (e) {
         e.stopPropagation(); // Prevent event from bubbling up
-        if (childList.style.display === "none") {
-          childList.style.display = "block";
+        if (childList.classList.contains("hidden")) {
+          childList.classList.remove("hidden");
           toggleText.querySelector('.toggle-icon').classList.add('open');
         } else {
-          childList.style.display = "none";
+          childList.classList.add("hidden");
           toggleText.querySelector('.toggle-icon').classList.remove('open');
         }
       });

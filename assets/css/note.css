@@ -1,14 +1,3 @@
-/* Note layout specific styles */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: black;
-}
-
-h1,
 h2,
 h3 {
   margin-top: 60px;
@@ -64,29 +53,6 @@ article > ol > li {
   height: 4px;
   background-color: black;
   z-index: 100;
-}
-
-#title {
-  min-height: 50px;
-  padding-top: 50px;
-  margin-bottom: 0px;
-  line-height: 1;
-  text-align: center;
-}
-
-#date {
-  height: 40px;
-  font-size: 17px;
-  opacity: 0.8;
-  text-align: center;
-}
-
-#description {
-  margin-top: 20px;
-  padding: 5px 20px;
-  border: 1px solid black;
-  border-left: transparent;
-  border-right: transparent;
 }
 
 #content {
