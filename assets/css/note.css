@@ -24,16 +24,20 @@ ul {
 
 table {
   display: block;
-  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   border-collapse: collapse;
   word-break: keep-all;
 }
 
+th {
+  background-color: #f3f3f3;
+}
+
 th,
 td {
     border: 1px solid black;
-    border: 1px solid black;
+    padding: 5px 10px;
 }
 
 

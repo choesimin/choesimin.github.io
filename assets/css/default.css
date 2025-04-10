@@ -43,6 +43,10 @@ main {
     word-break: keep-all;
     overflow-wrap: break-word;
     padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 footer {
@@ -289,4 +293,7 @@ footer {
     min-height: 100vh;
     flex: 1;
     padding: 0;
+    max-width: calc(100% - 250px); /* Subtract sidebar width from 100% */
+    overflow-x: hidden; /* Prevent horizontal scrolling on the wrapper */
+    box-sizing: border-box;
 }
