@@ -111,6 +111,68 @@ date: 2025-04-10
 ---
 
 
+## Debezium `snapshot.locking.mode` 설정
+
+- Debezium은 `snapshot.locking.mode` 설정을 통해 snapshot 수행 시의 database lock 범위와 지속 시간을 조절할 수 있습니다.
+    - snapshto locking mode 설정은 snapshot 중 database의 일관성과 가용성 사이의 균형을 맞추는 데 중요한 역할을 합니다.
+
+- `snapshot.locking.mode`에는 `minimal`, `extended`, `none`의 3가지 option이 있습니다.
+    - 각 option은 snapshot 수행 시 table lock을 어떻게 처리할지를 정의합니다.
+
+| 설정 Option | 적용 Lock 범위 | Data 일관성 | Service 가용성 | 권장 사용 환경 |
+| --- | --- | --- | --- | --- |
+| `minimal` | 초기 metadata 읽기 단계에서만 global lock | `REPEATABLE READ`로 보장 | 높음 (data 읽기 단계에서 다른 쓰기 작업 가능) | 대부분의 InnoDB 환경, 일반 production 환경 |
+| `extended` | 전체 snapshot 기간 동안 global lock | 완벽하게 보장 | 낮음 (모든 쓰기 작업 차단) | 엄격한 일관성 필요, schema 변경이 빈번한 환경 |
+| `none` | table lock 없음 (단, MyISAM은 예외) | snapshot 중 schema 변경 시 불일치 가능 | 최고 (거의 모든 작업 허용) | schema 변경이 통제된 환경, InnoDB 전용 환경 |
+
+- `snapshot.locking.mode` 설정을 선택할 때는 database 규모, engine 유형, service 가용성 요구 사항, data 일관성 요구 사항을 종합적으로 고려해야 합니다.
+    - 일반적으로 InnoDB를 사용하는 환경에서는 `minimal` 설정이 가장 균형 잡힌 선택입니다.
+    - MyISAM을 사용하는 환경에서는 설정과 상관없이 table lock이 필요하므로, service 영향을 최소화하기 위한 별도의 전략이 필요합니다.
+
+
+
+### `minimal` : 처음에만 잠깐 잠금
+
+- connector는 snapshot의 초기 단계에서만 global read lock을 유지합니다.
+    - 이 단계에서는 database schema와 기타 metadata를 읽어옵니다.
+    - metadata 획득 후 즉시 lock을 해제합니다.
+
+- 실제 table data를 읽는 단계에서는 lock을 해제한 상태로 작업합니다.
+    - 이 때 `REPEATABLE READ` transaction 격리 수준을 사용하여 일관된 snapshot을 보장합니다.
+    - 다른 MySQL client가 database를 update할 수 있지만, connector는 transaction 시작 시점의 동일한 data를 계속 읽습니다.
+
+- 대부분의 경우에는 `minimal` mode가 service 영향을 최소화하면서 일관된 snapshot을 제공합니다.
+    - 특히 InnoDB engine을 사용하는 환경에서 효과적입니다.
+
+
+### `extended` : 모든 쓰기 작업 차단
+
+- snapshot의 전체 기간 동안 모든 쓰기 작업을 차단합니다.
+    - MySQL의 `REPEATABLE READ` 격리 수준과 호환되지 않는 동시 작업이 발생하는 환경에서 사용합니다.
+
+- 장시간 lock이 유지되므로 production 환경에서는 사용에 주의가 필요합니다.
+    - data 일관성은 완벽하게 보장되지만, service 가용성이 크게 저하될 수 있습니다.
+    - 특히 대규모 database에서는 service가 중단될 수 있습니다.
+
+- schema 변경이 자주 발생하거나 특별히 엄격한 일관성이 필요한 경우에 적합합니다.
+
+
+### `none` : 잠금 없음
+
+- snapshot 중에 connector가 어떤 table lock도 획득하지 않도록 합니다.
+    - schema 변경이 없을 때만 안전하게 사용할 수 있습니다.
+
+- `none` mode는 engine 유형에 따라 다르게 동작합니다.
+    - MyISAM engine으로 정의된 table은 이 설정에 관계없이 항상 table lock을 획득합니다.
+    - InnoDB engine으로 정의된 table은 row-level lock을 사용하므로 전체 table lock이 발생하지 않습니다.
+
+- 최고의 service 가용성이 필요하지만 schema 변경이 통제된 환경에서 유용합니다.
+    - schema 변경이 snapshot 중에 발생하면 data 불일치가 발생할 수 있습니다.
+
+
+---
+
+
 ## Reference
 
 - <https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-property-snapshot-locking-mode>
