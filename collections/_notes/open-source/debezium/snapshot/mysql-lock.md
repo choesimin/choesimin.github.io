@@ -106,3 +106,11 @@ date: 2025-04-10
     - `snapshot.fetch.size` 설정으로 대량의 data를 처리할 때 메모리 사용량을 조절할 수 있습니다.
     - `snapshot.select.statement.overrides` 설정으로 특정 table의 snapshot query를 최적화할 수 있습니다.
     - 여러 connector를 병렬로 실행하여 대규모 database의 snapshot 시간을 단축할 수 있습니다.
+
+
+---
+
+
+## Reference
+
+- <https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-property-snapshot-locking-mode>
