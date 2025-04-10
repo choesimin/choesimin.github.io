@@ -1,5 +1,5 @@
 html {
-    scroll-padding-top: 100px;
+    scroll-padding-top: 150px;
     scroll-behavior: smooth;
 }
 
@@ -68,8 +68,10 @@ main {
 }
 
 footer {
-    text-align: center;
+    text-align: left;
     padding-bottom: 100px;
+    margin-left: 290px;
+    padding-left: 30px;
 }
 
 
