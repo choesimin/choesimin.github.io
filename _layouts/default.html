@@ -81,7 +81,7 @@
           <ul id="graphicList" class="hidden list-unstyled">
             {% for graphic in site.graphics %}
               <li>
-                <a href="{{ graphic.url | relative_url }}">
+                <a href="{{ graphic.url | relative_url }}" target="_blank">
                   <span class="graphic-title">{{ graphic.title }}</span>
                   <span class="graphic-description">{{ graphic.description }}</span>
                 </a>
