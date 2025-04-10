@@ -36,7 +36,7 @@
 
   <body>
     <div id="progressBar"></div>
-    <div class="sidebar">
+    <aside class="sidebar">
       <section id="categories">
         <div class="category-container">
           <div class="category-header">
@@ -100,13 +100,11 @@
           </ul>
         </div>
       </section>
-    </div>
+    </aside>
 
-    <div class="main-content">
-      <main>
-        {{ content }}
-      </main>
-    </div>
+    <main>
+      {{ content }}
+    </main>
 
     {% include footer.html %}
 

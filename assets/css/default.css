@@ -57,10 +57,11 @@ td:first-child {
 }
 
 main {
-    margin: 0 auto;
-    padding: 10px;
+    margin-left: 290px;
+    padding: 0 20px 20px;
+    flex: 1;
+    margin-bottom: 0;
     max-width: 800px;
-
     line-height: 2;
     word-break: keep-all;
     overflow-wrap: break-word;
@@ -88,15 +89,6 @@ footer {
 
 .sidebar::-webkit-scrollbar {
     display: none;  /* Chrome, Safari, Opera */
-}
-
-/* Main content area */
-.main-content {
-    margin-left: 290px;
-    /* sidebar width + padding */
-    padding: 60px 20px 20px;
-    /* Space for the header/logo */
-    flex: 1;
 }
 
 /* Category styling */
