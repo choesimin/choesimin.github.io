@@ -4,17 +4,10 @@ additional_css:
   - /assets/css/note.css
 ---
 
+<small class="float-right">{{ page.date | date: "%Y년 %-m월 %e일" }} 작성</small>
 <h1>{{ page.title }}</h1>
-<p>{{ page.date | date: "%Y년 %-m월 %e일" }}</p>
 <p>{{ page.description }}</p>
-
-<div id="content">
-  <div id="index">
-    <button type="button" onclick="toggleIndex()">Index</button>
-    <ul></ul>
-  </div>
-  <article>{{ content }}</article>
-</div>
+{{ content }}
 
 <hr>
 

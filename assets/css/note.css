@@ -1,3 +1,7 @@
+h1 {
+  margin: 0;
+}
+
 h2,
 h3 {
   margin-top: 60px;
@@ -45,63 +49,6 @@ article > ol > li {
   padding: 10px 0;
 }
 
-#progressBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 4px;
-  background-color: black;
-  z-index: 100;
-}
-
 #content {
   position: relative;
-}
-
-#index {
-  position: sticky;
-  top: 10px;
-  z-index: 100;
-}
-
-#index > button {
-  float: right;
-  font-size: 16px;
-  padding: 5px 10px;
-  color: black;
-  background: white;
-  border: 1px solid black;
-  cursor: pointer;
-}
-
-#index > button:hover {
-  color: black;
-  background: white;
-}
-
-#index ul {
-  display: none;
-  margin: 0;
-  padding: 30px 45px;
-  position: absolute;
-  top: 40px;
-  right: 0px;
-  max-height: 450px;
-  overflow-y: auto;
-  background-color: white;
-  border: 1px solid black;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-}
-
-#index ul li {
-  list-style: none;
-}
-
-#index ul li a {
-  text-decoration: none;
-}
-
-div.giscus {
-  margin-top: 100px;
 }
