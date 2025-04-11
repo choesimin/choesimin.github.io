@@ -112,7 +112,6 @@ blockquote {
 }
 
 #toc a {
-  color: #555;
   text-decoration: none;
   display: block;
   padding: 3px 5px;
@@ -121,14 +120,11 @@ blockquote {
 }
 
 #toc a:hover {
-  background-color: #f0f0f0;
-  color: #0366d6;
+  text-decoration: underline;
 }
 
 #toc a.active {
-  background-color: #f0f5ff;
-  color: #0366d6;
-  font-weight: 500;
+  background-color: #f1f1f1;
 }
 
 /* Responsive design */
