@@ -280,17 +280,12 @@ function makeList(node, list) {
       }
       listItem.appendChild(childList);
 
-      // Make both count and toggle icon clickable for toggling
-      // Add click handling for toggle icon
-      toggleText.addEventListener("click", function (e) {
+      // Make the entire right container clickable for toggling
+      rightContainer.style.cursor = "pointer";
+      rightContainer.addEventListener("click", function(e) {
         toggleChildList(e, childList, toggleText);
       });
       
-      // Add click handling for the count display
-      childCount.addEventListener("click", function (e) {
-        toggleChildList(e, childList, toggleText);
-      });
-
       // Remove the click event from the whole list item
       listItem.removeEventListener("click", function(){});
 
@@ -333,11 +328,11 @@ function countAllDescendants(node) {
   let count = 0;
   for (let child of node.children) {
     if (child.children) {
-// For nodes with children, recursively count their descendants
-count += countAllDescendants(child);
+      // For nodes with children, recursively count their descendants
+      count += countAllDescendants(child);
     } else {
-// For leaf nodes, add 1
-count += 1;
+      // For leaf nodes, add 1
+      count += 1;
     }
   }
   
@@ -357,15 +352,15 @@ function groupNode(node) {
   for (var i = 0; i < categories.length; i++) {
     var category = categories[i];
     var groupedNode = {
-name: category,
-children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
+      name: category,
+      children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
     };
 
     node.children = node.children.filter(child => child.name != category);
     node.children.push(groupedNode);
 
     if (groupedNode.children != undefined) {
-groupNode(groupedNode);
+      groupNode(groupedNode);
     }
   }
 

@@ -273,6 +273,11 @@ footer {
     right: 0;
     top: 0;
     display: inline-block;
+    padding: 0 5px;  /* Add padding to increase clickable area */
+    height: 100%;    /* Make the container take full height */
+    min-width: 30px; /* Ensure minimum width for better clickability */
+    text-align: right;
+    z-index: 1;      /* Ensure it's clickable above other elements */
 }
 
 .toggle-margin-left {
