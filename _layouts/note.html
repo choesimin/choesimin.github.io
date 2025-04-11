@@ -2,15 +2,28 @@
 layout: default
 additional_css:
   - /assets/css/note.css
+additional_js:
+  - /assets/js/toc.js
 ---
 
-<small class="float-right">{{ page.date | date: "%Y년 %-m월 %e일" }} 작성</small>
-<h1>{{ page.title }}</h1>
-<p>{{ page.description }}</p>
-{{ content }}
-
-<hr>
-
-{% include giscus.html %}
-{% include mermaid.html %}
-{% include highlight.html %}
+<div class="note-container">
+  <div class="note-content">
+    <small class="float-right">{{ page.date | date: "%Y년 %-m월 %e일" }} 작성</small>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+    {{ content }}
+    
+    <hr>
+    
+    {% include giscus.html %}
+    {% include mermaid.html %}
+    {% include highlight.html %}
+  </div>
+  
+  <div class="toc-container">
+    <div class="toc-sticky">
+      <h3>목차</h3>
+      <ul id="toc"></ul>
+    </div>
+  </div>
+</div>
