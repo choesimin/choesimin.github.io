@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /178
-title: Clean Architecture
+title: Clean Architecture - 비용은 낮추고 품질은 높이기
 description: system 수명과 관련된 비용은 최소화하고, programmer의 생산성은 최대화할 수 있는 architecture가 좋은 architecture입니다.
 date: 2023-11-02
 ---
