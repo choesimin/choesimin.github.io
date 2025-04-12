@@ -34,45 +34,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Function to get random notes
-  function getRandomNotes(count) {
-    // Create a copy of the notes array
-    const notesCopy = [...allNotes];
-    const randomNotes = [];
-    const totalNotes = notesCopy.length;
-    
-    console.log("Getting", count, "random notes from", totalNotes, "total notes");
-    
-    // Get random notes or all notes if fewer than count
-    const numToShow = Math.min(count, totalNotes);
-    
-    for (let i = 0; i < numToShow; i++) {
-      // Get random index
-      const randomIndex = Math.floor(Math.random() * notesCopy.length);
-      // Add the note to randomNotes
-      randomNotes.push(notesCopy[randomIndex]);
-      // Remove the note from the copy to avoid duplicates
-      notesCopy.splice(randomIndex, 1);
-    }
-    
-    return randomNotes;
-  }
-
-  // Function to display notes in grid
-  function displayRandomNotes() {
-    const gridContainer = document.getElementById('randomNotesGrid');
+  // Function to display all notes
+  function displayAllNotes() {
+    const gridContainer = document.getElementById('notesGrid');
     if (!gridContainer) {
-      console.error('Random notes grid container not found');
+      console.error('Notes grid container not found');
       return;
     }
     
-    const randomNotes = getRandomNotes(20);
-    
-    // Clear previous notes
-    gridContainer.innerHTML = '';
+    console.log("Displaying all", allNotes.length, "notes");
     
     // Add each note as a card
-    randomNotes.forEach(note => {
+    allNotes.forEach(note => {
       const noteCard = document.createElement('div');
       noteCard.className = 'note-card';
       
@@ -99,17 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Initial display of random notes
-  displayRandomNotes();
-
-  // Add event listener to refresh button
-  const refreshButton = document.getElementById('refreshNotes');
-  if (refreshButton) {
-    refreshButton.addEventListener('click', function() {
-      console.log("Refresh button clicked");
-      displayRandomNotes();
-    });
-  } else {
-    console.error('Refresh button not found');
-  }
+  // Display all notes when page loads
+  displayAllNotes();
 });

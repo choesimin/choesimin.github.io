@@ -1,8 +1,3 @@
-/* Random Notes Section Styling */
-.random-notes-section {
-    margin-top: 40px;
-}
-
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -29,7 +24,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    margin-bottom: 30px;
 }
 
 .note-card {
