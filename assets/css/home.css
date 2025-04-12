@@ -1,58 +1,27 @@
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.refresh-button {
-    background-color: black;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.2s ease;
-}
-
-.refresh-button:hover {
-    background-color: #333;
-}
-
 /* CSS Column-based Masonry Layout */
 .notes-grid {
     column-count: 4; /* Default 4 columns */
     column-gap: 20px;
     width: 100%;
-    margin: 20px 0;
 }
 
 .note-card {
     display: inline-block;
     width: 100%;
-    break-inside: avoid; /* Prevent items from breaking across columns */
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    break-inside: avoid;
     padding: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid black;
     box-sizing: border-box;
     margin-bottom: 20px;
 }
 
 .note-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-color: #f7f7f7;
 }
 
 .note-card a {
     text-decoration: none;
     color: inherit;
-}
-
-.note-card a:hover {
-    text-decoration: none;
 }
 
 .note-card h3 {
@@ -90,7 +59,6 @@
     color: #555;
 }
 
-/* Remove the old category styling */
 .note-category {
     display: none;
 }
