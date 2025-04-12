@@ -2,7 +2,18 @@
 layout: default
 title: Home
 description: SIMIN's personal blog
+css:
+  - /assets/css/home.css
+js:
+  - /assets/js/home.js
 ---
 
-<h1>Welcome</h1>
-<p>This is a personal blog containing notes, algorithms, graphics, and stories.</p>
+<div class="random-notes-section">
+  <div class="section-header">
+    <h2>Random Notes</h2>
+    <button id="refreshNotes" class="refresh-button">Refresh</button>
+  </div>
+  <div id="randomNotesGrid" class="notes-grid">
+    <!-- Random notes will be populated here by JavaScript -->
+  </div>
+</div>
