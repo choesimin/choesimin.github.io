@@ -34,6 +34,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Function to shuffle array (Fisher-Yates algorithm)
+  function shuffleArray(array) {
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle
+    while (currentIndex !== 0) {
+      // Pick a remaining element
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // Swap with the current element
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
   // Function to display all notes
   function displayAllNotes() {
     const gridContainer = document.getElementById('notesGrid');
@@ -47,8 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear previous notes
     gridContainer.innerHTML = '';
     
+    // Shuffle notes before displaying
+    const shuffledNotes = shuffleArray([...allNotes]);
+    
     // Add each note as a card
-    allNotes.forEach(note => {
+    shuffledNotes.forEach(note => {
       const noteCard = document.createElement('div');
       noteCard.className = 'note-card';
       
