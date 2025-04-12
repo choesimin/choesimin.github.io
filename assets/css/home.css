@@ -20,16 +20,18 @@
     background-color: #333;
 }
 
-/* Replace CSS columns with masonry.js approach */
+/* CSS Column-based Masonry Layout */
 .notes-grid {
-    position: relative; /* Required for absolute positioning of items */
+    column-count: 4; /* Default 4 columns */
+    column-gap: 20px;
     width: 100%;
     margin: 20px 0;
 }
 
 .note-card {
-    position: absolute; /* Will be positioned by masonry.js */
-    width: calc(25% - 15px); /* 4 columns with gap consideration */
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid; /* Prevent items from breaking across columns */
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 15px;
@@ -93,22 +95,22 @@
     display: none;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for column count */
 @media (max-width: 1200px) {
-    .note-card {
-        width: calc(33.333% - 14px); /* 3 columns */
+    .notes-grid {
+        column-count: 3; /* 3 columns */
     }
 }
 
 @media (max-width: 900px) {
-    .note-card {
-        width: calc(50% - 10px); /* 2 columns */
+    .notes-grid {
+        column-count: 2; /* 2 columns */
     }
 }
 
 @media (max-width: 600px) {
-    .note-card {
-        width: 100%; /* 1 column */
+    .notes-grid {
+        column-count: 1; /* 1 column */
     }
 }
 
