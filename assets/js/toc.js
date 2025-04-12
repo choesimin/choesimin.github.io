@@ -1,18 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Generate table of contents
-  generateTOC();
-  
-  // Add scroll event listener to highlight current section
-  window.addEventListener('scroll', highlightCurrentSection);
+  // Check if TOC element exists
+  if (document.getElementById('toc')) {
+    // Generate table of contents
+    generateTOC();
+    
+    // Add scroll event listener to highlight current section
+    window.addEventListener('scroll', highlightCurrentSection);
+  }
 });
 
 function generateTOC() {
   const toc = document.getElementById('toc');
   if (!toc) return;
   
+  // Find the main content container
+  // Look for common content containers (note-content or any main content container)
+  const contentContainer = document.querySelector('.note-content') || 
+                          document.querySelector('main > article') ||
+                          document.querySelector('main');
+  
+  if (!contentContainer) return;
+  
   // Find all headings in the content
-  const noteContent = document.querySelector('.note-content');
-  const headings = noteContent.querySelectorAll('h2, h3, h4, h5, h6');
+  const headings = contentContainer.querySelectorAll('h2, h3, h4, h5, h6');
   
   if (headings.length === 0) {
     const tocContainer = document.querySelector('.toc-container');
@@ -75,10 +85,18 @@ function generateTOC() {
 }
 
 function highlightCurrentSection() {
-  const headings = document.querySelectorAll('.note-content h2, .note-content h3, .note-content h4, .note-content h5, .note-content h6');
+  // Find the main content container
+  const contentContainer = document.querySelector('.note-content') || 
+                          document.querySelector('main > article') ||
+                          document.querySelector('main');
+  
+  if (!contentContainer) return;
+  
+  const headings = contentContainer.querySelectorAll('h2, h3, h4, h5, h6');
   if (headings.length === 0) return;
   
   const tocLinks = document.querySelectorAll('#toc a');
+  if (tocLinks.length === 0) return;
   
   // Get current scroll position with some offset
   const scrollPosition = window.scrollY + 100;

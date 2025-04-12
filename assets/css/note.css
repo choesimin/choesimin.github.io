@@ -40,7 +40,6 @@ td {
     padding: 5px 10px;
 }
 
-
 code.hljs {
   border: 1px solid black;
   line-height: 1.2;
@@ -60,17 +59,20 @@ blockquote {
   background-color: #f7f7f7;
 }
 
-/* Note layout with TOC */
-.note-container {
+/* Layout with TOC */
+.note-container,
+.content-with-toc {
   position: relative;
   width: 100%;
 }
 
-.note-content {
+.note-content,
+.main-content-with-toc {
   width: calc(100% - 280px);
   margin-right: 280px;
 }
 
+/* TOC Container and Styling */
 .toc-container {
   width: 250px;
   position: fixed;
@@ -129,7 +131,8 @@ blockquote {
 
 /* Responsive design */
 @media (max-width: 1100px) {
-  .note-content {
+  .note-content,
+  .main-content-with-toc {
     width: 100%;
     margin-right: 0;
   }

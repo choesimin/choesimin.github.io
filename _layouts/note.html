@@ -4,6 +4,7 @@ additional_css:
   - /assets/css/note.css
 additional_js:
   - /assets/js/toc.js
+toc: true
 ---
 
 <div class="note-container">
@@ -20,10 +21,5 @@ additional_js:
     {% include highlight.html %}
   </div>
   
-  <div class="toc-container">
-    <div class="toc-sticky">
-      <h3>목차</h3>
-      <ul id="toc"></ul>
-    </div>
-  </div>
+  {% include toc.html %}
 </div>

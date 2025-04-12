@@ -2,20 +2,29 @@
 layout: default
 additional_css:
   - /assets/css/note.css
+additional_js:
+  - /assets/js/toc.js
+toc: true
 ---
 
-<h1>{{ page.title }}</h1>
-<p>날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}</p>
-<p>기술 : {{ page.tags }}</p>
-<p>언어 : C++</p>
-<p>출처 : <a href="{{ page.source }}" target="_blank" id="source">{{page.source}}</a> <sup><small>{{ page.category }}</small></sup></p>
-
-<hr>
-
-{{ content }}
-
-<hr>
-
-{% include giscus.html %}
-{% include mermaid.html %}
-{% include highlight.html %}
+<div class="note-container">
+  <div class="note-content">
+    <h1>{{ page.title }}</h1>
+    <p>날짜 : {{ page.date | date: "%Y년 %-m월 %e일" }}</p>
+    <p>기술 : {{ page.tags }}</p>
+    <p>언어 : C++</p>
+    <p>출처 : <a href="{{ page.source }}" target="_blank" id="source">{{page.source}}</a> <sup><small>{{ page.category }}</small></sup></p>
+    
+    <hr>
+    
+    {{ content }}
+    
+    <hr>
+    
+    {% include giscus.html %}
+    {% include mermaid.html %}
+    {% include highlight.html %}
+  </div>
+  
+  {% include toc.html %}
+</div>
