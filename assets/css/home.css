@@ -20,21 +20,23 @@
     background-color: #333;
 }
 
+/* Replace CSS columns with masonry.js approach */
 .notes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    position: relative; /* Required for absolute positioning of items */
+    width: 100%;
+    margin: 20px 0;
 }
 
 .note-card {
+    position: absolute; /* Will be positioned by masonry.js */
+    width: calc(25% - 15px); /* 4 columns with gap consideration */
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    break-inside: avoid;
-    display: flex;
-    flex-direction: column;
+    box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
 .note-card:hover {
@@ -91,10 +93,22 @@
     display: none;
 }
 
-/* For smaller screens, adjust grid columns */
-@media (max-width: 768px) {
-    .notes-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .note-card {
+        width: calc(33.333% - 14px); /* 3 columns */
+    }
+}
+
+@media (max-width: 900px) {
+    .note-card {
+        width: calc(50% - 10px); /* 2 columns */
+    }
+}
+
+@media (max-width: 600px) {
+    .note-card {
+        width: 100%; /* 1 column */
     }
 }
 
