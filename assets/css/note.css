@@ -75,6 +75,7 @@ blockquote {
 /* TOC Container and Styling */
 .toc-container {
   width: 250px;
+  max-height: calc(100vh - 200px);
   position: fixed;
   top: 100px;
   right: 30px;
