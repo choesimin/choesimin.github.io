@@ -149,27 +149,6 @@ function groupAlgorithms() {
   }
 }
 
-// Count items in each category
-function updateCounts() {
-  // Count notes - use the total number of pages directly
-  var notesCount = pages.length;
-  document.getElementById("noteCount").textContent = notesCount;
-  
-  // Count algorithms
-  var algorithmsCount = 
-    {% assign count = site.problems | size %}
-    {{ count }}
-  ;
-  document.getElementById("algorithmCount").textContent = algorithmsCount;
-  
-  // Count graphics
-  var graphicsCount = document.querySelectorAll('#graphicList li').length;
-  document.getElementById("graphicCount").textContent = graphicsCount;
-  
-  // Count stories (fixed at 2 for Brunch and Instagram)
-  document.getElementById("storyCount").textContent = "2";
-}
-
 // Add category toggle functionality for top-level categories
 document.querySelectorAll('.category-header').forEach(function(header) {
   header.addEventListener('click', function(e) {
@@ -205,7 +184,6 @@ document.querySelectorAll('.category-header').forEach(function(header) {
 
 // Initialize algorithm categories after page loads
 window.addEventListener('load', function() {
-  updateCounts();
   groupAlgorithms();
 });
 

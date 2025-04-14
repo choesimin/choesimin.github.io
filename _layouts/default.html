@@ -49,7 +49,7 @@
           <div class="category-header">
             <span class="display-inline-block">Note</span>
             <span class="float-right">
-              <span class="count-display" id="noteCount"></span>
+              <span class="count-display">{{ site.notes | size }}</span>
             </span>
           </div>
           <div id="noteSearch" class="hidden">
@@ -63,7 +63,7 @@
           <div class="category-header">
             <span class="display-inline-block">Algorithm</span>
             <span class="float-right">
-              <span class="count-display" id="algorithmCount"></span>
+              <span class="count-display">{{ site.problems | size }}</span>
             </span>
           </div>
           <div id="algorithmList" class="hidden">
@@ -75,7 +75,7 @@
           <div class="category-header">
             <span class="display-inline-block">Graphic</span>
             <span class="float-right">
-              <span class="count-display" id="graphicCount"></span>
+              <span class="count-display">{{ site.graphics | size }}</span>
             </span>
           </div>
           <ul id="graphicList" class="hidden list-unstyled">
@@ -94,7 +94,7 @@
           <div class="category-header">
             <span class="display-inline-block">Story</span>
             <span class="float-right">
-              <span class="count-display" id="storyCount"></span>
+              <span class="count-display">2</span>
             </span>
           </div>
           <ul id="storyList" class="hidden list-unstyled">
