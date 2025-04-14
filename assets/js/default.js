@@ -151,8 +151,8 @@ function groupAlgorithms() {
 
 // Count items in each category
 function updateCounts() {
-  // Count notes
-  var notesCount = countAllDescendants(root);
+  // Count notes - use the total number of pages directly
+  var notesCount = pages.length;
   document.getElementById("noteCount").textContent = notesCount;
   
   // Count algorithms
@@ -223,6 +223,9 @@ function makeList(node, list) {
   listItem.classList.add("list-item-relative");
   
   if (node.children != undefined) {
+    // Store original children count before filtering
+    node.originalChildrenCount = node.children.length;
+    
     var index = node.children.filter(child => child.isIndex)[0];
     node.children = node.children.filter(child => !child.isIndex);
 
@@ -321,11 +324,19 @@ function toggleChildList(e, childList, toggleText) {
 
 // Count all descendants
 function countAllDescendants(node) {
+  // For leaf nodes
   if (!node.children) {
-    return 1; // Leaf node counts as 1
+    return 1;
   }
   
   let count = 0;
+  
+  // If this is a node that had index pages filtered out, add them back to the count
+  if (node.originalChildrenCount && node.originalChildrenCount > node.children.length) {
+    count += node.originalChildrenCount - node.children.length;
+  }
+  
+  // Count all children including their descendants
   for (let child of node.children) {
     if (child.children) {
       // For nodes with children, recursively count their descendants
@@ -339,14 +350,13 @@ function countAllDescendants(node) {
   return count;
 }
 
-function groupNodes(nodes) {
-  var root = { name: "root" };
-  root.children = nodes;
-
-  return groupNode(root);
-}
-
+// We need to preserve index pages during grouping to ensure accurate counts
 function groupNode(node) {
+  // Track original children count before any operation
+  if (node.children) {
+    node.originalChildrenCount = node.children.length;
+  }
+  
   var categories = Array.from(new Set(node.children.filter(child => child.children != undefined).map(child => child.name)));
 
   for (var i = 0; i < categories.length; i++) {
@@ -355,6 +365,11 @@ function groupNode(node) {
       name: category,
       children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
     };
+    
+    // Preserve index information in the grouped node
+    if (groupedNode.children) {
+      groupedNode.originalChildrenCount = groupedNode.children.length;
+    }
 
     node.children = node.children.filter(child => child.name != category);
     node.children.push(groupedNode);
@@ -365,6 +380,13 @@ function groupNode(node) {
   }
 
   return node;
+}
+
+function groupNodes(nodes) {
+  var root = { name: "root" };
+  root.children = nodes;
+
+  return groupNode(root);
 }
 
 function makeNodes(pages) {
