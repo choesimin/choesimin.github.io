@@ -55,7 +55,7 @@ window.onscroll = function () {
 };
 
 // Set up note tree
-var pages = getPages();
+var pages = getNotes();
 var nodes = makeNodes(pages);
 var root = groupNodes(nodes);
 
@@ -391,13 +391,13 @@ function makeMultiDepthNode(category, child, indent) {
   return node;
 }
 
-function getPages() {
-  var pages = [];
+function getNotes() {
+  var notes = [];
 
   {% for notes in site.notes %}
   var path = "{{ notes.path }}".replace("_notes/", "").split("/");
 
-  pages.push({
+  notes.push({
     category: path.slice(0, path.length - 1),
     name: path[path.length - 1].replace(".md", ""),
     title: "{{ notes.title }}",
@@ -405,5 +405,5 @@ function getPages() {
   });
   {% endfor %}
 
-  return pages;
+  return notes;
 }
