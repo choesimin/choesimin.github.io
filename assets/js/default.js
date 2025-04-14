@@ -309,11 +309,6 @@ function countAllDescendants(node) {
   
   let count = 0;
   
-  // If this is a node that had index pages filtered out, add them back to the count
-  if (node.originalChildrenCount && node.originalChildrenCount > node.children.length) {
-    count += node.originalChildrenCount - node.children.length;
-  }
-  
   // Count all children including their descendants
   for (let child of node.children) {
     if (child.children) {
