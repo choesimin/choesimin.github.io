@@ -1,10 +1,9 @@
 ---
 layout: note
 permalink: /
-title: Custom OpenSearch Sink Connector 개발해서 Kafka Connect에 추가하기 (Update by Query)
-description: OpenSearch index를 대상으로 update by query logic을 실행하는 custom sink connector를 개발하여 Kafka Connect에 추가합니다.
+title: Update by query logic 실행하는 Custom OpenSearch Sink Connector 개발하기
+description: OpenSearch index를 대상으로 update by query logic을 실행하는 custom sink connector를 개발하여 Kafka Connect에 추가하면, 필요한 경우에 OpenSearch 기본 sink connector에서 제공하지 않는 query 기반 bulk update 기능을 사용할 수 있습니다.
 date: 2025-03-18
-pubilshed: false
 ---
 
 
