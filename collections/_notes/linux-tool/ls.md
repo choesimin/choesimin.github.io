@@ -74,6 +74,7 @@ ls -l /home
 ```sh
 ls > file.txt
 ```
+
 - redirection 연산자(`>`, `>>`)를 사용합니다.
 
 
@@ -82,7 +83,19 @@ ls > file.txt
 ```sh
 ls v*.c
 ```
+
 - 'v'로 시작하고 '.c'로 끝나는 directory 내용을 출력합니다.
+
+
+### Tree 구조로 보기
+
+```sh
+# Directory
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+
+# File
+ls -R | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+```
 
 
 ---

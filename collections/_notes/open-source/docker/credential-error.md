@@ -29,6 +29,8 @@ vi ~/.docker/config.json
 }
 ```
 
+- 또는 `credStore` line을 삭제해도 됩니다.
+
 
 ---
 

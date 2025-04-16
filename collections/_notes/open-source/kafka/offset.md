@@ -64,6 +64,40 @@ date: 2025-04-16
     - message 재처리나 다목적 data 활용에 유용합니다.
 
 
+### Offset 조회하는 방법
+
+- Kafka CLI를 사용하여 offset 정보를 조회할 수 있습니다.
+    - `kafka-consumer-groups.sh` 명령어를 사용합니다.
+        - 또는 `.sh`를 제거하고, `kafka-consumer-groups`로도 사용 가능합니다.
+    - `--bootstrap-server` option으로 broker 주소를 지정합니다.
+
+- offset 정보에는 offset에 관련된 여러 정보가 포함되어 있습니다.
+    - consumer group ID(`GROUP`), topic 이름(`TOPIC`), partition 번호(`PARTITION`), 현재 offset 값(`CURRENT-OFFSET`), 마지막 offset 값(`LOG-END-OFFSET`), lag(`LAG`) 등.
+    - `LAG` 값은 현재 offset과 마지막 offset의 차이를 의미합니다.
+        - consumer가 얼마나 뒤쳐져 있는지를 나타냅니다.
+        - lag이 0이면 consumer가 partition의 모든 message를 처리한 상태입니다.
+
+#### 1. Consumer Group ID 확인
+
+```bash
+# Consumer group 목록 조회
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list
+```
+
+- `--list` option을 사용하여 현재 등록된 consumer group의 ID를 확인합니다.
+
+#### 2. Offset 조회
+
+```bash
+# Offset 조회
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group my-consumer-group --describe
+```
+
+- 확인한 consumer group ID를 지정하여 offset을 조회합니다.
+    - `--group` option으로 consumer group ID를 지정합니다.
+    - `--describe` option으로 상세 정보를 조회합니다.
+
+
 ---
 
 
