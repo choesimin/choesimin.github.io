@@ -400,7 +400,7 @@ function getNotes() {
   notes.push({
     category: path.slice(0, path.length - 1),
     name: path[path.length - 1].replace(".md", ""),
-    title: "{{ notes.title }}",
+    title: "{{ notes.title | escape }}",
     url: "{{ notes.url | relative_url }}",
   });
   {% endfor %}
