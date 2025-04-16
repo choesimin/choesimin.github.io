@@ -4,6 +4,7 @@ permalink: /
 title: Update by query logic 실행하는 Custom OpenSearch Sink Connector 개발하기
 description: OpenSearch index를 대상으로 update by query logic을 실행하는 custom sink connector를 개발하여 Kafka Connect에 추가하면, 필요한 경우에 OpenSearch 기본 sink connector에서 제공하지 않는 query 기반 bulk update 기능을 사용할 수 있습니다.
 date: 2025-03-18
+published: false
 ---
 
 
@@ -65,10 +66,26 @@ opensearch-sink-connector
         └── opensearch-sink-connector.jar
 ```
 
-- directory 구조에 맞추어 file들을 준비합니다.
+- Custom OpenSearch Sink Connector 개발에 필요한 Gradle Java project의 source code file을 준비합니다.
+    - bulid.gradle[^1]
 
 
-### `build.gradle`
+
+
+
+---
+
+
+## Project Source Code File
+
+- project 구성에 필요한 source code를 file 내용입니다.
+
+
+### ddd
+
+[^1]: buidld.gradle file.
+
+[^2]: 두 번째 각주 내용입니다.
 
 - `build.gradle` file에 dependency를 추가하여, Gradle 기반 Java project를 설정합니다.
 - Kafka Connect API, OpenSearch client library를 dependency로 추가합니다.
