@@ -291,3 +291,11 @@ date: 2025-04-16
     - 처리 결과를 cache하여 동일 작업 재수행을 방지합니다.
     - message 처리와 offset commit을 하나의 transaction으로 관리합니다.
     - message 순서 의존성이 있는 경우 순서 보장 mechanism을 구현합니다.
+
+
+---
+
+
+## Reference
+
+- <https://kimmayer.tistory.com/entry/Kafka-offset에-대해서>
