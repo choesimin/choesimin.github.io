@@ -1,10 +1,9 @@
 ---
 layout: note
-permalink: /
+permalink: /315
 title: Update by Query logic을 실행하는 Custom OpenSearch Sink Connector 개발하기
 description: OpenSearch index를 대상으로 update by query logic을 실행하는 custom sink connector를 개발하여 Kafka Connect에 추가하면, 필요한 경우에 OpenSearch 기본 sink connector에서는 제공하지 않는 query 기반 bulk update 기능을 사용할 수 있습니다.
 date: 2025-04-18
-published: true
 ---
 
 
@@ -47,8 +46,11 @@ flowchart LR
 - project directory를 생성하고, Gradle project를 초기화합니다.
 
 ```bash
+# project directory 생성
 mkdir opensearch-sink-connector
 cd opensearch-sink-connector
+
+# Gradle project 초기화
 gradle init --type java-library
 ```
 
@@ -102,57 +104,52 @@ opensearch-sink-connector
 ```
 
 
-### 2. 빌드 및 배포
+### 2. Build 및 배포
 
-- Gradle을 사용하여 프로젝트를 빌드하고, 생성된 JAR 파일을 Kafka Connect에 배포합니다.
+- Gradle을 사용하여 project를 build하고, 생성된 JAR file을 Kafka Connect에 배포합니다.
 
 #### Project Build
 
-- Gradle을 사용하여 프로젝트를 빌드합니다.
-- fat jar를 생성하기 위해 `shadowJar` plugin을 사용합니다.
+- Gradle을 사용하여 project를 build합니다.
+- fat JAR를 생성하기 위해 `shadowJar` plugin을 사용합니다.
 
 ```bash
+# fat JAR 생성
 ./gradlew shadowJar
 ```
 
-- 빌드가 성공하면 `build/libs/opensearch-sink-connector.jar` 파일이 생성됩니다.
+- build가 성공하면 `build/libs/opensearch-sink-connector.jar` file이 생성됩니다.
 
 #### Kafka Connect에 배포
 
-- 생성된 JAR 파일을 Kafka Connect의 플러그인 디렉토리에 옮깁니다.
-- Kafka Connect 서버의 플러그인 경로는 보통 `$KAFKA_HOME/plugins`이며, Kafka Connect 설정에 지정할 수도 있습니다.
+- 생성된 JAR file을 Kafka Connect의 plugin directory에 옮깁니다.
+    - Kafka Connect 서버의 plugin 경로는 보통 `$KAFKA_HOME/plugins`이며, Kafka Connect 설정에서 직접 지정할 수도 있습니다.
 
 ```bash
+# fat JAR를 plugin directory로 이동
 cp build/libs/opensearch-sink-connector.jar /kafka-connect-home/plugins/
 ```
 
-- 그리고 Kafka Connect를 실행한 뒤, connector가 정상적으로 load되었는지 확인합니다.
+- Kafka Connect를 실행한 뒤, connector가 정상적으로 plugin되었는지 확인합니다.
+    - `/connector-plugins` API를 통해 plugin list를 조회하여, `UpdateByQuerySinkConnector`가 포함되어 있는지 확인합니다.
 
 ```bash
+# connector load 확인
 curl http://localhost:8083/connector-plugins
-```
-
-- `/connector-plugins` API를 통해, `UpdateByQuerySinkConnector`가 정상적으로 load되었는지 확인할 수 있습니다.
-
-```json
-[
-    {
-        "class": "com.example.UpdateByQuerySinkConnector",
-        "version": "0.0.1"
-    }
-]
+# 결과 : [{"class": "com.example.UpdateByQuerySinkConnector", "version": "0.0.1"}]
 ```
 
 
-### 3. 커넥터 설정 및 등록
+### 3. Connector 설정 및 등록
 
 - JSON 형식으로 config file을 작성하고, Kafka Connect REST API로 connector를 등록합니다.
 
 #### Connector 설정
 
-- connector 등록에 대한 세부 설저 정보를 담는 `opensearch-update-sink-connector.json` 파일을 생성합니다.
+- connector 등록에 대한 세부 설정 정보를 담는 `opensearch-update-sink-connector.json` file을 생성합니다.
 
 ```json
+/* opensearch-update-sink-connector.json */
 {
     "name": "opensearch-update-sink-connector",
     "config": {
@@ -173,33 +170,37 @@ curl http://localhost:8083/connector-plugins
 
 #### Connector 등록
 
-- Kafka Connect REST API를 사용하여 커넥터를 등록합니다.
+- Kafka Connect REST API를 사용하여 connector를 등록합니다.
 
 ```bash
+# connector 등록
 curl -X POST -H "Content-Type: application/json" --data "@custom-sink-connector.json" http://localhost:8083/connectors
 ```
 
-- 커넥터가 정상적으로 등록되었는지 확인합니다.
+- connector가 정상적으로 등록되었는지 확인합니다.
 
 ```bash
+# 등록된 connector 목록 확인
 curl http://localhost:8083/connectors
 ```
 
-- 등록된 커넥터의 세부 정보를 확인합니다.
+- 등록된 connector의 세부 정보를 확인합니다.
 
 ```bash
+# connector 세부 정보 확인
 curl http://localhost:8083/connectors/opensearch-update-sink-connector/status
 ```
 
 
 ### 4. Connector 사용
 
-- 커넥터가 정상적으로 등록되면, Kafka topic이 메시지를 수신할 때 OpenSearch에 bulk update를 수행합니다.
+- connector가 정상적으로 등록되면, Kafka topic이 message를 수신할 때 OpenSearch에 bulk update(update by query)를 수행합니다.
 
 - topic에 발생하는 message는 반드시 `index_name`, `term_key`, `term_value`, `data_key`, `data_value` 형식으로 작성해야 합니다.
     - connector 내부에서 해당 값을 사용하여 OpenSearch에 bulk update를 수행합니다.
 
 ```json
+/* Kafka topic에 전송할 message 예시 */
 {
     /* 대상 */
     "index_name": "messenger",
