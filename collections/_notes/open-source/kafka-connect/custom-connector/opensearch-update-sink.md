@@ -2,9 +2,9 @@
 layout: note
 permalink: /
 title: Update by Query logic을 실행하는 Custom OpenSearch Sink Connector 개발하기
-description: OpenSearch index를 대상으로 update by query logic을 실행하는 custom sink connector를 개발하여 Kafka Connect에 추가하면, 필요한 경우에 OpenSearch 기본 sink connector에서 제공하지 않는 query 기반 bulk update 기능을 사용할 수 있습니다.
-date: 2025-03-18
-published: false
+description: OpenSearch index를 대상으로 update by query logic을 실행하는 custom sink connector를 개발하여 Kafka Connect에 추가하면, 필요한 경우에 OpenSearch 기본 sink connector에서는 제공하지 않는 query 기반 bulk update 기능을 사용할 수 있습니다.
+date: 2025-04-18
+published: true
 ---
 
 
@@ -12,7 +12,7 @@ published: false
 
 - 기존의 OpenSearch Sink Connector는 Kafka topic의 data를 OpenSearch로 전송하는 기능을 맡습니다.
     - OpenSearch document의 id를 기반으로, 단건에 대해 생성, 수정, 삭제 등의 작업을 수행합니다.
-    - <https://aiven.io/docs/products/kafka/kafka-connect/howto/opensearch-sink> 참고.
+    - 기존 connector 기능은 <https://aiven.io/docs/products/kafka/kafka-connect/howto/opensearch-sink> 참고.
 
 - 그러나 기존의 OpenSearch sink connector는 bulk update 기능을 제공하지 않기 때문에, 만약 connector를 통해 bulk update를 하고 싶다면, OpenSearch bulk update API를 사용하는 custom sink connector를 직접 개발해야 합니다.
 
@@ -65,9 +65,9 @@ gradle init --type java-library
 | `/src/main/java/com/example/vo/` | [`UpdateField.java`](#updatefieldjava) | Kafka Connect SinkTask에서 사용할 data model class |
 | `/src/main/java/com/example/enums/` | [`UpdateFieldName.java`](#updatefieldnamejava) | Kafka Connect SinkTask에서 사용할 field name을 관리하는 enum class |
 | `/src/main/java/com/example/util/` | [`VersionUtil.java`](#versionutiljava) | connector version을 관리하는 utility class |
-| `/src/main/resources/META-INF/services/` | [`org.apache.kafka.connect.sink.SinkConnector`](#orgapachekafkaconnectsinksinkconnector) | Kafka Connect SinkConnector class를 등록하는 file |
 | `/src/main/resources/` | [`version.properties`](#versionproperties) | connector version 설정 file |
-| `/build/libs/` | [`opensearch-sink-connector.jar`](#opensearchsinkconnectorjar) | build 결과로 생성되는 fat jar file |
+| `/src/main/resources/META-INF/services/` | [`org.apache.kafka.connect.sink.SinkConnector`](#orgapachekafkaconnectsinksinkconnector) | Kafka Connect SinkConnector class를 등록하는 file |
+| `/build/libs/` | `opensearch-sink-connector.jar` | build 결과로 생성되는 fat jar file |
 
 #### 준비가 완료된 최종 구조
 
@@ -106,11 +106,10 @@ opensearch-sink-connector
 
 - Gradle을 사용하여 프로젝트를 빌드하고, 생성된 JAR 파일을 Kafka Connect에 배포합니다.
 
-
 #### Project Build
 
 - Gradle을 사용하여 프로젝트를 빌드합니다.
-- 터미널에서 프로젝트 루트 디렉토리로 이동한 후 다음 명령을 실행합니다.
+- fat jar를 생성하기 위해 `shadowJar` plugin을 사용합니다.
 
 ```bash
 ./gradlew shadowJar
@@ -120,29 +119,50 @@ opensearch-sink-connector
 
 #### Kafka Connect에 배포
 
-- 생성된 JAR 파일을 Kafka Connect의 플러그인 디렉토리에 복사합니다.
-- Kafka Connect 서버의 플러그인 경로는 보통 `$KAFKA_HOME/plugins` 또는 Kafka Connect 설정에 지정된 경로입니다.
+- 생성된 JAR 파일을 Kafka Connect의 플러그인 디렉토리에 옮깁니다.
+- Kafka Connect 서버의 플러그인 경로는 보통 `$KAFKA_HOME/plugins`이며, Kafka Connect 설정에 지정할 수도 있습니다.
 
 ```bash
-cp build/libs/opensearch-sink-connector.jar $KAFKA_CONNECT_PLUGINS/
+cp build/libs/opensearch-sink-connector.jar /kafka-connect-home/plugins/
+```
+
+- 그리고 Kafka Connect를 실행한 뒤, connector가 정상적으로 load되었는지 확인합니다.
+
+```bash
+curl http://localhost:8083/connector-plugins
+```
+
+- `/connector-plugins` API를 통해, `UpdateByQuerySinkConnector`가 정상적으로 load되었는지 확인할 수 있습니다.
+
+```json
+[
+    {
+        "class": "com.example.UpdateByQuerySinkConnector",
+        "version": "0.0.1"
+    }
+]
 ```
 
 
-### 3. 커넥터 설정 및 실행
+### 3. 커넥터 설정 및 등록
 
-#### 커넥터 설정 파일 준비
+- JSON 형식으로 config file을 작성하고, Kafka Connect REST API로 connector를 등록합니다.
 
-- `custom-sink-connector.json` 파일을 생성합니다.
+#### Connector 설정
+
+- connector 등록에 대한 세부 설저 정보를 담는 `opensearch-update-sink-connector.json` 파일을 생성합니다.
 
 ```json
 {
     "name": "opensearch-update-sink-connector",
     "config": {
-        "connector.class": "com.hiworks.UpdateByQuerySinkConnector",
-        "topics": "ksql.stream.messenger.memberinfo.rename, ksql.stream.messenger.memberinfo.delete",
-        "opensearch.host": "localhost",
+        /* connector 기본 정보와 OpenSearch 접속 정보 입력 */
+        "connector.class": "com.example.UpdateByQuerySinkConnector",
+        "topics": "opensearch.update-by-query",
+        "opensearch.host": "192.168.81.109",
         "opensearch.port": "9200",
 
+        /* OpenSearch의 default data format인 JSON으로 converting */
         "key.converter": "org.apache.kafka.connect.storage.StringConverter",
         "value.converter": "org.apache.kafka.connect.json.JsonConverter",
         "value.converter.schemas.enable": "false",
@@ -151,6 +171,7 @@ cp build/libs/opensearch-sink-connector.jar $KAFKA_CONNECT_PLUGINS/
 }
 ```
 
+#### Connector 등록
 
 - Kafka Connect REST API를 사용하여 커넥터를 등록합니다.
 
@@ -170,77 +191,31 @@ curl http://localhost:8083/connectors
 curl http://localhost:8083/connectors/opensearch-update-sink-connector/status
 ```
 
+
 ### 4. Connector 사용
 
-- 커넥터가 정상적으로 등록되면, Kafka topic에서 메시지를 수신하여 OpenSearch에 bulk update를 수행합니다.
+- 커넥터가 정상적으로 등록되면, Kafka topic이 메시지를 수신할 때 OpenSearch에 bulk update를 수행합니다.
 
-#### 테스트 메시지 발행
-
-- Kafka 토픽에 테스트 메시지를 발행합니다.
-- 회원 이름 변경 예시:
-
-```bash
-kafka-console-producer.sh --broker-list localhost:9092 --topic ksql.stream.messenger.memberinfo.rename
-```
+- topic에 발생하는 message는 반드시 `index_name`, `term_key`, `term_value`, `data_key`, `data_value` 형식으로 작성해야 합니다.
+    - connector 내부에서 해당 값을 사용하여 OpenSearch에 bulk update를 수행합니다.
 
 ```json
 {
-    "index_name": "messenger_room",
-    "term_key": "memberinfo_uid",
-    "term_value": "120",
-    "data_key": "user_name",
-    "data_value": "Brahms"
+    /* 대상 */
+    "index_name": "messenger",
+
+    /* 조건 */
+    "term_key": "member_seq",
+    "term_value": "1283",
+
+    /* 갱신 */
+    "data_key": "member_name",
+    "data_value": "New Name"
 }
 ```
 
-- OpenSearch REST API를 사용하여 변경 사항을 확인합니다.
-
-```bash
-curl -X GET "localhost:9200/messenger_room/_search?q=memberinfo_uid:120"
-```
-
-
-
-
----
-
-
-
-
-### `SinkConnector`와 `SinkTask` : Custom Sink Connector의 핵심 Class
-
-- `UpdateByQuerySinkConnector.java` : Kafka Connect의 `SinkConnector` class를 상속받아 connector를 정의합니다.
-- `UpdateByQuerySinkTask.java` : Kafka Connect의 `SinkTask` class를 상속받아 OpenSearch에 bulk update하는 logic을 구현합니다.
-
-
-
-
----
-
-
-## Connector를 Kafka Connect Framework에 등록하기 위한 SPI(Service Provider Interface) 설정
-
-- `src/main/resources/META-INF/services/org.apache.kafka.connect.sink.SinkConnector` file을 생성하고 connector class 이름을 등록합니다.
-    - 이 file이 없으면 Kafka Connect에서 custom connector class를 찾지 못해 실행할 수 없습니다.
-
-```txt
-com.example.opensearch.OpenSearchSinkConnector
-```
-
-- 여러 connector를 제공하는 경우 각 class 경로를 새 줄에 추가하면 됩니다.
-
-
-### Service Provider 설정이 필요한 이유
-
-- service provider 설정은 Kafka Connect framework에서 필수입니다.
-    - 이 설정을 통해 Kafka Connect framework가 custom connector class를 자동으로 발견하고 load할 수 있습니다.
-
-- `META-INF/services/org.apache.kafka.connect.sink.SinkConnector` file은 Java의 **ServiceLoader** mechanism을 사용하는데 필요합니다.
-    - ServiceLoader mechanism은 Java에서 plugin과 같은 확장 module을 구현할 때 광범위하게 사용되는 표준 방식입니다.
-
-- Kafka Connect는 시작 시 class path에서 이 service provider 설정 file을 검색하여 사용 가능한 모든 connector class를 등록합니다.
-
-- file 내부에는 구현한 connector의 전체 class 경로(fully qualified class name)만 있으면 됩니다.
+- `index_name`을 대상으로, `term_key`에 `term_value`를 조건으로 하여, `data_key`를 `data_value`로 갱신합니다.
+    - 예를 들어, `messenger` index에서 `member_seq`가 `1283`인 document의 `member_name`을 `New Name`으로 갱신할 수 있습니다.
 
 
 ---
@@ -251,14 +226,14 @@ com.example.opensearch.OpenSearchSinkConnector
 - [file 준비 단계](#file-preparation)에서 필요한 file 내용입니다.
 
 
-### settings.gradle
+### [settings.gradle](#file-preparation)
 
 ```groovy
 rootProject.name = 'opensearch-sink-connector'
 ```
 
 
-### build.gradle
+### [build.gradle](#file-preparation)
 
 ```groovy
 plugins {
@@ -305,7 +280,7 @@ artifacts {
 ```
 
 
-### UpdateByQuerySinkConnector.java
+### [UpdateByQuerySinkConnector.java](#file-preparation)
 
 ```java
 package com.hiworks;
@@ -362,7 +337,7 @@ public class UpdateByQuerySinkConnector extends SinkConnector {
 ```
 
 
-### UpdateByQuerySinkTask.java
+### [UpdateByQuerySinkTask.java](#file-preparation)
 
 ```java
 package com.hiworks;
@@ -480,7 +455,7 @@ public class UpdateByQuerySinkTask extends SinkTask {
 ```
 
 
-### UpdateField.java
+### [UpdateField.java](#file-preparation)
 
 ```java
 package com.hiworks.vo;
@@ -515,7 +490,7 @@ public record UpdateField(String indexName, String termKey, String termValue, St
 ```
 
 
-### UpdateFieldName.java
+### [UpdateFieldName.java](#file-preparation)
 
 ```java
 package com.hiworks.enums;
@@ -540,7 +515,7 @@ public enum UpdateFieldName {
 ```
 
 
-### VersionUtil.java
+### [VersionUtil.java](#file-preparation)
 
 ```java
 package com.hiworks.util;
@@ -589,15 +564,15 @@ public class VersionUtil {
 ```
 
 
-### org.apache.kafka.connect.sink.SinkConnector
-
-```txt
-com.hiworks.UpdateByQuerySinkConnector
-```
-
-
-### version.properties
+### [version.properties](#file-preparation)
 
 ```txt
 connector.version=0.0.1
+```
+
+
+### [org.apache.kafka.connect.sink.SinkConnector](#file-preparation)
+
+```txt
+com.hiworks.UpdateByQuerySinkConnector
 ```
