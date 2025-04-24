@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /319
-title: Java final keyword "잘" 사용하는 법 - 적절하게 사용하고 남용하지 않기
+title: Java final "잘" 사용하는 법 - 적절하게 사용하고 남용하지 않기
 description: final keyword는 적절하게 사용하면 code의 가독성과 안정성이 높아지지만, 남용하면 오히려 가독성이 떨어져 유지 보수가 어려워지기 때문에, 필요한 경우에만 잘 사용해야 합니다.
 date: 2025-04-24
 ---
