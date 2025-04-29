@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /322
-title: df & du - Linux의 Disk 공간 확인 도구
+title: df, du - Linux의 Disk 공간 확인 도구
 description: Linux나 Unix에서 df, du 명령어로 Disk 사용량을 확인할 수 있습니다.
 date: 2025-04-24
 ---
