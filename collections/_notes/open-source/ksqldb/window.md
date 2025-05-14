@@ -333,8 +333,6 @@ SUM(column)
 AVG(column)
 MIN(column)
 MAX(column)
-TOPK(column, k)
-BOTTOMK(column, k)
 
 -- 예시 : 다양한 집계 함수 활용
 SELECT 
@@ -343,8 +341,7 @@ SELECT
     SUM(amount) AS total_amount,
     AVG(price) AS avg_price,
     MIN(price) AS min_price,
-    MAX(price) AS max_price,
-    TOPK(price, 3) AS top_3_prices
+    MAX(price) AS max_price
 FROM orders
 WINDOW TUMBLING (SIZE 1 HOUR)
 GROUP BY itemId;
