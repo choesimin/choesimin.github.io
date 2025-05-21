@@ -1,10 +1,9 @@
 ---
 layout: note
-permalink: /
+permalink: /324
 title: Flowchart - 흐름과 순서를 시각화하기
-description: 
-date: 
-published: false
+description: flowchart를 그려서 process나 algorithm을 시각적으로 표현할 수 있습니다.
+date: 2025-05-21
 ---
 
 
@@ -33,7 +32,7 @@ flowchart LR
 
 ## Flowchart의 기본 구성 요소
 
-- flowchart는 **symbol**과 **연결선**으로 구성됩니다.
+- flowchart는 **symbol**(도형)과 **flow line**(연결선)으로 구성됩니다.
 
 
 ### Symbol : 기본 도형
@@ -45,6 +44,9 @@ flowchart LR
 - **타원형**이나 **둥근 직사각형**으로 표현합니다.
 
 ```mermaid
+flowchart TD
+    start([시작])
+    finish([종료])
 ```
 
 - **process의 시작과 끝**을 나타냅니다.
@@ -55,6 +57,8 @@ flowchart LR
 - **직사각형**으로 표현합니다.
 
 ```mermaid
+flowchart LR
+    process[처리]
 ```
 
 - **계산, data 처리, 변수 할당 등의 작업**을 나타냅니다.
@@ -65,6 +69,8 @@ flowchart LR
 - **마름모꼴**로 표현합니다.
 
 ```mermaid
+flowchart LR
+    decision{결정}
 ```
 
 - **조건에 따른 분기점**을 나타냅니다.
@@ -75,6 +81,8 @@ flowchart LR
 - **평행사변형**으로 표현합니다.
 
 ```mermaid
+flowchart LR
+    input_output[/입출력/]
 ```
 
 - **data 입력이나 결과 출력**을 나타냅니다.
@@ -85,6 +93,8 @@ flowchart LR
 - **원형**으로 표현합니다.
 
 ```mermaid
+flowchart LR
+    connector((연결))
 ```
 
 - **diagram 내의 다른 부분과 연결**됨을 나타냅니다.
@@ -93,7 +103,16 @@ flowchart LR
 
 ### Flow Line : 연결선
 
+- **화살표와 선**으로 표현합니다.
+
 ```mermaid
+flowchart LR
+    start([시작])
+    finish([종료])
+    process[처리]
+
+    start --> process
+    process --> finish
 ```
 
 - **화살표는 process의 순서와 방향**을 나타냅니다.
@@ -141,10 +160,10 @@ flowchart LR
     - 같은 종류의 단계는 동일한 크기와 모양의 symbol을 사용합니다.
     - 시각적 일관성은 diagram의 가독성을 향상시킵니다.
 
-- **line 교차를 최소화**하고, 불가피한 경우 "Jump" 표시를 사용합니다.
-    - line이 교차할 때는 한 line에 작은 반원형 표시를 추가합니다.
-    - 복잡한 경우 connector symbol을 활용합니다.
-??????????????????????????????
+- **line 교차를 최소화**하고, 불가피한 경우 jump 표시를 사용합니다.
+    - jump 표시란, line이 다른 line을 지나갈 때, 해당 line이 다른 line 위를 뛰어 넘어가는 듯이 표시하는 것을 의미합니다.
+        - 교차하는 지점에서, 두 개 중 하나의 line을 반원으로 이어서 그립니다.
+    - 교차가 더 복잡한 경우 connector symbol을 활용합니다.
 
 - **복잡한 process는 하위 flowchart로 분리**합니다.
     - 세부 단계가 많은 process는 별도의 diagram으로 표현할 수 있습니다.
@@ -169,8 +188,8 @@ flowchart TD
     validate -->|No| failure[로그인 실패]
     failure --> retry{다시 시도?}
     retry -->|Yes| input
-    retry -->|No| end
-    success --> end([종료])
+    retry -->|No| finish
+    success --> finish([종료])
 ```
 
 
@@ -188,9 +207,9 @@ flowchart TD
     payment_error --> retry{다시 시도?}
     retry -->|Yes| payment
     retry -->|No| cart_return[장바구니로 돌아가기]
-    cart_return --> end
+    cart_return --> finish
     process --> confirm[주문 확인 이메일 전송]
-    confirm --> end([종료])
+    confirm --> finish([종료])
 ```
 
 
@@ -202,7 +221,7 @@ flowchart TD
     input --> validate{data 유효성 검사}
     validate -->|유효함| process[data 정규화]
     validate -->|유효하지 않음| error[오류 로그 기록]
-    error --> end
+    error --> finish
     process --> transform[특성 변환]
     transform --> split[학습/test 세트 분할]
     split --> train[모델 학습]
@@ -211,7 +230,7 @@ flowchart TD
     evaluate -->|불만족| tune[하이퍼파라미터 조정]
     tune --> train
     save --> deploy[모델 배포]
-    deploy --> end([종료])
+    deploy --> finish([종료])
 ```
 
 

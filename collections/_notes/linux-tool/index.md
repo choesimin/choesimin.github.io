@@ -17,52 +17,52 @@ date: 2025-03-02
 
 ### 대표적인 Linux 명령어
 
-- `ls`: 현재 디렉토리의 파일 목록을 출력합니다.
-- `cd`: 디렉토리를 이동합니다.
+- `ls` : 현재 directory의 file 목록 출력.
+- `cd` : directory 이동.
 
-- `find`: 파일을 검색합니다.
-- `cp`: 파일을 복사합니다.
-- `pwd`: 현재 디렉토리의 경로를 출력합니다.
+- `find` : file 검색.
+- `cp` : file 복사.
+- `pwd` : 현재 directory의 경로 출력.
 
-- `mv`: 파일을 이동합니다.
-- `rm`: 파일을 삭제합니다.
+- `mv` : file 이동.
+- `rm` : file 삭제.
 
-- `mkdir`: 디렉토리를 생성합니다.
-- `rmdir`: 디렉토리를 삭제합니다.
+- `mkdir` : directory 생성.
+- `rmdir` : directory 삭제.
 
-- `cat`: 파일의 내용을 출력합니다.
-- `grep`: 파일에서 특정 문자열을 검색합니다.
+- `cat` : file의 내용 출력.
+- `grep` : file에서 특정 문자열 검색.
 
-- `more`: 파일의 내용을 페이지 단위로 출력합니다.
-- `less`: 파일의 내용을 화면 단위로 출력합니다.
+- `more` : file의 내용을 page 단위로 출력.
+- `less` : file의 내용을 화면 단위로 출력.
 
-- `head`: 파일의 앞부분을 출력합니다.
-- `tail`: 파일의 뒷부분을 출력합니다.
+- `head` : file의 앞부분 출력.
+- `tail` : file의 뒷부분 출력.
 
-- `ssh`: 원격 서버에 접속합니다.
-- `scp`: 원격 서버로 파일을 전송합니다.
+- `ssh` : 원격 server에 접속.
+- `scp` : 원격 server로 file 전송.
 
-- `chmod`: 파일의 권한을 변경합니다.
-- `chown`: 파일의 소유자를 변경합니다.
+- `chmod` : file의 권한 변경.
+- `chown` : file의 소유자 변경.
 
-- `ps`: 프로세스 목록을 출력합니다.
-- `kill`: 프로세스를 종료합니다.
-- `top`: 시스템 상태를 출력합니다.
+- `ps` : process 목록 출력.
+- `kill` : process 종료.
+- `top` : system 상태 출력.
 
-- `tar`: 파일을 압축하거나 해제합니다.
-- `gzip`: 파일을 압축하거나 해제합니다.
-- `gunzip`: 파일을 압축하거나 해제합니다.
+- `tar` : file을 압축하거나 해제.
+- `gzip` : file을 압축하거나 해제.
+- `gunzip` : file을 압축하거나 해제.
 
-- `rsync`: 파일을 동기화합니다.
-- `wget`: 파일을 다운로드합니다.
-- `curl`: 파일을 다운로드합니다.
-- `ping`: 네트워크 상태를 확인합니다.
+- `rsync` : file 동기화.
+- `wget` : file download.
+- `curl` : file download.
+- `ping` : network 상태 확인.
 
-- `ifconfig`: 네트워크 인터페이스 정보를 출력합니다.
-- `netstat`: 네트워크 상태를 출력합니다.
-- `route`: 라우팅 테이블을 출력합니다.
-- `iptables`: 방화벽 규칙을 설정합니다.
+- `ifconfig` : network interface 정보 출력.
+- `netstat` : network 상태 출력.
+- `route` : routing table 출력.
+- `iptables` : 방화벽 규칙 설정.
 
-- `crontab`: 작업 스케줄을 설정합니다.
-- `systemctl`: 서비스를 관리합니다.
-- `journalctl`: 시스템 로그를 출력합니다.
+- `crontab` : 작업 schedule 설정.
+- `systemctl` : service 관리.
+- `journalctl` : system log 출력.
