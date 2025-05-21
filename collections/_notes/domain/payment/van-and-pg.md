@@ -17,8 +17,8 @@ date: 2023-11-02
 
 - VAN사와 PG사는 모두 결제 수수료를 통해 수익을 얻으며, 가맹점에 리베이트를 제공하는 방식으로 경쟁하고 있습니다.
 
-- 그러나 최근에는 App to App service가 늘어나면서 기존의 VAN/PG를 사용하는 카드 결제 시스템이 점차 쇠퇴하고 있습니다
-    - 소비자들이 간편결제나 모바일 페이먼트를 선호하면서 전통적인 VAN-PG 구조의 중요성이 감소하고 있습니다.
+- 그러나 최근에는 app to app service가 늘어나면서 기존의 VAN/PG를 사용하는 카드 결제 시스템이 점차 쇠퇴하고 있습니다
+    - 소비자들이 간편 결제나 mobile payment를 선호하면서 전통적인 VAN-PG 구조의 중요성이 감소하고 있습니다.
 
 ```mermaid
 flowchart LR
@@ -36,10 +36,10 @@ flowchart LR
     end
 ```
 
-- Offline 카드 결제에서는 가맹점이 VAN사를 통해 카드사와 통신하며 결제를 처리합니다.
+- offline 카드 결제에서는 가맹점이 VAN사를 통해 카드사와 통신하며 결제를 처리합니다.
     - 전통적인 카드 결제 방식으로, 가맹점의 물리적 단말기(POS)를 통해 이루어집니다.
 
-- Online 카드 결제의 경우, 가맹점은 PG사를 통해 결제를 시작하고, PG사는 다시 VAN사를 거쳐 카드사와 통신합니다.
+- online 카드 결제의 경우, 가맹점은 PG사를 통해 결제를 시작하고, PG사는 다시 VAN사를 거쳐 카드사와 통신합니다.
     - 실물 카드 없이 온라인상에서 이루어지는 결제를 처리하기 위한 구조입니다.
 
 
@@ -73,7 +73,8 @@ flowchart LR
 - 여러 카드사와 연결된 VAN사의 단말기는 전화선을 통해 가맹점과 연결되어 있으므로, 가맹점은 인증 과정을 VAN사에 온전히 맡길 수 있게 됩니다.
 
 - VAN사는 보통 가맹점에 'rebate'를 권유하며 매장과의 계약을 따내고, 이를 통해 가맹점 역시 VAN사가 일부 챙겨간 수수료 중 일부를 다시 돌려받을 수 있습니다.
-    - rebate : 지불한 돈 일부를 돌려받는 것 (a return of a part of a payment).
+    - rebate : 지불한 돈 일부를 돌려받는 것.
+        - a return of a part of a payment.
     1. 우리는 5,000원 짜리 커피를 신용카드로 구매.
     2. 카드사는 5,000원 중 일정율의 수수료를 가져감.
     3. VAN사는 그 일정 수수료 중 다시 또 일정 수수료를 가져감.
@@ -115,6 +116,6 @@ flowchart LR
 
 ## Reference
 
-- <https://finance3.tistory.com/34?category=779493>
+- <https://finance3.tistory.com/34>
 - <https://finance3.tistory.com/43>
-- <https://finance3.tistory.com/53?category=779493>
+- <https://finance3.tistory.com/53>

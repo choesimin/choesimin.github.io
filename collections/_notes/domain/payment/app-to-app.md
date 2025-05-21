@@ -2,7 +2,7 @@
 layout: note
 permalink: /54
 title: App to App 결제
-description: App to App 결제는 PG사와 VAN사를 거치지 않고, 금융 기관과 직접적인 거래가 가능한 결제 service입니다.
+description: app to app 결제는 PG사와 VAN사를 거치지 않고, 금융 기관과 직접적인 거래가 가능한 결제 service입니다.
 date: 2024-01-10
 ---
 
@@ -51,7 +51,7 @@ customer -- 계좌 개설 --- account
 account -- 계좌 개설 --- merchant
 ```
 
-- App to App 결제는 이러한 구매자와 판매자 사이의 network를 더욱 단순화한 형태의 결제 service입니다.
+- app to app 결제는 이러한 구매자와 판매자 사이의 network를 더욱 단순화한 형태의 결제 service입니다.
     - 기존의 PG사나 VAN사를 거치지 않고도 금융 기관과 직접적인 거래가 가능합니다.
         - 결제 수단을 제공하는 금융 기관(카드사, 은행 등)이 지급 결제 platform을 구성하여 직접 판매자과 구매자를 이어줍니다.
             - 구매자와 판매자가 은행 계좌를 개설하여 app을 통해 상호 간의 결제가 즉시 이뤄집니다.
@@ -61,7 +61,7 @@ account -- 계좌 개설 --- merchant
     - PG사와 VAN사를 거치지 않기 때문에, 카드사는 PG사 및 VAN사에 지급해야 했던 수수료를 절약할 수 있습니다.
     - 이로써 카드사는 가맹점에게 혜택(VAN사와 PG사의 rebate 개념)을 직접 줄 수 있게 됩니다.
 
-- App to App 결제는 카드사와 가맹점 서로에게 win-win입니다.
+- app to app 결제는 카드사와 가맹점 서로에게 win-win입니다.
     - 카드사는 VAN사와 PG사에게 수수료를 지불하지 않기 때문에 더 많은 수익을 얻을 수 있습니다.
     - 가맹점은 카드사로부터 직접적인 혜택(수수료 절감)을 받을 수 있습니다.
 
