@@ -21,7 +21,7 @@ date: 2025-05-21
 
 - RCS의 예시로는, Google의 Android Messages, Samsung의 Messages, Apple의 iMessage 등이 있습니다.
 
-|  | **SMS** | **LMS** | **MMS** | **RCS** |
+| 비교 항목 | SMS | LMS | MMS | RCS |
 | --- | --- | --- | --- | --- |
 | **명칭** | Short Message Service | Long Message Service | Multimedia Messaging Service | Rich Communication Services |
 | **특징** | 가장 기본적인 text message service | SMS보다 긴 message 전송 가능 | text뿐 아니라 image, audio, video 전송 가능 | 차세대 message 표준, chatting app과 유사한 기능 제공 |

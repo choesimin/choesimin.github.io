@@ -2,7 +2,7 @@
 layout: note
 permalink: /327
 title: Email - 전자 우편
-description: email은 internet을 통해 전자적으로 편지를 주고받는 통신 방식입니다.
+description: email은 electronic mail의 줄임말로, internet을 통해 문자 message를 주고받는 통신 방식입니다.
 date: 2025-05-22
 ---
 
@@ -10,7 +10,7 @@ date: 2025-05-22
 ## E(lectronic) Mail : 전자 우편
 
 - email은 internet을 통해 문자 message를 주고받는 전자 우편 system입니다.
-- 1970년대 초 개발되어, 현재 전 세계에서 가장 널리 사용되는 digital 통신 수단이 되었습니다.
+- 1971년 Ray Tomlinson이 최초로 개발했으며, 현재 전 세계에서 가장 널리 사용되는 digital 통신 수단 중 하나입니다.
 - 개인과 조직 모두에게 필수적인 communication tool로 자리잡았습니다.
 
 
@@ -29,39 +29,36 @@ date: 2025-05-22
     - domain 부분은 email service provider나 조직을 나타냅니다.
 
 
-### Email의 핵심 특징
+### Email의 특징
 
-- email은 **비동기 통신** 방식으로 작동합니다.
+- **비동기 통신** 방식으로 작동합니다.
     - 발신자와 수신자가 동시에 online 상태일 필요가 없습니다.
     - message는 수신자가 확인할 때까지 server에 보관됩니다.
     - 수신자는 자신의 편의에 따라 언제든지 email을 확인할 수 있습니다.
     - 시간대가 다른 지역 간 통신에 특히 유용합니다.
 
-- email은 **영구 기록** 기능을 제공합니다.
+- message를 **영구히 기록**할 수 있습니다.
     - 주고받은 모든 message가 digital 형태로 보관됩니다.
     - 과거의 대화 내용을 언제든지 검색하고 참조할 수 있습니다.
     - 법적 증거나 업무 기록으로 활용할 수 있습니다.
     - backup을 통해 중요한 정보를 장기간 보존할 수 있습니다.
 
-- email은 **다양한 내용** 전송을 지원합니다.
+- **다양한 내용**을 작성하여 전송할 수 있습니다.
     - 일반 text message부터 formatting된 rich text까지 작성 가능합니다.
     - image, document, video 등의 file을 첨부하여 전송할 수 있습니다.
     - hyperlink를 포함하여 web page나 다른 resource로 연결할 수 있습니다.
     - 여러 형태의 multimedia content를 하나의 message에 포함할 수 있습니다.
 
 
----
+### Email의 역할
 
-
-## Email의 사회적 역할
-
-- email은 **업무 환경**에서 핵심적인 communication tool입니다.
+- **업무 환경**에서 핵심적인 communication tool 역할을 합니다.
     - 공식적인 business communication의 표준 수단입니다.
     - project 관리와 team collaboration의 중요한 도구입니다.
     - meeting 안내, 보고서 공유, 의사 결정 과정에서 활용됩니다.
     - 고객과의 소통 창구 역할을 합니다.
 
-- email은 **개인 생활**에서도 중요한 통신 수단입니다.
+- **개인 생활**에서도 중요한 통신 수단으로 사용됩니다.
     - 가족, 친구와의 개인적인 소통에 사용됩니다.
     - online service 가입과 계정 관리의 필수 요소입니다.
     - newsletter, 광고, 알림 등 정보 수신 창구 역할을 합니다.
@@ -77,31 +74,49 @@ date: 2025-05-22
 ---
 
 
-## Email의 발전과 변화
+## Email의 구성 요소
 
-- email은 **단순한 text 교환**에서 시작되어 복합적인 communication platform으로 발전했습니다.
-    - 초기에는 command line 기반의 단순한 message 교환만 가능했습니다.
-    - GUI 환경의 도입으로 사용자 친화적인 interface가 개발되었습니다.
-    - web browser 기반 email service가 등장하여 접근성이 크게 향상되었습니다.
-    - mobile device의 보급으로 언제 어디서나 email 확인이 가능해졌습니다.
+```txt
+Email = Header + Body + Attachment
+```
 
-- **spam과 보안** 문제가 주요 과제로 대두되었습니다.
-    - 원치 않는 광고나 악성 email의 증가로 filtering 기술이 발달했습니다.
-    - phishing과 malware 공격으로부터 사용자를 보호하는 기술이 개발되었습니다.
-    - encryption과 digital signature 등 보안 기능이 강화되었습니다.
-    - machine learning을 활용한 지능형 spam 탐지 system이 도입되었습니다.
+- email은 **header**, **body**, **attachment**의 3개 주요 부분으로 구성되는 structured message format입니다.
+    - header : email의 routing과 metadata 정보.
+    - body : 실제 message 내용.
+    - attachment : email과 함께 전송되는 첨부 file.
 
-- **social media와 instant messaging**의 등장으로 email의 역할이 변화하고 있습니다.
-    - 실시간 소통은 messaging app이 담당하는 경우가 증가했습니다.
-    - email은 보다 formal하고 공식적인 communication 수단으로 자리잡았습니다.
-    - 중요한 정보나 문서 전달의 주요 수단으로 여전히 활용됩니다.
-    - notification과 authentication의 기본 channel 역할을 유지하고 있습니다.
+
+### Header : Metadata
+
+- header는 email의 **routing과 metadata 정보**를 담고 있는 필수 구성 요소입니다.
+- email 전송과 수신에 필요한 모든 기술적 정보가 포함됩니다.
+- 사용자가 직접 볼 수 있는 정보와 system이 처리하는 숨겨진 정보로 구분됩니다.
+- email client에서 사용자에게 표시되는 방식이 header 정보에 따라 결정됩니다.
+
+
+### Body : Message
+
+- body는 **실제 message 내용**을 담는 email의 핵심 부분입니다.
+    - 발신자가 전달하고자 하는 모든 정보와 의도가 포함됩니다.
+- 다양한 형식과 content type을 지원하여 풍부한 표현이 가능합니다.
+    - plain text, HTML, rich text 등 다양한 형식으로 작성할 수 있습니다.
+- 수신자의 email client 환경에 따라 표시 방식이 달라질 수 있습니다.
+- body에는 발신자의 신원과 연락처 정보를 담고 있는 signature를 추가하기도 합니다.
+
+
+### Attachment : File
+
+- attachment는 email과 함께 전송되는 **첨부 file**입니다.
+- 문서, 이미지, 비디오 등 다양한 형식의 file을 첨부할 수 있습니다.
+- file 크기 제한이 있으며, 대부분의 서비스에서 25MB 이하로 제한됩니다.
+- 수신자는 첨부된 file을 다운로드하여 확인할 수 있습니다.
+- 보안상의 이유로 일부 file 형식은 차단될 수 있습니다.
 
 
 ---
 
 
-## Email 사용의 장단점
+## Email의 장단점
 
 - email은 현대 communication의 핵심 도구로서 고유한 특성과 한계를 동시에 갖고 있습니다.
 
