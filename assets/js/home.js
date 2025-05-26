@@ -24,6 +24,25 @@ document.addEventListener('DOMContentLoaded', function() {
   let clusterSvg = null;
   let tooltip = null;
 
+  // Initialize tooltip
+  function initializeTooltip() {
+    if (!tooltip) {
+      tooltip = d3.select('body')
+        .append('div')
+        .attr('class', 'tooltip')
+        .style('position', 'absolute')
+        .style('visibility', 'hidden')
+        .style('background', 'rgba(0, 0, 0, 0.8)')
+        .style('color', 'white')
+        .style('padding', '10px')
+        .style('border-radius', '5px')
+        .style('font-size', '12px')
+        .style('max-width', '200px')
+        .style('z-index', '1000')
+        .style('pointer-events', 'none');
+    }
+  }
+
   // Initialize view toggle functionality
   function initializeViewToggle() {
     const gridBtn = document.getElementById('gridViewBtn');
@@ -213,6 +232,33 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (d.data.type === 'category' && d.data.url) {
           window.location.href = d.data.url;
         }
+      })
+      .on('mouseover', function(event, d) {
+        if (d.data.type === 'note' || d.data.url) {
+          initializeTooltip();
+          const title = d.data.title || d.data.name;
+          const description = d.data.description || 'No description available';
+          const categorySegments = d.data.category ? formatCategory(d.data.category) : [];
+          const categoryHTML = categorySegments.map(segment => segment.text).join(' / ');
+          
+          tooltip.html(`
+            <div style="font-weight: bold; margin-bottom: 5px;">${title}</div>
+            <div style="margin-bottom: 5px;">${description}</div>
+            ${categoryHTML ? `<div style="font-size: 10px; opacity: 0.8;">${categoryHTML}</div>` : ''}
+          `)
+          .style('visibility', 'visible');
+        }
+      })
+      .on('mousemove', function(event) {
+        if (tooltip) {
+          tooltip.style('top', (event.pageY - 10) + 'px')
+                 .style('left', (event.pageX + 10) + 'px');
+        }
+      })
+      .on('mouseout', function() {
+        if (tooltip) {
+          tooltip.style('visibility', 'hidden');
+        }
       });
     
     clusterSvg = svg;
@@ -292,6 +338,33 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (d.data.type === 'category' && d.data.url) {
           window.location.href = d.data.url;
         }
+      })
+      .on('mouseover', function(event, d) {
+        if (d.data.type === 'note' || d.data.url) {
+          initializeTooltip();
+          const title = d.data.title || d.data.name;
+          const description = d.data.description || 'No description available';
+          const categorySegments = d.data.category ? formatCategory(d.data.category) : [];
+          const categoryHTML = categorySegments.map(segment => segment.text).join(' / ');
+          
+          tooltip.html(`
+            <div style="font-weight: bold; margin-bottom: 5px;">${title}</div>
+            <div style="margin-bottom: 5px;">${description}</div>
+            ${categoryHTML ? `<div style="font-size: 10px; opacity: 0.8;">${categoryHTML}</div>` : ''}
+          `)
+          .style('visibility', 'visible');
+        }
+      })
+      .on('mousemove', function(event) {
+        if (tooltip) {
+          tooltip.style('top', (event.pageY - 10) + 'px')
+                 .style('left', (event.pageX + 10) + 'px');
+        }
+      })
+      .on('mouseout', function() {
+        if (tooltip) {
+          tooltip.style('visibility', 'hidden');
+        }
       });
     
     clusterSvg = svg;
@@ -358,9 +431,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Display all notes when page loads
-  displayAllNotes();
-  
   // Initialize view toggle functionality
   initializeViewToggle();
+
+  // Initial display
+  switchView(currentView);
 });
