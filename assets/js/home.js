@@ -133,44 +133,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('clusterContainer');
     container.innerHTML = '';
     
-    const width = container.clientWidth || 800;
-    const height = container.clientHeight || 600;
+    const width = container.clientWidth || 928;
+    
+    // Compute the tree height
+    const hierarchyData = createHierarchicalData();
+    const root = d3.hierarchy(hierarchyData);
+    const dx = 10;
+    const dy = width / (root.height + 1);
+    
+    // Create a tree layout
+    const tree = d3.cluster().nodeSize([dx, dy]);
+    
+    // Sort the tree and apply the layout
+    root.sort((a, b) => d3.ascending(a.data.name, b.data.name));
+    tree(root);
+    
+    // Compute the extent of the tree
+    let x0 = Infinity;
+    let x1 = -x0;
+    root.each(d => {
+      if (d.x > x1) x1 = d.x;
+      if (d.x < x0) x0 = d.x;
+    });
+    
+    // Compute the adjusted height of the tree
+    const height = x1 - x0 + dx * 2;
     
     const svg = d3.select(container)
       .append('svg')
       .attr('width', width)
-      .attr('height', height);
-    
-    const g = svg.append('g')
-      .attr('transform', `translate(40, 0)`);
-    
-    const cluster = d3.cluster()
-      .size([height - 40, width - 160]);
-    
-    const hierarchyData = createHierarchicalData();
-    const root = d3.hierarchy(hierarchyData);
-    cluster(root);
+      .attr('height', height)
+      .attr('viewBox', [-dy / 3, x0 - dx, width, height])
+      .attr('style', 'max-width: 100%; height: auto; font: 10px sans-serif;');
     
     // Add links
-    g.selectAll('.cluster-link')
+    const link = svg.append('g')
+      .attr('fill', 'none')
+      .attr('stroke', '#555')
+      .attr('stroke-opacity', 0.4)
+      .attr('stroke-width', 1.5)
+      .selectAll()
       .data(root.links())
-      .enter().append('path')
-      .attr('class', 'cluster-link')
+      .join('path')
       .attr('d', d3.linkHorizontal()
         .x(d => d.y)
         .y(d => d.x));
     
     // Add nodes
-    const node = g.selectAll('.cluster-node')
+    const node = svg.append('g')
+      .attr('stroke-linejoin', 'round')
+      .attr('stroke-width', 3)
+      .selectAll()
       .data(root.descendants())
-      .enter().append('g')
-      .attr('class', 'cluster-node')
+      .join('g')
       .attr('transform', d => `translate(${d.y},${d.x})`);
     
     node.append('circle')
-      .attr('r', d => d.data.type === 'note' ? 4 : 6)
-      .style('fill', d => d.data.type === 'note' ? '#007acc' : '#fff')
-      .style('stroke', '#333')
+      .attr('fill', d => d.children ? '#555' : '#999')
+      .attr('r', 2.5)
       .style('cursor', d => d.data.type === 'note' ? 'pointer' : 'default')
       .on('click', function(event, d) {
         if (d.data.type === 'note' && d.data.url) {
@@ -179,16 +199,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     
     node.append('text')
-      .attr('class', 'cluster-text')
       .attr('dy', '0.31em')
       .attr('x', d => d.children ? -6 : 6)
-      .style('text-anchor', d => d.children ? 'end' : 'start')
-      .text(d => {
-        const displayText = d.data.name;
-        return displayText.length > 20 ? displayText.substring(0, 20) + '...' : displayText;
-      })
-      .style('font-size', d => d.data.type === 'note' ? '10px' : '12px')
-      .style('font-weight', d => d.data.type === 'note' ? 'normal' : 'bold');
+      .attr('text-anchor', d => d.children ? 'end' : 'start')
+      .text(d => d.data.name)
+      .attr('stroke', 'white')
+      .attr('paint-order', 'stroke');
     
     clusterSvg = svg;
   }
@@ -198,48 +214,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('clusterContainer');
     container.innerHTML = '';
     
-    const width = container.clientWidth || 800;
-    const height = container.clientHeight || 600;
-    const radius = Math.min(width, height) / 2 - 40;
+    // Specify the chart's dimensions
+    const width = container.clientWidth || 928;
+    const height = width;
+    const cx = width * 0.5;
+    const cy = height * 0.54;
+    const radius = Math.min(width, height) / 2 - 80;
     
+    // Create a radial cluster layout
+    const tree = d3.cluster()
+      .size([2 * Math.PI, radius])
+      .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
+    
+    // Sort the tree and apply the layout
+    const hierarchyData = createHierarchicalData();
+    const root = tree(d3.hierarchy(hierarchyData)
+      .sort((a, b) => d3.ascending(a.data.name, b.data.name)));
+    
+    // Creates the SVG container
     const svg = d3.select(container)
       .append('svg')
       .attr('width', width)
-      .attr('height', height);
+      .attr('height', height)
+      .attr('viewBox', [-cx, -cy, width, height])
+      .attr('style', 'width: 100%; height: auto; font: 10px sans-serif;');
     
-    const g = svg.append('g')
-      .attr('transform', `translate(${width / 2},${height / 2})`);
-    
-    const cluster = d3.cluster()
-      .size([2 * Math.PI, radius]);
-    
-    const hierarchyData = createHierarchicalData();
-    const root = d3.hierarchy(hierarchyData);
-    cluster(root);
-    
-    // Add links
-    g.selectAll('.cluster-link')
+    // Append links
+    svg.append('g')
+      .attr('fill', 'none')
+      .attr('stroke', '#555')
+      .attr('stroke-opacity', 0.4)
+      .attr('stroke-width', 1.5)
+      .selectAll()
       .data(root.links())
-      .enter().append('path')
-      .attr('class', 'cluster-link')
+      .join('path')
       .attr('d', d3.linkRadial()
         .angle(d => d.x)
         .radius(d => d.y));
     
-    // Add nodes
-    const node = g.selectAll('.cluster-node')
+    // Append nodes
+    svg.append('g')
+      .selectAll()
       .data(root.descendants())
-      .enter().append('g')
-      .attr('class', 'cluster-node')
-      .attr('transform', d => `
-        rotate(${d.x * 180 / Math.PI - 90})
-        translate(${d.y},0)
-      `);
-    
-    node.append('circle')
-      .attr('r', d => d.data.type === 'note' ? 4 : 6)
-      .style('fill', d => d.data.type === 'note' ? '#007acc' : '#fff')
-      .style('stroke', '#333')
+      .join('circle')
+      .attr('transform', d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
+      .attr('fill', d => d.children ? '#555' : '#999')
+      .attr('r', 2.5)
       .style('cursor', d => d.data.type === 'note' ? 'pointer' : 'default')
       .on('click', function(event, d) {
         if (d.data.type === 'note' && d.data.url) {
@@ -247,18 +267,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     
-    node.append('text')
-      .attr('class', 'cluster-text')
+    // Append labels
+    svg.append('g')
+      .attr('stroke-linejoin', 'round')
+      .attr('stroke-width', 3)
+      .selectAll()
+      .data(root.descendants())
+      .join('text')
+      .attr('transform', d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0) rotate(${d.x >= Math.PI ? 180 : 0})`)
       .attr('dy', '0.31em')
       .attr('x', d => d.x < Math.PI === !d.children ? 6 : -6)
-      .style('text-anchor', d => d.x < Math.PI === !d.children ? 'start' : 'end')
-      .attr('transform', d => d.x >= Math.PI ? 'rotate(180)' : null)
-      .text(d => {
-        const displayText = d.data.name;
-        return displayText.length > 15 ? displayText.substring(0, 15) + '...' : displayText;
-      })
-      .style('font-size', d => d.data.type === 'note' ? '9px' : '11px')
-      .style('font-weight', d => d.data.type === 'note' ? 'normal' : 'bold');
+      .attr('text-anchor', d => d.x < Math.PI === !d.children ? 'start' : 'end')
+      .attr('paint-order', 'stroke')
+      .attr('stroke', 'white')
+      .attr('fill', 'currentColor')
+      .text(d => d.data.name);
     
     clusterSvg = svg;
   }
