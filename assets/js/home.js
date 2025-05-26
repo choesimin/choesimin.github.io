@@ -204,7 +204,13 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('text-anchor', d => d.children ? 'end' : 'start')
       .text(d => d.data.name)
       .attr('stroke', 'white')
-      .attr('paint-order', 'stroke');
+      .attr('paint-order', 'stroke')
+      .style('cursor', d => d.data.type === 'note' ? 'pointer' : 'default')
+      .on('click', function(event, d) {
+        if (d.data.type === 'note' && d.data.url) {
+          window.location.href = d.data.url;
+        }
+      });
     
     clusterSvg = svg;
   }
@@ -281,7 +287,13 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('paint-order', 'stroke')
       .attr('stroke', 'white')
       .attr('fill', 'currentColor')
-      .text(d => d.data.name);
+      .text(d => d.data.name)
+      .style('cursor', d => d.data.type === 'note' ? 'pointer' : 'default')
+      .on('click', function(event, d) {
+        if (d.data.type === 'note' && d.data.url) {
+          window.location.href = d.data.url;
+        }
+      });
     
     clusterSvg = svg;
   }
