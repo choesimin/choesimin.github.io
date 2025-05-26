@@ -112,15 +112,22 @@ document.addEventListener('DOMContentLoaded', function() {
         currentLevel = child;
       });
       
-      currentLevel.children.push({
-        name: note.name,
-        path: currentPath + '/' + note.name,
-        url: note.url,
-        description: note.description,
-        type: 'note',
-        category: note.category,
-        title: note.title // Keep original title for reference
-      });
+      // Handle index nodes specially - don't add them as children, but store their info in parent
+      if (note.name === 'index') {
+        currentLevel.url = note.url;
+        currentLevel.description = note.description;
+        currentLevel.title = note.title;
+      } else {
+        currentLevel.children.push({
+          name: note.name,
+          path: currentPath + '/' + note.name,
+          url: note.url,
+          description: note.description,
+          type: 'note',
+          category: note.category,
+          title: note.title
+        });
+      }
 
       console.log(currentLevel);
     });
@@ -191,9 +198,11 @@ document.addEventListener('DOMContentLoaded', function() {
     node.append('circle')
       .attr('fill', d => d.children ? '#555' : '#999')
       .attr('r', 2.5)
-      .style('cursor', d => d.data.type === 'note' ? 'pointer' : 'default')
+      .style('cursor', d => (d.data.type === 'note' || d.data.url) ? 'pointer' : 'default')
       .on('click', function(event, d) {
         if (d.data.type === 'note' && d.data.url) {
+          window.location.href = d.data.url;
+        } else if (d.data.type === 'category' && d.data.url) {
           window.location.href = d.data.url;
         }
       });
@@ -205,9 +214,11 @@ document.addEventListener('DOMContentLoaded', function() {
       .text(d => d.data.name)
       .attr('stroke', 'white')
       .attr('paint-order', 'stroke')
-      .style('cursor', d => d.data.type === 'note' ? 'pointer' : 'default')
+      .style('cursor', d => (d.data.type === 'note' || d.data.url) ? 'pointer' : 'default')
       .on('click', function(event, d) {
         if (d.data.type === 'note' && d.data.url) {
+          window.location.href = d.data.url;
+        } else if (d.data.type === 'category' && d.data.url) {
           window.location.href = d.data.url;
         }
       });
@@ -266,9 +277,11 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('transform', d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
       .attr('fill', d => d.children ? '#555' : '#999')
       .attr('r', 2.5)
-      .style('cursor', d => d.data.type === 'note' ? 'pointer' : 'default')
+      .style('cursor', d => (d.data.type === 'note' || d.data.url) ? 'pointer' : 'default')
       .on('click', function(event, d) {
         if (d.data.type === 'note' && d.data.url) {
+          window.location.href = d.data.url;
+        } else if (d.data.type === 'category' && d.data.url) {
           window.location.href = d.data.url;
         }
       });
@@ -288,9 +301,11 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('stroke', 'white')
       .attr('fill', 'currentColor')
       .text(d => d.data.name)
-      .style('cursor', d => d.data.type === 'note' ? 'pointer' : 'default')
+      .style('cursor', d => (d.data.type === 'note' || d.data.url) ? 'pointer' : 'default')
       .on('click', function(event, d) {
         if (d.data.type === 'note' && d.data.url) {
+          window.location.href = d.data.url;
+        } else if (d.data.type === 'category' && d.data.url) {
           window.location.href = d.data.url;
         }
       });
