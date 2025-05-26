@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /329
+permalink: /330
 title: Email Header의 기능, 구성, 분류
 description: email header는 email message의 발신자, 수신자, 전송 경로, 날짜, 제목 등 email 처리에 필요한 모든 metadata 정보를 key-value 형태로 담고 있는 영역입니다.
 date: 2025-05-22
