@@ -197,15 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     node.append('circle')
       .attr('fill', d => d.children ? '#555' : '#999')
-      .attr('r', 2.5)
-      .style('cursor', d => (d.data.type === 'note' || d.data.url) ? 'pointer' : 'default')
-      .on('click', function(event, d) {
-        if (d.data.type === 'note' && d.data.url) {
-          window.location.href = d.data.url;
-        } else if (d.data.type === 'category' && d.data.url) {
-          window.location.href = d.data.url;
-        }
-      });
+      .attr('r', 2.5);
     
     node.append('text')
       .attr('dy', '0.31em')
@@ -276,15 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .join('circle')
       .attr('transform', d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
       .attr('fill', d => d.children ? '#555' : '#999')
-      .attr('r', 2.5)
-      .style('cursor', d => (d.data.type === 'note' || d.data.url) ? 'pointer' : 'default')
-      .on('click', function(event, d) {
-        if (d.data.type === 'note' && d.data.url) {
-          window.location.href = d.data.url;
-        } else if (d.data.type === 'category' && d.data.url) {
-          window.location.href = d.data.url;
-        }
-      });
+      .attr('r', 2.5);
     
     // Append labels
     svg.append('g')
