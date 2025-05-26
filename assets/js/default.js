@@ -394,14 +394,14 @@ function makeMultiDepthNode(category, child, indent) {
 function getNotes() {
   var notes = [];
 
-  {% for notes in site.notes %}
-  var path = "{{ notes.path }}".replace("_notes/", "").split("/");
+  {% for note in site.notes %}
+  var path = "{{ note.path }}".replace("_notes/", "").split("/");
 
   notes.push({
     category: path.slice(0, path.length - 1),
     name: path[path.length - 1].replace(".md", ""),
-    title: "{{ notes.title | escape }}",
-    url: "{{ notes.url | relative_url }}",
+    title: "{{ note.title | escape }}",
+    url: "{{ note.url | relative_url }}",
   });
   {% endfor %}
 

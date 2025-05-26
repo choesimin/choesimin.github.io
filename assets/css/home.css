@@ -1,4 +1,92 @@
 /* CSS Column-based Masonry Layout */
+/* Header section styling */
+.header-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.view-toggle {
+    margin-bottom: 20px;
+}
+
+.toggle-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.toggle-btn.active {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
+
+/* Cluster visualization containers */
+.cluster-container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cluster-container svg {
+    width: 100%;
+    height: 100%;
+}
+
+.cluster-node {
+    fill: #fff;
+    stroke: #333;
+    stroke-width: 1.5px;
+    cursor: pointer;
+}
+
+.cluster-node:hover {
+    stroke: #007acc;
+    stroke-width: 2px;
+}
+
+.cluster-link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1px;
+}
+
+.cluster-text {
+    font-size: 12px;
+    fill: #333;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.cluster-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
 .notes-grid {
     column-count: 4; /* Default 4 columns */
     column-gap: 20px;
