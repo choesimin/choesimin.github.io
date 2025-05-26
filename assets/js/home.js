@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log(allNotes);
 
   // Global variables for view management
-  let currentView = 'grid';
+  let currentView = 'cluster';
   let clusterSvg = null;
   let tooltip = null;
 
@@ -251,8 +251,19 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .on('mousemove', function(event) {
         if (tooltip) {
+          const tooltipWidth = 220; // Approximate tooltip width including padding
+          let leftPosition;
+          
+          if (event.pageX + tooltipWidth > window.innerWidth) {
+            // Show tooltip on the left when near right edge
+            leftPosition = event.pageX - tooltipWidth - 10;
+          } else {
+            // Show tooltip on the right (default)
+            leftPosition = event.pageX + 10;
+          }
+          
           tooltip.style('top', (event.pageY - 10) + 'px')
-                 .style('left', (event.pageX + 10) + 'px');
+                 .style('left', leftPosition + 'px');
         }
       })
       .on('mouseout', function() {
@@ -357,8 +368,19 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .on('mousemove', function(event) {
         if (tooltip) {
+          const tooltipWidth = 220; // Approximate tooltip width including padding
+          let leftPosition;
+          
+          if (event.pageX + tooltipWidth > window.innerWidth) {
+            // Show tooltip on the left when near right edge
+            leftPosition = event.pageX - tooltipWidth - 10;
+          } else {
+            // Show tooltip on the right (default)
+            leftPosition = event.pageX + 10;
+          }
+          
           tooltip.style('top', (event.pageY - 10) + 'px')
-                 .style('left', (event.pageX + 10) + 'px');
+                 .style('left', leftPosition + 'px');
         }
       })
       .on('mouseout', function() {
