@@ -59,13 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const clusterBtn = document.getElementById('clusterViewBtn');
     const radialBtn = document.getElementById('radialViewBtn');
     const treeBtn = document.getElementById('treeViewBtn');
-    const searchBtn = document.getElementById('searchViewBtn');
 
     gridBtn.addEventListener('click', () => switchView('grid'));
     clusterBtn.addEventListener('click', () => switchView('cluster'));
     radialBtn.addEventListener('click', () => switchView('radial'));
     treeBtn.addEventListener('click', () => switchView('tree'));
-    searchBtn.addEventListener('click', () => switchView('search'));
   }
 
   // Switch between different views
@@ -80,23 +78,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const gridContainer = document.getElementById('notesGrid');
     const clusterContainer = document.getElementById('clusterContainer');
     const treeContainer = document.getElementById('treeContainer');
-    const searchContainer = document.getElementById('searchContainer');
     
     // Hide all containers first
     gridContainer.style.display = 'none';
     clusterContainer.style.display = 'none';
     treeContainer.style.display = 'none';
-    searchContainer.style.display = 'none';
     
     if (view === 'grid') {
       gridContainer.style.display = 'block';
-      displayAllNotes();
+      initializeGridView();
     } else if (view === 'tree') {
       treeContainer.style.display = 'block';
       renderTreeView();
-    } else if (view === 'search') {
-      searchContainer.style.display = 'block';
-      initializeSearchView();
     } else {
       clusterContainer.style.display = 'block';
       
@@ -108,24 +101,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Initialize search view functionality
-  function initializeSearchView() {
+  // Initialize grid view with search functionality
+  function initializeGridView() {
     const searchInput = document.getElementById('searchInput');
-    const searchResults = document.getElementById('searchResults');
-    
-    // Focus on search input when view loads
-    if (searchInput) {
-      setTimeout(() => searchInput.focus(), 100);
-    }
+    const gridContent = document.getElementById('gridContent');
     
     // Initialize Simple Jekyll Search if not already done
     if (window.SimpleJekyllSearch && !searchInput.hasAttribute('data-search-initialized')) {
       SimpleJekyllSearch({
         searchInput: searchInput,
-        resultsContainer: searchResults,
+        resultsContainer: gridContent,
         json: '/assets/json/note-search.json',
-        searchResultTemplate: '<li><a href="{url}"><div class="search-title">{title}</div><div class="search-description">{description}</div></a></li>',
-        noResultsText: '<li>No results found</li>',
+        searchResultTemplate: '<div class="note-card search-result"><a href="{url}"><h3 class="search-title">{title}</h3><p class="search-description">{description}</p></a></div>',
+        noResultsText: '<div class="no-results">No results found</div>',
         limit: 50,
         fuzzy: false
       });
@@ -135,13 +123,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle search input events
     if (searchInput) {
       searchInput.addEventListener('input', function(e) {
-        if (this.value.trim() !== '') {
-          searchResults.classList.remove('hidden');
-        } else {
-          searchResults.classList.add('hidden');
+        if (this.value.trim() === '') {
+          // Show all notes when search is empty
+          displayAllNotes();
         }
+        // When there's search text, Simple Jekyll Search will handle the results
       });
     }
+    
+    // Focus on search input when view loads
+    if (searchInput) {
+      setTimeout(() => searchInput.focus(), 100);
+    }
+    
+    // Initially display all notes
+    displayAllNotes();
   }
 
   // Function to create hierarchical data structure for D3
@@ -450,13 +446,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to display all notes
   function displayAllNotes() {
-    const gridContainer = document.getElementById('notesGrid');
-    if (!gridContainer) {
+    const gridContent = document.getElementById('gridContent');
+    if (!gridContent) {
       return;
     }
     
     // Clear previous notes
-    gridContainer.innerHTML = '';
+    gridContent.innerHTML = '';
     
     // Shuffle notes before displaying
     const shuffledNotes = shuffleArray([...allNotes]);
@@ -474,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
       
       noteCard.innerHTML = noteContent;
-      gridContainer.appendChild(noteCard);
+      gridContent.appendChild(noteCard);
     });
   }
 

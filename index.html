@@ -14,12 +14,16 @@ js:
     <button id="gridViewBtn" class="toggle-btn">Grid</button>
     <button id="clusterViewBtn" class="toggle-btn">Cluster</button>
     <button id="radialViewBtn" class="toggle-btn">Radial</button>
-    <button id="searchViewBtn" class="toggle-btn">Search</button>
   </div>
 </div>
 
 <div id="notesGrid" class="notes-grid">
-  <!-- All notes will be populated here by JavaScript -->
+  <div class="search-input-section">
+    <input type="text" id="searchInput" placeholder="Search notes..." />
+  </div>
+  <div id="gridContent" class="grid-content">
+    <!-- All notes will be populated here by JavaScript -->
+  </div>
 </div>
 
 <div id="clusterContainer" class="cluster-container" style="display: none;">
@@ -29,14 +33,5 @@ js:
 <div id="treeContainer" class="tree-container" style="display: none;">
   <div id="treeList" class="tree-list">
     <!-- Tree structure will be rendered here -->
-  </div>
-</div>
-
-<div id="searchContainer" class="search-container" style="display: none;">
-  <div class="search-input-section">
-    <input type="text" id="searchInput" placeholder="Search notes..." />
-  </div>
-  <div id="searchResults" class="search-results hidden">
-    <!-- Search results will be rendered here -->
   </div>
 </div>
