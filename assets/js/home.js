@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         json: '/assets/json/note-search.json',
         searchResultTemplate: '<div class="note-card search-result"><a href="{url}"><h3 class="search-title">{title}</h3><p class="search-description">{description}</p></a></div>',
         noResultsText: '<div class="no-results">No results found</div>',
-        limit: 1000,
+        limit: 100,
         fuzzy: false
       });
       searchInput.setAttribute('data-search-initialized', 'true');
