@@ -129,6 +129,20 @@ document.addEventListener('DOMContentLoaded', function() {
           displayAllNotes();
         }
       });
+            
+      // Also handle keyup event to catch when input is cleared
+      searchInput.addEventListener('keyup', function(e) {
+        if (this.value.trim() === '') {
+          displayAllNotes();
+        }
+      });
+      
+      // Handle when input loses focus and is empty
+      searchInput.addEventListener('blur', function(e) {
+        if (this.value.trim() === '') {
+          displayAllNotes();
+        }
+      });
     }
     
     // Initially display all notes
