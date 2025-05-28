@@ -267,12 +267,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('clusterContainer');
     container.innerHTML = '';
     
-    // Specify the chart's dimensions - ensure minimum height for scrolling
+    // Specify the chart's dimensions - use screen height for better fit
     const width = container.clientWidth || 928;
-    const height = Math.max(width, window.innerHeight * 1.5);
+    const height = Math.min(width, window.innerHeight * 1.2);
     const cx = width * 0.5;
-    const cy = height * 0.54;
-    const radius = Math.min(width, height) / 2 - 80;
+    const cy = height * 0.5;
+    const radius = Math.min(width, height) / 2 - 150;
     
     // Create a radial cluster layout
     const tree = d3.cluster()
