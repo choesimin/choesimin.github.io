@@ -100,10 +100,10 @@
     display: inline-block;
     width: 100%;
     break-inside: avoid;
-    padding: 15px;
+    padding: 12px;
     border: 1px solid black;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .note-card:hover {
@@ -117,21 +117,22 @@
 
 .note-card h3 {
     margin-top: 0;
-    font-size: 1.2em;
-    margin-bottom: 10px;
+    font-size: 1.0em;
+    margin-bottom: 8px;
+    line-height: 1.3;
 }
 
 .note-card p {
     margin: 0;
     color: #666;
-    font-size: 0.9em;
-    line-height: 1.4;
+    font-size: 0.75em;
+    line-height: 1.3;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .note-categories {
@@ -144,10 +145,10 @@
 .category-item {
     display: inline-block;
     background-color: #eee;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.8em;
-    color: #555;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 0.7em;
+    color: #333;
 }
 
 .note-category {
@@ -155,6 +156,18 @@
 }
 
 /* Responsive adjustments for column count */
+@media (min-width: 1800px) {
+    .notes-grid {
+        column-count: 6; /* 6 columns for very wide screens */
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1799px) {
+    .notes-grid {
+        column-count: 5; /* 5 columns for wide screens */
+    }
+}
+
 @media (max-width: 1200px) {
     .notes-grid {
         column-count: 3; /* 3 columns */
