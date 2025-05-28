@@ -152,6 +152,17 @@ function groupAlgorithms() {
 // Add category toggle functionality for top-level categories
 document.querySelectorAll('.category-header').forEach(function(header) {
   header.addEventListener('click', function(e) {
+    // Check if this is the Note category and redirect to home
+    if (this.hasAttribute('data-target') && this.getAttribute('data-target') === 'note') {
+      // Check if we're not already on the home page
+      if (window.location.pathname !== '/' && !window.location.pathname.endsWith('/index.html')) {
+        window.location.href = '/';
+        return;
+      }
+      // If we're already on home page, just return (do nothing)
+      return;
+    }
+    
     // Get the container that follows this header
     var targetContainer = this.parentElement;
     var targetId;

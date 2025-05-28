@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log(allNotes);
 
   // Global variables for view management
-  let currentView = 'grid';
+  let currentView = 'tree';
   let clusterSvg = null;
   let tooltip = null;
 
@@ -58,10 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const gridBtn = document.getElementById('gridViewBtn');
     const clusterBtn = document.getElementById('clusterViewBtn');
     const radialBtn = document.getElementById('radialViewBtn');
+    const treeBtn = document.getElementById('treeViewBtn');
+    const searchBtn = document.getElementById('searchViewBtn');
 
     gridBtn.addEventListener('click', () => switchView('grid'));
     clusterBtn.addEventListener('click', () => switchView('cluster'));
     radialBtn.addEventListener('click', () => switchView('radial'));
+    treeBtn.addEventListener('click', () => switchView('tree'));
+    searchBtn.addEventListener('click', () => switchView('search'));
   }
 
   // Switch between different views
@@ -75,13 +79,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show/hide containers
     const gridContainer = document.getElementById('notesGrid');
     const clusterContainer = document.getElementById('clusterContainer');
+    const treeContainer = document.getElementById('treeContainer');
+    const searchContainer = document.getElementById('searchContainer');
+    
+    // Hide all containers first
+    gridContainer.style.display = 'none';
+    clusterContainer.style.display = 'none';
+    treeContainer.style.display = 'none';
+    searchContainer.style.display = 'none';
     
     if (view === 'grid') {
       gridContainer.style.display = 'block';
-      clusterContainer.style.display = 'none';
       displayAllNotes();
+    } else if (view === 'tree') {
+      treeContainer.style.display = 'block';
+      renderTreeView();
+    } else if (view === 'search') {
+      searchContainer.style.display = 'block';
+      initializeSearchView();
     } else {
-      gridContainer.style.display = 'none';
       clusterContainer.style.display = 'block';
       
       if (view === 'cluster') {
@@ -89,6 +105,42 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (view === 'radial') {
         renderRadialClusterView();
       }
+    }
+  }
+
+  // Initialize search view functionality
+  function initializeSearchView() {
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    
+    // Focus on search input when view loads
+    if (searchInput) {
+      setTimeout(() => searchInput.focus(), 100);
+    }
+    
+    // Initialize Simple Jekyll Search if not already done
+    if (window.SimpleJekyllSearch && !searchInput.hasAttribute('data-search-initialized')) {
+      SimpleJekyllSearch({
+        searchInput: searchInput,
+        resultsContainer: searchResults,
+        json: '/assets/json/note-search.json',
+        searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+        noResultsText: '<li>No results found</li>',
+        limit: 50,
+        fuzzy: false
+      });
+      searchInput.setAttribute('data-search-initialized', 'true');
+    }
+    
+    // Handle search input events
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        if (this.value.trim() !== '') {
+          searchResults.classList.remove('hidden');
+        } else {
+          searchResults.classList.add('hidden');
+        }
+      });
     }
   }
 
@@ -424,6 +476,282 @@ document.addEventListener('DOMContentLoaded', function() {
       noteCard.innerHTML = noteContent;
       gridContainer.appendChild(noteCard);
     });
+  }
+
+  // Tree view functionality
+  function renderTreeView() {
+    const treeList = document.getElementById('treeList');
+    if (!treeList) return;
+    
+    // Clear previous tree
+    treeList.innerHTML = '';
+    
+    // Create tree structure using the same logic as sidebar
+    const nodes = makeTreeNodes(allNotes);
+    const root = groupTreeNodes(nodes);
+    
+    const list = document.createElement("ul");
+    list.className = "root";
+    
+    if (root.children && root.children.length > 0) {
+      for (let i = 0; i < root.children.length; i++) {
+        makeTreeList(root.children[i], list);
+      }
+    }
+    
+    treeList.appendChild(list);
+  }
+
+  // Initialize tree search functionality
+  function initializeTreeSearch() {
+    // Initialize Simple Jekyll Search for tree view
+    if (window.SimpleJekyllSearch) {
+      SimpleJekyllSearch({
+        searchInput: document.querySelector('#treeSearch input'),
+        resultsContainer: document.getElementById('treeSearchResult'),
+        json: '/assets/json/note-search.json',
+        searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+        noResultsText: 'No results found',
+        limit: 30,
+        fuzzy: false
+      });
+    }
+    
+    // Handle search input events
+    const searchInput = document.querySelector('#treeSearch input');
+    const treeList = document.getElementById('treeList');
+    const searchResults = document.getElementById('treeSearchResult');
+    
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        if (this.value.trim() !== '') {
+          treeList.classList.add('hidden');
+          searchResults.classList.remove('hidden');
+        } else {
+          treeList.classList.remove('hidden');
+          searchResults.classList.add('hidden');
+        }
+      });
+    }
+    
+    // Clear search when clicking outside (but not when clicking search button)
+    document.addEventListener('click', function(e) {
+      const treeSearch = document.getElementById('treeSearch');
+      const searchBtn = document.getElementById('searchViewBtn');
+      
+      if (searchInput && !treeSearch.contains(e.target) && 
+          !searchBtn.contains(e.target) &&
+          searchResults && !searchResults.contains(e.target) && 
+          searchInput.value.trim() !== '') {
+        // Don't auto-clear, let user manage search state via Search button
+      }
+    });
+  }
+
+  // Tree node creation functions (adapted from default.js)
+  function makeTreeList(node, list) {
+    const listItem = document.createElement("li");
+    listItem.classList.add("tree-list-item");
+    
+    if (node.children != undefined) {
+      // Store original children count before filtering
+      node.originalChildrenCount = node.children.length;
+      
+      const index = node.children.filter(child => child.isIndex)[0];
+      node.children = node.children.filter(child => !child.isIndex);
+
+      // Create the main content container (left side)
+      const contentContainer = document.createElement("span");
+      contentContainer.classList.add("tree-content-container");
+      
+      if (index != undefined) {
+        listItem.id = index.category.join('-');
+
+        const anchor = document.createElement("a");
+        anchor.textContent = index.name;
+        anchor.href = index.url;
+        contentContainer.appendChild(anchor);
+      } else {
+        contentContainer.textContent = node.name;
+      }
+      
+      listItem.appendChild(contentContainer);
+      
+      // Create the right-aligned container for count and toggle
+      const rightContainer = document.createElement("span");
+      rightContainer.classList.add("tree-right-container");
+      
+      // Calculate total descendants 
+      const totalDescendants = countTreeDescendants(node);
+      
+      const childCount = document.createElement("span");
+      childCount.className = "tree-count-display";
+      childCount.textContent = totalDescendants;
+      rightContainer.appendChild(childCount);
+      
+      // Only add toggle text if node has children
+      if (node.children && node.children.length > 0) {
+        const toggleText = document.createElement("span");
+        toggleText.classList.add("tree-toggle-margin-left");
+
+        // Create toggle icon element
+        const toggleIcon = document.createElement("span");
+        toggleIcon.className = "tree-toggle-icon";
+        toggleIcon.textContent = "▾";
+
+        toggleText.appendChild(toggleIcon);
+        rightContainer.appendChild(toggleText);
+      }
+      
+      listItem.appendChild(rightContainer);
+      list.appendChild(listItem);
+
+      if (node.children.length > 0) {
+        const childList = document.createElement("ul");
+        // Remove hidden class to show expanded by default
+        // childList.classList.add("hidden");
+        for (let i = 0; i < node.children.length; i++) {
+          makeTreeList(node.children[i], childList);
+        }
+        listItem.appendChild(childList);
+
+        // Make the entire right container clickable for toggling
+        rightContainer.style.cursor = "pointer";
+        rightContainer.addEventListener("click", function(e) {
+          toggleTreeChildList(e, childList, rightContainer);
+        });
+
+        // Set toggle icon to open state by default
+        const toggleIcon = rightContainer.querySelector('.tree-toggle-icon');
+        if (toggleIcon) {
+          toggleIcon.classList.add('open');
+        }
+
+        // Add navigation to the content container if it has a link
+        if (index != undefined) {
+          contentContainer.addEventListener("click", function(e) {
+            e.stopPropagation();
+            window.location.href = index.url;
+          });
+        }
+      }
+    } else {
+      // For leaf nodes, no toggle or count
+      const anchor = document.createElement("a");
+      anchor.textContent = node.name;
+      anchor.href = node.url;
+      listItem.appendChild(anchor);
+      list.appendChild(listItem);
+    }
+  }
+
+  // Helper function to toggle child list visibility
+  function toggleTreeChildList(e, childList, rightContainer) {
+    e.stopPropagation(); // Prevent event from bubbling up
+    
+    const toggleIcon = rightContainer.querySelector('.tree-toggle-icon');
+    
+    if (childList.classList.contains("hidden")) {
+      childList.classList.remove("hidden");
+      if (toggleIcon) {
+        toggleIcon.classList.add('open');
+      }
+    } else {
+      childList.classList.add("hidden");
+      if (toggleIcon) {
+        toggleIcon.classList.remove('open');
+      }
+    }
+  }
+
+  // Count all descendants
+  function countTreeDescendants(node) {
+    // For leaf nodes
+    if (!node.children) {
+      return 1;
+    }
+    
+    let count = 0;
+    
+    // Count all children including their descendants
+    for (let child of node.children) {
+      if (child.children) {
+        // For nodes with children, recursively count their descendants
+        count += countTreeDescendants(child);
+      } else {
+        // For leaf nodes, add 1
+        count += 1;
+      }
+    }
+    
+    return count;
+  }
+
+  function groupTreeNode(node) {
+    // Track original children count before any operation
+    if (node.children) {
+      node.originalChildrenCount = node.children.length;
+    }
+    
+    const categories = Array.from(new Set(node.children.filter(child => child.children != undefined).map(child => child.name)));
+
+    for (let i = 0; i < categories.length; i++) {
+      const category = categories[i];
+      const groupedNode = {
+        name: category,
+        children: node.children.filter(child => child.name === category).map(child => child.children).flat(Infinity)
+      };
+      
+      // Preserve index information in the grouped node
+      if (groupedNode.children) {
+        groupedNode.originalChildrenCount = groupedNode.children.length;
+      }
+
+      node.children = node.children.filter(child => child.name != category);
+      node.children.push(groupedNode);
+
+      if (groupedNode.children != undefined) {
+        groupTreeNode(groupedNode);
+      }
+    }
+
+    return node;
+  }
+
+  function groupTreeNodes(nodes) {
+    const root = { name: "root" };
+    root.children = nodes;
+
+    return groupTreeNode(root);
+  }
+
+  function makeTreeNodes(pages) {
+    const nodes = pages.map(page => makeTreeNode(page));
+    return nodes;
+  }
+
+  function makeTreeNode(page) {
+    const leaf = {
+      name: page.title,
+      url: page.url,
+      category: page.category,
+      isIndex: page.name === "index"
+    }
+    return makeMultiDepthTreeNode(page.category, leaf, 1);
+  }
+
+  function makeMultiDepthTreeNode(category, child, indent) {
+    const node = {
+      name: category[category.length - indent],
+      children: [child]
+    };
+
+    while (indent < category.length) {
+      indent++;
+      return makeMultiDepthTreeNode(category, node, indent);
+    }
+
+    return node;
   }
   
   // Initialize view toggle functionality

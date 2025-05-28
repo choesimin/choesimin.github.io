@@ -167,3 +167,219 @@
 .debug-info {
     display: none; /* Hide in production */
 }
+
+/* Tree view styling */
+.tree-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 0.95em; /* Match sidebar font size */
+}
+
+.tree-search {
+    margin: 10px 0;
+    width: 100%;
+}
+
+.tree-search input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    background-color: var(--background-color, white);
+    color: inherit;
+    border: none;
+    border-bottom: 1px solid #dddddd;
+}
+
+.tree-search input:focus {
+    border-color: #999999;
+    outline: none;
+}
+
+#treeSearchResult {
+    background-color: var(--background-color, white);
+    padding: 10px 0;
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 0;
+    padding-left: 12px;
+}
+
+#treeSearchResult li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+#treeSearchResult li a {
+    text-decoration: none;
+    display: block;
+}
+
+#treeSearchResult li a:hover {
+    text-decoration: underline;
+}
+
+.tree-list {
+    line-height: 1.5;
+}
+
+.tree-list .root {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.tree-list .root > li {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* First level children (direct children of root) - no indentation */
+.tree-list .root > li > ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    font-weight: normal;
+    font-size: 0.91em; /* Reset font size for children */
+}
+
+.tree-list-item {
+    position: relative;
+    margin-top: 6px;
+}
+
+.tree-content-container {
+    display: inline-block;
+    width: 85%;
+    word-wrap: break-word;
+}
+
+.tree-content-container a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tree-content-container a:hover {
+    text-decoration: underline;
+}
+
+.tree-right-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    padding: 0 5px;  /* Add padding to increase clickable area */
+    height: 100%;    /* Make the container take full height */
+    min-width: 30px; /* Ensure minimum width for better clickability */
+    text-align: right;
+    z-index: 1;      /* Ensure it's clickable above other elements */
+}
+
+.tree-count-display {
+    margin-left: 8px;
+    font-size: 0.7em;
+}
+
+.tree-toggle-margin-left {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.tree-toggle-icon {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.tree-toggle-icon.open {
+    transform: rotate(180deg);
+}
+
+.tree-list ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+}
+
+/* Override for first level - no indentation */
+.tree-list .root > li > ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    font-weight: normal;
+    font-size: 0.91em; /* Reset font size for children */
+}
+
+.tree-list li {
+    margin-top: 6px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Search view styling */
+.search-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-input-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-input-section input {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-input-section input:focus {
+    border-color: #007acc;
+}
+
+.search-results {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-results li {
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.search-results li:hover {
+    background-color: #f0f0f0;
+}
+
+.search-results a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    font-weight: 500;
+}
+
+.search-results a:hover {
+    color: #007acc;
+}
