@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log(allNotes);
 
   // Global variables for view management
-  let currentView = 'cluster';
+  let currentView = 'grid';
   let clusterSvg = null;
   let tooltip = null;
 
@@ -251,8 +251,8 @@ document.addEventListener('DOMContentLoaded', function() {
           const description = d.data.description || 'No description available';
           
           tooltip.html(`
-            <div style="font-weight: bold; margin-bottom: 5px;">${title}</div>
-            <div style="margin-bottom: 5px;">${description}</div>
+            <div style="font-weight: bold; margin-bottom: 8px;">${title}</div>
+            <div style="opacity: 0.9;">${description}</div>
           `)
           .style('visibility', 'visible');
         }
@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
           
           tooltip.html(`
             <div style="font-weight: bold; margin-bottom: 5px;">${title}</div>
-            <div style="margin-bottom: 5px;">${description}</div>
+            <div style="opacity: 0.9;">${description}</div>
           `)
           .style('visibility', 'visible');
         }
