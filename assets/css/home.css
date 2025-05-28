@@ -227,7 +227,6 @@
 
 .tree-list .root {
     list-style: none;
-    padding-left: 20px;
     margin: 0;
 }
 
@@ -241,10 +240,10 @@
 /* First level children (direct children of root) - no indentation */
 .tree-list .root > li > ul {
     list-style: none;
-    padding-left: 0;
+    padding-left: 10px;
     margin: 0;
     font-weight: normal;
-    font-size: 0.91em; /* Reset font size for children */
+    font-size: 16px;
 }
 
 .tree-list-item {
@@ -305,12 +304,16 @@
 }
 
 /* Override for first level - no indentation */
+.tree-list .root {
+    padding-left: 0;
+}
+
+
 .tree-list .root > li > ul {
     list-style: none;
-    padding-left: 0;
+    padding-left: 10px;
     margin: 0;
     font-weight: normal;
-    font-size: 0.91em; /* Reset font size for children */
 }
 
 .tree-list li {
