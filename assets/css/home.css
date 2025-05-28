@@ -39,10 +39,11 @@
 /* Cluster visualization containers */
 .cluster-container {
     width: 100%;
-    height: 80vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 20px 0;
 }
 
 .cluster-container svg {
@@ -91,6 +92,8 @@
     column-count: 4; /* Default 4 columns */
     column-gap: 20px;
     width: 100%;
+    min-height: 100vh;
+    padding: 20px 0;
 }
 
 .note-card {

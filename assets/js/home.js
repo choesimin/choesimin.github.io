@@ -3,6 +3,16 @@ layout: none
 ---
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize progress bar
+  const progressBar = document.getElementById("progressBar");
+  window.onscroll = function () {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+
+    progressBar.style.width = scrolled + "%";
+  };
+
   var allNotes = [];
 
   {% for note in site.notes %}
@@ -182,8 +192,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (d.x < x0) x0 = d.x;
     });
     
-    // Compute the adjusted height of the tree
-    const height = x1 - x0 + dx * 2;
+    // Compute the adjusted height of the tree - ensure minimum height for scrolling
+    const calculatedHeight = x1 - x0 + dx * 2;
+    const height = Math.max(calculatedHeight, window.innerHeight * 1.5);
     
     const svg = d3.select(container)
       .append('svg')
@@ -238,13 +249,10 @@ document.addEventListener('DOMContentLoaded', function() {
           initializeTooltip();
           const title = d.data.title || d.data.name;
           const description = d.data.description || 'No description available';
-          const categorySegments = d.data.category ? formatCategory(d.data.category) : [];
-          const categoryHTML = categorySegments.map(segment => segment.text).join(' / ');
           
           tooltip.html(`
             <div style="font-weight: bold; margin-bottom: 5px;">${title}</div>
             <div style="margin-bottom: 5px;">${description}</div>
-            ${categoryHTML ? `<div style="font-size: 10px; opacity: 0.8;">${categoryHTML}</div>` : ''}
           `)
           .style('visibility', 'visible');
         }
@@ -280,9 +288,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('clusterContainer');
     container.innerHTML = '';
     
-    // Specify the chart's dimensions
+    // Specify the chart's dimensions - ensure minimum height for scrolling
     const width = container.clientWidth || 928;
-    const height = width;
+    const height = Math.max(width, window.innerHeight * 1.5);
     const cx = width * 0.5;
     const cy = height * 0.54;
     const radius = Math.min(width, height) / 2 - 80;
@@ -355,13 +363,10 @@ document.addEventListener('DOMContentLoaded', function() {
           initializeTooltip();
           const title = d.data.title || d.data.name;
           const description = d.data.description || 'No description available';
-          const categorySegments = d.data.category ? formatCategory(d.data.category) : [];
-          const categoryHTML = categorySegments.map(segment => segment.text).join(' / ');
           
           tooltip.html(`
             <div style="font-weight: bold; margin-bottom: 5px;">${title}</div>
             <div style="margin-bottom: 5px;">${description}</div>
-            ${categoryHTML ? `<div style="font-size: 10px; opacity: 0.8;">${categoryHTML}</div>` : ''}
           `)
           .style('visibility', 'visible');
         }
