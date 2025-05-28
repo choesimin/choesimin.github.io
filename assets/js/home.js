@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log(allNotes);
 
   // Global variables for view management
-  let currentView = 'tree';
+  let currentView = 'grid';
   let clusterSvg = null;
   let tooltip = null;
 
@@ -128,6 +128,19 @@ document.addEventListener('DOMContentLoaded', function() {
           displayAllNotes();
         }
         // When there's search text, Simple Jekyll Search will handle the results
+      });
+      
+      // Add focus event to maintain width
+      searchInput.addEventListener('focus', function(e) {
+        // Width expansion is handled by CSS :focus
+      });
+      
+      // Add blur event to check if input is empty and show all notes
+      searchInput.addEventListener('blur', function(e) {
+        if (this.value.trim() === '') {
+          displayAllNotes();
+        }
+        // Width contraction is handled by CSS when :focus is removed
       });
     }
     

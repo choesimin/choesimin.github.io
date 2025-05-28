@@ -10,8 +10,8 @@ js:
 <div class="header-section">
   <h1 class="page-title">Note</h1>
   <div class="view-toggle">
+    <button id="gridViewBtn" class="toggle-btn">Search</button>
     <button id="treeViewBtn" class="toggle-btn">Tree</button>
-    <button id="gridViewBtn" class="toggle-btn">Grid</button>
     <button id="clusterViewBtn" class="toggle-btn">Cluster</button>
     <button id="radialViewBtn" class="toggle-btn">Radial</button>
   </div>
@@ -26,12 +26,12 @@ js:
   </div>
 </div>
 
-<div id="clusterContainer" class="cluster-container" style="display: none;">
-  <!-- Cluster visualization will be rendered here -->
-</div>
-
 <div id="treeContainer" class="tree-container" style="display: none;">
   <div id="treeList" class="tree-list">
     <!-- Tree structure will be rendered here -->
   </div>
+</div>
+
+<div id="clusterContainer" class="cluster-container" style="display: none;">
+  <!-- Cluster visualization will be rendered here -->
 </div>

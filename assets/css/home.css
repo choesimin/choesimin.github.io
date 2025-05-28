@@ -105,18 +105,27 @@
 }
 
 .search-input-section input {
-    width: 100%;
+    width: 300px;
     max-width: 500px;
-    padding: 12px 20px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 25px;
+    padding: 6px 0;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
     outline: none;
-    transition: border-color 0.3s ease;
+    text-align: center;
+    transition: width 0.3s ease, border-bottom-color 0.3s ease;
 }
 
 .search-input-section input:focus {
-    border-color: #007acc;
+    width: 100%;
+    max-width: 500px;
+    border-bottom-color: #000;
+}
+
+.search-input-section input::placeholder {
+    color: #999;
+    font-style: normal;
 }
 
 .no-results {
@@ -432,8 +441,12 @@
     }
     
     .search-input-section input {
-        max-width: 100%;
+        max-width: calc(100% - 20px);
         margin: 0 10px;
+    }
+    
+    .search-input-section::after {
+        max-width: calc(100% - 20px);
     }
     
     .notes-grid {
