@@ -20,10 +20,9 @@
       integrity="sha512-gABzh+zgo1Eh5HMdD2IMOjeaQAjl9v/MrA3xbZnMTRR5wC4x3WxurJo6yg5EWj1zfNz0qoXK/rKVP5Are0E4QQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"></script>
-      
-    <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <link rel="stylesheet" href="{{ '/assets/css/default.css' | relative_url }}" />
+    {% include highlight.html %}
     {% if layout.css %}
       {% for css in layout.css %}
         <link rel="stylesheet" href="{{ css | relative_url }}" />
@@ -119,7 +118,10 @@
       <footer>(C) {{ "now" | date: "%Y" }}. {{ site.title }} all rights reserved.</footer>
     </div>
 
-    <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/note-tree.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/algorithms.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
     {% if layout.js %}
       {% for js in layout.js %}
         <script src="{{ js | relative_url }}"></script>
