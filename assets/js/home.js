@@ -92,27 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Function to format category: replace hyphens with spaces and capitalize each word
-  function formatCategory(category) {
-    if (!category || category.length === 0) return [{ text: "Note", class: "category-item" }];
-    
-    // If category is an array, join it to create path segments
-    const categoryPath = Array.isArray(category) ? category.join('/') : category;
-    
-    // Split by slash to get path segments
-    return categoryPath.split('/').map(segment => {
-      // Replace hyphens with spaces and capitalize each word
-      const formattedSegment = segment.split('-').map(word => {
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-      }).join(' ');
-      
-      return { 
-        text: formattedSegment,
-        class: "category-item"
-      };
-    });
-  }
-
   // Function to create hierarchical data structure for D3
   function createHierarchicalData() {
     const root = { name: "note", children: [] };
@@ -435,21 +414,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const noteCard = document.createElement('div');
       noteCard.className = 'note-card';
       
-      // Get category segments as an array of objects
-      const categorySegments = formatCategory(note.category);
-      
-      // Create category elements HTML
-      const categoryHTML = categorySegments.map(segment => 
-        `<span class="${segment.class}">${segment.text}</span>`
-      ).join('');
-      
       const noteContent = `
         <a href="${note.url}">
           <h3>${note.title}</h3>
-          <p>${note.description || 'No description available'}</p>
-          <div class="note-categories">
-            ${categoryHTML}
-          </div>
+          <p>${note.description}</p>
         </a>
       `;
       

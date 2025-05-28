@@ -132,27 +132,6 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin-bottom: 8px;
-}
-
-.note-categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 10px;
-}
-
-.category-item {
-    display: inline-block;
-    background-color: #eee;
-    padding: 2px 6px;
-    border-radius: 2px;
-    font-size: 0.7em;
-    color: #333;
-}
-
-.note-category {
-    display: none;
 }
 
 /* Responsive adjustments for column count */
