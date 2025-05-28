@@ -93,10 +93,16 @@
 }
 
 .grid-content {
-    column-count: 4; /* Default 4 columns */
+    column-count: 4;
     column-gap: 20px;
     width: 100%;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* Improve column balancing */
+    column-fill: balance;
+    orphans: 1;
+    widows: 1;
 }
 
 .search-input-section {
@@ -129,13 +135,7 @@
     padding: 40px 20px;
     color: #666;
     font-size: 18px;
-}
-
-.grid-content {
-    column-count: 4; /* Default 4 columns */
-    column-gap: 20px;
-    width: 100%;
-    min-height: 100vh;
+    column-span: all;
 }
 
 .note-card {
@@ -145,7 +145,8 @@
     padding: 12px;
     border: 1px solid black;
     box-sizing: border-box;
-    margin-bottom: 16px;
+    margin: 0 0 16px 0;
+    vertical-align: top; /* Ensure consistent alignment */
 }
 
 .note-card:hover {
@@ -155,13 +156,14 @@
 .note-card a {
     text-decoration: none;
     color: inherit;
+    display: block; /* Make the entire card clickable */
 }
 
 .note-card h3 {
-    margin-top: 0;
+    margin: 0 0 8px 0; /* Remove top margin, consistent bottom margin */
     font-size: 1.0em;
-    margin-bottom: 8px;
     line-height: 1.3;
+    min-height: 1.3em; /* Ensure minimum height for consistency */
 }
 
 .note-card p {
@@ -173,7 +175,9 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
+    min-height: calc(1.3em * 3); /* Ensure consistent height for 3 lines */
 }
 
 .search-results {
@@ -226,33 +230,58 @@
     column-span: all;
 }
 
+/* Original notes container styling for consistent grid spacing */
+.original-notes-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* Don't set column properties here - they should inherit from grid-content */
+}
+
+/* Ensure consistent spacing for both original notes and search results */
+.note-card.search-result {
+    margin: 0 0 16px 0;
+    vertical-align: top;
+}
+
+.note-card.search-result h3,
+.note-card.search-result .search-title {
+    margin: 0 0 8px 0;
+    min-height: 1.3em;
+}
+
+.note-card.search-result p,
+.note-card.search-result .search-description {
+    min-height: calc(1.3em * 3);
+}
+
 /* Responsive adjustments for column count */
 @media (min-width: 1800px) {
-    .notes-grid {
+    .grid-content {
         column-count: 6; /* 6 columns for very wide screens */
     }
 }
 
 @media (min-width: 1400px) and (max-width: 1799px) {
-    .notes-grid {
+    .grid-content {
         column-count: 5; /* 5 columns for wide screens */
     }
 }
 
 @media (max-width: 1200px) {
-    .notes-grid {
+    .grid-content {
         column-count: 3; /* 3 columns */
     }
 }
 
 @media (max-width: 900px) {
-    .notes-grid {
+    .grid-content {
         column-count: 2; /* 2 columns */
     }
 }
 
 @media (max-width: 600px) {
-    .notes-grid {
+    .grid-content {
         column-count: 1; /* 1 column */
     }
 }
@@ -418,24 +447,8 @@
     display: none;
 }
 
-/* Responsive design for grid layout */
-@media (max-width: 1200px) {
-    .grid-content {
-        column-count: 3;
-    }
-}
-
-@media (max-width: 900px) {
-    .grid-content {
-        column-count: 2;
-    }
-}
-
+/* Additional responsive adjustments */
 @media (max-width: 600px) {
-    .grid-content {
-        column-count: 1;
-    }
-    
     .search-input-section input {
         max-width: calc(100% - 20px);
         margin: 0 10px;
