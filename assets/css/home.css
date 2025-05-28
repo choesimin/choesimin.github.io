@@ -380,9 +380,16 @@
     text-decoration: none;
     color: inherit;
     display: block;
-    font-weight: 500;
 }
 
-.search-results a:hover {
-    color: #007acc;
+.search-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.search-description {
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.4;
 }

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchInput: document.querySelector('#noteSearch input'),
     resultsContainer: document.getElementById('searchResult'),
     json: '/assets/json/note-search.json',
-    searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+    searchResultTemplate: '<li><a href="{url}"><div class="search-title">{title}</div><div class="search-description">{description}</div></a></li>',
     noResultsText: 'No results found',
     limit: 30,
     fuzzy: false

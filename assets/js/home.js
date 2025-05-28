@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput: searchInput,
         resultsContainer: searchResults,
         json: '/assets/json/note-search.json',
-        searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+        searchResultTemplate: '<li><a href="{url}"><div class="search-title">{title}</div><div class="search-description">{description}</div></a></li>',
         noResultsText: '<li>No results found</li>',
         limit: 50,
         fuzzy: false
@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput: document.querySelector('#treeSearch input'),
         resultsContainer: document.getElementById('treeSearchResult'),
         json: '/assets/json/note-search.json',
-        searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+        searchResultTemplate: '<li><a href="{url}"><div class="search-title">{title}</div><div class="search-description">{description}</div></a></li>',
         noResultsText: 'No results found',
         limit: 30,
         fuzzy: false
