@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to create hierarchical data structure for D3
   function createHierarchicalData() {
-    const root = { name: "Notes", children: [] };
+    const root = { name: "note", children: [] };
     const categoryMap = new Map();
 
     allNotes.forEach(note => {
