@@ -107,6 +107,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     const gridContent = document.getElementById('gridContent');
     
+    // Handle search input events first
+    if (searchInput) {
+      let searchTimeout;
+      
+      function handleSearch() {
+        const searchTerm = searchInput.value.trim();
+        
+        if (searchTimeout) {
+          clearTimeout(searchTimeout);
+        }
+        
+        if (searchTerm === '') {
+          // Immediately show all notes when search is empty
+          displayAllNotes();
+          return;
+        }
+        
+        // For non-empty searches, let SimpleJekyllSearch handle it
+        // But add a small delay to prevent excessive calls
+        searchTimeout = setTimeout(() => {
+          // SimpleJekyllSearch will handle the actual search
+        }, 50);
+      }
+      
+      searchInput.addEventListener('input', handleSearch);
+      searchInput.addEventListener('keyup', handleSearch);
+      searchInput.addEventListener('paste', function() {
+        setTimeout(handleSearch, 10);
+      });
+      searchInput.addEventListener('blur', function(e) {
+        if (this.value.trim() === '') {
+          displayAllNotes();
+        }
+      });
+    }
+    
     // Initialize Simple Jekyll Search if not already done
     if (window.SimpleJekyllSearch && !searchInput.hasAttribute('data-search-initialized')) {
       SimpleJekyllSearch({
@@ -116,33 +152,16 @@ document.addEventListener('DOMContentLoaded', function() {
         searchResultTemplate: '<div class="note-card search-result"><a href="{url}"><h3 class="search-title">{title}</h3><p class="search-description">{description}</p></a></div>',
         noResultsText: '<div class="no-results">No results found</div>',
         limit: 100,
-        fuzzy: false
+        fuzzy: false,
+        templateMiddleware: function(prop, value, template) {
+          // Don't process if search input is empty
+          if (searchInput && searchInput.value.trim() === '') {
+            return value;
+          }
+          return value;
+        }
       });
       searchInput.setAttribute('data-search-initialized', 'true');
-    }
-    
-    // Handle search input events
-    if (searchInput) {
-      searchInput.addEventListener('input', function(e) {
-        if (this.value.trim() === '') {
-          // Show all notes when search is empty
-          displayAllNotes();
-        }
-      });
-            
-      // Also handle keyup event to catch when input is cleared
-      searchInput.addEventListener('keyup', function(e) {
-        if (this.value.trim() === '') {
-          displayAllNotes();
-        }
-      });
-      
-      // Handle when input loses focus and is empty
-      searchInput.addEventListener('blur', function(e) {
-        if (this.value.trim() === '') {
-          displayAllNotes();
-        }
-      });
     }
     
     // Initially display all notes
