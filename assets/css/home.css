@@ -105,21 +105,17 @@
 }
 
 .search-input-section input {
-    width: 300px;
-    max-width: 500px;
+    width: 80%;
     padding: 6px 0;
-    font-size: 14px;
+    font-size: 13px;
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #aaa;
     background: transparent;
     outline: none;
     text-align: center;
-    transition: width 0.3s ease, border-bottom-color 0.3s ease;
 }
 
 .search-input-section input:focus {
-    width: 100%;
-    max-width: 500px;
     border-bottom-color: #000;
 }
 

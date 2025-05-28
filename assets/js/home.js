@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentView = 'grid';
   let clusterSvg = null;
   let tooltip = null;
+  let shuffledNotesCache = null; // Cache for shuffled notes order
 
   // Initialize tooltip
   function initializeTooltip() {
@@ -114,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         json: '/assets/json/note-search.json',
         searchResultTemplate: '<div class="note-card search-result"><a href="{url}"><h3 class="search-title">{title}</h3><p class="search-description">{description}</p></a></div>',
         noResultsText: '<div class="no-results">No results found</div>',
-        limit: 50,
+        limit: 1000,
         fuzzy: false
       });
       searchInput.setAttribute('data-search-initialized', 'true');
@@ -127,26 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // Show all notes when search is empty
           displayAllNotes();
         }
-        // When there's search text, Simple Jekyll Search will handle the results
       });
-      
-      // Add focus event to maintain width
-      searchInput.addEventListener('focus', function(e) {
-        // Width expansion is handled by CSS :focus
-      });
-      
-      // Add blur event to check if input is empty and show all notes
-      searchInput.addEventListener('blur', function(e) {
-        if (this.value.trim() === '') {
-          displayAllNotes();
-        }
-        // Width contraction is handled by CSS when :focus is removed
-      });
-    }
-    
-    // Focus on search input when view loads
-    if (searchInput) {
-      setTimeout(() => searchInput.focus(), 100);
     }
     
     // Initially display all notes
@@ -467,11 +449,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear previous notes
     gridContent.innerHTML = '';
     
-    // Shuffle notes before displaying
-    const shuffledNotes = shuffleArray([...allNotes]);
+    // Use cached shuffled notes if available, otherwise create and cache them
+    if (!shuffledNotesCache) {
+      shuffledNotesCache = shuffleArray([...allNotes]);
+    }
     
-    // Add each note as a card
-    shuffledNotes.forEach(note => {
+    // Add each note as a card using the cached order
+    shuffledNotesCache.forEach(note => {
       const noteCard = document.createElement('div');
       noteCard.className = 'note-card';
       
@@ -509,52 +493,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     treeList.appendChild(list);
-  }
-
-  // Initialize tree search functionality
-  function initializeTreeSearch() {
-    // Initialize Simple Jekyll Search for tree view
-    if (window.SimpleJekyllSearch) {
-      SimpleJekyllSearch({
-        searchInput: document.querySelector('#treeSearch input'),
-        resultsContainer: document.getElementById('treeSearchResult'),
-        json: '/assets/json/note-search.json',
-        searchResultTemplate: '<li><a href="{url}"><div class="search-title">{title}</div><div class="search-description">{description}</div></a></li>',
-        noResultsText: 'No results found',
-        limit: 30,
-        fuzzy: false
-      });
-    }
-    
-    // Handle search input events
-    const searchInput = document.querySelector('#treeSearch input');
-    const treeList = document.getElementById('treeList');
-    const searchResults = document.getElementById('treeSearchResult');
-    
-    if (searchInput) {
-      searchInput.addEventListener('input', function(e) {
-        if (this.value.trim() !== '') {
-          treeList.classList.add('hidden');
-          searchResults.classList.remove('hidden');
-        } else {
-          treeList.classList.remove('hidden');
-          searchResults.classList.add('hidden');
-        }
-      });
-    }
-    
-    // Clear search when clicking outside (but not when clicking search button)
-    document.addEventListener('click', function(e) {
-      const treeSearch = document.getElementById('treeSearch');
-      const searchBtn = document.getElementById('searchViewBtn');
-      
-      if (searchInput && !treeSearch.contains(e.target) && 
-          !searchBtn.contains(e.target) &&
-          searchResults && !searchResults.contains(e.target) && 
-          searchInput.value.trim() !== '') {
-        // Don't auto-clear, let user manage search state via Search button
-      }
-    });
   }
 
   // Tree node creation functions (adapted from default.js)
