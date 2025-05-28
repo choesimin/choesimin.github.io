@@ -119,10 +119,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (searchTerm === '') {
-          // Immediately show all notes when search is empty
+          // Immediately show original notes when search is empty
           displayAllNotes();
           return;
         }
+        
+        // Hide original notes when there's a search term
+        hideOriginalNotes();
         
         // For non-empty searches, let SimpleJekyllSearch handle it
         // But add a small delay to prevent excessive calls
@@ -153,6 +156,12 @@ document.addEventListener('DOMContentLoaded', function() {
         noResultsText: '<div class="no-results">No results found</div>',
         limit: 100,
         fuzzy: false,
+        success: function(data) {
+          // When search is performed, ensure original notes are hidden
+          if (searchInput.value.trim() !== '') {
+            hideOriginalNotes();
+          }
+        },
         templateMiddleware: function(prop, value, template) {
           // Don't process if search input is empty
           if (searchInput && searchInput.value.trim() === '') {
@@ -479,29 +488,55 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
-    // Clear previous notes
-    gridContent.innerHTML = '';
+    // Check if we already have the original notes rendered
+    const existingOriginalNotes = gridContent.querySelector('.original-notes-container');
     
-    // Use cached shuffled notes if available, otherwise create and cache them
-    if (!shuffledNotesCache) {
-      shuffledNotesCache = shuffleArray([...allNotes]);
+    if (existingOriginalNotes) {
+      // Just show the existing original notes and hide search results
+      existingOriginalNotes.style.display = 'block';
+      const searchResults = gridContent.querySelectorAll('.note-card.search-result, .no-results');
+      searchResults.forEach(result => result.style.display = 'none');
+    } else {
+      // First time - create and cache the original notes
+      gridContent.innerHTML = '';
+      
+      const originalContainer = document.createElement('div');
+      originalContainer.className = 'original-notes-container';
+      
+      // Use cached shuffled notes if available, otherwise create and cache them
+      if (!shuffledNotesCache) {
+        shuffledNotesCache = shuffleArray([...allNotes]);
+      }
+      
+      // Add each note as a card using the cached order
+      shuffledNotesCache.forEach(note => {
+        const noteCard = document.createElement('div');
+        noteCard.className = 'note-card original-note';
+        
+        const noteContent = `
+          <a href="${note.url}">
+            <h3>${note.title}</h3>
+            <p>${note.description}</p>
+          </a>
+        `;
+        
+        noteCard.innerHTML = noteContent;
+        originalContainer.appendChild(noteCard);
+      });
+      
+      gridContent.appendChild(originalContainer);
     }
+  }
+  
+  // Function to hide original notes when searching
+  function hideOriginalNotes() {
+    const gridContent = document.getElementById('gridContent');
+    if (!gridContent) return;
     
-    // Add each note as a card using the cached order
-    shuffledNotesCache.forEach(note => {
-      const noteCard = document.createElement('div');
-      noteCard.className = 'note-card';
-      
-      const noteContent = `
-        <a href="${note.url}">
-          <h3>${note.title}</h3>
-          <p>${note.description}</p>
-        </a>
-      `;
-      
-      noteCard.innerHTML = noteContent;
-      gridContent.appendChild(noteCard);
-    });
+    const originalContainer = gridContent.querySelector('.original-notes-container');
+    if (originalContainer) {
+      originalContainer.style.display = 'none';
+    }
   }
 
   // Tree view functionality
