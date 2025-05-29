@@ -6,7 +6,7 @@
 }
 
 .page-title {
-    font-size: 2.5em;
+    font-size: 33px;
     margin: 0;
 }
 
@@ -169,7 +169,7 @@
 
 .note-card h3 {
     margin: 0 0 8px 0; /* Remove top margin, consistent bottom margin */
-    font-size: 1.0em;
+    font-size: 16px;
     line-height: 1.3;
     /* Remove min-height to allow natural content flow */
 }
@@ -177,7 +177,7 @@
 .note-card p {
     margin: 0;
     color: #666;
-    font-size: 0.75em;
+    font-size: 12px;
     line-height: 1.3;
     /* Remove text truncation to show full descriptions */
     word-wrap: break-word;
@@ -220,7 +220,6 @@
 }
 
 .search-description {
-    font-size: 0.9em;
     color: #666;
     line-height: 1.4;
 }
@@ -345,7 +344,6 @@
 
 .tree-list {
     line-height: 1.5;
-    font-size: 1.1em; /* Increase overall font size slightly */
 }
 
 .tree-list .root {
@@ -357,7 +355,7 @@
     margin-top: 30px;
     margin-bottom: 30px;
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 21px;
 }
 
 /* First level children (direct children of root) - no indentation */
@@ -409,7 +407,7 @@
     margin-right: 8px;
     cursor: pointer;
     transition: transform 0.2s ease;
-    font-size: 0.8em;
+    font-size: 13px;
     user-select: none;
 }
 
@@ -427,9 +425,6 @@
 }
 
 /* Category header styling */
-.tree-item .content-container .tree-text {
-    font-size: 1em; /* Base font size */
-}
 
 .tree-text {
     flex: 0 1 auto;
@@ -437,7 +432,6 @@
     word-wrap: break-word;
     overflow: hidden;
     margin-right: 8px;
-    font-size: 1em; /* Base size for tree items */
 }
 
 .tree-text a {
@@ -450,7 +444,7 @@
 }
 
 .tree-count {
-    font-size: 0.7em;
+    font-size: 11px;
     color: #888;
     font-weight: normal;
     white-space: nowrap;
@@ -504,7 +498,7 @@
 }
 
 .section-title {
-    font-size: 2em;
+    font-size: 32px;
     margin-bottom: 30px;
     text-align: center;
     color: #333;
@@ -539,14 +533,14 @@
 
 .item-card h3 {
     margin: 0 0 10px 0;
-    font-size: 1.2em;
+    font-size: 19px;
     color: #333;
 }
 
 .item-card p {
     margin: 0;
     color: #666;
-    font-size: 0.9em;
+    font-size: 14px;
     line-height: 1.4;
 }
 
@@ -559,13 +553,13 @@
 }
 
 .introduction-content h2 {
-    font-size: 2em;
+    font-size: 32px;
     margin-bottom: 20px;
     color: #333;
 }
 
 .introduction-content p {
-    font-size: 1.1em;
+    font-size: 18px;
     line-height: 1.6;
     margin-bottom: 15px;
     color: #666;
@@ -601,21 +595,21 @@
 
 /* Graphics page styling */
 .graphic-description {
-    font-size: 0.85em;
+    font-size: 14px;
     color: #666;
     margin-top: 4px;
     line-height: 1.4;
 }
 
 .item-date {
-    font-size: 0.8em;
+    font-size: 13px;
     color: #999;
     margin-top: 4px;
 }
 
 /* Algorithm page styling */
 .algorithm-tag {
-    font-size: 0.85em;
+    font-size: 14px;
     color: #666;
     margin-left: 8px;
 }
@@ -649,12 +643,7 @@
 }
 
 .category-header-item .tree-text {
-    font-size: 1.2em; /* Larger than regular items */
-    font-weight: bold;
-}
-
-.category-header-item .tree-text {
-    font-size: 1.2em; /* Larger than regular items */
+    font-size: 19px;
     font-weight: bold;
 }
 
@@ -671,23 +660,9 @@
     }
 }
 
-/* Overall font size adjustments */
-.tree-list {
-    font-size: 1.1em; /* Increase overall font size slightly */
-}
-
-.tree-text {
-    font-size: 1em; /* Base size for tree items */
-}
-
-/* Algorithm item text sizing */
-.tree-item .content-container a.tree-text {
-    font-size: 1em; /* Regular size for algorithm links */
-}
-
-/* Algorithm tag sizing */
+/* Algorithm tag sizing - moved up from below */
 .algorithm-tag {
-    font-size: 0.9em; /* Slightly larger than before */
+    font-size: 14px;
     color: #666;
     margin-left: 8px;
 }
@@ -725,7 +700,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    font-size: 1.1em;
+    font-size: 18px;
     text-align: center;
     padding: 20px;
     line-height: 1.3;
@@ -743,7 +718,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    font-size: 1em;
     line-height: 1.4;
     padding: 20px;
     display: flex;

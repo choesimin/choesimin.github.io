@@ -5,7 +5,7 @@
 }
 
 .page-title {
-    font-size: 2.5em;
+    font-size: 40px;
     margin: 0;
     color: #333;
 }
@@ -47,7 +47,7 @@
 
 .item-card h3 {
     margin: 0 0 15px 0;
-    font-size: 1.3em;
+    font-size: 21px;
     color: #333;
     font-weight: 600;
 }
@@ -55,34 +55,34 @@
 .item-description {
     margin: 10px 0;
     color: #666;
-    font-size: 0.95em;
+    font-size: 15px;
     line-height: 1.5;
 }
 
 .item-tags {
     margin: 10px 0;
     color: #007acc;
-    font-size: 0.9em;
+    font-size: 14px;
     font-weight: 500;
 }
 
 .item-difficulty {
     margin: 10px 0 0 0;
     color: #ff6b35;
-    font-size: 0.85em;
+    font-size: 14px;
     font-weight: 600;
 }
 
 .item-date {
     margin: 10px 0 0 0;
     color: #888;
-    font-size: 0.85em;
+    font-size: 14px;
 }
 
 .item-type {
     margin: 10px 0 0 0;
     color: #28a745;
-    font-size: 0.85em;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -118,7 +118,7 @@
     }
     
     .page-title {
-        font-size: 2em;
+        font-size: 32px;
     }
     
     .item-card {

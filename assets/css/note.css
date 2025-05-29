@@ -88,12 +88,12 @@ blockquote {
 .toc-sticky {
   border-left: 1px solid #eee;
   padding-left: 15px;
-  font-size: 0.9em;
+  font-size: 14px;
 }
 
 .toc-sticky h3 {
   margin-top: 0;
-  font-size: 1.2em;
+  font-size: 19px;
   color: #333;
   margin-bottom: 15px;
 }
