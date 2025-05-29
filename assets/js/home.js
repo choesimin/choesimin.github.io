@@ -100,8 +100,10 @@ document.addEventListener('DOMContentLoaded', function() {
       clusterContainer.style.display = 'block';
       
       if (view === 'cluster') {
+        console.log('Rendering cluster view, D3 available:', typeof d3);
         renderClusterView();
       } else if (view === 'radial') {
+        console.log('Rendering radial view, D3 available:', typeof d3);
         renderRadialClusterView();
       }
     }
@@ -184,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to create hierarchical data structure for D3
   function createHierarchicalData() {
-    const root = { name: currentCollection, children: [] };
+    const root = { name: 'Notes', children: [] };
     const categoryMap = new Map();
 
     currentData.forEach(item => {
@@ -221,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
           path: currentPath + '/' + item.name,
           url: item.url,
           description: item.description,
-          type: currentCollection,
+          type: 'note',
           category: item.category,
           title: item.title
         });
@@ -236,11 +238,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('clusterContainer');
     container.innerHTML = '';
     
-    const width = container.clientWidth || 928;
+    if (typeof d3 === 'undefined') {
+      container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">D3.js is not loaded. Please check the script inclusion.</div>';
+      return;
+    }
     
-    // Compute the tree height
-    const hierarchyData = createHierarchicalData();
-    const root = d3.hierarchy(hierarchyData);
+    try {
+      const width = container.clientWidth || 928;
+      
+      // Compute the tree height
+      const hierarchyData = createHierarchicalData();
+      console.log('Hierarchy data:', hierarchyData);
+      
+      const root = d3.hierarchy(hierarchyData);
     const dx = 10;
     const dy = width / (root.height + 1);
     
@@ -348,6 +358,10 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     
     clusterSvg = svg;
+    } catch (error) {
+      console.error('Error rendering cluster view:', error);
+      container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">Error rendering cluster view. Check console for details.</div>';
+    }
   }
 
   // Render radial cluster view using D3
@@ -355,16 +369,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('clusterContainer');
     container.innerHTML = '';
     
-    // Specify the chart's dimensions - use screen height for better fit
-    const width = container.clientWidth || 928;
-    const height = Math.min(width, window.innerHeight * 1.2);
-    const cx = width * 0.5;
-    const cy = height * 0.5;
-    const radius = Math.min(width, height) / 2 - 150;
+    if (typeof d3 === 'undefined') {
+      container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">D3.js is not loaded. Please check the script inclusion.</div>';
+      return;
+    }
     
-    // Create a radial cluster layout
-    const tree = d3.cluster()
-      .size([2 * Math.PI, radius])
+    try {
+      // Specify the chart's dimensions - use screen height for better fit
+      const width = container.clientWidth || 928;
+      const height = Math.min(width, window.innerHeight * 1.2);
+      const cx = width * 0.5;
+      const cy = height * 0.5;
+      const radius = Math.min(width, height) / 2 - 150;
+      
+      // Create a radial cluster layout
+      const tree = d3.cluster()
+        .size([2 * Math.PI, radius])
       .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
     
     // Sort the tree and apply the layout
@@ -462,6 +482,10 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     
     clusterSvg = svg;
+    } catch (error) {
+      console.error('Error rendering radial cluster view:', error);
+      container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">Error rendering radial cluster view. Check console for details.</div>';
+    }
   }
 
   // Function to shuffle array (Fisher-Yates algorithm)

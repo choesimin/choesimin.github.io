@@ -118,7 +118,8 @@
 }
 
 .search-input-section input {
-    max-width: 1000px;
+    width: 800px;
+    max-width: fit-content;
     padding: 6px 0;
     font-size: 13px;
     border: none;
@@ -427,22 +428,17 @@
     margin-left: 0;
 }
 
-.tree-list ul {
-    list-style: none;
-    padding-left: 20px;
-    margin: 0;
-}
-
-/* Override for first level - no indentation */
 .tree-list .root {
     padding-left: 0;
 }
 
-
-.tree-list .root > li > ul {
+.tree-list ul {
     list-style: none;
     padding-left: 10px;
     margin: 0;
+}
+
+.tree-list .root > li > ul {
     font-weight: normal;
 }
 
