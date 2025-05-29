@@ -29,13 +29,13 @@ layout: none
             window.location.href = '/';
             return;
           }
-          return;
         }
         
+        // Only handle Notes section toggle functionality
         const targetContainer = this.parentElement;
         let targetElement;
         
-        // Find and toggle appropriate content
+        // Find and toggle Notes content
         if (targetContainer.querySelector('#noteList')) {
           const searchElement = document.getElementById('noteSearch');
           targetElement = document.getElementById('noteList');
@@ -47,16 +47,8 @@ layout: none
             searchElement.classList.add('hidden');
             targetElement.classList.add('hidden');
           }
-        } else if (targetContainer.querySelector('#algorithmList')) {
-          targetElement = document.getElementById('algorithmList');
-          toggleDisplay(targetElement);
-        } else if (targetContainer.querySelector('#graphicList')) {
-          targetElement = document.getElementById('graphicList');
-          toggleDisplay(targetElement);
-        } else if (targetContainer.querySelector('#storyList')) {
-          targetElement = document.getElementById('storyList');
-          toggleDisplay(targetElement);
         }
+        // Other sections now navigate to their own pages via links
       });
     });
   }

@@ -1,0 +1,26 @@
+---
+layout: default
+title: Algorithms
+css:
+  - /assets/css/collection.css
+---
+
+<div class="header-section">
+  <h1 class="page-title">Algorithms</h1>
+</div>
+
+<div class="collection-container">
+  <div class="items-grid">
+    {% for problem in site.problems %}
+    <div class="item-card algorithm-item">
+      <a href="{{ problem.url | relative_url }}">
+        <h3>{{ problem.title }}</h3>
+        <p class="item-tags">{{ problem.tags }}</p>
+        {% if problem.difficulty %}
+        <p class="item-difficulty">Difficulty: {{ problem.difficulty }}</p>
+        {% endif %}
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>

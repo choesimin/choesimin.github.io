@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     progressBar.style.width = scrolled + "%";
   };
 
+  // Notes data only
   var allNotes = [];
 
   {% for note in site.notes %}
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Global variables for view management
   let currentView = 'grid';
+  let currentData = allNotes;
   let clusterSvg = null;
   let tooltip = null;
   let shuffledNotesCache = null; // Cache for shuffled notes order
@@ -179,11 +181,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to create hierarchical data structure for D3
   function createHierarchicalData() {
-    const root = { name: "note", children: [] };
+    const root = { name: currentCollection, children: [] };
     const categoryMap = new Map();
 
-    allNotes.forEach(note => {
-      const category = note.category || [];
+    currentData.forEach(item => {
+      const category = item.category || [];
       const segments = Array.isArray(category) ? category : category.split('/');
       
       let currentLevel = root;
@@ -206,23 +208,21 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       // Handle index nodes specially - don't add them as children, but store their info in parent
-      if (note.name === 'index') {
-        currentLevel.url = note.url;
-        currentLevel.description = note.description;
-        currentLevel.title = note.title;
+      if (item.name === 'index') {
+        currentLevel.url = item.url;
+        currentLevel.description = item.description;
+        currentLevel.title = item.title;
       } else {
         currentLevel.children.push({
-          name: note.name,
-          path: currentPath + '/' + note.name,
-          url: note.url,
-          description: note.description,
-          type: 'note',
-          category: note.category,
-          title: note.title
+          name: item.name,
+          path: currentPath + '/' + item.name,
+          url: item.url,
+          description: item.description,
+          type: currentCollection,
+          category: item.category,
+          title: item.title
         });
       }
-
-      console.log(currentLevel);
     });
 
     return root;
@@ -505,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Use cached shuffled notes if available, otherwise create and cache them
       if (!shuffledNotesCache) {
-        shuffledNotesCache = shuffleArray([...allNotes]);
+        shuffledNotesCache = shuffleArray([...currentData]);
       }
       
       // Add each note as a card using the cached order
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', function() {
     treeList.innerHTML = '';
     
     // Create tree structure using the same logic as sidebar
-    const nodes = makeTreeNodes(allNotes);
+    const nodes = makeTreeNodes(currentData);
     const root = groupTreeNodes(nodes);
     
     const list = document.createElement("ul");

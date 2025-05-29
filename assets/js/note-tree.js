@@ -41,46 +41,43 @@ layout: none
       const index = node.children.find(child => child.isIndex);
       node.children = node.children.filter(child => !child.isIndex);
 
-      // Create content container
+      // Create content container with toggle and count
       const contentContainer = document.createElement("span");
       contentContainer.classList.add("content-container");
+      
+      // Add toggle if node has children (before text)
+      if (node.children.length > 0) {
+        const toggleText = document.createElement("span");
+        toggleText.classList.add("tree-toggle-icon");
+        toggleText.textContent = "▾";
+        toggleText.style.cursor = "pointer";
+        contentContainer.appendChild(toggleText);
+      }
+      
+      // Add the main text/link
+      const textSpan = document.createElement("span");
+      textSpan.classList.add("tree-text");
       
       if (index) {
         listItem.id = index.category.join('-');
         const anchor = document.createElement("a");
         anchor.textContent = index.name;
         anchor.href = index.url;
-        contentContainer.appendChild(anchor);
+        textSpan.appendChild(anchor);
       } else {
-        contentContainer.textContent = node.name;
+        textSpan.textContent = node.name;
       }
       
-      listItem.appendChild(contentContainer);
+      contentContainer.appendChild(textSpan);
       
-      // Create right container
-      const rightContainer = document.createElement("span");
-      rightContainer.classList.add("right-container");
-      
+      // Add count (after text)
       const totalDescendants = countAllDescendants(node);
       const childCount = document.createElement("span");
-      childCount.className = "count-display";
+      childCount.className = "count-display tree-count";
       childCount.textContent = totalDescendants;
-      rightContainer.appendChild(childCount);
+      contentContainer.appendChild(childCount);
       
-      // Add toggle if node has children
-      if (node.children.length > 0) {
-        const toggleText = document.createElement("span");
-        toggleText.classList.add("toggle-margin-left");
-
-        const toggleIcon = document.createElement("span");
-        toggleIcon.className = "toggle-icon";
-        toggleIcon.textContent = "▾";
-
-        toggleText.appendChild(toggleIcon);
-        rightContainer.appendChild(toggleText);
-      }
-      
-      listItem.appendChild(rightContainer);
+      listItem.appendChild(contentContainer);
       list.appendChild(listItem);
 
       if (node.children.length > 0) {
@@ -93,24 +90,59 @@ layout: none
         
         listItem.appendChild(childList);
 
-        rightContainer.style.cursor = "pointer";
-        rightContainer.addEventListener("click", function(e) {
-          toggleChildList(e, childList, toggleText);
-        });
+        // Add click handler to toggle icon
+        const toggleIcon = contentContainer.querySelector('.tree-toggle-icon');
+        if (toggleIcon) {
+          toggleIcon.addEventListener("click", function(e) {
+            e.stopPropagation();
+            const isHidden = childList.classList.contains("hidden");
+            
+            if (isHidden) {
+              childList.classList.remove("hidden");
+              toggleIcon.classList.add('open');
+            } else {
+              childList.classList.add("hidden");
+              toggleIcon.classList.remove('open');
+            }
+          });
+        }
 
         if (index) {
-          contentContainer.addEventListener("click", function(e) {
-            e.stopPropagation();
-            window.location.href = index.url;
-          });
+          const textSpan = contentContainer.querySelector('.tree-text');
+          if (textSpan) {
+            textSpan.addEventListener("click", function(e) {
+              e.stopPropagation();
+              window.location.href = index.url;
+            });
+          }
         }
       }
     } else {
       // Leaf node
+      const contentContainer = document.createElement("span");
+      contentContainer.classList.add("content-container");
+      
+      // Add space for toggle alignment (but don't show toggle)
+      const toggleSpace = document.createElement("span");
+      toggleSpace.classList.add("tree-toggle-icon");
+      toggleSpace.style.visibility = "hidden";
+      toggleSpace.textContent = "▾";
+      contentContainer.appendChild(toggleSpace);
+      
+      // Add the main text/link
+      const textSpan = document.createElement("span");
+      textSpan.classList.add("tree-text");
+      
       const anchor = document.createElement("a");
       anchor.textContent = node.name;
       anchor.href = node.url;
-      listItem.appendChild(anchor);
+      textSpan.appendChild(anchor);
+      
+      contentContainer.appendChild(textSpan);
+      
+      // No count needed for leaf nodes, but add space for alignment
+      
+      listItem.appendChild(contentContainer);
       list.appendChild(listItem);
     }
   }
@@ -185,10 +217,9 @@ layout: none
   function getNotes() {
     const notes = [];
     {% for note in site.notes %}
-    const path = "{{ note.path }}".replace("_notes/", "").split("/");
     notes.push({
-      category: path.slice(0, path.length - 1),
-      name: path[path.length - 1].replace(".md", ""),
+      category: "{{ note.path }}".replace("_notes/", "").split("/").slice(0, -1),
+      name: "{{ note.path }}".replace("_notes/", "").split("/").pop().replace(".md", ""),
       title: "{{ note.title | escape }}",
       url: "{{ note.url | relative_url }}",
     });
