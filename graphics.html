@@ -14,7 +14,7 @@ js:
 <div class="content-container">
   <div class="graphics-list" id="graphicsList">
     {% for graphic in site.graphics %}
-    <div class="graphics-item" data-url="{{ graphic.url | relative_url }}" data-color="{{ graphic.color }}">
+    <div class="graphics-item" data-url="{{ graphic.url | relative_url }}">
       <div class="graphics-title">{{ graphic.title }}</div>
       {% if graphic.description %}
       <div class="graphics-description">{{ graphic.description }}</div>

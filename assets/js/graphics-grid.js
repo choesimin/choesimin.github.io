@@ -15,12 +15,14 @@ function initializeGraphicsList() {
         return;
     }
     
+    let lastBrightness = null;
+    
     // Apply subtle background colors and click functionality
     listItems.forEach(item => {
         const url = item.getAttribute('data-url');
         
-        // Apply subtle grayscale background to all items
-        applySubtleColor(item);
+        // Apply subtle grayscale background with contrast from previous item
+        lastBrightness = applySubtleColor(item, lastBrightness);
         
         // Add click functionality
         if (url) {
@@ -45,10 +47,35 @@ function initializeGraphicsList() {
     console.log(`Initialized ${listItems.length} graphics items`);
 }
 
-function applySubtleColor(item, color) {
-    // Create random grayscale variations for all items
-    // Random brightness between 245-255 for very subtle differences
-    const brightness = 245 + Math.floor(Math.random() * 11); // 245-255 range
-    const subtleColor = `rgb(${brightness}, ${brightness}, ${brightness})`;
-    item.style.backgroundColor = subtleColor;
+function applySubtleColor(item, lastBrightness) {
+    let brightness;
+    
+    if (lastBrightness === null) {
+        // First item: random brightness in the range
+        brightness = Math.floor(Math.random() * 31) + 220; // 220-250
+    } else {
+        // Ensure contrast with previous item
+        const minDifference = 15; // Minimum brightness difference
+        const maxAttempts = 10;
+        let attempts = 0;
+        
+        do {
+            brightness = Math.floor(Math.random() * 31) + 220; // 220-250
+            attempts++;
+        } while (attempts < maxAttempts && Math.abs(brightness - lastBrightness) < minDifference);
+        
+        // If we couldn't find a good contrast, force it
+        if (Math.abs(brightness - lastBrightness) < minDifference) {
+            if (lastBrightness > 235) {
+                brightness = Math.max(220, lastBrightness - minDifference);
+            } else {
+                brightness = Math.min(250, lastBrightness + minDifference);
+            }
+        }
+    }
+    
+    const grayscaleColor = `rgb(${brightness}, ${brightness}, ${brightness})`;
+    item.style.backgroundColor = grayscaleColor;
+    
+    return brightness; // Return the brightness for the next item
 }
