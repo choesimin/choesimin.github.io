@@ -81,17 +81,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const gridContainer = document.getElementById('notesGrid');
     const clusterContainer = document.getElementById('clusterContainer');
     const treeContainer = document.getElementById('treeContainer');
+    const treeControls = document.getElementById('treeControls');
     
     // Hide all containers first
     gridContainer.style.display = 'none';
     clusterContainer.style.display = 'none';
     treeContainer.style.display = 'none';
+    if (treeControls) treeControls.style.display = 'none';
     
     if (view === 'grid') {
       gridContainer.style.display = 'block';
       initializeGridView();
     } else if (view === 'tree') {
       treeContainer.style.display = 'block';
+      if (treeControls) treeControls.style.display = 'flex';
       renderTreeView();
     } else {
       clusterContainer.style.display = 'block';
@@ -561,6 +564,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     treeList.appendChild(list);
+    
+    // Initialize tree control buttons
+    initializeTreeControls();
   }
 
   // Tree node creation functions (adapted from default.js)
@@ -575,50 +581,48 @@ document.addEventListener('DOMContentLoaded', function() {
       const index = node.children.filter(child => child.isIndex)[0];
       node.children = node.children.filter(child => !child.isIndex);
 
-      // Create the main content container (left side)
-      const contentContainer = document.createElement("span");
-      contentContainer.classList.add("tree-content-container");
+      // Create the main content container with proper layout
+      const contentContainer = document.createElement("div");
+      contentContainer.classList.add("content-container");
       
-      if (index != undefined) {
-        listItem.id = index.category.join('-');
-
-        const anchor = document.createElement("a");
-        anchor.textContent = index.name;
-        anchor.href = index.url;
-        contentContainer.appendChild(anchor);
-      } else {
-        contentContainer.textContent = node.name;
-      }
-      
-      listItem.appendChild(contentContainer);
-      
-      // Create the right-aligned container for count and toggle
-      const rightContainer = document.createElement("span");
-      rightContainer.classList.add("tree-right-container");
-      
-      // Calculate total descendants 
-      const totalDescendants = countTreeDescendants(node);
-      
-      const childCount = document.createElement("span");
-      childCount.className = "tree-count-display";
-      childCount.textContent = totalDescendants;
-      rightContainer.appendChild(childCount);
-      
-      // Only add toggle text if node has children
+      // Left side: Toggle icon (only if node has children)
       if (node.children && node.children.length > 0) {
-        const toggleText = document.createElement("span");
-        toggleText.classList.add("tree-toggle-margin-left");
-
-        // Create toggle icon element
         const toggleIcon = document.createElement("span");
         toggleIcon.className = "tree-toggle-icon";
         toggleIcon.textContent = "▾";
-
-        toggleText.appendChild(toggleIcon);
-        rightContainer.appendChild(toggleText);
+        contentContainer.appendChild(toggleIcon);
+      } else {
+        // Add empty space for alignment
+        const spacer = document.createElement("span");
+        spacer.className = "tree-toggle-icon tree-spacer";
+        spacer.textContent = "";
+        contentContainer.appendChild(spacer);
       }
       
-      listItem.appendChild(rightContainer);
+      // Middle: Text content
+      const textContainer = document.createElement("span");
+      textContainer.classList.add("tree-text");
+      
+      if (index != undefined) {
+        listItem.id = index.category.join('-');
+        const anchor = document.createElement("a");
+        anchor.textContent = index.name;
+        anchor.href = index.url;
+        textContainer.appendChild(anchor);
+      } else {
+        textContainer.textContent = node.name;
+      }
+      
+      contentContainer.appendChild(textContainer);
+      
+      // Right side: Count
+      const totalDescendants = countTreeDescendants(node);
+      const countContainer = document.createElement("span");
+      countContainer.className = "tree-count";
+      countContainer.textContent = totalDescendants;
+      contentContainer.appendChild(countContainer);
+      
+      listItem.appendChild(contentContainer);
       list.appendChild(listItem);
 
       if (node.children.length > 0) {
@@ -630,41 +634,61 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         listItem.appendChild(childList);
 
-        // Make the entire right container clickable for toggling
-        rightContainer.style.cursor = "pointer";
-        rightContainer.addEventListener("click", function(e) {
-          toggleTreeChildList(e, childList, rightContainer);
-        });
-
-        // Set toggle icon to open state by default
-        const toggleIcon = rightContainer.querySelector('.tree-toggle-icon');
+        // Make the toggle icon clickable for toggling
+        const toggleIcon = contentContainer.querySelector('.tree-toggle-icon');
         if (toggleIcon) {
+          toggleIcon.style.cursor = "pointer";
           toggleIcon.classList.add('open');
+          toggleIcon.addEventListener("click", function(e) {
+            toggleTreeChildList(e, childList, toggleIcon);
+          });
         }
 
-        // Add navigation to the content container if it has a link
+        // Add navigation to the text container if it has a link
         if (index != undefined) {
-          contentContainer.addEventListener("click", function(e) {
-            e.stopPropagation();
-            window.location.href = index.url;
-          });
+          const textAnchor = textContainer.querySelector('a');
+          if (textAnchor) {
+            textAnchor.addEventListener("click", function(e) {
+              e.stopPropagation();
+              window.location.href = index.url;
+            });
+          }
         }
       }
     } else {
-      // For leaf nodes, no toggle or count
+      // For leaf nodes, use simpler structure
+      const contentContainer = document.createElement("div");
+      contentContainer.classList.add("content-container");
+      
+      // Empty space for toggle icon alignment
+      const spacer = document.createElement("span");
+      spacer.className = "tree-toggle-icon tree-spacer";
+      spacer.textContent = "";
+      contentContainer.appendChild(spacer);
+      
+      // Text content
+      const textContainer = document.createElement("span");
+      textContainer.classList.add("tree-text");
       const anchor = document.createElement("a");
       anchor.textContent = node.name;
       anchor.href = node.url;
-      listItem.appendChild(anchor);
+      textContainer.appendChild(anchor);
+      contentContainer.appendChild(textContainer);
+      
+      // Empty count for alignment
+      const countContainer = document.createElement("span");
+      countContainer.className = "tree-count";
+      countContainer.textContent = "";
+      contentContainer.appendChild(countContainer);
+      
+      listItem.appendChild(contentContainer);
       list.appendChild(listItem);
     }
   }
 
   // Helper function to toggle child list visibility
-  function toggleTreeChildList(e, childList, rightContainer) {
+  function toggleTreeChildList(e, childList, toggleIcon) {
     e.stopPropagation(); // Prevent event from bubbling up
-    
-    const toggleIcon = rightContainer.querySelector('.tree-toggle-icon');
     
     if (childList.classList.contains("hidden")) {
       childList.classList.remove("hidden");
@@ -676,6 +700,60 @@ document.addEventListener('DOMContentLoaded', function() {
       if (toggleIcon) {
         toggleIcon.classList.remove('open');
       }
+    }
+  }
+
+  // Expand all tree nodes
+  function expandAllTreeNodes() {
+    const treeContainer = document.getElementById('treeContainer');
+    if (!treeContainer) return;
+    
+    // Remove hidden class from all ul elements
+    const allLists = treeContainer.querySelectorAll('ul.hidden');
+    allLists.forEach(list => {
+      list.classList.remove('hidden');
+    });
+    
+    // Set all toggle icons to open state
+    const allToggleIcons = treeContainer.querySelectorAll('.tree-toggle-icon');
+    allToggleIcons.forEach(icon => {
+      if (!icon.classList.contains('tree-spacer')) {
+        icon.classList.add('open');
+      }
+    });
+  }
+
+  // Collapse all tree nodes
+  function collapseAllTreeNodes() {
+    const treeContainer = document.getElementById('treeContainer');
+    if (!treeContainer) return;
+    
+    // Add hidden class to all ul elements except root
+    const allLists = treeContainer.querySelectorAll('ul:not(.root)');
+    allLists.forEach(list => {
+      list.classList.add('hidden');
+    });
+    
+    // Set all toggle icons to closed state
+    const allToggleIcons = treeContainer.querySelectorAll('.tree-toggle-icon');
+    allToggleIcons.forEach(icon => {
+      if (!icon.classList.contains('tree-spacer')) {
+        icon.classList.remove('open');
+      }
+    });
+  }
+
+  // Initialize tree control buttons
+  function initializeTreeControls() {
+    const expandAllBtn = document.getElementById('expandAllBtn');
+    const collapseAllBtn = document.getElementById('collapseAllBtn');
+    
+    if (expandAllBtn) {
+      expandAllBtn.addEventListener('click', expandAllTreeNodes);
+    }
+    
+    if (collapseAllBtn) {
+      collapseAllBtn.addEventListener('click', collapseAllTreeNodes);
     }
   }
 

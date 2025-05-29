@@ -17,6 +17,14 @@
     justify-content: center;
 }
 
+.tree-controls {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 .toggle-btn {
     background: none;
     border: none;
@@ -89,7 +97,6 @@
 .notes-grid {
     width: 100%;
     min-height: 100vh;
-    padding: 20px 0;
 }
 
 .grid-content {
@@ -281,8 +288,14 @@
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
     font-size: 13px;
+}
+
+.tree-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
 }
 
 .tree-search {
@@ -355,65 +368,44 @@
 }
 
 .tree-list-item {
-    position: relative;
     margin-top: 6px;
 }
 
-.tree-content-container {
-    display: inline-block;
-    width: 85%;
-    word-wrap: break-word;
-}
-
-.tree-content-container a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.tree-content-container a:hover {
-    text-decoration: underline;
-}
-
-.tree-right-container {
-    position: absolute;
-    right: 0;
-    top: 0;
-    display: inline-block;
-    padding: 0 5px;  /* Add padding to increase clickable area */
-    height: 100%;    /* Make the container take full height */
-    min-width: 30px; /* Ensure minimum width for better clickability */
-    text-align: right;
-    z-index: 1;      /* Ensure it's clickable above other elements */
-}
-
-.tree-count-display {
-    margin-left: 8px;
-    font-size: 0.7em;
-}
-
-.tree-toggle-margin-left {
-    margin-left: 5px;
-    cursor: pointer;
+.content-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 1.2em;
+    gap: 8px;
+    padding: 2px 0;
+    justify-content: flex-start;
 }
 
 .tree-toggle-icon {
     display: inline-block;
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    margin-right: 6px;
-    color: #666;
     width: 12px;
     text-align: center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    color: #666;
     flex-shrink: 0;
+    font-size: 12px;
 }
 
 .tree-toggle-icon.open {
     transform: rotate(180deg);
 }
 
+.tree-toggle-icon.tree-spacer {
+    cursor: default;
+    color: transparent;
+}
+
 .tree-text {
-    flex: 1;
+    flex: 0 1 auto;
     min-width: 0;
+    word-wrap: break-word;
+    overflow: hidden;
     margin-right: 8px;
 }
 
@@ -427,20 +419,12 @@
 }
 
 .tree-count {
-    font-size: 0.8em;
+    font-size: 0.7em;
     color: #888;
     font-weight: normal;
     white-space: nowrap;
     flex-shrink: 0;
-    margin-left: auto;
-}
-
-.content-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-height: 1.2em;
-    gap: 0;
+    margin-left: 0;
 }
 
 .tree-list ul {
