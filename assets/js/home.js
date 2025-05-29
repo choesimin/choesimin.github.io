@@ -28,8 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   {% endfor %}
 
-  console.log(allNotes);
-
   // Global variables for view management
   let currentView = 'grid';
   let currentData = allNotes;

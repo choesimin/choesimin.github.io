@@ -2,18 +2,24 @@
 layout: none
 ---
 
-// Note tree functionality - DISABLED for simplified sidebar
+// Note tree functionality
 (function() {
   'use strict';
   
-  function initializeNoteTree() {
-    // Note tree functionality disabled - sidebar now only contains navigation links
-    return;
+  function countAllDescendants(node) {
+    if (!node.children || node.children.length === 0) {
+      return 0;
+    }
+    
+    let count = node.children.length;
+    for (const child of node.children) {
+      count += countAllDescendants(child);
+    }
+    return count;
   }
   
-  // Export function
-  window.initializeNoteTree = initializeNoteTree;
-})();
+  function makeList(node, list) {
+    const listItem = document.createElement("li");
     
     if (node.children) {
       node.originalChildrenCount = node.children.length;
