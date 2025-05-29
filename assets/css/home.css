@@ -697,9 +697,9 @@
 .graphics-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1px;
+    gap: 0;
     padding: 0;
-    background-color: #e5e5e5;
+    background-color: transparent;
     width: 100%;
 }
 
@@ -716,15 +716,6 @@
 
 .graphics-item:hover {
     background-color: #f5f5f5;
-}
-
-.graphics-item.graphics-empty {
-    background-color: #ffffff;
-    cursor: default;
-}
-
-.graphics-item.graphics-empty:hover {
-    background-color: #ffffff;
 }
 
 .graphics-title {
