@@ -19,52 +19,9 @@ layout: none
     });
   }
   
-  // Category toggle functionality
-  function initializeCategoryToggles() {
-    document.querySelectorAll('.category-header').forEach(function(header) {
-      header.addEventListener('click', function(e) {
-        // Handle Note category redirect
-        if (this.hasAttribute('data-target') && this.getAttribute('data-target') === 'note') {
-          if (window.location.pathname !== '/' && !window.location.pathname.endsWith('/index.html')) {
-            window.location.href = '/';
-            return;
-          }
-        }
-        
-        // Only handle Notes section toggle functionality
-        const targetContainer = this.parentElement;
-        let targetElement;
-        
-        // Find and toggle Notes content
-        if (targetContainer.querySelector('#noteList')) {
-          const searchElement = document.getElementById('noteSearch');
-          targetElement = document.getElementById('noteList');
-
-          if (targetElement.classList.contains('hidden')) {
-            searchElement.classList.remove('hidden');
-            targetElement.classList.remove('hidden');
-          } else {
-            searchElement.classList.add('hidden');
-            targetElement.classList.add('hidden');
-          }
-        }
-        // Other sections now navigate to their own pages via links
-      });
-    });
-  }
-  
-  function toggleDisplay(element) {
-    if (element.classList.contains('hidden')) {
-      element.classList.remove('hidden');
-    } else {
-      element.classList.add('hidden');
-    }
-  }
-  
   // Initialize all components
   function initialize() {
     initializeProgressBar();
-    initializeCategoryToggles();
     
     // Initialize search if function exists
     if (typeof window.initializeSearch === 'function') {

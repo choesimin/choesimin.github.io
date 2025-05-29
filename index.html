@@ -1,42 +1,22 @@
 ---
 layout: default
-title: Notes
-css:
-  - /assets/css/home.css
-js:
-  - https://d3js.org/d3.v7.min.js
-  - /assets/js/home.js
+title: Home
 ---
 
 <div class="header-section">
-  <h1 class="page-title">Notes</h1>
-  <div class="view-toggle">
-    <button id="gridViewBtn" class="toggle-btn">Search</button>
-    <button id="treeViewBtn" class="toggle-btn">List</button>
-    <button id="clusterViewBtn" class="toggle-btn">Cluster</button>
-    <button id="radialViewBtn" class="toggle-btn">Radial</button>
-  </div>
-  <div id="treeControls" class="tree-controls" style="display: none;">
-    <button id="collapseAllBtn" class="toggle-btn">Fold</button>
-    <button id="expandAllBtn" class="toggle-btn">Unfold</button>
-  </div>
+  <h1 class="page-title">Welcome</h1>
 </div>
 
-<div id="notesGrid" class="notes-grid">
-  <div class="search-input-section">
-    <input type="text" id="searchInput" placeholder="Search notes..." />
+<div class="content-section">
+  <div class="introduction-content">
+    <h2>안녕하세요!</h2>
+    <p>저의 개인 웹사이트에 오신 것을 환영합니다.</p>
+    <p>이곳에서 제가 공부하고 기록한 내용들을 확인하실 수 있습니다.</p>
+    
+    <div class="navigation-links">
+      <a href="{{ '/notes.html' | relative_url }}" class="nav-link">📝 Notes - 학습 기록과 생각들</a>
+      <a href="{{ '/algorithms.html' | relative_url }}" class="nav-link">💻 Algorithm - 알고리즘 문제 풀이</a>
+      <a href="{{ '/graphics.html' | relative_url }}" class="nav-link">🎨 Graphics - 그래픽 프로젝트들</a>
+    </div>
   </div>
-  <div id="gridContent" class="grid-content">
-    <!-- All notes will be populated here by JavaScript -->
-  </div>
-</div>
-
-<div id="treeContainer" class="tree-container" style="display: none;">
-  <div id="treeList" class="tree-list">
-    <!-- Tree structure will be rendered here -->
-  </div>
-</div>
-
-<div id="clusterContainer" class="cluster-container" style="display: none;">
-  <!-- Cluster visualization will be rendered here -->
 </div>

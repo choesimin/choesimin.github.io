@@ -2,28 +2,37 @@
 layout: default
 title: Stories
 css:
-  - /assets/css/collection.css
+  - /assets/css/home.css
 ---
 
 <div class="header-section">
   <h1 class="page-title">Stories</h1>
 </div>
 
-<div class="collection-container">
-  <div class="items-grid">
-    <div class="item-card story-item">
-      <a href="https://brunch.co.kr/@simin" target="_blank">
-        <h3>Brunch Story</h3>
-        <p class="item-description">브런치 스토리</p>
-        <p class="item-type">External Link</p>
-      </a>
+<div id="treeContainer" class="tree-container">
+  <div id="treeList" class="tree-list">
+    <div class="tree-item content-container">
+      <span class="tree-text">External Links</span>
+      <span class="tree-count">(2)</span>
     </div>
-    <div class="item-card story-item">
-      <a href="https://www.instagram.com/simin_sees" target="_blank">
-        <h3>Instagram</h3>
-        <p class="item-description">인스타그램</p>
-        <p class="item-type">External Link</p>
-      </a>
+    
+    <div class="tree-children" style="margin-left: 20px;">
+      <div class="tree-item">
+        <div class="content-container">
+          <a href="https://brunch.co.kr/@simin" target="_blank" class="tree-text">
+            Brunch Story
+          </a>
+          <div class="graphic-description">브런치 스토리</div>
+        </div>
+      </div>
+      <div class="tree-item">
+        <div class="content-container">
+          <a href="https://www.instagram.com/simin_sees" target="_blank" class="tree-text">
+            Instagram
+          </a>
+          <div class="graphic-description">인스타그램</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

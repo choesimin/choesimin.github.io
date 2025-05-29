@@ -2,38 +2,18 @@
 layout: none
 ---
 
-// Note tree functionality
+// Note tree functionality - DISABLED for simplified sidebar
 (function() {
   'use strict';
   
-  // Helper functions
-  function countAllDescendants(node) {
-    if (!node.children) return 1;
-    
-    let count = 0;
-    for (let child of node.children) {
-      count += child.children ? countAllDescendants(child) : 1;
-    }
-    return count;
+  function initializeNoteTree() {
+    // Note tree functionality disabled - sidebar now only contains navigation links
+    return;
   }
   
-  function toggleChildList(e, childList, toggleText) {
-    e.stopPropagation();
-    const isHidden = childList.classList.contains("hidden");
-    const icon = toggleText.querySelector('.toggle-icon');
-    
-    if (isHidden) {
-      childList.classList.remove("hidden");
-      icon.classList.add('open');
-    } else {
-      childList.classList.add("hidden");
-      icon.classList.remove('open');
-    }
-  }
-  
-  function makeList(node, list) {
-    const listItem = document.createElement("li");
-    listItem.classList.add("list-item-relative");
+  // Export function
+  window.initializeNoteTree = initializeNoteTree;
+})();
     
     if (node.children) {
       node.originalChildrenCount = node.children.length;

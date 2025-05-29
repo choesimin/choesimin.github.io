@@ -2,7 +2,6 @@
 <html lang="ko">
   <head>
     {% include google-analytics.html %}
-
     <title>
       {% if page.title %}
         {{ page.title }} |
@@ -46,53 +45,50 @@
       </div>
       
       <section id="categories">
+        <!-- Note Section -->
         <div class="category-container">
-          <div class="category-header" data-target="note">
-            <span class="display-inline-block">Note</span>
-            <span class="float-right">
-              <span class="count-display">{{ site.notes | size }}</span>
-            </span>
+          <div class="category-header">
+            <a href="{{ '/notes.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
+              <span class="display-inline-block">Note</span>
+            </a>
           </div>
-          <div id="noteSearch" class="hidden">
-            <input type="text" placeholder="Search notes..." />
-            <ul id="searchResult" class="hidden"></ul>
-          </div>
-          <div id="noteList" class="hidden"></div>
         </div>
 
         <!-- Algorithm Section -->
         <div class="category-container">
-          <div class="category-header" data-target="algorithm">
-            <a href="/algorithms.html" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div class="category-header">
+            <a href="{{ '/algorithms.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
               <span class="display-inline-block">Algorithm</span>
-              <span class="float-right">
-                <span class="count-display">{{ site.problems | size }}</span>
-              </span>
             </a>
           </div>
         </div>
 
         <!-- Graphics Section -->
         <div class="category-container">
-          <div class="category-header" data-target="graphics">
-            <a href="/graphics.html" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div class="category-header">
+            <a href="{{ '/graphics.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
               <span class="display-inline-block">Graphics</span>
-              <span class="float-right">
-                <span class="count-display">{{ site.graphics | size }}</span>
-              </span>
             </a>
           </div>
         </div>
-
-        <!-- Story Section -->
-        <div class="category-container">
-          <div class="category-header" data-target="story">
-            <a href="/stories.html" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; align-items: center; width: 100%;">
-              <span class="display-inline-block">Story</span>
-              <span class="float-right">
-                <span class="count-display">2</span>
-              </span>
-            </a>
+      </section>
+      
+      <!-- External Links Section -->
+      <section id="external-links">
+        <div class="links-container">
+          <div class="link-item">
+            <div class="category-header">
+              <a href="https://brunch.co.kr/@simin" target="_blank" style="color: inherit; text-decoration: none; display: block; width: 100%;">
+                <span class="display-inline-block">Brunch</span>
+              </a>
+            </div>
+          </div>
+          <div class="link-item">
+            <div class="category-header">
+              <a href="https://www.instagram.com/simin_sees" target="_blank" style="color: inherit; text-decoration: none; display: block; width: 100%;">
+                <span class="display-inline-block">Instagram</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>

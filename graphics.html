@@ -2,25 +2,41 @@
 layout: default
 title: Graphics
 css:
-  - /assets/css/collection.css
+  - /assets/css/home.css
 ---
 
 <div class="header-section">
   <h1 class="page-title">Graphics</h1>
 </div>
 
-<div class="collection-container">
-  <div class="items-grid">
+<div id="treeContainer" class="tree-container">
+  <div id="treeList" class="tree-list">
+    {% assign graphics_count = 0 %}
     {% for graphic in site.graphics %}
-    <div class="item-card graphic-item">
-      <a href="{{ graphic.url | relative_url }}">
-        <h3>{{ graphic.title }}</h3>
-        <p class="item-description">{{ graphic.description }}</p>
-        {% if graphic.date %}
-        <p class="item-date">{{ graphic.date | date: "%Y-%m-%d" }}</p>
-        {% endif %}
-      </a>
-    </div>
+      {% assign graphics_count = graphics_count | plus: 1 %}
     {% endfor %}
+    
+    <div class="tree-item content-container">
+      <span class="tree-text">All Graphics</span>
+      <span class="tree-count">({{ graphics_count }})</span>
+    </div>
+    
+    <div class="tree-children" style="margin-left: 20px;">
+      {% for graphic in site.graphics %}
+      <div class="tree-item">
+        <div class="content-container">
+          <a href="{{ graphic.url | relative_url }}" class="tree-text">
+            {{ graphic.title }}
+          </a>
+          {% if graphic.description %}
+          <div class="graphic-description">{{ graphic.description }}</div>
+          {% endif %}
+          {% if graphic.date %}
+          <div class="item-date">{{ graphic.date | date: "%Y-%m-%d" }}</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </div>

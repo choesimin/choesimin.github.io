@@ -345,6 +345,7 @@
 
 .tree-list {
     line-height: 1.5;
+    font-size: 1.1em; /* Increase overall font size slightly */
 }
 
 .tree-list .root {
@@ -402,12 +403,41 @@
     color: transparent;
 }
 
+/* Tree toggle styling for category views */
+.tree-toggle-icon {
+    display: inline-block;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-size: 0.8em;
+    user-select: none;
+}
+
+.tree-toggle-icon.collapsed {
+    transform: rotate(-90deg);
+}
+
+.tree-children {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.tree-children.collapsed {
+    max-height: 0;
+}
+
+/* Category header styling */
+.tree-item .content-container .tree-text {
+    font-size: 1em; /* Base font size */
+}
+
 .tree-text {
     flex: 0 1 auto;
     min-width: 0;
     word-wrap: break-word;
     overflow: hidden;
     margin-right: 8px;
+    font-size: 1em; /* Base size for tree items */
 }
 
 .tree-text a {
@@ -520,28 +550,144 @@
     line-height: 1.4;
 }
 
-/* Responsive grid adjustments */
-@media (max-width: 800px) {
-    .items-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 15px;
-        padding: 0 15px;
+/* Home page introduction styling */
+.introduction-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.introduction-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.introduction-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.navigation-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-link {
+    display: block;
+    padding: 15px 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    background: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link:hover {
+    background: #f7f7f7;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+/* Graphics page styling */
+.graphic-description {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+.item-date {
+    font-size: 0.8em;
+    color: #999;
+    margin-top: 4px;
+}
+
+/* Algorithm page styling */
+.algorithm-tag {
+    font-size: 0.85em;
+    color: #666;
+    margin-left: 8px;
+}
+
+/* Remove any color styles from collection pages */
+.tree-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tree-item a:hover {
+    text-decoration: underline;
+}
+
+/* Two-column layout for algorithm categories */
+.algorithm-categories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.category-column {
+    min-height: 0; /* Allow columns to shrink */
+}
+
+.category-header-item {
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.category-header-item .tree-text {
+    font-size: 1.2em; /* Larger than regular items */
+    font-weight: bold;
+}
+
+.category-header-item .tree-text {
+    font-size: 1.2em; /* Larger than regular items */
+    font-weight: bold;
+}
+
+.category-children {
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .algorithm-categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 
-@media (max-width: 600px) {
-    .items-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 0 10px;
-    }
-    
-    .section-title {
-        font-size: 1.6em;
-    }
-    
-    .content-section {
-        margin-top: 40px;
-        padding: 20px 0;
-    }
+/* Overall font size adjustments */
+.tree-list {
+    font-size: 1.1em; /* Increase overall font size slightly */
+}
+
+.tree-text {
+    font-size: 1em; /* Base size for tree items */
+}
+
+/* Algorithm item text sizing */
+.tree-item .content-container a.tree-text {
+    font-size: 1em; /* Regular size for algorithm links */
+}
+
+/* Algorithm tag sizing */
+.algorithm-tag {
+    font-size: 0.9em; /* Slightly larger than before */
+    color: #666;
+    margin-left: 8px;
 }

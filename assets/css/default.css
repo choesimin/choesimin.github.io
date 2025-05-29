@@ -113,7 +113,6 @@ footer {
 .category-header {
     cursor: pointer;
     padding: 10px 0;
-    border-bottom: 1px solid var(--border-color, black);
     font-weight: bold;
     font-size: 1.1em;
 }
@@ -313,4 +312,31 @@ footer {
     max-width: calc(100% - 250px); /* Subtract sidebar width from 100% */
     overflow-x: hidden; /* Prevent horizontal scrolling on the wrapper */
     box-sizing: border-box;
+}
+
+/* External links section styling */
+#external-links {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.links-container {
+    margin-bottom: 10px;
+}
+
+.link-item {
+    margin-bottom: 15px;
+}
+
+.link-item .category-header {
+    cursor: pointer;
+    padding: 8px 0;
+    font-weight: normal;
+    font-size: 1em;
+    color: #666;
+}
+
+.link-item .category-header:hover {
+    color: #333;
 }

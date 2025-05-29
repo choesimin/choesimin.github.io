@@ -876,4 +876,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initial display
   switchView(currentView);
+
+  // Category toggle functionality for algorithms page
+  function initializeCategoryToggle() {
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('tree-toggle-icon')) {
+        const icon = event.target;
+        const treeItem = icon.closest('.tree-item');
+        const children = treeItem.nextElementSibling;
+        
+        if (children && children.classList.contains('tree-children')) {
+          // Toggle collapsed state
+          icon.classList.toggle('collapsed');
+          children.classList.toggle('collapsed');
+          
+          // Update icon
+          if (icon.classList.contains('collapsed')) {
+            icon.textContent = '▶';
+          } else {
+            icon.textContent = '▼';
+          }
+        }
+      }
+    });
+  }
+  
+  // Initialize category toggle if we're on algorithms page
+  if (window.location.pathname.includes('algorithms')) {
+    initializeCategoryToggle();
+  }
 });
