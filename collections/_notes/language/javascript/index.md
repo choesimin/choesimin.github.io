@@ -212,9 +212,9 @@ title : Engine의 동작 과정
 ---
 flowchart LR
 
-parse[1. Parse Script]
-compile[2. Compile]
-run[3. Run]
+parse[Parse Script]
+compile[Compile]
+run[Run]
 
 parse --> compile --> run
 ```
