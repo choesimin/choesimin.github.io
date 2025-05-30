@@ -29,11 +29,20 @@ document.addEventListener('DOMContentLoaded', function() {
   {% endfor %}
 
   // Global variables for view management
-  let currentView = 'grid';
+  let currentView = localStorage.getItem('notesCurrentView') || 'grid';
+  let currentClusterView = localStorage.getItem('notesCurrentClusterView') || 'radial'; // Default to radial
+  let treeExpanded = localStorage.getItem('notesTreeExpanded') === 'true'; // Default to false (collapsed)
   let currentData = allNotes;
   let clusterSvg = null;
   let tooltip = null;
   let shuffledNotesCache = null; // Cache for shuffled notes order
+
+  // Save view state to localStorage
+  function saveViewState() {
+    localStorage.setItem('notesCurrentView', currentView);
+    localStorage.setItem('notesCurrentClusterView', currentClusterView);
+    localStorage.setItem('notesTreeExpanded', treeExpanded);
+  }
 
   // Initialize tooltip
   function initializeTooltip() {
@@ -58,21 +67,55 @@ document.addEventListener('DOMContentLoaded', function() {
   function initializeViewToggle() {
     const gridBtn = document.getElementById('gridViewBtn');
     const clusterBtn = document.getElementById('clusterViewBtn');
-    const radialBtn = document.getElementById('radialViewBtn');
     const treeBtn = document.getElementById('treeViewBtn');
 
     gridBtn.addEventListener('click', () => switchView('grid'));
     clusterBtn.addEventListener('click', () => switchView('cluster'));
-    radialBtn.addEventListener('click', () => switchView('radial'));
     treeBtn.addEventListener('click', () => switchView('tree'));
+    
+    // Initialize cluster sub-view controls
+    initializeClusterControls();
+  }
+  
+  // Initialize cluster sub-view controls
+  function initializeClusterControls() {
+    const treeClusterBtn = document.getElementById('treeClusterBtn');
+    const radialClusterBtn = document.getElementById('radialClusterBtn');
+    
+    if (treeClusterBtn) {
+      treeClusterBtn.addEventListener('click', () => switchClusterView('tree'));
+    }
+    if (radialClusterBtn) {
+      radialClusterBtn.addEventListener('click', () => switchClusterView('radial'));
+    }
+  }
+  
+  // Switch between cluster sub-views
+  function switchClusterView(clusterView) {
+    currentClusterView = clusterView;
+    saveViewState(); // Save state when cluster view changes
+    
+    // Update active button for cluster controls
+    document.querySelectorAll('#clusterControls .toggle-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(clusterView + 'ClusterBtn').classList.add('active');
+    
+    // Re-render the cluster view with the new type
+    if (currentView === 'cluster') {
+      if (clusterView === 'tree') {
+        renderClusterView();
+      } else if (clusterView === 'radial') {
+        renderRadialClusterView();
+      }
+    }
   }
 
   // Switch between different views
   function switchView(view) {
     currentView = view;
+    saveViewState(); // Save state when view changes
     
-    // Update active button
-    document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+    // Update active button (only for main view toggle)
+    document.querySelectorAll('.view-toggle .toggle-btn').forEach(btn => btn.classList.remove('active'));
     document.getElementById(view + 'ViewBtn').classList.add('active');
     
     // Show/hide containers
@@ -80,12 +123,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const clusterContainer = document.getElementById('clusterContainer');
     const treeContainer = document.getElementById('treeContainer');
     const treeControls = document.getElementById('treeControls');
+    const clusterControls = document.getElementById('clusterControls');
     
     // Hide all containers first
     gridContainer.style.display = 'none';
     clusterContainer.style.display = 'none';
     treeContainer.style.display = 'none';
     if (treeControls) treeControls.style.display = 'none';
+    if (clusterControls) clusterControls.style.display = 'none';
     
     if (view === 'grid') {
       gridContainer.style.display = 'block';
@@ -94,14 +139,21 @@ document.addEventListener('DOMContentLoaded', function() {
       treeContainer.style.display = 'block';
       if (treeControls) treeControls.style.display = 'flex';
       renderTreeView();
-    } else {
+    } else if (view === 'cluster') {
       clusterContainer.style.display = 'block';
+      if (clusterControls) {
+        clusterControls.style.display = 'flex';
+        // Set active button for current cluster view
+        document.querySelectorAll('#clusterControls .toggle-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(currentClusterView + 'ClusterBtn').classList.add('active');
+      }
       
-      if (view === 'cluster') {
-        console.log('Rendering cluster view, D3 available:', typeof d3);
+      // Render the appropriate cluster view
+      if (currentClusterView === 'tree') {
+        console.log('Rendering tree cluster view, D3 available:', typeof d3);
         renderClusterView();
-      } else if (view === 'radial') {
-        console.log('Rendering radial view, D3 available:', typeof d3);
+      } else if (currentClusterView === 'radial') {
+        console.log('Rendering radial cluster view, D3 available:', typeof d3);
         renderRadialClusterView();
       }
     }
@@ -589,6 +641,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize tree control buttons
     initializeTreeControls();
+    
+    // Apply saved expand/collapse state
+    if (treeExpanded) {
+      expandAllTreeNodes();
+    } else {
+      collapseAllTreeNodes();
+    }
   }
 
   // Tree node creation functions (adapted from default.js)
@@ -723,12 +782,38 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleIcon.classList.remove('open');
       }
     }
+    
+    // Update overall tree state based on current state
+    updateTreeExpandedState();
+  }
+  
+  // Check if all tree nodes are expanded or collapsed and update state
+  function updateTreeExpandedState() {
+    const treeContainer = document.getElementById('treeContainer');
+    if (!treeContainer) return;
+    
+    const allLists = treeContainer.querySelectorAll('ul:not(.root)');
+    const hiddenLists = treeContainer.querySelectorAll('ul.hidden:not(.root)');
+    
+    // If no lists are hidden, consider tree as expanded
+    // If all lists are hidden, consider tree as collapsed
+    if (hiddenLists.length === 0 && allLists.length > 0) {
+      treeExpanded = true;
+    } else if (hiddenLists.length === allLists.length) {
+      treeExpanded = false;
+    }
+    // For partial states, keep the current setting
+    
+    saveViewState();
   }
 
   // Expand all tree nodes
   function expandAllTreeNodes() {
     const treeContainer = document.getElementById('treeContainer');
     if (!treeContainer) return;
+    
+    treeExpanded = true;
+    saveViewState(); // Save state
     
     // Remove hidden class from all ul elements
     const allLists = treeContainer.querySelectorAll('ul.hidden');
@@ -749,6 +834,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function collapseAllTreeNodes() {
     const treeContainer = document.getElementById('treeContainer');
     if (!treeContainer) return;
+    
+    treeExpanded = false;
+    saveViewState(); // Save state
     
     // Add hidden class to all ul elements except root
     const allLists = treeContainer.querySelectorAll('ul:not(.root)');
@@ -872,7 +960,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize view toggle functionality
   initializeViewToggle();
 
-  // Initial display
+  // Initial display - restore saved state
   switchView(currentView);
 
   // Category toggle functionality for algorithms page

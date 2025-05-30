@@ -744,3 +744,12 @@
     z-index: 10;
     line-height: 1;
 }
+
+/* Cluster controls styling */
+#clusterControls {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
