@@ -345,7 +345,8 @@
 }
 
 .tree-list {
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.2;
 }
 
 .tree-list .root {
@@ -357,16 +358,13 @@
     margin-top: 30px;
     margin-bottom: 30px;
     font-weight: bold;
-    font-size: 18px;
 }
 
-/* First level children (direct children of root) - no indentation */
 .tree-list .root > li > ul {
     list-style: none;
     padding-left: 10px;
     margin: 0;
     font-weight: normal;
-    font-size: 14px;
 }
 
 .tree-list-item {
@@ -377,7 +375,6 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 8px;
     padding: 2px 0;
     justify-content: flex-start;
 }

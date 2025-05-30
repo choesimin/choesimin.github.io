@@ -3,7 +3,7 @@ layout: note
 permalink: /
 title: CSS의 크기 단위 - px, em, rem
 description: 
-date: 
+date: 2025-05-30
 published: false
 ---
 
