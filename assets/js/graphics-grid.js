@@ -27,7 +27,7 @@ function initializeGraphicsList() {
         // Add click functionality
         if (url) {
             item.addEventListener('click', function() {
-                window.location.href = url;
+                window.open(url, '_blank');
             });
             
             // Add keyboard accessibility

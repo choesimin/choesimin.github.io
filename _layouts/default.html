@@ -37,61 +37,52 @@
   <body>
     <div id="progressBar"></div>
     <aside class="sidebar">
-      <div class="logo">
-        <a href="{{ '/' | relative_url }}">SIMIN</a>
-      </div>
-      <div class="introduction">
-        <p>{{ site.description }}</p>
-      </div>
-      
-      <section id="categories">
-        <!-- Note Section -->
-        <div class="category-container">
-          <div class="category-header">
-            <a href="{{ '/notes.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
-              <span class="display-inline-block">Note</span>
-            </a>
-          </div>
+      <div class="sidebar-content">
+        <div class="logo">
+          <a href="{{ '/' | relative_url }}">SIMIN</a>
         </div>
-
-        <!-- Algorithm Section -->
-        <div class="category-container">
-          <div class="category-header">
-            <a href="{{ '/algorithms.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
-              <span class="display-inline-block">Algorithm</span>
-            </a>
-          </div>
+        <div class="introduction">
+          <p>{{ site.description }}</p>
         </div>
-
-        <!-- Graphics Section -->
-        <div class="category-container">
-          <div class="category-header">
-            <a href="{{ '/graphics.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
-              <span class="display-inline-block">Graphics</span>
-            </a>
-          </div>
-        </div>
-      </section>
-      
-      <!-- External Links Section -->
-      <section id="external-links">
-        <div class="links-container">
-          <div class="link-item">
+        
+        <section id="categories">
+          <!-- Note Section -->
+          <div class="category-container">
             <div class="category-header">
-              <a href="https://brunch.co.kr/@simin" target="_blank" style="color: inherit; text-decoration: none; display: block; width: 100%;">
-                <span class="display-inline-block">Brunch</span>
+              <a href="{{ '/notes.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
+                <span class="display-inline-block">Notes</span>
               </a>
             </div>
           </div>
-          <div class="link-item">
+
+          <!-- Algorithm Section -->
+          <div class="category-container">
             <div class="category-header">
-              <a href="https://www.instagram.com/simin_sees" target="_blank" style="color: inherit; text-decoration: none; display: block; width: 100%;">
-                <span class="display-inline-block">Instagram</span>
+              <a href="{{ '/algorithms.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
+                <span class="display-inline-block">Algorithms</span>
               </a>
             </div>
           </div>
+
+          <!-- Graphics Section -->
+          <div class="category-container">
+            <div class="category-header">
+              <a href="{{ '/graphics.html' | relative_url }}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
+                <span class="display-inline-block">Graphics</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <!-- Fixed Footer with External Links -->
+      <div class="sidebar-footer">
+        <div class="external-links-horizontal">
+          <a href="https://brunch.co.kr/@simin" target="_blank" class="external-link">Brunch</a>
+          <a href="https://www.instagram.com/simin_sees" target="_blank" class="external-link">Instagram</a>
+          <a href="https://github.com/choesimin" target="_blank" class="external-link">GitHub</a>
         </div>
-      </section>
+      </div>
     </aside>
 
     <div class="content-wrapper">
