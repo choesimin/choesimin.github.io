@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
   {% endfor %}
 
   // Global variables for view management
-  let currentView = localStorage.getItem('notesCurrentView') || 'grid';
+  let currentView = localStorage.getItem('notesCurrentView') || 'cluster';
   let currentClusterView = localStorage.getItem('notesCurrentClusterView') || 'radial'; // Default to radial
   let treeExpanded = localStorage.getItem('notesTreeExpanded') === 'true'; // Default to false (collapsed)
   let currentData = allNotes;

@@ -12,6 +12,12 @@ layout: none
 
     {% assign sections = "notes,problems,graphics" | split: "," %}
     {% for section in sections %}
+    <url>
+        <loc>{{ site.url }}/{{ section }}</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
     {% assign posts = site[section] %}
     {% for post in posts %}
     <url>
