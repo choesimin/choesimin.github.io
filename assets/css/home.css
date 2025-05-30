@@ -542,55 +542,6 @@
     line-height: 1.4;
 }
 
-/* Home page introduction styling */
-.introduction-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: center;
-}
-
-.introduction-content h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.introduction-content p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    color: #666;
-}
-
-.navigation-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 40px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.nav-link {
-    display: block;
-    padding: 15px 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #333;
-    background: #fff;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.nav-link:hover {
-    background: #f7f7f7;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    transform: translateY(-2px);
-}
-
 /* Graphics page styling */
 .graphic-description {
     font-size: 14px;
