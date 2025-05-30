@@ -1,4 +1,3 @@
-/* CSS Column-based Masonry Layout */
 /* Header section styling */
 .header-section {
     text-align: center;
@@ -10,13 +9,7 @@
     margin: 0;
 }
 
-.view-toggle {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-}
-
+.view-toggle,
 .tree-controls {
     display: flex;
     gap: 20px;
@@ -44,7 +37,7 @@
     text-decoration: underline;
 }
 
-/* Cluster visualization containers */
+/* Cluster visualization */
 .cluster-container {
     width: 100%;
     display: flex;
@@ -94,6 +87,7 @@
     transition: opacity 0.3s;
 }
 
+/* Grid layout */
 .notes-grid {
     width: 100%;
     min-height: 100vh;
@@ -106,30 +100,33 @@
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    /* Improve column balancing */
     column-fill: balance;
     orphans: 1;
     widows: 1;
 }
 
+/* Search input - consolidated */
 .search-input-section {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.search-input-section input {
-    width: 800px;
-    max-width: fit-content;
-    padding: 6px 0;
+.search-input-section input,
+.tree-search input {
+    width: 100%;
+    max-width: 800px;
+    padding: 6px 10px;
     font-size: 13px;
     border: none;
     border-bottom: 1px solid #aaa;
     background: transparent;
     outline: none;
     text-align: center;
+    box-sizing: border-box;
 }
 
-.search-input-section input:focus {
+.search-input-section input:focus,
+.tree-search input:focus {
     border-bottom-color: #000;
 }
 
@@ -138,14 +135,7 @@
     font-style: normal;
 }
 
-.no-results {
-    text-align: center;
-    padding: 40px 20px;
-    color: #666;
-    font-size: 18px;
-    column-span: all;
-}
-
+/* Note cards */
 .note-card {
     display: inline-block;
     width: 100%;
@@ -154,7 +144,7 @@
     border: 1px solid black;
     box-sizing: border-box;
     margin: 0 0 16px 0;
-    vertical-align: top; /* Ensure consistent alignment */
+    vertical-align: top;
 }
 
 .note-card:hover {
@@ -164,65 +154,68 @@
 .note-card a {
     text-decoration: none;
     color: inherit;
-    display: block; /* Make the entire card clickable */
+    display: block;
 }
 
-.note-card h3 {
-    margin: 0 0 8px 0; /* Remove top margin, consistent bottom margin */
+.note-card h3,
+.note-card .search-title {
+    margin: 0 0 8px 0;
     font-size: 16px;
     line-height: 1.3;
-    /* Remove min-height to allow natural content flow */
+    font-weight: bold;
+    color: #333;
 }
 
-.note-card p {
+.note-card p,
+.note-card .search-description {
     margin: 0;
     color: #666;
     font-size: 14px;
     line-height: 1.3;
-    /* Remove text truncation to show full descriptions */
     word-wrap: break-word;
 }
 
+/* Search results */
 .search-results {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
 }
 
-.search-results ul {
+.search-results ul,
+#treeSearchResult {
     list-style: none;
-    padding: 0;
+    padding: 10px 0 0 12px;
     margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: var(--background-color, white);
 }
 
-.search-results li {
+.search-results li,
+#treeSearchResult li {
     margin-bottom: 10px;
     padding: 10px 15px;
     border: 1px solid #eee;
     border-radius: 8px;
     background-color: #fafafa;
+    list-style: none;
 }
 
-.search-results li:hover {
+.search-results li:hover,
+#treeSearchResult li:hover {
     background-color: #f0f0f0;
 }
 
-.search-results a {
+.search-results a,
+#treeSearchResult a {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
-.search-title {
-    font-weight: bold;
-    margin-bottom: 4px;
-    color: #333;
-}
-
-.search-description {
-    color: #666;
-    line-height: 1.4;
-    font-size: 14px;
+#treeSearchResult a:hover {
+    text-decoration: underline;
 }
 
 .no-results {
@@ -233,59 +226,7 @@
     column-span: all;
 }
 
-/* Original notes container styling for consistent grid spacing */
-.original-notes-container {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    /* Don't set column properties here - they should inherit from grid-content */
-}
-
-/* Ensure consistent spacing for both original notes and search results */
-.note-card.search-result {
-    margin: 0 0 16px 0;
-    vertical-align: top;
-}
-
-.note-card.search-result h3,
-.note-card.search-result .search-title {
-    margin: 0 0 8px 0;
-    /* Remove min-height to allow natural content flow */
-}
-
-.note-card.search-result p,
-.note-card.search-result .search-description {
-    /* Remove text truncation to show full descriptions */
-    word-wrap: break-word;
-    line-height: 1.3;
-    font-size: 14px;
-}
-
-/* Responsive adjustments for column count */
-@media (min-width: 1800px) {
-    .grid-content {
-        column-count: 6; /* 6 columns for very wide screens */
-    }
-}
-
-@media (min-width: 1400px) and (max-width: 1799px) {
-    .grid-content {
-        column-count: 5; /* 5 columns for wide screens */
-    }
-}
-
-@media (max-width: 1200px) {
-    .grid-content {
-        column-count: 3; /* 3 columns */
-    }
-}
-
-/* Debug info styling */
-.debug-info {
-    display: none; /* Hide in production */
-}
-
-/* Tree view styling */
+/* Tree view */
 .tree-container {
     width: 100%;
     max-width: 800px;
@@ -293,55 +234,9 @@
     font-size: 11px;
 }
 
-.tree-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    justify-content: center;
-}
-
 .tree-search {
     margin: 10px 0;
     width: 100%;
-}
-
-.tree-search input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 5px 10px;
-    background-color: var(--background-color, white);
-    color: inherit;
-    border: none;
-    border-bottom: 1px solid #dddddd;
-}
-
-.tree-search input:focus {
-    border-color: #999999;
-    outline: none;
-}
-
-#treeSearchResult {
-    background-color: var(--background-color, white);
-    padding: 10px 0;
-    margin-top: 5px;
-    max-height: 300px;
-    overflow-y: auto;
-    margin: 0;
-    padding-left: 12px;
-}
-
-#treeSearchResult li {
-    list-style: none;
-    margin-bottom: 5px;
-}
-
-#treeSearchResult li a {
-    text-decoration: none;
-    display: block;
-}
-
-#treeSearchResult li a:hover {
-    text-decoration: underline;
 }
 
 .tree-list {
@@ -352,19 +247,26 @@
 .tree-list .root {
     list-style: none;
     margin: 0;
+    padding-left: 0;
 }
 
 .tree-list .root > li {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px 0;
     font-weight: bold;
 }
 
-.tree-list .root > li > ul {
+.tree-list ul {
     list-style: none;
     padding-left: 10px;
     margin: 0;
+}
+
+.tree-list .root > li > ul {
     font-weight: normal;
+}
+
+.tree-list li {
+    margin-top: 6px;
 }
 
 .tree-list-item {
@@ -385,32 +287,24 @@
     text-align: center;
     transition: transform 0.2s ease;
     cursor: pointer;
-    color: #666;
+    color: #333;
     flex-shrink: 0;
-    font-size: 10px;
+    font-size: 12px;
+    margin-right: 8px;
+    user-select: none;
 }
 
 .tree-toggle-icon.open {
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
+}
+
+.tree-toggle-icon.collapsed {
+    transform: rotate(-90deg);
 }
 
 .tree-toggle-icon.tree-spacer {
     cursor: default;
     color: transparent;
-}
-
-/* Tree toggle styling for category views */
-.tree-toggle-icon {
-    display: inline-block;
-    margin-right: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    font-size: 13px;
-    user-select: none;
-}
-
-.tree-toggle-icon.collapsed {
-    transform: rotate(-90deg);
 }
 
 .tree-children {
@@ -422,8 +316,6 @@
     max-height: 0;
 }
 
-/* Category header styling */
-
 .tree-text {
     flex: 0 1 auto;
     min-width: 0;
@@ -432,12 +324,14 @@
     margin-right: 8px;
 }
 
-.tree-text a {
+.tree-text a,
+.tree-item a {
     color: inherit;
     text-decoration: none;
 }
 
-.tree-text a:hover {
+.tree-text a:hover,
+.tree-item a:hover {
     text-decoration: underline;
 }
 
@@ -450,41 +344,35 @@
     margin-left: 0;
 }
 
-.tree-list .root {
-    padding-left: 0;
-}
-
-.tree-list ul {
-    list-style: none;
-    padding-left: 10px;
-    margin: 0;
-}
-
-.tree-list .root > li > ul {
-    font-weight: normal;
-}
-
-.tree-list li {
-    margin-top: 6px;
-}
-
 .hidden {
     display: none;
 }
 
-/* Additional responsive adjustments */
+/* Responsive design */
+@media (min-width: 1800px) {
+    .grid-content { column-count: 6; }
+}
+
+@media (min-width: 1400px) and (max-width: 1799px) {
+    .grid-content { column-count: 5; }
+}
+
+@media (max-width: 1200px) {
+    .grid-content { column-count: 3; }
+}
+
+@media (max-width: 768px) {
+    .algorithm-categories-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+
 @media (max-width: 600px) {
     .search-input-section input {
         max-width: calc(100% - 20px);
         margin: 0 10px;
     }
-    
-    .search-input-section::after {
-        max-width: calc(100% - 20px);
-    }
 }
 
-/* Content sections styling */
+/* Content sections */
 .content-section {
     margin-top: 60px;
     padding: 30px 0;
@@ -542,7 +430,7 @@
     line-height: 1.4;
 }
 
-/* Graphics page styling */
+/* Graphics and algorithm specific styling */
 .graphic-description {
     font-size: 14px;
     color: #666;
@@ -556,24 +444,13 @@
     margin-top: 4px;
 }
 
-/* Algorithm page styling */
 .algorithm-tag {
     font-size: 14px;
     color: #666;
     margin-left: 8px;
 }
 
-/* Remove any color styles from collection pages */
-.tree-item a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.tree-item a:hover {
-    text-decoration: underline;
-}
-
-/* Two-column layout for algorithm categories */
+/* Algorithm categories layout */
 .algorithm-categories-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -582,7 +459,7 @@
 }
 
 .category-column {
-    min-height: 0; /* Allow columns to shrink */
+    min-height: 0;
 }
 
 .category-header-item {
@@ -601,23 +478,7 @@
     margin-bottom: 30px;
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-    .algorithm-categories-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
-/* Algorithm tag sizing - moved up from below */
-.algorithm-tag {
-    font-size: 14px;
-    color: #666;
-    margin-left: 8px;
-}
-
-/* Graphics grid layout styling */
-/* Graphics List Styles */
+/* Graphics grid layout */
 .graphics-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -696,7 +557,6 @@
     line-height: 1;
 }
 
-/* Cluster controls styling */
 #clusterControls {
     display: flex;
     gap: 20px;

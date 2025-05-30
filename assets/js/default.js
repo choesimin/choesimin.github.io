@@ -50,11 +50,8 @@ layout: none
         } else if (targetContainer.querySelector('#algorithmList')) {
           targetElement = document.getElementById('algorithmList');
           toggleDisplay(targetElement);
-        } else if (targetContainer.querySelector('#graphicList')) {
-          targetElement = document.getElementById('graphicList');
-          toggleDisplay(targetElement);
-        } else if (targetContainer.querySelector('#storyList')) {
-          targetElement = document.getElementById('storyList');
+        } else if (targetContainer.querySelector('#graphicsList')) {
+          targetElement = document.getElementById('graphicsList');
           toggleDisplay(targetElement);
         }
       });

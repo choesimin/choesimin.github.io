@@ -1,5 +1,5 @@
 ---
-layout: notes
+layout: note
 title: ksqlDB Collection - Data 저장소
 date: 2025-02-27
 ---
