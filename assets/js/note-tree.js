@@ -214,7 +214,7 @@ layout: none
   }
   
   function initializeNoteTree() {
-    const noteListElement = document.getElementById("noteList");
+    const noteListElement = document.getElementById("treeList");
     if (!noteListElement) return;
     
     const pages = getNotes();

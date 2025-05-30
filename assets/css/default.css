@@ -154,27 +154,23 @@ footer {
 }
 
 /* Consolidated list styling */
-#noteList ul,
-#algorithmList ul,
+#treeList ul,
 #graphicsList ul {
     list-style: none;
     padding-left: 12px;
 }
 
-#noteList li,
-#algorithmList li,
+#treeList li,
 #graphicsList li {
     margin-top: 6px;
 }
 
-#noteList a,
-#algorithmList a,
+#treeList a,
 #graphicsList a {
     text-decoration: none;
 }
 
-#noteList a:hover,
-#algorithmList a:hover,
+#treeList a:hover,
 #graphicsList a:hover {
     text-decoration: underline;
 }
@@ -197,53 +193,6 @@ footer {
     font-size: 14px;
     color: #666;
     margin-top: 2px;
-}
-
-/* Search styling - consolidated */
-#noteSearch,
-#noteSearch input {
-    margin: 10px 0;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#noteSearch input {
-    padding: 5px 10px;
-    background-color: var(--background-color, white);
-    color: inherit;
-    border: none;
-    border-bottom: 1px solid #dddddd;
-}
-
-#noteSearch input:focus {
-    border-color: #999999;
-    outline: none;
-}
-
-#searchResult {
-    background-color: var(--background-color, white);
-    padding: 10px 0 0 12px;
-    margin-top: 5px;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-#searchResult li {
-    list-style: none;
-    margin-bottom: 5px;
-}
-
-#searchResult li a {
-    text-decoration: none;
-    display: block;
-}
-
-.algorithm-category-header {
-    cursor: pointer;
-    padding: 5px 0;
-    margin-top: 5px;
-    border-bottom: 1px solid var(--border-color, black);
-    font-size: 14px;
 }
 
 /* Classes to replace inline styles */
