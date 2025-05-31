@@ -65,7 +65,7 @@ footer
 | **style** | code 변경 없이 형식만 수정 | semi colon, code formatting 등 |
 | **refactor** | production code refactoring | 기능에는 변경 없음 |
 | **test** | test code 추가/개선 관련 변경 | production code 수정 없음 |
-| **chore** | production code 변경 없는 유지보수 작업 | build file update, package manager 설정 수정 등 |
+| **chore** | production code 변경 없는 유지 보수 작업 | build file update, package manager 설정 수정 등 |
 
 
 ### Subject
