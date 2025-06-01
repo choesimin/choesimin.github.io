@@ -23,11 +23,12 @@ published: false
 
 ## TDD (Test-Driven Development)
 
-- **test가 주도하는 개발 방법론으로 설계 관점에서 접근**합니다.
-    - 자동화된 test로 개발을 이끌어나가는 방식입니다.
-    - 단위 test와는 목적이 다르며, TDD의 결과물이 단위 test일 뿐입니다.
+> test를 먼저 작성하여 설계가 좋은 code를 만들 수 있지 않을까?
 
-- "test를 먼저 작성하여 설계가 좋은 code를 만들 수 있지 않을까?"에서 시작된 방법론입니다.
+- **test가 주도하는 개발 방법론**으로, **설계 관점에서 접근**합니다.
+    - 자동화된 test로 개발을 이끌어나가는 방식입니다.
+    - unit(단위) test와는 목적이 다르며, TDD의 결과물이 unit test일 뿐입니다.
+
 - code 설계와 module 간 의존성 문제를 해결하는 것이 주요 목표입니다.
 
 
@@ -154,43 +155,17 @@ stateDiagram
 
 ## BDD (Behavior-Driven Development)
 
-- BDD는 **TDD에서 파생된 행위 주도 개발 방법론**입니다.
-    - BDD는 TDD의 test case 작성에 따른 비용 부담 문제를 해결하기 위해 등장했습니다.
-        - TDD에서 개발자가 test case를 창작하고 고민하는 모든 과정이 비용이었습니다.
-    - 기존에 작성된 요구 사항이나 기획서를 그대로 test case로 활용하여 비용을 절감합니다.
-    - TDD의 기술적 관점에서 벗어나 business 관점과 stakeholder 협업에 집중합니다.
-
-- BDD에서는 test case를 작성하는 대신 **system의 행위(behavior)에 대한 명세(specification)를 작성**합니다.
-    - BDD는 **business stakeholder와 개발자 간의 의사소통을 개선**하는 데 중점을 둡니다.
-    - TDD가 code의 동작을 검증하는 test case를 작성하는 것에 중점을 둔다면, BDD는 system이 어떻게 작동해야 하는지에 대한 명세를 작성합니다.
-
-    - 이미 작성된 요구 사항이나 기획서가 바로 test case가 되어 비용을 줄입니다.
-        - TDD의 test case 창작 비용 문제를 해결하는 접근법입니다.
-    - code 작성 전에 code가 수행할 행위에 대한 명세를 먼저 작성합니다.
-
-- BDD에서는 **비기술적 언어를 사용하여 더 많은 사람들이 이해하도록** 합니다.
-    - customer와 개발자의 관점에서 system이 어떻게 작동해야 하는지에 초점을 맞춥니다.
-    - 아직 존재하지 않은 code에 대해 test를 작성하기보다는 행위에 대한 명세를 작성합니다.
-    - 직관적으로 쉽게 이해할 수 있는 접근법입니다.
-    - stakeholder 간의 의사소통을 개선하는 효과가 있습니다.
-
-
-
-
-
-## BDD (Behavior-Driven Development)
-
 - **TDD에서 파생된 행위 주도 개발 방법론**입니다.
     - TDD의 test case 작성에 따른 비용 부담 문제를 해결하기 위해 등장했습니다.
     - 개발자가 test case를 창작하고 고민하는 모든 과정이 TDD에서는 순수한 비용이었습니다.
-    - 기존에 작성된 요구사항이나 기획서를 그대로 test case로 활용하여 비용을 절감합니다.
+    - 기존에 작성된 요구 사항이나 기획서를 그대로 test case로 활용하여 비용을 절감합니다.
     - TDD의 기술적 관점에서 벗어나 business 관점과 stakeholder 협업에 집중합니다.
 
-- **test case 대신 system의 behavior에 대한 specification을 작성**합니다.
+- **test case 대신 system의 behavior에 대한 명세(specification)를 작성**합니다.
     - TDD가 code의 동작을 검증하는 test case 작성에 중점을 둡니다.
     - BDD는 system이 어떻게 작동해야 하는지에 대한 명세 작성에 중점을 둡니다.
-    - 아직 존재하지 않은 code에 대해 test를 작성하기보다는 행위에 대한 명세를 작성합니다.
-    - code 작성 전에 code가 수행할 행위에 대한 specification을 먼저 정의합니다.
+    - 아직 존재하지 않은 code에 대해 test를 작성하기보다는 행위에 대한 명세(specification)를 작성합니다.
+        - code 작성 전에 code가 수행할 행위에 대한 명세를 먼저 정의하게 됩니다.
 
 - **business stakeholder와 개발자 간의 의사소통을 개선**하는 데 중점을 둡니다.
     - 비기술적 언어를 사용하여 더 많은 사람들이 이해할 수 있도록 합니다.
@@ -202,8 +177,8 @@ stateDiagram
 ### BDD의 주요 장점
 
 - **요구 사항과 구현 간의 gap을 줄입니다.**
-    - business language로 작성된 specification이 그대로 executable test가 됩니다.
-    - 요구사항 변경 시 specification 수정만으로 test case가 자동으로 update됩니다.
+    - business language로 작성된 명세가 그대로 executable test가 됩니다.
+    - 요구 사항 변경 시 명세 수정만으로 test case가 자동으로 update됩니다.
     - product owner나 business analyst가 직접 test scenario를 검토하고 승인할 수 있습니다.
     - misunderstanding으로 인한 rework을 크게 줄일 수 있습니다.
 
@@ -216,7 +191,7 @@ stateDiagram
 
 ### Given-When-Then Pattern
 
-- BDD에서는 주로 **Given-When-Then 패턴을 사용하여 scenario를 표현**합니다.
+- BDD에서는 주로 **Given-When-Then pattern을 사용하여 scenario를 표현**합니다.
     - **자연어에 가까운 형태로 scenario를 작성**할 수 있어 이해하기 쉽습니다.
 
 1. Given : 특정 상황이나 전제 조건을 설정합니다.
@@ -226,41 +201,107 @@ stateDiagram
 
 ### BDD의 한계와 고려 사항
 
-- **초기 setup과 learning curve**가 존재합니다.
+- **초기 설정**이 어렵고 **학습 곡선**이 꽤 있는 편입니다.
     - Cucumber, SpecFlow 등의 BDD framework 학습이 필요합니다.
-    - step definition 작성과 maintenance에 추가적인 effort가 필요합니다.
+    - step definition 작성과 유지 보수에 추가적인 노력이 필요합니다.
     - business stakeholder의 적극적인 참여가 전제되어야 효과를 발휘합니다.
-    - 잘못 작성된 scenario는 오히려 confusion을 증가시킬 수 있습니다.
+    - 잘못 작성된 scenario는 오히려 혼란을 가중시킵니다.
 
-- **execution performance와 maintenance 이슈**가 있습니다.
+- TDD에 비해 상대적으로 **test case의 실행 시간**이 길고, 유지 보수가 어렵습니다.
     - end-to-end test 위주로 구성되어 실행 시간이 상대적으로 오래 걸립니다.
     - UI나 API 변경 시 여러 scenario에 동시에 영향을 줄 수 있습니다.
-    - test data management와 environment setup이 복잡해질 수 있습니다.
-    - scenario 간의 dependency 관리가 어려울 수 있습니다.
+    - test data 관리와 환경 설정이 복잡해질 수 있습니다.
+    - scenario 간의 의존성 관리가 어려울 수 있습니다.
 
 
 ---
 
 
-## ATDD (Acceptance Test-Driven Development)
+## ATDD (Acceptance Test Driven Development)
 
-- **인수 test가 주도하는 개발 방법론**입니다.
-    - 구현 전에 사용자, tester, 개발자가 acceptance criteria를 정의합니다.
-    - 모든 project 구성원이 수행해야 할 작업과 요구 사항을 정확히 이해할 수 있도록 돕습니다.
-    - user scenario 관점에서 정확한 요구 사항을 capture하는 데 중점을 둡니다.
-    - customer acceptance와 satisfaction을 객관적으로 측정할 수 있습니다.
+- ATDD는 **인수 test 주도 개발**을 의미하며, software 개발 과정에서 고객의 요구사항을 만족하는 기능을 구현하기 위해 인수 test를 먼저 작성하고 개발을 진행하는 방법론입니다.
+- 전통적인 개발 방식과 달리 test case를 먼저 정의하여 고객과 개발팀 간의 소통을 개선하고, 요구사항에 대한 명확한 이해를 바탕으로 개발을 진행합니다.
 
-- **BDD와 ATDD에는 관점과 초점의 차이**가 있습니다.
-    - BDD는 개발자 관점에서 기능의 동작에 더 중점을 둡니다.
-    - ATDD는 사용자 scenario 관점에서 정확한 요구 사항 capture에 중점을 둡니다.
-    - BDD는 business behavior에 집중하고, ATDD는 customer acceptance에 집중합니다.
-    - 두 방법론은 유사하지만 접근하는 관점이 다릅니다.
 
-- **backend system에서는 주로 API에 acceptance test code를 작성**합니다.
-    - software acceptance test를 위해 API level에서 검증을 수행합니다.
-    - RestAssured 등의 tool을 주로 사용합니다.
-    - end-to-end scenario를 API 호출을 통해 검증합니다.
-    - user journey 전체를 포괄하는 test case를 작성합니다.
+### 핵심 개념
+
+- ATDD는 **고객 중심의 개발 접근법**으로, 최종 사용자의 관점에서 system이 올바르게 동작하는지 검증하는 것에 중점을 둡니다.
+- 개발자, tester, 비즈니스 stakeholder가 함께 협력하여 인수 기준을 정의하고 이를 test로 변환합니다.
+- 인수 test는 사용자 story나 요구사항이 올바르게 구현되었는지 확인하는 **자동화된 test**입니다.
+- business logic과 기술적 구현 사이의 gap을 줄여 고객이 원하는 기능을 정확히 개발할 수 있도록 지원합니다.
+
+
+### ATDD 개발 cycle
+
+1. **인수 기준 정의**
+    - 고객, product owner, 개발팀이 함께 사용자 story에 대한 인수 기준을 명확히 정의합니다.
+    - 비즈니스 요구사항을 구체적이고 측정 가능한 조건으로 변환합니다.
+
+2. **인수 test 작성**
+    - 정의된 인수 기준을 바탕으로 자동화된 test case를 작성합니다.
+    - test는 사용자의 관점에서 system의 동작을 검증하도록 구성됩니다.
+
+3. **기능 구현**
+    - 작성된 인수 test가 통과하도록 실제 기능을 구현합니다.
+    - test가 실패하는 동안 개발을 계속 진행하여 모든 test가 통과할 때까지 반복합니다.
+
+4. **test 실행 및 검증**
+    - 구현된 기능이 모든 인수 test를 통과하는지 확인합니다.
+    - test 결과를 바탕으로 기능의 완성도를 평가하고 추가 개선 사항을 식별합니다.
+
+
+### TDD와의 차이점
+
+| 구분 | TDD | ATDD |
+| --- | --- | --- |
+| **관점** | 개발자 중심 | 고객 중심 |
+| **test 범위** | unit test, 내부 구조 | 인수 test, 외부 동작 |
+| **참여자** | 개발자 | 개발자, tester, 비즈니스 stakeholder |
+| **목적** | code 품질 향상 | 요구사항 충족 검증 |
+| **test 수준** | 낮은 수준 (함수, class) | 높은 수준 (사용자 시나리오) |
+
+
+### BDD와의 관계
+
+- ATDD와 BDD는 **상호 보완적인 관계**에 있으며, 둘 다 고객의 요구사항을 중심으로 개발을 진행합니다.
+- BDD는 ATDD의 구현 방법 중 하나로, 자연어에 가까운 형태로 test를 작성하여 비개발자도 이해할 수 있도록 합니다.
+    - Given-When-Then 구조를 사용하여 test scenario를 명확하게 표현합니다.
+    - Cucumber, SpecFlow 등의 도구를 활용하여 자연어 test를 자동화된 test code로 변환합니다.
+- ATDD는 더 넓은 개념으로, BDD 외에도 다양한 방식으로 인수 test를 작성할 수 있습니다.
+
+
+### 주요 장점
+
+- **요구사항의 명확화**
+    - 개발 시작 전에 인수 기준을 명확히 정의하여 모호한 요구사항을 방지합니다.
+    - 고객과 개발팀 간의 의사소통을 개선하고 서로의 이해도를 높입니다.
+
+- **품질 향상**
+    - 사용자 관점에서 system을 검증하여 실제 사용 환경에서의 품질을 보장합니다.
+    - 회귀 test를 자동화하여 기능 변경 시 기존 기능의 안정성을 유지합니다.
+
+- **개발 효율성 증대**
+    - 명확한 완료 기준을 제시하여 개발자가 구현해야 할 범위를 정확히 파악할 수 있습니다.
+    - 불필요한 기능 개발을 방지하고 핵심 요구사항에 집중할 수 있습니다.
+
+- **documentation 효과**
+    - 인수 test 자체가 system의 동작을 설명하는 living documentation 역할을 합니다.
+    - 새로운 팀원이 system을 이해하는 데 도움이 되는 실행 가능한 문서를 제공합니다.
+
+
+### 구현 시 고려사항
+
+- **test 작성의 복잡성**
+    - 인수 test는 end-to-end test 성격을 가지므로 환경 설정과 data 준비가 복잡할 수 있습니다.
+    - test 실행 시간이 unit test보다 길어져 개발 cycle에 영향을 줄 수 있습니다.
+
+- **협업 체계 구축**
+    - 다양한 역할의 구성원이 참여하므로 효과적인 협업 process를 구축해야 합니다.
+    - 비즈니스 stakeholder가 기술적 세부사항을 이해할 수 있도록 적절한 추상화가 필요합니다.
+
+- **test 유지보수**
+    - 요구사항 변경 시 관련된 인수 test도 함께 수정해야 하는 maintenance overhead가 발생합니다.
+    - test code의 가독성과 재사용성을 고려한 구조 설계가 중요합니다.
 
 
 ---
@@ -268,38 +309,29 @@ stateDiagram
 
 ## 세 방법론의 상호 보완적 관계
 
-- **각 방법론은 서로 다른 관점에서 software quality를 보완**합니다.
-    - ATDD로 user 관점의 acceptance criteria를 정의합니다.
-    - BDD로 business 관점의 behavior specification을 작성합니다.
-    - TDD로 technical 관점의 code implementation을 진행합니다.
-    - 세 관점의 조합으로 holistic한 quality management가 가능합니다.
-
-
-### 각 방법론의 역할 분담
-
-- **개발 과정에서 서로 다른 level과 관점을 담당**합니다.
-    - TDD는 code level에서 설계 품질과 unit correctness를 보장합니다.
-    - BDD는 feature level에서 business behavior와 stakeholder 협업을 담당합니다.
-    - ATDD는 system level에서 customer acceptance와 요구 사항 충족을 검증합니다.
-    - 각각의 고유한 가치와 목적이 있어 선택이 아닌 조합이 효과적입니다.
-
-
-### 통합 적용 전략
-
-- **필요한 부분에 함께 사용될 수 있는 상호 보완적 관계**입니다.
+- TDD, BDD, ATDD는 **필요한 부분에 함께 사용될 수 있는 상호 보완적 관계**입니다.
     - 하나만 선택해서 적용할 필요가 없습니다.
     - project의 특성과 team의 상황에 따라 적절히 조합하여 사용합니다.
     - 각 방법론의 장점을 살리고 단점을 상호 보완할 수 있습니다.
-    - comprehensive한 quality assurance를 위해 multi-level 접근이 필요합니다.
+    - 전체적인 품질 보증을 위해 multi-level 접근이 필요합니다.
+
+- 각 방법론은 **서로 다른 관점**에서 **software quality를 보완**합니다.
+    - **ATDD**로 **user 관점**의 acceptance criteria를 정의합니다.
+        - system level에서 customer acceptance와 요구 사항 충족을 검증합니다.
+    - **BDD**로 **business 관점**의 behavior specification을 작성합니다.
+        - feature level에서 business behavior와 stakeholder 협업을 담당합니다.
+    - **TDD**로 **technical 관점**의 code implementation을 진행합니다.
+        - code level에서 설계 품질과 unit correctness를 보장합니다.
+    - 각각의 고유한 가치와 목적이 있어 선택이 아닌 조합이 효과적이며, 세 관점의 조합으로 전체적인 quality management가 가능합니다.
 
 
 ### 실무 적용 시 고려 사항
 
 - **team의 maturity와 project 특성을 고려한 점진적 도입**이 중요합니다.
-    - TDD는 개발팀의 technical skill과 discipline이 필요합니다.
+    - TDD는 개발팀의 기술 수준(technical skill)과 약속(discipline)이 필요합니다.
     - BDD는 business stakeholder의 적극적 참여가 전제되어야 합니다.
-    - ATDD는 cross-functional team의 collaboration culture가 필요합니다.
-    - 각 방법론의 비용과 효과를 realistic하게 평가하여 적용 범위를 결정해야 합니다.
+    - ATDD는 기능 횡단(cross-functional) team의 협업 문화가 필요합니다.
+    - 각 방법론의 비용과 효과를 현실적으로 평가하여 적용 범위를 결정해야 합니다.
 
 ```mermaid
 graph TD
