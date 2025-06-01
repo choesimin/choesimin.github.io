@@ -29,7 +29,7 @@ date: 2025-06-01
 ---
 
 
-## 세 가지 방법론 : TDD, BDD, ATDD
+## 세 가지 방법론 : TDD, ATDD, BDD
 
 - Test-First Development는 여러 가지 구체적인 방법론으로 발전했으며, 이 중 가장 대표적인 세 가지는 TDD, ATDD, BDD입니다.
 
