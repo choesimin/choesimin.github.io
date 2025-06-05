@@ -146,6 +146,14 @@ timeline
 | `shift` + `l` | 현재 화면의 하단으로 이동합니다. |
 
 
+### Cursor History 이전/이후 위치로 이동하기
+
+| 명령어 | 설명 |
+| --- | --- |
+| `control` + `o` | 이전 cursor 위치로 이동합니다. |
+| `control` + `i` | 이후 cursor 위치로 이동합니다. |
+
+
 ---
 
 
