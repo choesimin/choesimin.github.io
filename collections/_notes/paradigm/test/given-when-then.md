@@ -9,9 +9,28 @@ date: 2025-06-08
 
 ## Given-When-Then Pattern
 
+```gherkin
+Feature: 은행 ATM 출금
+
+Scenario: 잔액이 충분할 때 사용자가 현금을 출금
+    Given 나의 계좌 잔액은 100,000원이다
+    And ATM에는 현금이 충분히 있다
+    And 나는 올바른 비밀번호를 입력했다
+    When 나는 30,000원을 출금 요청했다
+    Then 나의 계좌 잔액은 70,000원이어야 한다
+    And ATM에서 30,000원이 나와야 한다
+    And 출금 완료 메시지가 표시되어야 한다
+```
+
 - Given-When-Then pattern은 **test case를 구조화하여 작성하는 방법론**입니다.
 - Behavior Driven Development(BDD)에서 시작된 개념으로, test의 가독성과 이해도를 높입니다.
 - 각 test case를 세 개의 명확한 section으로 나누어 작성하는 구조를 제공합니다.
+
+| Section | 설명 |
+| --- | --- |
+| **Given** | test를 실행하기 전의 초기 상태나 조건을 설정하는 부분 |
+| **When** | 실제로 test하고자 하는 행위나 동작을 실행하는 부분 |
+| **Then** | When section에서 실행한 동작의 결과를 검증하는 부분 |
 
 
 ---
@@ -159,3 +178,11 @@ public void 주문_생성_API_test() {
 - edge case와 예외 상황을 체계적으로 다룰 수 있습니다.
 - test coverage가 향상되고 누락되는 scenario가 줄어듭니다.
 - refactoring 시 regression test의 역할을 효과적으로 수행합니다.
+
+
+---
+
+
+## Reference
+
+- <https://kchanguk.tistory.com/40>
