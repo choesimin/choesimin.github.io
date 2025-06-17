@@ -1,5 +1,6 @@
 ---
 layout: note
+published: false
 ---
 
 # Layered Architecture
