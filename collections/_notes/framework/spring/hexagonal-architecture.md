@@ -3,6 +3,20 @@ published: false
 ---
 
 
+
+- <https://medium.com/mo-zza/spring-boot-기반-헥사고날-아키텍처-hexagonal-architecture-with-spring-boot-4daf81752756>
+- <https://github.com/mo-zza/hexagonal-architecture-example>
+- <https://github.com/thombergs/buckpal>
+
+
+
+
+
+
+
+
+
+
 ## Spring Framework에서 Hexagonal Architecture 구현
 
 - Spring Framework에서 Hexagonal Architecture를 구현할 때는, **dependency injection과 annotation을 활용**하여 **port and adapter pattern을 구현**합니다.
@@ -620,3 +634,8 @@ class ArchitectureTest {
 - <https://github.com/wikibook/clean-architecture>
 - <https://spring.io/guides/gs/spring-boot/>
 - <https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-dependencies>
+
+
+
+
+
