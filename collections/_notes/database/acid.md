@@ -19,7 +19,7 @@ date: 2025-06-17
 
 ## Atomicity (원자성)
 
-- **원자성**은 transaction의 모든 operation이 완전히 실행되거나 전혀 실행되지 않아야 한다는 속성입니다.
+- 원자성은 **transaction의 모든 operation이 완전히 실행되거나 전혀 실행되지 않아야 한다**는 속성입니다.
 
 - transaction 내의 여러 operation 중 하나라도 실패하면, 전체 transaction이 취소되고 database는 transaction 실행 이전 상태로 복구됩니다.
 
@@ -35,7 +35,7 @@ date: 2025-06-17
 
 ## Consistency (일관성)
 
-- **일관성**은 transaction 실행 전후에 database가 항상 유효한 상태를 유지해야 한다는 속성입니다.
+- 일관성은 **transaction 실행 전후에 database가 항상 유효한 상태를 유지해야 한다**는 속성입니다.
 
 - database에 정의된 모든 제약 조건, 규칙, 관계가 transaction 완료 후에도 만족되어야 합니다.
 
@@ -51,7 +51,7 @@ date: 2025-06-17
 
 ## Isolation (격리성)
 
-- **격리성**은 동시에 실행되는 여러 transaction이 서로 간섭하지 않고 독립적으로 실행되어야 한다는 속성입니다.
+- 격리성은 **동시에 실행되는 여러 transaction이 서로 간섭하지 않고 독립적으로 실행되어야 한다**는 속성입니다.
 
 - 각 transaction은 다른 transaction의 중간 결과를 볼 수 없으며, 마치 혼자 실행되는 것처럼 동작해야 합니다.
 
@@ -69,7 +69,7 @@ date: 2025-06-17
 
 ## Durability (지속성)
 
-- **지속성**은 성공적으로 완료된 transaction의 결과가 영구적으로 database에 저장되어야 한다는 속성입니다.
+- 지속성은 **성공적으로 완료된 transaction의 결과가 영구적으로 database에 저장되어야 한다**는 속성입니다.
 
 - system 장애나 전원 차단 등의 문제가 발생해도 commit된 transaction의 변경 사항은 손실되지 않아야 합니다.
 
@@ -86,7 +86,7 @@ date: 2025-06-17
 
 - ACID 속성을 모두 만족하면 database의 안전성은 높아지지만, 성능과 동시성에는 제약이 따릅니다.
 
-- 특히 격리성을 높이면 동시성이 감소하고, 지속성을 보장하면 write 성능이 저하될 수 있습니다.
+- 특히 **격리성을 높이면 동시성이 감소**하고, **지속성을 보장하면 write 성능이 저하**될 수 있습니다.
 
 - 따라서 application의 요구 사항에 따라 적절한 격리 수준을 선택하고 성능을 최적화해야 합니다.
     - OLTP system(Online Transaction Processing)에서는 높은 격리성과 지속성이 중요합니다.
