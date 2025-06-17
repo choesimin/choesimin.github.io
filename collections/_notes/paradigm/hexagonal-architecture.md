@@ -75,7 +75,76 @@ flowchart LR
 ## Hexagonal Architecture의 주요 Component
 
 - Hexagonal Architecture는 adapter, port, application service, domain model의 4가지 주요 component로 구성됩니다.
-- 각 component는 명확한 역할과 책임을 가지며 서로 독립적으로 개발하고 test할 수 있습니다.
+    - 각 component는 명확한 역할과 책임을 가지며 서로 독립적으로 개발하고 test할 수 있습니다.
+
+- 핵심은 **application service가 중심**에 있으면서, **inbound port는 직접 구현**하고 **outbound port는 interface에만 의존**한다는 점입니다.
+    - application service는 **외부에서 들어오는 요청(inbound)에 대해서는 직접 처리** 방법을 정의합니다.
+    - application service는 **외부로 나가는 요청(outbound)에 대해서는 "무엇을 할지"만 정의**하고, "어떻게 할지"는 모릅니다.
+    - 이 구조를 통해서 외부 system 변경이 핵심 business logic에 영향을 주지 않게 됩니다.
+
+```mermaid
+classDiagram
+    class DomainModel {
+        +businessLogic()
+        +validateRules()
+    }
+    
+    class InboundPort {
+        <<interface>>
+        +processRequest()
+    }
+    
+    class OutboundPort {
+        <<interface>>
+        +saveData()
+        +sendNotification()
+    }
+    
+    class ApplicationService {
+        +processRequest()
+        +orchestrateFlow()
+    }
+    
+    class InboundAdapter {
+        +handleHttpRequest()
+        +handleMessage()
+    }
+    
+    class OutboundAdapter {
+        +saveToDatabase()
+        +sendEmail()
+    }
+    
+    class ExternalSystem {
+        +database
+        +emailService
+    }
+
+    InboundAdapter ..> ApplicationService : calls
+    ApplicationService ..|> InboundPort : implements
+    ApplicationService --> DomainModel : uses
+    ApplicationService ..> OutboundPort : calls
+    OutboundAdapter ..|> OutboundPort : implements
+    OutboundAdapter --> ExternalSystem : communicates
+```
+
+- **`InboundAdapter`가 `ApplicationService`를 호출**합니다.
+    - REST controller나 message listener 같은 외부 진입점이 application의 핵심 service를 호출하는 관계입니다.
+
+- **`ApplicationService`가 `InboundPort`를 구현**합니다.
+    - `ApplicationService`는 외부에서 요청받을 수 있는 interface를 직접 구현합니다.
+
+- **`ApplicationService`가 `DomainModel`을 사용**합니다.
+    - business logic을 처리하기 위해 domain 객체들을 활용합니다.
+
+- **`ApplicationService`가 `OutboundPort`를 호출**합니다.
+    - database 저장이나 외부 API 호출 등이 필요할 때 interface를 통해 요청합니다.
+
+- **`OutboundAdapter`가 `OutboundPort`를 구현**합니다.
+    - database repository나 외부 API client가 실제 구현체 역할을 담당합니다.
+
+- **`OutboundAdapter`가 `ExternalSystem`과 통신**합니다.
+    - 실제 database나 외부 service와 연결되어 작업을 수행합니다.
 
 
 ### Domain Model
