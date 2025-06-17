@@ -192,7 +192,7 @@ flowchart LR
 - Hexagonal Architecture를 실제 project에 적용할 때의 권장 package 구조입니다.
 - 계층별 명확한 분리와 의존성 방향을 고려하여 설계되었습니다.
 
-```
+```txt
 payment-system
 └── account
     ├── adapter
