@@ -38,11 +38,6 @@ flowchart LR
 
 ## Hexagonal Architecture에서의 요청 처리 흐름
 
-```
-Input Adapter  →  Input Port         →  Logic                  →  Output Port     →  Output Adapter  →  External System
-Controller     →  UseCase Interface  →  Service (with Domain)  →  Port Interface  →  Adapter         →  Storage
-```
-
 - Hexagonal Architecture에서는 API 요청부터 응답까지, 객체 간 통신 과정에 port와 adapter를 활용하여 **의존성 방향과 data 흐름**을 제어합니다.
 
 ```mermaid
@@ -89,32 +84,6 @@ flowchart TD
     Service -->|17\. Success Result| Controller
     Controller -->|18\. HTTP Response| Client
 ```
-
-| 단계 | 구성 요소 | 역할 | 계층 | Data Type | 설명 |
-|------|-----------|------|------|-----------|------|
-| 1 | **Client** | HTTP 요청 시작 | External | HTTP Request | 애플리케이션에 요청을 보내는 외부 클라이언트 |
-| 2 | **Controller<br/>(Input Adapter)** | HTTP 요청 수신 | Infrastructure Layer | REST API Endpoint | HTTP 요청을 애플리케이션 계층으로 전달 |
-| 3 | **InputPort<br/>(Use Case Interface)** | 비즈니스 기능 정의 | Application Layer | Use Case Interface | Controller가 호출하는 유스케이스 인터페이스 |
-| 4 | **Service<br/>(Application Service)** | 비즈니스 로직 실행 | Application Layer | Business Logic | InputPort를 구현한 실제 비즈니스 워크플로우 처리 |
-| 5 | **OutputPort<br/>(Repository Interface)** | 데이터 접근 추상화 | Application Layer | Repository Interface | Service가 데이터 접근을 위해 호출하는 인터페이스 |
-| 6 | **PersistenceAdapter<br/>(Output Adapter)** | 데이터베이스 연동 | Infrastructure Layer | Data Access Layer | OutputPort를 구현한 실제 데이터베이스 접근 클래스 |
-| 7 | **Database** | 데이터 저장 | Infrastructure Layer | Data Storage | 실제 데이터 저장소 (MySQL, PostgreSQL 등) |
-
-```
-Client → Controller → InputPort → Service → OutputPort → PersistenceAdapter → Database
-```
-
-### 의존성 방향:
-- **컴파일 타임**: Infrastructure → Application → Domain
-- **런타임**: Spring DI가 인터페이스에 구현체를 주입하여 의존성 역전 실현
-
-
-
-## 핵심 포인트:
-- **InputPort와 OutputPort는 모두 인터페이스** (Application Layer에 위치)
-- **Controller와 PersistenceAdapter는 모두 구현체** (Infrastructure Layer에 위치)  
-- **Service는 InputPort 구현체이면서 OutputPort 사용자** (Application Layer에 위치)
-
 
 
 ---
@@ -416,7 +385,7 @@ public class Account {
         }
     }
     
-    // getters
+    // getter
     public AccountId getId() { return id; }
     public Money getBalance() { return balance; }
     public List<Transaction> getTransactionHistory() { 
@@ -563,7 +532,7 @@ public class SendMoneyCommand {
         }
     }
     
-    // getters
+    // getter
     public AccountId getSourceAccountId() { return sourceAccountId; }
     public AccountId getTargetAccountId() { return targetAccountId; }
     public Money getMoney() { return money; }
@@ -726,7 +695,7 @@ public class AccountController {
 ```
 
 
-### DTO Classe
+### DTO Class
 
 ```java
 // SendMoneyRequest.java
@@ -747,7 +716,7 @@ public class SendMoneyRequest {
         this.amount = amount;
     }
     
-    // getters and setters
+    // getter and setter
     public AccountIdDto getTargetAccountId() { return targetAccountId; }
     public void setTargetAccountId(AccountIdDto targetAccountId) { 
         this.targetAccountId = targetAccountId; 
@@ -777,7 +746,7 @@ public class TransferResponse {
         return new TransferResponse("FAILURE", message);
     }
     
-    // getters
+    // getter
     public String getStatus() { return status; }
     public String getMessage() { return message; }
     public LocalDateTime getTimestamp() { return timestamp; }
@@ -851,7 +820,7 @@ public class AccountJpaEntity {
         updatedAt = LocalDateTime.now();
     }
     
-    // getters and setters
+    // getter and setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     
@@ -1054,7 +1023,7 @@ public class BeanConfiguration {
 ```
 
 
-### Application Properties
+### Application Property
 
 ```yaml
 # application.yml
@@ -1588,7 +1557,7 @@ public class MoneyTransferredEvent extends DomainEvent {
         this.amount = amount;
     }
     
-    // getters
+    // getter
     public AccountId getSourceAccountId() { return sourceAccountId; }
     public AccountId getTargetAccountId() { return targetAccountId; }
     public Money getAmount() { return amount; }
@@ -1639,7 +1608,7 @@ public class AccountBalanceView {
         this.lastUpdated = lastUpdated;
     }
     
-    // getters
+    // getter
     public AccountId getAccountId() { return accountId; }
     public Money getBalance() { return balance; }
     public LocalDateTime getLastUpdated() { return lastUpdated; }
