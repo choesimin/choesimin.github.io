@@ -3,11 +3,118 @@ published: false
 ---
 
 
-# Spring Boot Hexagonal Architecture 실무 가이드
+## Spring Boot로 Hexagonal Architecture 구현하기
 
-- Spring Boot에서 Hexagonal Architecture를 실무에 적용하기 위한 **구체적이고 실용적인 구현 방법**을 제시합니다.
+```mermaid
+flowchart LR
+    client[Client]
+
+    input_adapter[Input Adapter]
+    output_adapter[Output Adapter]
+    database[(Database)]
+
+    input_port[Input Port]
+    service[Application Service]
+    output_port[Output Port]
+    entity[Domain Entity]
+    
+    client --- input_adapter
+    input_adapter --- input_port
+    input_port --- service
+    service --- entity
+
+    service --- output_port
+    output_port --- output_adapter
+    output_adapter --- database
+```
+
+- **Java**와 **Spring Boot**는 Hexagonal Architecture를 적용하기에 적합한 도구입니다.
 - **dependency injection과 port/adapter pattern을 조합**하여 의존성 역전 원칙을 실현하고, test 가능성을 극대화합니다.
-- 각 계층의 **책임을 명확히 분리**하여 maintainability와 extensibility를 확보합니다.
+- 각 계층의 **책임을 명확히 분리**하여 유지 보수성(maintainability)과 확장성(extensibility)을 확보합니다.
+
+
+---
+
+
+## Hexagonal Architecture에서의 요청 처리 흐름
+
+```
+Input Adapter  →  Input Port         →  Logic                  →  Output Port     →  Output Adapter  →  External System
+Controller     →  UseCase Interface  →  Service (with Domain)  →  Port Interface  →  Adapter         →  Storage
+```
+
+- Hexagonal Architecture에서는 API 요청부터 응답까지, 객체 간 통신 과정에 port와 adapter를 활용하여 **의존성 방향과 data 흐름**을 제어합니다.
+
+```mermaid
+flowchart TD
+    Client[Client Application]
+    
+    subgraph "Infrastructure Layer"
+        Controller[Web Controller<br/>Input Adapter]
+        PersistenceAdapter[Persistence Adapter<br/>Output Adapter]
+        NotificationAdapter[Notification Adapter<br/>Output Adapter]
+        Database[(Database)]
+        EmailService[Email Service]
+    end
+    
+    subgraph "Application Layer"
+        InputPort[Use Case Interface<br/>Input Port]
+        Service[Application Service<br/>Use Case Implementation]
+        OutputPort1[Repository Interface<br/>Output Port]
+        OutputPort2[Notification Interface<br/>Output Port]
+    end
+    
+    subgraph "Domain Layer"
+        Entity[Domain Entity]
+        ValueObject[Value Object]
+        DomainService[Domain Service]
+    end
+    
+    Client -->|1\. HTTP Request| Controller
+    Controller -->|2\. Call Use Case| InputPort
+    InputPort -->|3\. Delegate| Service
+    Service -->|4\. Load Data| OutputPort1
+    OutputPort1 -->|5\. Query| PersistenceAdapter
+    PersistenceAdapter -->|6\. SQL Query| Database
+    Database -->|7\. Result Set| PersistenceAdapter
+    PersistenceAdapter -->|8\. Domain Object| Service
+    Service -->|9\. Business Logic| Entity
+    Entity -->|10\. Validation| ValueObject
+    Service -->|11\. Save Changes| OutputPort1
+    OutputPort1 -->|12\. Persist| PersistenceAdapter
+    PersistenceAdapter -->|13\. SQL Update| Database
+    Service -->|14\. Send Notification| OutputPort2
+    OutputPort2 -->|15\. Notify| NotificationAdapter
+    NotificationAdapter -->|16\. Email Send| EmailService
+    Service -->|17\. Success Result| Controller
+    Controller -->|18\. HTTP Response| Client
+```
+
+| 단계 | 구성 요소 | 역할 | 계층 | Data Type | 설명 |
+|------|-----------|------|------|-----------|------|
+| 1 | **Client** | HTTP 요청 시작 | External | HTTP Request | 애플리케이션에 요청을 보내는 외부 클라이언트 |
+| 2 | **Controller<br/>(Input Adapter)** | HTTP 요청 수신 | Infrastructure Layer | REST API Endpoint | HTTP 요청을 애플리케이션 계층으로 전달 |
+| 3 | **InputPort<br/>(Use Case Interface)** | 비즈니스 기능 정의 | Application Layer | Use Case Interface | Controller가 호출하는 유스케이스 인터페이스 |
+| 4 | **Service<br/>(Application Service)** | 비즈니스 로직 실행 | Application Layer | Business Logic | InputPort를 구현한 실제 비즈니스 워크플로우 처리 |
+| 5 | **OutputPort<br/>(Repository Interface)** | 데이터 접근 추상화 | Application Layer | Repository Interface | Service가 데이터 접근을 위해 호출하는 인터페이스 |
+| 6 | **PersistenceAdapter<br/>(Output Adapter)** | 데이터베이스 연동 | Infrastructure Layer | Data Access Layer | OutputPort를 구현한 실제 데이터베이스 접근 클래스 |
+| 7 | **Database** | 데이터 저장 | Infrastructure Layer | Data Storage | 실제 데이터 저장소 (MySQL, PostgreSQL 등) |
+
+```
+Client → Controller → InputPort → Service → OutputPort → PersistenceAdapter → Database
+```
+
+### 의존성 방향:
+- **컴파일 타임**: Infrastructure → Application → Domain
+- **런타임**: Spring DI가 인터페이스에 구현체를 주입하여 의존성 역전 실현
+
+
+
+## 핵심 포인트:
+- **InputPort와 OutputPort는 모두 인터페이스** (Application Layer에 위치)
+- **Controller와 PersistenceAdapter는 모두 구현체** (Infrastructure Layer에 위치)  
+- **Service는 InputPort 구현체이면서 OutputPort 사용자** (Application Layer에 위치)
+
 
 
 ---
@@ -37,7 +144,7 @@ published: false
 ## Package 구조와 Module 설계
 
 - **3-layer modular architecture**로 의존성 방향을 물리적으로 제어합니다.
-- 각 module은 **명확한 책임**을 갖고 다른 module과의 interface를 통해서만 소통합니다.
+- 각 module은 **명확한 책임**을 가지고, 다른 module과는 다른 module의 interface를 통해서만 소통합니다.
 
 ```
 📦 hexagonal-banking-app
@@ -111,10 +218,138 @@ dependencies {
 ```
 
 
+### Class Diagram
+
+```mermaid
+classDiagram
+    %% Domain Layer
+    class Account {
+        -AccountId id
+        -Money balance
+        -List~Transaction~ transactionHistory
+        +withdraw(Money, AccountId) Account
+        +deposit(Money, AccountId) Account
+        +getBalance() Money
+    }
+    
+    class Money {
+        -BigDecimal amount
+        +add(Money) Money
+        +subtract(Money) Money
+        +isLessThan(Money) boolean
+    }
+    
+    class AccountId {
+        -Long value
+        +getValue() Long
+    }
+    
+    %% Application Layer - Input Ports
+    class SendMoneyUseCase {
+        <<interface>>
+        +sendMoney(SendMoneyCommand) void
+    }
+    
+    class GetAccountBalanceQuery {
+        <<interface>>
+        +getAccountBalance(AccountId) Money
+    }
+    
+    %% Application Layer - Output Ports
+    class LoadAccountPort {
+        <<interface>>
+        +loadAccount(AccountId) Account
+        +existsById(AccountId) boolean
+    }
+    
+    class UpdateAccountStatePort {
+        <<interface>>
+        +updateAccount(Account) void
+        +updateAccounts(Account, Account) void
+    }
+    
+    class SendNotificationPort {
+        <<interface>>
+        +sendTransferNotification(AccountId, Money) void
+    }
+    
+    %% Application Layer - Services
+    class SendMoneyService {
+        -LoadAccountPort loadAccountPort
+        -UpdateAccountStatePort updateAccountStatePort
+        -SendNotificationPort sendNotificationPort
+        +sendMoney(SendMoneyCommand) void
+    }
+    
+    class SendMoneyCommand {
+        -AccountId sourceAccountId
+        -AccountId targetAccountId
+        -Money money
+    }
+    
+    %% Infrastructure Layer - Input Adapters
+    class AccountController {
+        -SendMoneyUseCase sendMoneyUseCase
+        -GetAccountBalanceQuery getAccountBalanceQuery
+        +sendMoney(AccountIdDto, SendMoneyRequest) ResponseEntity
+        +getBalance(AccountIdDto) ResponseEntity
+    }
+    
+    %% Infrastructure Layer - Output Adapters
+    class AccountPersistenceAdapter {
+        -AccountJpaRepository accountRepository
+        +loadAccount(AccountId) Account
+        +updateAccount(Account) void
+    }
+    
+    class EmailNotificationAdapter {
+        -JavaMailSender mailSender
+        +sendTransferNotification(AccountId, Money) void
+    }
+    
+    class AccountJpaRepository {
+        <<interface>>
+        +findById(Long) Optional~AccountJpaEntity~
+        +save(AccountJpaEntity) AccountJpaEntity
+    }
+    
+    class AccountJpaEntity {
+        -Long id
+        -BigDecimal balance
+        +toDomainEntity() Account
+        +fromDomainEntity(Account) AccountJpaEntity
+    }
+    
+    %% Relationships
+    Account --> Money : contains
+    Account --> AccountId : contains
+    SendMoneyService ..|> SendMoneyUseCase : implements
+    SendMoneyService --> LoadAccountPort : depends on
+    SendMoneyService --> UpdateAccountStatePort : depends on
+    SendMoneyService --> SendNotificationPort : depends on
+    SendMoneyService --> Account : uses
+    SendMoneyCommand --> AccountId : contains
+    SendMoneyCommand --> Money : contains
+    
+    AccountController --> SendMoneyUseCase : depends on
+    AccountController --> GetAccountBalanceQuery : depends on
+    
+    AccountPersistenceAdapter ..|> LoadAccountPort : implements
+    AccountPersistenceAdapter ..|> UpdateAccountStatePort : implements
+    AccountPersistenceAdapter --> AccountJpaRepository : uses
+    AccountPersistenceAdapter --> Account : creates
+    
+    EmailNotificationAdapter ..|> SendNotificationPort : implements
+    
+    AccountJpaEntity --> Account : converts to/from
+    AccountJpaRepository --> AccountJpaEntity : manages
+```
+
+
 ---
 
 
-## Domain Layer 구현
+## 1. Domain Layer 구현
 
 - **순수한 business logic**만 포함하고 framework 의존성을 완전히 배제합니다.
 - **rich domain model**로 설계하여 domain object가 자신의 business rule을 직접 관리합니다.
@@ -281,7 +516,7 @@ public abstract class DomainException extends RuntimeException {
 ---
 
 
-## Application Layer 구현
+## 2. Application Layer 구현
 
 - **use case 중심**으로 business workflow를 구성하고 domain logic을 조정합니다.
 - **port interface를 통해 외부 의존성을 추상화**하여 testability를 확보합니다.
@@ -420,7 +655,7 @@ public class SendMoneyService implements SendMoneyUseCase {
 ---
 
 
-## Infrastructure Layer - Input Adapter
+## 3. Infrastructure Layer - Input Adapter
 
 - **REST API를 통한 외부 요청**을 받아 application layer로 위임합니다.
 - **Spring MVC annotation**을 활용하여 HTTP 요청을 처리하고 적절한 응답을 생성합니다.
@@ -491,7 +726,7 @@ public class AccountController {
 ```
 
 
-### DTO Classes
+### DTO Classe
 
 ```java
 // SendMoneyRequest.java
@@ -553,7 +788,7 @@ public class TransferResponse {
 ---
 
 
-## Infrastructure Layer - Output Adapter
+## 4. Infrastructure Layer - Output Adapter
 
 - **database persistence**와 **external service 호출**을 담당합니다.
 - **Spring Data JPA**를 활용하여 data access logic을 구현합니다.
@@ -1256,7 +1491,7 @@ class ArchitectureTest {
 ---
 
 
-## 실무 적용 가이드라인
+## 실무 적용 Guideline
 
 - **점진적 도입 전략**을 통해 기존 project에 hexagonal architecture를 단계적으로 적용합니다.
 - **team convention과 coding standard**를 수립하여 일관성 있는 architecture 구현을 보장합니다.
@@ -1301,7 +1536,7 @@ class ArchitectureTest {
     - message queue를 활용한 event-driven architecture와 조합합니다.
 
 
-### 모니터링과 관찰 가능성
+### Monitoring
 
 - **logging strategy**를 계층별로 차별화하여 효과적인 troubleshooting을 지원합니다.
     - domain layer에서는 business event logging에 집중합니다.
@@ -1310,17 +1545,17 @@ class ArchitectureTest {
 
 - **metric 수집**을 위해 Micrometer와 Spring Boot Actuator를 활용합니다.
     - use case별 실행 시간과 성공/실패율을 측정합니다.
-    - adapter별 external call latency를 모니터링합니다.
+    - adapter별 external call latency를 monitoring합니다.
     - business metric을 custom meter로 수집합니다.
 
 
 ---
 
 
-## 고급 패턴과 확장
+## 고급 Pattern과 확장
 
 - **복잡한 business scenario**에 대응하기 위한 고급 pattern 적용 방법을 제시합니다.
-- **scalability와 maintainability**를 고려한 architecture 확장 전략을 다룹니다.
+- **확장성(scalability)과 유지 보수성(maintainability)**을 고려한 architecture 확장 전략을 다룹니다.
 
 
 ### Event-Driven Architecture 통합
