@@ -1,14 +1,16 @@
 ---
+layout: note
+permalink: /340
+title: Spring Framework - Java Enterprise Application 쉽게 개발하기
+description: Spring framework는 Java enterprise application 개발을 위한 포괄적인 programming 및 configuration model을 제공하는 opensource application framework입니다.
+date: 2025-06-19
 published: false
 ---
 
 
-
 ## Spring Framework
 
-- Spring Framework는 Java enterprise application 개발을 위한 포괄적인 programming 및 configuration model을 제공하는 opensource application framework입니다.
-
-- **제어의 역전(IoC)**, **의존성 주입(DI)**, **관점 지향 programming(AOP)**을 핵심 원리로 하여 결합도가 낮고 test 가능한 application 개발을 지원합니다.
+- Spring framework는 **제어의 역전(IoC)**, **의존성 주입(DI)**, **관점 지향 programming(AOP)**을 핵심 원리로 하여 결합도가 낮고 test 가능한 application 개발을 지원합니다.
 
 - **POJO(Plain Old Java Object) 기반 개발**을 통해 특정 framework에 종속되지 않는 깔끔한 code 작성을 가능하게 합니다.
 
