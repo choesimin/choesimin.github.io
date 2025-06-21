@@ -1,13 +1,13 @@
 ---
 layout: note
 permalink: /149
-title: Facade Pattern - 복잡한 System의 정면(facade)만 보여주기
+title: Facade Pattern - System 단순화하기
 description: Facade Pattern은 복잡한 system에 대한 단순한 interface를 제공하는 pattern입니다.
 date: 2024-02-08
 ---
 
 
-## Facade Pattern
+## Facade Pattern - 복잡한 System의 정면(facade)만 보여주기
 
 - Facade Pattern은 **복잡한 system에 대한 단순한 interface를 제공**하는 pattern입니다.
     - facade는 '건물의 정면'을 의미하는 단어입니다.

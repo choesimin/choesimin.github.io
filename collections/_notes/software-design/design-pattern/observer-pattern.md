@@ -1,13 +1,13 @@
 ---
 layout: note
 permalink: /37
-title: Observer Pattern - 객체 상태 변화에 대한 알림 받기
+title: Observer Pattern - 객체 상태 변화 알아채기
 description: Observer Pattern은 관찰자들이 관찰하고 있는 대상자의 상태 변화가 있을 때마다 대상자는 직접 목록의 각 관찰자들에게 통지하고, 관찰자들은 알림을 받아 조치를 취하는 행동 pattern입니다.
 date: 2024-01-10
 ---
 
 
-## Observer Pattern
+## Observer Pattern - 객체 상태 변화에 대한 알림 받기
 
 - Observer Pattern은 객체의 상태 변화를 관찰하는 객체들에게 자동으로 알리는 방식으로 객체 간의 결합도를 낮추고 상호 작용을 관리하는 design pattern입니다.
 

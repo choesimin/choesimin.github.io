@@ -7,7 +7,7 @@ date: 2023-07-03
 ---
 
 
-## Strategy Pattern
+## Strategy Pattern : 객체가 처한 상황에 맞추어 행동 바꾸기
 
 - Strategy Pattern을 이용하면 algorithm을 상황에 따라 변경해가며 사용할 수 있습니다.
     - 동일한 목적을 지닌 algorithm group을 정의하고 각각을 캡슐화(encapsulation)하여 group 내의 algorithm을 교환해서 사용할 수 있도록 합니다.
@@ -18,64 +18,42 @@ date: 2023-07-03
         - 예를 들어, 참조하는 class가 변경/제거될 때(compile time).
         - 예를 들어, 사용하는 시점에 따라서 적용할 algorithm이 다를 때(runtime).
 
+### Strategy Pattern의 장점
 
----
+- **code 중복이 줄어**듭니다.
+    - algorithm을 캡슐화(encapsulation)하여 각 algorithm을 독립적으로 구현했기 때문입니다.
+    - client는 strategy interface에 의존하고 있기 때문에, concrete strategy를 교체하기 쉽습니다.
 
+- **전략 확장이 용이**합니다.
+    - 새로운 algorithm을 추가할 때 기존 code를 변경하지 않아도 됩니다.
+    - 새로운 concrete strategy class를 추가하기만 하면 됩니다.
 
-## Strategy Pattern의 장점
-
-- Strategy Pattern에는 code 중복이 줄어들고, 전략 확장이 용이하며, runtime에 전략 결정과 교체가 가능하다는 장점이 있습니다.
-
-
-### Code 중복이 줄어듦
-
-- algorithm마다 사용되는 code의 중복을 방지할 수 있습니다.
-    - algorithm의 변경 부분만 concrete strategy로 빼내어 구현했기 때문입니다.
-
-
-### 전략 확장이 용이함
-
-- 새로운 전략을 추가하더라도 기존 code를 변경하지 않습니다.
-- 새로운 algorithm을 추가하려면 새로운 객체를 추가하면 됩니다.
-
-
-### Runtime에 전략 결정과 교체가 가능함
-
-- 상속 대신 합성(composition)을 사용하기 때문에 runtime에 strategy(algorithm)를 변경할 수 있습니다.
+- **runtime에 전략 결정과 교체가 가능**합니다.
+    - 상속 대신 합성(composition)을 사용하기 때문에 runtime에 strategy(algorithm)를 변경할 수 있습니다.
     - client가 strategy interface에 의존하고 있기 때문에 strategy 구현체를 교체하기 쉽습니다.
 
 
----
+### Strategy Pattern의 단점
 
+- **code 복잡도가 증가**합니다.
+    - logic이 늘어날 때마다 구현체 class가 늘어나기 때문에, algorithm이 늘어날 수록 객체도 무한히 늘어납니다.
+        - strategy interface와 concrete strategy class가 필요하기 때문입니다.
+        - 각 algorithm을 캡슐화(encapsulation)하기 위해서 추가적인 class가 필요합니다.
+    - 따라서 logic을 단순히 client에 if-else로 분리해서 그 안에 구현하는 게 보기 편할 수도 있습니다.
+        - 한 눈에 들어오는 짧은 code에서는 Strategy Pattern을 사용하는 것이 오히려 가독성을 떨어뜨립니다.
+        - 예를 들어, 분기가 2개인 경우에는 if-else를 사용하는 것이 더 낫습니다.
 
-## Strategy Pattern의 단점
-
-- Strategy Pattern에는 복잡도가 증가한다는 것과, client가 구체적인 전략에 대해 모두 알고 있어야 한다는 단점이 있습니다.
-
-
-### 복잡도 증가
-
-- algorithm이 늘어날 수록 객체도 무한히 늘어납니다.
-    - logic이 늘어날 때마다 구현체 class가 늘어납니다.
-
-- logic을 단순히 client에 if-else로 분리해서 그 안에 구현하는 게 보기 편할 수도 있습니다.
-    - 한 눈에 들어오는 짧은 code에서는 Strategy Pattern을 사용하는 것이 오히려 가독성을 떨어뜨립니다.
-    - 예를 들어, 분기가 2개인 경우에는 if-else를 사용하는 것이 더 나을 수 있습니다.
-
-
-### Client가 구체적인 전략(concrete strategy)에 대해 알고 있어야 함
-
-- client는 모든 algorithm에 대한 성능과 효율을 알고 있어야 합니다.
-    - client가 자신이 사용할 전략 객체를 직접 결정하기 때문입니다.
-
-- client와 strategy를 한번 조립하면 전략을 변경하기 힘들어집니다.
-    - client가 algorithm을 알고 있기 때문입니다.
+- **client가 구체적인 전략(concrete strategy)에 대해 알고 있어야** 합니다.
+    - client는 모든 algorithm에 대한 성능과 효율을 알고 있어야 합니다.
+        - client가 자신이 사용할 전략 객체를 직접 결정하기 때문입니다.
+    - client와 strategy를 한번 조립하면 전략을 변경하기 힘들어집니다.
+        - client가 algorithm을 알고 있기 때문입니다.
 
 
 ---
 
 
-## Diagram
+## Diagram으로 이해하기
 
 ```mermaid
 classDiagram

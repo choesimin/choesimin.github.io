@@ -7,7 +7,7 @@ date: 2023-06-04
 ---
 
 
-## Design Pattern
+## Design Pattern : 경험의 재사용
 
 ```txt
 Don’t reinvent the wheel.

@@ -1,12 +1,14 @@
 ---
 layout: note
-title: Simple Factory Pattern - 가장 간단한 방식으로 객체 생성을 캡슐화하기
-version: 2024-01-19
+permalink: /34?
+title: Factory Pattern - 객체 생성 캡슐화
+description: factory pattern은 객체 생성 logic을 캡슐화하여 객체 생성의 복잡성을 줄이고, code의 재사용성을 높이는 design pattern입니다.
+date: 2025-06-21
 published: false
 ---
 
 
-
+## Simple Factory Pattern : 가장 간단한 방식으로 객체 생성을 캡슐화하기
 
 - Simple Factory는 design pattern은 아니지만 Factory Pattern의 기본이 되는 개념입니다.
 

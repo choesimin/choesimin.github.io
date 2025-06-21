@@ -1,13 +1,13 @@
 ---
 layout: note
 permalink: /99
-title: Adapter Pattern - 호환되지 않는 Interface를 변환하여 연결하기
+title: Adapter Pattern - Interface 호환시키기
 description: Adapter Pattern은 서로 다른 interface를 가진 class들이 상호 작용할 수 있도록 하는 design pattern입니다.
 date: 2024-02-14
 ---
 
 
-## Adapter Pattern
+## Adapter Pattern : 호환되지 않는 Interface를 변환하여 연결하기
 
 - 사용해야 하는 interface가 현재의 system과 호환되지 않는다고 해서 꼭 현재의 system을 변경해야 하는 것은 아닙니다.
 
@@ -54,7 +54,7 @@ adapter -->|변환된 요청| adaptee
     - 예를 들어, Builder Pattern과 Adapter Pattern을 결합하여, 새로운 객체를 생성하면서 외부 library나 API와 연결할 수 있습니다.
 
 
-## Adapter Pattern & Facade pattern & Decorator Pattern
+### Adapter Pattern & Facade pattern & Decorator Pattern
 
 - Adapter Pattern은 Facade pattern, Decorator Pattern과 비슷합니다.
 - 세 pattern 모두 객체를 감싸서 호환되지 않는 interface를 Client가 사용할 수 있게 합니다.
