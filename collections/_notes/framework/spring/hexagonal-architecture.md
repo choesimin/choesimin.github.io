@@ -1,5 +1,9 @@
 ---
-published: false
+layout: note
+permalink: /342
+title: Spring Framework에서 Hexagonal Architecture 구현하는 법
+description: Spring Framework는 Hexagonal Architecture를 적용하여 의존성 역전 원칙을 실현하고, test 가능성을 극대화하는 데 적합한 도구입니다.
+date: 2025-06-20
 ---
 
 
@@ -1648,9 +1652,9 @@ public class AccountQueryAdapter implements AccountBalanceQueryPort {
 
 ## Reference
 
-- https://www.baeldung.com/hexagonal-architecture-ddd-spring
-- https://www.arhohuttunen.com/hexagonal-architecture-spring-boot/
-- https://reflectoring.io/spring-hexagonal/
-- https://www.happycoders.eu/software-craftsmanship/hexagonal-architecture-spring-boot/
+- <https://www.baeldung.com/hexagonal-architecture-ddd-spring>
+- <https://www.arhohuttunen.com/hexagonal-architecture-spring-boot/>
+- <https://reflectoring.io/spring-hexagonal/>
+- <https://www.happycoders.eu/software-craftsmanship/hexagonal-architecture-spring-boot/>
 - <https://github.com/thombergs/buckpal>
 - <https://alistair.cockburn.us/hexagonal-architecture/>
