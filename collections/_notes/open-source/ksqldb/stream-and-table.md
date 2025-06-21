@@ -264,7 +264,7 @@ EMIT CHANGES;
 ```
 
 - Stream을 Table로 전환할 때, **GROUP BY 절은 필수**입니다.
-    - Table은 각 key에 대한 최신 상태를 유지해야 하므로, 어떤 column을 기준으로 그룹화할지 명시해야 합니다.
+    - Table은 각 key에 대한 최신 상태를 유지해야 하므로, 어떤 column을 기준으로 grouping할지 명시해야 합니다.
     - GROUP BY를 사용하기 때문에, **집계 함수(COUNT, SUM, MAX 등)도 함께 사용**하여, Stream의 event들을 어떻게 집계할지 정의해야 합니다.
 
 - 반대로, **Table을 Stream으로 변환하는 것은 근본적인 특성 차이로 인해 불가능**합니다.
