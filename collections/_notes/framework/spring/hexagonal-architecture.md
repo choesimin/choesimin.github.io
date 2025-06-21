@@ -307,12 +307,12 @@ classDiagram
     AccountController --> SendMoneyUseCase : depends on
     AccountController --> GetAccountBalanceQuery : depends on
     
-    AccountPersistenceAdapter ..|> LoadAccountPort : implements
-    AccountPersistenceAdapter ..|> UpdateAccountStatePort : implements
-    AccountPersistenceAdapter --> AccountJpaRepository : uses
-    AccountPersistenceAdapter --> Account : creates
+    LoadAccountPort <|.. AccountPersistenceAdapter : implements
+    UpdateAccountStatePort <|.. AccountPersistenceAdapter : implements
+    AccountJpaRepository <-- AccountPersistenceAdapter : uses
+    Account <-- AccountPersistenceAdapter : creates
     
-    EmailNotificationAdapter ..|> SendNotificationPort : implements
+    SendNotificationPort <|.. EmailNotificationAdapter : implements
     
     AccountJpaEntity --> Account : converts to/from
     AccountJpaRepository --> AccountJpaEntity : manages
