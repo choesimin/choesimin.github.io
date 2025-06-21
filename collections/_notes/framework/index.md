@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /340
-title: Framework - IoC를 통한 일관된 개발 환경
+title: Framework - IoC를 적용하여 구축한 일관된 개발 환경
 description: framework는 software 개발 시 공통으로 사용되는 기능들을 미리 구현해 놓은 기반 구조로, 개발자가 특정 규칙과 pattern을 따라 code를 작성하도록 합니다.
 date: 2025-06-19
 ---
