@@ -31,21 +31,32 @@ published: false
 
 ## 지원 Foundation Model
 
-- **Anthropic Claude** : 대화형 AI와 text 생성에 특화된 model입니다.
-    - Claude 3 Haiku, Claude 3 Sonnet, Claude 3 Opus 등 다양한 버전을 지원합니다.
-    - 긴 context 처리와 안전한 AI 응답 생성에 강점을 가집니다.
+- Amazon Bedrock은 다양한 AI 기업에서 개발한 foundation model을 통합하여 제공합니다.
+- 각 model은 고유한 특성과 강점을 가지고 있어, 용도에 따라 적절한 model을 선택할 수 있습니다.
 
-- **Meta Llama** : open source 기반의 대화형 AI model입니다.
-    - Llama 2와 Code Llama 등의 변형 model을 포함합니다.
-    - code 생성과 다국어 처리에 우수한 성능을 보입니다.
+### Anthropic Claude
 
-- **Cohere Command** : business 환경에 최적화된 text 생성 model입니다.
-    - 요약, 분류, 질의응답 등의 작업에 특화되어 있습니다.
-    - 다국어 지원과 embedding 기능을 제공합니다.
+- 대화형 AI와 text 생성에 특화된 model입니다.
+- Claude 3 Haiku, Claude 3 Sonnet, Claude 3 Opus 등 다양한 버전을 지원합니다.
+- 긴 context 처리와 안전한 AI 응답 생성에 강점을 가집니다.
 
-- **Amazon Titan** : AWS에서 자체 개발한 foundation model입니다.
-    - text 생성과 embedding 기능을 모두 지원합니다.
-    - AWS service와의 통합성이 뛰어납니다.
+### Meta Llama
+
+- open source 기반의 대화형 AI model입니다.
+- Llama 2와 Code Llama 등의 변형 model을 포함합니다.
+- code 생성과 다국어 처리에 우수한 성능을 보입니다.
+
+### Cohere Command
+
+- business 환경에 최적화된 text 생성 model입니다.
+- 요약, 분류, 질의응답 등의 작업에 특화되어 있습니다.
+- 다국어 지원과 embedding 기능을 제공합니다.
+
+### Amazon Titan
+
+- AWS에서 자체 개발한 foundation model입니다.
+- text 생성과 embedding 기능을 모두 지원합니다.
+- AWS service와의 통합성이 뛰어납니다.
 
 
 ---
@@ -53,13 +64,16 @@ published: false
 
 ## 핵심 기능
 
+- Amazon Bedrock은 model 접근부터 customization, 보안 관리까지 AI application 개발에 필요한 포괄적인 기능을 제공합니다.
+- 기업의 특정 요구사항에 맞춰 model을 조정하고 안전하게 운영할 수 있는 환경을 지원합니다.
+
 ### Model 접근 및 관리
 
 - **통합 API** : 여러 foundation model을 하나의 API interface로 접근할 수 있습니다.
 - **model 비교** : 동일한 prompt에 대해 여러 model의 응답을 비교하여 최적의 model을 선택할 수 있습니다.
 - **version 관리** : model의 version 변경과 rollback을 간편하게 수행할 수 있습니다.
 
-### Fine-tuning 및 customization
+### Fine-tuning 및 Customization
 
 - **custom model 생성** : 기업의 특정 data를 사용하여 model을 fine-tuning할 수 있습니다.
 - **knowledge base 통합** : 기업 내부 문서와 data를 AI model에 연결하여 retrieval-augmented generation(RAG)을 구현할 수 있습니다.
@@ -78,13 +92,16 @@ published: false
 
 ## 사용 사례
 
+- Amazon Bedrock은 다양한 산업과 비즈니스 영역에서 AI 기능을 활용할 수 있는 광범위한 사용 사례를 지원합니다.
+- content 생성부터 customer service, 개발 지원, data 분석까지 기업의 핵심 업무를 자동화하고 효율화할 수 있습니다.
+
 ### Content 생성 및 편집
 
 - **marketing content 작성** : 광고 문구, blog post, social media content 등을 자동 생성할 수 있습니다.
 - **문서 요약** : 긴 문서나 report를 핵심 내용으로 요약할 수 있습니다.
 - **번역 및 현지화** : 다국어 content 번역과 문화적 맥락을 고려한 현지화를 수행할 수 있습니다.
 
-### Customer service 자동화
+### Customer Service 자동화
 
 - **chatbot 구축** : 고객 문의에 대한 자동 응답 system을 구축할 수 있습니다.
 - **sentiment 분석** : 고객 feedback의 감정과 만족도를 분석할 수 있습니다.
@@ -96,7 +113,7 @@ published: false
 - **code review** : 기존 code의 문제점을 찾고 개선 방안을 제시할 수 있습니다.
 - **documentation 생성** : code에 대한 주석과 documentation을 자동으로 생성할 수 있습니다.
 
-### Data 분석 및 insight 도출
+### Data 분석 및 Insight 도출
 
 - **report 자동 생성** : 수치 data를 바탕으로 분석 report를 자동 생성할 수 있습니다.
 - **trend 분석** : 시장 동향과 pattern을 분석하여 business insight를 제공할 수 있습니다.
@@ -108,22 +125,34 @@ published: false
 
 ## 요금 체계
 
-- **On-Demand 요금** : 실제 사용한 token 수에 따라 요금이 부과됩니다.
-    - input token과 output token이 서로 다른 요금을 적용받습니다.
-    - model별로 서로 다른 요금 체계를 가집니다.
+- Amazon Bedrock의 요금은 사용량 기반과 예약 기반의 두 가지 모델로 구성됩니다.
+- 사용 패턴과 요구사항에 따라 가장 비용 효율적인 요금제를 선택할 수 있습니다.
 
-- **Provisioned Throughput** : 일정한 처리량을 보장받는 대신 시간당 고정 요금을 지불합니다.
-    - 대량의 요청을 처리해야 하는 경우에 비용 효율적입니다.
-    - 예측 가능한 성능과 응답 시간을 보장받을 수 있습니다.
+### On-Demand 요금
 
-- **Model customization** : fine-tuning과 custom model 훈련에 대한 별도 요금이 적용됩니다.
-    - 훈련 시간과 사용한 computing resource에 따라 요금이 계산됩니다.
+- 실제 사용한 token 수에 따라 요금이 부과됩니다.
+- input token과 output token이 서로 다른 요금을 적용받습니다.
+- model별로 서로 다른 요금 체계를 가집니다.
+
+### Provisioned Throughput
+
+- 일정한 처리량을 보장받는 대신 시간당 고정 요금을 지불합니다.
+- 대량의 요청을 처리해야 하는 경우에 비용 효율적입니다.
+- 예측 가능한 성능과 응답 시간을 보장받을 수 있습니다.
+
+### Model Customization
+
+- fine-tuning과 custom model 훈련에 대한 별도 요금이 적용됩니다.
+- 훈련 시간과 사용한 computing resource에 따라 요금이 계산됩니다.
 
 
 ---
 
 
 ## 통합 및 연동
+
+- Amazon Bedrock은 AWS ecosystem과의 긴밀한 통합을 제공하며, 다양한 개발 도구와 제3자 platform과도 연동됩니다.
+- 기존 infrastructure와 workflow에 AI 기능을 자연스럽게 통합할 수 있는 환경을 지원합니다.
 
 ### AWS Service 통합
 
@@ -150,6 +179,9 @@ published: false
 
 ## 제한 사항 및 고려 사항
 
+- Amazon Bedrock을 도입하기 전에 기술적 제약사항과 비용, 보안 관련 고려사항을 충분히 검토해야 합니다.
+- 특히 대규모 운영 환경에서는 성능과 비용 최적화를 위한 사전 계획이 중요합니다.
+
 ### 기술적 제한
 
 - **model availability** : 모든 AWS region에서 모든 model을 사용할 수 있는 것은 아닙니다.
@@ -173,6 +205,9 @@ published: false
 
 
 ## 시작하기
+
+- Amazon Bedrock을 처음 사용하는 경우 계정 설정부터 첫 번째 application 개발까지 단계적으로 진행해야 합니다.
+- 사전 준비와 기본 설정을 완료한 후 개발 환경을 구성하여 실제 AI 기능을 구현할 수 있습니다.
 
 ### 사전 준비
 
