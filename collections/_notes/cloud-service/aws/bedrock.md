@@ -1,13 +1,13 @@
 ---
 layout: note
 permalink: /347
-title: Amazon Bedrock - 완전 관리형 AI Service
+title: Amazon Bedrock - 쉽고 빠르게 AI Application 만들기
 description: Amazon Bedrock은 AWS가 제공하는 완전 관리형 generative AI service입니다.
 date: 2025-06-25
 ---
 
 
-## Amazon Bedrock : 
+## Amazon Bedrock : 완전 관리형 AI Service
 
 - Amazon Bedrock은 여러 foundation model을 통합하여 제공하며, 기업이 AI application을 쉽게 구축하고 배포할 수 있도록 지원합니다.
 - serverless 방식으로 운영되어 infrastructure 관리 부담 없이 AI 기능을 활용할 수 있습니다.
