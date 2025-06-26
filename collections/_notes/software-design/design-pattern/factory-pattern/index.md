@@ -1,10 +1,9 @@
 ---
 layout: note
-permalink: /34?
-title: Factory Pattern - 객체 생성 캡슐화
+permalink: /350
+title: Factory Pattern - 객체 생성 캡슐화하기
 description: factory pattern은 객체 생성 logic을 캡슐화하여 객체 생성의 복잡성을 줄이고, code의 재사용성을 높이는 design pattern입니다.
 date: 2025-06-21
-published: false
 ---
 
 
@@ -24,12 +23,9 @@ published: false
     - Abstract Factory Pattern은 합성(composition)을 통해서 객체를 생성합니다.
 
 
-
-
 ### Static Factory Method
 
-- Static Factory Method는 
-- Simple Factory를 static method로 정의하는 기법입니다.
+- Static Factory Method는 Simple Factory를 static method로 정의하는 기법입니다.
 
 - 장점 : 객체를 생성하기 위한 method를 실행시키기 위해서 객체의 instance를 만들지 않아도 됩니다.
 - 단점 : sub class를 만들어서 객체 생성 method의 행동을 변경시킬 수 없습니다.
@@ -42,17 +38,14 @@ published: false
 
 | Interface로 개발하기 | Concrete Class로 개발하기 |
 | --- | --- |
-| 변경 가능성이 있는 부분이 분리되어 있습니다. | 변경 가능성이 있는 부분이 분리되어 있지 않습니다. |
-| 다형성 덕분에 어떤 class든 특정 interface만 구현하면 사용할 수 있습니다. | 나중에 code를 수정해야 할 가능성이 높아지고 유연성이 떨어집니다. |
+| 변경 가능성이 있는 부분이 분리되어 있음 | 변경 가능성이 있는 부분이 분리되어 있지 않음 |
+| 다형성 덕분에 어떤 class든 특정 interface만 구현하면 사용할 수 있음 | 나중에 code를 수정해야 할 가능성이 높아지고 유연성이 떨어짐 |
 
 
 ---
 
 
 ## Simple Factory Example : Pizza 가게
-
-
-### Class Diagram
 
 ```mermaid
 classDiagram
@@ -84,17 +77,23 @@ Pizza <|-- CheesePizza
 Pizza <|-- VeggiePizza
 Pizza <|-- ClamPizza
 Pizza <|-- PepperoniPizza
-
-note for PizzaStore "factory를 사용하는 client입니다.\nPizzaStore에서 SimplePizzaFactory를 통해 pizza instance를 받게 됩니다."
-note for SimplePizzaFactory "pizza 객체를 생성하는 factory입니다.\n이 application에서 유일하게 concrete class를 직접 참조하는 부분입니다.\ncreate method를 static method로 선언하는 경우도 있습니다."
-note for Pizza "factory에서 만들어내는 상품인 pizza입니다.\nmethod를 overriding해서 쓸 수 있도록 abstract class로 정의합니다."
-note for PepperoniPizza "factory에서 생산하는 제품에 해당하는 concrete class입니다.\n각 pizza는 Pizza 상위 형식(class 또는 interface)을 구현해야 합니다.\nconcrete class여야 합니다."
 ```
 
+- `PizzaStore` : factory를 사용하는 client입니다.
+    - `PizzaStore`에서 `SimplePizzaFactory`를 통해 pizza instance를 받게 됩니다.
 
-### Code
+- `SimplePizzaFactory` : pizza 객체를 생성하는 factory입니다.
+    - 이 application에서 유일하게 concrete class를 직접 참조하는 부분입니다.
+    - create method를 static method로 선언하는 경우도 있습니다.
 
-#### Main
+- `Pizza` : factory에서 만들어내는 상품인 pizza입니다.
+    - method를 overriding해서 쓸 수 있도록 abstract class로 정의합니다.
+
+- `PepperoniPizza` : factory에서 생산하는 제품에 해당하는 concrete class입니다.
+    - 각 pizza는 `Pizza` 상위 형식(class 또는 interface)을 구현해야 합니다.
+
+
+### Main
 
 ```java
 public class PizzaTestDrive {
@@ -114,7 +113,8 @@ public class PizzaTestDrive {
 }
 ```
 
-#### PizzaStore
+
+### PizzaStore
 
 ```java
 public class PizzaStore {
@@ -140,7 +140,8 @@ public class PizzaStore {
 }
 ```
 
-#### SimplePizzaFactory
+
+### SimplePizzaFactory
 
 ```java
 public class SimplePizzaFactory {
@@ -162,7 +163,8 @@ public class SimplePizzaFactory {
 }
 ```
 
-#### Pizza
+
+### Pizza
 
 ```java
 abstract public class Pizza {
@@ -205,7 +207,8 @@ abstract public class Pizza {
 }
 ```
 
-#### Pizza의 Concrete Class
+
+### Pizza의 Concrete Class
 
 ```java
 public class CheesePizza extends Pizza {
@@ -247,7 +250,6 @@ public class ClamPizza extends Pizza {
 }
 ```
 
-
 ```java
 public class PepperoniPizza extends Pizza {
     public PepperoniPizza() {
@@ -267,6 +269,6 @@ public class PepperoniPizza extends Pizza {
 
 ## Reference
 
-- Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
 - <https://refactoring.guru/ko/design-patterns/factory-comparison>
 - <https://tecoble.techcourse.co.kr/post/2020-05-26-static-factory-method/>
