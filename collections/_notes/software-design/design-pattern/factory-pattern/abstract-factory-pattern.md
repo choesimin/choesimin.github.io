@@ -9,26 +9,26 @@ date: 2023-05-23
 
 ## Abstract Factory Pattern
 
-- Abstract Factory Pattern를 사용하면, client가 concrete class에 직접 의존하지 않고, 서로 관련된 객체들로 이루어진 제품군을 만들 수 있습니다.
-    - interface 또는 abstract class를 통해서 일련의 제품들을 공급받을 수 있습니다.
-    - client는 실제로 어떤 제품이 생산되는지는 전혀 알 필요가 없습니다.
-    - client와 factory에서 생산되는 제품을 분리시킬 수 있습니다.
+- **Abstract Factory Pattern**은 client가 concrete class에 직접 의존하지 않고 **서로 관련된 객체들로 구성된 제품군**을 생성할 수 있게 하는 pattern입니다.
+    - interface나 abstract class를 통해 일련의 제품들을 공급받습니다.
+    - client는 실제로 어떤 제품이 생산되는지 알 필요가 없습니다.
+    - **client와 factory에서 생산되는 제품 간의 결합도**를 낮출 수 있습니다.
 
-- Abstract Factory Pattern은 합성(Composition)을 통해서 객체를 만듭니다.
+- **합성(Composition)**을 통해 객체를 생성하는 방식을 사용합니다.
 
-- Abstract Factory Pattern은 제품군을 만들기 위한 추상 형식을 제공합니다.
-    - 제품이 생산되는 방법은 이 추상 형식의 sub class에서 정의합니다.
-    - 일련의 연관된 제품을 하나로 묶을 수 있습니다.
+- 제품군을 만들기 위한 **추상적인 틀**을 제공합니다.
+    - 실제 제품이 생산되는 방법은 추상 형식의 sub class에서 구체적으로 정의합니다.
+    - **연관된 제품들을 하나의 군으로 묶어서** 관리할 수 있습니다.
 
-- 제품군에 제품을 추가하거나 하는 식으로 관련된 제품들을 확대해야 하는 경우에는 interface를 수정해야만 합니다.
-    - interface를 바꾸게 되면 모든 sub class의 interface를 바꿔야 하므로 좋지 않음
+- 제품군에 새로운 제품을 추가하려면 **interface를 수정해야 한다는 단점**이 있습니다.
+    - interface가 변경되면 모든 sub class의 interface도 함께 수정해야 하므로 유지 보수성이 떨어집니다.
 
-- Factory Method Pattern을 쓸 때와 마찬가지로 'client code'와 'client에서 사용하는 실제 concrete 제품'이 분리됩니다.
+- **Factory Method Pattern과 마찬가지로** 'client code'와 'client에서 사용하는 실제 concrete 제품' 사이의 결합도를 낮춥니다.
 
-- concrete factory를 구현할 때 factory method를 사용하기도 합니다.
-    - 이는 Factory Method Pattern과는 다르게 제품을 생산하기 위한 용도로 쓰입니다.
+- concrete factory를 구현할 때 **Factory Method를 활용**하기도 합니다.
+    - Factory Method Pattern과는 달리 **제품 생산에 특화된 용도**로 사용됩니다.
 
-- client에서 제품군(서로 연관된 일련의 제품들)을 만들어야 할 때 활용합니다.
+- client에서 **제품군(서로 연관된 일련의 제품들)을 생성해야 하는 상황**에서 활용합니다.
 
 ```mermaid
 classDiagram
@@ -61,7 +61,6 @@ class AbstractProductB {
 class ProductB1
 class ProductB2
 
-
 AbstractFactory <|.. ConcreteFactory1
 AbstractFactory <|.. ConcreteFactory2
 
@@ -69,7 +68,6 @@ AbstractProductA <|.. ProductA1
 AbstractProductA <|.. ProductA2
 AbstractProductB <|.. ProductB1
 AbstractProductB <|.. ProductB2
-
 
 Client --> AbstractFactory
 Client --> AbstractProductA
@@ -86,17 +84,17 @@ ProductB2 --> ConcreteFactory2
 ---
 
 
-## Abstract Factory Pattern Example : Pizza 가게
+## Pizza 가게 예제를 통한 Abstract Factory Pattern 구현
 
-- Factory Method Pattern으로 구현한 pizza 가게를 Abstract Factory Pattern으로 변경합니다.
-    - Factory Method Pattern은 pizza 가게가 pizza를 만드는 방법을 정의하는데 사용했습니다.
-    - Abstract Factory Pattern은 서로 연관된 일련의 제품군을 만드는 방법을 정의하는데 사용합니다.
+- Factory Method Pattern으로 구현했던 pizza 가게를 **Abstract Factory Pattern으로 재구성**합니다.
+    - Factory Method Pattern은 pizza 가게가 pizza를 만드는 방법을 정의하는 데 사용했습니다.
+    - Abstract Factory Pattern은 **서로 연관된 일련의 제품군을 생성하는 방법**을 정의하는 데 사용합니다.
 
-- pizza 가게들이 pizza의 원재료를 다른 것을 사용하지 못하도록 강제하기 위해 재료 factory를 추가하는 상황입니다.
+- pizza 가게들이 **통일된 원재료를 사용하도록 강제**하기 위해 재료 factory를 도입하는 상황입니다.
 
-- abstract factory를 도입해서 서로 다른 pizza에서 필요로 하는 원재료군을 생산하기 위한 방법을 구축합니다.
-    - 제품군을 생성하기 위한 interface를 따로 제공합니다.
-    - 이 interface를 이용하는 code를 만들면, code를 제품을 생산하는 실제 factory와 분리시킬 수 있습니다.
+- abstract factory를 통해 **서로 다른 pizza에 필요한 원재료군을 체계적으로 생산**하는 구조를 만듭니다.
+    - 제품군 생성을 위한 **독립적인 interface**를 제공합니다.
+    - code를 제품을 생산하는 **실제 factory와 분리**시킬 수 있습니다.
 
 ```mermaid
 classDiagram
@@ -107,7 +105,7 @@ class NYPizzaStore {
 
 class PizzaIngredientFactory {
     <<interface>>
-    createDouch()
+    createDough()
     createSauce()
     createCheese()
     createVeggies()
@@ -115,7 +113,7 @@ class PizzaIngredientFactory {
     createClam()
 }
 class NYPizzaIngredientFactory {
-    createDouch()
+    createDough()
     createSauce()
     createCheese()
     createVeggies()
@@ -123,7 +121,7 @@ class NYPizzaIngredientFactory {
     createClam()
 }
 class ChicagoPizzaIngredientFactory {
-    createDouch()
+    createDough()
     createSauce()
     createCheese()
     createVeggies()
@@ -155,7 +153,6 @@ class Clam {
 class FrozenClams
 class FreshClams
 
-
 PizzaIngredientFactory <|.. NYPizzaIngredientFactory
 PizzaIngredientFactory <|.. ChicagoPizzaIngredientFactory
 
@@ -170,7 +167,6 @@ Cheese <|.. ReggianoCheese
 
 Clam <|.. FrozenClams
 Clam <|.. FreshClams
-
 
 NYPizzaStore --> PizzaIngredientFactory
 NYPizzaStore --> Dough
@@ -743,6 +739,29 @@ public class FreshClams implements Clams {
 ---
 
 
+## Abstract Factory Pattern의 장단점과 활용 지침
+
+- **Abstract Factory Pattern**은 **관련된 제품군을 일관성 있게 생성**해야 하는 상황에서 특히 유용합니다.
+    - pizza 예제에서 뉴욕 style과 시카고 style의 재료들이 각각 하나의 제품군을 형성합니다.
+    - 각 지역의 pizza 가게는 해당 지역에 맞는 재료군만 사용하도록 보장됩니다.
+
+- **확장성 측면**에서는 새로운 제품군 추가는 쉽지만, 기존 제품군에 새로운 제품 추가는 어렵습니다.
+    - 새로운 도시의 pizza 가게 추가는 새로운 concrete factory 구현으로 간단히 해결됩니다.
+    - 하지만 모든 pizza에 새로운 재료를 추가하려면 모든 interface와 구현체를 수정해야 합니다.
+
+- **의존성 역전 원칙(Dependency Inversion Principle)**을 잘 구현한 pattern입니다.
+    - 고수준 module(Pizza class)이 저수준 module(구체적인 재료 class)에 의존하지 않습니다.
+    - 둘 다 추상화(interface)에 의존하도록 설계되었습니다.
+
+- **Factory Method Pattern과의 차이점**을 명확히 이해하는 것이 중요합니다.
+    - Factory Method Pattern은 **하나의 제품**을 생성하는 데 초점을 맞춥니다.
+    - Abstract Factory Pattern은 **관련된 제품들의 군**을 생성하는 데 초점을 맞춥니다.
+
+
+---
+
+
 ## Reference
 
+- <https://refactoring.guru/design-patterns/abstract-factory>
 - Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
