@@ -1,21 +1,15 @@
 ---
 layout: note
+permalink: /351
 title: Factory Method Pattern - 상속을 이용한 Factory Pattern
-version: 2023-05-23
-published: false
+description: Factory Method Pattern은 객체를 만드는 방법을 미리 정해두되, 객체 생성의 책임은 하위 class에게 위임하여, 실제로 어떤 객체를 만들지는 하위 class가 결정하도록 하는 pattern입니다.
+date: 2023-05-23
 ---
-
-
 
 
 ## Factory Method Pattern
 
-```
-Factory Method Pattern에서는 객체를 생성하기 위한 interface를 정의하는데, 이떤 class의 instance를 만들지는 sub class에서 결정하게 만듭니다.
-Factory Method Pattern을 이용하면 class의 instance를 만드는 일을 sub class에게 맡길 수 있습니다.
-```
-
-- 구상 형식의 instance를 만드는 작업을 캡슐화(encapsulation)할 수 있음
+- concrete 형식의 instance를 만드는 작업을 캡슐화(encapsulation)할 수 있음
     - client 입장에서는 '객체 instance를 만들 때 필요한 concrete class'가 아닌 'interface'만 필요로 하게 됨
         - 구현이 아닌 interface를 바탕으로 programming을 할 수 있음
         - 유연성, 확장성이 좋아짐
@@ -23,7 +17,6 @@ Factory Method Pattern을 이용하면 class의 instance를 만드는 일을 sub
 - 상속을 활용
     - 객체 생성이 sub class에게 위임됨
     - sub class에서는 factory method를 구현하여 객체를 생산함
-
 
 - Factory Method Pattern은 상속(inheritance)을 통해서 객체를 만듭니다.
     - sub class를 통해서 객체를 만듭니다.
@@ -34,23 +27,6 @@ Factory Method Pattern을 이용하면 class의 instance를 만드는 일을 sub
 - Factory Method Pattern은 'client code'와 'instance를 만들어야 할 concrete class'를 분리시켜야 할 때 활용합니다.
     - 어떤 concrete class가 필요할지 미리 알 수 없는 경우에도 유용합니다.
         - sub class를 만들고 factory method를 구현하기만 하면 되기 때문입니다.
-
-
-### Factory Method
-
-- factory method는 객체 생성을 처리함
-- factory method를 이용하면 객체를 생성하는 작업을 sub class에 캡슐화(encapsulation)시킬 수 있음
-    - super class에 있는 client code와 sub class에 있는 객체 생성 code를 분리시킬 수 있음
-```java
-abstract Product factoryMethod(String type)
-```
-- `abstract` : factory method는 추상 method로 선언하여 sub class에서 객체 생성을 책임지도록 함
-- `Product` : factory method에서는 특정 제품(객체)를 return하면, 그 객체는 보통 super class에서 정의한 method 내에서 쓰이게 됨
-- `factoryMethod()` : factory method는 client(super class에 있는 공통 code)에서 실제로 생성되는 구상 객체가 무엇인지 알 수 없게 만드는 역할을 함
-- `String type` : factory method를 만들 때 매개변수를 써서 만들어낼 객체 종류를 선택할 수 있음
-
-
-## Class Diagram
 
 ```mermaid
 classDiagram
@@ -71,18 +47,39 @@ class ConcreteProduct
 Creator <|-- Concrete Creator
 Product <|-- Concrete Product
 Concrete Product <-- Concrete Creator
-
-Creator .. Creator : Creator에는 제품을 가지고 원하는 일을 하기 위한 \n모든 method들이 구현되어 있음. \n하지만 제품을 만들어 주는 factory method는 \n추상 method로 정의되어 있을 뿐 \n구현되어 있지는 않음. \nCreator의 모든 sub class에서는 \nfactoryMethod() 추상 method를 구현해야 함.
-
-ConcreteCreator .. ConcreteCreator : ConcreteCreator에서는 실제로 제품을 생산하는 \nfactoryMethod()를 구현해야 함. \n구상 class instance를 만들어내는 일은 \nConcreteCreator가 책임짐. \n실제 제품을 만들어내는 방법을 알고 있는 class는 \nConcreteCreator 밖에 없음.
-
-ConcreteProduct .. Product : 제픔 class에서는 모두 똑같은 interface를 구현해야 함. \n그래야 그 제품을 사용할 class에서 \n구상 class가 아닌 interface에 대한 reference를 써서 \n객체를 참조할 수 있음.
 ```
 
+- `Creator` : `Creator`에는 제품을 가지고 원하는 일을 하기 위한 모든 method들이 구현되어 있음
+    - 하지만 제품을 만들어 주는 factory method는 추상 method로 정의되어 있을 뿐 구현되어 있지는 않음
+    - `Creator`의 모든 sub class에서는 `factoryMethod()` 추상 method를 구현해야 함
 
-## Simple Factory & Factory Method Pattern
+- `ConcreteCreator` : `ConcreteCreator`에서는 실제로 제품을 생산하는 `factoryMethod()`를 구현해야 함
+    - concrete class instance를 만들어내는 일은 `ConcreteCreator`가 책임짐
+    - 실제 제품을 만들어내는 방법을 알고 있는 class는 `ConcreteCreator` 밖에 없음
 
-- 구상 class의 instance를 만들 때
+- `Product`, `ConcreteProduct` : 제픔 class에서는 모두 똑같은 interface를 구현해야 함
+    - 그래야 그 제품을 사용할 class에서 concrete class가 아닌 interface에 대한 reference를 써서 객체를 참조할 수 있음
+
+
+### Factory Method : 객체 생성을 캡슐화하는 추상 Method
+
+- factory method는 객체 생성을 처리함
+- factory method를 이용하면 객체를 생성하는 작업을 sub class에 캡슐화(encapsulation)시킬 수 있음
+    - super class에 있는 client code와 sub class에 있는 객체 생성 code를 분리시킬 수 있음
+
+```java
+abstract Product factoryMethod(String type)
+```
+
+- `abstract` : factory method는 추상 method로 선언하여 sub class에서 객체 생성을 책임지도록 함
+- `Product` : factory method에서는 특정 제품(객체)를 return하면, 그 객체는 보통 super class에서 정의한 method 내에서 쓰이게 됨
+- `factoryMethod()` : factory method는 client(super class에 있는 공통 code)에서 실제로 생성되는 concrete 객체가 무엇인지 알 수 없게 만드는 역할을 함
+- `String type` : factory method를 만들 때 매개 변수를 써서 만들어낼 객체 종류를 선택할 수 있음
+
+
+### Simple Factory & Factory Method Pattern
+
+- concrete class의 instance를 만들 때
     - simple factory : 한 객체에서 전부 처리함
     - factory method pattern : 일련의 sub class에서 처리함
 
@@ -91,37 +88,39 @@ ConcreteProduct .. Product : 제픔 class에서는 모두 똑같은 interface를
         - 일련의 method들을 사용하는 과정을 하나로 묶어줄 필요가 있음
     - factory method pattern는 유연성을 잃지 않으면서 과정을 강제하기 위한 framework
 
+
 ---
 
 
+## Factory Method Pattern Example : Pizza 가게
 
-# Example : Pizza 가게
+- simple factory로 구현된 pizza 가게를 factory method pattern으로 변경합니다.
 
+```mermaid
+classDiagram
 
+PizzaStore --> Pizza
 
-## simple factory -> factory method pattern
+Pizza <-- NYStyleCheesePizza
+Pizza <-- NYStyleVeggiePizza
+Pizza <-- NYStyleClamPizza
+Pizza <-- NYStylePepperoniPizza
 
-- createPizza() method를 PizzaStore class에 다시 집어넣고, 추상 method로 선언함
-    - 각 지역의 style에 맞게 PizzaStore의 sub class를 만들어 과정을 강제하게 됨
+Pizza <-- ChicagoStyleCheesePizza
+Pizza <-- ChicagoStyleVeggiePizza
+Pizza <-- ChicagoStyleClamPizza
+Pizza <-- ChicagoStylePepperoniPizza
+```
 
-- PizzaStore class
-    - orderPizza() method는 super class에서 구현
-        - 주문 system 자체는 모든 분점에서 똑같이 진행되어야 함
-        - orderPizza() method는 무슨 pizza를 만드는지 알지 못함
-            - 어떤 sub class를 사용해서 어떤 Pizza 객체를 사용하느냐 따라 다름
-                - 어떤 sub class를 사용하는지 : factory에서 결정
-                - 어떤 Pizza 객체를 사용하는지 : factory로 만들어진 구상 sub class에서 결정
-    - createPizza() method는 sub class에서 구현
-        - createPizza() method는 factory method임
-            - Pizza instance를 만드는 일을 하기 때문
-        - 각 분점마다 달라질 수 있는 것은 pizza style 뿐
-        - 이 다른 점들을 createPizza() method에 집어넣음
-        - createPizza() method에서 해당 style pizza를 만드는 것을 모두 책임지도록 함
-        - sub class에서 구현하기 때문에 분점 마다 다른 pizza 제조 과정을 강제할 수 있게 됨
+- 고수준 구성 요소인 PizzaStore와 저수준 구성 요소인 pizza 객체들이 모두 추상 class인 Pizza에 의존하게 됨
+    - 다양한 concrete pizza 형식이 추상화된 Pizza에 의존하게 될테고, 마찬가지로 pizza 가게도 추상화된 Pizza에 의존하게 됨
+    - 의존성 뒤집기 원칙(Dependency Inversion Principle)을 준수하게 됨
+        - 고수준 구성 요소는 저수준 구성 요소에 의존해서는 안됨
+        - 고수준 구성 요소와 저수준 구성 요소 모두 추상화된 것에 의존해야 함으로써, concrete class에 의존하지 않게 됨
+        - concrete class에 의존하지 않게 됨
 
-
-
-## Class Diagram
+- factory method pattern은 의존성 뒤집기 원칙을 준수하기 위해 사용할 수 있는 방법
+    - factory를 사용하지 않았을 때는 pizza 가게가 pizza에 의존했지만, factory를 사용하고 나서는 그 의존성이 뒤집힘
 
 ```mermaid
 classDiagram
@@ -172,59 +171,24 @@ ChicagoStyleClamPizza --|> Pizza
 ChicagoStylePepperoniPizza --|> Pizza
 ```
 
+- createPizza() method를 PizzaStore class에 다시 집어넣고, 추상 method로 선언함
+    - 각 지역의 style에 맞게 PizzaStore의 sub class를 만들어 과정을 강제하게 됨
 
+- PizzaStore class
+    - orderPizza() method는 super class에서 구현
+        - 주문 system 자체는 모든 분점에서 똑같이 진행되어야 함
+        - orderPizza() method는 무슨 pizza를 만드는지 알지 못함
+            - 어떤 sub class를 사용해서 어떤 Pizza 객체를 사용하느냐 따라 다름
+                - 어떤 sub class를 사용하는지 : factory에서 결정
+                - 어떤 Pizza 객체를 사용하는지 : factory로 만들어진 concrete sub class에서 결정
+    - createPizza() method는 sub class에서 구현
+        - createPizza() method는 factory method임
+            - Pizza instance를 만드는 일을 하기 때문
+        - 각 분점마다 달라질 수 있는 것은 pizza style 뿐
+        - 이 다른 점들을 createPizza() method에 집어넣음
+        - createPizza() method에서 해당 style pizza를 만드는 것을 모두 책임지도록 함
+        - sub class에서 구현하기 때문에 분점 마다 다른 pizza 제조 과정을 강제할 수 있게 됨
 
-## Dependency
-
-### No Factory : 심하게 의존적인 PizzaStore
-
-```mermaid
-classDiagram
-
-PizzaStore --> NYStyleCheesePizza
-PizzaStore --> NYStyleVeggiePizza
-PizzaStore --> NYStyleClamPizza
-PizzaStore --> NYStylePepperoniPizza
-
-PizzaStore --> ChicagoStyleCheesePizza
-PizzaStore --> ChicagoStyleVeggiePizza
-PizzaStore --> ChicagoStyleClamPizza
-PizzaStore --> ChicagoStylePepperoniPizza
-```
-
-- PizzaStore가 pizza class 구현에 의존함
-    - PizzaStore에서 모든 pizza 객체들을 직접 생성해야 하므로, 모든 pizza 객체들에게 직접적으로 의존함
-        - pizza라는 개념을 추상화(pizza 추상 class 사용)할 수 없기 때문에 의존성을 뒤집을 수 없음
-    - pizza class들의 구현이 변경되면 PizzaStore까지 고쳐야할 수도 있음
-    - 다른 style이나 pizza 종류를 새로 추가하면 PizzaStore는 더 많은 pizza 구상 객체에 의존하게 됨
-        - 의존해야 할 객체의 수가 계속 늘어남
-
-### Factory : 의존성 뒤집기 원칙
-
-```mermaid
-classDiagram
-
-PizzaStore --> Pizza
-
-Pizza <-- NYStyleCheesePizza
-Pizza <-- NYStyleVeggiePizza
-Pizza <-- NYStyleClamPizza
-Pizza <-- NYStylePepperoniPizza
-
-Pizza <-- ChicagoStyleCheesePizza
-Pizza <-- ChicagoStyleVeggiePizza
-Pizza <-- ChicagoStyleClamPizza
-Pizza <-- ChicagoStylePepperoniPizza
-```
-
-- 고수준 구성요소인 PizzaStore와 저수준 구성요소인 pizza 객체들이 모두 추상 class인 Pizza에 의존하게 됨
-    - 다양한 구상 pizza 형식이 추상화된 Pizza에 의존하게 될테고, 마찬가지로 pizza 가게도 추상화된 Pizza에 의존하게 됨
-- factory method pattern은 의존성 뒤집기 원칙을 준수하기 위해 사용할 수 있는 방법
-    - factory를 사용하지 않았을 때는 pizza 가게가 pizza에 의존했지만, factory를 사용하고 나서는 그 의존성이 뒤집힘
-
-
-
-## Code
 
 ### Main
 
@@ -246,6 +210,7 @@ public class PizzaTestDrive {
 }
 ```
 
+
 ### PizzaStore
 
 ```java
@@ -265,7 +230,8 @@ public abstract class PizzaStore {
 }
 ```
 
-### PizzaStore sub class
+
+### PizzaStore Sub Class
 
 ```java
 public class NYPizzaStore extends PizzaStore {
@@ -300,6 +266,7 @@ public class ChicagoPizzaStore extends PizzaStore {
     }
 }
 ```
+
 
 ### Pizza
 
@@ -349,7 +316,7 @@ public abstract class Pizza {
 }
 ```
 
-### Pizza sub class
+### Pizza Sub Class
 
 ```java
 public class NYStyleCheesePizza extends Pizza {
@@ -486,7 +453,35 @@ public class ChicagoStyleVeggiePizza extends Pizza {
 }
 ```
 
-### No Factory : 심하게 의존적인 PizzaStore
+
+---
+
+
+## No Factory Example : 심하게 의존적인 PizzaStore
+
+```mermaid
+classDiagram
+
+PizzaStore --> NYStyleCheesePizza
+PizzaStore --> NYStyleVeggiePizza
+PizzaStore --> NYStyleClamPizza
+PizzaStore --> NYStylePepperoniPizza
+
+PizzaStore --> ChicagoStyleCheesePizza
+PizzaStore --> ChicagoStyleVeggiePizza
+PizzaStore --> ChicagoStyleClamPizza
+PizzaStore --> ChicagoStylePepperoniPizza
+```
+
+- PizzaStore가 pizza class 구현에 의존함
+
+- PizzaStore에서 모든 pizza 객체들을 직접 생성해야 하므로, 모든 pizza 객체들에게 직접적으로 의존함
+    - pizza라는 개념을 추상화(pizza 추상 class 사용)할 수 없기 때문에 의존성을 뒤집을 수 없음
+
+- pizza class들의 구현이 변경되면 PizzaStore까지 고쳐야할 수도 있음
+
+- 다른 style이나 pizza 종류를 새로 추가하면 PizzaStore는 더 많은 concrete pizza 객체에 의존하게 됨
+    - 의존해야 할 객체의 수가 계속 늘어남
 
 ```java
 public class DependentPizzaStore {
@@ -527,10 +522,9 @@ public class DependentPizzaStore {
 ```
 
 
-
-
 ---
+
 
 ## Reference
 
-- Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra

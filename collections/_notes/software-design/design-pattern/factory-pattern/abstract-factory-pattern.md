@@ -1,18 +1,13 @@
 ---
 layout: note
+permalink: /352
 title: Abstract Factory Pattern - 합성을 이용한 Factory Pattern
-version: 2023-05-23
-published: false
+description: Abstract Factory Pattern에서는 interface를 이용하여 서로 연관된, 또는 의존하는 객체를 concrete class를 지정하지 않고도 생성할 수 있습니다.
+date: 2023-05-23
 ---
 
 
-
-
 ## Abstract Factory Pattern
-
-```
-Abstract Factory Pattern에서는 interface를 이용하여 서로 연관된, 또는 의존하는 객체를 concrete class를 지정하지 않고도 생성할 수 있습니다.
-```
 
 - Abstract Factory Pattern를 사용하면, client가 concrete class에 직접 의존하지 않고, 서로 관련된 객체들로 이루어진 제품군을 만들 수 있습니다.
     - interface 또는 abstract class를 통해서 일련의 제품들을 공급받을 수 있습니다.
@@ -32,15 +27,8 @@ Abstract Factory Pattern에서는 interface를 이용하여 서로 연관된, �
 
 - concrete factory를 구현할 때 factory method를 사용하기도 합니다.
     - 이는 Factory Method Pattern과는 다르게 제품을 생산하기 위한 용도로 쓰입니다.
-- client에서 제품군(서로 연관된 일련의 제품들)을 만들어야 할 때 활용하기
 
-
-
-
----
-
-
-## Class Diagram
+- client에서 제품군(서로 연관된 일련의 제품들)을 만들어야 할 때 활용합니다.
 
 ```mermaid
 classDiagram
@@ -100,20 +88,15 @@ ProductB2 --> ConcreteFactory2
 
 ## Abstract Factory Pattern Example : Pizza 가게
 
-
-
-
-### Factory Method Pattern -> Abstract Factory Pattern
+- Factory Method Pattern으로 구현한 pizza 가게를 Abstract Factory Pattern으로 변경합니다.
+    - Factory Method Pattern은 pizza 가게가 pizza를 만드는 방법을 정의하는데 사용했습니다.
+    - Abstract Factory Pattern은 서로 연관된 일련의 제품군을 만드는 방법을 정의하는데 사용합니다.
 
 - pizza 가게들이 pizza의 원재료를 다른 것을 사용하지 못하도록 강제하기 위해 재료 factory를 추가하는 상황입니다.
-- 추상 factory(abstract factory)를 도입해서 서로 다른 pizza에서 필요로 하는 원재료군을 생산하기 위한 방법을 구축함
-    - 제품군을 생성하기 위한 interface를 제공함
-    - 이 interface를 이용하느 code를 만들면 code를 제품을 생산하는 실제 factory와 분리시킬 수 있음
 
-
-
-
-### Class Diagram
+- abstract factory를 도입해서 서로 다른 pizza에서 필요로 하는 원재료군을 생산하기 위한 방법을 구축합니다.
+    - 제품군을 생성하기 위한 interface를 따로 제공합니다.
+    - 이 interface를 이용하는 code를 만들면, code를 제품을 생산하는 실제 factory와 분리시킬 수 있습니다.
 
 ```mermaid
 classDiagram
@@ -207,14 +190,7 @@ FreshClams --> ChicagoPizzaIngredientFactory
 ```
 
 
-
-
-### Code
-
-
-
-
-#### Main
+### Main
 
 ```java
 public class PizzaTestDrive {
@@ -251,9 +227,7 @@ public class PizzaTestDrive {
 ```
 
 
-
-
-#### PizzaStore
+### PizzaStore
 
 ```java
 public abstract class PizzaStore {
@@ -273,9 +247,7 @@ public abstract class PizzaStore {
 ```
 
 
-
-
-#### PizzaStore Sub Class
+### PizzaStore Sub Class
 
 ```java
 public class NYPizzaStore extends PizzaStore {
@@ -346,9 +318,7 @@ public class ChicagoPizzaStore extends PizzaStore {
 ```
 
 
-
-
-#### Pizza
+### Pizza
 
 ```java
 public abstract class Pizza {
@@ -421,9 +391,7 @@ public abstract class Pizza {
 ```
 
 
-
-
-#### Pizza Sub Class
+### Pizza Sub Class
 
 ```java
 public class CheesePizza extends Pizza {
@@ -498,9 +466,7 @@ public class VeggiePizza extends Pizza {
 ```
 
 
-
-
-#### PizzaIngredientFactory
+### PizzaIngredientFactory
 
 ```java
 public interface PizzaIngredientFactory {
@@ -516,9 +482,7 @@ public interface PizzaIngredientFactory {
 ```
 
 
-
-
-#### PizzaIngredientFactory Sub Class
+### PizzaIngredientFactory Sub Class
 
 ```java
 public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
@@ -585,9 +549,7 @@ public class ChicagoPizzaIngredientFactory
 ```
 
 
-
-
-#### Ingredient
+### Ingredient
 
 ```java
 public interface Dough {
@@ -626,9 +588,7 @@ public interface Clams {
 ```
 
 
-
-
-#### Ingredient Sub Class
+### Ingredient Sub Class
 
 ```java
 public class ThickCrustDough implements Dough {
@@ -785,4 +745,4 @@ public class FreshClams implements Clams {
 
 ## Reference
 
-- Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
