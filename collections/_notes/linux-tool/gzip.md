@@ -95,6 +95,19 @@ zgrep [search_keyword] *[common_file_name_string]*.gz
 ---
 
 
+## `gzip` file인지 확인하기
+
+- `gzip` file인지 확인하려면 `gzip -t` 명령어를 사용합니다.
+    - `gzip -t`는 압축 file의 integrity를 검사합니다.
+
+```sh
+gzip -t filename 2>/dev/null && echo "this is gzip file" || echo "this is not gzip file"
+```
+
+
+---
+
+
 ## 헷갈리기 쉬운 `gzip`과 `tar`의 차이
 
 - `gzip` : 여러 file들을 하나로 모으되 압축은 하지 않습니다.
