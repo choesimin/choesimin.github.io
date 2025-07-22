@@ -4,7 +4,3 @@ collections_dir: collections
 collections:
   notes:
     output: true
-  graphics:
-    output: true
-  problems:
-    output: true
