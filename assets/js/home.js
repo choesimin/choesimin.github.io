@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     saveViewState(); // Save state when cluster view changes
     
     // Update active button for cluster controls
-    document.querySelectorAll('#clusterControls .toggle-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('#viewControls .toggle-btn').forEach(btn => btn.classList.remove('active'));
     document.getElementById(clusterView + 'ClusterBtn').classList.add('active');
     
     // Re-render the cluster view with the new type
@@ -122,29 +122,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const gridContainer = document.getElementById('notesGrid');
     const clusterContainer = document.getElementById('clusterContainer');
     const treeContainer = document.getElementById('treeContainer');
-    const treeControls = document.getElementById('treeControls');
-    const clusterControls = document.getElementById('clusterControls');
+    const viewControls = document.getElementById('viewControls');
     
     // Hide all containers first
     gridContainer.style.display = 'none';
     clusterContainer.style.display = 'none';
     treeContainer.style.display = 'none';
-    if (treeControls) treeControls.style.display = 'none';
-    if (clusterControls) clusterControls.style.display = 'none';
+    if (viewControls) viewControls.style.display = 'none';
     
     if (view === 'grid') {
       gridContainer.style.display = 'block';
       initializeGridView();
     } else if (view === 'tree') {
       treeContainer.style.display = 'block';
-      if (treeControls) treeControls.style.display = 'flex';
+      if (viewControls) {
+        viewControls.style.display = 'flex';
+        // Show only tree controls (Close/Open)
+        document.getElementById('collapseAllBtn').style.display = 'inline-block';
+        document.getElementById('expandAllBtn').style.display = 'inline-block';
+        document.getElementById('treeClusterBtn').style.display = 'none';
+        document.getElementById('radialClusterBtn').style.display = 'none';
+      }
       renderTreeView();
     } else if (view === 'cluster') {
       clusterContainer.style.display = 'block';
-      if (clusterControls) {
-        clusterControls.style.display = 'flex';
+      if (viewControls) {
+        viewControls.style.display = 'flex';
+        // Show only cluster controls (Tree/Radial)
+        document.getElementById('collapseAllBtn').style.display = 'none';
+        document.getElementById('expandAllBtn').style.display = 'none';
+        document.getElementById('treeClusterBtn').style.display = 'inline-block';
+        document.getElementById('radialClusterBtn').style.display = 'inline-block';
         // Set active button for current cluster view
-        document.querySelectorAll('#clusterControls .toggle-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('#viewControls .toggle-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById(currentClusterView + 'ClusterBtn').classList.add('active');
       }
       

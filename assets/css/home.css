@@ -563,10 +563,3 @@
     line-height: 1;
 }
 
-#clusterControls {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-}
