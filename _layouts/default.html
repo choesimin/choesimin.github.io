@@ -36,39 +36,36 @@
 
   <body>
     <div id="progressBar"></div>
-    <aside class="sidebar">
-      <div class="sidebar-content">
-        <div class="logo">
-          <a href="{{ '/' | relative_url }}">SIMIN</a>
-        </div>
-        <div class="introduction">
-          <p>{{ site.description }}</p>
-        </div>
-        
-        <div class="view-toggle">
-          <button id="gridViewBtn" class="toggle-btn">Search</button>
-          <button id="treeViewBtn" class="toggle-btn">List</button>
-          <button id="clusterViewBtn" class="toggle-btn">Cluster</button>
-        </div>
+    
+    <header class="site-header">
+      <div class="logo">
+        <a href="{{ '/' | relative_url }}">SIMIN</a>
       </div>
-      
-      <!-- Fixed Footer with External Links -->
-      <div class="sidebar-footer">
-        <div class="external-links-horizontal">
+      {% if page.url == "/" %}
+      <div class="view-toggle">
+        <button id="treeViewBtn" class="toggle-btn">List</button>
+        <button id="clusterViewBtn" class="toggle-btn">Network</button>
+        <button id="gridViewBtn" class="toggle-btn">Search</button>
+      </div>
+      {% endif %}
+    </header>
+
+    <main>
+      {{ content }}
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="external-links">
           <a href="https://brunch.co.kr/@simin" target="_blank" class="external-link">Brunch</a>
           <a href="https://www.instagram.com/simin_sees" target="_blank" class="external-link">Instagram</a>
           <a href="https://github.com/choesimin" target="_blank" class="external-link">GitHub</a>
         </div>
+        <div class="copyright">
+          (C) {{ "now" | date: "%Y" }}. {{ site.title }} all rights reserved.
+        </div>
       </div>
-    </aside>
-
-    <div class="content-wrapper">
-      <main>
-        {{ content }}
-      </main>
-
-      <footer>(C) {{ "now" | date: "%Y" }}. {{ site.title }} all rights reserved.</footer>
-    </div>
+    </footer>
 
     <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
     {% if layout.js %}

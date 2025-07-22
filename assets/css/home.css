@@ -361,30 +361,6 @@
     display: none;
 }
 
-/* Responsive design */
-@media (min-width: 1800px) {
-    .grid-content { column-count: 6; }
-}
-
-@media (min-width: 1400px) and (max-width: 1799px) {
-    .grid-content { column-count: 5; }
-}
-
-@media (max-width: 1200px) {
-    .grid-content { column-count: 3; }
-}
-
-@media (max-width: 768px) {
-    .algorithm-categories-grid { grid-template-columns: 1fr; gap: 20px; }
-}
-
-@media (max-width: 600px) {
-    .search-input-section input {
-        max-width: calc(100% - 20px);
-        margin: 0 10px;
-    }
-}
-
 /* Content sections */
 .content-section {
     margin-top: 60px;

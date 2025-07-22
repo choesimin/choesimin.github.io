@@ -131,15 +131,3 @@ blockquote {
 #toc a.active {
   background-color: #f1f1f1;
 }
-
-/* Responsive design */
-@media (max-width: 1100px) {
-  .note-content {
-    width: 100%;
-    margin-right: 0;
-  }
-  
-  .toc-container {
-    display: none; /* Hide TOC on smaller screens */
-  }
-}

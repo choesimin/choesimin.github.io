@@ -9,7 +9,9 @@ body {
     background-color: white;
     color: black;
     font-family: "Noto Sans KR", sans-serif;
-    display: flex; /* Use flexbox for layout */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 a {
@@ -37,12 +39,42 @@ hr {
     border-width: 1px 0 0 0;
 }
 
+/* Header styling */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid black;
+    z-index: 1000;
+}
+
+.site-header .logo {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.site-header .logo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.site-header .logo a:hover {
+    text-decoration: underline;
+}
+
 main {
     flex: 1;
     line-height: 2;
     word-break: keep-all;
     overflow-wrap: break-word;
     padding: 20px;
+    padding-top: 70px; /* Fixed header 높이만큼 여유 공간 */
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -52,78 +84,36 @@ main {
 footer {
     padding: 20px;
     border-top: 1px solid black;
+    background: white;
 }
 
-/* Sidebar styling */
-.sidebar {
-    width: 250px;
-    flex-shrink: 0; /* Prevent sidebar from shrinking */
-    background-color: white;
-    border-right: 1px solid black;
-    height: 100vh;
-    position: sticky;
-    top: 0;
-    font-size: 15px;
+.footer-content {
     display: flex;
-    flex-direction: column;
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.sidebar::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari, Opera */
+.external-links {
+    display: flex;
+    gap: 20px;
 }
 
-/* Sidebar content area - scrollable */
-.sidebar-content {
-    flex: 1;
-    padding: 0 20px;
-    overflow-y: auto;
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-}
-
-.sidebar-content::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari, Opera */
-}
-
-/* Fixed footer for external links */
-.sidebar-footer {
-    padding: 10px 30px;
-    background-color: white;
-    position: relative;
-    z-index: 10;
-}
-
-/* Logo styling */
-.logo {
-    font-size: 32px;
-    font-weight: bold;
-    margin: 20px 0 10px 0;
-}
-
-.logo a {
-    letter-spacing: -1px; /* Tighter letter spacing */
+.external-link {
+    color: inherit;
     text-decoration: none;
-    color: black;
 }
 
-.logo a:hover {
+.external-link:hover {
     text-decoration: underline;
 }
 
-/* Introduction styling */
-.introduction {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+.copyright {
     font-size: 14px;
-    line-height: 1.5;
-    color: #555;
+    color: #666;
 }
 
-.introduction p {
-    margin: 0;
-}
 
 /* Category styling */
 .category-header {
@@ -229,37 +219,4 @@ footer {
     min-width: 30px; /* Ensure minimum width for better clickability */
     text-align: right;
     z-index: 1;      /* Ensure it's clickable above other elements */
-}
-
-/* Add container for main content and footer */
-.content-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    flex: 1;
-    padding: 0;
-    max-width: calc(100% - 250px); /* Subtract sidebar width from 100% */
-    overflow-x: hidden; /* Prevent horizontal scrolling on the wrapper */
-    box-sizing: border-box;
-}
-
-/* External links section styling */
-.external-links-horizontal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.external-link {
-    color: #666;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: normal;
-    padding: 8px 0;
-    transition: color 0.2s ease;
-}
-
-.external-link:hover {
-    color: #333;
-    text-decoration: underline;
 }
