@@ -15,6 +15,11 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
+}
+
+/* Only add margin when view-toggle is not in header */
+main .view-toggle,
+.tree-controls {
     margin: 30px 0;
 }
 
