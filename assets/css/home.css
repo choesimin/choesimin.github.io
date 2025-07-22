@@ -99,7 +99,7 @@ main .view-toggle,
 }
 
 .grid-content {
-    column-count: 4;
+    column-count: 2;
     column-gap: 20px;
     width: 100%;
     min-height: 100vh;
@@ -544,3 +544,31 @@ main .view-toggle,
     line-height: 1;
 }
 
+/* Responsive grid columns */
+@media (min-width: 2800px) {
+    .grid-content { column-count: 8; }
+}
+
+@media (min-width: 2400px) and (max-width: 2799px) {
+    .grid-content { column-count: 7; }
+}
+
+@media (min-width: 2000px) and (max-width: 2399px) {
+    .grid-content { column-count: 6; }
+}
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+    .grid-content { column-count: 5; }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .grid-content { column-count: 4; }
+}
+
+@media (min-width: 800px) and (max-width: 1199px) {
+    .grid-content { column-count: 3; }
+}
+
+@media (max-width: 799px) {
+    .grid-content { column-count: 2; }
+}
