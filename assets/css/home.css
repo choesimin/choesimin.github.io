@@ -280,7 +280,7 @@ main .view-toggle,
 
 .tree-toggle-icon {
     display: inline-block;
-    width: 16px;
+    width: 14px;
     text-align: center;
     transition: transform 0.2s ease;
     cursor: pointer;
@@ -289,7 +289,7 @@ main .view-toggle,
     font-size: 16px;
     margin-right: 4px;
     user-select: none;
-    padding: 2px;
+    padding: 0;
 }
 
 .tree-toggle-icon.open {
