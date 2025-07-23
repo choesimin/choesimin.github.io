@@ -20,7 +20,7 @@
 #viewControls {
     display: none;
     position: fixed;
-    top: 60px;
+    top: 38px;
     right: 20px;
     z-index: 1000;
 }
