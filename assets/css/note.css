@@ -132,8 +132,8 @@ blockquote {
   background-color: #f1f1f1;
 }
 
-/* Hide TOC on mobile */
-@media (max-width: 768px) {
+/* Hide TOC on smaller screens */
+@media (max-width: 1024px) {
   .toc-container {
     display: none;
   }
