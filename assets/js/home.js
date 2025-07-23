@@ -160,10 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Render the appropriate cluster view
       if (currentClusterView === 'tree') {
-        console.log('Rendering tree cluster view, D3 available:', typeof d3);
         renderClusterView();
       } else if (currentClusterView === 'radial') {
-        console.log('Rendering radial cluster view, D3 available:', typeof d3);
         renderRadialClusterView();
       }
     }
@@ -306,22 +304,16 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       const width = container.clientWidth || 928;
       
-      // Compute the tree height
       const hierarchyData = createHierarchicalData();
-      console.log('Hierarchy data:', hierarchyData);
-      
       const root = d3.hierarchy(hierarchyData);
     const dx = 10;
     const dy = width / (root.height + 1);
     
-    // Create a tree layout
     const tree = d3.cluster().nodeSize([dx, dy]);
     
-    // Sort the tree and apply the layout
     root.sort((a, b) => d3.ascending(a.data.name, b.data.name));
     tree(root);
     
-    // Compute the extent of the tree
     let x0 = Infinity;
     let x1 = -x0;
     root.each(d => {
@@ -329,7 +321,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (d.x < x0) x0 = d.x;
     });
     
-    // Compute the adjusted height of the tree - ensure minimum height for scrolling
     const calculatedHeight = x1 - x0 + dx * 2;
     const height = Math.max(calculatedHeight, window.innerHeight * 1.5);
     
@@ -340,7 +331,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('viewBox', [-dy / 3, x0 - dx, width, height])
       .attr('style', 'max-width: 100%; height: auto; font: 10px sans-serif;');
     
-    // Add links
     const link = svg.append('g')
       .attr('fill', 'none')
       .attr('stroke', '#555')
@@ -353,7 +343,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .x(d => d.y)
         .y(d => d.x));
     
-    // Add nodes
     const node = svg.append('g')
       .attr('stroke-linejoin', 'round')
       .attr('stroke-width', 3)
@@ -396,14 +385,12 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .on('mousemove', function(event) {
         if (tooltip) {
-          const tooltipWidth = 220; // Approximate tooltip width including padding
+          const tooltipWidth = 220;
           let leftPosition;
           
           if (event.pageX + tooltipWidth > window.innerWidth) {
-            // Show tooltip on the left when near right edge
             leftPosition = event.pageX - tooltipWidth - 10;
           } else {
-            // Show tooltip on the right (default)
             leftPosition = event.pageX + 10;
           }
           
@@ -435,24 +422,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     try {
-      // Specify the chart's dimensions - use screen height for better fit
       const width = container.clientWidth || 928;
       const height = Math.min(width, window.innerHeight * 1.2);
       const cx = width * 0.5;
       const cy = height * 0.5;
       const radius = Math.min(width, height) / 2 - 150;
       
-      // Create a radial cluster layout
       const tree = d3.cluster()
         .size([2 * Math.PI, radius])
       .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
     
-    // Sort the tree and apply the layout
     const hierarchyData = createHierarchicalData();
     const root = tree(d3.hierarchy(hierarchyData)
       .sort((a, b) => d3.ascending(a.data.name, b.data.name)));
     
-    // Creates the SVG container
     const svg = d3.select(container)
       .append('svg')
       .attr('width', width)
@@ -460,7 +443,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('viewBox', [-cx, -cy, width, height])
       .attr('style', 'width: 100%; height: auto; font: 10px sans-serif;');
     
-    // Append links
     svg.append('g')
       .attr('fill', 'none')
       .attr('stroke', '#555')
@@ -473,7 +455,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .angle(d => d.x)
         .radius(d => d.y));
     
-    // Append nodes
     svg.append('g')
       .selectAll()
       .data(root.descendants())
@@ -482,7 +463,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('fill', d => d.children ? '#555' : '#999')
       .attr('r', 2.5);
     
-    // Append labels
     svg.append('g')
       .attr('stroke-linejoin', 'round')
       .attr('stroke-width', 3)
@@ -520,14 +500,12 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .on('mousemove', function(event) {
         if (tooltip) {
-          const tooltipWidth = 220; // Approximate tooltip width including padding
+          const tooltipWidth = 220;
           let leftPosition;
           
           if (event.pageX + tooltipWidth > window.innerWidth) {
-            // Show tooltip on the left when near right edge
             leftPosition = event.pageX - tooltipWidth - 10;
           } else {
-            // Show tooltip on the right (default)
             leftPosition = event.pageX + 10;
           }
           
@@ -973,32 +951,4 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial display - restore saved state
   switchView(currentView);
 
-  // Category toggle functionality for algorithms page
-  function initializeCategoryToggle() {
-    document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('tree-toggle-icon')) {
-        const icon = event.target;
-        const treeItem = icon.closest('.tree-item');
-        const children = treeItem.nextElementSibling;
-        
-        if (children && children.classList.contains('tree-children')) {
-          // Toggle collapsed state
-          icon.classList.toggle('collapsed');
-          children.classList.toggle('collapsed');
-          
-          // Update icon
-          if (icon.classList.contains('collapsed')) {
-            icon.textContent = '▶';
-          } else {
-            icon.textContent = '▼';
-          }
-        }
-      }
-    });
-  }
-  
-  // Initialize category toggle if we're on algorithms page
-  if (window.location.pathname.includes('algorithms')) {
-    initializeCategoryToggle();
-  }
 });

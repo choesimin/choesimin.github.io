@@ -142,46 +142,22 @@ footer {
   z-index: 100;
 }
 
-/* Consolidated list styling */
-#treeList ul,
-#graphicsList ul {
+/* Tree list styling */
+#treeList ul {
     list-style: none;
     padding-left: 12px;
 }
 
-#treeList li,
-#graphicsList li {
+#treeList li {
     margin-top: 6px;
 }
 
-#treeList a,
-#graphicsList a {
+#treeList a {
     text-decoration: none;
 }
 
-#treeList a:hover,
-#graphicsList a:hover {
+#treeList a:hover {
     text-decoration: underline;
-}
-
-/* Graphic list specific styling */
-#graphicsList li {
-    margin-top: 10px;
-}
-
-#graphicsList a {
-    display: block;
-}
-
-#graphicsList .graphic-title {
-    display: block;
-}
-
-#graphicsList .graphic-description {
-    display: block;
-    font-size: 14px;
-    color: #666;
-    margin-top: 2px;
 }
 
 /* Classes to replace inline styles */
@@ -196,27 +172,4 @@ footer {
 /* Clean up general styling */
 .hidden {
     display: none;
-}
-
-/* Classes for note tree styling */
-.list-item-relative {
-    position: relative;
-}
-
-.content-container {
-    display: inline-block;
-    width: 85%;
-    word-wrap: break-word;
-}
-
-.right-container {
-    position: absolute;
-    right: 0;
-    top: 0;
-    display: inline-block;
-    padding: 0 5px;  /* Add padding to increase clickable area */
-    height: 100%;    /* Make the container take full height */
-    min-width: 30px; /* Ensure minimum width for better clickability */
-    text-align: right;
-    z-index: 1;      /* Ensure it's clickable above other elements */
 }

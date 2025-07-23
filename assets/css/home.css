@@ -144,22 +144,6 @@ main .view-toggle,
     font-style: normal;
 }
 
-.tree-search input {
-    width: 100%;
-    max-width: 800px;
-    padding: 6px 10px;
-    font-size: 13px;
-    border: none;
-    border-bottom: 1px solid #aaa;
-    background: transparent;
-    outline: none;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.tree-search input:focus {
-    border-bottom-color: #000;
-}
 
 /* Note cards */
 .note-card {
@@ -208,8 +192,7 @@ main .view-toggle,
     margin: 0 auto;
 }
 
-.search-results ul,
-#treeSearchResult {
+.search-results ul {
     list-style: none;
     padding: 10px 0 0 12px;
     margin: 0;
@@ -218,8 +201,7 @@ main .view-toggle,
     background-color: var(--background-color, white);
 }
 
-.search-results li,
-#treeSearchResult li {
+.search-results li {
     margin-bottom: 10px;
     padding: 10px 15px;
     border: 1px solid #eee;
@@ -228,20 +210,14 @@ main .view-toggle,
     list-style: none;
 }
 
-.search-results li:hover,
-#treeSearchResult li:hover {
+.search-results li:hover {
     background-color: #f0f0f0;
 }
 
-.search-results a,
-#treeSearchResult a {
+.search-results a {
     text-decoration: none;
     color: inherit;
     display: block;
-}
-
-#treeSearchResult a:hover {
-    text-decoration: underline;
 }
 
 .no-results {
@@ -258,11 +234,6 @@ main .view-toggle,
     max-width: 800px;
     margin: 0;
     font-size: 11px;
-}
-
-.tree-search {
-    margin: 10px 0;
-    width: 100%;
 }
 
 .tree-list {
@@ -445,33 +416,6 @@ main .view-toggle,
     margin-left: 8px;
 }
 
-/* Algorithm categories layout */
-.algorithm-categories-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 20px;
-}
-
-.category-column {
-    min-height: 0;
-}
-
-.category-header-item {
-    margin-bottom: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.category-header-item .tree-text {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.category-children {
-    margin-left: 20px;
-    margin-bottom: 30px;
-}
 
 /* Graphics grid layout */
 .graphics-list {
