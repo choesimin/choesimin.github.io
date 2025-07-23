@@ -580,3 +580,10 @@ main .view-toggle,
 @media (max-width: 799px) {
     .grid-content { column-count: 2; }
 }
+
+/* Hide cluster button on small screens */
+@media (max-width: 1279px) {
+    #clusterViewBtn {
+        display: none;
+    }
+}
