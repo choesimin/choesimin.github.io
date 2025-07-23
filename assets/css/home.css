@@ -280,15 +280,16 @@ main .view-toggle,
 
 .tree-toggle-icon {
     display: inline-block;
-    width: 12px;
+    width: 16px;
     text-align: center;
     transition: transform 0.2s ease;
     cursor: pointer;
     color: #333;
     flex-shrink: 0;
-    font-size: 12px;
-    margin-right: 8px;
+    font-size: 16px;
+    margin-right: 4px;
     user-select: none;
+    padding: 2px;
 }
 
 .tree-toggle-icon.open {
@@ -333,7 +334,7 @@ main .view-toggle,
 }
 
 .tree-count {
-    font-size: 9px;
+    font-size: 12px;
     color: #888;
     font-weight: normal;
     white-space: nowrap;
