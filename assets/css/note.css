@@ -41,6 +41,10 @@ td {
     padding: 5px 10px;
 }
 
+code {
+  font-size: 0.88rem;
+}
+
 code.hljs {
   border: 1px solid black;
   line-height: 1.2;
@@ -89,12 +93,12 @@ blockquote {
 .toc-sticky {
   border-left: 1px solid #eee;
   padding-left: 15px;
-  font-size: 14px;
+  font-size: 0.88rem;
 }
 
 .toc-sticky h3 {
   margin-top: 0;
-  font-size: 19px;
+  font-size: 1.19rem;
   color: #333;
   margin-bottom: 15px;
 }

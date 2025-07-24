@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .style('color', 'white')
         .style('padding', '10px')
         .style('border-radius', '5px')
-        .style('font-size', '12px')
+        .style('font-size', '0.75rem')
         .style('max-width', '200px')
         .style('z-index', '1000')
         .style('pointer-events', 'none');
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('width', width)
       .attr('height', height)
       .attr('viewBox', [-dy / 3, x0 - dx, width, height])
-      .attr('style', 'max-width: 100%; height: auto; font: 10px sans-serif;');
+      .attr('style', 'max-width: 100%; height: auto; font: 0.63rem sans-serif;');
     
     const link = svg.append('g')
       .attr('fill', 'none')
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('width', width)
       .attr('height', height)
       .attr('viewBox', [-cx, -cy, width, height])
-      .attr('style', 'width: 100%; height: auto; font: 10px sans-serif;');
+      .attr('style', 'width: 100%; height: auto; font: 0.63rem sans-serif;');
     
     svg.append('g')
       .attr('fill', 'none')

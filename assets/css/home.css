@@ -5,7 +5,7 @@
 }
 
 .page-title {
-    font-size: 33px;
+    font-size: 2.06rem;
     margin: 0;
 }
 
@@ -35,7 +35,7 @@ main .view-toggle,
     background: none;
     border: none;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1rem;
     color: inherit;
     cursor: pointer;
     padding: 0;
@@ -82,7 +82,7 @@ main .view-toggle,
 }
 
 .cluster-text {
-    font-size: 12px;
+    font-size: 0.75rem;
     fill: #333;
     text-anchor: middle;
     pointer-events: none;
@@ -94,7 +94,7 @@ main .view-toggle,
     color: white;
     padding: 5px 10px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 0.75rem;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s;
@@ -126,7 +126,7 @@ main .view-toggle,
 .search-input-section input {
     width: 100%;
     padding: 12px;
-    font-size: 14px;
+    font-size: 0.88rem;
     line-height: 1.3;
     border: 1px solid black;
     background: white;
@@ -170,7 +170,7 @@ main .view-toggle,
 .note-card h3,
 .note-card .search-title {
     margin: 0 0 8px 0;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.3;
     font-weight: bold;
     color: #333;
@@ -180,7 +180,7 @@ main .view-toggle,
 .note-card .search-description {
     margin: 0;
     color: #666;
-    font-size: 14px;
+    font-size: 0.88rem;
     line-height: 1.3;
     word-wrap: break-word;
 }
@@ -224,7 +224,7 @@ main .view-toggle,
     text-align: center;
     padding: 40px 20px;
     color: #666;
-    font-size: 18px;
+    font-size: 1.13rem;
     column-span: all;
 }
 
@@ -233,11 +233,11 @@ main .view-toggle,
     width: 100%;
     max-width: 800px;
     margin: 0;
-    font-size: 11px;
+    font-size: 0.69rem;
 }
 
 .tree-list {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.2;
 }
 
@@ -286,7 +286,7 @@ main .view-toggle,
     cursor: pointer;
     color: #333;
     flex-shrink: 0;
-    font-size: 16px;
+    font-size: 1rem;
     margin-right: 4px;
     user-select: none;
     padding: 0;
@@ -334,7 +334,7 @@ main .view-toggle,
 }
 
 .tree-count {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #888;
     font-weight: normal;
     white-space: nowrap;
@@ -386,33 +386,33 @@ main .view-toggle,
 
 .item-card h3 {
     margin: 0 0 10px 0;
-    font-size: 19px;
+    font-size: 1.19rem;
     color: #333;
 }
 
 .item-card p {
     margin: 0;
     color: #666;
-    font-size: 14px;
+    font-size: 0.88rem;
     line-height: 1.4;
 }
 
 /* Graphics and algorithm specific styling */
 .graphic-description {
-    font-size: 14px;
+    font-size: 0.88rem;
     color: #666;
     margin-top: 4px;
     line-height: 1.4;
 }
 
 .item-date {
-    font-size: 13px;
+    font-size: 0.81rem;
     color: #999;
     margin-top: 4px;
 }
 
 .algorithm-tag {
-    font-size: 14px;
+    font-size: 0.88rem;
     color: #666;
     margin-left: 8px;
 }
@@ -450,7 +450,7 @@ main .view-toggle,
     left: 0;
     right: 0;
     bottom: 0;
-    font-size: 18px;
+    font-size: 1.13rem;
     text-align: center;
     padding: 20px;
     line-height: 1.3;
@@ -490,7 +490,7 @@ main .view-toggle,
     position: absolute;
     bottom: 8px;
     right: 10px;
-    font-size: 10px;
+    font-size: 0.63rem;
     color: #888;
     font-weight: lighter;
     z-index: 10;

@@ -1,6 +1,14 @@
 html {
     scroll-padding-top: 150px;
     scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+/* 모바일 폰트 사이즈 */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
 }
 
 body {
@@ -54,7 +62,6 @@ hr {
     z-index: 1000;
 }
 
-/* 모바일에서 header 여백도 줄이기 */
 @media (max-width: 768px) {
     .site-header {
         padding: 5px 10px;
@@ -62,7 +69,7 @@ hr {
 }
 
 .site-header .logo {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -88,7 +95,7 @@ main {
     overflow-x: hidden;
 }
 
-/* 모바일에서 좌우 여백 줄이기 */
+/* 모바일 여백 */
 @media (max-width: 768px) {
     main {
         padding: 10px;
@@ -102,7 +109,6 @@ footer {
     background: white;
 }
 
-/* 모바일에서 footer 여백도 줄이기 */
 @media (max-width: 768px) {
     footer {
         padding: 10px;
@@ -132,7 +138,7 @@ footer {
 }
 
 .copyright {
-    font-size: 14px;
+    font-size: 0.88rem;
     color: #666;
 }
 
@@ -142,7 +148,7 @@ footer {
     cursor: pointer;
     padding: 10px 0;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 1.13rem;
 }
 
 .category-header:hover {
@@ -151,7 +157,7 @@ footer {
 
 .count-display {
     margin-left: 8px;
-    font-size: 11px;
+    font-size: 0.69rem;
 }
 
 #progressBar {
