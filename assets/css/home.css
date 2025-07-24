@@ -248,7 +248,7 @@ main .view-toggle,
 }
 
 .tree-list .root > li {
-    margin: 30px 0;
+    margin: 16px 0;
     font-weight: bold;
 }
 
@@ -518,12 +518,21 @@ main .view-toggle,
     .grid-content { column-count: 4; }
 }
 
-@media (min-width: 800px) and (max-width: 1199px) {
+@media (min-width: 769px) and (max-width: 1199px) {
     .grid-content { column-count: 3; }
 }
 
-@media (max-width: 799px) {
-    .grid-content { column-count: 2; }
+@media (max-width: 768px) {
+    .search-input-section {
+        margin-bottom: 10px;
+    }
+    .grid-content { 
+        column-count: 2;
+        column-gap: 10px;
+    }
+    .note-card {
+        margin: 0 0 10px 0;
+    }
 }
 
 /* Hide cluster button on small screens */
