@@ -1,10 +1,9 @@
 ---
 layout: note
-permalink: /???
+permalink: /357
 title: Embedding - 비정형 Data를 Vector로 변환하는 AI 핵심 기술
 description: embedding은 의미적으로 유사한 data들이 수학적으로도 가까운 거리에 위치하도록 하여, AI가 인간의 언어와 개념을 이해할 수 있게 합니다.
 date: 2025-07-24
-published: false
 ---
 
 

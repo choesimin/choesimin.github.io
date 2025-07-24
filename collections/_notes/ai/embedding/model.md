@@ -1,23 +1,22 @@
 ---
 layout: note
-permalink: /???
+permalink: /358
 title: Embedding Model - Vector 변환 전용 AI Model
 description: embedding model은 text나 image를 숫자 vector로 변환하는 것만을 목적으로 하는 specialized AI model입니다.
 date: 2025-07-24
-published: false
 ---
 
 
-# Embedding Model : 비정형 Data를 Vector로 변환하는 전용 AI Model
+## Embedding Model : 비정형 Data를 Vector로 변환하는 전용 AI Model
 
 - embedding model은 text, image 등을 **vector로 변환하는 것만을 목적**으로 만들어진 specialized AI model입니다.
     - 일반적인 ChatGPT나 Claude 같은 대화형 AI와 달리, embedding model은 대화나 text 생성 기능이 전혀 없습니다.
     - 오직 input을 받아서 고정된 크기의 숫자 list(vector)로 변환하는 **"변환기" 역할**만 수행합니다.
 
-- embedding model은 항상 **다른 system과 조합하여 사용**되며, 큰 AI system의 한 "부품" 역할을 합니다.
-    - 사용자 input을 embedding model이 vector로 변환합니다.
-    - vector 검색으로 관련 정보를 찾습니다.
-    - 찾은 정보를 LLM에 전달하여 최종 답변을 생성합니다.
+- embedding model은 **항상 다른 system과 조합하여 사용**되며, 큰 AI system의 한 "부품" 역할을 합니다.
+    1. 사용자 input을 embedding model이 vector로 변환합니다.
+    2. vector 검색으로 관련 정보를 찾습니다.
+    3. 찾은 정보를 LLM에 전달하여 최종 답변을 생성합니다.
 
 
 ---
@@ -276,3 +275,4 @@ published: false
 - <https://huggingface.co/blog/sentence-transformers>
 - <https://platform.openai.com/docs/guides/embeddings>
 - <https://www.microsoft.com/en-us/research/blog/e5-large-scale-fine-tuning-for-text-embeddings/>
+
