@@ -54,6 +54,13 @@ hr {
     z-index: 1000;
 }
 
+/* 모바일에서 header 여백도 줄이기 */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 5px 10px;
+    }
+}
+
 .site-header .logo {
     font-size: 24px;
     font-weight: bold;
@@ -81,10 +88,25 @@ main {
     overflow-x: hidden;
 }
 
+/* 모바일에서 좌우 여백 줄이기 */
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+        padding-top: 55px;
+    }
+}
+
 footer {
     padding: 20px;
     border-top: 1px solid black;
     background: white;
+}
+
+/* 모바일에서 footer 여백도 줄이기 */
+@media (max-width: 768px) {
+    footer {
+        padding: 10px;
+    }
 }
 
 .footer-content {
