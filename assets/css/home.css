@@ -533,6 +533,14 @@ main .view-toggle,
     .note-card {
         margin: 0 0 10px 0;
     }
+    #viewControls {
+        top: 32px;
+        right: 10px;
+        gap: 10px;
+    }
+    .view-toggle {
+        gap: 10px;
+    }
 }
 
 /* Hide cluster button on small screens */

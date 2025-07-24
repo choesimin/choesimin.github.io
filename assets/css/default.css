@@ -4,13 +4,6 @@ html {
     font-size: 16px;
 }
 
-/* 모바일 폰트 사이즈 */
-@media (max-width: 768px) {
-    html {
-        font-size: 14px;
-    }
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -62,12 +55,6 @@ hr {
     z-index: 1000;
 }
 
-@media (max-width: 768px) {
-    .site-header {
-        padding: 5px 10px;
-    }
-}
-
 .site-header .logo {
     font-size: 1.5rem;
     font-weight: bold;
@@ -96,23 +83,10 @@ main {
 }
 
 /* 모바일 여백 */
-@media (max-width: 768px) {
-    main {
-        padding: 10px;
-        padding-top: 55px;
-    }
-}
-
 footer {
     padding: 20px;
     border-top: 1px solid black;
     background: white;
-}
-
-@media (max-width: 768px) {
-    footer {
-        padding: 10px;
-    }
 }
 
 .footer-content {
@@ -205,3 +179,20 @@ footer {
 .hidden {
     display: none;
 }
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    main {
+        padding: 10px;
+        padding-top: 55px;
+    }
+    footer {
+        padding: 10px;
+    }
+    .site-header {
+        padding: 5px 10px;
+    }
+}
+
