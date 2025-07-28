@@ -105,8 +105,8 @@ class Loan {
 
 - UseCase는 객체이며, 함수와 data 요소를 포함합니다.
     - application에 특화된 업무 규칙을 구현하는 하나 이상의 함수를 제공합니다.
-    - 입력 data, 출력 data, UseCase가 상호 작용하는 Entity에 대한 참조 data 등의 data 요소를 포함합니다.
-        - 이를 통해 사용자와 entity 사이의 상호 작용을 규정합니다.
+    - 입력 data, 출력 data, UseCase가 상호작용하는 Entity에 대한 참조 data 등의 data 요소를 포함합니다.
+        - 이를 통해 사용자와 entity 사이의 상호작용을 규정합니다.
 
 #### UseCase와 Entity 사이의 의존성
 

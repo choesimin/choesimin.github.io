@@ -18,7 +18,7 @@ date: 2023-08-26
 - SVG graphic은 `<svg>` tag를 사용하여 다른 HTML 요소처럼 HTML 문서 안에 바로 markup하는 것이 가능합니다.
 - `<object>`, `<img>`, `<iframe>` 요소를 통해 외부 file(`.svg`)에 작성된 SVG를 HTML 문서로 불러올 수도 있습니다.
 
-- SVG는 CSS로 꾸미거나 JavaScript로 동적 효과를 적용할 수 있으며, 상호 작용(interactive)이 가능하고 동적(dynamic)입니다.
+- SVG는 CSS로 꾸미거나 JavaScript로 동적 효과를 적용할 수 있으며, 상호작용(interactive)이 가능하고 동적(dynamic)입니다.
     - 예를 들어, 특정 event에 반응하는 animation을 적용할 수 있습니다.
 
 

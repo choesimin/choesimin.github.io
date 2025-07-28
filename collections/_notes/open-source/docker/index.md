@@ -51,7 +51,7 @@ date: 2025-04-07
 - client-server 구조로 작동합니다.
     - Docker daemon : server 역할을 하며 container를 관리합니다.
     - REST API : daemon과 통신하기 위한 interface를 제공합니다.
-    - Docker CLI : command line interface로 사용자가 Docker와 상호 작용합니다.
+    - Docker CLI : command line interface로 사용자가 Docker와 상호작용합니다.
 
 
 ### Docker Image

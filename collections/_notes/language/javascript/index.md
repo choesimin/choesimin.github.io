@@ -109,7 +109,7 @@ date: 2023-12-13
     - browser를 대상으로 만든 언어이기 때문에, 저수준 영역에 접근이 필요하지 않습니다.
 
 - JavaScript의 능력은 실행 환경에 크게 영향을 받습니다.
-    - browser 환경에선 web page 조작, client와 server의 상호 작용에 관한 모든 일을 할 수 있습니다.
+    - browser 환경에선 web page 조작, client와 server의 상호작용에 관한 모든 일을 할 수 있습니다.
     - Node.js 환경에선 임의의 file을 읽거나 쓰고, network 요청을 수행하는 함수를 지원합니다.
 
 
@@ -135,7 +135,7 @@ date: 2023-12-13
     - modern browser를 사용하면 file을 다룰 수는 있지만 접근이 제한됩니다.
         - 사용자가 browser 창에 file을 '끌어다 두거나(drag & drop)', `<input>` tag를 통해 file을 선택할 때와 같이, 특정 상황에서만 file 접근을 허용합니다.
 
-2. camera나 mike 같은 device와 상호 작용하려면 사용자의 명시적인 허가가 있어야 합니다.
+2. camera나 mike 같은 device와 상호작용하려면 사용자의 명시적인 허가가 있어야 합니다.
     - JavaScript가 활성화된 page라도 사용자 몰래 web camera를 작동시켜 수집한 정보를 국가안보국(NSA)과 같은 곳에 몰래 전송할 수 없습니다.
     - browser에서 사용자가 허용 설정을 해주어야 사용할 수 있습니다.
 

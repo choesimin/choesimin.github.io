@@ -22,7 +22,7 @@ date: 2025-06-21
 - **module 연관성 최소화**를 통해 각 module이 독립적으로 동작할 수 있도록 설계합니다.
     - module 간 불필요한 의존 관계를 제거합니다.
     - 각 module이 자체적으로 완결된 기능을 제공하도록 구성합니다.
-- **interface 의존성 관리**로 module 간 상호 작용을 명확한 경계로 제한합니다.
+- **interface 의존성 관리**로 module 간 상호작용을 명확한 경계로 제한합니다.
     - 잘 정의된 interface를 통해서만 module 간 통신이 이루어집니다.
     - 내부 구현 세부 사항은 외부에 노출되지 않습니다.
 - **복잡성 감소**를 통해 system의 이해와 관리가 용이해집니다.
@@ -44,7 +44,7 @@ date: 2025-06-21
 
 ### 자료 결합도 (Data Coupling)
 
-- **module 간 interface로 전달되는 parameter를 통해서만 상호 작용**이 일어나는 가장 낮은 결합도입니다.
+- **module 간 interface로 전달되는 parameter를 통해서만 상호작용**이 일어나는 가장 낮은 결합도입니다.
     - module 간 interface가 단순 자료 요소로만 구성됩니다.
     - 주고받는 data는 **순수한 자료형 요소**로 logic 제어 기능이 없습니다.
 - **module을 변경하더라도 다른 module에는 영향을 미치지 않는** 이상적인 결합 상태입니다.
@@ -249,7 +249,7 @@ public class ConfigurationManager {
 
 ### 공통 결합도 (Common Coupling)
 
-- **parameter가 아닌 module 밖에 선언된 전역 변수를 참조하고 갱신**하는 식으로 상호 작용하는 결합도입니다.
+- **parameter가 아닌 module 밖에 선언된 전역 변수를 참조하고 갱신**하는 식으로 상호작용하는 결합도입니다.
     - 여러 module이 하나의 공통 data 영역을 사용하는 경우입니다.
     - **공통 data 영역의 내용을 변경하면 이를 참조하는 모든 module에 영향**을 줍니다.
 

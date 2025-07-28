@@ -17,7 +17,7 @@ date: 2025-05-21
 - 통신사 network를 통해 제공되며, 대표적으로 SMS, LMS, MMS, RCS로 구분됩니다.
     - 각 service마다 특징과 제한 사항이 있습니다.
 
-- 단순 문자만 전송 가능하던 SMS에서, 풍부한 상호 작용이 가능한 RCS로의 진화는, mobile message service의 발전 역사를 잘 보여줍니다.
+- 단순 문자만 전송 가능하던 SMS에서, 풍부한 상호작용이 가능한 RCS로의 진화는, mobile message service의 발전 역사를 잘 보여줍니다.
 
 - RCS의 예시로는, Google의 Android Messages, Samsung의 Messages, Apple의 iMessage 등이 있습니다.
 

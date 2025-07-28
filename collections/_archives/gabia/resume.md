@@ -266,4 +266,4 @@ AWS의 기본적인 서비스를 익히려는 노력 외에도, 기술 트렌드
 `HTML` `CSS` `JavaScript` `TypeScript` `Next.js` `React` `MUI` `Tailwind`
 
 - **TypeScript**와 **프론트엔드 프레임워크**(Next.js, React)를 활용하여 동적인 웹 애플리케이션을 구현할 수 있습니다.
-- HTML, CSS, JavaScript를 사용하여 **사용자 상호 작용을 기반으로 하는 그래픽 요소**를 구현할 수 있습니다. 작업물은 [**여기**](https://www.simin.im/graphics)에서 확인하실 수 있습니다.
+- HTML, CSS, JavaScript를 사용하여 **사용자 상호작용을 기반으로 하는 그래픽 요소**를 구현할 수 있습니다. 작업물은 [**여기**](https://www.simin.im/graphics)에서 확인하실 수 있습니다.

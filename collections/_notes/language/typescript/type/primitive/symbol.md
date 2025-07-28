@@ -115,7 +115,7 @@ console.log(JSON.stringify(myObject));
 
 - 전역 symbol registry는 전역적으로 공유되어야 하는 고유한 식별자를 생성하고자 할 때 사용합니다.
     - 예를 들어, 여러 module이나 package에서 동일한 식별자를 참조해야 하는 경우, `Symbol.for()`를 사용하여 동일한 symbol을 안전하게 공유할 수 있습니다.
-    - 이는 이름 충돌 없이 module 간의 상호 작용을 구현하는 데 도움이 됩니다.
+    - 이는 이름 충돌 없이 module 간의 상호작용을 구현하는 데 도움이 됩니다.
     - application 전반에서 symbol 값의 일관성을 유지할 수 있으며, debugging이나 code의 이해를 돕는 데에도 유용하게 사용될 수 있습니다.
 
 

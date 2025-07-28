@@ -149,7 +149,7 @@ mixer ----> result
 - 위 질문들에 대한 답을 하면서 후보 tweet들을 생성하고, logistic 회귀 model을 사용하여 결과 tweet들의 순위를 매깁니다.
     - 이런 유형의 graph 순회(traversal)는 Out-of-Network 추천에 필수적입니다.
     - Twitter는 graph 순회를 실행하기 위해 자체 개발한 [GraphJet](https://www.vldb.org/pvldb/vol9/p1281-sharma.pdf)을 사용합니다.
-        - GraphJet : 사용자와 tweet 간의 실시간 상호 작용 graph를 유지하는 graph 처리 engine입니다.
+        - GraphJet : 사용자와 tweet 간의 실시간 상호작용 graph를 유지하는 graph 처리 engine입니다.
 
 #### Embedding 공간 접근법
 
@@ -189,7 +189,7 @@ mixer ----> result
         - 후보의 출처가 어디인지 상관하지 않습니다.
 
 - 사용자의 긍정적 참여(좋아요, Retweet, 댓글 등)를 유도하기 위해 지속적으로 학습되어 온 신경망을 사용하여 적합한 순위를 매깁니다.
-    - 이 신경망은 최대 4800만 개의 parameter로 tweet 간의 상호 작용에 대해서 학습한 신경망입니다.
+    - 이 신경망은 최대 4800만 개의 parameter로 tweet 간의 상호작용에 대해서 학습한 신경망입니다.
 
 - 신경망을 이용한 ranking mechanism은 각 tweet에 점수를 주고, 이 점수로 tweet의 순위를 매깁니다.
     - ranking mechanism은 수천 개의 feature로 10개의 label을 예측합니다.

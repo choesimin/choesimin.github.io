@@ -197,11 +197,11 @@ flowchart TB
     - 각 partition은 특정 범위의 계좌를 담당하도록 설계하여 load balancing을 구현합니다.
     - transaction 처리 결과는 별도의 topic에 기록하여 감사(audit) 추적이 가능하도록 합니다.
 
-5. **Social Media 활동 분석** : 사용자 상호 작용, content 생성, 참여 활동 등을 분석하는 system.
+5. **Social Media 활동 분석** : 사용자 상호작용, content 생성, 참여 활동 등을 분석하는 system.
     - 게시물 작성, 댓글, 좋아요 등 각 활동 유형별로 topic을 구성합니다.
     - 사용자 ID를 key로 사용하여 특정 사용자의 활동 sequence를 유지합니다.
     - 인기 있는 content에 대한 활동은 별도의 topic으로 분리하여 실시간 trend 분석에 활용합니다.
-    - 여러 consumer가 사용자 행동 pattern, content 인기도, 사용자 간 상호 작용 등의 다양한 분석을 병렬로 수행합니다.
+    - 여러 consumer가 사용자 행동 pattern, content 인기도, 사용자 간 상호작용 등의 다양한 분석을 병렬로 수행합니다.
 
 6. **배달 Service Platform** : 음식 주문과 배달 과정을 추적하고 관리하는 system.
     - 주문 접수, 음식 준비, 배달원 할당, 배달 상태 등 배달 lifecycle의 각 단계별로 topic을 구성합니다.

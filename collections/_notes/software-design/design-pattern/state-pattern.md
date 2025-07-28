@@ -122,7 +122,7 @@ State <|.. ConcreteStateB
         - 따라서 `Context`에서 상태를 바꾸기만 하면 행동도 바뀌게 됩니다.
 
 3. **`Context` Class** : 상태를 사용하는 객체.
-    - `Context` class는 사용자(`Client`)가 상호 작용하는 주 객체로, 여러 상태를 가질 수 있습니다.
+    - `Context` class는 사용자(`Client`)가 상호작용하는 주 객체로, 여러 상태를 가질 수 있습니다.
     - `Context` 객체의 상태가 변경될 때, **`State` interface type의 상태 변수를 다른 구체적인 상태 객체(`ConcreteState`)로 교체**하여, 객체의 행동을 변경합니다.
         - `request()` method는 `state.handle()`을 호출하여 구체적인 상태 객체(`ConcreteState`)에게 작업(행동)을 위임합니다.
     - `Context` 객체는 추상화된 상태(`State`)만을 알고 있습니다.

@@ -9,7 +9,7 @@ date: 2024-01-10
 
 ## Observer Pattern - 객체 상태 변화에 대한 알림 받기
 
-- Observer Pattern은 객체의 상태 변화를 관찰하는 객체들에게 자동으로 알리는 방식으로 객체 간의 결합도를 낮추고 상호 작용을 관리하는 design pattern입니다.
+- Observer Pattern은 객체의 상태 변화를 관찰하는 객체들에게 자동으로 알리는 방식으로 객체 간의 결합도를 낮추고 상호작용을 관리하는 design pattern입니다.
 
 - Observer Pattern에서는 한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 모든 객체들한테 연락이 가고, 자동으로 내용이 갱신되는 방식으로 작동합니다.
     - 따라서, 객체들 사이에서 일대다(one-to-many) 의존성을 정의하게 됩니다.
@@ -82,7 +82,7 @@ note for ConcreteObserver "구현한 observer에서 사용할 기타 method들�
 ## Observer Parttern의 느슨한 결합
 
 - observer pattern에서는 subject와 obserer가 느슨하게 결합되어 있는 객체 design을 제공합니다.
-    - "두 객체가 느슨하게 결합(loose coupling)되어 있다."는 말은 "그 둘이 상호 작용을 하긴 하지만 서로에 대해 잘 모른다"는 말과 같습니다.
+    - "두 객체가 느슨하게 결합(loose coupling)되어 있다."는 말은 "그 둘이 상호작용을 하긴 하지만 서로에 대해 잘 모른다"는 말과 같습니다.
 
 1. subject가 observer에 대해서 아는 것은 observer가 특정 interface(observer interface)를 구현한다는 것 뿐입니다.
     - observer의 concrete class가 무엇인지, observer가 무엇을 하는지 등에 대해서는 알 필요가 없습니다.

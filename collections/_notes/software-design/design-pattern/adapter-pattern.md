@@ -2,7 +2,7 @@
 layout: note
 permalink: /99
 title: Adapter Pattern - Interface 호환시키기
-description: Adapter Pattern은 서로 다른 interface를 가진 class들이 상호 작용할 수 있도록 하는 design pattern입니다.
+description: Adapter Pattern은 서로 다른 interface를 가진 class들이 상호작용할 수 있도록 하는 design pattern입니다.
 date: 2024-02-14
 ---
 
@@ -34,7 +34,7 @@ adapter -->|호환 작업| adapter
 adapter -->|변환된 요청| adaptee
 ```
 
-- Adapter Pattern은 서로 다른 interface를 가진 class들이 상호 작용할 수 있도록 합니다.
+- Adapter Pattern은 서로 다른 interface를 가진 class들이 상호작용할 수 있도록 합니다.
     - Adapter Pattern을 사용하면 class의 interface를 다른 interface로 변환할 수 있습니다.
     - 기존의 class를 수정하지 않고도 특정 interface를 변환하여 다른 code에서 그대로 사용하는 것이 가능합니다.
 
