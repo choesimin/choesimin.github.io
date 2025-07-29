@@ -17,7 +17,7 @@ ksqlDB의 Join = raw event data + contextual data = Meaningful Business Data
 
 - ksqlDB의 Join은 **실시간으로 흐르는 raw event data에 contextual data(문맥 정보)를 결합하는 mechanism**입니다. 
     - 일반적으로 streaming system에서 흐르는 event data는 경량화와 처리 효율성을 위해 최소한의 필수 정보만을 포함합니다.
-    - 하지만 이러한 raw data만으로는 실질적인 business 의사결정이나 분석에 필요한 충분한 정보를 갖지 못합니다.
+    - 하지만 이러한 raw data만으로는 실질적인 business 의사 결정이나 분석에 필요한 충분한 정보를 갖지 못합니다.
     - 이때 Join을 통해 이 raw event에 **부가적인 문맥 정보(contextual data)를 실시간으로 보강**할 수 있습니다.
     - 기존 batch 처리 방식과 달리 **event가 발생하는 즉시 필요한 정보가 결합**됩니다.
 

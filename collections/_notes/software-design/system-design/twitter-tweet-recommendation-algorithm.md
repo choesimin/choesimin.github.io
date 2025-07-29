@@ -202,7 +202,7 @@ mixer ----> result
 ## 3. Heuristics & Filters : Filter out specific preferences
 
 - 순위를 매기고 나면, heuristic과 filter를 적용하여, 다양하고 균형 잡힌 feed들이 생성될 수 있도록 합니다.
-    - heuristic algorithm : 불충분한 시간이나 정보로 인하여 합리적인 판단을 할 수 없거나, 체계적이면서 합리적인 판단이 굳이 필요하지 않은 상황에서 빠른 의사결정을 할 수 있도록 고안된 computer altorithm.
+    - heuristic algorithm : 불충분한 시간이나 정보로 인하여 합리적인 판단을 할 수 없거나, 체계적이면서 합리적인 판단이 굳이 필요하지 않은 상황에서 빠른 의사 결정을 할 수 있도록 고안된 computer altorithm.
 
 1. Visibility Filtering
     - tweet의 내용과 사용자의 선호도에 따라 tweet들을 filtering합니다.

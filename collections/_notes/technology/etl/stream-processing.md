@@ -53,7 +53,7 @@ date: 2024-12-26
     - record A를 record B로 변환하여 다른 topic이나 다른 data store로 전송하는 처리 등이 일반적입니다.
 
 - **Stateful Processing** : 도착한 event record나 그것을 기초로 생성한 data를 일정 기간 보관 유지해 두고, 그것과 조합하여 결과를 생성하는 처리 방식.
-    - 이전 event들을 기억해 두고, 기억해둔 event들을 의사결정에 활용합니다.
+    - 이전 event들을 기억해 두고, 기억해둔 event들을 의사 결정에 활용합니다.
     - 일반적으로 event count를 집계하여 합계, 평균 및 histogram을 산출하거나, 처리 효율성을 위해 buffering하여 처리한다거나, 다른 stream과 data store의 data를 결합하여 data의 질을 높이는 상황 등이 stateful processing에 속합니다.
         - 예를 들어, 주식 가격이 이전 5분 동안 계속 상승했는지를 알고 싶다면, stream processing system은 실시간으로 이전 event들을 전부 기억하고 순서대로 처리해야 합니다.
 
