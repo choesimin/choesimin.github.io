@@ -54,7 +54,7 @@ date: 2025-07-29
 - **필요 역량** : AI model의 특성, 한계, 최적화 기법에 대한 전문 지식이 필요합니다.
 
 
-### Prompt Engineering링의 기본 요소
+### Prompt Engineering의 기본 요소
 
 - prompt engineering은 특정 목표를 달성하기 위해 prompt를 수정하는 작업이기 때문에 기본 요소를 이해하는 것이 중요합니다.
 - prompt engineering의 기본 요소에는 **지시 사항, 맥락, 입력 정보, 출력 명세** 네 가지가 있으며, 이를 적절히 조합하여 효과적인 prompt를 설계할 수 있습니다.
