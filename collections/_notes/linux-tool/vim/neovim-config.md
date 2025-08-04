@@ -25,6 +25,7 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.termguicolors = false
 vim.opt.autoread = true
 vim.opt.updatetime = 100
+vim.opt.clipboard = "unnamedplus"
 
 -- Tab settings
 vim.opt.tabstop = 4
