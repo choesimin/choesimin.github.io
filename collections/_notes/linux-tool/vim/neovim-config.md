@@ -2,7 +2,7 @@
 layout: note
 permalink: /354
 title: Neovim 설정 예시
-description: Neovim은 init.lua file을 통해 Lua 기반으로 설정할 수 있습니다.
+description: Neovim(nvim)은 init.lua file을 통해 Lua 기반으로 설정할 수 있습니다.
 date: 2025-07-23
 ---
 
