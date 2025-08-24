@@ -1,15 +1,15 @@
 ---
 layout: note
 permalink: /361
-title: Bedrock API - Amazon Bedrock을 사용하는 기본적인 방법
-description: Bedrock API는 Amazon Bedrock의 각 AI model을 사용하는 programming interface로, Claude, Titan, Llama 등 model마다 서로 다른 호출 방식과 parameter 구조를 가지고 있습니다.
+title: Bedrock InvokeModel API - Amazon Bedrock을 사용하는 기본적인 호출 방법
+description: Bedrock Invoke API는 Amazon Bedrock의 각 AI model을 사용하는 programming interface로, Claude, Titan, Llama 등 model마다 서로 다른 호출 방식과 parameter 구조를 가지고 있습니다.
 date: 2025-07-28
 ---
 
 
-## Bedrock API : 각 AI Model을 호출하는 기본 방법
+## InvokeModel API : 각 AI Model을 호출하는 기본 방법
 
-- Bedrock API는 **Amazon Bedrock service에 hosting된 다양한 AI model들을 사용하기 위한 programming interface**입니다.
+- InvokeModel API는 **Amazon Bedrock service에 hosting된 다양한 AI model들을 사용하기 위한 programming interface**입니다.
     - AWS SDK를 통해 Claude, Titan, Llama 등 각 model에 접근할 수 있습니다.
     - 각 model마다 고유한 API 형식과 parameter 구조를 가지고 있습니다.
 
@@ -23,9 +23,9 @@ date: 2025-07-28
 ---
 
 
-## Bedrock API의 기본 구조
+## InvokeModel API의 기본 구조
 
-- Bedrock API는 **두 개의 주요 endpoint**로 구분됩니다.
+- InvokeModel API는 **두 개의 주요 endpoint**로 구분됩니다.
     - **bedrock** : model 관리와 Bedrock service 설정을 위한 API.
     - **bedrock-runtime** : 실제 AI model 추론 요청을 위한 API.
 
@@ -36,7 +36,7 @@ date: 2025-07-28
 
 ### AWS SDK와 Authentication
 
-- **boto3 Python SDK**를 통해 Bedrock API에 접근할 수 있습니다.
+- **boto3 Python SDK**를 통해 Bedrock InvokeModel API에 접근할 수 있습니다.
     - AWS credential 설정이 선행되어야 합니다.
     - region 설정을 통해 사용할 AWS 지역을 지정합니다.
 
@@ -117,16 +117,16 @@ date: 2025-07-28
 ---
 
 
-## Bedrock API vs Converse API
+## InvokeModel API vs Converse API
 
-| 특징 | Bedrock API | Converse API |
+| 특징 | InvokeModel API | Converse API |
 | --- | --- | --- |
 | **호출 방식** | model별로 다름 | 통일된 interface 제공 |
 | **parameter 구조** | model별로 다름 | 통일된 parameter set 제공 |
 | **고유 기능** | 각 model의 고유 기능 사용 가능 | 일부 고유 기능 제한 |
 | **복잡성** | 높음 (model별로 다름) | 낮음 (통일된 구조) |
 
-- **Bedrock API는 각 model의 고유한 특성을 그대로 유지**합니다.
+- **InvokeModel API는 각 model의 고유한 특성을 그대로 유지**합니다.
     - model 제조사의 original API와 최대한 유사한 형태로 구성되어 있습니다.
     - 각 model의 고유한 기능과 parameter를 모두 활용할 수 있습니다.
     - 더 세밀한 제어가 가능하지만 복잡성이 증가합니다.
@@ -139,7 +139,7 @@ date: 2025-07-28
     - 사용하기 쉬운 abstraction layer를 제공하지만, 일부 model의 고유 기능은 제한될 수 있습니다.
 
 
-### Bedrock API를 선택해야 하는 경우
+### InvokeModel API를 선택해야 하는 경우
 
 - **특정 model의 고유 기능이 중요한 경우**에 사용합니다.
     - Claude의 특별한 reasoning 기능이나 Titan의 AWS 통합 기능 등.

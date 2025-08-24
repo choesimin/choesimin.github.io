@@ -65,3 +65,4 @@ date: 2025-02-09
     - vendor가 모든 영역을 관리합니다.
     - 사용자는 별도의 설치나 관리 없이 service를 이용할 수 있습니다.
     - Google Workspace, Microsoft 365가 대표적인 예시입니다.
+
