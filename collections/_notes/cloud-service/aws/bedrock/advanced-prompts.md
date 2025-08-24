@@ -1,10 +1,9 @@
 ---
 layout: note
-permalink: /3??
-title: Amazon Bedrock을 이용한 AI Chatboat 구축하기 (MCP, RAG 사용)
-description: MCP, RAG
-date: 2025-08-09
-published: false
+permalink: /374
+title: Amazon Bedrock Agent Advanced Prompts
+description: Advanced Prompts는 사용자 요청 처리를 Pre-processing(전처리), Orchestration(실행 조율), Post-processing(후처리)의 3단계로 구조화하여 agent의 동작을 세밀하게 제어하는 체계입니다.
+date: 2025-08-24
 ---
 
 
@@ -22,7 +21,7 @@ published: false
 
 - Pre-processing은 사용자의 원시 입력을 받아 agent가 이해하고 처리할 수 있는 형태로 변환하는 첫 번째 단계입니다.
 - 사용자 의도를 분석하고 요청을 분류하여 다음 단계의 처리를 준비합니다.
-- 입력 validation과 보안 검증을 수행하여 안전한 처리를 보장합니다.
+- input validation과 보안 검증을 수행하여 안전한 처리를 보장합니다.
 
 
 ### 주요 기능과 역할
@@ -82,7 +81,7 @@ published: false
     - tool 실행 실패 시 대체 방안을 모색합니다.
 
 - **Knowledge Base 활용** : 저장된 지식을 검색하고 활용합니다.
-    - RAG (Retrieval-Augmented Generation) pattern을 구현합니다.
+    - RAG(Retrieval-Augmented Generation) pattern을 구현합니다.
     - 관련 문서나 data를 검색하여 context를 보강합니다.
     - 검색 결과의 relevance를 평가하고 filtering합니다.
 
@@ -93,7 +92,7 @@ published: false
 
 ### Chain of Thought 구현
 
-- Orchestration prompt에서 **Chain of Thought (CoT)** reasoning을 구현하여 복잡한 문제를 단계적으로 해결합니다.
+- Orchestration prompt에서 **Chain of Thought(CoT)** reasoning을 구현하여 복잡한 문제를 단계적으로 해결합니다.
     - 각 단계의 reasoning을 명시적으로 기록합니다.
     - 중간 결과를 검증하고 오류를 수정합니다.
     - 최종 답변에 도달하기까지의 logic flow를 추적합니다.
