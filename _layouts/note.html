@@ -6,6 +6,22 @@ js:
   - /assets/js/toc.js
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page.title }}",
+  "description": "{{ page.description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author }}"
+  },
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+  "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
+  "url": "{{ site.url }}{{ page.url }}"
+}
+</script>
+
 <div class="note-container">
   <div class="note-content">
     <small class="float-right">{{ page.date | date: "%Y년 %-m월 %e일" }} 작성</small>
