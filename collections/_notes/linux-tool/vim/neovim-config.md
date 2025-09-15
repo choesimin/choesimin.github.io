@@ -161,10 +161,9 @@ require("lazy").setup({
 })
 
 -- Keymap
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
-vim.keymap.set("n", "<leader>E", ":NvimTreeFindFile<CR>")
-vim.keymap.set("n", "<leader>f", ":Telescope find_files<CR>")
-vim.keymap.set("n", "<leader>F", ":Telescope live_grep<CR>")
+vim.keymap.set("n", "<leader>e", ":NvimTreeFindFile<CR>")
+vim.keymap.set("n", "<leader>f", ":Telescope live_grep<CR>")
+vim.keymap.set("n", "<leader>F", ":Telescope find_files<CR>")
 vim.keymap.set("i", "<C-J>", "copilot#Accept('<CR>')", { expr = true, silent = true, replace_keycodes = false })
 vim.keymap.set("i", "<C-L>", "copilot#AcceptWord()", { expr = true, silent = true, replace_keycodes = false })
 ```
