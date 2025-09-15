@@ -162,6 +162,7 @@ require("lazy").setup({
 
 -- Keymap
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>")
 vim.keymap.set("i", "<C-J>", "copilot#Accept('<CR>')", { expr = true, silent = true, replace_keycodes = false })
 vim.keymap.set("i", "<C-L>", "copilot#AcceptWord()", { expr = true, silent = true, replace_keycodes = false })
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>")
