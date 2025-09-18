@@ -60,13 +60,70 @@ shopt | grep huponexit
 ---
 
 
-## Background에 떠 있는 Process 종료하는 방법
+## Process와 Directory 확인
 
-1. `ps` 명령어로 `process_id`를 알아냅니다.
-    - `ps -ef | grep my_shellscript.sh`
+- Linux 기본 명령어를 사용해 `nohup`으로 실행한 process가 어느 directory에서 실행되고 있는지 확인할 수 있습니다.
 
-2. `kill` 명령어로 process를 종료시킵니다.
-    - `kill -9 [process_id]`
+
+### `nohup`으로 실행한 Process 확인하기
+
+- `nohup`으로 띄운 program을 제어하기 위해선 PID(Process ID)를 알아야 합니다.
+
+```bash
+ps -ef | grep my_shellscript.sh
+ps -ef | grep node
+ps -ef | grep java
+```
+
+- `ps -ef` 명령어는 system의 모든 process를 상세하게 출력합니다.
+- 그리고 `grep` 명령어를 pipe 연산자로 연결해서, 특정 program을 찾아냅니다.
+
+
+### `nohup`으로 실행한 실행 Directory 확인하기
+
+- `nohup`으로 실행한 process의 실행 directory를 확인하는 몇 가지 방법이 있습니다.
+
+- 가장 간단하고 확실한 방법은 `readlink /proc/[PID]/cwd` 입니다.
+    - 해당 process가 현재 작업하고 있는 directory의 절대 경로를 보여줍니다.
+
+#### `/proc` File System 사용 (가장 확실한 방법)
+
+```bash
+# Process ID를 알고 있는 경우
+ls -la /proc/[PID]/cwd
+
+# 또는 실제 경로 확인
+readlink /proc/[PID]/cwd
+```
+
+#### `pwdx` 명령어 사용
+
+```bash
+pwdx [PID]
+```
+
+#### `lsof` 명령어 사용
+
+```bash
+lsof -p [PID] | grep cwd
+```
+
+
+---
+
+
+## Background Process 종료하는 방법
+
+```bash
+ps -ef | grep my_shellscript.sh
+kill [process_id]
+```
+
+1. `ps -ef | grep my_shellscript.sh` : `ps` 명령어로 `process_id`를 알아냅니다.
+
+2. `kill [process_id]` : `kill` 명령어로 process를 종료시킵니다.
+    - `kill -9 [process_id]`와 같이 `-9` option을 추가하여 강제 종료시킬 수도 있습니다.
+        - 일반적으로 `kill [process_id]`로도 종료가 되지만, 종료되지 않는 경우에 `-9` option을 붙여서 강제 종료시킵니다.
 
 
 ---

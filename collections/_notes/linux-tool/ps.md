@@ -51,6 +51,8 @@ ps --help
 
 ## 사용 예시
 
+- `ps` 명령어를 여러 option와 조합하여, system의 process 상태를 다양한 방식으로 확인할 수 있습니다.
+
 
 ### System의 모든 Process 보기
 
@@ -87,3 +89,4 @@ ps -ef --forest
 ps aux | grep java
 ps -ef | grep java
 ```
+
