@@ -52,7 +52,7 @@ D --> E[수신기]
 - **부가 기능 부족** : data filtering이나 관리 기능이 없어 network 관리가 어렵습니다.
 
 
-### Repeater 설치 시 고려사항
+### Repeater 설치 시 고려 사항
 
 - **전원 공급** : repeater는 전원이 필요하므로, 설치 위치에 전원 consent(power outlet)가 있는지 확인해야 합니다.
 - **신호 품질 확인** : repeater를 통해 증폭할 신호가 이미 적절한 품질을 유지하고 있는지 확인해야 합니다.
