@@ -2,7 +2,7 @@
 layout: note
 permalink: /382
 title: Hibernate - JPA 구현체
-description: 
+description: Hibernate는 Java의 표준 ORM 명세인 JPA를 구현한 framework로, 객체를 관계형 database의 table과 자동으로 mapping하여 개발자가 SQL 없이 data를 효율적으로 관리하도록 돕습니다.
 date: 2025-09-28
 ---
 
