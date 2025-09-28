@@ -81,6 +81,19 @@ docker run --rm \
 | `sh -c "bundle install && jekyll serve --force_polling"` | 의존성 설치 후 Jekyll server를 실행 |
 | `--force_polling` | file 변경 감지를 위해 polling 방식 사용 |
 
+- `jekyll/jekyll` image로 실행이 안될 경우, 공식 Ruby image를 사용하여 Jekyll과 Bundler를 수동으로 설치한 후 실행할 수도 있습니다.
+
+```bash
+# 공식 Ruby Image 기반으로 실행
+docker run --rm \
+  --name my-blog \
+  --volume="$PWD:/srv/jekyll" \
+  -p 4000:4000 \
+  -w /srv/jekyll \
+  -it ruby:3.1 \
+  sh -c "gem install jekyll bundler && bundle install && jekyll serve --host 0.0.0.0"
+```
+
 
 ### Apple Silicon 사용 시 발생하는 Platform 경고
 
@@ -113,3 +126,4 @@ WARNING: The requested image's platform (linux/amd64) does not match the detecte
 - browser에서 `http://localhost:4000` 주소로 접속하여 Jekyll site를 확인할 수 있습니다.
 - 실행 시 `--force_polling` option을 사용했기 때문에, local에서 변경 사항을 즉시 확인하며 개발할 수 있습니다.
     - docker가 **변경 사항을 자동으로 감지**하여, browser에서 새로고침 시 바로 반영합니다.
+
