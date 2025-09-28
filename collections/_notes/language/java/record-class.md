@@ -45,7 +45,7 @@ public record RecordName(String field1, int field2, ...) {
 - 불변 객체를 생성하는 데 최적화되어 있기 때문에, **값이 변해야 하거나 기능 위주의 객체를 만들 때는 적합하지 않습니다.**
     - mutable 객체가 필요한 경우에는 적합하지 않습니다.
     - 상속을 통한 기능 확장이 불가능합니다.
-    - 객체의 life cycle 동안 field 값이 변경되어야 하는 경우에는 적합하지 않습니다.
+    - 객체의 lifecycle 동안 field 값이 변경되어야 하는 경우에는 적합하지 않습니다.
     - lazy loading과 같은 최적화 기법을 적용하기 어렵습니다.
 
 

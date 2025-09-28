@@ -382,7 +382,7 @@ sequenceDiagram
 ```
 
 
-### Connector와 Task의 Life Cycle
+### Connector와 Task의 Lifecycle
 
 - **Connector 생명 주기** : `start()` -> `config()` -> `taskClass()` -> `taskConfigs(maxTasks)` -> `stop()`.
     1. Kafka Connect cluster가 시작되면 설정된 connector를 load합니다.

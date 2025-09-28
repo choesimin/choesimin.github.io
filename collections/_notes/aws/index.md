@@ -29,9 +29,9 @@ date: 2023-07-16
 - On-premise server 환경에서는 보통 resource를 확장할 때를 대비하여 사전에 spare resource를 확보해두어야 합니다.
 
 
-### Instance Life Cycle의 쉬운 관리
+### Instance Lifecycle의 쉬운 관리
 
-- Instance(VM)의 life cycle을 쉽게 관리할 수 있습니다.
+- Instance(VM)의 lifecycle을 쉽게 관리할 수 있습니다.
 - 예를 들어, Black Friday 행사 기간 동안에 server를 잠시 늘렸다가, 행사가 끝났을 때 다시 줄이는 작업을 쉽게 할 수 있습니다.
 
 

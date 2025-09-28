@@ -41,7 +41,7 @@ published: false
     - servlet과 손쉽게 통신할 수 있게 해줌
     - 만약 없었다면 socket을 만들고 listen, accept 등을 해야함
     - servlet container는 이런 기능을 API로 제공하여 복잡한 과정을 생략할 수 있도록 함
-- Servlet Life Cycle 관리
+- Servlet Lifecycle 관리
     - servlet container는 servlet의 탄생과 죽음을 관리
     - servlet class를 loading하여 instance화 하고, 초기화 method를 호출하고, 요청이 들어오면 적절한 servlet method를 호출
     - servlet이 생명을 다 한 순간에는 적절하게 garbage collection을 진행하여 편의 제공
