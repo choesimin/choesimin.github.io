@@ -40,7 +40,7 @@ date: 2025-09-29
 - transient 상태의 entity는 database와 연결되지 않으며, 변경 감지나 지연 loading 등의 기능이 동작하지 않습니다.
 
 
-### Persistent : 영속 상태
+### Persistent State : 영속 상태
 
 - persistence context에 **관리되고 있는 상태**의 entity입니다.
 - `EntityManager.persist()` method를 통해 persistence context에 저장된 entity나, database에서 조회한 entity가 이 상태에 해당합니다.
@@ -50,7 +50,7 @@ date: 2025-09-29
 - persistent 상태에서는 lazy loading, 변경 감지, identity 보장 등 모든 JPA 기능을 사용할 수 있습니다.
 
 
-### Detached : 준영속 상태
+### Detached State : 준영속 상태
 
 - persistence context에 저장되었다가 **분리된 상태**의 entity입니다.
 - `EntityManager.detach()`, `EntityManager.clear()`, `EntityManager.close()` method 호출 시 발생합니다.
@@ -60,7 +60,7 @@ date: 2025-09-29
 - detached 상태의 entity를 다시 persistent 상태로 만들려면 `EntityManager.merge()` method를 사용해야 합니다.
 
 
-### Removed : 삭제 상태
+### Removed State : 삭제 상태
 
 - persistence context에서 **삭제하기로 예약된 상태**의 entity입니다.
 - `EntityManager.remove()` method를 호출하면 entity가 removed 상태로 변경됩니다.
