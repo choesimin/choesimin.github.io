@@ -141,7 +141,7 @@ stateDiagram-v2
 ---
 
 
-## Transient(비영속) 상태 : Persistence Context에 들어가기 전 상태
+## Transient State (비영속 상태) : Persistence Context에 들어가기 전 상태
 
 - **JPA가 관리하지 않는 상태**로, 일반적인 Java 객체와 동일합니다.
 - `new` keyword로 생성된 직후의 entity가 이 상태에 해당합니다.
@@ -200,10 +200,10 @@ stateDiagram-v2
 ---
 
 
-## Persistent(영속) 상태 : Persistence Context에 관리되고 있는 상태
+## Persistent State (영속 상태) : Persistence Context에 관리되고 있는 상태
 
 - **persistence context에서 관리되는 상태**로, JPA의 모든 기능을 활용할 수 있습니다.
-    - Managed 상태라고도 불립니다.
+    - JPA 명세에서는 persistent, Hibernate 등 구현체에서는 managed라고도 부르며 같은 의미입니다.
 - database의 record와 **동기화된 상태**를 유지하며, entity의 변경 사항이 **자동으로 감지**됩니다.
 - JPA의 **핵심 기능들**이 모두 활성화되어 개발자에게 최대한의 편의성을 제공합니다.
 
@@ -270,7 +270,7 @@ stateDiagram-v2
 ---
 
 
-## Detached(준영속) 상태 : Persistence Context에서 분리된 상태
+## Detached State (준영속 상태) : Persistence Context에서 분리된 상태
 
 - **persistence context에서 분리된 상태**로, database와의 동기화가 끊어진 상태입니다.
 - 과거에는 persistent 상태였지만 현재는 JPA 관리 영역 밖에 있는 entity입니다.
@@ -352,7 +352,7 @@ stateDiagram-v2
 ---
 
 
-## Removed(삭제) 상태 : Persistence Context에서 삭제 예정인 상태
+## Removed State (삭제 상태) : Persistence Context에서 삭제 예정인 상태
 
 - **삭제 예정 상태**로, database에서 제거될 예정인 entity를 나타냅니다.
 - transaction commit 시점까지는 persistence context에 존재하지만, **DELETE query 실행 예정**인 특수한 상태입니다.

@@ -242,7 +242,7 @@ published: false
 ## Email 전송 Protocol
 
 - email 전송은 **SMTP**, **POP3**, **IMAP** 등 여러 protocol이 협력하여 완성되는 복합적인 통신 system입니다.
-    - 각 protocol은 email 생명주기의 특정 단계를 담당하며, 서로 다른 역할과 특성을 가집니다.
+    - 각 protocol은 email 생명 주기의 특정 단계를 담당하며, 서로 다른 역할과 특성을 가집니다.
     - 현대 email system은 이들 protocol의 조합으로 안정적이고 효율적인 messaging 환경을 구현합니다.
     - protocol 선택은 사용 목적, 보안 요구사항, network 환경에 따라 결정됩니다.
 

@@ -54,7 +54,7 @@ published: false
     - servlet container를 사용하면 개발자가 보안에 관련된 내용을 servlet 또는 java class에 구현해놓지 않아도 됨
     - 일반적으로 보안 관리는 xml 배포 서술자에 기록하므로, 보안에 대해 수정할 일이 생겨도 java source code를 수정하여 다시 compile하지 않아도 보안 관리가 가능
 
-## Servlet의 생명주기
+## Servlet의 생명 주기
 
 1. client의 요청이 들어오면 container는 해당 servlet이 memory에 있는지 확인하고, 없을 경우 init() method를 호출하여 적재
     - init() method는 처음 한 번만 실행되기 때문에, servlet의 thread에서 공통적으로 사용해야하는 것이 있다면, overriding하여 구현하면 됨
