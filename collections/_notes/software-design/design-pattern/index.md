@@ -69,7 +69,7 @@ A solution to a problem in a context.
     - 여러 제약사항과 영향력도 문제 해결을 위해 고려해야 합니다.
 
 - problem은 context 내에서 이루고자 하는 목적입니다.
-    - context 내에서 생길 수 있는 제약조건도 problem에 포함됩니다.
+    - context 내에서 생길 수 있는 제약 조건도 problem에 포함됩니다.
 
 
 ### 3. Solution
@@ -77,7 +77,7 @@ A solution to a problem in a context.
 - 문제를 해결하도록 설계를 구성하는 요소들과 그 요소들 사이의 관계, 책임, 협력 관계를 기술합니다.
     - 구체적인 구현 방법이나 언어에 의존적이지 않으며, 다양한 상황에 적용할 수 있는 일종의 template입니다.
 
-- solution은 일련의 제약조건 내에서 목적을 달성할 수 있는 일반적인 설계(design)입니다.
+- solution은 일련의 제약 조건 내에서 목적을 달성할 수 있는 일반적인 설계(design)입니다.
 
 
 ---
