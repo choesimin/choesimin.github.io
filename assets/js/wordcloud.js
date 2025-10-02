@@ -103,5 +103,156 @@
       .attr('text-anchor', 'middle')
       .attr('transform', d => `translate(${d.x},${d.y})rotate(${d.rotate})`)
       .text(d => d.text);
+
+    // Generate related notes based on top keywords
+    generateRelatedNotes(wordList);
+  }
+
+  // Function to generate related notes recommendations
+  function generateRelatedNotes(wordList) {
+    // Get top 3 keywords
+    const topKeywords = wordList.slice(0, 3).map(w => w.text);
+
+    if (topKeywords.length === 0) return;
+
+    // Fetch search data
+    fetch('/assets/json/search.json')
+      .then(response => response.json())
+      .then(allNotes => {
+        const currentUrl = window.location.pathname;
+        const relatedNotesSet = new Set();
+        const relatedNotes = [];
+
+        // Search for each keyword
+        topKeywords.forEach(keyword => {
+          allNotes.forEach(note => {
+            // Skip current note
+            if (note.url === currentUrl) return;
+
+            // Check if keyword appears in title or description
+            const searchText = `${note.title} ${note.description}`.toLowerCase();
+            if (searchText.includes(keyword.toLowerCase())) {
+              // Use URL as unique identifier to avoid duplicates
+              if (!relatedNotesSet.has(note.url)) {
+                relatedNotesSet.add(note.url);
+                relatedNotes.push(note);
+              }
+            }
+          });
+        });
+
+        // Display related notes if any found
+        if (relatedNotes.length > 0) {
+          displayRelatedNotes(relatedNotes, topKeywords);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching related notes:', error);
+      });
+  }
+
+  // Function to display related notes
+  function displayRelatedNotes(notes, keywords) {
+    const wordcloudContainer = document.getElementById('wordcloud');
+    if (!wordcloudContainer) return;
+
+    // Create related notes container
+    const relatedContainer = document.createElement('div');
+    relatedContainer.className = 'related-notes-container';
+    relatedContainer.style.marginTop = '20px';
+
+    // Create toggle button
+    const toggleButton = document.createElement('button');
+    toggleButton.className = 'related-notes-toggle';
+    toggleButton.innerHTML = `연관 글 추천 (${notes.length}개) ▼`;
+    toggleButton.style.cssText = `
+      width: 100%;
+      padding: 12px;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: left;
+      transition: background 0.2s;
+    `;
+
+    // Create content container (initially hidden)
+    const contentContainer = document.createElement('div');
+    contentContainer.className = 'related-notes-content';
+    contentContainer.style.display = 'none';
+    contentContainer.style.marginTop = '10px';
+
+    // Add keywords info
+    const keywordsInfo = document.createElement('div');
+    keywordsInfo.style.cssText = `
+      padding: 10px;
+      background: #f9f9f9;
+      border-left: 3px solid #4CAF50;
+      margin-bottom: 15px;
+      font-size: 13px;
+      color: #666;
+    `;
+    keywordsInfo.innerHTML = `<strong>검색 키워드:</strong> ${keywords.join(', ')}`;
+    contentContainer.appendChild(keywordsInfo);
+
+    // Add related notes
+    notes.forEach(note => {
+      const noteCard = document.createElement('div');
+      noteCard.style.cssText = `
+        padding: 12px;
+        margin-bottom: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        background: white;
+        transition: box-shadow 0.2s;
+      `;
+      noteCard.onmouseover = () => {
+        noteCard.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+      };
+      noteCard.onmouseout = () => {
+        noteCard.style.boxShadow = 'none';
+      };
+
+      const link = document.createElement('a');
+      link.href = note.url;
+      link.style.cssText = 'text-decoration: none; color: inherit;';
+
+      const title = document.createElement('h4');
+      title.style.cssText = 'margin: 0 0 8px 0; color: #333; font-size: 15px;';
+      title.textContent = note.title;
+
+      const description = document.createElement('p');
+      description.style.cssText = 'margin: 0; color: #666; font-size: 13px; line-height: 1.4;';
+      description.textContent = note.description;
+
+      link.appendChild(title);
+      link.appendChild(description);
+      noteCard.appendChild(link);
+      contentContainer.appendChild(noteCard);
+    });
+
+    // Toggle functionality
+    let isExpanded = false;
+    toggleButton.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      contentContainer.style.display = isExpanded ? 'block' : 'none';
+      toggleButton.innerHTML = `연관 글 추천 (${notes.length}개) ${isExpanded ? '▲' : '▼'}`;
+      toggleButton.style.background = isExpanded ? '#e8e8e8' : '#f5f5f5';
+    });
+
+    toggleButton.onmouseover = () => {
+      toggleButton.style.background = isExpanded ? '#d8d8d8' : '#e8e8e8';
+    };
+    toggleButton.onmouseout = () => {
+      toggleButton.style.background = isExpanded ? '#e8e8e8' : '#f5f5f5';
+    };
+
+    relatedContainer.appendChild(toggleButton);
+    relatedContainer.appendChild(contentContainer);
+
+    // Insert after wordcloud
+    wordcloudContainer.appendChild(relatedContainer);
   }
 }());
