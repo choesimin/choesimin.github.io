@@ -166,16 +166,13 @@
     toggleButton.className = 'related-notes-toggle';
     toggleButton.innerHTML = `연관 글 추천 (${notes.length}개) ▼`;
     toggleButton.style.cssText = `
-      width: 100%;
-      padding: 12px;
-      background: #f5f5f5;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      padding: 8px 0;
+      background: white;
+      border: none;
       cursor: pointer;
       font-size: 14px;
       font-weight: bold;
       text-align: left;
-      transition: background 0.2s;
     `;
 
     // Create content container (initially hidden)
@@ -188,11 +185,11 @@
     const keywordsInfo = document.createElement('div');
     keywordsInfo.style.cssText = `
       padding: 10px;
-      background: #f9f9f9;
-      border-left: 3px solid #4CAF50;
+      background: #f7f7f7;
+      border-left: 2px solid black;
       margin-bottom: 15px;
       font-size: 13px;
-      color: #666;
+      color: #333;
     `;
     keywordsInfo.innerHTML = `<strong>검색 키워드:</strong> ${keywords.join(', ')}`;
     contentContainer.appendChild(keywordsInfo);
@@ -203,16 +200,14 @@
       noteCard.style.cssText = `
         padding: 12px;
         margin-bottom: 10px;
-        border: 1px solid #e0e0e0;
-        border-radius: 4px;
+        border: 1px solid black;
         background: white;
-        transition: box-shadow 0.2s;
       `;
       noteCard.onmouseover = () => {
-        noteCard.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+        noteCard.style.background = '#f3f3f3';
       };
       noteCard.onmouseout = () => {
-        noteCard.style.boxShadow = 'none';
+        noteCard.style.background = 'white';
       };
 
       const link = document.createElement('a');
@@ -224,7 +219,7 @@
       title.textContent = note.title;
 
       const description = document.createElement('p');
-      description.style.cssText = 'margin: 0; color: #666; font-size: 13px; line-height: 1.4;';
+      description.style.cssText = 'margin: 0; color: #555; font-size: 13px; line-height: 1.4;';
       description.textContent = note.description;
 
       link.appendChild(title);
@@ -239,15 +234,7 @@
       isExpanded = !isExpanded;
       contentContainer.style.display = isExpanded ? 'block' : 'none';
       toggleButton.innerHTML = `연관 글 추천 (${notes.length}개) ${isExpanded ? '▲' : '▼'}`;
-      toggleButton.style.background = isExpanded ? '#e8e8e8' : '#f5f5f5';
     });
-
-    toggleButton.onmouseover = () => {
-      toggleButton.style.background = isExpanded ? '#d8d8d8' : '#e8e8e8';
-    };
-    toggleButton.onmouseout = () => {
-      toggleButton.style.background = isExpanded ? '#e8e8e8' : '#f5f5f5';
-    };
 
     relatedContainer.appendChild(toggleButton);
     relatedContainer.appendChild(contentContainer);
