@@ -55,11 +55,14 @@
   });
 
   // Convert to array and sort by frequency
-  const wordList = Object.entries(frequency)
+  let wordList = Object.entries(frequency)
     .map(([text, size]) => ({ text, size }))
     .sort((a, b) => b.size - a.size);
 
   if (wordList.length === 0) return;
+
+  // Limit to top 300 words for better layout
+  wordList = wordList.slice(0, 300);
 
   // Find max frequency for scaling
   const maxSize = Math.max(...wordList.map(d => d.size));
@@ -73,11 +76,12 @@
     .size([width, height])
     .words(wordList.map(d => ({
       text: d.text,
-      size: 10 + (d.size - minSize) / (maxSize - minSize) * 60
+      size: 10 + (d.size - minSize) / (maxSize - minSize) * 40
     })))
     .padding(2)
     .rotate(() => 0)
     .fontSize(d => d.size)
+    .spiral('archimedean')
     .on('end', draw);
 
   layout.start();
