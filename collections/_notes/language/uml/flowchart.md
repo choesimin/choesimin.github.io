@@ -86,7 +86,7 @@ flowchart LR
 ```
 
 - **data 입력이나 결과 출력**을 나타냅니다.
-- 사용자 입력, 파일 읽기/쓰기, 화면 출력 등의 작업을 표시합니다.
+- 사용자 입력, file 읽기/쓰기, 화면 출력 등의 작업을 표시합니다.
 
 #### Connector Symbol : 연결
 
@@ -184,8 +184,8 @@ flowchart LR
 flowchart TD
     start([시작]) --> input[사용자 이름과 비밀번호 입력]
     input --> validate{유효한 자격 증명?}
-    validate -->|Yes| success[로그인 성공]
-    validate -->|No| failure[로그인 실패]
+    validate -->|Yes| success[Login 성공]
+    validate -->|No| failure[Login 실패]
     failure --> retry{다시 시도?}
     retry -->|Yes| input
     retry -->|No| finish
@@ -198,7 +198,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     start([시작]) --> cart[장바구니에 상품 추가]
-    cart --> checkout[결제 페이지로 이동]
+    cart --> checkout[결제 page로 이동]
     checkout --> address[배송 주소 입력]
     address --> payment[결제 정보 입력]
     payment --> validate{결제 정보 유효?}
@@ -208,29 +208,8 @@ flowchart TD
     retry -->|Yes| payment
     retry -->|No| cart_return[장바구니로 돌아가기]
     cart_return --> finish
-    process --> confirm[주문 확인 이메일 전송]
+    process --> confirm[주문 확인 Email 전송]
     confirm --> finish([종료])
-```
-
-
-### Data Processing Algorithm Flowchart
-
-```mermaid
-flowchart TD
-    start([시작]) --> input[/data 파일 로드/]
-    input --> validate{data 유효성 검사}
-    validate -->|유효함| process[data 정규화]
-    validate -->|유효하지 않음| error[오류 로그 기록]
-    error --> finish
-    process --> transform[특성 변환]
-    transform --> split[학습/test 세트 분할]
-    split --> train[모델 학습]
-    train --> evaluate{성능 평가}
-    evaluate -->|만족| save[/모델 저장/]
-    evaluate -->|불만족| tune[하이퍼파라미터 조정]
-    tune --> train
-    save --> deploy[모델 배포]
-    deploy --> finish([종료])
 ```
 
 
@@ -283,3 +262,4 @@ flowchart TD
 ## Reference
 
 - <https://www.gliffy.com/blog/guide-to-flowchart-symbols>
+

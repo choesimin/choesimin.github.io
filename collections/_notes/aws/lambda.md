@@ -197,7 +197,7 @@ date: 2025-09-21
 
 ## 비용 최적화 전략
 
-- AWS Lambda의 pay-per-use 요금 모델을 최대한 활용하기 위해서는 적절한 비용 최적화 전략이 필요합니다.
+- AWS Lambda의 pay-per-use pricing model을 최대한 활용하기 위해서는 적절한 비용 최적화 전략이 필요합니다.
 - memory 할당, 실행 시간, architecture 설계 등 다양한 요소가 전체 비용에 영향을 미칩니다.
 
 

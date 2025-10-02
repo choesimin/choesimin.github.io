@@ -87,7 +87,7 @@ date: 2024-12-26
 | **Apache Storm** | 순수 stream 처리에 특화, 매우 낮은 지연 시간, 간단한 architecture, Trident API 지원 | 실시간 stream | 매우 낮은 지연 시간, 단순한 architecture, 높은 신뢰성, 쉬운 scaling, Exactly-once 지원 | 제한된 고급 기능, Flink 대비 기능 부족, 복잡한 상태 관리 제한, 개발 속도 둔화 | 실시간 알림, 간단한 stream 처리, IoT data 처리, 실시간 monitoring |
 | **Apache Samza** | LinkedIn에서 개발, Kafka와 긴밀한 통합, YARN 기반 resource 관리, 분산 처리 최적화 | 실시간 stream | 강력한 상태 관리, Kafka와 좋은 통합, 확장성, 장애 복구 능력 우수, 처리량 중심 설계 | 제한된 community, 상대적으로 적은 사용 사례, 높은 운영 복잡도, 학습 resource 부족 | messaging system, 실시간 분석, 대규모 event 처리, log 처리 |
 | **Apache NiFi** | 웹 기반 data 흐름 관리, 시각적 programming UI, 풍부한 processor library, Site-to-Site protocol | data 흐름 중심 | 직관적인 UI, 강력한 data 계보 추적, 다양한 protocol 지원, 확장 용이성, 강력한 보안 기능 | 순수 stream 처리에 부적합, 복잡한 변환에 제한적, 높은 Memory 사용량, 대규모 확장시 복잡 | data 수집/routing, IoT data 처리, system 간 data 이동, ETL, 보안 중심 data 처리 |
-| **Apache Beam** | runtime 독립적 통합 모델, 다중 runtime 지원, pipeline template, cross platform 실행 | 통합 batch/stream | runtime 교체 가능, cloud 중립적, 높은 이식성, 다양한 실행 engine 지원, 재사용성 높음 | 추상화로 인한 overhead, debugging 어려움, runtime별 최적화 필요, 초기 설정 복잡 | multi cloud 환경, cloud 중립적 pipeline, hybrid cloud 처리, 범용 data 처리 |
+| **Apache Beam** | runtime 독립적 통합 model, 다중 runtime 지원, pipeline template, cross platform 실행 | 통합 batch/stream | runtime 교체 가능, cloud 중립적, 높은 이식성, 다양한 실행 engine 지원, 재사용성 높음 | 추상화로 인한 overhead, debugging 어려움, runtime별 최적화 필요, 초기 설정 복잡 | multi cloud 환경, cloud 중립적 pipeline, hybrid cloud 처리, 범용 data 처리 |
 
 - **SQL로 간단한 실시간 처리**가 필요하다면 **ksqlDB**를 선택합니다.
     - SQL로 stream 처리를 쉽게 구현할 수 있습니다.

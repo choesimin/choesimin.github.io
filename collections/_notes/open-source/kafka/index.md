@@ -57,7 +57,7 @@ flowchart TD
     kafka_core --> twitter & app1 & nosql & app2 & oracle & caches & hadoop
 ```
 
-- Kafka에선 **Publish 모델과 Subscribe 모델이 분리**되어 있어, 데이터를 발행하는 Producer와 데이터를 소비하는 Consumer가 독립적으로 동작할 수 있습니다.
+- Kafka에선 **Publish model과 Subscribe model이 분리**되어 있어, 데이터를 발행하는 Producer와 데이터를 소비하는 Consumer가 독립적으로 동작할 수 있습니다.
     - Producer는 데이터를 발행하고, Consumer는 데이터를 구독하여 처리합니다.
     - Consumer group을 통해 여러 Consumer가 동시에 데이터를 처리할 수도 있습니다.
         - Consumer group : 동일한 topic을 구독하는 Consumer들의 집합.
@@ -68,7 +68,7 @@ flowchart TD
     - 데이터는 topic이라는 논리적인 단위로 구분되어 관리됩니다.
     - topic은 여러 개의 partition으로 분할되어 저장되며, partition은 여러 Broker에 분산 저장됩니다.
 
-- Kafka에 저장되는 데이터는 **영구성**을 가지고 있어, 데이터를 안전하게 보관할 수 있고, 여러 Subscribe 모델(Consumer)이 동시에 사용할 수 있습니다.
+- Kafka에 저장되는 데이터는 **영구성**을 가지고 있어, 데이터를 안전하게 보관할 수 있고, 여러 Subscribe model(Consumer)이 동시에 사용할 수 있습니다.
     - 데이터는 disk에 저장되고, replication을 통해 여러 Broker에 복제됩니다.
     - 데이터를 일정 기간 동안 보관하며, 보관 기간은 설정에 따라 조절할 수 있습니다.
 

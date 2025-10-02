@@ -4,6 +4,9 @@ css:
   - /assets/css/note.css
 js:
   - /assets/js/toc.js
+  - https://d3js.org/d3.v3.min.js
+  - https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js
+  - /assets/js/wordcloud.js
 ---
 
 <script type="application/ld+json">
@@ -27,6 +30,9 @@ js:
     <small class="float-right">{{ page.date | date: "%Y년 %-m월 %e일" }} 작성</small>
     <h1>{{ page.title }}</h1>
     <p>{{ page.description }}</p>
+
+    <div id="wordcloud" style="margin: 2rem 0;"></div>
+
     {{ content }}
     
     <hr>

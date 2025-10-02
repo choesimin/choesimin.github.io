@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
       SimpleJekyllSearch({
         searchInput: searchInput,
         resultsContainer: gridContent,
-        json: '/assets/json/note-search.json',
+        json: '/assets/json/search.json',
         searchResultTemplate: '<div class="note-card search-result"><a href="{url}"><h3 class="search-title">{title}</h3><p class="search-description">{description}</p></a></div>',
         noResultsText: '<div class="no-results">No results found</div>',
         limit: 100,

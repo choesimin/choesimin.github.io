@@ -121,7 +121,7 @@ CREATE TABLE table_name (
 
 - AVRO는 compact한 직렬화와 풍부한 data 구조를 제공하는 format입니다.
 
-```avro
+```json
 {
   "type": "record",
   "name": "Example",

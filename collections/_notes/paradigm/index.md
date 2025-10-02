@@ -68,7 +68,7 @@ date: 2025-02-09
     - C, Pascal과 같은 언어가 대표적입니다.
 
 - object oriented programming은 data와 behavior를 객체 단위로 캡슐화합니다.
-    - 현실 세계의 개념을 객체로 모델링하여 program을 구성합니다.
+    - 현실 세계의 개념을 객체로 modeling하여 program을 구성합니다.
     - Java, C++, Python이 이 paradigm을 지원합니다.
 
 - functional programming은 수학적 함수의 개념을 바탕으로 program을 구성합니다.
