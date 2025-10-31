@@ -96,6 +96,12 @@ description: 기술 문서는 정확하고 명확하게 정보를 전달해야 �
     - 예를 들어, "Database의 약어는 DB입니다."라는 문장은 "database의 약어는 DB입니다."로, "Table level lock으로 특정 table의 변경만 제한합니다."는 "table level lock으로 특정 table의 변경만 제한합니다."로, "Long transaction 관리 전략을 수립합니다."는 "long transaction 관리 전략을 수립합니다."로 작성합니다.
     - 반대로, "리눅스는 open source system입니다."와 같이 대명사로 시작하는 문장은 "Linux는 open source system입니다."로 작성합니다.
 
+- 영어 단어에 한국어 접미사가 붙은 혼합 형태는 사용하지 않고, 완전한 영어로 표기합니다.
+    - "token화" → `tokenizing`.
+    - "index화" → `indexing`.
+    - "capsule화" → `encapsulation`.
+    - 예를 들어, "검색어를 token화하고 stemming을 적용합니다."는 "검색어를 tokenizing하고 stemming을 적용합니다."로 작성합니다.
+
 
 ---
 
