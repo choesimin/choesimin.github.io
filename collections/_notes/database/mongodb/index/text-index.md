@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /391
+permalink: /392
 title: MongoDB Text Index - 전문 검색을 위한 색인
 description: Text Index는 자연어 검색을 지원하여 문서 내의 단어와 구문을 효율적으로 찾을 수 있게 합니다.
 date: 2025-10-31
