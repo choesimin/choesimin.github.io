@@ -3,7 +3,7 @@ layout: note
 permalink: /249
 title: Kafka Replication Factor - 고가용성과 Data 복제
 description: Kafka의 replication factor는 partition을 여러 broker에 복제하여 장애 발생 시에도 data 손실 없이 service를 지속할 수 있게 합니다.
-date: 2025-03-12
+date: 2025-11-03
 published: false
 ---
 
@@ -107,26 +107,26 @@ published: false
 
 ## Replication Factor 설정 권장 사항
 
-- **production 환경에서는 replication factor를 3으로 설정하는 것이 일반적입니다.**
+- **production 환경에서는 replication factor를 3으로 설정하는 것이 일반적**입니다.
     - production 환경에서 가장 일반적으로 사용되는 값입니다.
     - 1개의 broker 장애를 허용하면서도 과도한 storage overhead를 피할 수 있습니다.
 
-- replication factor를 결정할 때 다음 사항들을 고려해야 합니다.
+- replication factor를 결정할 때는 여러 요소를 고려해야 합니다.
     - **장애 허용 수준**은 replication factor N일 때 최대 N-1개의 broker 장애를 허용합니다.
     - **storage 비용**은 replication factor가 높을수록 더 많은 disk 공간이 필요합니다.
     - **network overhead**는 replica 간 data 전송으로 network 대역폭을 사용합니다.
     - **write latency**는 더 많은 replica에 복제할수록 증가할 수 있습니다.
 
-- **replication factor를 1로 설정하는 것은 권장되지 않습니다.**
+- replication factor를 1로 설정하는 것은 권장되지 않습니다.
     - data 손실 위험을 감수할 수 있는 경우에만 사용합니다.
     - 개발 환경이나 임시 data에 적합합니다.
     - broker 장애 시 data가 영구적으로 손실됩니다.
 
-- **replication factor를 2로 설정하는 것은 일반적으로 권장되지 않습니다.**
+- replication factor를 2로 설정하는 것은 일반적으로 권장되지 않습니다.
     - 최소한의 복제를 제공하지만, `min.insync.replicas=2` 설정 시 1개 broker 장애로도 write 불가능해집니다.
     - 일반적으로 권장되지 않습니다.
 
-- **replication factor를 4 이상으로 설정하는 것은 매우 중요한 data에 적합합니다.**
+- replication factor를 4 이상으로 설정하는 것은 매우 중요한 data에 적합합니다.
     - 매우 중요한 data나 높은 가용성이 필요한 경우 사용합니다.
     - storage와 network overhead가 크게 증가합니다.
 
@@ -142,12 +142,10 @@ published: false
     - partition의 replica를 추가하거나 제거합니다.
     - 변경 과정에서 data가 재배치되므로 시간이 걸릴 수 있습니다.
 
-- replication factor를 증가시키는 경우:
-    - 새로운 replica가 leader로부터 data를 복제합니다.
+- replication factor를 **증가**시키는 경우 : 새로운 replica가 leader로부터 data를 복제합니다.
     - 복제가 완료될 때까지 추가 network와 disk I/O가 발생합니다.
 
-- replication factor를 감소시키는 경우:
-    - 일부 replica가 제거됩니다.
+- replication factor를 **감소**시키는 경우 : 일부 replica가 제거됩니다.
     - 신중하게 진행해야 하며, data 손실 위험을 고려해야 합니다.
 
 

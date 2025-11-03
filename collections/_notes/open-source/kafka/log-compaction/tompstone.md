@@ -391,7 +391,7 @@ published: false
 ---
 
 
-## Tombstone 설계 시 고려사항
+## Tombstone 설계 시 고려 사항
 
 - Tombstone을 효과적으로 활용하려면 **system 설계 단계에서부터 신중한 고려**가 필요합니다.
 - **Business 요구사항과 기술적 제약** 사이의 균형을 맞춰야 합니다.
@@ -431,7 +431,7 @@ published: false
     - **Null pointer exception 방지**를 위한 defensive programming이 필수입니다.
 
 
-### 시스템 복잡성과 운영 고려사항
+### 시스템 복잡성과 운영 고려 사항
 
 - **Configuration 관리** : tombstone 관련 **다양한 설정값들을 적절히 조정**해야 합니다.
     - `delete.retention.ms`, `min.compaction.lag.ms` 등의 **상호 의존성**을 이해해야 합니다.

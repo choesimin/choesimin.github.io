@@ -3,7 +3,7 @@ layout: note
 permalink: /250
 title: Kafka Fault Tolerance - 장애 대응과 자동 복구
 description: Kafka는 replication, leader election, controller 등의 mechanism을 통해 broker 장애 시에도 자동으로 복구하여 service 가용성을 유지합니다.
-date: 2025-01-03
+date: 2025-11-03
 published: false
 ---
 
@@ -214,20 +214,20 @@ sequenceDiagram
 
 ## Kafka의 Fault Tolerance 설정 Best Practice
 
-- **replication factor는 3으로 설정하는 것이 권장됩니다.**
+- **replication factor는 3으로 설정**하는 것이 권장됩니다.
     - 1개의 broker 장애를 허용하면서 적절한 overhead를 유지합니다.
 
-- **`min.insync.replicas`는 2로 설정하는 것이 권장됩니다.**
+- **`min.insync.replicas`는 2로 설정**하는 것이 권장됩니다.
     - replication factor 3과 함께 사용 시, 1개 broker 장애까지 write 가능합니다.
 
-- **producer의 `acks` 설정은 `all`로 지정하는 것이 권장됩니다.**
+- **producer의 `acks` 설정은 `all`로 지정**하는 것이 권장됩니다.
     - 모든 ISR replica가 message를 확인한 후 성공으로 간주합니다.
     - data 손실 위험을 최소화합니다.
 
-- **`unclean.leader.election.enable`은 `false`로 설정하는 것이 권장됩니다.**
+- **`unclean.leader.election.enable`은 `false`로 설정**하는 것이 권장됩니다.
     - clean leader election만 허용하여 data 일관성을 보장합니다.
 
-- **producer와 consumer의 retry 설정을 적절히 구성해야 합니다.**
+- **producer와 consumer의 retry 설정을 적절히 구성**해야 합니다.
     - `retries` 설정을 통해 일시적 장애에 대응합니다.
     - `retry.backoff.ms`로 적절한 재시도 간격을 설정합니다.
 
