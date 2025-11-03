@@ -68,40 +68,42 @@ db.articles.find({
 - 일회성 검색이나 admin tool에서의 조회.
 
 
-### Index를 활용한 정규 표현식
+### Prefix 검색 (^로 시작하는 정규 표현식)
 
-- 정규 표현식이 `^`로 시작하면 index를 사용할 수 있습니다.
+- `^`는 문자열의 시작을 의미하며, 일반 B-tree index를 활용할 수 있습니다.
+    - text index와 달리 문자열 **시작 부분**만 검색합니다.
+    - 단순 문자 matching이며, 형태소 분석이나 자연어 처리는 하지 않습니다.
 
 ```js
 // index 생성
 db.products.createIndex({ name: 1 });
 
-// index 사용됨 (prefix 검색)
-db.products.find({ name: /^Apple/i });
-
-// index 사용 안 됨 (중간 문자열 검색)
-db.products.find({ name: /Laptop/i });
+// prefix 검색
+db.products.find({ name: /^Apple/ });
 ```
 
 #### 장점
 
 - prefix 검색에서는 index를 활용하여 빠른 성능을 제공합니다.
+- 별도의 text index 생성이 필요 없습니다.
 
 #### 단점
 
-- `^`로 시작하는 pattern만 index를 사용합니다.
-- 여전히 자연어 처리 기능은 없습니다.
+- 문자열 시작 부분만 검색 가능합니다.
+- 중간이나 끝 부분은 검색할 수 없습니다.
+- 자연어 처리 기능이 없습니다.
 
 #### 사용 예시
 
 - 자동 완성(autocomplete) 기능.
-- 특정 prefix로 시작하는 문자열 검색.
+- 특정 문자열로 시작하는 항목 찾기.
 
 
 ### Text Index
 
 - **text index**는 MongoDB의 내장 전문 검색 기능입니다.
-    - 형태소 분석, stemming, stop words 제거 등을 지원합니다.
+    - 정규 표현식과 달리 단어 단위로 검색하며, 문자열 어디에든 있는 단어를 찾을 수 있습니다.
+    - 형태소 분석, stemming, stop words 제거 등 자연어 처리 기능을 제공합니다.
 
 ```js
 // text index 생성
