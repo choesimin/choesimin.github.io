@@ -1,8 +1,8 @@
 ---
 layout: note
-permalink: /
-title: 
-description: 
+permalink: /253
+title: Kafka Log Compaction - Key 기반 상태 관리
+description: Kafka의 log compaction은 key별 최신 message만 유지하여 storage를 효율적으로 관리하면서도 각 key의 최종 상태를 영구 보존합니다.
 date: 2024-12-31
 published: false
 ---

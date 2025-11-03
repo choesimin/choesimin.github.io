@@ -333,3 +333,4 @@ kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group my-consumer-g
 ## Reference
 
 - <https://kimmayer.tistory.com/entry/Kafka-offset에-대해서>
+

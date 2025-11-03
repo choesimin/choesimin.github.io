@@ -1,8 +1,8 @@
 ---
 layout: note
-permalink: /
-title: 
-description: 
+permalink: /254
+title: Kafka Tombstone - Log Compaction에서의 삭제 메커니즘
+description: Kafka tombstone은 value가 null인 특별한 message로, log compaction 환경에서 특정 key를 논리적으로 삭제하고 최종적으로는 완전히 제거하는 mechanism입니다.
 date: 2024-12-31
 published: false
 ---
