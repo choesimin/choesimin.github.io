@@ -55,7 +55,7 @@ published: false
     - ISR에서 제거된 follower는 다시 동기화되면 ISR에 재포함됩니다.
 
 - leader는 ISR에 속한 모든 replica가 message를 복제한 후에만 commit 완료로 간주합니다.
-    - 이를 통해 data 일관성을 보장합니다.
+    - 이 mechanism으로 data 일관성을 보장합니다.
     - ISR에 속하지 않는 follower는 leader election 시 leader 후보가 될 수 없습니다.
 
 
@@ -107,26 +107,26 @@ published: false
 
 ## Replication Factor 설정 권장 사항
 
-- **일반적인 권장값: 3**
+- **production 환경에서는 replication factor를 3으로 설정하는 것이 일반적입니다.**
     - production 환경에서 가장 일반적으로 사용되는 값입니다.
     - 1개의 broker 장애를 허용하면서도 과도한 storage overhead를 피할 수 있습니다.
 
-- replication factor를 결정할 때 고려 사항입니다.
-    - **장애 허용 수준**: replication factor N은 최대 N-1개의 broker 장애를 허용합니다.
-    - **storage 비용**: replication factor가 높을수록 더 많은 disk 공간이 필요합니다.
-    - **network overhead**: replica 간 data 전송으로 network 대역폭을 사용합니다.
-    - **write latency**: 더 많은 replica에 복제할수록 write latency가 증가할 수 있습니다.
+- replication factor를 결정할 때 다음 사항들을 고려해야 합니다.
+    - **장애 허용 수준**은 replication factor N일 때 최대 N-1개의 broker 장애를 허용합니다.
+    - **storage 비용**은 replication factor가 높을수록 더 많은 disk 공간이 필요합니다.
+    - **network overhead**는 replica 간 data 전송으로 network 대역폭을 사용합니다.
+    - **write latency**는 더 많은 replica에 복제할수록 증가할 수 있습니다.
 
-- **replication factor = 1**
+- **replication factor를 1로 설정하는 것은 권장되지 않습니다.**
     - data 손실 위험을 감수할 수 있는 경우에만 사용합니다.
     - 개발 환경이나 임시 data에 적합합니다.
     - broker 장애 시 data가 영구적으로 손실됩니다.
 
-- **replication factor = 2**
+- **replication factor를 2로 설정하는 것은 일반적으로 권장되지 않습니다.**
     - 최소한의 복제를 제공하지만, `min.insync.replicas=2` 설정 시 1개 broker 장애로도 write 불가능해집니다.
     - 일반적으로 권장되지 않습니다.
 
-- **replication factor ≥ 4**
+- **replication factor를 4 이상으로 설정하는 것은 매우 중요한 data에 적합합니다.**
     - 매우 중요한 data나 높은 가용성이 필요한 경우 사용합니다.
     - storage와 network overhead가 크게 증가합니다.
 

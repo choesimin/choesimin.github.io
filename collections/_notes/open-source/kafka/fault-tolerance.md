@@ -143,20 +143,20 @@ sequenceDiagram
 
 ### Controller의 주요 책임
 
-- **broker 상태 관리**
+- **broker 상태 관리**는 cluster 내 모든 broker를 모니터링하는 역할입니다.
     - cluster 내 모든 broker의 생존 여부를 모니터링합니다.
     - broker의 추가와 제거를 감지하고 필요한 조치를 수행합니다.
 
-- **partition 관리**
+- **partition 관리**는 topic의 partition 할당과 재분배를 조율하는 역할입니다.
     - topic의 partition 할당과 재분배를 조율합니다.
     - partition의 leader와 follower 관계를 설정하고 관리합니다.
 
-- **leader election 관리**
+- **leader election 관리**는 partition leader 장애 시 새로운 leader를 선출하는 역할입니다.
     - partition leader에 장애가 발생하면 새로운 leader를 선출합니다.
     - ISR 목록을 참조하여 최적의 leader 후보를 선정합니다.
     - 선출된 새 leader 정보를 cluster 전체에 전파합니다.
 
-- **metadata 관리**
+- **metadata 관리**는 cluster metadata를 caching하고 전파하는 역할입니다.
     - cluster의 metadata를 local에 caching하여 성능을 최적화합니다.
     - metadata 변경 사항을 모든 broker에게 전파합니다.
 
@@ -203,7 +203,7 @@ sequenceDiagram
     - Kafka 3.0부터 도입되어 점진적으로 zookeeper를 대체하고 있습니다.
     - Raft consensus algorithm을 사용하여 metadata를 관리합니다.
 
-- KRaft의 장점은 다음과 같습니다.
+- KRaft는 여러 장점을 제공합니다.
     - zookeeper 의존성 제거로 운영 복잡도가 감소합니다.
     - metadata 관리 성능이 향상됩니다.
     - partition 수 제약이 완화되어 더 많은 partition을 지원합니다.
@@ -214,20 +214,20 @@ sequenceDiagram
 
 ## Kafka의 Fault Tolerance 설정 Best Practice
 
-- **replication factor = 3**
+- **replication factor는 3으로 설정하는 것이 권장됩니다.**
     - 1개의 broker 장애를 허용하면서 적절한 overhead를 유지합니다.
 
-- **`min.insync.replicas = 2`**
+- **`min.insync.replicas`는 2로 설정하는 것이 권장됩니다.**
     - replication factor 3과 함께 사용 시, 1개 broker 장애까지 write 가능합니다.
 
-- **`acks = all` (producer 설정)**
+- **producer의 `acks` 설정은 `all`로 지정하는 것이 권장됩니다.**
     - 모든 ISR replica가 message를 확인한 후 성공으로 간주합니다.
     - data 손실 위험을 최소화합니다.
 
-- **`unclean.leader.election.enable = false`**
+- **`unclean.leader.election.enable`은 `false`로 설정하는 것이 권장됩니다.**
     - clean leader election만 허용하여 data 일관성을 보장합니다.
 
-- **적절한 retry 설정 (producer/consumer)**
+- **producer와 consumer의 retry 설정을 적절히 구성해야 합니다.**
     - `retries` 설정을 통해 일시적 장애에 대응합니다.
     - `retry.backoff.ms`로 적절한 재시도 간격을 설정합니다.
 
