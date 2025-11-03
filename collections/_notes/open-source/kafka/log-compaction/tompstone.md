@@ -459,6 +459,3 @@ published: false
 - <https://cwiki.apache.org/confluence/display/KAFKA/Log+Compaction>
 - <https://docs.confluent.io/platform/current/kafka/post-deployment.html#tombstones>
 
-
-
-
