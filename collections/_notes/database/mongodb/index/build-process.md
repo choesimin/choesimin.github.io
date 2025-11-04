@@ -2,7 +2,7 @@
 layout: note
 permalink: /391
 title: MongoDB Index Build Process - 색인 생성 방식과 전략
-description: Index build process는 index 생성 시 database의 가용성과 성능에 영향을 미치는 중요한 과정입니다.
+description: index build process는 index 생성 시 database의 가용성과 성능에 영향을 미치는 중요한 과정입니다.
 date: 2025-10-30
 ---
 
