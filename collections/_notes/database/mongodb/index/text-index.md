@@ -24,7 +24,8 @@ date: 2025-10-31
 
 ## Text Index의 필요성
 
-- text index는 일반 index로는 구현하기 어려운 자연어 검색 기능을 제공합니다.
+- text index는 stemming(어간 추출), stop words 제거, 언어별 tokenizing 등의 자연어 처리(NLP)를 통해 일반 index로는 구현할 수 없는 의미 기반의 검색을 가능하게 합니다.
+    - 사용자가 입력한 검색어의 변형을 자동으로 인식하고, 관련성 점수(relevance score)를 계산하여 정렬할 수 있습니다.
 
 
 ### 일반 Index의 한계
@@ -308,7 +309,9 @@ db.articles.find({
 
 ## Text Index 성능 최적화
 
-- text index를 효율적으로 사용하기 위한 전략이 있습니다.
+- text index는 저장 공간과 memory 사용량이 크고, write 성능에 영향을 주기 때문에 신중한 설계가 필요합니다.
+    - 검색 pattern을 분석하여 반드시 필요한 field만 indexing해야 합니다.
+    - index 크기를 정기적으로 monitoring하고, 필요시 재구성해야 합니다.
 
 
 ### Covered Query 불가
@@ -385,7 +388,8 @@ db.articles.stats().indexSizes;
 
 ## Text Index 활용 사례
 
-- text index는 다양한 실무 상황에서 사용됩니다.
+- text index는 사용자가 자유로운 형태의 text로 검색하는 모든 상황에서 활용됩니다.
+    - 검색어의 변형을 자동으로 처리하고, 관련성 점수(relevance score)로 정렬하여 검색 경험을 개선합니다.
 
 
 ### Blog 및 News 검색
@@ -510,7 +514,8 @@ db.logs.find({
 
 ## Text Index 제약 사항
 
-- text index는 여러 제약 사항이 있습니다.
+- text index는 설계 단계에서 고려해야 할 여러 제약 사항이 있습니다.
+    - collection당 하나의 text index만 생성 가능하고, 일부 query 연산자와 함께 사용할 수 없으므로 미리 검토해야 합니다.
 
 
 ### Collection당 하나의 Text Index
