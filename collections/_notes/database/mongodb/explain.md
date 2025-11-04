@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /393
+permalink: /260
 title: MongoDB Explain - Query 실행 계획 분석하기
 description: MongoDB의 explain() method는 query의 실행 계획과 성능 통계를 보여주어 query 최적화에 필수적인 정보를 제공합니다.
 date: 2025-11-04
@@ -69,7 +69,6 @@ db.users.find({ email: "test@example.com" }).explain();
 
 - 주요 정보는 어떤 index를 사용할 계획인지, 어떤 실행 전략을 선택했는지입니다.
 
-
 #### executionStats
 
 - query를 실제로 실행하고 성능 통계를 반환합니다.
@@ -81,7 +80,6 @@ db.users.find({ email: "test@example.com" }).explain("executionStats");
 ```
 
 - 실제 실행 결과를 기반으로 하므로 정확한 성능 측정이 가능합니다.
-
 
 #### allPlansExecution
 
@@ -149,7 +147,7 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
 
 - `executionSuccess` : 실행 성공 여부입니다.
 - `nReturned` : 반환된 document 수입니다.
-- `executionTimeMillis` : 총 실행 시간(밀리초)입니다.
+- `executionTimeMillis` : 총 실행 시간(milliseconds)입니다.
 - `totalKeysExamined` : 검사한 index key 수입니다.
 - `totalDocsExamined` : 검사한 document 수입니다.
 - `executionStages` : 실행 단계별 상세 정보입니다.
@@ -202,7 +200,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
 
 - 실행 계획은 `COLLSCAN`, `IXSCAN`, `FETCH`, `SORT` 등 다양한 stage로 구성되며, 각 stage는 query 실행의 특정 단계를 나타냅니다.
 
-
 #### COLLSCAN
 
 - 전체 collection을 순회하며 검색합니다.
@@ -217,7 +214,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
 ```
 
 - `COLLSCAN`이 나타나면 index 추가를 고려해야 합니다.
-
 
 #### IXSCAN
 
@@ -243,7 +239,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
 - `isMultiKey` : 배열 field에 대한 index인지 여부입니다.
 - `indexBounds` : index 검색 범위입니다.
 
-
 #### FETCH
 
 - index scan 결과를 바탕으로 실제 document를 가져옵니다.
@@ -258,7 +253,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
     }
 }
 ```
-
 
 #### SORT
 
@@ -279,7 +273,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
 - `memLimit` : 정렬에 사용할 수 있는 최대 memory입니다.
 - index를 사용하면 `SORT` stage 없이 정렬된 결과를 얻을 수 있습니다.
 
-
 #### LIMIT
 
 - 결과 개수를 제한합니다.
@@ -291,7 +284,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
     "inputStage": { ... }
 }
 ```
-
 
 #### SKIP
 
@@ -305,7 +297,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
 }
 ```
 
-
 #### COUNT
 
 - document 개수를 셉니다.
@@ -316,7 +307,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
     "inputStage": { ... }
 }
 ```
-
 
 #### TEXT
 
@@ -331,7 +321,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
 }
 ```
 
-
 #### AND_SORTED / AND_HASH
 
 - 여러 index scan 결과를 병합합니다.
@@ -345,7 +334,6 @@ db.users.find({ email: "test@example.com" }).explain("allPlansExecution");
     ]
 }
 ```
-
 
 #### OR
 
@@ -696,7 +684,7 @@ db.products.find({ name: /iPhone/ }).explain("executionStats");
 ---
 
 
-## 성능 최적화 체크리스트
+## 성능 최적화를 위한 확인 사항
 
 - `explain()` 결과를 분석할 때 확인해야 할 주요 항목들을 stage 종류, document 검사 비율, 실행 시간, index 효율성, covered query 가능 여부 순서로 점검합니다.
 
@@ -857,3 +845,4 @@ db.users.remove({ email: "test@example.com" }).explain("queryPlanner");
 - <https://www.mongodb.com/docs/manual/reference/explain-results/>
 - <https://www.mongodb.com/docs/manual/reference/method/cursor.explain/>
 - <https://www.mongodb.com/docs/manual/tutorial/analyze-query-plan/>
+
