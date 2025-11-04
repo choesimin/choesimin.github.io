@@ -4,7 +4,6 @@ permalink: /256
 title: MongoDB Regex Search - 정규 표현식으로 Pattern 검색하기
 description: MongoDB는 $regex 연산자를 통해 정규 표현식 기반 pattern 검색을 지원하며, index 활용 여부에 따라 성능이 크게 달라집니다.
 date: 2025-11-03
-published: false
 ---
 
 
@@ -89,7 +88,7 @@ db.collection.find({
 
 ### 기본 Pattern
 
-- 
+- 문자 matching, 시작과 끝(`^`, `$`), 임의의 문자(`.`), 반복(`*`, `+`, `?`)을 사용하여 기본적인 pattern을 구성합니다.
 
 #### 문자 Matching
 
@@ -157,7 +156,7 @@ db.products.find({ color: /colou?r/ });
 
 ### 문자 집합
 
-- 
+- 대괄호(`[]`)를 사용하여 특정 범위나 목록에서 하나의 문자를 matching하는 pattern을 구성합니다.
 
 #### 대괄호 (`[]`)
 
@@ -180,7 +179,7 @@ db.products.find({ code: /[^0-9]/ });
 
 ### Group과 선택
 
-- 
+- 괄호(`()`)로 pattern을 그룹화하고, OR(`|`) 연산자로 여러 pattern 중 하나를 선택하는 방식으로 복잡한 검색 조건을 구성합니다.
 
 #### Group (`()`)
 
