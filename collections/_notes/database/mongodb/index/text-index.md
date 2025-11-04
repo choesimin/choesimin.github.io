@@ -15,7 +15,7 @@ date: 2025-10-31
 - text index는 단순 문자열 일치 검색과 달리 형태소 분석과 언어별 최적화를 지원합니다.
     - 검색어를 tokenizing하고 stemming을 적용하여 더 정확한 검색 결과를 제공합니다.
 
-- MongoDB는 collection당 최대 하나의 text index만 허용합니다.
+- MongoDB는 **collection당 최대 하나의 text index만** 허용합니다.
     - 단, 여러 field를 포함하는 복합 text index는 생성할 수 있습니다.
 
 
@@ -24,8 +24,8 @@ date: 2025-10-31
 
 ## Text Index의 필요성
 
-- text index는 stemming(어간 추출), stop words 제거, 언어별 tokenizing 등의 자연어 처리(NLP)를 통해 일반 index로는 구현할 수 없는 의미 기반의 검색을 가능하게 합니다.
-    - 사용자가 입력한 검색어의 변형을 자동으로 인식하고, 관련성 점수(relevance score)를 계산하여 정렬할 수 있습니다.
+- text index는 **stemming(어간 추출), stop words 제거, 언어별 tokenizing** 등의 자연어 처리(NLP)를 통해 일반 index로는 구현할 수 없는 **의미 기반의 검색**을 가능하게 합니다.
+    - 사용자가 입력한 검색어의 변형을 자동으로 인식하고, **관련성 점수(relevance score)를 계산하여 정렬**할 수 있습니다.
 
 
 ### 일반 Index의 한계
@@ -41,14 +41,14 @@ db.articles.find({ content: /database/i });
 db.articles.find({ content: /databases/i });
 ```
 
-- 정규 표현식 검색은 index를 효율적으로 활용하지 못하고 성능이 매우 느립니다.
+- 정규 표현식 검색은 **index를 효율적으로 활용하지 못하고 성능이 매우 느립니다.**
 
 
 ### 자연어 처리
 
 - text index는 언어별 특성을 고려한 검색을 지원합니다.
-    - stemming : "running", "runs", "ran"을 모두 "run"으로 인식합니다.
-    - stop words 제거 : "the", "a", "an" 같은 불용어를 자동으로 제거합니다.
+    - **stemming** : "running", "runs", "ran"을 모두 "run"으로 인식합니다.
+    - **stop words 제거** : "the", "a", "an" 같은 불용어를 자동으로 제거합니다.
 
 ```js
 // text index 생성
@@ -61,7 +61,7 @@ db.articles.find({ $text: { $search: "database" } });
 
 ### 점수 기반 정렬
 
-- text index는 검색 결과의 관련성을 점수로 계산합니다.
+- text index는 **검색 결과의 관련성을 점수로 계산**합니다.
     - 검색어가 여러 번 나타나거나 제목에 있는 문서가 더 높은 점수를 받습니다.
 
 ```js
@@ -309,14 +309,14 @@ db.articles.find({
 
 ## Text Index 성능 최적화
 
-- text index는 저장 공간과 memory 사용량이 크고, write 성능에 영향을 주기 때문에 신중한 설계가 필요합니다.
-    - 검색 pattern을 분석하여 반드시 필요한 field만 indexing해야 합니다.
+- text index는 **저장 공간과 memory 사용량이 크고, write 성능에 영향**을 주기 때문에 신중한 설계가 필요합니다.
+    - 검색 pattern을 분석하여 **반드시 필요한 field만 indexing**해야 합니다.
     - index 크기를 정기적으로 monitoring하고, 필요시 재구성해야 합니다.
 
 
 ### Covered Query 불가
 
-- text index는 covered query를 지원하지 않습니다.
+- text index는 **covered query를 지원하지 않습니다.**
     - 항상 document를 읽어야 합니다.
 
 ```js
@@ -362,14 +362,14 @@ db.articles.stats();
 db.articles.stats().indexSizes;
 ```
 
-- text index는 일반 index보다 훨씬 큰 저장 공간을 차지합니다.
+- text index는 **일반 index보다 훨씬 큰 저장 공간을 차지**합니다.
     - 각 단어마다 별도의 index entry가 생성되기 때문입니다.
-    - 긴 text field를 indexing하면 index 크기가 원본 data의 몇 배까지 커질 수 있습니다.
+    - 긴 text field를 indexing하면 **index 크기가 원본 data의 몇 배까지 커질 수** 있습니다.
 
-- text index는 memory 사용량도 매우 높습니다.
+- text index는 **memory 사용량도 매우 높습니다.**
     - index가 크면 working set이 memory에 올라가지 않아 성능이 저하됩니다.
 
-- write 성능에도 큰 영향을 줍니다.
+- text index는 **write 성능에도 큰 영향**을 줍니다.
     - document를 삽입하거나 수정할 때마다 모든 단어를 tokenizing하고 index를 update해야 합니다.
     - 긴 문서나 여러 field를 indexing하면 write 속도가 크게 느려집니다.
 
@@ -520,7 +520,7 @@ db.logs.find({
 
 ### Collection당 하나의 Text Index
 
-- 각 collection은 최대 하나의 text index만 가질 수 있습니다.
+- 각 collection은 **최대 하나의 text index만** 가질 수 있습니다.
 
 ```js
 // 불가능 : 두 개의 text index
@@ -557,7 +557,7 @@ db.articles.find({
 }); // ERROR
 ```
 
-- `$text` 연산자는 `$or`와 함께 사용할 수 없습니다.
+- `$text` 연산자는 **`$or`와 함께 사용할 수 없습니다.**
 
 
 ### Collation 지원 제한
@@ -584,7 +584,8 @@ db.articles.find({
 
 ## Text Index vs 일반 검색 방법
 
-- text index와 다른 검색 방법을 비교합니다.
+- text index는 정규 표현식, `$in` 연산자, Atlas Search 등 다른 검색 방법들과 비교했을 때 **자연어 처리 기능과 성능 면에서 뚜렷한 장단점**을 가지고 있습니다.
+    - 각 방법의 특성을 파악하여 상황에 맞는 검색 전략을 선택해야 합니다.
 
 
 ### 정규 표현식 검색
