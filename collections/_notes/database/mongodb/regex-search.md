@@ -18,15 +18,30 @@ published: false
     - index 활용 여부에 따라 성능이 크게 달라집니다.
 
 
+### PCRE : Perl Compatible Regular Expression
+
+- PCRE는 Perl programming language의 정규 표현식 문법을 따르는 정규 표현식 표준입니다.
+    - Perl은 정규 표현식을 매우 강력하게 지원하는 언어로, 그 문법이 업계 표준이 되었습니다.
+    - MongoDB를 포함한 많은 현대적 programming language와 도구들이 PCRE를 채택하고 있습니다.
+
+- PCRE와 기본 정규 표현식은 지원하는 문법과 기능에서 차이가 있습니다.
+    - **기본 정규 표현식 (Basic Regular Expression)** : `^`, `$`, `.`, `*` 등 기초적인 문법만 지원합니다.
+    - **PCRE (Perl Compatible Regular Expression)** : 더 복잡한 pattern과 고급 기능(lookahead, lookbehind 등)을 지원합니다.
+
+- MongoDB의 개발자들이 PCRE를 선택하는 이유는 호환성과 표준화입니다.
+    - 개발자들이 다른 언어에서 사용했던 정규 표현식을 MongoDB에서도 그대로 사용할 수 있습니다.
+    - JavaScript, Python, Java 등 대부분의 언어가 PCRE와 호환되는 정규 표현식을 지원하므로, 정규 표현식 pattern을 언어 간에 쉽게 이식할 수 있습니다.
+
+
 ---
 
 
 ## 정규 표현식 사용 방법
 
-- MongoDB에서 정규 표현식을 사용하는 방법은 크게 두 가지가 있습니다.
+- MongoDB에서 정규 표현식은 **`$regex` 연산자** 또는 **단축 문법**을 사용하여 지정할 수 있습니다.
 
 
-### $regex 연산자
+### `$regex` 연산자
 
 - `$regex` 연산자를 명시적으로 사용하여 pattern을 지정합니다.
 
@@ -74,7 +89,9 @@ db.collection.find({
 
 ### 기본 Pattern
 
-#### 문자 매칭
+- 
+
+#### 문자 Matching
 
 - 특정 문자열이 포함된 document를 검색합니다.
 
@@ -88,7 +105,7 @@ db.users.find({ name: /john/i });
 // → "John", "JOHN", "johnny" 모두 찾음
 ```
 
-#### 시작과 끝
+#### 시작과 끝 (`^`, `$`)
 
 - `^`는 문자열의 시작, `$`는 문자열의 끝을 나타냅니다.
 
@@ -108,7 +125,7 @@ db.products.find({ name: /^iPhone$/ });
 // → "iPhone"만 찾음
 ```
 
-#### Any 문자 (.)
+#### Any 문자 (`.`)
 
 - `.`은 newline을 제외한 임의의 한 문자를 나타냅니다.
 
@@ -118,7 +135,7 @@ db.logs.find({ message: /err.r/ });
 // → "error", "err0r", "err r" 찾음
 ```
 
-#### 반복 (*,+,?)
+#### 반복 (`*`, `+`, `?`)
 
 - `*`, `+`, `?`는 앞 문자의 반복 횟수를 지정합니다.
 
@@ -140,9 +157,11 @@ db.products.find({ color: /colou?r/ });
 
 ### 문자 집합
 
-#### 대괄호 []
+- 
 
-- `[]`는 지정된 문자 중 하나를 매칭합니다.
+#### 대괄호 (`[]`)
+
+- `[]`는 지정된 문자 중 하나를 matching합니다.
 
 ```js
 // 지정된 문자 중 하나
@@ -159,19 +178,21 @@ db.products.find({ code: /[^0-9]/ });
 ```
 
 
-### 그룹과 선택
+### Group과 선택
 
-#### 그룹 ()
+- 
 
-- `()`는 여러 문자를 하나의 단위로 그룹화합니다.
+#### Group (`()`)
+
+- `()`는 여러 문자를 하나의 단위로 grouping합니다.
 
 ```js
-// 그룹화
+// grouping
 db.products.find({ name: /(iPhone|iPad) Pro/ });
 // → "iPhone Pro", "iPad Pro" 찾음
 ```
 
-#### OR 선택 (|)
+#### OR 선택 (`|`)
 
 - `|`는 여러 pattern 중 하나를 선택합니다.
 
@@ -181,7 +202,7 @@ db.users.find({ email: /@(gmail|naver|kakao)\.com$/ });
 ```
 
 
-### 특수 문자 Escape
+### 특수 문자 Escape (`\`)
 
 - 특수 문자 자체를 검색하려면 `\`로 escape 처리해야 합니다.
 
@@ -308,10 +329,10 @@ db.users.find({ name: /john/i });
 
 #### m : 여러 줄 모드
 
-- `^`와 `$`가 전체 문자열이 아닌 각 줄의 시작과 끝에 매칭됩니다.
+- `^`와 `$`가 전체 문자열이 아닌 각 줄의 시작과 끝에 matching됩니다.
 
 ```js
-// ^ 와 $가 각 줄의 시작/끝에 매칭
+// ^ 와 $가 각 줄의 시작/끝에 matching
 db.documents.find({
     content: { $regex: "^Chapter", $options: "m" }
 });
@@ -320,7 +341,7 @@ db.documents.find({
 
 #### s : Dot all 모드
 
-- `.`이 newline을 포함한 모든 문자에 매칭됩니다.
+- `.`이 newline을 포함한 모든 문자에 matching됩니다.
 
 ```js
 // . 이 newline도 포함
@@ -465,12 +486,12 @@ db.users.find({
 - 특정 형식의 전화번호를 검색합니다.
 
 ```js
-// 하이픈 있는 형식
+// hyphen 있는 형식
 db.contacts.find({
     phone: /^010-\d{4}-\d{4}$/
 });
 
-// 하이픈 없는 형식도 허용
+// hyphen 없는 형식도 허용
 db.contacts.find({
     phone: /^010-?\d{4}-?\d{4}$/
 });
@@ -513,17 +534,17 @@ db.products.find({
 ```
 
 
-### 파일 확장자
+### File 확장자
 
-- 특정 확장자를 가진 파일을 검색합니다.
+- 특정 확장자를 가진 file을 검색합니다.
 
 ```js
-// 이미지 파일만
+// 이미지 file만
 db.files.find({
     filename: /\.(jpg|jpeg|png|gif)$/i
 });
 
-// 문서 파일만
+// 문서 file만
 db.files.find({
     filename: /\.(pdf|doc|docx|xls|xlsx)$/i
 });
@@ -567,9 +588,9 @@ db.events.find({
 ---
 
 
-## 주의사항
+## 주의 사항
 
-- 정규 표현식 사용 시 주의해야 할 점들입니다.
+- 정규 표현식 사용 시, 성능과 정확성에 주의해야 합니다.
 
 
 ### 성능 문제
@@ -579,10 +600,10 @@ db.events.find({
     - 대용량 collection에서는 심각한 성능 저하가 발생합니다.
 
 - 가능하면 다른 방법을 먼저 고려합니다.
-    - 정확한 값 검색 : `$eq`
-    - 여러 값 중 하나 : `$in`
-    - 범위 검색 : `$gte`, `$lte`
-    - 전문 검색 : text index
+    - 정확한 값 검색 : `$eq`.
+    - 여러 값 중 하나 : `$in`.
+    - 범위 검색 : `$gte`, `$lte`.
+    - 전문 검색 : text index.
 
 
 ### Escape 처리
@@ -624,7 +645,7 @@ db.products.find({
 ```
 
 
-### Collection당 하나의 Regex만
+### Collection당 하나의 Regex만 사용하기
 
 - 가능하면 한 query에 regex를 하나만 사용하여 성능 저하를 방지합니다.
 
@@ -659,7 +680,7 @@ db.products.find({ name: "apple" })
 
 ## Regex vs 다른 검색 방법
 
-- 정규 표현식과 다른 검색 방법의 비교입니다.
+- 정규 표현식 대신 다른 검색 방법이 더 효율적일 수 있습니다.
 
 
 ### 정확한 값 검색
@@ -670,7 +691,7 @@ db.products.find({ name: "apple" })
 // 정규 표현식 (느림) ✗
 db.products.find({ category: /^electronics$/ });
 
-// 정확한 매칭 (빠름) ✓
+// 정확한 matching (빠름) ✓
 db.products.find({ category: "electronics" });
 ```
 
@@ -705,7 +726,7 @@ db.articles.find({ $text: { $search: "mongodb" } });
 
 ### Prefix 검색
 
-- prefix 검색은 regex가 적합하며, index를 활용할 수 있습니다.
+- prefix를 검색할 때는 regex를 사용하는 것이 적합하며, 이 경우 index를 활용할 수 있습니다.
 
 ```js
 // 정규 표현식 (index 활용) ✓

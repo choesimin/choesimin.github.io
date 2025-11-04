@@ -2,7 +2,7 @@
 layout: note
 permalink: /309
 title: Database Lock - Data 잠그기
-description: 
+description: database는 transaction 간의 간접을 제어하기 위해 lock mechanism을 사용합니다.
 date: 2025-04-10
 ---
 
