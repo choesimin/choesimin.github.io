@@ -24,6 +24,15 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Override mobile browser default link color */
+a:link {
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
 textarea:focus,
 button:focus,
 input:focus {

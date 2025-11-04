@@ -163,7 +163,6 @@
     // Create related notes container
     const relatedContainer = document.createElement('div');
     relatedContainer.className = 'related-notes-container';
-    relatedContainer.style.marginTop = '20px';
 
     // Create toggle button
     const toggleButton = document.createElement('button');
@@ -216,7 +215,7 @@
 
       const link = document.createElement('a');
       link.href = note.url;
-      link.style.cssText = 'text-decoration: none; color: inherit;';
+      link.style.cssText = 'text-decoration: none; color: #333; display: block;';
 
       const title = document.createElement('h4');
       title.style.cssText = 'margin: 0 0 8px 0; color: #333; font-size: 15px;';
