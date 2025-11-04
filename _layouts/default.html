@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="{{ '/assets/css/default.css' | relative_url }}" />
     {% include highlight.html %}
+    {% include highlight-js.html %}
     {% if layout.css %}
       {% for css in layout.css %}
         <link rel="stylesheet" href="{{ css | relative_url }}" />
