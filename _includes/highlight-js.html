@@ -1,6 +1,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    hljs.highlightAll();
+    // Extract language from parent div and highlight with correct language
+    document.querySelectorAll('div[class*="language-"] pre code').forEach((block) => {
+      const divClass = block.parentElement.parentElement.parentElement.className;
+      const languageMatch = divClass.match(/language-(\w+)/);
+      if (languageMatch) {
+        const language = languageMatch[1];
+        block.className = 'hljs language-' + language;
+        hljs.highlightElement(block);
+      }
+    });
   });
 </script>
