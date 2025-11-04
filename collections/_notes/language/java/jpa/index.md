@@ -102,7 +102,7 @@ date: 2025-09-27
 
 ### EntityManager
 
-- **entity의 생명 주기를 관리**하는 핵심 interface로, database와의 모든 상호 작용을 담당합니다.
+- **entity의 생명 주기를 관리**하는 핵심 interface로, database와의 모든 상호작용을 담당합니다.
     - entity의 저장, 조회, 수정, 삭제 작업을 수행합니다.
     - JPQL이나 Criteria API를 통한 query 실행을 담당합니다.
     - transaction과 연동하여 database 작업의 일관성을 보장합니다.
