@@ -38,13 +38,14 @@ date: YYYY-MM-DD
 - "이를 통해" (through this), "이러한" (such).
 - "~에 대해 알아보겠습니다" (let me explain), "~를 소개합니다" (let me introduce).
 - "~할 수 있습니다" (overuse of softening expressions).
+- Repetitive translation-style endings: Avoid repeating "~를 제공합니다", "~를 달성합니다", "~를 구현합니다" in consecutive sentences. Use varied, natural Korean expressions instead.
 
 ### Heading Writing Rules
 
 - **No Heading Directly After Heading**: All headings must have at least one bulleted sentence (`- ` prefix) immediately below.
 - **Headings Do Not End with Periods**: No period at the end of heading text.
 - **Level 1 Heading (`#`)**: Use only once per document.
-- **Summary Below Top-level Headings**: Even if subsections exist, provide a summary of that section directly under the parent heading.
+- **Concrete Summary Below Headings**: Even if subsections exist, provide a concrete summary directly under the heading. Avoid abstract phrases like "주요 field들로 구성됩니다" and instead specify what those fields are and their roles.
 
 ### Paragraph Separation
 
@@ -58,6 +59,11 @@ date: YYYY-MM-DD
 - **Table Separators**: Use `| --- |` consistently.
 - **Table Content**: Use nominative form, no periods.
 
+### Special Characters and Formatting
+
+- **Colon Spacing**: Always add one space before and after colon (`:`).
+- **No Emojis**: Do not use emojis (✓, ✗, ⚠️, etc.) in technical documentation. Use clear text instead.
+
 ### References
 
 - **Location**: Add to the bottom of the document with `## Reference` heading.
@@ -66,9 +72,13 @@ date: YYYY-MM-DD
 ## Validation Checklist After Writing
 
 - Are there at least one bulleted explanation below each heading?
+- Is the summary below each heading concrete and specific (not abstract)?
 - Are prohibited expressions like "다음과 같은" and "이를 통해" avoided?
+- Are translation-style endings ("제공합니다", "달성합니다") not overused?
 - Are English notation rules applied consistently?
 - Do all sentences end with periods?
+- Are colons properly spaced (` : `)?
+- Are emojis avoided?
 
 ## Detailed Rules
 
