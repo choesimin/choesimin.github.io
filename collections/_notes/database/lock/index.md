@@ -33,7 +33,7 @@ date: 2025-04-10
 - database lock은 잠금 수준에 따라 공유 잠금(shared lock)과 배타 잠금(exclusive lock)으로 나뉩니다.
 
 
-### Shared Lock(S-Lock)
+### Shared Lock (S-Lock)
 
 - 읽기 잠금(read lock)이라고도 불리며, 동시에 여러 transaction이 획득할 수 있습니다.
 - data를 읽을 때 사용하는 lock으로 다른 transaction의 읽기는 허용합니다.
@@ -41,7 +41,7 @@ date: 2025-04-10
 - SELECT 문 실행 시 기본적으로 적용됩니다.
 
 
-### Exclusive Lock(X-Lock)
+### Exclusive Lock (X-Lock)
 
 - 쓰기 잠금(write lock)이라고도 하며, 한 번에 하나의 transaction만 획득할 수 있습니다.
 - data 변경(INSERT, UPDATE, DELETE) 작업 시 사용합니다.
