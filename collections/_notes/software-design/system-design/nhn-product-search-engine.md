@@ -981,7 +981,7 @@ pie title 조정 후 (thread_pool.search.size: 35)
 
 #### 초기의 복잡한 Category Query : 0.5 ~ 1.5 sec
 
-```txt
+```plaintext
 [남성용 배색 운동화]
 
 상품 Category
@@ -1019,7 +1019,7 @@ pie title 조정 후 (thread_pool.search.size: 35)
 
 #### 개선된 단순한 Category Query : 0.3 ~ 0.8 sec
 
-```txt
+```plaintext
 [남성용 배색 운동화]
 
 상품 Category

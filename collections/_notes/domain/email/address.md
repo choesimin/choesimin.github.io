@@ -9,7 +9,7 @@ date: 2025-05-22
 
 ## Email Address
 
-```txt
+```plaintext
 nickname@company.com
 ```
 

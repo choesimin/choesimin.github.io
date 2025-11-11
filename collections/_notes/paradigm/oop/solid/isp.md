@@ -9,7 +9,7 @@ date: 2023-11-05
 
 ## ISP (Interface Segregation Principle) : Interface 분리 원칙
 
-```txt
+```plaintext
 client가 자신이 이용하지 않는 method에 의존하지 않아야 합니다.
 ```
 

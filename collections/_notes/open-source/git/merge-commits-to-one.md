@@ -46,7 +46,7 @@ git rebase -i [begin_commit_hash]~1
 
 - 가장 위에 위치한 첫 commit의 keyword는 그대로 `pick`으로 남겨두고, 나머지 commit들의 keyword를 `pick`에서 `squash`로 수정합니다.
 
-```txt
+```plaintext
 pick df28kvd Commit1
 squash lkvsj90 Commit2
 squash qpalbk3 Commit3
@@ -61,7 +61,7 @@ squash qpalbk3 Commit3
 - rebase가 성공하면 commit message 편집기로 이동하게 됩며, 합친 commit의 message를 수정할 수 있습니다.
     - 위쪽에 commit message를 작성하고, 기존의 commit message들 앞에는 `#`를 붙여 수정합니다.
 
-```txt
+```plaintext
 새로운 Commit Message를 여기 입력합니다.
 
 # Commit1

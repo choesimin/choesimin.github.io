@@ -9,7 +9,7 @@ date: 2023-11-05
 
 ## OCP (Open Closed Principle) : 개방 폐쇄 원칙
 
-```txt
+```plaintext
 Software 개체(class, module 등)는 확장에는 열려 있어야 하고, 변경에는 닫혀 있어야 한다.
 ```
 

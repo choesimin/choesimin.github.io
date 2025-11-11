@@ -17,7 +17,7 @@ date: 2025-05-22
 
 ### Header의 기본 구조
 
-```txt
+```plaintext
 From: "김철수" <kim.chulsoo@company.com>
 To: park.younghee@partner.co.kr, lee.minho@team.com
 CC: manager@company.com
@@ -45,7 +45,7 @@ Content-Type: text/html; charset=UTF-8
 
 #### Header Field 형식
 
-```txt
+```plaintext
 From: sender@example.com
 Subject: 회의 안건 공유
 Date: Mon, 22 May 2025 10:30:00 +0900

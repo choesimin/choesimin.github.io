@@ -9,7 +9,7 @@ date: 2023-06-04
 
 ## Design Pattern : 경험의 재사용
 
-```txt
+```plaintext
 Don’t reinvent the wheel.
 바퀴를 다시 발명하지 마라.
 ```
@@ -29,7 +29,7 @@ Don’t reinvent the wheel.
 
 ## Pattern = 일반화하기
 
-```txt
+```plaintext
 A solution to a problem in a context.
 특정 상황(Context)에서 주어진 문제(Problem)에 대한 해결책(Solution).
 ```

@@ -76,7 +76,7 @@ date: 2025-05-22
 
 ## Email의 구성 요소
 
-```txt
+```plaintext
 Email = Header + Body + Attachment
 ```
 

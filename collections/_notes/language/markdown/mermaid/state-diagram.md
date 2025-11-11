@@ -34,7 +34,7 @@ crash --> [*]
 
 ## 상태 정의하기
 
-```txt
+```plaintext
 [state_id]
 [state_id] : [description]
 state "[description]" as [state_id]
@@ -42,7 +42,7 @@ state "[description]" as [state_id]
 
 - 상태의 식별값과 설명을 작성하여 정의합니다.
 
-```txt
+```plaintext
 stateDiagram-v2
 
 SimpleState
@@ -61,7 +61,7 @@ state "This is a state description with alias" as descStateWithAlias
 
 ### Note 작성하기
 
-```txt
+```plaintext
 note [position] of [state_id]
     [memo]
 end
@@ -73,7 +73,7 @@ note [position] of [state_id] : [memo]
 - note는 Block 방식과 Line 방식으로 작성할 수 있습니다.
 - `left`와 `right` 값으로 설명을 보일 위치를 지정할 수 있습니다.
 
-```txt
+```plaintext
 stateDiagram-v2
 
 state "오른쪽에 기록하기" as stateWithRightNote
@@ -113,7 +113,7 @@ note left of stateWithLeftNote : 왼쪽에 기록합니다.<br>Line 방식에서
     - 화살표가 나간다면 시작 상태입니다.
     - 화살표가 들어온다면 종료 상태입니다.
 
-```txt
+```plaintext
 stateDiagram-v2
 
 [*] --> [*]
@@ -135,7 +135,7 @@ direction LR
 - 전이는 `-->`로 정의합니다.
 - colon(`:`) 뒤에 설명을 적을 수 있습니다.
 
-```txt
+```plaintext
 stateDiagram-v2
 
 Previous --> Next
@@ -156,14 +156,14 @@ Previous --> Next : action[condition]
 
 ## 선택 정의하기
 
-```txt
+```plaintext
 state [choice_id] <<choice>>
 ```
 
 - 선택 상태는 `<<choice>>` keyword를 상태 식별값 뒤에 작성하여 정의합니다.
 - 선택 상태는 두 개 이상의 상태 중에 결정해야 하는 상황에서 사용합니다.
 
-```txt
+```plaintext
 stateDiagram-v2
 
 state if <<choice>>
@@ -192,7 +192,7 @@ if --> Next2 : Condition 2
 
 - `direction` 명령어와 상하좌우를 의미하는 `T`, `B`, `L`, `R` code를 이용하여 화살표의 방향을 설정합니다.
 
-```txt
+```plaintext
 direction [begin][end]
 ```
 
@@ -206,7 +206,7 @@ direction [begin][end]
 
 ### Top to Bottom (상 -> 하)
 
-```txt
+```plaintext
 stateDiagram-v2
 direction TB
 [*] --> [*]
@@ -221,7 +221,7 @@ direction TB
 
 ### Bottom to Top (하 -> 상)
 
-```txt
+```plaintext
 stateDiagram-v2
 direction BT
 [*] --> [*]
@@ -236,7 +236,7 @@ direction BT
 
 ### Left to Right (좌 -> 우)
 
-```txt
+```plaintext
 stateDiagram-v2
 direction LR
 [*] --> [*]
@@ -251,7 +251,7 @@ direction LR
 
 ### Right to Left (우 -> 좌)
 
-```txt
+```plaintext
 stateDiagram-v2
 direction RL
 [*] --> [*]

@@ -407,7 +407,7 @@ db.customers.updateOne(
 
 - "어떤 data를 저장하는가"보다 "어떻게 data를 사용하는가"가 중요합니다.
 
-```txt
+```plaintext
 질문 목록
 
 1. 어떤 query가 가장 자주 실행되는가?

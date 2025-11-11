@@ -38,7 +38,7 @@ npm start
 
 - CRA로 project를 생성하면 React 개발을 위한 folder와 file이 자동으로 생성됩니다.
 
-```txt
+```plaintext
 my-app
 ├── README.md
 ├── node_modules

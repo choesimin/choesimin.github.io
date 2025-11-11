@@ -66,7 +66,7 @@ date: 2024-05-22
 
 - C 언어의 memory 영역(Memory Layout)에는 Code 영역, Data 영역, BSS 영역, Heap 영역, Stack 영역이 있으며, **동적 memory 할당은 Heap 영역**에서 이루어집니다.
 
-```txt
+```plaintext
    High Address
 ┌────────────────┐
 │     Stack      │

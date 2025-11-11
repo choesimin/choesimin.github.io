@@ -9,7 +9,7 @@ date: 2025-01-04
 
 ## Vim 문자열 치환 명령어 : `:s`
 
-```txt
+```plaintext
 :[range]s/pattern/replacement/[options]
 ```
 
@@ -63,7 +63,7 @@ date: 2025-01-04
 - `vimtutor`는 Vim의 기초적인 사용법부터 고급 기능까지 단계적으로 학습할 수 있도록 설계된 대화형 tutorial program입니다.
     - terminal에서 `vimtutor` 명령어를 입력하면, 실습을 시작할 수 있습니다.
 
-```txt
+```plaintext
 		      Lesson 4.4: THE SUBSTITUTE COMMAND
 
 

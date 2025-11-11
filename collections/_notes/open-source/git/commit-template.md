@@ -73,7 +73,7 @@ git config --global commit.template ~/.gitmessage
 
 ### 기본 Conventional Commit Style
 
-```txt
+```plaintext
 # <type>(<scope>): <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -101,7 +101,7 @@ git config --global commit.template ~/.gitmessage
 
 ### 기업형 상세 Template
 
-```txt
+```plaintext
 # [<TYPE>] <JIRA-ID>: <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -136,7 +136,7 @@ git config --global commit.template ~/.gitmessage
 
 ### Emoji 활용 Template (Gitmoji)
 
-```txt
+```plaintext
 # <emoji> <type>: <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -165,7 +165,7 @@ git config --global commit.template ~/.gitmessage
 
 ### 간소화된 기본 Template
 
-```txt
+```plaintext
 # 제목: 변경 사항을 한 줄로 요약 (50자 이내)
 # 
 # 본문: 변경 사항에 대한 자세한 설명 (선택 사항)
@@ -179,7 +179,7 @@ git config --global commit.template ~/.gitmessage
 
 ### Open Source Project Template
 
-```txt
+```plaintext
 # <type>(<scope>): <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -213,7 +213,7 @@ git config --global commit.template ~/.gitmessage
 
 ### Frontend Project Template
 
-```txt
+```plaintext
 # <type>(<scope>): <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -247,7 +247,7 @@ git config --global commit.template ~/.gitmessage
 
 ### Backend Project Template
 
-```txt
+```plaintext
 # <type>(<scope>): <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -287,7 +287,7 @@ git config --global commit.template ~/.gitmessage
 
 ### 간단한 Mobile App 개발 Template
 
-```txt
+```plaintext
 # [<platform>] <type>: <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -321,7 +321,7 @@ git config --global commit.template ~/.gitmessage
 
 ### ML/AI Project Template
 
-```txt
+```plaintext
 # <type>(<scope>): <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -361,7 +361,7 @@ git config --global commit.template ~/.gitmessage
 
 ### DevOps/Infra Template
 
-```txt
+```plaintext
 # <type>(<scope>): <subject>
 # |<----  제목은 최대 50자까지 입력  ---->|
 #
@@ -406,7 +406,7 @@ git config --global commit.template ~/.gitmessage
 - template들을 사용했을 때 실제 commit message 예시입니다.
     - commit message의 구조와 내용을 일관성 있게 유지하며, 변경 사항을 명확하게 설명합니다.
 
-```txt
+```plaintext
 feat(auth): implement JWT authentication system
 
 - 사용자 인증 프로세스를 JWT 기반으로 구현했습니다.
@@ -416,7 +416,7 @@ feat(auth): implement JWT authentication system
 관련 이슈: #123
 ```
 
-```txt
+```plaintext
 🐛 fix: resolve memory leak in image processing module
 
 - 대용량 이미지 처리 시 발생하던 메모리 누수 문제를 해결했습니다.
@@ -426,7 +426,7 @@ feat(auth): implement JWT authentication system
 관련 이슈: #456
 ```
 
-```txt
+```plaintext
 [iOS] perf: optimize app startup time
 
 - 앱 시작 시간을 30% 개선했습니다.

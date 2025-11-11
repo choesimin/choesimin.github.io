@@ -23,7 +23,7 @@ date: 2023-12-05
 
 ## Layer Package Structure
 
-```txt
+```plaintext
 application
 │
 ├── controller
@@ -89,7 +89,7 @@ application
 
 ## Domain Package Structure
 
-```txt
+```plaintext
 application
 │
 ├── product
@@ -152,7 +152,7 @@ application
 
 ## Package 구조 설계 예시 : 청구/결제 Service
 
-```txt
+```plaintext
 application
 │
 ├── domain

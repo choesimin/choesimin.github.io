@@ -141,7 +141,7 @@ mixer ----> result
 
 - 사용자가 follow하는 사람과 선호하는 tweet들을 기준으로 관심도 높은 후보를 생성합니다.
 
-```txt
+```plaintext
 사용자가 follow하는 사람들이 최근에 어떤 tweet에 참여했습니까?
 사용자가 좋아하는 tweet들과 비슷한 tweet을 좋아하는 사람들이 최근에 어떤 것들을 좋아했습니까?
 ```
@@ -155,7 +155,7 @@ mixer ----> result
 
 - embedding 공간 접근법은 content의 유사성에 대해 social graph 접근법보다 **일반적인** 기준으로 판단합니다.
 
-```txt
+```plaintext
 사용자의 관심사와 비슷한 tweet과 사용자가 무엇입니까?
 ```
 

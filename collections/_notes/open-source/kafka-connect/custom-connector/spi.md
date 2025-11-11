@@ -19,7 +19,7 @@ date: 2025-11-03
 
 - SPI 설정을 위한 directory 구조를 생성합니다.
 
-```
+```plaintext
 project-root/
 ├── src/
 │   └── main/
@@ -39,13 +39,13 @@ project-root/
 
 - file 내부에는 구현한 connector의 전체 class 경로(fully qualified class name)를 한 줄에 하나씩 작성합니다.
 
-```txt
+```plaintext
 com.example.opensearch.OpenSearchSinkConnector
 ```
 
 - 여러 connector를 같은 interface로 제공하는 경우 각 class 경로를 새 줄에 추가합니다.
 
-```txt
+```plaintext
 com.example.opensearch.OpenSearchSinkConnector
 com.example.elasticsearch.ElasticsearchSinkConnector
 com.example.mongodb.MongoDBSinkConnector
@@ -105,7 +105,7 @@ flowchart TD
     - 각 line은 하나의 구현체 class name을 나타냅니다.
     - 빈 줄이나 `#`로 시작하는 주석은 무시됩니다.
 
-```txt
+```plaintext
 # SPI file 예시
 com.example.opensearch.OpenSearchSinkConnector
 com.example.elasticsearch.ElasticsearchSinkConnector

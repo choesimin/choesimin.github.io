@@ -149,7 +149,7 @@ SHOW VARIABLES LIKE 'log_bin_basename';
 
 - `log_bin_basename` 변수의 값을 조회하여, binary log file의 전체 경로와 기본 이름을 확인합니다.
 
-```txt
+```plaintext
 +------------------+------------------------+
 | Variable_name    | Value                  |
 +------------------+------------------------+
@@ -169,7 +169,7 @@ SHOW MASTER STATUS;
 
 - `SHOW MASTER STATUS` 명령어를 사용하여 현재 활성화된 binary log file의 이름과 log position를 확인합니다.
 
-```txt
+```plaintext
 +---------------+----------+--------------+------------------+-------------------+
 | File          | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
 +---------------+----------+--------------+------------------+-------------------+
@@ -189,7 +189,7 @@ SHOW BINARY LOGS;
 
 - 현재 server에 존재하는 모든 binary log file 목록을 확인합니다.
 
-```txt
+```plaintext
 +---------------+-----------+-----------+
 | Log_name      | File_size | Encrypted |
 +---------------+-----------+-----------+
@@ -210,7 +210,7 @@ SHOW VARIABLES LIKE 'datadir';
 
 - binary log file이 기본 경로에 저장된 경우 이 directory에 위치합니다.
 
-```txt
+```plaintext
 +---------------+-----------------+
 | Variable_name | Value           |
 +---------------+-----------------+

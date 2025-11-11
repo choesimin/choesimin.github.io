@@ -73,7 +73,7 @@ gradle init --type java-library
 
 #### 준비가 완료된 최종 구조
 
-```txt
+```plaintext
 opensearch-sink-connector
 ├── settings.gradle
 ├── build.gradle
@@ -567,13 +567,13 @@ public class VersionUtil {
 
 ### [version.properties](#file-preparation)
 
-```txt
+```plaintext
 connector.version=0.0.1
 ```
 
 
 ### [org.apache.kafka.connect.sink.SinkConnector](#file-preparation)
 
-```txt
+```plaintext
 com.hiworks.UpdateByQuerySinkConnector
 ```

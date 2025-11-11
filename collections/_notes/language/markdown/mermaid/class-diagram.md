@@ -50,7 +50,7 @@ class Zebra{
 - `class` 뒤에 class 이름을 작성하여 class를 정의합니다.
 - label 방식과 back quote 방식으로 class 이름에 공백, 특수문자를 넣을 수 있습니다.
 
-```txt
+```plaintext
 classDiagram
 
 class Class
@@ -80,7 +80,7 @@ class `Class with back quote !@#`
 | custom annotation | `<<custom>>` |
 
 
-```txt
+```plaintext
 classDiagram
 
 class Class
@@ -105,7 +105,7 @@ class BracketClass {
 
 ### Note 작성하기
 
-```txt
+```plaintext
 note "[memo]"
 note for [class_name] "[memo]"
 ```
@@ -114,7 +114,7 @@ note for [class_name] "[memo]"
     - class를 지정하지 않으면 연결선 없이 설명만 추가합니다.
 - 줄바꿈은 `<br>` tag를 사용합니다.
 
-```txt
+```plaintext
 classDiagram
 
 class Class
@@ -142,7 +142,7 @@ note for Class "This is a class memo.<br>memo one.<br>memo two."
 - 변수와 함수의 구분은 소괄호(`()`)로 합니다.
     - 함수명 뒤에 소괄호를 붙입니다.
 
-```txt
+```plaintext
 classDiagram
 
 class ColonClass
@@ -171,7 +171,7 @@ class BracketClass {
 
 ### 자료형 명시하기
 
-```txt
+```plaintext
 [type] variable
 method() [type]
 ```
@@ -180,7 +180,7 @@ method() [type]
     - 변수의 자료형은 변수 앞에 작성합니다.
     - 함수 반환 값의 자료형은 함수 뒤에 작성합니다.
 
-```txt
+```plaintext
 classDiagram
 
 class Class {
@@ -207,7 +207,7 @@ class Class {
 
 - 함수의 parameter는 함수의 소괄호 안에 작성합니다.
 
-```txt
+```plaintext
 classDiagram
 
 class Class {
@@ -239,7 +239,7 @@ class Class {
 | `#` | Protected |
 | `~` | Package/Internal |
 
-```txt
+```plaintext
 classDiagram
 
 class Class {
@@ -264,12 +264,12 @@ class Class {
 
 ### Generic Type 작성하기
 
-```txt
+```plaintext
 [type]~[generic_type]~
 ```
 - type을 작성할 때, generic type을 물결표시(`~`)로 감쌉니다.
 
-```txt
+```plaintext
 classDiagram
 
 class Class {
@@ -301,7 +301,7 @@ class Class {
 
 ## Class 관계 정의하기
 
-```txt
+```plaintext
 classDiagram
 
 RelationA --|> RelationB : 상속 inheritance
@@ -337,7 +337,7 @@ TwoWayA <|--|> TwoWayB : 양방향 many to many
 
 ### 관계의 Label 작성하기
 
-```txt
+```plaintext
 [class] [arrow] [target_class] : [label]
 ```
 
@@ -345,7 +345,7 @@ TwoWayA <|--|> TwoWayB : 양방향 many to many
 - colon(`:`) 뒤에 작성합니다.
 
 
-```txt
+```plaintext
 classDiagram
 
 LabelA --|> LabelB : this is label text
@@ -367,7 +367,7 @@ NoLabelA --|> NoLabelB
 
 - `direction` 명령어와 상하좌우를 의미하는 `T`, `B`, `L`, `R` code를 이용하여 화살표의 방향을 설정합니다.
 
-```txt
+```plaintext
 direction [begin][end]
 ```
 
@@ -381,7 +381,7 @@ direction [begin][end]
 
 ### Top to Bottom (상 -> 하)
 
-```txt
+```plaintext
 classDiagram
 direction TB
 Begin --|> End
@@ -396,7 +396,7 @@ Begin --|> End
 
 ### Bottom to Top (하 -> 상)
 
-```txt
+```plaintext
 classDiagram
 direction BT
 Begin --|> End
@@ -411,7 +411,7 @@ Begin --|> End
 
 ### Left to Right (좌 -> 우)
 
-```txt
+```plaintext
 classDiagram
 direction LR
 Begin --|> End
@@ -426,7 +426,7 @@ Begin --|> End
 
 ### Right to Left (우 -> 좌)
 
-```txt
+```plaintext
 classDiagram
 direction RL
 Begin --|> End

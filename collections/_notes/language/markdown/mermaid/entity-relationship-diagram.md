@@ -11,7 +11,7 @@ date: 2024-09-25
 
 - mermaid를 사용해 ERD(Entity Relationship Diagram)를 그릴 수 있습니다.
 
-```txt
+```plaintext
 ---
 title: ERD Example
 ---
@@ -81,7 +81,7 @@ MANUFACTURER ||--o{ CAR : makes
 
 ## 구성 요소
 
-```txt
+```plaintext
 <first-entity> [<relationship> <second-entity> : <label>]
 ```
 
@@ -108,7 +108,7 @@ MANUFACTURER ||--o{ CAR : makes
 
 ## Entity 정의하기
 
-```txt
+```plaintext
 erDiagram
 
 <entity-name>
@@ -118,7 +118,7 @@ erDiagram
     - entity의 이름은 alphabet이나 밑줄(`_`)로 시작해야 하며, 숫자와 hyphen(`-`)도 포함할 수 있습니다.
     - 한글은 사용할 수 없습니다.
 
-```txt
+```plaintext
 erDiagram
 
 CAR
@@ -139,7 +139,7 @@ NAMED_DRIVER_2
 
 ### Entity의 속성 정의하기
 
-```txt
+```plaintext
 erDiagram
 
 <entity-name> {
@@ -154,7 +154,7 @@ erDiagram
     - **자료형**(`attribute-type`)은 alphabet 문자로 시작해야 하며, alphabet 대소문자(한글 사용 불가), 숫자, hyphen(`-`), underbar(`_`), 괄호(`()`) 및 대괄호(`[]`)를 포함할 수 있습니다.
     - **이름**(`attribute-name`)도 자료형과 같은 naming 규칙을 따르며, 속성이 PK(primary key)임을 나타내기 위해 별표(`*`)를 앞에 붙일 수 있습니다.
 
-```txt
+```plaintext
 erDiagram
 
 CAR {
@@ -177,7 +177,7 @@ CAR {
 
 #### Entity 속성에 Key와 Comment 추가하기
 
-```txt
+```plaintext
 erDiagram
 
 <entity-name> {
@@ -195,7 +195,7 @@ erDiagram
 - **comment**는 속성 끝에 따옴표(`""`)를 사용하여 정의할 수 있습니다.
     - comment 자체에는 따옴표 문자를 포함할 수 없습니다.
 
-```txt
+```plaintext
 erDiagram
 
 CAR {
@@ -246,7 +246,7 @@ NAMED-DRIVER {
 
 ### Entity에 별칭 지정하기
 
-```txt
+```plaintext
 erDiagram
 
 <entity-name> [<alias>]
@@ -259,7 +259,7 @@ erDiagram
 - 별칭이 한 단어 이상인 경우, 문자열을 따옴표(`"`)로 묶어야 합니다.
     - 예를 들어, `"Customer Account"`처럼 표현할 수 있습니다.
 
-```txt
+```plaintext
 erDiagram
 
 p[Person] {
@@ -300,7 +300,7 @@ p ||--o| a : has
 | `}o` | `o{` | zero or more (no upper limit) |
 | `}|` | `{|` | one or more (no upper limit) |
 
-```txt
+```plaintext
 erDiagram
 
 CAR ||--o{ NAMED-DRIVER : allows
@@ -327,7 +327,7 @@ PERSON ||--o{ NAMED-DRIVER : is
 | `||--o{` | `1` : `0 ~ N` |
 | `}o--{|` | `0 ~ N` : `1 ~ N` |
 
-```txt
+```plaintext
 erDiagram
 
 CUSTOMER ||--o{ ORDER : places
@@ -346,7 +346,7 @@ CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
 
 ### Relationship Label 지정하기
 
-```txt
+```plaintext
 erDiagram
 
 <entity-name> <relationship> <entity-name> : <label>
@@ -364,7 +364,7 @@ erDiagram
 - 관계에 여러 줄의 label이 있는 경우, 문자열을 따옴표(`"`)로 감싸고, 두 줄 사이에 `<br />`을 사용해야 합니다.
     - 예를 들어, `"first line<br />second line"`처럼 표현할 수 있습니다.
 
-```txt
+```plaintext
 erDiagram
 
 CUSTOMER ||--o{ ORDER : ""

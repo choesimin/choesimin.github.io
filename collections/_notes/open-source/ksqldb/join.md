@@ -11,7 +11,7 @@ date: 2025-01-07
 
 - ksqlDB는 **Stream-Stream, Stream-Table, Table-Table 간의 Join 기능**을 제공하고 있습니다.
 
-```txt
+```plaintext
 ksqlDB의 Join = raw event data + contextual data = Meaningful Business Data
 ```
 

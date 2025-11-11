@@ -97,7 +97,7 @@ timeline
 
 ## Cursor 이동시키기
 
-```txt
+```plaintext
           ∧
           |
           |

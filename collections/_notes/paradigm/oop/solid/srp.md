@@ -9,7 +9,7 @@ date: 2023-11-05
 
 ## SRP (Single Responsibility Principle) : 단일 책임 원칙
 
-```txt
+```plaintext
 단일 module은 변경의 이유가 하나, 오직 하나뿐이어야 한다.
 ```
 

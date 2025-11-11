@@ -259,7 +259,7 @@ class Command {
 
 ## Example : Remote Controller
 
-```txt
+```plaintext
 [remote controller]
     {slot1}
         (on button)

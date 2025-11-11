@@ -26,7 +26,7 @@ date: 2025-06-26
 
 ### Repository 구조
 
-```txt
+```plaintext
 svn_repository/
 ├── trunk/
 ├── branches/

@@ -18,7 +18,7 @@ date: 2023-07-17
 
 ### 포함 관계 : JVM ⊂ JRE ⊂ JDK
 
-```txt
+```plaintext
 JDK는 JRE를 포함하고, JRE는 JVM을 포함합니다.
 ```
 

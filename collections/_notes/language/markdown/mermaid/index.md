@@ -28,7 +28,7 @@ date: 2023-04-09
 
 ## Diagram 제목 작성하기
 
-```txt
+```plaintext
 ---
 title: [diagramTitle]
 ---
@@ -36,7 +36,7 @@ title: [diagramTitle]
 
 - 모든 종류의 diagram은 `title` 영역에 제목을 작성할 수 있습니다.
 
-```txt
+```plaintext
 ---
 title: Diagram 제목 예시
 ---

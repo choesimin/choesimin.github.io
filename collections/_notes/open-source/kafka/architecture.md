@@ -20,7 +20,7 @@ date: 2025-03-10
 | **Partition** | 병렬 처리를 위한 topic의 분할 단위 | 여러 segment로 구성 |
 | **Segment** | 실제 disk에 저장되는 data file | append-only file |
 
-```txt
+```plaintext
                 +--------- Kafka Cluster ---------+
                 |                                 |
 +---------------+----------------+----------------+---------------+

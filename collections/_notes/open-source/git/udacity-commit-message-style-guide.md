@@ -30,7 +30,7 @@ date: 2025-04-22
 
 ## Message Structure
 
-```txt
+```plaintext
 type: subject
 
 body
@@ -113,7 +113,7 @@ footer
 
 ## Commit Message 예시
 
-```txt
+```plaintext
 feat: Implement automatic email notification system
 
 Add functionality to automatically send email notifications when a user 
@@ -128,7 +128,7 @@ Resolves: #142
 See also: #65, #78
 ```
 
-```txt
+```plaintext
 feat: 자동 이메일 알림 시스템 구현
 
 사용자가 새 양식을 제출할 때 자동으로 이메일 알림을 보내는 기능 추가.
