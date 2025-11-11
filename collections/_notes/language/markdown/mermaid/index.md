@@ -12,15 +12,8 @@ date: 2023-04-09
 - text와 code를 작성하여 diagram을 그립니다.
     - code로 작성하기 때문에 수정이 쉽습니다.
 
-<pre>
-<code>
-```mermaid
-
-```
-</code>
-</pre>
-
-- mermaid code block 안에 mermaid의 문법에 맞게 작성합니다.
+- mermaid code block 안에 mermaid 문법에 맞게 작성합니다.
+    - mermaid code block은 backtick 세 개에 mermaid keyword(\`\`\`mermaid)로 시작하여, backtick 세 개(\`\`\`)로 끝납니다.
 
 
 ---
@@ -62,7 +55,7 @@ class Class
 
 - percent 기호 두 개(`%%`)를 사용합니다.
 
-```text
+```plaintext
 classDiagram
 
 %% 주석입니다.
@@ -83,3 +76,4 @@ class Class
 ## Reference
 
 - <https://mermaid.js.org/intro/>
+
