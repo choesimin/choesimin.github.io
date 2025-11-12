@@ -4,6 +4,7 @@ permalink: /268
 title: 실물 자산과 금융 자산
 description: 자산은 물리적 형태의 유무에 따라 실물 자산과 금융 자산으로 구분되며, 각각 다른 특성과 투자 목적을 가집니다.
 date: 2025-11-12
+published: false
 ---
 
 

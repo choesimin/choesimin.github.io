@@ -4,6 +4,7 @@ permalink: /267
 title: 자산 클래스
 description: 자산 클래스는 투자 범주에 따라 자산을 분류하는 방식으로, 현금, 채권, 주식, 부동산, 상품, 대체투자 등으로 구분됩니다.
 date: 2025-11-12
+published: false
 ---
 
 
