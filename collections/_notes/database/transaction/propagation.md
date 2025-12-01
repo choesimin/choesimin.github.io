@@ -2,15 +2,15 @@
 layout: note
 permalink: /278
 title: Transaction Propagation - Transaction 전파 설정
-description: transaction propagation은 중첩된 @Transactional method 호출 시 기존 transaction을 이어받을지 새로 시작할지를 결정하는 속성으로, REQUIRED, REQUIRES_NEW, SUPPORTS, NOT_SUPPORTED, MANDATORY, NEVER, NESTED 등 7가지 전파 전략을 제공합니다.
+description: transaction propagation은 중첩된 @Transactional method 호출 시 기존 transaction을 이어받을지 새로 시작할지를 결정하는 속성으로, REQUIRED, REQUIRES_NEW, SUPPORTS, NOT_SUPPORTED, MANDATORY, NEVER, NESTED 등 7가지 전파 전략이 있습니다.
 date: 2025-12-01
-published: false
 ---
 
 
 ## Transaction Propagation
 
 - **Transaction propagation**은 `@Transactional` method가 다른 `@Transactional` method를 호출할 때, 기존 transaction을 어떻게 처리할지를 결정하는 속성입니다.
+    - `@Transactional` method는 다른 `@Transactional` method를 호출할 수 있으며, 이때 transaction의 전파 방식을 지정할 수 있습니다.
 
 - `REQUIRED`, `REQUIRES_NEW`, `SUPPORTS`, `NOT_SUPPORTED`, `MANDATORY`, `NEVER`, `NESTED` 등 7가지 전파 전략을 제공합니다.
     - 기본값은 `Propagation.REQUIRED`입니다.
@@ -39,13 +39,43 @@ graph TD
 
 | 전략 | 기존 Tx 있을 때 | 기존 Tx 없을 때 | 주요 특징 |
 | --- | --- | --- | --- |
-| REQUIRED | 이어받음 | 새로 시작 | 기본값, 대부분의 service method |
-| REQUIRES_NEW | 새로 시작 (suspend) | 새로 시작 | 독립적인 transaction 필요 |
-| SUPPORTS | 이어받음 | non-tx 실행 | 유연한 transaction 관리 |
-| NOT_SUPPORTED | suspend | non-tx 실행 | transaction 범위 밖에서 실행 |
-| MANDATORY | 이어받음 | exception 발생 | transaction 필수 강제 |
-| NEVER | exception 발생 | non-tx 실행 | transaction 금지 강제 |
-| NESTED | savepoint 생성 | 새로 시작 | 부분적 rollback 지원 |
+| `REQUIRED` | 이어받음 | 새로 시작 | 기본값, 대부분의 service method |
+| `REQUIRES_NEW` | 새로 시작 (suspend) | 새로 시작 | 독립적인 transaction 필요 |
+| `SUPPORTS` | 이어받음 | non-tx 실행 | 유연한 transaction 관리 |
+| `NOT_SUPPORTED` | suspend | non-tx 실행 | transaction 범위 밖에서 실행 |
+| `MANDATORY` | 이어받음 | exception 발생 | transaction 필수 강제 |
+| `NEVER` | exception 발생 | non-tx 실행 | transaction 금지 강제 |
+| `NESTED` | savepoint 생성 | 새로 시작 | 부분적 rollback 지원 |
+
+
+### `@Transactional` : Spring에서의 Transaction 관리 방법
+
+- `@Transactional`은 Java Spring framework의 annotation으로, method 실행 시 자동으로 transaction을 관리합니다.
+    - method 시작 시 transaction이 자동으로 시작되고, 정상 완료되면 commit, exception이 발생하면 rollback됩니다.
+    - 개발자가 명시적으로 transaction 시작/종료 code를 작성할 필요가 없습니다.
+
+- `propagation` 속성은 method가 다른 `@Transactional` method를 호출할 때, 기존 transaction을 어떻게 처리할지를 결정합니다.
+    - 문서에서 설명하는 `REQUIRED`, `REQUIRES_NEW` 등의 전략들이 `propagation`에 할당되는 값들입니다.
+
+```java
+@Service
+public class UserService {
+    @Transactional
+    public void updateUser(Long id, String email) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setEmail(email);
+        userRepository.save(user);  // 저장 완료 시 commit
+    }
+}
+```
+
+- `updateUser` method에 exception이 발생하면 transaction이 rollback되어 database 변경 사항이 모두 취소됩니다.
+    - transaction이 없었다면 method 중간에 이미 저장된 data는 database에 남아있게 됩니다.
+
+- `@Transactional(propagation = Propagation.REQUIRED)` 형식으로 propagation 속성을 명시적으로 지정할 수 있습니다.
+    - 값을 지정하지 않으면 기본값인 `REQUIRED`가 적용됩니다.
+
+- 문서에서는 이해를 돕기 위해, `@Transactional` method가 다른 `@Transactional` method를 호출하는 상황을 중심으로 각 propagation 전략을 설명합니다.
 
 
 ---
@@ -374,22 +404,22 @@ public class DataImportService {
 
 - 각 propagation 전략의 특성과 사용 사례를 이해하여 상황에 맞게 선택합니다.
 
-- **REQUIRED (기본값)** : 대부분의 service layer method에서 사용합니다.
+- **`REQUIRED`** (기본값) : 대부분의 service layer method에서 사용합니다.
     - 여러 repository method를 호출하는 business logic은 하나의 transaction 범위에서 실행되어야 합니다.
 
-- **REQUIRES_NEW** : 기본 작업의 성공/실패와 무관하게 처리되어야 하는 작업에 사용합니다.
+- **`REQUIRES_NEW`** : 기본 작업의 성공/실패와 무관하게 처리되어야 하는 작업에 사용합니다.
     - audit log 기록, system notification 발송, error report 저장 등이 해당합니다.
 
-- **SUPPORTS** : transaction이 있어도, 없어도 상관없는 작업에 사용합니다.
+- **`SUPPORTS`** : transaction이 있어도, 없어도 상관없는 작업에 사용합니다.
     - 조회 작업이나 utility method에 적합합니다.
 
-- **NOT_SUPPORTED** : 외부 service 호출이나 cache invalidation 같이 transaction 범위 밖에서 실행되어야 하는 작업에 사용합니다.
+- **`NOT_SUPPORTED`** : 외부 service 호출이나 cache invalidation 같이 transaction 범위 밖에서 실행되어야 하는 작업에 사용합니다.
 
-- **MANDATORY** : 특정 method는 항상 transaction 범위 내에서만 호출되어야 한다는 계약을 enforce하고 싶을 때 사용합니다.
+- **`MANDATORY`** : 특정 method는 항상 transaction 범위 내에서만 호출되어야 한다는 계약을 enforce하고 싶을 때 사용합니다.
 
-- **NEVER** : transaction이 있으면 안 되는 특별한 작업을 명시적으로 표현할 때 사용합니다.
+- **`NEVER`** : transaction이 있으면 안 되는 특별한 작업을 명시적으로 표현할 때 사용합니다.
 
-- **NESTED** : 부분적인 rollback이 필요한 경우에 사용하며, database 지원 확인이 필수입니다.
+- **`NESTED`** : 부분적인 rollback이 필요한 경우에 사용하며, database 지원 확인이 필수입니다.
 
 
 ---
