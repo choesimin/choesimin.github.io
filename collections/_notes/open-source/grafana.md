@@ -72,7 +72,7 @@ date: 2025-02-10
 - **이상 징후를 실시간으로 감지하고 alert을 발생**시킵니다.
     - 정상 범위를 벗어난 sensor 값을 즉시 감지합니다.
     - device 오작동이나 통신 장애를 감지합니다.
-    - predictive maintenance를 위한 패턴을 분석합니다.
+    - predictive maintenance를 위한 pattern을 분석합니다.
 
 
 ---

@@ -10,7 +10,7 @@ date: 2025-06-19
 ## Framework
 
 - framework는 software 개발 시 공통으로 사용되는 기능들을 미리 구현해 놓은 **기반 구조**입니다.
-- framework는 개발자가 **특정 규칙과 패턴**을 따라 code를 작성하도록 하여, 일관성 있고 효율적인 개발을 가능하게 합니다.
+- framework는 개발자가 **특정 규칙과 pattern**을 따라 code를 작성하도록 하여, 일관성 있고 효율적인 개발을 가능하게 합니다.
 - library와 달리 framework는 **제어의 역전(Inversion of Control, IoC)** 원칙을 통해 개발자의 code를 제어합니다.
 
 
