@@ -64,7 +64,7 @@ db.sales.aggregate([
 
 ## 주요 Aggregation Stage
 
-- aggregation pipeline은 `$match`(filtering), `$group`(집계), `$project`(field 선택), `$sort`(정렬), `$limit`/`$skip`(결과 제한), `$unwind`(array 펼치기), `$lookup`(join) 등의 핵심 stage로 구성됩니다.
+- aggregation pipeline은 `$match`(filtering), `$group`(집계), `$project`(field 선택), `$sort`(정렬), `$count`(개수 계산), `$limit`/`$skip`(결과 제한), `$unwind`(array 펼치기), `$lookup`(join) 등의 핵심 stage로 구성됩니다.
 
 
 ### $match
@@ -152,7 +152,7 @@ db.sales.aggregate([
 { $skip: number }
 ```
 
-- $limit는 출력 document 개수를 제한하고, $skip은 지정된 개수만큼 document를 건너뜁니다.
+- `$limit`는 출력 document 개수를 제한하고, $skip은 지정된 개수만큼 document를 건너뜁니다.
 
 ```js
 // pagination 구현 (11번째부터 20번째까지)
@@ -160,6 +160,38 @@ db.products.aggregate([
     { $sort: { _id: 1 } },
     { $skip: 10 },
     { $limit: 10 }
+])
+```
+
+
+### $count
+
+```js
+{ $count: "fieldName" }
+```
+
+- pipeline 단계에서 document의 총 개수를 계산하고, 지정된 field name으로 결과를 반환합니다.
+
+```js
+db.orders.aggregate([
+    { $match: { status: "completed" } },
+    { $count: "totalOrders" }
+])
+// 결과 : { totalOrders: 150 }
+```
+
+- `$count`는 `$group`과 `$sum: 1`을 조합한 것과 유사하지만, 더 간결합니다.
+
+```js
+// $count 사용
+db.products.aggregate([
+    { $count: "productCount" }
+])
+
+// $group과 $sum으로 동일한 결과
+db.products.aggregate([
+    { $group: { _id: null, productCount: { $sum: 1 } }},
+    { $project: { _id: 0, productCount: 1 }}
 ])
 ```
 
