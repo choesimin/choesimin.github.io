@@ -7,7 +7,7 @@ date: 2025-12-30
 ---
 
 
-# Dependency Injection
+## Dependency Injection
 
 - Dependency Injection(DI)은 **객체가 필요로 하는 의존성을 외부에서 주입받는 design pattern**입니다.
     - 객체가 직접 의존 객체를 생성하지 않고, 외부에서 생성된 객체를 전달받습니다.

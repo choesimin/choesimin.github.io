@@ -44,7 +44,7 @@ date: YYYY-MM-DD
 
 - **No Heading Directly After Heading**: All headings must have at least one bulleted sentence (`- ` prefix) immediately below.
 - **Headings Do Not End with Periods**: No period at the end of heading text.
-- **Level 1 Heading (`#`)**: Use only once per document.
+- **Start from Level 2 (`##`)**: Do not use level 1 heading (`#`). The highest heading level in a document is level 2 (`##`).
 - **Concrete Summary Below Headings**: Even if subsections exist, provide a concrete summary directly under the heading. Avoid abstract phrases like "주요 field들로 구성됩니다" and instead specify what those fields are and their roles.
 
 ### Paragraph Separation
