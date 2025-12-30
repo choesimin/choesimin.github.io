@@ -56,6 +56,7 @@ date: YYYY-MM-DD
 ### Diagrams and Tables
 
 - **Mermaid.js**: Use Mermaid.js syntax for diagrams instead of images.
+- **No `@` in Mermaid**: Avoid using `@` symbol in Mermaid diagrams as it causes parsing errors. Use the term without `@` (e.g., `Qualifier` instead of `@Qualifier`).
 - **Table Separators**: Use `| --- |` consistently.
 - **Table Content**: Use nominative form, no periods.
 
@@ -69,7 +70,14 @@ date: YYYY-MM-DD
 - **Location**: Add to the bottom of the document with `## Reference` heading.
 - **Format**: `- <reference.link.com/some_uri>`.
 
+### Document Independence
+
+- **No Cross-References**: Documents must be independent and self-contained. Do not link to other documents in the repository.
+- **Summarize Instead of Linking**: If related content exists in another document, briefly summarize the key points instead of linking to it.
+
 ## Validation Checklist After Writing
+
+**IMPORTANT**: Always run through this checklist after completing a document. Do not skip this step.
 
 - Are there at least one bulleted explanation below each heading?
 - Is the summary below each heading concrete and specific (not abstract)?
@@ -79,6 +87,11 @@ date: YYYY-MM-DD
 - Do all sentences end with periods?
 - Are colons properly spaced (` : `)?
 - Are emojis avoided?
+
+## Before Writing
+
+- **Study Existing Documents**: Before writing a new document, read several published documents in collections/_notes to understand the tone, structure, and style patterns.
+- **Use Mermaid.js Actively**: When explaining flows, hierarchies, or relationships, use Mermaid.js diagrams to enhance understanding.
 
 ## Detailed Rules
 
