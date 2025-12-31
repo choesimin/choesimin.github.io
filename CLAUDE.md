@@ -31,14 +31,23 @@ date: YYYY-MM-DD
 - **Capitalize Proper Nouns Only**: 'Debezium', 'Linux' (proper nouns) / 'system', 'database' (common nouns).
 - **Lowercase at Sentence Start**: If not a proper noun, use lowercase: "database의 약어는 DB입니다."
 - **Capitalize in Titles**: English words in titles should have capitalized first letters.
+- **Korean Annotation on First Use**: When an English term first appears, you may annotate it with the Korean term in parentheses. Use English only for subsequent occurrences.
+  - Example: `default parameter(기본 매개 변수)는 parameter에 기본값을 지정하는 기능입니다.`
+  - After this, use only `default parameter` without the Korean annotation.
 
 ### Prohibited Expressions
 
 - "다음과 같은" (as follows), "위와 같은" (like above), "아래와 같은" (like below).
 - "이를 통해" (through this), "이러한" (such).
-- "~에 대해 알아보겠습니다" (let me explain), "~를 소개합니다" (let me introduce).
+- "~에 대해 알아보겠습니다" (let me explain), "~를 소개합니다" (let me introduce), "~를 다룹니다" (covers/handles).
 - "~할 수 있습니다" (overuse of softening expressions).
 - Repetitive translation-style endings: Avoid repeating "~를 제공합니다", "~를 달성합니다", "~를 구현합니다" in consecutive sentences. Use varied, natural Korean expressions instead.
+
+### Sentence Completeness
+
+- **No Trailing Colons**: Sentences must not end with a colon (`:`). Each sentence should be complete on its own.
+  - Bad: "`val`과 `const val`의 차이점 :" (followed by a table)
+  - Good: "`val`과 `const val`은 값 결정 시점, 사용 가능 type, 선언 위치에서 차이가 있습니다."
 
 ### Heading Writing Rules
 
