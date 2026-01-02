@@ -51,7 +51,24 @@ date: YYYY-MM-DD
 
 ### Heading Writing Rules
 
-- **No Heading Directly After Heading**: All headings must have at least one bulleted sentence (`- ` prefix) immediately below.
+- **No Heading Directly After Heading (CRITICAL)**: All headings must have at least one bulleted sentence (`- ` prefix) immediately below. This applies to ALL heading levels (`##`, `###`, `####`). Never go directly from a heading to a subheading or code block without explanatory text.
+  - Bad:
+    ```
+    ## Java와의 비교
+
+
+    ### Java POJO와 비교
+    ```
+  - Good:
+    ```
+    ## Java와의 비교
+
+    - Kotlin data class는 **Java의 POJO와 Record를 대체**합니다.
+        - POJO 대비 boilerplate code를 대폭 줄입니다.
+
+
+    ### Java POJO와 비교
+    ```
 - **Headings Do Not End with Periods**: No period at the end of heading text.
 - **Start from Level 2 (`##`)**: Do not use level 1 heading (`#`). The highest heading level in a document is level 2 (`##`).
 - **Concrete Summary Below Headings**: Even if subsections exist, provide a concrete summary directly under the heading. Avoid abstract phrases like "주요 field들로 구성됩니다" and instead specify what those fields are and their roles.

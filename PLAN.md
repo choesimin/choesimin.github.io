@@ -25,8 +25,8 @@
 ### kotlin/class/
 - [x] primary-constructor.md - Primary/Secondary Constructor, init block
 - [x] data-class.md - Data Class
-- [ ] sealed-class.md - Sealed Class
-- [ ] object.md - Object, Companion Object
+- [x] sealed-class.md - Sealed Class
+- [x] object.md - Object, Companion Object
 - [ ] inheritance.md - 상속, Interface, Abstract Class
 
 ### kotlin/functional/
