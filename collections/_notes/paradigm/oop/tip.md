@@ -99,7 +99,7 @@ date: 2023-06-06
 
 #### 3. base class에 이미 구현되어 있던 method를 overriding하지 않기
 
-- base class에서 method를 정의할 때는 모든 sub class에서 공유할 수 있는 것만 정의해야 합니다.
+- base class에서 method를 정의할 때는 모든 subclass에서 공유할 수 있는 것만 정의해야 합니다.
 - 이미 구현되어 있는 method를 overriding한다는 것은 애초부터 base class가 제대로 추상화된 것이 아니었다고 볼 수 있습니다.
 
 
@@ -147,8 +147,8 @@ date: 2023-06-06
 
 ### Template Method Pattern의 Hollywood Principle
 
-- 고수준 구성 요소가 algorithm을 장악하고, method 구현이 필요한 상황에서만 sub class를 불러냅니다.
-- sub class는 자질구레한 method 구현을 제공하기 위한 용도로만 쓰입니다.
+- 고수준 구성 요소가 algorithm을 장악하고, method 구현이 필요한 상황에서만 subclass를 불러냅니다.
+- subclass는 자질구레한 method 구현을 제공하기 위한 용도로만 쓰입니다.
     - 호출'당하기' 전까지는 절대 추상 class를 직접 호출하지 않습니다.
 
 

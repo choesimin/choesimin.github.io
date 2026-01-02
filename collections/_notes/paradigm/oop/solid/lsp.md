@@ -222,7 +222,7 @@ public class Main {
     - 다형성의 특징을 이용하기 위해 상위 class type으로 객체를 선언하여 하위 class의 instance를 받으면, upcasting된 상태에서 부모의 method를 사용해도 의도한대로만 수행되어야 한다는 원칙입니다.
 
 - 하지만 객체 지향 programming에서 상속의 사용은 특별한 상황이 아니면 권장되지 않습니다.
-    - 기반 class와 sub class 사이에 확실한 `IS-A` 관계가 있는 경우에만 상속을 사용해야 합니다.
+    - 기반 class와 subclass 사이에 확실한 `IS-A` 관계가 있는 경우에만 상속을 사용해야 합니다.
     - 대부분의 경우는 합성(composition)을 사용하는 것이 더 낫습니다.
 
 - 따라서 다형성을 이용하고 싶다면, 상속(`extends`) 대신 insterface로 구현(`implements`)하여 interface type으로 사용하는 것을 더 권장합니다.

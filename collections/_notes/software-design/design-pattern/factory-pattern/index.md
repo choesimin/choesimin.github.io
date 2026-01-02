@@ -28,7 +28,7 @@ date: 2025-06-21
 - Static Factory Method는 Simple Factory를 static method로 정의하는 기법입니다.
 
 - 장점 : 객체를 생성하기 위한 method를 실행시키기 위해서 객체의 instance를 만들지 않아도 됩니다.
-- 단점 : sub class를 만들어서 객체 생성 method의 행동을 변경시킬 수 없습니다.
+- 단점 : subclass를 만들어서 객체 생성 method의 행동을 변경시킬 수 없습니다.
 
 
 ### Interface로 개발하기

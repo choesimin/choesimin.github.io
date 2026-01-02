@@ -15,18 +15,18 @@ date: 2023-05-23
     - **유연성과 확장성**이 향상됩니다.
 
 - **상속을 활용**하여 객체 생성을 처리합니다.
-    - 객체 생성이 sub class에게 위임됩니다.
-    - sub class에서는 factory method를 구현하여 객체를 생산합니다.
+    - 객체 생성이 subclass에게 위임됩니다.
+    - subclass에서는 factory method를 구현하여 객체를 생산합니다.
 
 - **상속(inheritance)을 통해서** 객체를 만드는 방식입니다.
-    - sub class를 통해서 객체를 생성합니다.
+    - subclass를 통해서 객체를 생성합니다.
 
 - **client와 concrete 형식을 분리**시킵니다.
-    - client에서는 자신이 사용할 추상 형식만 알면 되고, concrete 형식은 sub class에서 처리합니다.
+    - client에서는 자신이 사용할 추상 형식만 알면 되고, concrete 형식은 subclass에서 처리합니다.
 
 - **'client code'와 'instance를 만들어야 할 concrete class'를 분리**시켜야 할 때 활용합니다.
     - 어떤 concrete class가 필요할지 미리 알 수 없는 경우에도 유용합니다.
-    - sub class를 만들고 factory method를 구현하기만 하면 되기 때문입니다.
+    - subclass를 만들고 factory method를 구현하기만 하면 되기 때문입니다.
 
 ```mermaid
 classDiagram
@@ -51,7 +51,7 @@ ConcreteProduct <-- ConcreteCreator
 
 - **`Creator`** : 제품을 가지고 원하는 일을 하기 위한 모든 method들이 구현되어 있습니다.
     - 하지만 제품을 만들어 주는 factory method는 추상 method로 정의되어 있을 뿐 구현되어 있지는 않습니다.
-    - `Creator`의 모든 sub class에서는 `factoryMethod()` 추상 method를 구현해야 합니다.
+    - `Creator`의 모든 subclass에서는 `factoryMethod()` 추상 method를 구현해야 합니다.
 
 - **`ConcreteCreator`** : 실제로 제품을 생산하는 `factoryMethod()`를 구현해야 합니다.
     - concrete class instance를 만들어내는 일은 `ConcreteCreator`가 책임집니다.
@@ -65,18 +65,18 @@ ConcreteProduct <-- ConcreteCreator
 
 - **factory method는 객체 생성을 처리**합니다.
 
-- factory method를 이용하면 **객체를 생성하는 작업을 sub class에 캡슐화(encapsulation)**시킬 수 있습니다.
-    - super class에 있는 client code와 sub class에 있는 객체 생성 code를 분리시킬 수 있습니다.
+- factory method를 이용하면 **객체를 생성하는 작업을 subclass에 캡슐화(encapsulation)**시킬 수 있습니다.
+    - superclass에 있는 client code와 subclass에 있는 객체 생성 code를 분리시킬 수 있습니다.
 
 ```java
 abstract Product factoryMethod(String type)
 ```
 
-- **`abstract`** : factory method는 추상 method로 선언하여 sub class에서 객체 생성을 책임지도록 합니다.
+- **`abstract`** : factory method는 추상 method로 선언하여 subclass에서 객체 생성을 책임지도록 합니다.
 
-- **`Product`** : factory method에서는 특정 제품(객체)를 return하면, 그 객체는 보통 super class에서 정의한 method 내에서 쓰이게 됩니다.
+- **`Product`** : factory method에서는 특정 제품(객체)를 return하면, 그 객체는 보통 superclass에서 정의한 method 내에서 쓰이게 됩니다.
 
-- **`factoryMethod()`** : factory method는 client(super class에 있는 공통 code)에서 실제로 생성되는 concrete 객체가 무엇인지 알 수 없게 만드는 역할을 합니다.
+- **`factoryMethod()`** : factory method는 client(superclass에 있는 공통 code)에서 실제로 생성되는 concrete 객체가 무엇인지 알 수 없게 만드는 역할을 합니다.
 
 - **`String type`** : factory method를 만들 때 매개 변수를 써서 만들어낼 객체 종류를 선택할 수 있습니다.
 
@@ -85,7 +85,7 @@ abstract Product factoryMethod(String type)
 
 - simple factory와 factory method pattern은 **concrete class의 instance를 만들 때 차이**가 있습니다.
     - **simple factory** : 한 객체에서 전부 처리합니다.
-    - **factory method pattern** : 일련의 sub class에서 처리합니다.
+    - **factory method pattern** : 일련의 subclass에서 처리합니다.
 
 - **factory method pattern을 사용하면 simple factory의 문제를 해결**할 수 있습니다.
     - simple factory에서 만든 객체를 사용하긴 하나, method를 마음대로 바꿔서 사용할 수 있었습니다.
@@ -177,21 +177,21 @@ ChicagoStylePepperoniPizza --|> Pizza
 ```
 
 - **`createPizza()` method를 `PizzaStore` class에 다시 집어넣고, 추상 method로 선언**합니다.
-    - 각 지역의 style에 맞게 `PizzaStore`의 sub class를 만들어 과정을 강제하게 됩니다.
+    - 각 지역의 style에 맞게 `PizzaStore`의 subclass를 만들어 과정을 강제하게 됩니다.
 
-- `PizzaStore` class의 **`orderPizza()` method는 super class에서 구현**합니다.
+- `PizzaStore` class의 **`orderPizza()` method는 superclass에서 구현**합니다.
     - 주문 system 자체는 모든 분점에서 똑같이 진행되어야 합니다.
     - `orderPizza()` method는 무슨 pizza를 만드는지 알지 못합니다.
-    - 어떤 sub class를 사용해서 어떤 `Pizza` 객체를 사용하느냐에 따라 다릅니다.
-        - **어떤 sub class를 사용하는지**는 **factory에서 결정**합니다.
-        - **어떤 `Pizza` 객체를 사용하는지**는 factory로 만들어진 **concrete sub class에서 결정**합니다.
+    - 어떤 subclass를 사용해서 어떤 `Pizza` 객체를 사용하느냐에 따라 다릅니다.
+        - **어떤 subclass를 사용하는지**는 **factory에서 결정**합니다.
+        - **어떤 `Pizza` 객체를 사용하는지**는 factory로 만들어진 **concrete subclass에서 결정**합니다.
 
-- `PizzaStore` class의 **`createPizza()` method는 sub class에서 구현**합니다.
+- `PizzaStore` class의 **`createPizza()` method는 subclass에서 구현**합니다.
     - `createPizza()` method는 factory method입니다.
     - `Pizza` instance를 만드는 일을 하기 때문입니다.
     - 각 분점마다 달라질 수 있는 것은 pizza style뿐입니다.
     - **각각의 다른 점들을 `createPizza()` method에 집어넣어** 해당 style pizza를 만드는 것을 모두 책임지도록 합니다.
-    - sub class에서 구현하기 때문에 **분점마다 다른 pizza 제조 과정을 강제**할 수 있게 됩니다.
+    - subclass에서 구현하기 때문에 **분점마다 다른 pizza 제조 과정을 강제**할 수 있게 됩니다.
 
 
 ### Main
@@ -235,7 +235,7 @@ public abstract class PizzaStore {
 ```
 
 
-### PizzaStore Sub Class
+### PizzaStore Subclass
 
 ```java
 public class NYPizzaStore extends PizzaStore {
@@ -320,7 +320,7 @@ public abstract class Pizza {
 }
 ```
 
-### Pizza Sub Class
+### Pizza Subclass
 
 ```java
 public class NYStyleCheesePizza extends Pizza {
@@ -531,13 +531,13 @@ public class DependentPizzaStore {
 
 ## Factory Method Pattern의 장점과 활용 지침
 
-- **Factory Method Pattern**은 **객체 생성의 책임을 sub class로 위임**하여 유연성을 확보합니다.
-    - 새로운 pizza style을 추가할 때 기존 code를 수정하지 않고 새로운 sub class만 추가하면 됩니다.
+- **Factory Method Pattern**은 **객체 생성의 책임을 subclass로 위임**하여 유연성을 확보합니다.
+    - 새로운 pizza style을 추가할 때 기존 code를 수정하지 않고 새로운 subclass만 추가하면 됩니다.
     - **개방-폐쇄 원칙(Open-Closed Principle)**을 잘 구현한 pattern입니다.
 
 - **Template Method Pattern과의 유사성**을 보입니다.
     - `orderPizza()` method는 template method처럼 작동합니다.
-    - 전체적인 과정은 고정하되, 일부 단계(`createPizza()`)만 sub class에서 구현하도록 합니다.
+    - 전체적인 과정은 고정하되, 일부 단계(`createPizza()`)만 subclass에서 구현하도록 합니다.
 
 - **의존성 역전 원칙을 실현**하는 대표적인 방법입니다.
     - 고수준 module(`PizzaStore`)과 저수준 module(구체적인 pizza class)이 모두 추상화(pizza abstract class)에 의존합니다.

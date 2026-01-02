@@ -285,7 +285,7 @@ A solution to a problem in a context.
 
 #### Template Method Pattern
 
-- 어떤 작업을 처리하는 일부분을 sub class로 캡슐화(encapsulation)해서, 전체 일을 수행하는 구조는 바꾸지 않고 특정 단계에서 수행하는 내역을 바꿉니다.
+- 어떤 작업을 처리하는 일부분을 subclass로 캡슐화(encapsulation)해서, 전체 일을 수행하는 구조는 바꾸지 않고 특정 단계에서 수행하는 내역을 바꿉니다.
     - 상위 class(abstract class)는 추상 method로 기능의 골격을 제공합니다.
     - 하위 class(concrete class)의 method에서 세부 처리를 구체화합니다.
 
@@ -310,7 +310,7 @@ A solution to a problem in a context.
 
 - 실행될 기능을 캡슐화(encapsulation)하여, 주어진 여러 기능을 실행할 수 있는 재사용성이 높은 class를 설계합니다.
     - 요구 사항을 객체로 캡슐화(encapsulation)합니다.
-- 하나의 abstract class에 method를 만들어 각 명령이 들어오면 그에 맞는 sub class가 선택되어 실행됩니다.
+- 하나의 abstract class에 method를 만들어 각 명령이 들어오면 그에 맞는 subclass가 선택되어 실행됩니다.
 
 #### Strategy Pattern
 

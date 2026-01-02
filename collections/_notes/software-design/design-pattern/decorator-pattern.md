@@ -11,7 +11,7 @@ date: 2024-01-17
 
 - Decorator Pattern은 기본 객체에 추가적인 기능을 추가할 때 사용됩니다.
     - Decorator Pattern의 주요 목적은 **객체의 기능을 동적으로 확장**하는 것입니다.
-    - 기능 확장을 위해 sub class를 만드는 것보다 Decorator Pattern을 적용하는 것이 훨씬 유연합니다.
+    - 기능 확장을 위해 subclass를 만드는 것보다 Decorator Pattern을 적용하는 것이 훨씬 유연합니다.
 
 - Decorator Pattern은 **객체**(component)를 **새로운 행동을 포함한 특수 wrapper 객체**(decorator) 안에 넣어서, **행동을 해당 객체들에 연결**시키는 구조적 design pattern입니다.
     - 객체를 여러 개의 decorator로 언제든지(실행 중) 감쌀 수 있어, **객체에 여러 요건을 동적으로 추가하고 삭제**할 수 있습니다.
@@ -193,7 +193,7 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
     - 다형성을 이용하여 decorator의 형식이 그 decorator로 감싸는 객체의 형식과 같도록 하기 위함입니다.
 
 - 객체는 **새로운 행동을 합성을 통해서 얻게 됩니다.**
-    - super class의 행동을 상속 받으면서 얻는 것이 아닙니다.
+    - superclass의 행동을 상속 받으면서 얻는 것이 아닙니다.
     - instance 변수로 다른 객체를 저장하는 합성(composition) 방식을 이용하기 때문에, 다양한 행동을 추가하면서도 유연성을 잃지 않습니다.
 
 
@@ -203,10 +203,10 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
     - 어떤 기능을 자신이 처리하지 않고 다른 객체에 위임시켜 그 객체가 일을 처리하도록 합니다.
 
 - 합성(composition)을 통해서 객체의 행동을 확장하면 실행 중에 동적으로 행동을 설정할 수 있습니다.
-    - 행동을 상속 받으면(sub class를 만드는 방식), 그 행동은 compile 시에 완전히 결정되기 때문에 새로운 행동을 추가하기 어렵습니다.
+    - 행동을 상속 받으면(subclass를 만드는 방식), 그 행동은 compile 시에 완전히 결정되기 때문에 새로운 행동을 추가하기 어렵습니다.
 
 - concrete component를 감싸주는 decorator를 사용하여, **결과에 새로운 기능을 더해 행동을 확장**합니다.
-    - component를 감싸는 decorator의 갯수에는 제한이 없기 때문에 super class의 code를 건드리지 않고 행동을 무한히 확장하는 것이 가능합니다.
+    - component를 감싸는 decorator의 갯수에는 제한이 없기 때문에 superclass의 code를 건드리지 않고 행동을 무한히 확장하는 것이 가능합니다.
 
 
 ---
@@ -225,19 +225,19 @@ ConcreteDecoratorB -->> Client : return ConcreteDecorator
     - decorator는 business logic을 계층으로 구성하고, 각 계층에 decorator를 생성하여 runtime에 이 logic의 다양한 조합들로 객체들을 구성할 수 있도록 합니다.
     - 모든 객체가 공통 interface를 따르기 때문에, client code는 모든 객체를 같은 방식으로 다룰 수 있습니다.
 
-- 상속을 통해 sub class를 만들어 객체의 동작을 확장하는 것이 어색하거나 불가능할 때, Decorator Pattern을 사용합니다.
+- 상속을 통해 subclass를 만들어 객체의 동작을 확장하는 것이 어색하거나 불가능할 때, Decorator Pattern을 사용합니다.
     - 많은 programming 언어에는 class의 추가 확장을 방지하는 데 사용할 수 있는 `final` keyword가 있습니다.
     - final class의 경우 기존 행동들을 재사용할 수 있는 유일한 방법은 Decorator Pattern을 사용하여 class를 자체 wrapper로 감싸는 것입니다.
 
 
 ### Decorator Pattern의 장점
 
-- decorator를 사용하면 sub class를 만들 때보다 훨씬 더 유연하게 기능을 확장할 수 있습니다.
+- decorator를 사용하면 subclass를 만들 때보다 훨씬 더 유연하게 기능을 확장할 수 있습니다.
 
 - 객체를 여러 decorator로 감싸서(wrapping) 여러 행동들을 합성할 수 있습니다.
 
 - rumtime에(동적으로) 기능을 변경(객체로부터 책임들을 추가하거나 제거)할 수 있습니다.
-    - 새로운 sub class를 만드는 방식(compile time에 결정)을 사용하지 않고도 객체의 행동을 확장할 수 있기 때문입니다.
+    - 새로운 subclass를 만드는 방식(compile time에 결정)을 사용하지 않고도 객체의 행동을 확장할 수 있기 때문입니다.
 
 - 단일 책임 원칙(SRP)을 준수하게 됩니다.
     - 다양한 행동들의 여러 변형들을 구현하는 monolithic class를 여러 개의 작은 decorator class들로 나눌 수 있습니다.

@@ -9,7 +9,7 @@ published: false
     - 이미 loading이 완료된 class에서 또 다른 class를 동적으로 로딩 (dynamic loading)
     - 생성자(constructor), member field, member method 등을 사용할 수 있음
     - 실행 시간에 다른 class를 동적으로 loading하여 접근할 때, class와 member field, method 등에 관한 정보를 얻어야할 때 사용
-- class 뿐만 아니라 class의 package 정보, 접근 지정자, super class, annotation 등도 얻을 수 있음
+- class 뿐만 아니라 class의 package 정보, 접근 지정자, superclass, annotation 등도 얻을 수 있음
 - Reflection이 사용된 기술
     - Spring Framework
         - 개발자가 등록한 bean을 runtime에 application에서 가져와 사용할 수 있게 함

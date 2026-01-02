@@ -41,18 +41,18 @@ date: 2023-11-01
     - singleton도 남용될 수 있지만, namespace를 지저분해지게 만드는 정도까진 아닙니다.
 
 
-### Singleton class의 sub class를 만드는 것은 권장하지 않음
+### Singleton class의 subclass를 만드는 것은 권장하지 않음
 
-- singleton을 sub class로 확장할 이유가 없습니다.
+- singleton을 subclass로 확장할 이유가 없습니다.
 - application을 만들 때, singleton을 꽤 많이 사용하고 있다면 전반적인 설계(design)을 다시 생각해 보는 것이 좋습니다.
     - singleton은 제한된 용도로 특수한 상황에서 사용하기 위해 만들어진 것이기 때문입니다.
 
 - singleton은 생성자가 private으로 선언되어 있어, 확장할 수 없습니다.
-    - sub class를 만들기 위해서는 생성자를 public 또는 protected로 선언해야 합니다.
+    - subclass를 만들기 위해서는 생성자를 public 또는 protected로 선언해야 합니다.
         - 하지만 이렇게 하면 다른 곳에서 instance를 만들 수 있기 때문에 더 이상 singleton이 아니게 됩니다.
 
-- singleton은 정적 변수를 바탕으로 구현하기 때문에 모든 sub class들이 똑같은 instance 변수를 공유하게 됩니다.
-    - sub class를 만들려면 base class에서 registry 역할을 하는 것을 구현해 놓아야 합니다.
+- singleton은 정적 변수를 바탕으로 구현하기 때문에 모든 subclass들이 똑같은 instance 변수를 공유하게 됩니다.
+    - subclass를 만들려면 base class에서 registry 역할을 하는 것을 구현해 놓아야 합니다.
 
 
 ---

@@ -17,11 +17,11 @@ date: 2023-05-23
 - **합성(Composition)**을 통해 객체를 생성하는 방식을 사용합니다.
 
 - 제품군을 만들기 위한 **추상적인 틀**을 제공합니다.
-    - 실제 제품이 생산되는 방법은 추상 형식의 sub class에서 구체적으로 정의합니다.
+    - 실제 제품이 생산되는 방법은 추상 형식의 subclass에서 구체적으로 정의합니다.
     - **연관된 제품들을 하나의 군으로 묶어서** 관리할 수 있습니다.
 
 - 제품군에 새로운 제품을 추가하려면 **interface를 수정해야 한다는 단점**이 있습니다.
-    - interface가 변경되면 모든 sub class의 interface도 함께 수정해야 하므로 유지 보수성이 떨어집니다.
+    - interface가 변경되면 모든 subclass의 interface도 함께 수정해야 하므로 유지 보수성이 떨어집니다.
 
 - **Factory Method Pattern과 마찬가지로** 'client code'와 'client에서 사용하는 실제 concrete 제품' 사이의 결합도를 낮춥니다.
 
@@ -243,7 +243,7 @@ public abstract class PizzaStore {
 ```
 
 
-### PizzaStore Sub Class
+### PizzaStore Subclass
 
 ```java
 public class NYPizzaStore extends PizzaStore {
@@ -387,7 +387,7 @@ public abstract class Pizza {
 ```
 
 
-### Pizza Sub Class
+### Pizza Subclass
 
 ```java
 public class CheesePizza extends Pizza {
@@ -478,7 +478,7 @@ public interface PizzaIngredientFactory {
 ```
 
 
-### PizzaIngredientFactory Sub Class
+### PizzaIngredientFactory Subclass
 
 ```java
 public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
@@ -584,7 +584,7 @@ public interface Clams {
 ```
 
 
-### Ingredient Sub Class
+### Ingredient Subclass
 
 ```java
 public class ThickCrustDough implements Dough {

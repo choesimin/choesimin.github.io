@@ -6,28 +6,28 @@ published: false
 # Template Method Pattern
 
 ```
-Template Method Pattern에서는 method에서 algorithm의 골격을 정의합니다. algorithm의 여러 단계 중 일부는 sub class에서 구현할 수 있습니다. template method를 이용하면 algorithm의 구조는 그대로 유지하면서 sub class에서 특정 단계를 재정의할 수 있습니다.
+Template Method Pattern에서는 method에서 algorithm의 골격을 정의합니다. algorithm의 여러 단계 중 일부는 subclass에서 구현할 수 있습니다. template method를 이용하면 algorithm의 구조는 그대로 유지하면서 subclass에서 특정 단계를 재정의할 수 있습니다.
 ```
 
 - algorithm의 틀(template)을 만듬
-    - algorithm의 단계들을 정의하고, 일부 단계는 sub class에서 구현하도록 할 수 있음
+    - algorithm의 단계들을 정의하고, 일부 단계는 subclass에서 구현하도록 할 수 있음
 
 - template method
     - 일련의 단계들로 algorithm을 정의한 method
-    - 여러 단계 가운데 하나 이상이 추상 method로 정의되며, 그 추상 method는 sub class에서 구현됨
-        - 추상 method이기 때문에 sub class에서 일부분을 구현할 수 있도록 하면서도 algorithm의 구조는 바꾸지 않아도 됨
+    - 여러 단계 가운데 하나 이상이 추상 method로 정의되며, 그 추상 method는 subclass에서 구현됨
+        - 추상 method이기 때문에 subclass에서 일부분을 구현할 수 있도록 하면서도 algorithm의 구조는 바꾸지 않아도 됨
 
 - (template method가 들어있는) 추상 class에 정의할 수 있는 것들
-    - 구상 method : super class에서 정의한 algorithm의 공통 단계
-    - 추상 method : 구현을 sub class에 맡기는 algorithm의 개별 단계
-    - hook : super class에서 기본 행동(아무 것도 안 할 수도 있음)을 정의하고 sub class에서 override하여 다르게 구현할 수도 있는 algorithm의 선택적 단계
+    - 구상 method : superclass에서 정의한 algorithm의 공통 단계
+    - 추상 method : 구현을 subclass에 맡기는 algorithm의 개별 단계
+    - hook : superclass에서 기본 행동(아무 것도 안 할 수도 있음)을 정의하고 subclass에서 override하여 다르게 구현할 수도 있는 algorithm의 선택적 단계
 
 - Hook
     - 추상 class에 선언되어 기본적인 내용만 구현되어 있거나 아무 code도 들어있지 않은 method
-        - sub class에서는 해당 과정이 필요한 경우에만 구현을 함
+        - subclass에서는 해당 과정이 필요한 경우에만 구현을 함
             - 반드시 구현해야 한다면 hook이 아닌 추상 method를 써야 함
     - algorithm의 특정 부분이 선택적으로 적용되어야 하는 경우에 사용함
-        - 이렇게 하면 sub class 입장에서는 다양한 위치에서 algorithm에 끼어들거나, 무시하고 넘어가는 것이 가능함
+        - 이렇게 하면 subclass 입장에서는 다양한 위치에서 algorithm에 끼어들거나, 무시하고 넘어가는 것이 가능함
 
 - Strategy Pattern & Template Method Pattern
     - 모두 algorithm을 캡슐화(encapsulation)하는 pattern
@@ -38,9 +38,9 @@ Template Method Pattern에서는 method에서 algorithm의 골격을 정의합�
     - Template Method Pattern : 객체 상속을 사용함
         - algorithm 구조 자체는 그대로 유지하면서, algorithm의 각 단계마다 다른 구현을 사용할 수 있음
         - code의 재사용성이 뛰어남
-            - super class에서 algorithm의 개요를 정의함
-            - 중복되는 code를 super class에 넣어 sub class에서 공유해 사용할 수 있음
-                - super class에서 정의하지 않은 code는 sub class에서 구현함
+            - superclass에서 algorithm의 개요를 정의함
+            - 중복되는 code를 superclass에 넣어 subclass에서 공유해 사용할 수 있음
+                - superclass에서 정의하지 않은 code는 subclass에서 구현함
             - framework를 만드는 데에 좋음
         - algorithm이 전부 똑같고 한 줄만 다르다면 Template Method Pattern을 사용하는 것이 Strategy Pattern을 이용하는 것보다 효율적임
 

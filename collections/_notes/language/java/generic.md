@@ -324,7 +324,7 @@ List<? super Bar> lowerList = new ArrayList<>(); // Lower bound
 WildCard wildCard = new WildCard();
 wildCard.test(upperList);
 wildCard.test(lowerList); // Error
-// Bar의 super class중에 Foo가 있다고 해도 parameter로 넘길 수 없음
+// Bar의 superclass중에 Foo가 있다고 해도 parameter로 넘길 수 없음
 ```
 
 ### Unbound Wildcard
