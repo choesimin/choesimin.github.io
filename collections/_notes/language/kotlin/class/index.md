@@ -16,22 +16,22 @@ date: 2025-12-31
 
 ```mermaid
 flowchart TD
-    class_system[Kotlin Class]
+    root[Kotlin Class]
 
-    class_system --> constructor[생성자]
-    class_system --> special[특수 Class]
-    class_system --> inheritance[상속]
+    root --> class_constructor[생성자]
+    root --> special_class[특수 Class]
+    root --> inheritance[상속]
 
-    constructor --> primary[Primary Constructor]
-    constructor --> secondary[Secondary Constructor]
+    class_constructor --> primary[Primary Constructor]
+    class_constructor --> secondary[Secondary Constructor]
 
-    special --> data[Data Class]
-    special --> sealed[Sealed Class]
-    special --> object[Object]
-    special --> enum[Enum Class]
+    special_class --> data_class[Data Class]
+    special_class --> sealed_class[Sealed Class]
+    special_class --> object_class[Object]
+    special_class --> enum_class[Enum Class]
 
-    inheritance --> open[Open Class]
-    inheritance --> abstract[Abstract Class]
+    inheritance --> open_class[Open Class]
+    inheritance --> abstract_class[Abstract Class]
     inheritance --> interface[Interface]
 ```
 

@@ -21,7 +21,7 @@ flowchart LR
     end
 
     nonnull -->|"String"| safe[Null 안전]
-    nullable -->|"String?"| check[Null 체크 필요]
+    nullable -->|"String?"| check[Null check 필요]
 ```
 
 - Java에서 흔히 발생하는 `NullPointerException`을 언어 차원에서 예방합니다.

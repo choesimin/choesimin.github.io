@@ -11,7 +11,7 @@ date: 2024-01-10
 
 ```mermaid
 ---
-title : 신용 카드 결제
+title : 신용카드 결제
 ---
 flowchart LR
 
@@ -19,7 +19,7 @@ customer([고객 카드 사용])
 merchant([사업장])
 pg[PG사]
 van[VAN사]
-card[신용 카드 회사]
+card[신용카드 회사]
 
 customer --> pg --> van --> card --> merchant
 ```
