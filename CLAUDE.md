@@ -17,6 +17,8 @@ date: YYYY-MM-DD
 ---
 ```
 
+- **Description Must Be a Single Sentence**: The `description` field must contain exactly one complete sentence, not multiple sentences.
+
 ### Core Writing Principles
 
 - **Markdown Syntax**: All documents must be written in Markdown.

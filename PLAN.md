@@ -27,7 +27,7 @@
 - [x] data-class.md - Data Class
 - [x] sealed-class.md - Sealed Class
 - [x] object.md - Object, Companion Object
-- [ ] inheritance.md - 상속, Interface, Abstract Class
+- [x] inheritance.md - 상속, Interface, Abstract Class
 
 ### kotlin/functional/
 - [ ] index.md - 함수형 programming 개요
