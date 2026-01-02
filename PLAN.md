@@ -30,8 +30,8 @@
 - [x] inheritance.md - 상속, Interface, Abstract Class
 
 ### kotlin/functional/
-- [ ] index.md - 함수형 programming 개요
-- [ ] lambda.md - Lambda 표현식
+- [x] index.md - 함수형 programming 개요
+- [x] lambda.md - Lambda 표현식
 - [ ] higher-order-function.md - 고차 함수
 - [ ] extension-function.md - Extension Function
 - [ ] collection-operations.md - Collection 연산 (map, filter, reduce 등)
