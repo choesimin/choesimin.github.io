@@ -711,6 +711,106 @@ val result = html {
 ---
 
 
+## Lambda vs 일반 함수 선택 기준
+
+- lambda와 일반 함수 중 **상황에 맞는 것을 선택**해야 합니다.
+    - 무조건 lambda가 좋은 것은 아닙니다.
+
+| 상황 | 선택 |
+| --- | --- |
+| 한 번만 사용하는 짧은 logic | lambda |
+| 여러 곳에서 재사용 | 일반 함수 |
+| 5줄 이상의 복잡한 logic | 일반 함수 |
+| 단위 test가 필요한 business logic | 일반 함수 |
+| 고차 함수에 간단한 동작 전달 | lambda |
+| 이름으로 의도를 표현해야 할 때 | 일반 함수 |
+
+
+### 재사용성
+
+- **여러 곳에서 사용하면 일반 함수**로 정의합니다.
+    - 동일한 lambda를 여러 번 작성하면 중복이 발생합니다.
+    - 일반 함수는 이름으로 호출하여 재사용합니다.
+
+```kotlin
+// 나쁜 예 : 같은 logic을 여러 곳에서 lambda로 반복
+val adults1 = people1.filter { it.age >= 18 }
+val adults2 = people2.filter { it.age >= 18 }
+val adults3 = people3.filter { it.age >= 18 }
+
+// 좋은 예 : 일반 함수로 정의하여 재사용
+fun isAdult(person: Person) = person.age >= 18
+
+val adults1 = people1.filter(::isAdult)
+val adults2 = people2.filter(::isAdult)
+val adults3 = people3.filter(::isAdult)
+```
+
+
+### 복잡도
+
+- **5줄 이상이거나 logic이 복잡하면 일반 함수로 추출**합니다.
+    - 긴 lambda는 가독성을 떨어뜨립니다.
+    - 함수로 추출하면 이름으로 의도를 표현합니다.
+
+```kotlin
+// 나쁜 예 : 복잡한 logic을 lambda에 작성
+val result = data.map { item ->
+    val normalized = item.trim().lowercase()
+    val parts = normalized.split("-")
+    if (parts.size >= 2) {
+        val prefix = parts[0].take(3)
+        val suffix = parts[1].takeLast(4)
+        "$prefix-$suffix"
+    } else {
+        normalized
+    }
+}
+
+// 좋은 예 : 함수로 추출하여 의도를 명확히
+fun formatCode(item: String): String {
+    val normalized = item.trim().lowercase()
+    val parts = normalized.split("-")
+    return if (parts.size >= 2) {
+        val prefix = parts[0].take(3)
+        val suffix = parts[1].takeLast(4)
+        "$prefix-$suffix"
+    } else {
+        normalized
+    }
+}
+
+val result = data.map(::formatCode)
+```
+
+
+### Test 가능성
+
+- **독립적으로 test해야 하면 일반 함수**로 정의합니다.
+    - lambda는 단독으로 test하기 어렵습니다.
+    - 일반 함수는 단위 test를 작성합니다.
+
+```kotlin
+// 일반 함수 : 단위 test 가능
+fun calculateDiscount(price: Int, memberLevel: Int): Int {
+    return when {
+        memberLevel >= 3 -> (price * 0.2).toInt()
+        memberLevel >= 2 -> (price * 0.1).toInt()
+        else -> 0
+    }
+}
+
+// test code 작성 가능
+@Test
+fun `level 3 회원은 20% 할인`() {
+    assertEquals(200, calculateDiscount(1000, 3))
+}
+```
+
+
+---
+
+
 ## Reference
 
 - <https://kotlinlang.org/docs/lambdas.html>
