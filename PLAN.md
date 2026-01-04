@@ -34,7 +34,7 @@
 - [x] lambda.md - Lambda 표현식
 - [x] higher-order-function.md - 고차 함수
 - [x] extension-function.md - Extension Function
-- [ ] collection-operations.md - Collection 연산 (map, filter, reduce 등)
+- [x] collection-operations.md - Collection 연산 (map, filter, reduce 등)
 
 ### kotlin/coroutine/
 - [ ] index.md - 기존 coroutine.md 이동
