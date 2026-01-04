@@ -1,16 +1,16 @@
 ---
 layout: note
 permalink: /286
-title: Kotlin Coroutine - 비동기 Programming의 현대적 접근
+title: Kotlin Coroutine
 description: Kotlin Coroutine은 비동기 code를 동기 code처럼 작성할 수 있게 해주는 경량 동시성 framework로, suspend 함수를 통해 non-blocking 비동기 처리를 간결하게 구현합니다.
-date: 2025-12-30
+date: 2025-01-04
 ---
 
 
 ## Kotlin Coroutine
 
-- coroutine은 **실행을 일시 중지(suspend)하고 나중에 재개(resume)할 수 있는 경량 동시성 단위**입니다.
-    - 비동기 code를 동기 code처럼 순차적으로 작성할 수 있습니다.
+- **coroutine**은 실행을 일시 중지(suspend)하고 나중에 재개(resume)할 수 있는 경량 동시성 단위입니다.
+    - 비동기 code를 동기 code처럼 순차적으로 작성합니다.
     - thread보다 훨씬 가볍고 효율적으로 동작합니다.
 
 - Kotlin은 **언어 차원에서 coroutine을 지원**합니다.
@@ -26,6 +26,31 @@ suspend fun fetchUserData(): User {
 ```
 
 - 위 code는 비동기 작업이지만, 동기 code와 동일한 구조로 작성되었습니다.
+
+
+### Coroutine의 핵심 구성 요소
+
+```mermaid
+flowchart TD
+    coroutine[Coroutine]
+
+    coroutine --> suspend[Suspend 함수]
+    coroutine --> builder[Coroutine Builder]
+    coroutine --> scope[CoroutineScope]
+    coroutine --> dispatcher[Dispatcher]
+
+    suspend --> suspend_desc[일시 중지 가능한 함수]
+    builder --> builder_desc[launch, async, runBlocking]
+    scope --> scope_desc[lifecycle 관리]
+    dispatcher --> dispatcher_desc[실행 thread 결정]
+```
+
+| 구성 요소 | 역할 |
+| --- | --- |
+| Suspend 함수 | 일시 중지와 재개가 가능한 함수 |
+| Coroutine Builder | coroutine을 생성하고 시작 (launch, async) |
+| CoroutineScope | coroutine의 lifecycle을 관리하는 범위 |
+| Dispatcher | coroutine이 실행될 thread를 결정 |
 
 
 ---
@@ -85,7 +110,7 @@ fun main() = runBlocking {
 
 ## Suspend 함수
 
-- `suspend` 함수는 **일시 중지가 가능한 함수**입니다.
+- **`suspend` 함수**는 일시 중지가 가능한 함수입니다.
     - 실행 도중 중단되었다가, 나중에 중단된 지점부터 재개됩니다.
     - 다른 `suspend` 함수나 coroutine 내부에서만 호출할 수 있습니다.
 
@@ -98,35 +123,10 @@ suspend fun fetchUser(id: Long): User {
 ```
 
 
-### Suspend 함수의 동작 원리
-
-- `suspend` 함수는 **Continuation Passing Style(CPS)**로 변환됩니다.
-    - compiler가 함수를 state machine으로 변환합니다.
-    - 각 suspension point에서 상태를 저장하고 복원합니다.
-
-```mermaid
-flowchart TD
-    start[함수 시작]
-    suspend1[Suspension Point 1]
-    resume1[Resume 1]
-    suspend2[Suspension Point 2]
-    resume2[Resume 2]
-    end_[함수 종료]
-
-    start --> suspend1
-    suspend1 -.->|일시 중지| resume1
-    resume1 --> suspend2
-    suspend2 -.->|일시 중지| resume2
-    resume2 --> end_
-```
-
-- thread가 blocking되지 않으므로 다른 coroutine이 해당 thread를 사용할 수 있습니다.
-
-
 ### Suspend vs Blocking
 
-- **Suspend** : coroutine만 중지되고 thread는 다른 작업 수행 가능.
-- **Blocking** : thread 전체가 중지되어 다른 작업 불가.
+- **Suspend** : coroutine만 중지되고 thread는 다른 작업 수행 가능합니다.
+- **Blocking** : thread 전체가 중지되어 다른 작업이 불가능합니다.
 
 ```kotlin
 // Suspend (권장)
@@ -148,72 +148,45 @@ fun fetchDataBlocking(): Data {
 
 ## Coroutine Builder
 
-- Coroutine builder는 **새로운 coroutine을 생성하고 시작**하는 함수입니다.
-    - `launch`, `async`, `runBlocking` 등이 있습니다.
-
-
-### launch
-
-- **결과를 반환하지 않는** coroutine을 시작합니다.
-    - "fire and forget" 방식의 작업에 적합합니다.
-    - `Job` 객체를 반환하여 coroutine 제어가 가능합니다.
+- **Coroutine builder**는 새로운 coroutine을 생성하고 시작하는 함수입니다.
+    - `launch` : 결과를 반환하지 않는 coroutine을 시작합니다.
+    - `async` : 결과를 반환하는 coroutine을 시작합니다.
+    - `runBlocking` : 현재 thread를 blocking하며 coroutine을 실행합니다.
 
 ```kotlin
 fun main() = runBlocking {
+    // launch : fire and forget
     val job = launch {
         delay(1000)
         println("World!")
     }
-    println("Hello,")
-    job.join()  // coroutine 완료 대기
-}
-// 출력: Hello, World!
-```
 
+    // async : 결과 반환
+    val deferred = async {
+        delay(500)
+        "Hello"
+    }
 
-### async
-
-- **결과를 반환하는** coroutine을 시작합니다.
-    - `Deferred<T>` 객체를 반환합니다.
-    - `await()`로 결과를 받을 수 있습니다.
-
-```kotlin
-fun main() = runBlocking {
-    val deferred1 = async { fetchUserProfile() }
-    val deferred2 = async { fetchUserFriends() }
-
-    // 두 작업이 병렬로 실행됨
-    val profile = deferred1.await()
-    val friends = deferred2.await()
-
-    println("Profile: $profile, Friends: $friends")
+    println(deferred.await())  // Hello
+    job.join()                 // World!
 }
 ```
 
-- 여러 비동기 작업을 **병렬로 실행**하고 결과를 조합할 때 유용합니다.
 
+### launch vs async
 
-### runBlocking
-
-- **현재 thread를 blocking**하며 coroutine을 실행합니다.
-    - main 함수나 test code에서 사용합니다.
-    - 일반 code와 coroutine을 연결하는 bridge 역할입니다.
-
-```kotlin
-fun main() = runBlocking {
-    // 여기서 suspend 함수 호출 가능
-    val data = fetchData()
-    println(data)
-}
-```
-
-- production code에서는 가급적 사용을 피하고, `launch`나 `async`를 사용합니다.
+| 구분 | launch | async |
+| --- | --- | --- |
+| 반환 type | Job | Deferred<T> |
+| 결과 획득 | 불가 | await()로 획득 |
+| 용도 | 결과 필요 없는 작업 | 결과 필요한 작업 |
+| 병렬 실행 | 가능 | 가능 + 결과 조합 |
 
 
 ---
 
 
-## CoroutineScope와 Structured Concurrency
+## CoroutineScope
 
 - **CoroutineScope**는 coroutine의 lifecycle을 관리하는 범위입니다.
     - 모든 coroutine은 특정 scope 내에서 실행됩니다.
@@ -239,7 +212,7 @@ class UserRepository {
 
 ### Structured Concurrency
 
-- **부모 coroutine이 자식 coroutine의 완료를 보장**하는 원칙입니다.
+- **Structured concurrency**는 부모 coroutine이 자식 coroutine의 완료를 보장하는 원칙입니다.
     - 자식 coroutine이 실패하면 부모도 취소됩니다.
     - 부모가 취소되면 모든 자식도 취소됩니다.
 
@@ -271,22 +244,20 @@ suspend fun fetchAllData() = coroutineScope {
 }
 ```
 
-- `coroutineScope`는 모든 자식 coroutine이 완료될 때까지 대기합니다.
-
 
 ---
 
 
 ## Dispatcher
 
-- **Dispatcher**는 coroutine이 **어떤 thread에서 실행될지** 결정합니다.
+- **Dispatcher**는 coroutine이 어떤 thread에서 실행될지 결정합니다.
 
 | Dispatcher | 용도 | Thread |
 | --- | --- | --- |
-| `Dispatchers.Main` | UI 작업 | Main/UI thread |
-| `Dispatchers.IO` | I/O 작업 (network, file) | 공유 thread pool |
-| `Dispatchers.Default` | CPU 집약적 작업 | CPU core 수만큼 thread |
-| `Dispatchers.Unconfined` | 특별한 경우 | 호출한 thread |
+| Dispatchers.Main | UI 작업 | Main/UI thread |
+| Dispatchers.IO | I/O 작업 (network, file) | 공유 thread pool |
+| Dispatchers.Default | CPU 집약적 작업 | CPU core 수만큼 thread |
+| Dispatchers.Unconfined | 특별한 경우 | 호출한 thread |
 
 ```kotlin
 fun main() = runBlocking {
@@ -305,19 +276,16 @@ fun main() = runBlocking {
 
 ### withContext
 
-- **coroutine 내에서 dispatcher를 전환**할 때 사용합니다.
-    - suspend 함수 내에서 특정 dispatcher로 작업을 수행합니다.
+- **`withContext`**는 coroutine 내에서 dispatcher를 전환할 때 사용합니다.
 
 ```kotlin
 suspend fun fetchAndProcess(): Result {
     val data = withContext(Dispatchers.IO) {
-        // I/O thread에서 실행
-        api.fetchData()
+        api.fetchData()  // I/O thread에서 실행
     }
 
     return withContext(Dispatchers.Default) {
-        // CPU thread에서 실행
-        processData(data)
+        processData(data)  // CPU thread에서 실행
     }
 }
 ```
@@ -328,11 +296,11 @@ suspend fun fetchAndProcess(): Result {
 
 ## 전통적인 비동기 방식과 비교
 
-- Coroutine 이전에는 **thread, callback, Future, Rx** 등의 방식으로 비동기를 처리했습니다.
+- Coroutine 이전에는 thread, callback, Future, Rx 등의 방식으로 비동기를 처리했습니다.
     - 각 방식에는 고유한 문제점이 있으며, coroutine이 이를 해결합니다.
 
 
-### Callback의 문제 : Callback Hell
+### Callback Hell
 
 - 중첩된 callback은 code를 이해하기 어렵게 만듭니다.
 
@@ -358,7 +326,7 @@ suspend fun loadUserData(userId: String) {
 ```
 
 
-### Future/Promise의 문제 : 다른 Programming Model
+### Future/Promise
 
 - chaining 방식은 기존 programming 방식과 다릅니다.
 
@@ -381,17 +349,13 @@ suspend fun loadUserData(userId: String): UserData {
 ```
 
 
-### Rx의 문제 : 학습 곡선
-
-- Rx는 강력하지만, **operator가 많고 학습 곡선이 가파릅니다**.
-    - 복잡한 data stream 처리에는 Rx가 여전히 유용합니다.
-    - 단순한 비동기 작업에는 coroutine이 더 적합합니다.
+### 비동기 방식 선택 Guide
 
 | 상황 | 권장 방식 |
 | --- | --- |
 | 순차적 비동기 작업 | Coroutine |
-| 병렬 비동기 작업 | Coroutine (`async`) |
-| 복잡한 event stream | Rx 또는 Kotlin Flow |
+| 병렬 비동기 작업 | Coroutine (async) |
+| 복잡한 event stream | Kotlin Flow |
 | UI event 처리 | Coroutine + Flow |
 
 
@@ -400,7 +364,7 @@ suspend fun loadUserData(userId: String): UserData {
 
 ## Exception 처리
 
-- Coroutine에서 exception은 **structured concurrency 원칙에 따라 전파**됩니다.
+- Coroutine에서 exception은 structured concurrency 원칙에 따라 전파됩니다.
 
 
 ### try-catch

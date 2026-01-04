@@ -37,7 +37,7 @@
 - [x] collection-operations.md - Collection 연산 (map, filter, reduce 등)
 
 ### kotlin/coroutine/
-- [ ] index.md - 기존 coroutine.md 이동
+- [x] index.md - 기존 coroutine.md 이동
 - [ ] suspend-function.md - Suspend 함수
 - [ ] coroutine-builder.md - launch, async, runBlocking
 - [ ] dispatcher.md - Dispatcher
