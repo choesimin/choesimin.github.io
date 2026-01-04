@@ -17,7 +17,7 @@ date: 2025-01-02
 
 ### Lambda의 유래
 
-- **"lambda"라는 이름은 그리스 문자 λ(람다)에서 유래**했습니다.
+- **"lambda"라는 이름은 greek 문자 'λ'에서 유래**했습니다.
     - 1930년대 수학자 Alonzo Church가 **lambda calculus(람다 대수)**를 고안했습니다.
     - lambda calculus는 함수를 정의하고 적용하는 형식 체계로, 현대 함수형 programming의 이론적 기반입니다.
     - Church는 함수를 표현할 때 λ 기호를 사용했고, 이것이 lambda라는 이름의 기원입니다.
@@ -56,6 +56,136 @@ val evens = listOf(1, 2, 3, 4, 5).filter(::isEven)
 
 // lambda 사용 : inline으로 정의
 val evens2 = listOf(1, 2, 3, 4, 5).filter { it % 2 == 0 }
+```
+
+
+---
+
+
+## Lambda 사용 시점
+
+- lambda는 **동작(logic)을 값처럼 전달**해야 할 때 사용합니다.
+    - 일반 함수는 이름을 정의하고 호출하지만, lambda는 즉석에서 정의하여 전달합니다.
+
+
+### 고차 함수에 동작 전달
+
+- **고차 함수의 argument로 동작을 전달**할 때 lambda를 사용합니다.
+    - `map`, `filter`, `reduce` 등 collection 연산에서 변환/filtering logic을 전달합니다.
+    - `let`, `run`, `apply` 등 scope 함수에서 실행할 block을 전달합니다.
+
+```kotlin
+val numbers = listOf(1, 2, 3, 4, 5)
+
+// filter에 조건 logic 전달
+val evens = numbers.filter { it % 2 == 0 }
+
+// map에 변환 logic 전달
+val doubled = numbers.map { it * 2 }
+
+// let으로 nullable 처리 logic 전달
+val name: String? = "Kotlin"
+name?.let { println(it.uppercase()) }
+```
+
+
+### Callback과 Event Handler
+
+- **비동기 처리나 event 발생 시 실행할 동작**을 전달할 때 lambda를 사용합니다.
+    - button click, network 응답, timer 완료 등의 event에 반응하는 logic을 정의합니다.
+
+```kotlin
+button.setOnClickListener { view ->
+    println("Button clicked!")
+}
+
+fetchData(
+    onSuccess = { data -> processData(data) },
+    onError = { error -> showError(error) }
+)
+```
+
+
+### 지연 실행 (Lazy Evaluation)
+
+- **실행 시점을 늦추고 싶을 때** lambda를 사용합니다.
+    - 값이 실제로 필요한 시점에만 계산합니다.
+    - 불필요한 연산을 피하여 성능을 최적화합니다.
+
+```kotlin
+// lazy : 처음 접근할 때 lambda 실행
+val expensiveValue by lazy {
+    println("Computing...")
+    heavyComputation()
+}
+
+// 조건부 실행 : 필요할 때만 message 생성
+fun log(level: Int, message: () -> String) {
+    if (level >= LOG_LEVEL) {
+        println(message())
+    }
+}
+
+log(DEBUG) { "User data: ${fetchUserData()}" }  // DEBUG level이 아니면 fetchUserData() 호출 안 함
+```
+
+
+### Strategy Pattern 대체
+
+- **객체 대신 lambda로 전략(strategy)을 전달**합니다.
+    - interface와 구현 class를 정의하는 boilerplate를 줄입니다.
+    - 간단한 전략은 lambda 하나로 표현합니다.
+
+```kotlin
+// interface 없이 lambda로 정렬 전략 전달
+fun <T> sortWithStrategy(list: List<T>, comparator: (T, T) -> Int): List<T> {
+    return list.sortedWith { a, b -> comparator(a, b) }
+}
+
+val people = listOf("Kim", "Lee", "Park")
+
+// 이름 길이로 정렬
+val byLength = sortWithStrategy(people) { a, b -> a.length - b.length }
+
+// Alphabet 역순 정렬
+val byReverse = sortWithStrategy(people) { a, b -> b.compareTo(a) }
+```
+
+
+### 일회성 Logic 캡슐화
+
+- **한 번만 사용하는 logic**은 별도 함수로 정의하지 않고 lambda로 작성합니다.
+    - 함수 이름을 고민할 필요가 없습니다.
+    - 사용 위치에서 바로 logic을 확인합니다.
+
+```kotlin
+// 나쁜 예 : 일회성 logic을 별도 함수로 정의
+fun isAdultInSeoul(person: Person): Boolean {
+    return person.age >= 18 && person.city == "Seoul"
+}
+val adults = people.filter(::isAdultInSeoul)
+
+// 좋은 예 : lambda로 즉석 정의
+val adults = people.filter { it.age >= 18 && it.city == "Seoul" }
+```
+
+
+### DSL 구축
+
+- **선언적인 문법을 만들 때** lambda with receiver를 활용합니다.
+    - HTML builder, test framework, configuration 등에서 사용합니다.
+
+```kotlin
+// Kotlin DSL 예시
+val config = server {
+    port = 8080
+    host = "localhost"
+
+    routes {
+        get("/api/users") { fetchUsers() }
+        post("/api/users") { createUser(it) }
+    }
+}
 ```
 
 
@@ -114,7 +244,7 @@ val doubled = numbers.map { it * 2 }    // [2, 4, 6, 8, 10]
 
 ```kotlin
 // 나쁜 예 : it이 모호함
-val result = listOf(listOf(1, 2), listOf(3, 4)).map {
+val result1 = listOf(listOf(1, 2), listOf(3, 4)).map {
     it.filter { it > 1 }    // 어떤 it?
 }
 
@@ -293,8 +423,7 @@ val isPositive: Predicate<Int> = { it > 0 }
 
 ## Closure
 
-- **lambda는 외부 scope의 변수를 capture**합니다.
-    - 이렇게 capture된 환경을 closure라고 합니다.
+- **lambda는 외부 scope의 변수를 capture**하며, 이렇게 **capture된 환경을 closure라고 합니다**.
     - Java와 달리 `final`이 아닌 변수도 capture하고 수정할 수 있습니다.
 
 ```kotlin
