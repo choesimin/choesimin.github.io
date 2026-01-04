@@ -38,7 +38,7 @@
 
 ### kotlin/coroutine/
 - [x] index.md - 기존 coroutine.md 이동
-- [ ] suspend-function.md - Suspend 함수
+- [x] suspend-function.md - Suspend 함수
 - [ ] coroutine-builder.md - launch, async, runBlocking
 - [ ] dispatcher.md - Dispatcher
 - [ ] scope.md - CoroutineScope, Structured Concurrency
