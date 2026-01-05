@@ -39,8 +39,8 @@
 ### kotlin/coroutine/
 - [x] index.md - 기존 coroutine.md 이동
 - [x] suspend-function.md - Suspend 함수
-- [ ] coroutine-builder.md - launch, async, runBlocking
-- [ ] dispatcher.md - Dispatcher
+- [x] coroutine-builder.md - launch, async, runBlocking
+- [x] dispatcher.md - Dispatcher
 - [ ] scope.md - CoroutineScope, Structured Concurrency
 - [ ] flow.md - Flow (Cold Stream)
 - [ ] channel.md - Channel (Hot Stream)
@@ -62,6 +62,36 @@
 2. **functional/** - 함수형 programming
 3. **coroutine/** - 비동기 programming
 4. **advanced/** - 고급 주제
+
+
+---
+
+
+## 사용 가능한 Permalink 번호
+
+- 114, 248, 249, 250, 251, 252, 253, 254, 262, 266, 267, 269, 270, 328, 333 (총 15개)
+- published: false 상태인 draft 문서들의 번호를 재사용
+
+
+### 번호 할당
+
+| 번호 | 문서 |
+| --- | --- |
+| 114 | dispatcher.md |
+| 248 | scope.md |
+| 249 | flow.md |
+| 250 | channel.md |
+| 251 | exception-handling.md |
+| 252 | kotlin/advanced/index.md |
+| 253 | generics.md |
+| 254 | delegation.md |
+| 262 | dsl.md |
+| 266 | coroutine-builder.md |
+| 267 | (예비) |
+| 269 | (예비) |
+| 270 | (예비) |
+| 328 | (예비) |
+| 333 | (예비) |
 
 
 ---
