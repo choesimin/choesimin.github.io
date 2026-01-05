@@ -30,7 +30,7 @@ scope.cancel()
 
 ### CoroutineScope의 구성 요소
 
-- CoroutineScope는 `CoroutineContext`를 property로 가집니다.
+- `CoroutineScope`는 `CoroutineContext`를 property로 가집니다.
     - `Job` : coroutine의 lifecycle을 관리합니다.
     - `Dispatcher` : coroutine이 실행될 thread를 결정합니다.
     - `CoroutineName` : debugging용 이름입니다.

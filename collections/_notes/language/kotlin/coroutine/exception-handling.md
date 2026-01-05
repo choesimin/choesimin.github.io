@@ -177,7 +177,7 @@ fun main() {
 
 - **SupervisorJob**은 자식의 실패가 다른 자식에게 전파되지 않는 Job입니다.
     - 일반 Job은 자식 실패 시 모든 자식을 취소합니다.
-    - SupervisorJob은 실패한 자식만 취소됩니다.
+    - `SupervisorJob`은 실패한 자식만 취소됩니다.
 
 ```kotlin
 fun main() = runBlocking {
@@ -247,7 +247,7 @@ flowchart TD
 
 ## supervisorScope
 
-- **`supervisorScope`**는 SupervisorJob을 가진 scope를 생성합니다.
+- **`supervisorScope`**는 `SupervisorJob`을 가진 scope를 생성합니다.
     - 자식의 실패가 다른 자식에게 영향을 주지 않습니다.
     - `coroutineScope`와 달리 부분 실패를 허용합니다.
 
