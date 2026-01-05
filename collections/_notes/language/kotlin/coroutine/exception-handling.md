@@ -606,7 +606,7 @@ suspend fun fetchData(): Data = retry(times = 3) {
 
 ### Result Type 활용
 
-- `Result` type으로 성공/실패를 명시적으로 처리합니다.
+- `runCatching`으로 exception을 `Result`로 감싸서, `onSuccess`와 `onFailure`로 분기 처리합니다.
 
 ```kotlin
 suspend fun fetchUserSafely(id: Long): Result<User> {

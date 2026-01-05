@@ -91,7 +91,7 @@ fun numbersFlow(): Flow<Int> = flow {
 
 ## Flow Builder
 
-- flow를 생성하는 여러 builder 함수가 있습니다.
+- `flow { }`, `flowOf()`, `asFlow()`, `callbackFlow { }`로 flow를 생성합니다.
 
 
 ### flow { }
@@ -689,7 +689,7 @@ class EventBus {
 
 ### Repository Layer
 
-- database와 network를 결합하는 pattern입니다.
+- cache를 먼저 방출하고, network에서 최신 data를 가져와 다시 방출하는 cache-then-network pattern입니다.
 
 ```kotlin
 class UserRepository(
@@ -717,7 +717,7 @@ class UserRepository(
 
 ### Search with Debounce
 
-- 검색 입력에 debounce를 적용합니다.
+- 사용자 입력이 멈춘 후 일정 시간이 지나면 검색을 실행하여 불필요한 API 호출을 방지합니다.
 
 ```kotlin
 class SearchViewModel : ViewModel() {
@@ -741,7 +741,7 @@ class SearchViewModel : ViewModel() {
 
 ### Retry with Exponential Backoff
 
-- 실패 시 지수 backoff로 retry합니다.
+- 실패할 때마다 대기 시간을 2배로 늘려가며 재시도하여 서버 부하를 줄입니다.
 
 ```kotlin
 fun <T> Flow<T>.retryWithBackoff(

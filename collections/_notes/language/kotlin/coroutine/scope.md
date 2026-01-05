@@ -472,7 +472,7 @@ scope.cancel()  // 위 coroutine은 취소되지 않음
 
 ### Repository Pattern
 
-- repository에서 자체 scope를 관리합니다.
+- repository class 내부에 `CoroutineScope`를 생성하여 cache 저장이나 prefetch 같은 background 작업을 수행합니다.
 
 ```kotlin
 class UserRepository(
@@ -506,7 +506,7 @@ class UserRepository(
 
 ### 병렬 요청과 부분 실패 처리
 
-- `supervisorScope`로 부분 실패를 허용합니다.
+- 여러 API를 병렬 호출할 때 `supervisorScope`와 `runCatching`을 조합하여 일부 실패해도 나머지 결과를 반환합니다.
 
 ```kotlin
 suspend fun fetchDashboard(): Dashboard = supervisorScope {
@@ -527,7 +527,7 @@ suspend fun fetchDashboard(): Dashboard = supervisorScope {
 
 ### Timeout 처리
 
-- `withTimeout` 또는 `withTimeoutOrNull`로 시간 제한을 설정합니다.
+- `withTimeoutOrNull`은 지정 시간 내에 완료되지 않으면 `null`을 반환하고, `withTimeout`은 `TimeoutCancellationException`을 발생시킵니다.
 
 ```kotlin
 suspend fun fetchWithTimeout(): Data? {

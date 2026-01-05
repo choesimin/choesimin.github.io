@@ -9,7 +9,7 @@ date: 2025-01-05
 
 ## Channel
 
-- **Channel**은 coroutine 간 data를 전송하는 **hot stream**입니다.
+- **channel**은 coroutine 간 data를 전송하는 **hot stream**입니다.
     - `BlockingQueue`와 유사하지만 blocking 대신 suspending으로 동작합니다.
     - `send()`로 값을 보내고 `receive()`로 값을 받습니다.
     - producer와 consumer pattern을 구현하는 데 적합합니다.
@@ -37,9 +37,9 @@ launch {
 
 ### Channel의 특성
 
-- **Hot stream** : sender가 있으면 receiver 없이도 값을 보낼 수 있습니다 (buffer에 따라 다름).
-- **Bidirectional** : 양방향 통신이 가능합니다.
-- **Multiple producers/consumers** : 여러 coroutine이 동시에 send/receive할 수 있습니다.
+- **hot stream** : sender가 있으면 receiver 없이도 값을 보낼 수 있습니다 (buffer에 따라 다름).
+- **bidirectional** : 양방향 통신이 가능합니다.
+- **multiple producers/consumers** : 여러 coroutine이 동시에 send/receive할 수 있습니다.
 
 ```mermaid
 flowchart LR
@@ -377,7 +377,7 @@ channel.consumeEach { value ->
 
 ## Channel 닫기
 
-- `Channel`을 닫는 방법과 닫힌 channel의 동작입니다.
+- `close()`는 더 이상 값을 보내지 않음을 알리고, `cancel()`은 buffer의 값까지 버리며 즉시 종료합니다.
 
 
 ### close
@@ -619,7 +619,7 @@ repeat(10) {
 
 ### Worker Pool
 
-- 고정된 수의 worker가 작업을 처리합니다.
+- 고정된 수의 worker coroutine이 하나의 `Channel`에서 작업을 가져와 병렬로 처리합니다.
 
 ```kotlin
 suspend fun processTask(task: Task): Result {
