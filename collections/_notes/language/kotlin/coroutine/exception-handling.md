@@ -9,7 +9,7 @@ date: 2025-01-05
 
 ## Exception 전파
 
-- Coroutine의 exception은 **structured concurrency** 원칙에 따라 전파됩니다.
+- coroutine의 exception은 **structured concurrency** 원칙에 따라 전파됩니다.
     - 자식 coroutine의 exception은 부모로 전파됩니다.
     - 부모는 다른 자식들을 취소한 후 자신도 취소됩니다.
     - 최상위까지 전파되면 uncaught exception으로 처리됩니다.
@@ -32,7 +32,7 @@ fun main() = runBlocking {
 
 ### Exception 전파 흐름
 
-- Exception이 발생하면 계층 구조를 따라 전파됩니다.
+- exception이 발생하면 계층 구조를 따라 전파됩니다.
 
 ```mermaid
 flowchart TD
@@ -110,7 +110,7 @@ fun main() = runBlocking {
 
 ### Handler 설치 위치
 
-- Handler는 **root coroutine에 설치**해야 동작합니다.
+- handler는 **root coroutine에 설치**해야 동작합니다.
     - 자식 coroutine에 설치하면 효과가 없습니다.
 
 ```kotlin
@@ -418,7 +418,7 @@ launch {
 
 ### CancellationException
 
-- Coroutine이 취소되면 `CancellationException`이 발생합니다.
+- coroutine이 취소되면 `CancellationException`이 발생합니다.
 
 ```kotlin
 val job = launch {
@@ -570,7 +570,7 @@ job.cancelAndJoin()
 
 ## 실전 예제
 
-- Retry, `Result` type 활용, 병렬 작업의 부분 실패 처리 등 실무에서 자주 사용하는 exception 처리 pattern입니다.
+- retry, `Result` type 활용, 병렬 작업의 부분 실패 처리 등 실무에서 자주 사용하는 exception 처리 pattern입니다.
 
 
 ### Retry 구현
@@ -651,7 +651,7 @@ results.forEach { (id, result) ->
 
 ### Global Exception Handler
 
-- Application 전역 exception handler를 설정합니다.
+- application 전역 exception handler를 설정합니다.
 
 ```kotlin
 class MyApplication : Application() {
@@ -675,7 +675,7 @@ applicationScope.launch {
 
 ### Flow Exception 처리
 
-- Flow에서 exception을 처리하는 pattern입니다.
+- `Flow`에서 exception을 처리하는 pattern입니다.
 
 ```kotlin
 fun userFlow(): Flow<User> = flow {

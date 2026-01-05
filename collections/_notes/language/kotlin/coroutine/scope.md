@@ -467,12 +467,12 @@ scope.cancel()  // 위 coroutine은 취소되지 않음
 
 ## 실전 예제
 
-- Repository에서 자체 scope를 관리하거나, `supervisorScope`로 부분 실패를 허용하는 등 실무에서 자주 사용하는 pattern입니다.
+- repository에서 자체 scope를 관리하거나, `supervisorScope`로 부분 실패를 허용하는 등 실무에서 자주 사용하는 pattern입니다.
 
 
 ### Repository Pattern
 
-- Repository에서 자체 scope를 관리합니다.
+- repository에서 자체 scope를 관리합니다.
 
 ```kotlin
 class UserRepository(

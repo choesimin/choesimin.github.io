@@ -67,7 +67,7 @@ flowchart LR
 
 ## Channel vs Flow
 
-- Channel과 Flow는 모두 data stream을 처리하지만 용도가 다릅니다.
+- `Channel`과 `Flow`는 모두 data stream을 처리하지만 용도가 다릅니다.
 
 | 항목 | Channel | Flow |
 | --- | --- | --- |
@@ -98,7 +98,7 @@ launch { flow.collect { println("B: $it") } }  // B: 1, B: 2
 
 ## Channel Type
 
-- Channel은 buffer 용량에 따라 네 가지 type이 있습니다.
+- `Channel`은 buffer 용량에 따라 네 가지 type이 있습니다.
 
 
 ### Rendezvous Channel
@@ -337,7 +337,7 @@ while (true) {
 
 ### for loop으로 수신
 
-- Channel은 `ReceiveChannel`을 구현하여 for loop으로 순회할 수 있습니다.
+- `Channel`은 `ReceiveChannel`을 구현하여 for loop으로 순회할 수 있습니다.
     - channel이 닫히면 loop가 종료됩니다.
 
 ```kotlin
@@ -377,7 +377,7 @@ channel.consumeEach { value ->
 
 ## Channel 닫기
 
-- Channel을 닫는 방법과 닫힌 channel의 동작입니다.
+- `Channel`을 닫는 방법과 닫힌 channel의 동작입니다.
 
 
 ### close
@@ -403,7 +403,7 @@ println(channel.receive())  // 2
 
 ### isClosedForSend / isClosedForReceive
 
-- Channel의 닫힌 상태를 확인합니다.
+- `Channel`의 닫힌 상태를 확인합니다.
     - `isClosedForSend` : send가 불가능한지 확인합니다.
     - `isClosedForReceive` : receive가 불가능한지 확인합니다 (buffer도 비어야 함).
 
@@ -536,7 +536,7 @@ flowchart LR
 
 ## Pipeline
 
-- Channel을 연결하여 data processing pipeline을 구성합니다.
+- `Channel`을 연결하여 data processing pipeline을 구성합니다.
 
 
 ### Pipeline 구성
@@ -614,7 +614,7 @@ repeat(10) {
 
 ## 실전 예제
 
-- Worker pool로 작업을 분산하거나, rate limiter로 요청 속도를 제한하는 등 실무에서 자주 사용하는 pattern입니다.
+- worker pool로 작업을 분산하거나, rate limiter로 요청 속도를 제한하는 등 실무에서 자주 사용하는 pattern입니다.
 
 
 ### Worker Pool
@@ -665,7 +665,7 @@ for (result in results) {
 
 ### Rate Limiter
 
-- Channel을 사용하여 요청 속도를 제한합니다.
+- `Channel`을 사용하여 요청 속도를 제한합니다.
 
 ```kotlin
 class RateLimiter(
@@ -702,7 +702,7 @@ repeat(100) { i ->
 
 ### Event Bus
 
-- Channel 기반 event bus를 구현합니다.
+- `Channel` 기반 event bus를 구현합니다.
 
 ```kotlin
 class EventBus {
