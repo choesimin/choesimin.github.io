@@ -50,6 +50,12 @@ date: YYYY-MM-DD
 - **No Trailing Colons**: Sentences must not end with a colon (`:`). Each sentence should be complete on its own.
   - Bad: "`val`과 `const val`의 차이점 :" (followed by a table)
   - Good: "`val`과 `const val`은 값 결정 시점, 사용 가능 type, 선언 위치에서 차이가 있습니다."
+- **No Trailing Parentheses**: Sentences must not end with parenthetical explanations. Integrate the content naturally or use sub-items.
+  - Bad: "`send`는 값을 channel에 보냅니다 (suspend 함수)."
+  - Good: "`send`는 suspend 함수로, 값을 channel에 보냅니다."
+- **No Vague Descriptions**: Heading descriptions must be concrete, not abstract patterns like "~하는 방법입니다", "~의 동작입니다", "~하는 pattern입니다".
+  - Bad: "`Channel`을 닫는 방법과 닫힌 channel의 동작입니다."
+  - Good: "`close()`는 더 이상 값을 보내지 않음을 알리고, `cancel()`은 buffer의 값까지 버리며 즉시 종료합니다."
 
 ### Heading Writing Rules
 
@@ -92,6 +98,9 @@ date: YYYY-MM-DD
 
 - **Colon Spacing**: Always add one space before and after colon (`:`).
 - **No Emojis**: Do not use emojis (✓, ✗, ⚠️, etc.) in technical documentation. Use clear text instead.
+- **Backtick Usage**: Only wrap actual code elements (class, function, keyword, annotation) in backticks. Do not wrap conceptual terms.
+  - Use backticks: `Channel`, `Flow`, `SupervisorJob`, `launch`, `suspend`
+  - No backticks: scope, buffer, handler, pattern (conceptual terms)
 
 ### References
 
