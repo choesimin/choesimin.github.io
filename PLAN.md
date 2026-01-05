@@ -35,16 +35,17 @@
 - [x] higher-order-function.md - 고차 함수
 - [x] extension-function.md - Extension Function
 - [x] collection-operations.md - Collection 연산 (map, filter, reduce 등)
+- [ ] sequence.md - Sequence (Lazy Evaluation)
 
 ### kotlin/coroutine/
 - [x] index.md - 기존 coroutine.md 이동
 - [x] suspend-function.md - Suspend 함수
 - [x] coroutine-builder.md - launch, async, runBlocking
 - [x] dispatcher.md - Dispatcher
-- [ ] scope.md - CoroutineScope, Structured Concurrency
-- [ ] flow.md - Flow (Cold Stream)
-- [ ] channel.md - Channel (Hot Stream)
-- [ ] exception-handling.md - Exception 처리
+- [x] scope.md - CoroutineScope, Structured Concurrency
+- [x] flow.md - Flow (Cold Stream)
+- [x] channel.md - Channel (Hot Stream)
+- [x] exception-handling.md - Exception 처리
 
 ### kotlin/advanced/
 - [ ] index.md - 고급 주제 개요
@@ -87,7 +88,7 @@
 | 254 | delegation.md |
 | 262 | dsl.md |
 | 266 | coroutine-builder.md |
-| 267 | (예비) |
+| 267 | sequence.md |
 | 269 | (예비) |
 | 270 | (예비) |
 | 328 | (예비) |
