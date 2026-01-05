@@ -741,7 +741,7 @@ class SearchViewModel : ViewModel() {
 
 ### Retry with Exponential Backoff
 
-- 실패할 때마다 대기 시간을 2배로 늘려가며 재시도하여 서버 부하를 줄입니다.
+- 실패할 때마다 대기 시간을 2배로 늘려가며 재시도하여 server 부하를 줄입니다.
 
 ```kotlin
 fun <T> Flow<T>.retryWithBackoff(

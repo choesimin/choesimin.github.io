@@ -37,7 +37,7 @@ launch {
 
 ### Channel의 특성
 
-- **hot stream** : sender가 있으면 receiver 없이도 값을 보낼 수 있습니다 (buffer에 따라 다름).
+- **hot stream** : sender가 있으면 receiver 없이도 값을 보낼 수 있으며, buffer 크기에 따라 동작이 달라집니다.
 - **bidirectional** : 양방향 통신이 가능합니다.
 - **multiple producers/consumers** : 여러 coroutine이 동시에 send/receive할 수 있습니다.
 
@@ -280,8 +280,8 @@ println(response.await())  // 100
 
 ### send / receive
 
-- **`send`**는 값을 channel에 보냅니다 (suspend 함수).
-- **`receive`**는 channel에서 값을 받습니다 (suspend 함수).
+- **`send`**는 suspend 함수로, 값을 channel에 보냅니다.
+- **`receive`**는 suspend 함수로, channel에서 값을 받습니다.
 
 ```kotlin
 val channel = Channel<Int>()
@@ -405,7 +405,7 @@ println(channel.receive())  // 2
 
 - `Channel`의 닫힌 상태를 확인합니다.
     - `isClosedForSend` : send가 불가능한지 확인합니다.
-    - `isClosedForReceive` : receive가 불가능한지 확인합니다 (buffer도 비어야 함).
+    - `isClosedForReceive` : receive가 불가능한지 확인하며, buffer도 비어 있어야 true를 반환합니다.
 
 ```kotlin
 val channel = Channel<Int>(capacity = 5)
