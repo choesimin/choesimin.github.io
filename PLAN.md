@@ -35,7 +35,7 @@
 - [x] higher-order-function.md - 고차 함수
 - [x] extension-function.md - Extension Function
 - [x] collection-operations.md - Collection 연산 (map, filter, reduce 등)
-- [ ] sequence.md - Sequence (Lazy Evaluation)
+- [x] sequence.md - Sequence (Lazy Evaluation)
 
 ### kotlin/coroutine/
 - [x] index.md - 기존 coroutine.md 이동
@@ -48,10 +48,10 @@
 - [x] exception-handling.md - Exception 처리
 
 ### kotlin/advanced/
-- [ ] index.md - 고급 주제 개요
-- [ ] generics.md - Generics
-- [ ] delegation.md - Delegation
-- [ ] dsl.md - DSL
+- [x] index.md - 고급 주제 개요
+- [x] generics.md - Generics
+- [x] delegation.md - Delegation
+- [x] dsl.md - DSL
 
 
 ---
@@ -107,3 +107,16 @@
 - 콜론 앞뒤 공백 (` : `)
 - 이모지 사용 금지
 - Mermaid.js 적극 활용
+
+
+---
+
+
+## 확인 필요
+
+- 2025-01-06 작성 문서 (검토 필요)
+    - functional/sequence.md
+    - advanced/index.md
+    - advanced/generics.md
+    - advanced/delegation.md
+    - advanced/dsl.md
