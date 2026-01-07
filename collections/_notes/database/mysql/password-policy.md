@@ -108,3 +108,4 @@ SHOW VARIABLES LIKE 'validate_password%';
 ```
 
 - 현재 적용된 정책과 설정 값을 확인하고, 필요시 추가적으로 조정합니다.
+

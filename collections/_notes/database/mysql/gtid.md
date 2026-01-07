@@ -87,3 +87,4 @@ services:
 -- GTID 설정 확인
 SHOW GLOBAL VARIABLES LIKE '%gtid%';
 ```
+

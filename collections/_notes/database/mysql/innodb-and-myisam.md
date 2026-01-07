@@ -87,3 +87,4 @@ date: 2024-04-10
 - MyISAM은 crash 발생 시 data 손상 위험이 있습니다.
     - table 복구가 필요할 수 있으며 data 손실 가능성이 있습니다.
     - 복구 작업에는 REPAIR TABLE 명령이 필요합니다.
+

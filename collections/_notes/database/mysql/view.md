@@ -103,3 +103,4 @@ ALTER VIEW seoul_members AS SELECT last_name, first_name FROM members where city
 ## Reference
 
 - <https://seung.tistory.com/entry/MySQL-뷰View-사용법>
+

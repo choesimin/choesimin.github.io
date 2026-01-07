@@ -109,3 +109,4 @@ kill query 938;    -- kill query [process_id];
 ## Reference
 
 - <https://otrodevym.tistory.com/entry/Mysql-MySql-Lock-%EC%A1%B0%ED%9A%8C-%EB%B0%8F-%ED%95%B4%EC%A0%9C-%EB%B0%A9%EB%B2%95>
+

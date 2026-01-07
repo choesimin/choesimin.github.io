@@ -78,3 +78,4 @@ date: 2024-10-09
 
 11. 활발한 **대규모 community**를 보유하고 있어, 문제를 해결하거나 새로운 기능을 도입하는 데 있어 많은 도움을 받을 수 있습니다.
     - community forum, blog, online document 등을 통해 다양한 해결책을 찾을 수 있으며, 최신 trend와 함께 지속적으로 update되는 tutorial이나 guide가 많습니다.
+
