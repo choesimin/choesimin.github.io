@@ -2,7 +2,7 @@
 layout: note
 permalink: /253
 title: Kotlin Generics
-description: Generics는 type을 parameter화하여 compile 시점에 type safety를 보장하면서 재사용 가능한 component를 작성합니다.
+description: Generics는 type을 parameter로 받아 compile 시점에 type safety를 보장하면서 재사용 가능한 component를 작성합니다.
 date: 2025-01-06
 ---
 
@@ -89,7 +89,7 @@ class UserRepository : Repository<User> {
 
 ## Generic Function
 
-- **generic function**은 **함수 레벨에서 type parameter를 선언**합니다.
+- **generic function**은 **함수 level에서 type parameter를 선언**합니다.
     - 함수 이름 앞에 `<T>`를 붙입니다.
     - class가 generic이 아니어도 함수만 generic일 수 있습니다.
 
@@ -118,7 +118,8 @@ listOf("a").secondOrNull()      // null
 ## Type Constraint
 
 - **type constraint**는 **type parameter에 상한(upper bound)을 지정**합니다.
-    - 특정 type이나 그 subtype만 허용합니다.
+    - upper bound는 type parameter가 될 수 있는 type의 "최상위 범위"입니다.
+    - `T : Number`로 지정하면 `Number`와 그 subtype(`Int`, `Double` 등)만 허용됩니다.
     - constraint를 통해 해당 type의 member에 접근합니다.
 
 ```kotlin
@@ -154,6 +155,7 @@ println(sb)  // Hello.
 ### Nullable Constraint
 
 - type parameter는 기본적으로 nullable입니다.
+    - 기본 upper bound가 `Any?`이기 때문입니다.
     - non-null을 강제하려면 `Any`를 upper bound로 지정합니다.
 
 ```kotlin
@@ -268,13 +270,13 @@ flowchart TD
     subgraph Covariance["Covariance (out)"]
         direction TB
         Dog1[Dog] --> Animal1[Animal]
-        PD["Producer&#60;Dog&#62;"] --> PA["Producer&#60;Animal&#62;"]
+        PD[Producer of Dog] --> PA[Producer of Animal]
     end
 
     subgraph Contravariance["Contravariance (in)"]
         direction TB
         Dog2[Dog] --> Animal2[Animal]
-        CA["Consumer&#60;Animal&#62;"] --> CD["Consumer&#60;Dog&#62;"]
+        CA[Consumer of Animal] --> CD[Consumer of Dog]
     end
 ```
 
@@ -460,7 +462,9 @@ inline fun <reified T> works() { }
 
 ## 실전 예제
 
-- Generics를 활용한 실전 pattern입니다.
+- 실무에서 generics는 **type에 독립적인 공통 logic을 정의**할 때 유용합니다.
+    - 여러 type에서 동일한 구조나 동작을 재사용합니다.
+    - type safety를 유지하면서 추상화 수준을 높입니다.
 
 
 ### Generic Repository

@@ -42,8 +42,8 @@ val page = html {
 
 | 구분 | Internal DSL | External DSL |
 | --- | --- | --- |
-| 호스트 언어 | 기존 언어 내에서 구현 | 별도 parser 필요 |
-| 문법 | 호스트 언어 문법 준수 | 자유로운 문법 설계 |
+| Host 언어 | 기존 언어 내에서 구현 | 별도 parser 필요 |
+| 문법 | Host 언어 문법 준수 | 자유로운 문법 설계 |
 | 도구 지원 | IDE 지원 자동 제공 | 별도 개발 필요 |
 | 예시 | Kotlin DSL, Gradle Kotlin | SQL, HTML, CSS |
 
@@ -391,7 +391,9 @@ val person = Person.build {
 
 ## 실전 예제
 
-- DSL을 활용한 실전 pattern입니다.
+- 실무에서 DSL은 **복잡한 구조를 선언적으로 표현**할 때 유용합니다.
+    - 반복적인 builder pattern이나 설정 code를 간결하게 만듭니다.
+    - compile 시점에 구조의 유효성을 검증하여 runtime error를 방지합니다.
 
 
 ### SQL DSL

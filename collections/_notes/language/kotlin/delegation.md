@@ -221,9 +221,9 @@ println(user.name) // Getting name: Kim
 ## Standard Delegates
 
 - Kotlin은 **자주 사용되는 delegate를 표준 library**로 제공합니다.
-    - `lazy` : 지연 초기화
-    - `observable` : 변경 감지
-    - `vetoable` : 변경 거부
+    - `lazy` : 지연 초기화.
+    - `observable` : 변경 감지.
+    - `vetoable` : 변경 거부.
 
 
 ### lazy
@@ -504,12 +504,14 @@ class AppConfig {
 
 ## 실전 예제
 
-- Delegation을 활용한 실전 pattern입니다.
+- 실무에서 delegation은 **반복적인 접근 logic을 추상화**할 때 유용합니다.
+    - 외부 저장소(SharedPreferences, Database)나 상태 관리의 복잡성을 숨깁니다.
+    - property 접근처럼 자연스러운 API를 제공하여 사용 측 code를 간결하게 만듭니다.
 
 
 ### SharedPreferences Delegate
 
-- Android의 SharedPreferences를 property처럼 사용하는 delegate입니다.
+- Android의 `SharedPreferences`를 property처럼 사용하는 delegate입니다.
 
 ```kotlin
 class PreferenceDelegate<T>(
@@ -557,7 +559,7 @@ class UserPreferences(prefs: SharedPreferences) {
 
 ### ViewModel State Delegate
 
-- ViewModel의 상태를 StateFlow로 관리하는 delegate입니다.
+- `ViewModel`의 상태를 StateFlow로 관리하는 delegate입니다.
 
 ```kotlin
 class ViewModelState<T>(
