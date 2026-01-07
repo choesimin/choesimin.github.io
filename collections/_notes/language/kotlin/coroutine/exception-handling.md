@@ -595,7 +595,9 @@ job.cancelAndJoin()
 
 ## 실전 예제
 
-- retry, `Result` type 활용, 병렬 작업의 부분 실패 처리 등 실무에서 자주 사용하는 exception 처리 pattern입니다.
+- 실무에서는 **외부 system과의 통신에서 실패가 불가피**합니다.
+    - 일시적 실패에 대비한 retry, 실패를 값으로 표현하는 `Result` type 등으로 탄력성을 확보합니다.
+    - 여러 작업 중 일부가 실패해도 나머지 결과를 활용할 수 있도록 설계합니다.
 
 
 ### Retry 구현

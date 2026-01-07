@@ -614,7 +614,9 @@ repeat(10) {
 
 ## 실전 예제
 
-- worker pool로 작업을 분산하거나, rate limiter로 요청 속도를 제한하는 등 실무에서 자주 사용하는 pattern입니다.
+- 실무에서 channel은 **coroutine 간 조율이 필요한 상황**에서 유용합니다.
+    - 작업을 여러 worker에 분산하거나, 요청 속도를 제한할 때 사용합니다.
+    - producer-consumer 관계를 명확하게 분리하여 비동기 처리를 구조화합니다.
 
 
 ### Worker Pool
