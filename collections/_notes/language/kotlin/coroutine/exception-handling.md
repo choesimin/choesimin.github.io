@@ -113,6 +113,11 @@ fun main() = runBlocking {
 - handler는 **root coroutine에 설치**해야 동작합니다.
     - 자식 coroutine에 설치하면 효과가 없습니다.
 
+- `CoroutineExceptionHandler`는 uncaught exception을 처리합니다.
+    - 자식 coroutine의 exception은 부모로 전파되므로, 자식 입장에서는 exception이 이미 "처리된" 것으로 간주됩니다.
+    - root coroutine은 전파할 부모가 없으므로, exception이 uncaught 상태가 되어 handler가 호출됩니다.
+    - `SupervisorJob`에서 `launch`한 coroutine은 exception을 부모로 전파하지 않으므로, root coroutine처럼 handler가 동작합니다.
+
 ```kotlin
 val handler = CoroutineExceptionHandler { _, e ->
     println("Handled: ${e.message}")
