@@ -86,8 +86,8 @@ fun main() = runBlocking {
 ## CoroutineExceptionHandler
 
 - **CoroutineExceptionHandler**는 uncaught exception을 처리하는 context element입니다.
-    - **최상위 coroutine**에만 효과가 있습니다.
-    - exception이 이미 전파된 후에 호출됩니다.
+    - exception이 부모로 전파되면, 자식 입장에서는 "처리된" 것으로 간주됩니다.
+    - 전파할 부모가 없을 때 exception이 uncaught 상태가 됩니다.
     - exception을 복구하는 것이 아니라 logging이나 알림 용도로 사용합니다.
 
 ```kotlin
@@ -112,10 +112,6 @@ fun main() = runBlocking {
 
 - handler는 **root coroutine에 설치**해야 동작합니다.
     - 자식 coroutine에 설치하면 효과가 없습니다.
-
-- `CoroutineExceptionHandler`는 uncaught exception을 처리합니다.
-    - 자식 coroutine의 exception은 부모로 전파되므로, 자식 입장에서는 exception이 이미 "처리된" 것으로 간주됩니다.
-    - root coroutine은 전파할 부모가 없으므로, exception이 uncaught 상태가 되어 handler가 호출됩니다.
     - `SupervisorJob`에서 `launch`한 coroutine은 exception을 부모로 전파하지 않으므로, root coroutine처럼 handler가 동작합니다.
 
 ```kotlin
