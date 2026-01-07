@@ -1,13 +1,13 @@
 ---
 layout: note
 permalink: /252
-title: Kotlin 고급 주제
+title: Kotlin 고급 기능
 description: Kotlin의 generics, delegation, DSL 등 고급 기능은 type safety와 code 재사용성을 높이고 표현력 있는 API를 설계할 수 있게 합니다.
 date: 2025-01-06
 ---
 
 
-## Kotlin 고급 주제
+## Kotlin 고급 기능
 
 - Kotlin은 **type safety와 code 재사용성을 높이는 고급 기능**을 제공합니다.
     - Generics로 type을 parameter화하여 재사용 가능한 component를 만듭니다.
@@ -16,7 +16,7 @@ date: 2025-01-06
 
 ```mermaid
 flowchart TD
-    advanced[고급 주제]
+    advanced[고급 기능]
 
     advanced --> generics[Generics]
     advanced --> delegation[Delegation]

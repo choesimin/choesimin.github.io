@@ -594,11 +594,11 @@ println("Cache TTL: ${config.cache?.ttlSeconds}")
 ---
 
 
-## DSL 설계 가이드
+## DSL Design Guide
 
 - **일관된 문법**을 유지합니다.
     - 비슷한 기능은 비슷한 형태로 표현합니다.
-    - 사용자가 패턴을 예측할 수 있어야 합니다.
+    - 사용자가 pattern을 예측할 수 있어야 합니다.
 
 - **DslMarker**를 사용하여 scope를 제한합니다.
     - 실수로 잘못된 receiver에 접근하는 것을 방지합니다.
@@ -607,8 +607,8 @@ println("Cache TTL: ${config.cache?.ttlSeconds}")
     - 사용자가 DSL을 확장할 수 있게 설계합니다.
     - sealed class 대신 interface를 사용합니다.
 
-- **에러 메시지**를 명확하게 합니다.
-    - 잘못된 사용에 대해 이해하기 쉬운 에러를 제공합니다.
+- **error message**를 명확하게 합니다.
+    - 잘못된 사용에 대해 이해하기 쉬운 error를 제공합니다.
     - require, check 등으로 검증합니다.
 
 ```kotlin
