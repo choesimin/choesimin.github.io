@@ -12,6 +12,7 @@ date: 2025-01-05
 - **flow**는 비동기적으로 계산되는 **data stream**입니다.
     - `suspend` 함수가 단일 값을 반환한다면, Flow는 여러 값을 순차적으로 방출합니다.
     - **cold stream**으로, collector가 있을 때만 값을 방출합니다.
+        - collector는 `collect`를 호출하여 flow의 값을 수집하는 coroutine입니다.
     - reactive streams와 유사하지만 coroutine 기반으로 더 간단합니다.
 
 ```kotlin
@@ -50,6 +51,57 @@ coldFlow.collect { println(it) }
 // 두 번째 collect (다시 시작)
 coldFlow.collect { println(it) }
 // 출력 : Flow started, 1, 2
+```
+
+
+### Cold Stream vs Hot Stream
+
+- **cold stream**은 collector가 collect를 호출할 때 값 생성을 시작합니다.
+    - 각 collector가 독립적으로 모든 값을 처음부터 받습니다.
+    - `flow { }`, `flowOf()`, `asFlow()`로 생성한 flow가 cold stream입니다.
+- **hot stream**은 collector 유무와 관계없이 값을 방출합니다.
+    - 여러 collector가 같은 stream을 공유하고, 참여한 시점부터 값을 받습니다.
+    - `StateFlow`, `SharedFlow`가 hot stream입니다.
+
+```mermaid
+sequenceDiagram
+    participant flow as Flow
+    participant collector_a as collector_a
+    participant collector_b as collector_b
+
+    Note over flow,collector_b: Cold Stream
+
+    collector_a->>flow: collect 호출
+    flow->>collector_a: 1
+    flow->>collector_a: 2
+    flow->>collector_a: 3
+
+    collector_b->>flow: collect 호출
+    flow->>collector_b: 1
+    flow->>collector_b: 2
+    flow->>collector_b: 3
+
+    Note over collector_a,collector_b: collector_a, collector_b 모두 1, 2, 3 전부 받음
+```
+
+```mermaid
+sequenceDiagram
+    participant shared_flow as SharedFlow
+    participant collector_a as collector_a
+    participant collector_b as collector_b
+
+    Note over shared_flow,collector_b: Hot Stream
+
+    shared_flow->>shared_flow: 1 방출
+    Note over collector_a: 아직 참여 안 함
+    collector_a->>shared_flow: collect 호출
+    shared_flow->>collector_a: 2 방출
+    collector_b->>shared_flow: collect 호출
+    shared_flow->>collector_a: 3 방출
+    shared_flow->>collector_b: 3 방출
+
+    Note over collector_a: 받은 값 : 2, 3
+    Note over collector_b: 받은 값 : 3
 ```
 
 
@@ -144,7 +196,7 @@ sequenceOf("a", "b", "c").asFlow()
 
 - **`callbackFlow`**는 callback 기반 API를 flow로 변환합니다.
     - `trySend()`로 값을 방출합니다.
-    - `awaitClose`로 cleanup 로직을 정의합니다.
+    - `awaitClose`로 cleanup logic을 정의합니다.
 
 ```kotlin
 fun locationUpdates(): Flow<Location> = callbackFlow {

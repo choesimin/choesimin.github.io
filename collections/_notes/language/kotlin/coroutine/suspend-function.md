@@ -49,7 +49,9 @@ suspend fun loadUserData(userId: Long): UserData {
 
 ## Suspend 함수 호출 규칙
 
-- suspend 함수는 특정 context에서만 호출할 수 있습니다.
+- suspend 함수는 **중단과 재개를 관리할 수 있는 환경**에서만 호출할 수 있습니다.
+    - 이 환경은 coroutine이 제공하는 `Continuation`을 통해 구현됩니다.
+    - 일반 함수는 이 환경을 제공하지 않으므로 suspend 함수를 직접 호출할 수 없습니다.
 
 
 ### 호출 가능한 위치
@@ -113,7 +115,9 @@ class UserRepository(
 
 ## Suspend vs Blocking
 
-- suspend와 blocking은 모두 대기를 수반하지만, thread 사용 방식이 다릅니다.
+- suspend와 blocking은 모두 **작업 완료를 기다린다**는 점에서 유사하지만, **무엇이 멈추는가**가 다릅니다.
+    - blocking은 thread 자체가 멈춰서 다른 작업을 수행할 수 없습니다.
+    - suspend는 coroutine만 멈추고, thread는 다른 coroutine을 실행합니다.
 
 
 ### Blocking
@@ -179,7 +183,11 @@ fun suspendExample() = runBlocking {
 ## Suspend 함수의 동작 원리
 
 - compiler는 suspend 함수를 **Continuation Passing Style(CPS)**로 변환합니다.
-    - 함수가 state machine으로 변환됩니다.
+    - CPS는 함수가 결과를 직접 반환하는 대신, "다음에 실행할 code"를 인자로 받아 결과를 전달하는 방식입니다.
+    - 일반 함수 : `val result = compute()` → 결과를 반환합니다.
+    - CPS : `compute(continuation)` → continuation에 결과를 전달합니다.
+
+- 변환된 함수는 state machine으로 동작합니다.
     - 각 suspension point에서 상태를 저장하고 복원합니다.
 
 

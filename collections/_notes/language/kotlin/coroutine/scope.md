@@ -59,7 +59,7 @@ flowchart TD
 
     job --> job_desc[lifecycle 관리]
     dispatcher --> dispatcher_desc[실행 thread 결정]
-    name --> name_desc[debugging 용]
+    name --> name_desc[debugging 용도]
     handler --> handler_desc[예외 처리]
 ```
 
@@ -69,7 +69,7 @@ flowchart TD
 
 ## Structured Concurrency
 
-- **Structured Concurrency**는 coroutine의 lifecycle을 계층적으로 관리하는 원칙입니다.
+- **구조적 동시성(structured concurrency)**은 coroutine의 lifecycle을 계층적으로 관리하는 원칙입니다.
     - 부모 coroutine은 모든 자식의 완료를 기다립니다.
     - 자식이 실패하면 부모와 형제도 취소됩니다.
     - 부모가 취소되면 모든 자식도 취소됩니다.
@@ -114,7 +114,7 @@ flowchart TD
 
 ### 비구조적 동시성과 비교
 
-- **비구조적 동시성**(unstructured concurrency)은 coroutine이 독립적으로 실행됩니다.
+- **비구조적 동시성(unstructured concurrency)**은 coroutine이 독립적으로 실행됩니다.
     - `GlobalScope`나 독립적인 `CoroutineScope`를 사용하면 발생합니다.
     - lifecycle 관리가 어렵고 memory leak 위험이 있습니다.
 
@@ -387,7 +387,7 @@ class DataSyncService {
 ### ViewModel에서의 Scope
 
 - Android에서는 `viewModelScope`를 사용합니다.
-    - ViewModel이 clear될 때 자동으로 취소됩니다.
+    - `ViewModel`이 clear될 때 자동으로 취소됩니다.
 
 ```kotlin
 class UserViewModel : ViewModel() {
@@ -467,7 +467,10 @@ scope.cancel()  // 위 coroutine은 취소되지 않음
 
 ## 실전 예제
 
-- repository에서 자체 scope를 관리하거나, `supervisorScope`로 부분 실패를 허용하는 등 실무에서 자주 사용하는 pattern입니다.
+- 실무에서는 **scope lifecycle 관리**와 **실패 격리**가 핵심 과제입니다.
+    - 호출자의 lifecycle과 무관하게 실행되어야 하는 작업은 자체 scope를 생성합니다.
+    - 여러 작업 중 일부가 실패해도 나머지가 계속되어야 하면 `supervisorScope`를 사용합니다.
+    - timeout, retry 등 외부 시스템과의 통신에서는 실패에 대한 방어가 필요합니다.
 
 
 ### Repository Pattern
