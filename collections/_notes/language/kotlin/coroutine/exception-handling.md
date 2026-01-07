@@ -86,8 +86,6 @@ fun main() = runBlocking {
 ## CoroutineExceptionHandler
 
 - **CoroutineExceptionHandler**는 uncaught exception을 처리하는 context element입니다.
-    - exception이 부모로 전파되면, 자식 입장에서는 "처리된" 것으로 간주됩니다.
-    - 전파할 부모가 없을 때 exception이 uncaught 상태가 됩니다.
     - exception을 복구하는 것이 아니라 logging이나 알림 용도로 사용합니다.
 
 ```kotlin
@@ -108,11 +106,37 @@ fun main() = runBlocking {
 ```
 
 
+### Handler 동작 원칙
+
+- handler는 **uncaught exception에서만 동작**합니다.
+    - exception이 부모로 전파되면, 자식 입장에서는 exception이 "처리된" 것으로 간주됩니다.
+    - 더 이상 전파할 부모가 없을 때, exception이 uncaught 상태가 됩니다.
+
+- uncaught 상태가 되는 위치는 coroutine 계층 구조에 따라 달라집니다.
+    - 일반 `Job` : exception이 root까지 전파되므로, root coroutine에서 uncaught 상태가 됩니다.
+    - `SupervisorJob` : exception이 부모로 전파되지 않으므로, 해당 coroutine에서 uncaught 상태가 됩니다.
+
+- handler는 uncaught 상태가 되는 위치에 설치해야 동작합니다.
+
+```mermaid
+flowchart LR
+    subgraph job_graph[Job]
+        j_child[Child] -->|전파| j_parent[Parent] -->|전파| j_root[Root]
+        j_root -.->|uncaught| j_handler[Handler 동작]
+    end
+
+    subgraph supervisor_graph[SupervisorJob]
+        s_child[Child] -->|전파 차단| s_supervisor[SupervisorJob]
+        s_child -.->|uncaught| s_handler[Handler 동작]
+    end
+```
+
+
 ### Handler 설치 위치
 
-- handler는 **root coroutine에 설치**해야 동작합니다.
-    - 자식 coroutine에 설치하면 효과가 없습니다.
-    - `SupervisorJob`에서 `launch`한 coroutine은 exception을 부모로 전파하지 않으므로, root coroutine처럼 handler가 동작합니다.
+- handler는 uncaught 상태가 되는 coroutine에 설치해야 동작합니다.
+    - 일반 `Job` 계층에서는 root coroutine에 설치합니다.
+    - `SupervisorJob`에서 `launch`한 coroutine에는 개별적으로 설치합니다.
 
 ```kotlin
 val handler = CoroutineExceptionHandler { _, e ->
