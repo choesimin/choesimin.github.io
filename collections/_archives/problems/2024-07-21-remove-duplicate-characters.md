@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /273
+permalink: /0
 title: 중복된 문자 제거
 category: programmers
 tags: set

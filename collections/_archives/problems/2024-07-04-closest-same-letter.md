@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /265
+permalink: /0
 title: 가장 가까운 같은 글자
 category: programmers
 tags: map

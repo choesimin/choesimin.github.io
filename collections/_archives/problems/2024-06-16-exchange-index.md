@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /247
+permalink: /0
 title: 인덱스 바꾸기
 category: programmers
 tags: string

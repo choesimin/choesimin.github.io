@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /285
+permalink: /0
 title: 키로거
 category: baekjoon
 tags: stack

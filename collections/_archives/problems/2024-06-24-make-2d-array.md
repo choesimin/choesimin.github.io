@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /258
+permalink: /0
 title: 2차원으로 만들기
 category: programmers
 tags: array

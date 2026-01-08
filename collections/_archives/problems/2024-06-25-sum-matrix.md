@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /262
+permalink: /0
 title: 행렬의 덧셈
 category: programmers
 tags: array

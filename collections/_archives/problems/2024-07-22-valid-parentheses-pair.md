@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /279
+permalink: /0
 title: 올바른 괄호
 category: programmers
 tags: stack

@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /256
+permalink: /0
 title: 가장 큰 수
 category: programmers
 tags: sorting

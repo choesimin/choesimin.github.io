@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /255
+permalink: /0
 title: 카드 뭉치
 category: programmers
 tags: implementation

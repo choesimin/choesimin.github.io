@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /263
+permalink: /0
 title: 바탕화면 정리
 category: programmers
 tags: array

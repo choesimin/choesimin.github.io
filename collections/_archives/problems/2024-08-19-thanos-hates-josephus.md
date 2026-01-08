@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /288
+permalink: /0
 title: 타노스는 요세푸스가 밉다
 category: baekjoon
 tags: queue

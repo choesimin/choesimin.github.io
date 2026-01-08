@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /269
+permalink: /0
 title: 전화번호 목록
 category: programmers
 tags: sorting

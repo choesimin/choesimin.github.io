@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /290
+permalink: /0
 title: 팰린드롬수
 category: baekjoon
 tags: string

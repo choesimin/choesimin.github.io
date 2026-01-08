@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /276
+permalink: /0
 title: 같은 숫자는 싫어
 category: programmers
 tags: stack

@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /266
+permalink: /0
 title: 성격 유형 검사하기
 category: programmers
 tags: map

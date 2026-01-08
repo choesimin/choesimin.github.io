@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /277
+permalink: /0
 title: 햄버거 만들기
 category: programmers
 tags: stack

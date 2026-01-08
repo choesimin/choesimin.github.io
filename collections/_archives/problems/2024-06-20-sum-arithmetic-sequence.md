@@ -1,6 +1,6 @@
 ---
 layout: problem
-permalink: /254
+permalink: /0
 title: 연속된 수의 합
 category: programmers
 tags: implementation
