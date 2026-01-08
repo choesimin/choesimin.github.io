@@ -1,33 +1,30 @@
 ---
 layout: note
-permalink: /114
-title: 기계 학습 - 스스로 학습하는 기계
-description: 기계 학습은 인공 지능의 하위 범주로, 신경망을 활용하여 pattern을 인식하고 이러한 pattern 식별 역량을 개선하는 computer의 process를 의미합니다.
-date: 2023-08-08
-published: false
+permalink: /252
+title: Machine Learning - 스스로 학습하는 기계
+description: machine learning은 data를 통해 pattern을 학습하고, 학습된 model로 예측이나 결정을 내리는 AI의 한 분야입니다.
+date: 2026-01-08
 ---
 
 
-## 기계 학습 (Machine Learning)
+## Machine Learning : Data로부터 학습하는 Algorithm
 
-- 기계 학습은 computer가 스스로 학습하여 문제를 해결하는 algorithm을 연구하는 분야입니다.
-    - computer는 data를 통해 학습하고, 학습 결과를 바탕으로 예측이나 결정을 내릴 수 있습니다.
+- machine learning(기계 학습)은 computer가 data를 통해 스스로 학습하여 문제를 해결하는 algorithm을 연구하는 분야입니다.
+    - data를 통해 model을 학습(train)시키고, 그 model로 새로운 data에 대한 결과를 예측(test)합니다.
+    - 학습 data는 입력 data와 그에 대한 정답인 label로 구성됩니다.
 
-- 기계 학습의 기본 원리는 data를 통해 model을 학습(train)시키고, 그 model을 통해 새로운 data에 대한 결과를 예측(test)하는 것입니다.
-    - 학습 data는 입력 data와 그에 대한 정답, 즉 label로 이루어져 있습니다.
-
-- 기계 학습이 가지는 다양한 장점과 특성 때문에, 기계 학습은 많은 분야에서 활용되고 있습니다. 
-    - 기계 학습은 big data를 다루는 데에 유용하며, 사람이 해결하기 어려운 복잡한 문제를 해결하는 데에도 활용됩니다.
-    - 기계 학습을 통해 예측 model을 만들 수 있어, 특정 결과를 예측하는 데에 활용할 수 있습니다.
-    - 예를 들어, 환자의 건강 상태 예측(의료), 주가 예측(금융), 자율 주행 자동차, 음성 인식, 얼굴 인식 등.
+- machine learning은 big data 처리, 복잡한 문제 해결, 예측 model 구축 등 다양한 분야에서 활용됩니다.
+    - 의료 : 환자의 건강 상태 예측, 질병 진단
+    - 금융 : 주가 예측, 사기 탐지
+    - 자동화 : 자율 주행, 음성 인식, 얼굴 인식
 
 
 ---
 
 
-## 기계 학습의 종류
+## Machine Learning의 종류
 
-- 기계 학습은 크게 지도 학습, 비지도 학습, 강화 학습으로 나뉩니다.
+- machine learning은 학습 방식에 따라 **supervised learning**, **unsupervised learning**, **reinforcement learning**으로 분류됩니다.
 
 ```mermaid
 mindmap
@@ -63,11 +60,11 @@ mindmap
 ```
 
 
-### 지도 학습 (Supervised Learning)
+### Supervised Learning
 
-- 지도 학습은 label이 있는 학습 data를 사용하는 학습 방법입니다.
-- 입력 data와 그에 대한 정답, 즉 label이 함께 주어지며, 이를 통해 model을 학습시킵니다.
-- 이렇게 학습된 model은 새로운 입력 data에 대한 예측을 할 수 있습니다.
+- supervised learning(지도 학습)은 **label이 있는 학습 data**를 사용하는 학습 방법입니다.
+    - 입력 data와 정답(label)이 함께 주어지며, 이를 통해 model을 학습시킵니다.
+    - 학습된 model은 새로운 입력 data에 대한 예측을 수행합니다.
 
 ```mermaid
 flowchart LR
@@ -77,44 +74,37 @@ data --> regression[[회귀]] --> regression_result(내일의 온도)
 data --> classification[[분류]] --> classification_result(내일이 더운지 추운지)
 ```
 
-#### 지도 학습의 사례 – 회귀 (Regression)
+- **regression**(회귀)은 연속적인 값을 예측합니다.
+    - 물건의 가격, 학생의 성적, 기온 등 숫자 값을 예측합니다.
 
-- 회귀는 연속적인 값을 예측하는 것입니다.
-- 학습한 data를 바탕으로 물건의 가격, 학생의 성적 등을 예측할 수 있습니다.
-
-#### 지도 학습의 사례 – 분류 (Classification)
-
-- 정답이 있는 data로 학습을 하기 때문에 이를 바탕으로 분류 작업을 할 수 있습니다.
-- 결과를 두 가지로 분류하는 경우를 이진 분류(binary classification), 그보다 많은 결과를 분류하는 경우를 다중 분류(multiclass classification)라고 합니다.
+- **classification**(분류)은 data를 category로 나눕니다.
+    - 결과가 두 가지인 경우를 binary classification(이진 분류)이라 합니다.
+    - 결과가 세 가지 이상인 경우를 multiclass classification(다중 분류)이라 합니다.
 
 
-### 비지도 학습 (Unsupervised Learning)
+### Unsupervised Learning
 
-- 비지도 학습은 label이 없는 학습 data를 사용하는 학습 방법입니다.
-- 입력 data만 주어지며, 이를 통해 data의 pattern이나 구조를 찾아내는 것이 목표입니다.
-- 이렇게 찾아낸 pattern이나 구조를 통해 새로운 입력 data에 대한 해석을 할 수 있습니다.
+- unsupervised learning(비지도 학습)은 **label이 없는 학습 data**를 사용하는 학습 방법입니다.
+    - 입력 data만 주어지며, data의 pattern이나 구조를 찾아내는 것이 목표입니다.
+    - 찾아낸 pattern이나 구조를 통해 새로운 입력 data를 해석합니다.
 
-#### 비지도 학습의 사례 – 군집 (Clustering)
+- **clustering**(군집화)은 data에서 특징을 찾아 여러 group으로 묶습니다.
+    - 고객 segmentation, 추천 system 등에 활용됩니다.
 
-- data에서 특징을 찾아내 여러 group으로 묶는 군집화를 할 수 있습니다.
-
-#### 비지도 학습의 사례 – 차원 축소 (Dimension Reduction)
-
-- 차원 축소는 data의 특징을 줄이는 작업입니다.
-- data를 설명하는 여러 특징이 있을 때, 이 data를 가장 잘 표현할 수 있는 특징들을 추리는 것입니다.
+- **dimension reduction**(차원 축소)은 data의 특징 수를 줄입니다.
+    - data를 가장 잘 표현하는 핵심 특징들만 추출합니다.
 
 
-### 강화 학습 (Reinforcement Learning)
+### Reinforcement Learning
 
-- 강화 학습은 (비)지도 학습과는 다르게 **고정된 data를 통해 학습하지 않습니다.**
-    - 기계의 경험을 통해 직접 만들어 낸 dataset(상태, 행동, 보상)을 통해 학습합니다.
-        - 기계가 특정 상태(state)에서 행동(action)을 취하면 환경으로부터 보상(reward)을 받습니다.
-    - 그래서 환경에서 주어지는 보상과 기계 자신이 환경을 탐험하는 방법에 따라 학습 결과가 크게 달라질 수 있습니다.
-    - 보상 설계를 잘 할 수 있다면 방대한 data 없이 기계 스스로 학습하게 하는 것이 가능합니다.
+- reinforcement learning(강화 학습)은 **고정된 data 없이 기계의 경험을 통해 학습**합니다.
+    - 기계가 특정 상태(state)에서 행동(action)을 취하면 환경으로부터 보상(reward)을 받습니다.
+    - 상태, 행동, 보상으로 구성된 dataset을 직접 생성하며 학습합니다.
 
-- 강화 학습에서 환경에서 주어지는 보상과 그 보상에 대한 처리를 설계하고 정의하는 것이 어렵기 때문에 **(비)지도 학습보다 학습 난이도가 높습니다.**
-    - 예를 들어, 신뢰 할당 문제(credit assignment problem)와 탐색-이용 dilemma(exploration-exploitation dilemma) 등.
-    
+- 보상 설계와 환경 탐험 방식에 따라 학습 결과가 크게 달라집니다.
+    - 보상 설계가 적절하면 방대한 data 없이도 기계 스스로 학습이 가능합니다.
+    - 신뢰 할당 문제(credit assignment problem), 탐색-이용 딜레마(exploration-exploitation dilemma) 등 설계가 어렵습니다.
+
 
 ---
 
@@ -124,3 +114,4 @@ data --> classification[[분류]] --> classification_result(내일이 더운지 
 - <https://www.ascentkorea.com/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9Dmachine-learning%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/>
 - <https://towardsdatascience.com/introduction-to-machine-learning-for-beginners-eed6024fdb08>
 - <https://namu.wiki/w/%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5>
+

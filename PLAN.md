@@ -1,101 +1,4 @@
-# Kotlin 학습 문서 작성 계획
-
-## 완료된 문서
-
-### kotlin/
-- [x] index.md - Kotlin 개요
-
-### kotlin/basic/
-- [x] index.md - 기초 문법 개요
-- [x] variable.md - 변수 선언 (val, var, const, lateinit, lazy)
-- [x] data-type.md - 기본 type
-- [x] function.md - 함수
-- [x] null-safety.md - Null Safety
-- [x] control-flow.md - 제어문
-
-### kotlin/class/
-- [x] index.md - Class 개요
-
-
----
-
-
-## 작성 예정 문서
-
-### kotlin/class/
-- [x] primary-constructor.md - Primary/Secondary Constructor, init block
-- [x] data-class.md - Data Class
-- [x] sealed-class.md - Sealed Class
-- [x] object.md - Object, Companion Object
-- [x] inheritance.md - 상속, Interface, Abstract Class
-
-### kotlin/functional/
-- [x] index.md - 함수형 programming 개요
-- [x] lambda.md - Lambda 표현식
-- [x] higher-order-function.md - 고차 함수
-- [x] extension-function.md - Extension Function
-- [x] collection-operations.md - Collection 연산 (map, filter, reduce 등)
-- [x] sequence.md - Sequence (Lazy Evaluation)
-
-### kotlin/coroutine/
-- [x] index.md - 기존 coroutine.md 이동
-- [x] suspend-function.md - Suspend 함수
-- [x] coroutine-builder.md - launch, async, runBlocking
-- [x] dispatcher.md - Dispatcher
-- [x] scope.md - CoroutineScope, Structured Concurrency
-- [x] flow.md - Flow (Cold Stream)
-- [x] channel.md - Channel (Hot Stream)
-- [x] exception-handling.md - Exception 처리
-
-### kotlin/advanced/
-- [x] index.md - 고급 주제 개요
-- [x] generics.md - Generics
-- [x] delegation.md - Delegation
-- [x] dsl.md - DSL
-
-
----
-
-
-## 작성 순서 권장
-
-1. **class/** - 객체 지향 기초
-2. **functional/** - 함수형 programming
-3. **coroutine/** - 비동기 programming
-4. **advanced/** - 고급 주제
-
-
----
-
-
-## 사용 가능한 Permalink 번호
-
-- 114, 248, 249, 250, 251, 252, 253, 254, 262, 266, 267, 269, 270, 328, 333 (총 15개)
-- published: false 상태인 draft 문서들의 번호를 재사용
-
-
-### 번호 할당
-
-| 번호 | 문서 |
-| --- | --- |
-| 114 | dispatcher.md |
-| 248 | scope.md |
-| 249 | flow.md |
-| 250 | channel.md |
-| 251 | exception-handling.md |
-| 252 | kotlin/advanced/index.md |
-| 253 | generics.md |
-| 254 | delegation.md |
-| 262 | dsl.md |
-| 266 | coroutine-builder.md |
-| 267 | sequence.md |
-| 269 | (예비) |
-| 270 | (예비) |
-| 328 | (예비) |
-| 333 | (예비) |
-
-
----
+# 미완성 문서 작성 계획
 
 
 ## 작성 규칙 요약
@@ -112,11 +15,221 @@
 ---
 
 
-## 확인 필요
+## 사용 가능한 Permalink 번호
 
-- 2025-01-06 작성 문서 (검토 필요)
-    - functional/sequence.md
-    - advanced/index.md
-    - advanced/generics.md
-    - advanced/delegation.md
-    - advanced/dsl.md
+- 비어있는 번호 : 252, 269, 270, 328 (4개)
+- 새로운 번호 : 402~ (73개)
+
+
+---
+
+
+## 작성 예정 문서 (총 77개)
+
+
+### ai/ (2개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /252 | ai/machine-learning.md | Machine Learning | **완료** |
+| /269 | ai/mcp.md | MCP |
+
+
+### aws/bedrock/ (2개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /270 | aws/bedrock/chatbot.md | AI Chatbot 구축 |
+| /328 | aws/bedrock/multi-agent.md | Multi-Agent |
+
+
+### database/ (5개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /402 | database/count-distinct.md | Count Distinct |
+| /403 | database/rocksdb.md | RocksDB |
+| /404 | database/mysql/gtid.md | MySQL GTID |
+| /405 | database/mysql/limit-offset.md | MySQL LIMIT와 OFFSET |
+| /406 | database/mongodb/index/compound-index/esr-rule.md | ESR Rule |
+
+
+### domain/email/ (5개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /407 | domain/email/protocol.md | Email Protocol |
+| /408 | domain/email/mime.md | MIME |
+| /409 | domain/email/law.md | Email 관련 법률 |
+| /410 | domain/email/security.md | Email 보안 |
+| /411 | domain/email/server.md | Email Server |
+
+
+### domain/payment/ (6개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /412 | domain/payment/banking.md | 은행 결제 |
+| /413 | domain/payment/cash-recript.md | 현금 영수증 |
+| /414 | domain/payment/cms-wbs.md | CMS와 WBS |
+| /415 | domain/payment/payment-process.md | 카드 결제 과정 |
+| /416 | domain/payment/settlement.md | 정산 |
+| /417 | domain/payment/slip.md | 전표 |
+
+
+### economics/asset/ (4개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /418 | economics/asset/safe-vs-risky.md | 안전 자산과 위험 자산 |
+| /419 | economics/asset/classes.md | 자산 클래스 |
+| /420 | economics/asset/liquidity.md | 유동성 |
+| /421 | economics/asset/return-profile.md | 수익률 프로필 |
+
+
+### framework/ (4개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /422 | framework/mybatis.md | MyBatis |
+| /423 | framework/spring/bean-validation.md | Bean Validation |
+| /424 | framework/spring/excel-download.md | Excel Download |
+| /425 | framework/spring/pageable.md | Spring Pageable |
+
+
+### frontend/ (1개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /426 | frontend/css-size-unit.md | CSS 크기 단위 |
+
+
+### language/java/ (17개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /427 | language/java/ip-extractor.md | IP Extractor |
+| /428 | language/java/apache-poi/index.md | Apache POI |
+| /429 | language/java/apache-poi/excel/index.md | Apache POI Excel |
+| /430 | language/java/apache-poi/excel/large.md | 대용량 Excel 처리 |
+| /431 | language/java/collection-empty.md | Collection Empty 검사 |
+| /432 | language/java/enum.md | Enum |
+| /433 | language/java/garbage-collection.md | Garbage Collection |
+| /434 | language/java/generic.md | Generic |
+| /435 | language/java/history.md | Java 역사 |
+| /436 | language/java/identity-equality.md | Identity와 Equality |
+| /437 | language/java/reflection.md | Reflection |
+| /438 | language/java/resource-management.md | Resource 관리 |
+| /439 | language/java/servlet.md | Servlet |
+| /440 | language/java/stream.md | Stream |
+| /441 | language/java/switch-if.md | Switch와 If |
+| /442 | language/java/throwable-error-exception.md | Throwable, Error, Exception |
+| /443 | language/java/unchecked-warning.md | Unchecked Warning |
+
+
+### language/javascript/ (2개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /444 | language/javascript/node-js.md | Node.js |
+| /445 | language/javascript/syntax.md | JavaScript 문법 |
+
+
+### linux-tool/ (1개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /446 | linux-tool/ss.md | ss 명령어 |
+
+
+### open-source/debezium/ (7개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /447 | open-source/debezium/avro.md | Debezium Avro |
+| /448 | open-source/debezium/capture.md | Debezium Capture |
+| /449 | open-source/debezium/log-position.md | Debezium Log Position |
+| /450 | open-source/debezium/mysql-gtid-mode.md | MySQL GTID Mode |
+| /451 | open-source/debezium/snapshot/lock.md | Snapshot Lock |
+| /452 | open-source/debezium/snapshot/process.md | Snapshot Process |
+| /453 | open-source/debezium/snapshot/stability.md | Snapshot Stability |
+
+
+### open-source/git/ (1개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /454 | open-source/git/merge-branch.md | Git Branch 병합 |
+
+
+### open-source/kafka/ (7개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /455 | open-source/kafka/consumer-group.md | Kafka Consumer Group |
+| /456 | open-source/kafka/replication-factor.md | Kafka Replication Factor |
+| /457 | open-source/kafka/fault-tolerance.md | Kafka Fault Tolerance |
+| /458 | open-source/kafka/page-cache.md | Kafka Page Cache |
+| /459 | open-source/kafka/rest-proxy.md | Kafka REST Proxy |
+| /460 | open-source/kafka/log-compaction/index.md | Kafka Log Compaction |
+| /461 | open-source/kafka/log-compaction/tompstone.md | Kafka Tombstone |
+
+
+### open-source/kafka-connect/ (1개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /462 | open-source/kafka-connect/opensearch-sink-connector.md | OpenSearch Sink Connector |
+
+
+### open-source/ksqldb/ (3개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /463 | open-source/ksqldb/collection.md | ksqlDB Collection |
+| /464 | open-source/ksqldb/rest-api.md | ksqlDB REST API |
+| /465 | open-source/ksqldb/window-limitation.md | ksqlDB Window 제한 |
+
+
+### paradigm/ (2개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /466 | paradigm/ci-cd.md | CI/CD |
+| /467 | paradigm/layered-architecture.md | Layered Architecture |
+
+
+### software-design/ (7개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
+| /468 | software-design/anti-pattern.md | Anti Pattern |
+| /469 | software-design/design-pattern/command-pattern.md | Command Pattern |
+| /470 | software-design/design-pattern/composit-pattern.md | Composite Pattern |
+| /471 | software-design/design-pattern/iterator-pattern.md | Iterator Pattern |
+| /472 | software-design/design-pattern/template-method-pattern.md | Template Method Pattern |
+| /473 | software-design/saga-pattern.md | Saga Pattern |
+| /474 | software-design/system-design/cdc-pipeline.md | CDC Pipeline |
+
+
+---
+
+
+## 작성 우선순위
+
+1. **Kafka 관련** (455~461) - 연관성 높음, 함께 작성
+2. **Debezium 관련** (447~453) - Kafka와 연계
+3. **Java 기본** (427~443) - 기초 문서
+4. **Design Pattern** (469~472) - 기존 pattern과 연계
+5. **나머지** - 필요에 따라 순서 조정
+
+
+---
+
+
+## 진행 상황
+
+- 총 77개 문서
+- 완료 : 1개
+- 대기 : 76개
+
