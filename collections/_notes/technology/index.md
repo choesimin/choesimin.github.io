@@ -1,68 +1,106 @@
 ---
 layout: note
-permalink: /222
-title: Cloud Service - Resource Networking
-description: Cloud Service는 Network로 Computing Resource를 공유하는 model이며, Packaged Software, IaaS, PaaS, SaaS로 나뉩니다.
-date: 2025-02-09
+permalink: /333
+title: Technology - Knowledge Applied to Production
+description: technology는 생산에 적용되는 지식의 총체로, 과학적 지식과 경험적 know-how를 포함합니다.
+date: 2026-01-08
 ---
 
 
-## Cloud Service : Network로 Computing Resource 같이 쓰기
+## Technology : 생산에 적용되는 지식
 
-- Cloud Service는 computing 자원의 공유 pool에 network(internet)로 접근할 수 있게 하는 model입니다.
-    - 어디서든 필요한 시점에 접근할 수 있으며, 필요한 만큼만 resource를 사용하고 비용을 지불합니다.
+- technology(기술)는 **생산에 적용되는 지식의 총체**입니다.
+    - 과학적 지식뿐만 아니라 경험을 통해 축적된 노하우도 포함합니다.
+    - 도구, 기법, system, 방법론 등 다양한 형태로 존재합니다.
 
-- computing resource에는 CPU, RAM, network, server, storage, application, service 등이 있습니다.
+- technology는 문제를 해결하고 목표를 달성하기 위한 수단입니다.
+    - 인간의 한계를 극복하고 효율성을 높이는 데 기여합니다.
+    - 새로운 가능성을 열어 사회와 산업을 변화시킵니다.
 
 
 ---
 
 
-## Cloud Service의 종류 : Packaged Software, IaaS, PaaS, SaaS
+## Technology의 구성 요소
 
-- Cloud Service는 사용자와 vender가 관리하는 영역에 따라서 **Packaged Software**(On-premise), **IaaS**(Infrastructure as a Service), **PaaS**(Plarform as a Service), **SaaS**(Software as a Service)로 나뉩니다.
-
-| 관리 영역 | Packaged Software | IaaS | PaaS | SaaS |
-| --- | --- | --- | --- | --- |
-| **Applications** | User | User | User | Vender |
-| **Data** | User | User | User | Vender |
-| **Runtime** | User | User | Vender | Vender |
-| **Middleware** | User | User | Vender | Vender |
-| **O/S** | User | User | Vender | Vender |
-| **Virtualization** | User | Vender | Vender | Vender |
-| **Servers** | User | Vender | Vender | Vender |
-| **Storage** | User | Vender | Vender | Vender |
-| **Networking** | User | Vender | Vender | Vender |
+- technology는 **hardware**, **software**, **know-how**로 구성됩니다.
+    - 세 요소가 결합되어 실제 생산 활동에 적용됩니다.
 
 
-### Packaged Software : On-premise
+### Hardware
 
-- Packaged Software는 **기존의 On-premise 방식**입니다.
-    - 사용자가 applications부터 networking까지 모든 영역을 직접 관리합니다.
-    - 초기 구축 비용이 높고 유지 보수에 많은 인력이 필요합니다.
-    - 보안성이 높고 customization이 자유롭다는 장점이 있습니다.
-
-
-### IaaS : Infrastructure as a Service
-
-- IaaS는 **기본 computing infrastructure를 service로 제공**합니다.
-    - vendor는 virtualization, servers, storage, networking을 관리합니다.
-    - 사용자는 O/S, middleware, runtime, applications, data를 관리합니다.
-    - AWS EC2, Google Compute Engine이 대표적인 예시입니다.
+- hardware는 물리적 장치와 설비를 의미합니다.
+    - 기계, 장비, 도구, infrastructure 등이 해당됩니다.
+    - 기술의 가장 눈에 보이는 형태입니다.
 
 
-### PaaS : Platform as a Service
+### Software
 
-- PaaS는 **application 개발과 실행을 위한 platform을 제공**합니다.
-    - vendor는 O/S, middleware, runtime까지 관리합니다.
-    - 사용자는 applications와 data만 관리하면 됩니다.
-    - Google App Engine, Heroku가 대표적인 예시입니다.
+- software는 hardware를 운용하기 위한 지식과 정보입니다.
+    - program, algorithm, data, 설계도 등이 해당됩니다.
+    - hardware의 잠재력을 실현하는 역할을 합니다.
 
 
-### SaaS : Software as a Service
+### Know-how
 
-- SaaS는 **완성된 software를 service로 제공**합니다.
-    - vendor가 모든 영역을 관리합니다.
-    - 사용자는 별도의 설치나 관리 없이 service를 이용할 수 있습니다.
-    - Google Workspace, Microsoft 365가 대표적인 예시입니다.
+- know-how는 기술을 효과적으로 활용하는 암묵적 지식입니다.
+    - 경험을 통해 체득되며 문서화하기 어렵습니다.
+    - 숙련된 인력의 역량과 조직의 문화에 내재됩니다.
+
+
+---
+
+
+## Technology의 특성
+
+- technology는 고유한 특성을 가지며, 이를 이해하면 기술의 발전과 확산을 예측할 수 있습니다.
+
+
+### 누적성
+
+- technology는 기존 지식 위에 새로운 지식이 쌓이며 발전합니다.
+    - 이전 세대의 성과를 기반으로 혁신이 이루어집니다.
+    - 기술 발전 속도는 시간이 지날수록 가속화되는 경향이 있습니다.
+
+
+### 융합성
+
+- 서로 다른 분야의 technology가 결합하여 새로운 기술을 만들어냅니다.
+    - IT와 의료의 융합으로 원격 진료가 가능해졌습니다.
+    - AI와 제조업의 융합으로 스마트 팩토리가 등장했습니다.
+
+
+### 확산성
+
+- technology는 시간이 지남에 따라 사회 전반으로 퍼져나갑니다.
+    - 초기에는 소수만 접근 가능하지만 점차 대중화됩니다.
+    - 확산 속도는 기술의 유용성과 접근성에 따라 달라집니다.
+
+
+---
+
+
+## Technology의 분류
+
+- technology는 적용 분야와 성격에 따라 여러 방식으로 분류됩니다.
+
+
+### 적용 분야별 분류
+
+- **information technology**는 정보의 처리, 저장, 전송에 관한 기술입니다.
+- **biotechnology**는 생물체를 활용하거나 모방하는 기술입니다.
+- **manufacturing technology**는 제품의 생산과 가공에 관한 기술입니다.
+- **energy technology**는 에너지의 생산, 저장, 변환에 관한 기술입니다.
+
+
+### 성숙도별 분류
+
+- **emerging technology**는 아직 초기 단계에 있는 신기술입니다.
+    - 높은 성장 잠재력을 가지지만 불확실성도 큽니다.
+
+- **mature technology**는 충분히 검증되고 안정화된 기술입니다.
+    - 널리 보급되어 있으며 예측 가능한 성능을 제공합니다.
+
+- **legacy technology**는 오래되어 더 이상 주류가 아닌 기술입니다.
+    - 새로운 기술로 대체되는 과정에 있습니다.
 
