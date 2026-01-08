@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /296
-title: Kotlin Sealed Class
+title: Kotlin Sealed Class - 제한된 Class 계층 정의
 description: sealed class는 제한된 class 계층을 정의하여 compile time에 모든 subclass를 알 수 있게 하고, when 표현식에서 완전한 분기 처리를 보장합니다.
 date: 2025-01-02
 ---

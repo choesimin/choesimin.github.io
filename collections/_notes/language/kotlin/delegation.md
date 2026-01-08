@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /254
-title: Kotlin Delegation
+title: Kotlin Delegation - 상속 대신 위임으로 기능 재사용
 description: Delegation은 상속 대신 composition으로 기능을 위임하며, class delegation과 property delegation으로 boilerplate를 줄입니다.
 date: 2025-01-06
 ---

@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /397
-title: Kotlin 고차 함수
+title: Kotlin 고차 함수 - 함수를 Parameter로 받고 반환하기
 description: 고차 함수는 함수를 parameter로 받거나 함수를 반환하는 함수로, Kotlin 함수형 programming의 핵심 기능입니다.
 date: 2025-01-04
 ---

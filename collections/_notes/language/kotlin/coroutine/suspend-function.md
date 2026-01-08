@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /400
-title: Kotlin Suspend 함수
+title: Kotlin Suspend 함수 - 일시 중지와 재개
 description: suspend 함수는 실행을 일시 중지하고 나중에 재개할 수 있는 함수로, coroutine의 핵심 building block입니다.
 date: 2025-01-04
 ---

@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /295
-title: Kotlin Data Class
+title: Kotlin Data Class - equals, hashCode, copy 자동 생성
 description: data class는 data 보관을 목적으로 하는 class로, equals(), hashCode(), toString(), copy(), componentN()을 자동 생성합니다.
 date: 2025-01-02
 ---

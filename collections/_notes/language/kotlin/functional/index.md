@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /395
-title: Kotlin 함수형 Programming
+title: Kotlin 함수형 Programming - 일급 함수와 고차 함수
 description: Kotlin은 함수를 일급 시민으로 취급하여 고차 함수, lambda, 확장 함수, collection 연산 등 강력한 함수형 programming 기능을 제공합니다.
 date: 2025-01-02
 ---

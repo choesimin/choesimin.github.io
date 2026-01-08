@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /290
-title: Kotlin 함수
+title: Kotlin 함수 - fun, Default Parameter, Named Argument
 description: Kotlin 함수는 fun keyword로 선언하며, default parameter, named argument, 단일 표현식 함수 등 간결한 문법을 제공합니다.
 date: 2025-12-31
 ---

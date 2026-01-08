@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /396
-title: Kotlin Lambda 표현식
+title: Kotlin Lambda 표현식 - 익명 함수 Literal
 description: lambda는 이름 없이 정의하는 함수 literal로, 고차 함수와 함께 사용하여 간결하고 표현력 있는 함수형 code를 작성할 수 있게 합니다.
 date: 2025-01-02
 ---

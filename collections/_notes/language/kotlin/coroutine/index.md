@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /286
-title: Kotlin Coroutine
+title: Kotlin Coroutine - 경량 비동기 처리 Framework
 description: Kotlin Coroutine은 비동기 code를 동기 code처럼 작성할 수 있게 해주는 경량 동시성 framework로, suspend 함수를 통해 non-blocking 비동기 처리를 간결하게 구현합니다.
 date: 2025-01-04
 ---

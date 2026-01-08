@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /399
-title: Kotlin Collection 연산
+title: Kotlin Collection 연산 - map, filter, reduce
 description: Kotlin collection은 map, filter, reduce 등 풍부한 함수형 연산을 제공하여 data 변환과 처리를 선언적으로 표현합니다.
 date: 2025-01-04
 ---

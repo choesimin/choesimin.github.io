@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /266
-title: Kotlin Coroutine Builder
+title: Kotlin Coroutine Builder - launch, async, runBlocking
 description: coroutine builder는 새로운 coroutine을 생성하고 시작하는 함수로, launch, async, runBlocking이 대표적입니다.
 date: 2025-01-05
 ---

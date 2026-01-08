@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /291
-title: Kotlin Null Safety
+title: Kotlin Null Safety - Nullable Type과 안전한 호출
 description: Kotlin은 type system에서 nullable과 non-null을 구분하여 compile time에 NullPointerException을 방지합니다.
 date: 2025-12-31
 ---

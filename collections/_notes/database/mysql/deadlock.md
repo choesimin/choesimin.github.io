@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /401
-title: MySQL InnoDB Deadlock
+title: MySQL InnoDB Deadlock - Transaction 교착 상태 해결
 description: deadlock은 두 개 이상의 transaction이 서로의 lock을 기다리며 무한 대기하는 상태입니다.
 date: 2026-01-07
 ---

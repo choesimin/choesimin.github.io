@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /271
-title: Portfolio
+title: Portfolio - 자산 배분과 위험 관리
 description: portfolio는 투자자가 보유한 다양한 자산의 조합으로, 적절한 자산 배분과 관리를 통해 위험을 줄이고 수익을 최적화합니다.
 date: 2025-11-12
 ---

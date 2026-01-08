@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /262
-title: Kotlin DSL
+title: Kotlin DSL - Type-Safe한 선언적 API 구축
 description: DSL은 lambda with receiver와 확장 함수를 활용하여 domain에 특화된 type-safe하고 가독성 높은 선언적 API를 구축합니다.
 date: 2025-01-06
 ---

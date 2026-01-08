@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /114
-title: Kotlin Coroutine Dispatcher
+title: Kotlin Coroutine Dispatcher - 실행 Thread 결정하기
 description: Dispatcher는 coroutine이 실행될 thread를 결정하며, Dispatchers.Main, IO, Default, Unconfined 네 가지가 기본 제공됩니다.
 date: 2025-01-05
 ---

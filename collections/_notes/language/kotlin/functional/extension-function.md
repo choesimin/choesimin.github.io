@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /398
-title: Kotlin Extension Function
+title: Kotlin Extension Function - 기존 Class에 함수 추가하기
 description: extension function은 기존 class를 수정하지 않고 새로운 함수를 추가하는 기능으로, Kotlin의 표현력과 가독성을 높이는 핵심 기능입니다.
 date: 2025-01-04
 ---

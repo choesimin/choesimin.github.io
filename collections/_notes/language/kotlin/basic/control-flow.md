@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /292
-title: Kotlin 제어문
+title: Kotlin 제어문 - if, when, for, while
 description: Kotlin의 if와 when은 표현식으로 값을 반환하며, for와 while로 반복을 처리하고, label을 통해 중첩 loop를 제어합니다.
 date: 2025-12-31
 ---

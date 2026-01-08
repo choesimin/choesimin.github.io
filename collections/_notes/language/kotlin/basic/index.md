@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /287
-title: Kotlin 기초 문법
+title: Kotlin 기초 문법 - 변수, Type, 함수, Null Safety, 제어문
 description: Kotlin의 변수 선언(val/var), 기본 type, 함수, null safety, 제어문은 Kotlin programming의 기초가 됩니다.
 date: 2025-12-31
 ---

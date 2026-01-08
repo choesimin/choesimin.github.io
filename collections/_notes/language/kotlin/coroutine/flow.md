@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /249
-title: Kotlin Flow
+title: Kotlin Flow - 비동기 Cold Data Stream
 description: flow는 비동기적으로 계산되는 data stream을 나타내며, cold stream 특성으로 collect될 때만 값을 방출합니다.
 date: 2025-01-05
 ---

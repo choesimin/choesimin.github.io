@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /267
-title: Kotlin Sequence
+title: Kotlin Sequence - Lazy하게 대용량 Data 처리하기
 description: Sequence는 element를 lazy하게 처리하여 중간 collection을 생성하지 않고 대용량 data를 효율적으로 변환합니다.
 date: 2025-01-06
 ---

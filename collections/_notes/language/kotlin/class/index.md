@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /293
-title: Kotlin Class
+title: Kotlin Class - 간결한 객체 지향 문법
 description: Kotlin class는 간결한 생성자 문법, data class, sealed class, object 등 Java보다 강력하고 간결한 객체 지향 기능을 제공합니다.
 date: 2025-12-31
 ---

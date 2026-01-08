@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /248
-title: Kotlin CoroutineScope
+title: Kotlin CoroutineScope - Coroutine Lifecycle 관리
 description: CoroutineScope는 coroutine의 lifecycle을 관리하는 범위이며, Structured Concurrency 원칙을 통해 안전한 동시성 처리를 보장합니다.
 date: 2025-01-05
 ---

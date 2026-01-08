@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /289
-title: Kotlin 기본 Type
+title: Kotlin 기본 Type - 숫자, Boolean, String, Any, Unit, Nothing
 description: Kotlin의 모든 type은 객체이며, 숫자, Boolean, Char, String, Array 등의 기본 type과 Any, Unit, Nothing 등의 특수 type을 제공합니다.
 date: 2025-12-31
 ---

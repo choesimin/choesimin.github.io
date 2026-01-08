@@ -2,7 +2,7 @@
 layout: note
 permalink: /359
 title: Token - AI가 언어를 처리하는 기본 단위
-description: Token은 AI 언어 model이 text를 처리하는 가장 작은 기본 단위로, tokenization 방식에 따라 model 성능과 비용이 크게 달라집니다.
+description: token은 AI 언어 model이 text를 처리하는 가장 작은 기본 단위로, tokenization 방식에 따라 model 성능과 비용이 크게 달라집니다.
 date: 2025-07-28
 ---
 
