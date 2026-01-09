@@ -166,7 +166,7 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /455 | open-source/kafka/consumer-group.md | Kafka Consumer Group |
+| /455 | open-source/kafka/consumer-group.md | Kafka Consumer Group | **완료** |
 | /456 | open-source/kafka/replication-factor.md | Kafka Replication Factor |
 | /457 | open-source/kafka/fault-tolerance.md | Kafka Fault Tolerance |
 | /458 | open-source/kafka/page-cache.md | Kafka Page Cache |
@@ -230,6 +230,6 @@
 ## 진행 상황
 
 - 총 77개 문서
-- 완료 : 2개
-- 대기 : 75개
+- 완료 : 3개
+- 대기 : 74개
 
