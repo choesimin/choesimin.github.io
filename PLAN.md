@@ -24,7 +24,7 @@
 ---
 
 
-## 작성 예정 문서 (총 77개)
+## 작성 예정 문서 (총 78개)
 
 
 ### ai/ (2개)
@@ -191,12 +191,13 @@
 | /465 | open-source/ksqldb/window-limitation.md | ksqlDB Window 제한 |
 
 
-### paradigm/ (2개)
+### paradigm/ (3개)
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
 | /466 | paradigm/ci-cd.md | CI/CD |
 | /467 | paradigm/layered-architecture.md | Layered Architecture |
+| /475 | paradigm/spec-driven-programming.md | Spec-Driven Programming |
 
 
 ### software-design/ (7개)
@@ -229,7 +230,7 @@
 
 ## 진행 상황
 
-- 총 77개 문서
+- 총 78개 문서
 - 완료 : 3개
-- 대기 : 74개
+- 대기 : 75개
 
