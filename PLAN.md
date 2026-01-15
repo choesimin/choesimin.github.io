@@ -112,18 +112,18 @@
 | /428 | language/java/apache-poi/index.md | Apache POI |
 | /429 | language/java/apache-poi/excel/index.md | Apache POI Excel |
 | /430 | language/java/apache-poi/excel/large.md | 대용량 Excel 처리 |
-| /431 | language/java/collection-empty.md | Collection Empty 검사 |
-| /432 | language/java/enum.md | Enum |
+| /431 | language/java/collection-empty.md | Collection Empty 검사 | **검토 중** |
+| /432 | language/java/enumeration.md | Enum | **검토 중** |
 | /433 | language/java/garbage-collection.md | Garbage Collection |
 | /434 | language/java/generic.md | Generic |
 | /435 | language/java/history.md | Java 역사 |
-| /436 | language/java/identity-equality.md | Identity와 Equality |
+| /436 | language/java/identity-and-equality.md | Identity와 Equality | **검토 중** |
 | /437 | language/java/reflection.md | Reflection |
 | /438 | language/java/resource-management.md | Resource 관리 |
 | /439 | language/java/servlet.md | Servlet |
 | /440 | language/java/stream.md | Stream |
-| /441 | language/java/switch-if.md | Switch와 If |
-| /442 | language/java/throwable-error-exception.md | Throwable, Error, Exception |
+| /441 | language/java/switch-and-if.md | Switch와 If | **검토 중** |
+| /442 | language/java/exception-hierarchy.md | Exception Hierarchy | **검토 중** |
 | /443 | language/java/unchecked-warning.md | Unchecked Warning |
 
 
@@ -135,11 +135,12 @@
 | /445 | language/javascript/syntax.md | JavaScript 문법 |
 
 
-### linux-tool/ (1개)
+### linux-tool/ (2개)
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /446 | linux-tool/ss.md | ss 명령어 |
+| /446 | linux-tool/ss.md | ss 명령어 | **완료** |
+| /477 | linux-tool/sftp.md | sftp 명령어 |
 
 
 ### open-source/debezium/ (7개)
@@ -159,7 +160,7 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /454 | open-source/git/merge-branch.md | Git Branch 병합 |
+| /454 | open-source/git/merging.md | Git Merging | **완료** |
 
 
 ### open-source/kafka/ (7개)
@@ -191,11 +192,17 @@
 | /465 | open-source/ksqldb/window-limitation.md | ksqlDB Window 제한 |
 
 
-### paradigm/ (3개)
+### devops/ (1개)
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /466 | paradigm/ci-cd.md | CI/CD |
+| /466 | devops/ci-cd.md | CI/CD | **완료** |
+
+
+### paradigm/ (2개)
+
+| 번호 | 파일 | 제목 |
+| --- | --- | --- |
 | /467 | paradigm/layered-architecture.md | Layered Architecture |
 | /475 | paradigm/spec-driven-programming.md | Spec-Driven Programming |
 
@@ -231,6 +238,7 @@
 ## 진행 상황
 
 - 총 78개 문서
-- 완료 : 4개
-- 대기 : 74개
+- 완료 : 7개
+- 검토 중 : 5개 (Java 관련)
+- 대기 : 66개
 
