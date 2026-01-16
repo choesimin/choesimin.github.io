@@ -66,8 +66,8 @@ if (list.size() == 0) {
 ```
 
 - `ConcurrentLinkedQueue`의 `size()`는 **전체 node를 순회**하여 크기를 계산합니다.
-    - `isEmpty()`는 첫 번째 node만 확인하여 O(1) 시간 복잡도(time complexity)를 가집니다.
-    - `size()`는 모든 node를 순회하여 O(n) 시간 복잡도를 가집니다.
+    - `isEmpty()`는 첫 번째 node만 확인하여 `O(1)` 시간 복잡도(time complexity)를 가집니다.
+    - `size()`는 모든 node를 순회하여 `O(n)` 시간 복잡도를 가집니다.
 
 ```java
 public boolean isEmpty() {

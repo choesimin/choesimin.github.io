@@ -30,7 +30,7 @@ date: 2025-10-30
 
 ### Query 성능 향상
 
-- index를 사용하면 검색 시간이 O(n)에서 O(log n)으로 감소합니다.
+- index를 사용하면 검색 시간이 `O(n)`에서 `O(log n)`으로 감소합니다.
     - collection에 수백만 개의 document가 있어도 빠르게 검색할 수 있습니다.
 
 - 정렬 작업(`sort`)도 index를 활용하면 더 빠르게 수행됩니다.

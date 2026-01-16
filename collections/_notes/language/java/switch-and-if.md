@@ -17,7 +17,7 @@ date: 2025-06-03
 | 구분 | switch | if-else |
 | --- | --- | --- |
 | 동작 방식 | jump table 사용 | 순차적 조건 확인 |
-| 시간 복잡도 | O(1) 또는 O(log N) | O(N) |
+| 시간 복잡도 | `O(1)` 또는 `O(log N)` | `O(N)` |
 | 조건 유형 | 값 일치 비교 | 모든 boolean 표현식 |
 | 조건이 많을 때 | 유리 | 불리 |
 
@@ -44,7 +44,7 @@ date: 2025-06-03
 
 - `if-else`문은 **boolean 조건을 순차적으로 확인**하여 control flow를 결정합니다.
     - 각 조건마다 진위 여부를 판단하는 instruction이 필요합니다.
-    - 조건 수에 비례하여 O(N) 시간 복잡도를 가집니다.
+    - 조건 수에 비례하여 `O(N)` 시간 복잡도를 가집니다.
     - 모든 종류의 boolean 표현식을 사용할 수 있어 유연합니다.
 
 ```java
@@ -71,7 +71,7 @@ if (condition1) {
 
 - `switch`문은 **입력값을 기준으로 jump table에서 해당 위치로 바로 이동**합니다.
     - 시작 시 입력값을 확인하는 instruction만 필요합니다.
-    - 조건 수와 관계없이 O(1) 또는 O(log N) 시간 복잡도를 가집니다.
+    - 조건 수와 관계없이 `O(1)` 또는 `O(log N)` 시간 복잡도를 가집니다.
     - 값 일치 비교만 가능하며, 범위 비교는 불가능합니다.
 
 ```java
@@ -117,7 +117,7 @@ switch (value) {
 
 - `tableswitch`는 case 값이 **연속적이거나 밀집**되어 있을 때 사용됩니다.
     - case 값 사이의 빈 값도 default로 채워서 table을 생성합니다.
-    - 입력값을 index로 사용하여 O(1)으로 바로 jump합니다.
+    - 입력값을 index로 사용하여 `O(1)`으로 바로 jump합니다.
     - memory를 더 사용하지만 속도가 빠릅니다.
 
 ```
@@ -138,7 +138,7 @@ tableswitch default: 73
 
 - `lookupswitch`는 case 값이 **분산**되어 있을 때 사용됩니다.
     - key-label 쌍을 binary search tree 형태로 저장합니다.
-    - 이진 탐색으로 O(log N)에 해당 case를 찾습니다.
+    - 이진 탐색으로 `O(log N)`에 해당 case를 찾습니다.
     - memory 효율이 좋지만 tableswitch보다 느립니다.
 
 ```

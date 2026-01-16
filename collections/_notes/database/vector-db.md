@@ -47,7 +47,7 @@ description: vector database는 embedding vector의 저장과 유사도 기반 �
     - custom function을 작성하더라도 성능 최적화가 어렵습니다.
 
 - **scalability 문제**로 대용량 vector data에서는 실용적이지 않습니다.
-    - brute force search의 시간 복잡도는 O(n)으로 data 크기에 비례하여 증가합니다.
+    - brute force search의 시간 복잡도는 `O(n)`으로 data 크기에 비례하여 증가합니다.
     - real-time application에서 요구되는 low latency를 제공하기 어렵습니다.
 
 
