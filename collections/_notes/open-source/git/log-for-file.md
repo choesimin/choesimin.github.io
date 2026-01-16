@@ -145,3 +145,4 @@ git log -p --follow filename
 ```bash
 git log --stat --oneline -5 file1.txt file2.txt
 ```
+

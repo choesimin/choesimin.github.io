@@ -383,7 +383,7 @@ gitGraph
 - **팀원 작업 상태 확인** : 다른 개발자가 해당 commit 기반으로 작업 중인지 확인.
 
 
-### 작업 후 검증사항
+### 작업 후 검증 사항
 
 - **History 확인** : `git log --oneline --graph`로 원하는 대로 변경되었는지 확인.
 - **File 상태 확인** : 삭제된 commit과 관련된 file들의 내용 점검.
@@ -407,3 +407,4 @@ gitGraph
 - <https://git-scm.com/docs/git-rebase>
 - <https://git-scm.com/docs/git-revert>
 - <https://git-scm.com/docs/git-reflog>
+
