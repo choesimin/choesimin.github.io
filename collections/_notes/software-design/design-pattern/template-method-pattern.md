@@ -179,6 +179,8 @@ note for ConcreteClassB "hook을 override하여<br>선택적 동작을<br>변경
 
 ### Class Diagram
 
+- `CaffeineBeverage`가 template method를 정의하고, `Coffee`와 `Tea`가 primitive operation을 구현합니다.
+
 ```mermaid
 classDiagram
 
