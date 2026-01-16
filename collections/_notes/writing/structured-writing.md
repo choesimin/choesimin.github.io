@@ -159,7 +159,7 @@ description: 기술 문서는 정확하고 명확하게 정보를 전달해야 �
     - 모든 제목 아래에는 최소 1개 이상의 항목화된 문장(`- `로 시작)이 반드시 들어가야 합니다.
     - 하위 제목이 있는 경우에도, 상위 제목 바로 아래에 해당 section의 개괄 설명을 먼저 작성한 후 하위 제목을 배치합니다.
     - 제목 바로 아래의 개괄 설명은 추상적이거나 형식적인 문장이 아니라, 해당 section의 핵심 내용을 구체적으로 요약해야 합니다.
-        - 나쁜 예 : "주요 field들로 구성됩니다.", "다양한 방법을 소개합니다.", "중요한 개념들을 다룹니다.", "~하는 방법입니다.", "~의 동작입니다.", "~하는 pattern입니다." 등.
+        - 나쁜 예 : "주요 field들로 구성됩니다.", "다양한 방법을 소개합니다.", "중요한 개념들을 다룹니다.", "\~하는 방법입니다.", "\~의 동작입니다.", "\~하는 pattern입니다." 등.
         - 좋은 예 : "`queryPlanner`, `executionStats`, `serverInfo` 세 개의 최상위 field로 구성되며, 각각 실행 계획 정보, 성능 통계, server 정보를 담습니다.", "aggregation pipeline은 `$match`(filtering), `$group`(집계), `$project`(field 선택), `$sort`(정렬) 등의 핵심 stage로 구성됩니다." 등.
     - 개괄 설명은 독자가 하위 section들을 읽기 전에 전체 맥락을 이해할 수 있도록 작성합니다.
         - 주요 개념이나 구성 요소를 구체적으로 언급합니다.
@@ -269,8 +269,11 @@ description: 기술 문서는 정확하고 명확하게 정보를 전달해야 �
 
 - colon(`:`)의 앞과 뒤에는 공백을 하나씩 추가합니다.
 
-- code 성격의 단어는 backtick으로 감싸고, code block은 backtick 3개로 감싸서 표현합니다.
-    - 실제 code에서 사용하는 class, function, keyword, annotation만 backtick으로 감쌉니다.
+- code와 수학 표기는 종류에 따라 backtick 사용 여부가 다릅니다.
+    - code block은 backtick 3개로 감싸서 표현합니다.
+    - 실제 code에서 사용하는 class, function, keyword, annotation은 backtick으로 감쌉니다.
+    - 수학 변수나 수식(`x`, `y = x + 1`, `n²` 등)은 backtick으로 감쌉니다.
+    - Big O 표기법(O(1), O(n), O(log n) 등)은 backtick 없이 작성합니다.
     - 개념적 용어(scope, buffer, handler, pattern 등)는 backtick 없이 작성합니다.
 
 - emoticon을 사용하지 않습니다.
