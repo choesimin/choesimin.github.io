@@ -7,7 +7,7 @@ date: 2025-04-30
 ---
 
 
-## `docker logs` : Container Log 확인히가
+## `docker logs` : Container Log 확인하기
 
 - `docker logs`는 Docker container의 log 출력을 확인하는 명령어입니다.
 - Docker engine이 수집한 container의 표준 출력(STDOUT)과 표준 오류(STDERR) stream을 검색하고 표시합니다.
