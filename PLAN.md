@@ -10,6 +10,7 @@
 - 콜론 앞뒤 공백 (` : `)
 - 이모지 사용 금지
 - Mermaid.js 적극 활용
+- Big O 표기법은 backtick으로 감싸기 (`O(1)`, `O(n)`, `O(log n)`)
 
 
 ---
@@ -112,18 +113,18 @@
 | /428 | language/java/apache-poi/index.md | Apache POI |
 | /429 | language/java/apache-poi/excel/index.md | Apache POI Excel |
 | /430 | language/java/apache-poi/excel/large.md | 대용량 Excel 처리 |
-| /431 | language/java/collection-empty.md | Collection Empty 검사 | **검토 중** |
-| /432 | language/java/enumeration.md | Enum | **검토 중** |
+| /431 | language/java/collection-empty.md | Collection Empty 검사 | **완료** |
+| /432 | language/java/enumeration.md | Enum | **완료** |
 | /433 | language/java/garbage-collection.md | Garbage Collection |
 | /434 | language/java/generic.md | Generic |
 | /435 | language/java/history.md | Java 역사 |
-| /436 | language/java/identity-and-equality.md | Identity와 Equality | **검토 중** |
+| /436 | language/java/identity-and-equality.md | Identity와 Equality | **완료** |
 | /437 | language/java/reflection.md | Reflection |
 | /438 | language/java/resource-management.md | Resource 관리 |
 | /439 | language/java/servlet.md | Servlet |
 | /440 | language/java/stream.md | Stream |
-| /441 | language/java/switch-and-if.md | Switch와 If | **검토 중** |
-| /442 | language/java/exception-hierarchy.md | Exception Hierarchy | **검토 중** |
+| /441 | language/java/switch-and-if.md | Switch와 If | **완료** |
+| /442 | language/java/exception-hierarchy.md | Exception Hierarchy | **완료** |
 | /443 | language/java/unchecked-warning.md | Unchecked Warning |
 
 
@@ -238,7 +239,6 @@
 ## 진행 상황
 
 - 총 78개 문서
-- 완료 : 7개
-- 검토 중 : 5개 (Java 관련)
+- 완료 : 12개
 - 대기 : 66개
 
