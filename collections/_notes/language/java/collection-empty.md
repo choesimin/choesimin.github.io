@@ -179,7 +179,6 @@ if (CollectionUtils.isEmpty(list)) {
 
 - 상황에 따라 **적절한 empty 검사 방법**을 선택하면 code의 안전성과 가독성이 향상됩니다.
 
-
 - **`isEmpty()` 우선 사용** : `Collection`이 null이 아님이 보장되는 경우 `isEmpty()`를 사용합니다.
     - 의도가 명확하고 가독성이 높습니다.
     - 대부분의 `Collection` 구현체에서 최적화되어 있습니다.
