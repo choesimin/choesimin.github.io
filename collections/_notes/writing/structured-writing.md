@@ -269,11 +269,11 @@ description: 기술 문서는 정확하고 명확하게 정보를 전달해야 �
 
 - colon(`:`)의 앞과 뒤에는 공백을 하나씩 추가합니다.
 
-- code와 수학 표기는 종류에 따라 backtick 사용 여부가 다릅니다.
+- code와 수학 표기는 backtick으로 감쌉니다.
     - code block은 backtick 3개로 감싸서 표현합니다.
     - 실제 code에서 사용하는 class, function, keyword, annotation은 backtick으로 감쌉니다.
     - 수학 변수나 수식(`x`, `y = x + 1`, `n²` 등)은 backtick으로 감쌉니다.
-    - Big O 표기법(O(1), O(n), O(log n) 등)은 backtick 없이 작성합니다.
+    - Big O 표기법(`O(1)`, `O(n)`, `O(log n)` 등)은 backtick으로 감쌉니다.
     - 개념적 용어(scope, buffer, handler, pattern 등)는 backtick 없이 작성합니다.
 
 - emoticon을 사용하지 않습니다.

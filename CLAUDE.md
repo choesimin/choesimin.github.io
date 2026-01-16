@@ -98,10 +98,10 @@ date: YYYY-MM-DD
 
 - **Colon Spacing**: Always add one space before and after colon (`:`).
 - **No Emojis**: Do not use emojis (✓, ✗, ⚠️, etc.) in technical documentation. Use clear text instead.
-- **Backtick Usage**: Wrap code elements and mathematical expressions in backticks, but not Big O notation.
+- **Backtick Usage**: Wrap code elements, mathematical expressions, and complexity notation in backticks.
   - Use backticks for code elements (class, function, keyword, annotation): `Channel`, `Flow`, `SupervisorJob`, `launch`, `suspend`
   - Use backticks for mathematical variables/expressions: `x`, `y = x + 1`, `n²`
-  - No backticks for Big O notation: O(1), O(n), O(log n)
+  - Use backticks for Big O notation: `O(1)`, `O(n)`, `O(log n)`
   - No backticks for conceptual terms: scope, buffer, handler, pattern
 
 ### References
