@@ -1,129 +1,203 @@
 ---
 layout: note
-published: false
+permalink: /472
+title: Template Method Pattern - Algorithm의 골격 정의하기
+description: Template Method Pattern은 algorithm의 골격을 정의하고, 일부 단계를 subclass에서 재정의할 수 있도록 합니다.
+date: 2025-06-17
 ---
 
-# Template Method Pattern
 
+## Template Method Pattern : Algorithm의 구조 유지하며 단계 재정의하기
+
+- Template Method Pattern은 **algorithm의 골격(skeleton)을 정의**하고, 일부 단계의 구현을 subclass에 맡깁니다.
+    - algorithm의 구조는 그대로 유지하면서 특정 단계만 재정의할 수 있습니다.
+    - 공통 logic은 superclass에 두고, 변하는 부분만 subclass에서 구현합니다.
+
+- template method는 **일련의 단계로 algorithm을 정의한 method**입니다.
+    - 여러 단계 중 일부는 abstract method로 정의됩니다.
+    - abstract method는 subclass에서 반드시 구현해야 합니다.
+    - algorithm의 골격은 template method가 유지하므로 구조가 변하지 않습니다.
+
+
+### Template Method Pattern의 장점
+
+- **code 재사용성이 뛰어납니다.**
+    - 공통 algorithm을 superclass에 정의하여 중복을 제거합니다.
+    - subclass는 변하는 부분만 구현하면 됩니다.
+
+- **algorithm의 구조가 보장됩니다.**
+    - template method를 `final`로 선언하면 subclass에서 algorithm 구조를 변경할 수 없습니다.
+    - 전체 흐름은 동일하게 유지되고, 세부 구현만 달라집니다.
+
+- **framework 구축에 적합합니다.**
+    - framework에서 algorithm의 흐름을 제어하고, 사용자는 세부 구현만 제공합니다.
+    - Hollywood Principle을 따라, framework가 사용자의 code를 호출하는 구조입니다.
+        - Hollywood Principle : "Don't call us, we'll call you".
+
+
+### Template Method Pattern의 단점
+
+- **상속 기반이므로 유연성이 떨어집니다.**
+    - subclass는 superclass의 template method에 종속됩니다.
+    - runtime에 algorithm을 교체하기 어렵습니다.
+
+- **algorithm 단계가 많아지면 관리가 복잡해집니다.**
+    - abstract method와 hook이 많아지면 subclass 구현 부담이 증가합니다.
+
+
+---
+
+
+## Template Method Pattern의 구성 요소
+
+- Template Method Pattern은 **abstract class와 concrete class**로 구성됩니다.
+    - abstract class는 template method와 primitive operation을 정의합니다.
+    - concrete class는 primitive operation을 구현합니다.
+
+
+### Abstract Class에 정의되는 Method 종류
+
+- **template method** : algorithm의 골격을 정의하며, primitive operation들을 호출합니다.
+    - 보통 `final`로 선언하여 subclass에서 override할 수 없게 합니다.
+
+- **abstract method (primitive operation)** : subclass에서 반드시 구현해야 하는 algorithm 단계입니다.
+    - algorithm의 핵심적인 변하는 부분을 정의합니다.
+
+- **concrete method** : superclass에서 기본 구현을 제공하는 공통 단계입니다.
+    - 모든 subclass에서 동일하게 동작하는 부분입니다.
+
+- **hook method** : 선택적으로 override할 수 있는 method입니다.
+    - 기본 구현이 비어있거나 기본 동작을 제공합니다.
+    - subclass에서 필요한 경우에만 override합니다.
+
+
+### Hook Method 활용
+
+- hook은 **algorithm의 특정 부분을 선택적으로 적용**할 때 사용합니다.
+    - subclass에서 algorithm의 특정 단계를 건너뛰거나 추가 동작을 수행할 수 있습니다.
+    - abstract method와 달리 반드시 구현할 필요가 없습니다.
+
+```java
+public abstract class CaffeineBeverage {
+
+    final void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        if (customerWantsCondiments()) {  // hook 사용
+            addCondiments();
+        }
+    }
+
+    abstract void brew();
+    abstract void addCondiments();
+
+    void boilWater() {
+        System.out.println("물 끓이는 중");
+    }
+
+    void pourInCup() {
+        System.out.println("잔에 따르는 중");
+    }
+
+    // hook method : 기본값은 true
+    boolean customerWantsCondiments() {
+        return true;
+    }
+}
 ```
-Template Method Pattern에서는 method에서 algorithm의 골격을 정의합니다. algorithm의 여러 단계 중 일부는 subclass에서 구현할 수 있습니다. template method를 이용하면 algorithm의 구조는 그대로 유지하면서 subclass에서 특정 단계를 재정의할 수 있습니다.
-```
-
-- algorithm의 틀(template)을 만듬
-    - algorithm의 단계들을 정의하고, 일부 단계는 subclass에서 구현하도록 할 수 있음
-
-- template method
-    - 일련의 단계들로 algorithm을 정의한 method
-    - 여러 단계 가운데 하나 이상이 추상 method로 정의되며, 그 추상 method는 subclass에서 구현됨
-        - 추상 method이기 때문에 subclass에서 일부분을 구현할 수 있도록 하면서도 algorithm의 구조는 바꾸지 않아도 됨
-
-- (template method가 들어있는) 추상 class에 정의할 수 있는 것들
-    - 구상 method : superclass에서 정의한 algorithm의 공통 단계
-    - 추상 method : 구현을 subclass에 맡기는 algorithm의 개별 단계
-    - hook : superclass에서 기본 행동(아무 것도 안 할 수도 있음)을 정의하고 subclass에서 override하여 다르게 구현할 수도 있는 algorithm의 선택적 단계
-
-- Hook
-    - 추상 class에 선언되어 기본적인 내용만 구현되어 있거나 아무 code도 들어있지 않은 method
-        - subclass에서는 해당 과정이 필요한 경우에만 구현을 함
-            - 반드시 구현해야 한다면 hook이 아닌 추상 method를 써야 함
-    - algorithm의 특정 부분이 선택적으로 적용되어야 하는 경우에 사용함
-        - 이렇게 하면 subclass 입장에서는 다양한 위치에서 algorithm에 끼어들거나, 무시하고 넘어가는 것이 가능함
-
-- Strategy Pattern & Template Method Pattern
-    - 모두 algorithm을 캡슐화(encapsulation)하는 pattern
-    - Strategy Pattern : 객체 구성을 사용함
-        - 일련의 algorithm group을 정의하고 그 algorithm들을 서로 바꿔가면서 쓸 수 있게 해 줌
-        - 의존성이 낮아 유연함
-            - 어떤 것에도 의존하지 않고, algorithm을 전부 알아서 구현할 수 있음
-    - Template Method Pattern : 객체 상속을 사용함
-        - algorithm 구조 자체는 그대로 유지하면서, algorithm의 각 단계마다 다른 구현을 사용할 수 있음
-        - code의 재사용성이 뛰어남
-            - superclass에서 algorithm의 개요를 정의함
-            - 중복되는 code를 superclass에 넣어 subclass에서 공유해 사용할 수 있음
-                - superclass에서 정의하지 않은 code는 subclass에서 구현함
-            - framework를 만드는 데에 좋음
-        - algorithm이 전부 똑같고 한 줄만 다르다면 Template Method Pattern을 사용하는 것이 Strategy Pattern을 이용하는 것보다 효율적임
-
-- Factory Method Pattern은 특화된 Template Method Pattern임
 
 
+---
 
 
 ## Class Diagram
+
+- Template Method Pattern의 구조는 **abstract class와 이를 상속하는 concrete class**로 구성됩니다.
 
 ```mermaid
 classDiagram
 
 class AbstractClass {
-    templateMethod() primitiveOperation1(); primitiveOperation2();
-    primitiveOperation1()
-    primitiveOperation2()
+    +templateMethod()
+    #primitiveOperation1()*
+    #primitiveOperation2()*
+    +hook()
 }
 
-class ConcreteClass {
-    primitiveOperation1()
-    primitiveOperation2()
+class ConcreteClassA {
+    +primitiveOperation1()
+    +primitiveOperation2()
 }
 
-AbstractClass <|-- ConcreteClass
+class ConcreteClassB {
+    +primitiveOperation1()
+    +primitiveOperation2()
+    +hook()
+}
 
-AbstractClass .. AbstractClass : abstract method로 선언된 단계(method)들이 \ntemplate method에서 활용됨.
-ConcreteClass .. ConcreteClass : 여러 개가 있을 수 있음. \n각 class에서는 template method에서 요구하는 모든 단계를 제공해야 함.
+AbstractClass <|-- ConcreteClassA
+AbstractClass <|-- ConcreteClassB
+
+note for AbstractClass "template method에서<br>algorithm의 골격을 정의합니다.<br>primitive operation은<br>subclass에서 구현합니다."
+note for ConcreteClassA "primitive operation을<br>구현합니다."
+note for ConcreteClassB "hook을 override하여<br>선택적 동작을<br>변경할 수 있습니다."
 ```
 
 
 ---
 
 
-# Example : Barista의 Coffee와 Tea 제조법
+## Strategy Pattern과의 비교
 
-- Coffee & Tea
-    - caffeine 음료
-    - 만드는 방법이 비슷함
-        - 하지만 완전히 같지는 않음
+- Template Method Pattern과 Strategy Pattern은 **모두 algorithm을 캡슐화**하지만 방식이 다릅니다.
 
-- Coffee Recipe
-    1. 물을 끓인다.
-    2. 끓는 물에 coffee를 우려낸다.
-    3. coffee를 cup에 따른다.
-    4. 설탕과 우유를 추가한다.
+| 구분 | Template Method Pattern | Strategy Pattern |
+| --- | --- | --- |
+| 구현 방식 | 상속 (inheritance) | 합성 (composition) |
+| algorithm 교체 | compile time에 결정 | runtime에 교체 가능 |
+| code 재사용 | superclass에서 공통 code 공유 | algorithm별 독립적 구현 |
+| 유연성 | 상대적으로 낮음 | 상대적으로 높음 |
+| 적합한 상황 | algorithm 골격이 고정되고 일부만 다를 때 | algorithm 전체가 다양하게 교체될 때 |
 
-- Tea Recipe
-    1. 물을 끓인다.
-    2. 끓는 물에 tea를 우려낸다.
-    3. tea를 cup에 따른다.
-    4. 레몬을 추가한다.
-
-- Caffeine Beverage(coffee and tea) Recipe
-    1. 물을 끓인다.
-    2. 뜨거운 물을 이용하여 coffee 또는 tea를 우려낸다.
-    3. 만들어진 음료를 cup에 따른다.
-    4. 각 음료에 맞는 첨가물을 추가한다.
+- **algorithm 대부분이 동일**하고 일부 단계만 다르다면 Template Method Pattern이 효율적입니다.
+- **algorithm 전체가 다양**하게 변경되어야 한다면 Strategy Pattern이 적합합니다.
 
 
+---
 
 
-## Class Diagram
+## Example : Caffeine 음료 제조
+
+- Coffee와 Tea는 **제조 과정이 유사**하지만 세부 단계가 다릅니다.
+    - 공통 단계 : 물 끓이기, 잔에 따르기.
+    - 다른 단계 : 우려내기 방식, 첨가물.
+
+- **Coffee 제조법** : 물 끓이기 → coffee 우려내기 → 잔에 따르기 → 설탕과 우유 추가.
+- **Tea 제조법** : 물 끓이기 → tea 우려내기 → 잔에 따르기 → lemon 추가.
+
+
+### Class Diagram
 
 ```mermaid
 classDiagram
 
 class CaffeineBeverage {
-    prepareRecipe()
-    boilWater()
-    pourInCup()
-    brew()
-    addCondiments()
+    +prepareRecipe()
+    +boilWater()
+    +pourInCup()
+    #brew()*
+    #addCondiments()*
 }
 
 class Coffee {
-    brew()
-    addCondiments()
+    +brew()
+    +addCondiments()
 }
 
 class Tea {
-    brew()
-    addCondiments()
+    +brew()
+    +addCondiments()
 }
 
 CaffeineBeverage <|-- Coffee
@@ -131,69 +205,105 @@ CaffeineBeverage <|-- Tea
 ```
 
 
+### Template Method 적용 전
 
-
-## Code
-
-### Client
+- template method 적용 전에는 **Coffee와 Tea가 각각 독립적으로 구현**되어 있습니다.
+    - 중복 code가 존재하고, algorithm 변경 시 두 class를 모두 수정해야 합니다.
 
 ```java
-public class BeverageTestDrive {
-    public static void main(String[] args) {
- 
-        Tea tea = new Tea();
-        Coffee coffee = new Coffee();
- 
-        System.out.println("\nMaking tea...");
-        tea.prepareRecipe();
- 
-        System.out.println("\nMaking coffee...");
-        coffee.prepareRecipe();
+public class Coffee {
 
- 
-        TeaWithHook teaHook = new TeaWithHook();
-        CoffeeWithHook coffeeHook = new CoffeeWithHook();
- 
-        System.out.println("\nMaking tea...");
-        teaHook.prepareRecipe();
- 
-        System.out.println("\nMaking coffee...");
-        coffeeHook.prepareRecipe();
+    void prepareRecipe() {
+        boilWater();
+        brewCoffeeGrinds();
+        pourInCup();
+        addSugarAndMilk();
+    }
+
+    public void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    public void brewCoffeeGrinds() {
+        System.out.println("Dripping Coffee through filter");
+    }
+
+    public void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+
+    public void addSugarAndMilk() {
+        System.out.println("Adding Sugar and Milk");
     }
 }
 ```
 
-### Template method
+```java
+public class Tea {
+
+    void prepareRecipe() {
+        boilWater();
+        steepTeaBag();
+        pourInCup();
+        addLemon();
+    }
+
+    public void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    public void steepTeaBag() {
+        System.out.println("Steeping the tea");
+    }
+
+    public void addLemon() {
+        System.out.println("Adding Lemon");
+    }
+
+    public void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+}
+```
+
+
+### Template Method 적용 후
+
+- **abstract class** : algorithm의 골격을 정의합니다.
 
 ```java
 public abstract class CaffeineBeverage {
-  
+
     final void prepareRecipe() {
         boilWater();
         brew();
         pourInCup();
         addCondiments();
     }
- 
+
     abstract void brew();
-  
+
     abstract void addCondiments();
- 
+
     void boilWater() {
         System.out.println("Boiling water");
     }
-  
+
     void pourInCup() {
         System.out.println("Pouring into cup");
     }
 }
 ```
 
+- **concrete class** : primitive operation을 구현합니다.
+
 ```java
 public class Coffee extends CaffeineBeverage {
+
     public void brew() {
         System.out.println("Dripping Coffee through filter");
     }
+
     public void addCondiments() {
         System.out.println("Adding Sugar and Milk");
     }
@@ -202,20 +312,25 @@ public class Coffee extends CaffeineBeverage {
 
 ```java
 public class Tea extends CaffeineBeverage {
+
     public void brew() {
         System.out.println("Steeping the tea");
     }
+
     public void addCondiments() {
         System.out.println("Adding Lemon");
     }
 }
 ```
 
-### Template method with Hook
+
+### Hook을 활용한 Template Method
+
+- hook method를 사용하여 **첨가물 추가 여부를 선택적으로 결정**할 수 있습니다.
 
 ```java
 public abstract class CaffeineBeverageWithHook {
- 
+
     final void prepareRecipe() {
         boilWater();
         brew();
@@ -224,19 +339,19 @@ public abstract class CaffeineBeverageWithHook {
             addCondiments();
         }
     }
- 
+
     abstract void brew();
- 
+
     abstract void addCondiments();
- 
+
     void boilWater() {
         System.out.println("Boiling water");
     }
- 
+
     void pourInCup() {
         System.out.println("Pouring into cup");
     }
- 
+
     boolean customerWantsCondiments() {
         return true;
     }
@@ -245,17 +360,16 @@ public abstract class CaffeineBeverageWithHook {
 
 ```java
 public class CoffeeWithHook extends CaffeineBeverageWithHook {
- 
+
     public void brew() {
         System.out.println("Dripping Coffee through filter");
     }
- 
+
     public void addCondiments() {
         System.out.println("Adding Sugar and Milk");
     }
- 
-    public boolean customerWantsCondiments() {
 
+    public boolean customerWantsCondiments() {
         String answer = getUserInput();
 
         if (answer.toLowerCase().startsWith("y")) {
@@ -264,7 +378,7 @@ public class CoffeeWithHook extends CaffeineBeverageWithHook {
             return false;
         }
     }
- 
+
     private String getUserInput() {
         String answer = null;
 
@@ -286,17 +400,16 @@ public class CoffeeWithHook extends CaffeineBeverageWithHook {
 
 ```java
 public class TeaWithHook extends CaffeineBeverageWithHook {
- 
+
     public void brew() {
         System.out.println("Steeping the tea");
     }
- 
+
     public void addCondiments() {
         System.out.println("Adding Lemon");
     }
- 
-    public boolean customerWantsCondiments() {
 
+    public boolean customerWantsCondiments() {
         String answer = getUserInput();
 
         if (answer.toLowerCase().startsWith("y")) {
@@ -305,9 +418,8 @@ public class TeaWithHook extends CaffeineBeverageWithHook {
             return false;
         }
     }
- 
+
     private String getUserInput() {
-        // get the user's response
         String answer = null;
 
         System.out.print("Would you like lemon with your tea (y/n)? ");
@@ -326,74 +438,32 @@ public class TeaWithHook extends CaffeineBeverageWithHook {
 }
 ```
 
-## Template method 적용 전
+
+### Client Code
+
+- template method를 호출하여 음료를 제조합니다.
 
 ```java
-public class Barista {
- 
+public class BeverageTestDrive {
+
     public static void main(String[] args) {
         Tea tea = new Tea();
         Coffee coffee = new Coffee();
-        System.out.println("Making tea...");
+
+        System.out.println("\nMaking tea...");
         tea.prepareRecipe();
-        System.out.println("Making coffee...");
+
+        System.out.println("\nMaking coffee...");
         coffee.prepareRecipe();
-    }
-}
-```
 
-```java
-public class Coffee {
- 
-    void prepareRecipe() {
-        boilWater();
-        brewCoffeeGrinds();
-        pourInCup();
-        addSugarAndMilk();
-    }
- 
-    public void boilWater() {
-        System.out.println("Boiling water");
-    }
- 
-    public void brewCoffeeGrinds() {
-        System.out.println("Dripping Coffee through filter");
-    }
- 
-    public void pourInCup() {
-        System.out.println("Pouring into cup");
-    }
- 
-    public void addSugarAndMilk() {
-        System.out.println("Adding Sugar and Milk");
-    }
-}
-```
+        TeaWithHook teaHook = new TeaWithHook();
+        CoffeeWithHook coffeeHook = new CoffeeWithHook();
 
-```java
-public class Tea {
- 
-    void prepareRecipe() {
-        boilWater();
-        steepTeaBag();
-        pourInCup();
-        addLemon();
-    }
- 
-    public void boilWater() {
-        System.out.println("Boiling water");
-    }
- 
-    public void steepTeaBag() {
-        System.out.println("Steeping the tea");
-    }
- 
-    public void addLemon() {
-        System.out.println("Adding Lemon");
-    }
- 
-    public void pourInCup() {
-        System.out.println("Pouring into cup");
+        System.out.println("\nMaking tea...");
+        teaHook.prepareRecipe();
+
+        System.out.println("\nMaking coffee...");
+        coffeeHook.prepareRecipe();
     }
 }
 ```
@@ -402,6 +472,55 @@ public class Tea {
 ---
 
 
+## Java API 활용 사례
+
+- Template Method Pattern은 **Java API 여러 곳에서 활용**됩니다.
+
+
+### Arrays.sort()와 Comparable
+
+- `Arrays.sort()`는 정렬 algorithm의 골격을 제공하고, 비교 logic은 `Comparable` interface에 위임합니다.
+
+```java
+public class Duck implements Comparable<Duck> {
+    String name;
+    int weight;
+
+    public Duck(String name, int weight) {
+        this.name = name;
+        this.weight = weight;
+    }
+
+    @Override
+    public int compareTo(Duck other) {
+        return Integer.compare(this.weight, other.weight);
+    }
+}
+```
+
+```java
+Duck[] ducks = {
+    new Duck("Daffy", 8),
+    new Duck("Dewey", 2),
+    new Duck("Howard", 7)
+};
+
+Arrays.sort(ducks);  // weight 기준 정렬
+```
+
+
+### InputStream.read()
+
+- `InputStream`의 `read(byte[] b, int off, int len)`은 template method 역할을 합니다.
+    - 내부적으로 abstract method인 `read()`를 호출합니다.
+    - subclass는 `read()`만 구현하면 됩니다.
+
+
+---
+
+
 ## Reference
 
 - Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+- <https://refactoring.guru/design-patterns/template-method>
+
