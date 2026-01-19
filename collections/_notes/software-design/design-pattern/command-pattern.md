@@ -1,22 +1,77 @@
 ---
 layout: note
-title: Command Pattern - 
+permalink: /469
+title: Command Pattern - 요청을 객체로 캡슐화하기
+description: Command Pattern은 요청을 객체로 캡슐화하여 요청의 parameterize, queue 저장, logging, undo 기능을 구현할 수 있게 합니다.
 date: 2024-02-06
-published: false
 ---
 
 
+## Command Pattern : 요청을 객체로 만들어 유연하게 처리하기
+
+- Command Pattern은 **요청(request)을 객체로 캡슐화**합니다.
+    - method 호출을 객체로 감싸서 저장, 전달, 실행할 수 있습니다.
+    - 요청을 보내는 객체(invoker)와 요청을 수행하는 객체(receiver)를 분리합니다.
+
+- 요청을 객체로 만들면 **다양한 기능을 구현**할 수 있습니다.
+    - 요청을 queue에 저장하여 순차적으로 실행할 수 있습니다.
+    - 요청을 logging하여 나중에 재실행할 수 있습니다.
+    - 실행한 요청을 취소(undo)하거나 다시 실행(redo)할 수 있습니다.
 
 
+### Command Pattern의 장점
 
-- Command Pattern은 실행될 기능 또는 작업을 캡슐화(encapsulation)하여, **기능의 실행을 요구하는 호출자**(invoker)와 **기능을 실행하는 수신자**(receiver) 간의 결합을 느슨하게 만들기 위해 사용됩니다.
-- Command Pattern을 적용하면 명령을 쉽게 추가하거나 변경할 수 있으며, 실행 취소(undo), 재실행, queuing, logging 등 다양한 기능을 구현할 수 있습니다.
+- **요청 발신자와 수신자를 분리합니다.**
+    - invoker는 command interface만 알면 되고, 실제 수행 방법은 몰라도 됩니다.
+    - receiver 변경이 invoker에 영향을 주지 않습니다.
+
+- **요청을 일급 객체(first-class object)로 다룹니다.**
+    - 요청을 parameter로 전달하거나 collection에 저장할 수 있습니다.
+    - runtime에 동적으로 command를 교체할 수 있습니다.
+
+- **undo/redo 기능 구현이 가능합니다.**
+    - command 객체에 이전 상태를 저장하면 작업을 취소할 수 있습니다.
+    - 실행된 command를 stack에 저장하여 여러 단계 undo를 지원할 수 있습니다.
+
+- **macro command를 구현할 수 있습니다.**
+    - 여러 command를 하나로 묶어서 한 번에 실행할 수 있습니다.
+
+
+### Command Pattern의 단점
+
+- **class 수가 증가합니다.**
+    - 각 요청마다 별도의 command class가 필요합니다.
+    - 단순한 요청에 적용하면 과도한 설계가 됩니다.
+
+- **command와 receiver 간 결합이 필요합니다.**
+    - command가 receiver의 method를 알아야 합니다.
 
 
 ---
 
 
-## Class 구조
+## Command Pattern의 구성 요소
+
+- Command Pattern은 **Invoker, Command, Receiver**로 구성됩니다.
+    - Invoker는 command를 실행하는 역할을 합니다.
+    - Command는 실행할 작업을 캡슐화합니다.
+    - Receiver는 실제 작업을 수행합니다.
+
+| 구성 요소 | 역할 |
+| --- | --- |
+| Client | ConcreteCommand를 생성하고 Receiver를 설정 |
+| Invoker | 명령을 실행하고자 하는 객체, command 객체를 받아 실행 method 호출 |
+| Command | 실행될 작업을 캡슐화하는 interface, receiver에 특정 작업 처리 지시 |
+| ConcreteCommand | Command interface 구현, `execute()` 내에서 `receiver.action()` 실행 |
+| Receiver | 요구 사항을 수행하기 위해 어떤 일을 처리해야 하는지 아는 객체 |
+
+
+---
+
+
+## Class Diagram
+
+- Command Pattern의 구조는 **Invoker, Command interface, ConcreteCommand, Receiver**로 구성됩니다.
 
 ```mermaid
 classDiagram
@@ -47,27 +102,10 @@ Command <|-- ConcreteCommand
 ConcreteCommand --> Receiver
 ```
 
-- `Client` : ConcreteCommand를 생성하고 Receiver를 설정합니다.
-    - note for Client "ConcreteCommand를 생성하고 Receiver를 설정합니다."
 
-- `Invoker` : 명령을 실행하고자 하는 객체(호출자)입니다.
-    - 이 객체는 커맨드 객체를 받아와 실행 메서드를 호출합니다.
-    - 이 때, 호출자는 어떤 구체적인 명령을 실행할지 알 필요가 없으며, 커맨드 객체의 인터페이스만 이해하면 됩니다.
-    - note for Invoker "명령이 들어있습니다. \nexecute() method를 호출함으로써 command 객체에 특정 작업을 수행해 달라는 요구를 합니다."
+### 기본 구현 Code
 
-- `Command` : 실제 실행되어야 할 작업을 캡슐화하는 interface 또는 abstract class입니다.
-    - 이 인터페이스는 실행 메서드를 정의하며, 구체적인 명령 클래스들이 이를 구현합니다.
-    -  Receiver에 특정 작업을 처리하라는 지시를 전달함
-    - note for Command "모든 command 객체에서 구현해야 하는 interface입니다.\n모든 명령은 execute() method 호출을 통해 수행됩니다."
-
-- `ConcreteCommand` : Command 인터페이스를 구현한 실제 명령 클래스입니다.
-    - 명령을 수행하기 위한 필요한 정보와 작업을 포함하며, 실제로 명령을 수행하는 로직을 가지고 있습니다.
-    - `extute()` method 내에서는 `receiver.action()`을 실행합니다.
-    - note for ConcreteCommand "특정 행동과 Receiver 사이를 연결해 줍니다.\nInvoker에서 execute() 호출을 통해 요청하면 ConcreteCommand 객체에서 Receiver에 있는 method를 호출함으로써 그 작업을 처리합니다."
-
-- `Receiver` : 명령을 실제로 수행하는 객체(수신자)입니다.
-    - 명령 객체가 수행되면, 이 객체가 작업을 실행하고 결과를 반환합니다.
-    - note for Receiver "요구 사항을 수행하기 위해 어떤 일을 처리해야 하는지 알고 있는 객체입니다."
+- Client, Invoker, Command, ConcreteCommand, Receiver의 기본 구현입니다.
 
 ```java
 public class Client {
@@ -133,131 +171,53 @@ public class Receiver {
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- Command Pattern을 이용하면 요구 사항을 객체로 캡슐화(encapsulation)할 수 있고, 매개변수를 써서 여러 가지 다른 요구 사항을 집어넣을 수도 있습니다.
-
-- 요청을 하는 객체와 그 요청을 수행하는 객체를 분리시킬 수 있음
-    - 분리시키는 과정의 중심에는 Command 객체가 있음
-        - Command 객체는 행동이 들어있는 Receiver를 캡슐화(encapsulation) 함
-    - method 호출의 캡슐화(encapsulation)
-        - 일련의 행동을 특정 Receiver하고 연결시킴으로써 요구 사항을 캡슐화(encapsulation)함
-        - 행동과 Receiver를 한 객체에 집어넣고, execute()라는 method하나만 외부에 공개하는 방법을 사용함
-        - 외부에서는 execute() method를 호출하면 요구 사항이 처리된다는 것만 알 수 있음
-            - 어떤 객체가 Receiver 역할을 하는지, 그 Receiver에서 실제로 어떤 일을 하는지 알 수 없음
-    - Invoker는 Command를 통해서 매개변수화될 수 있음
-        - == 실행 중에 Command를 동적으로 설정할 수 있음
-
-- 작업취소 기능을 지원할 수 있음
-
-- Macro Command
-    - Command를 확장해서 여러 개의 Command를 한꺼번에 호출할 수 있게 해 줌
-    - Macro Command에서도 작업취소 기능을 지원할 수 있음
-
-- Command Pattern을 활용하여 log 및 trasaction system을 구현하는 것도 가능함
-
-
-
+---
 
 
 ## 동작 순서
 
+- Command Pattern은 **command 설정 단계와 command 실행 단계**로 동작합니다.
+
+
 ### 1. Client에서 Invoker에 Command 설정하기
 
-1. Command 객체 생성
-    - `Client.createCommandObject();`
-    - Command 객체
-        - Receiver에 전달할 일련의 행동으로 구성됨 (행동 + Receiver에 대한 정보)
-        - execute() : Command 객체에서 제공하는 유일한 method
-            - 행동을 캡슐화(encapsulation)함
-            - Receiver에 있는 특정 행동을 처리하기 위한 method를 호출하기 위한 method
-            ```java
-            public void execute {
-                reveiber.action1();
-                reveiber.action2();
-            }
-            ```
-2. Invoker 객체에 Command 설정
-    - `Invoker.setCommand();`
-    - Client에서 Invoker 객체의 setCommand 객체를 호출하면서 Command 객체를 넘겨줌
-        - Command 객체는 나중에 쓰이기 전까지 Invoker 객체에 보관됨
+- client는 command 객체를 생성합니다.
+    - command 객체는 receiver에 전달할 일련의 행동으로 구성됩니다.
+    - `execute()`는 행동을 캡슐화하며, receiver에 있는 특정 행동을 처리하기 위한 method를 호출합니다.
 
-### 2. Client에서 Invoker에 설정된 Command 사용하기
-
-1. Client가 Invoker에게 설정한 명령 실행을 요청함
-    - Client에서 `Invoker.requestSomething();` 호출
-2. Invoker가 Command에게 실행을 요청함
-    - Invoker에서 `Command.execute();` 호출
-3. Command 객체가 execute() 실행함
-    - execute() method는 Receiver의 method를 사용하여 행동을 처리하고 있음
-    - Command에서 `Receiver.action1();`, `Receiver.action2();` 호출
-4. Receiver의 method 실행으로 명령 최종 처리
-
-
-
----
-
-
-## Command Pattern 활용
-
-- Command Pattern의 활용 예시
-    1. 요청의 큐잉 또는 로깅 : 사용자의 요청을 객체로 캡슐화하여 나중에 실행하거나 로깅하는데 사용할 수 있습니다.
-    2. 실행 취소 기능 : 사용자의 명령을 객체로 만들고, 나중에 실행 취소할 수 있는 기능을 제공할 때 유용합니다.
-    3. 작업 순서 및 스케줄링 : 여러 개의 작업을 순서대로 실행하거나 특정 시간에 실행하고자 할 때 사용됩니다.
-
-
-### 요청을 queue에 저장하기
-
-- Command를 이용하면 client application에서 Command 객체를 생성하고 나서 한참 후에도 computation을 호출할 수 있음
-    - computation의 한 부분(Receiver와 일련의 행동)을 package로 묶어서 일급 객체 형태로 전달하는 것이 가능하기 때문
-    - 다른 thread에서 호출하는 것도 가능함
-    - 사용 예) scheduler, thread pool, 작업 queue
-
-### 요청을 log에 기록하기 (복구 기능)
-
-- Command Pattern에 store()와 load()라는 method를 추가하여 복구 기능을 구현할 수 있습니다.
-
-```mermaid
-classDiagram
-
-class Command {
-    <<interface>>
-    execute()
-    undo()
-    store()
-    load()
+```java
+public void execute {
+    reveiber.action1();
+    reveiber.action2();
 }
 ```
 
-- data가 변경될 때마다 매번 저장할 수 없는 방대한 자료 구조를 다루는 application의 복구 방식
-    - 명령을 실행하면서 checkpoint 이후의 실행 history를 disk에 기록함
-        - 마지막 checkpoint 이후로 한 모든 작업 저장함
-    - system down 되었을 경우, checkpoint에 최근 수행한 작업을 다시 적용하면 복구할 수 있음
-        - ex) Spread Sheet
-    - 이 기술을 사용하여 transaction의 commit/rollback을 구현할 수 있습니다.
-        - transaction : 모든 작업이 완벽하게 처리되도록 하거나, 그렇지 않으면 아무 것도 처리되지 않게 하는 것입니다.
+- client는 invoker 객체에 command를 설정합니다.
+    - invoker 객체의 `setCommand()`를 호출하면서 command 객체를 넘겨줍니다.
+    - command 객체는 나중에 쓰이기 전까지 invoker 객체에 보관됩니다.
 
 
+### 2. Client에서 Invoker에 설정된 Command 사용하기
 
+- client가 invoker에게 설정한 명령 실행을 요청합니다.
+    - client에서 `Invoker.requestSomething();` 호출합니다.
+- invoker가 command에게 실행을 요청합니다.
+    - invoker에서 `Command.execute();` 호출합니다.
+- command 객체가 `execute()` 실행합니다.
+    - `execute()` method는 receiver의 method를 사용하여 행동을 처리합니다.
+    - command에서 `Receiver.action1();`, `Receiver.action2();` 호출합니다.
+- receiver의 method 실행으로 명령이 최종 처리됩니다.
 
 
 ---
 
 
 ## Example : Remote Controller
+
+- programming이 가능한 **remote controller**을 구현합니다.
+    - 각 slot에 원하는 제품을 연결할 수 있습니다.
+    - 각 slot에는 on/off button이 있으며, 이 button을 가지고 조작할 수 있습니다.
+    - undo button을 눌러 마지막으로 누른 button에 대한 명령을 취소할 수 있습니다.
 
 ```plaintext
 [remote controller]
@@ -275,21 +235,12 @@ class Command {
     {undo button}
 ```
 
-- programming이 가능한 slot이 있음
-- 각 slot에 원하는 제품을 연결할 수 있음
-- 각 slot에는 on/off button이 있으며, 이 button을 가지고 조작할 수 있음
-- undo button을 눌러 마지막으로 누른 button에 대한 명령을 취소할 수 있음
 
+### Class Diagram
 
-
-
-## Class Diagram
-
-- Client : RemoteLoader
-- Invoker : RemoteControl
-- Command : Command
-- ConcreteCommand : LightOnCommand, LightOffCommand
-- Reciever : Light
+- `RemoteLoader`(Client)가 receiver와 command를 생성하고, `RemoteControl`(Invoker)에 command를 설정합니다.
+    - `Command` interface를 `LightOnCommand`, `LightOffCommand` 등의 ConcreteCommand가 구현합니다.
+    - `Light`, `TV`, `Stereo` 등의 receiver가 실제 작업을 수행합니다.
 
 ```mermaid
 classDiagram
@@ -335,35 +286,33 @@ LightOffCommand --> Light
 ```
 
 
-
-
-## Code
-
 ### Client
+
+- `RemoteLoader`는 receiver와 command를 생성하고, invoker에 command를 설정합니다.
 
 ```java
 public class RemoteLoader {
- 
+
     public static void main(String[] args) {
         RemoteControl remoteControl = new RemoteControl();
- 
+
         Light livingRoomLight = new Light("Living Room");
         Light kitchenLight = new Light("Kitchen");
         Stereo stereo = new Stereo("Living Room");
-  
+
         LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight);
         LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
         LightOnCommand kitchenLightOn = new LightOnCommand(kitchenLight);
         LightOffCommand kitchenLightOff = new LightOffCommand(kitchenLight);
         StereoOnWithCDCommand stereoOnWithCD = new StereoOnWithCDCommand(stereo);
         StereoOffCommand  stereoOff = new StereoOffCommand(stereo);
- 
+
         remoteControl.setCommand(0, livingRoomLightOn, livingRoomLightOff);
         remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff);
         remoteControl.setCommand(2, stereoOnWithCD, stereoOff);
-  
+
         System.out.println(remoteControl);
- 
+
         remoteControl.onButtonWasPushed(0);
         remoteControl.offButtonWasPushed(0);
         remoteControl.onButtonWasPushed(1);
@@ -374,56 +323,21 @@ public class RemoteLoader {
 }
 ```
 
-```java
-public class RemoteLoader {
-
-    public static void main(String[] args) {
-
-        RemoteControl remoteControl = new RemoteControl();
-
-        Light light = new Light("Living Room");
-        TV tv = new TV("Living Room");
-        Stereo stereo = new Stereo("Living Room");
-        Hottub hottub = new Hottub();
- 
-        LightOnCommand lightOn = new LightOnCommand(light);
-        StereoOnCommand stereoOn = new StereoOnCommand(stereo);
-        TVOnCommand tvOn = new TVOnCommand(tv);
-        HottubOnCommand hottubOn = new HottubOnCommand(hottub);
-        LightOffCommand lightOff = new LightOffCommand(light);
-        StereoOffCommand stereoOff = new StereoOffCommand(stereo);
-        TVOffCommand tvOff = new TVOffCommand(tv);
-        HottubOffCommand hottubOff = new HottubOffCommand(hottub);
-
-        Command[] partyOn = {lightOn, stereoOn, tvOn, hottubOn};
-        Command[] partyOff = {lightOff, stereoOff, tvOff, hottubOff};
-  
-        MacroCommand partyOnMacro = new MacroCommand(partyOn);
-        MacroCommand partyOffMacro = new MacroCommand(partyOff);
- 
-        remoteControl.setCommand(0, partyOnMacro, partyOffMacro);
-  
-        System.out.println(remoteControl);
-        System.out.println("--- Pushing Macro On---");
-        remoteControl.onButtonWasPushed(0);
-        System.out.println("--- Pushing Macro Off---");
-        remoteControl.offButtonWasPushed(0);
-    }
-}
-```
 
 ### Invoker
+
+- `RemoteControl`은 command를 저장하고 button이 눌리면 해당 command를 실행합니다.
 
 ```java
 public class RemoteControl {
     Command[] onCommands;
     Command[] offCommands;
     Command undoCommand;
- 
+
     public RemoteControl() {
         onCommands = new Command[7];
         offCommands = new Command[7];
- 
+
         Command noCommand = new NoCommand();
         for (int i = 0; i < 7; i++) {
             onCommands[i] = noCommand;
@@ -431,17 +345,17 @@ public class RemoteControl {
         }
         undoCommand = noCommand;
     }
-  
+
     public void setCommand(int slot, Command onCommand, Command offCommand) {
         onCommands[slot] = onCommand;
         offCommands[slot] = offCommand;
     }
- 
+
     public void onButtonWasPushed(int slot) {
         onCommands[slot].execute();
         undoCommand = onCommands[slot];
     }
- 
+
     public void offButtonWasPushed(int slot) {
         offCommands[slot].execute();
         undoCommand = offCommands[slot];
@@ -450,7 +364,7 @@ public class RemoteControl {
     public void undoButtonWasPushed() {
         undoCommand.undo();
     }
- 
+
     public String toString() {
         StringBuffer stringBuff = new StringBuffer();
         stringBuff.append("\n------ Remote Control -------\n");
@@ -471,7 +385,10 @@ public class RemoteControl {
 }
 ```
 
+
 ### Command
+
+- `Command` interface는 `execute()`와 `undo()` method를 정의합니다.
 
 ```java
 public interface Command {
@@ -480,7 +397,10 @@ public interface Command {
 }
 ```
 
+
 ### ConcreteCommand
+
+- 각 receiver에 대한 on/off command를 구현합니다.
 
 ```java
 public class NoCommand implements Command {
@@ -492,17 +412,17 @@ public class NoCommand implements Command {
 ```java
 public class MacroCommand implements Command {
     Command[] commands;
- 
+
     public MacroCommand(Command[] commands) {
         this.commands = commands;
     }
- 
+
     public void execute() {
         for (int i = 0; i < commands.length; i++) {
             commands[i].execute();
         }
     }
- 
+
     // NOTE : these commands have to be done backwards to ensure proper undo functionality
     public void undo() {
         for (int i = commands.length -1; i >= 0; i--) {
@@ -638,11 +558,11 @@ public class StereoOnCommand implements Command {
 ```java
 public class StereoOffCommand implements Command {
     Stereo stereo;
- 
+
     public StereoOffCommand(Stereo stereo) {
         this.stereo = stereo;
     }
- 
+
     public void execute() {
         stereo.off();
     }
@@ -656,11 +576,11 @@ public class StereoOffCommand implements Command {
 ```java
 public class StereoOnWithCDCommand implements Command {
     Stereo stereo;
- 
+
     public StereoOnWithCDCommand(Stereo stereo) {
         this.stereo = stereo;
     }
- 
+
     public void execute() {
         stereo.on();
         stereo.setCD();
@@ -801,7 +721,10 @@ public class CeilingFanOffCommand implements Command {
 }
 ```
 
-### Reciever
+
+### Receiver
+
+- receiver는 실제 작업을 수행하는 객체로, `Light`, `TV`, `Stereo`, `Hottub`, `CeilingFan` 등이 있습니다.
 
 ```java
 public class Light {
@@ -952,16 +875,16 @@ public class CeilingFan {
     public static final int OFF = 0;
     String location;
     int speed;
- 
+
     public CeilingFan(String location) {
         this.location = location;
     }
-  
+
     public void high() {
         // turns the ceiling fan on to high
         speed = HIGH;
         System.out.println(location + " ceiling fan is on high");
-    } 
+    }
 
     public void medium() {
         // turns the ceiling fan on to medium
@@ -974,13 +897,13 @@ public class CeilingFan {
         speed = LOW;
         System.out.println(location + " ceiling fan is on low");
     }
- 
+
     public void off() {
         // turns the ceiling fan off
         speed = OFF;
         System.out.println(location + " ceiling fan is off");
     }
- 
+
     public int getSpeed() {
         return speed;
     }
@@ -991,6 +914,95 @@ public class CeilingFan {
 ---
 
 
+## Macro Command : 여러 Command 한 번에 실행
+
+- **MacroCommand**는 여러 command를 하나로 묶어서 실행합니다.
+    - button 하나로 여러 기기를 동시에 제어할 수 있습니다.
+    - MacroCommand에서도 작업 취소 기능을 지원할 수 있습니다.
+
+```java
+public class RemoteLoader {
+
+    public static void main(String[] args) {
+
+        RemoteControl remoteControl = new RemoteControl();
+
+        Light light = new Light("Living Room");
+        TV tv = new TV("Living Room");
+        Stereo stereo = new Stereo("Living Room");
+        Hottub hottub = new Hottub();
+
+        LightOnCommand lightOn = new LightOnCommand(light);
+        StereoOnCommand stereoOn = new StereoOnCommand(stereo);
+        TVOnCommand tvOn = new TVOnCommand(tv);
+        HottubOnCommand hottubOn = new HottubOnCommand(hottub);
+        LightOffCommand lightOff = new LightOffCommand(light);
+        StereoOffCommand stereoOff = new StereoOffCommand(stereo);
+        TVOffCommand tvOff = new TVOffCommand(tv);
+        HottubOffCommand hottubOff = new HottubOffCommand(hottub);
+
+        Command[] partyOn = {lightOn, stereoOn, tvOn, hottubOn};
+        Command[] partyOff = {lightOff, stereoOff, tvOff, hottubOff};
+
+        MacroCommand partyOnMacro = new MacroCommand(partyOn);
+        MacroCommand partyOffMacro = new MacroCommand(partyOff);
+
+        remoteControl.setCommand(0, partyOnMacro, partyOffMacro);
+
+        System.out.println(remoteControl);
+        System.out.println("--- Pushing Macro On---");
+        remoteControl.onButtonWasPushed(0);
+        System.out.println("--- Pushing Macro Off---");
+        remoteControl.offButtonWasPushed(0);
+    }
+}
+```
+
+
+---
+
+
+## Command Pattern 활용
+
+- Command Pattern은 **queue, log, transaction** 등 다양한 기능 구현에 활용됩니다.
+
+
+### 요청을 Queue에 저장하기
+
+- command를 이용하면 client application에서 command 객체를 생성하고 나서 한참 후에도 computation을 호출할 수 있습니다.
+    - computation의 한 부분(receiver와 일련의 행동)을 package로 묶어서 일급 객체 형태로 전달하는 것이 가능합니다.
+    - 다른 thread에서 호출하는 것도 가능합니다.
+    - scheduler, thread pool, 작업 queue 등에서 사용됩니다.
+
+
+### 요청을 Log에 기록하기 (복구 기능)
+
+- Command Pattern에 `store()`와 `load()`라는 method를 추가하여 복구 기능을 구현할 수 있습니다.
+
+```mermaid
+classDiagram
+
+class Command {
+    <<interface>>
+    execute()
+    undo()
+    store()
+    load()
+}
+```
+
+- data가 변경될 때마다 매번 저장할 수 없는 방대한 자료 구조를 다루는 application의 복구 방식입니다.
+    - 명령을 실행하면서 checkpoint 이후의 실행 history를 disk에 기록합니다.
+    - 마지막 checkpoint 이후로 한 모든 작업을 저장합니다.
+    - system down 되었을 경우, checkpoint에 최근 수행한 작업을 다시 적용하면 복구할 수 있습니다.
+    - spread sheet 등에서 사용됩니다.
+    - 이 기술을 사용하여 transaction의 commit/rollback을 구현할 수 있습니다.
+
+
+---
+
+
 ## Reference
 
 - Head First Design Patterns - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
+
