@@ -51,7 +51,7 @@ date: 2025-06-05
 ### Default Merge 전략 설정
 
 - `git pull` 실행 시 적용할 기본 merge 전략을 설정할 수 있습니다.
-- 설정하지 않으면 Git이 경고 메시지를 출력합니다.
+- 설정하지 않으면 Git이 경고 message를 출력합니다.
 
 ```bash
 # merge를 기본 전략으로 설정

@@ -18,7 +18,7 @@
 
 ## 사용 가능한 Permalink 번호
 
-- 비어있는 번호 : 252, 269, 270, 328 (4개)
+- 비어있는 번호 : 252, 269 (2개)
 - 새로운 번호 : 402~ (73개)
 
 
@@ -40,8 +40,8 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /270 | aws/bedrock/chatbot.md | AI Chatbot 구축 |
-| /328 | aws/bedrock/multi-agent.md | Multi-Agent |
+| /328 | aws/bedrock/multi-agent.md | Multi-Agent | **완료** |
+| /270 | aws/bedrock/best-practices.md | Best Practices | **완료** |
 
 
 ### database/ (5개)
@@ -239,6 +239,6 @@
 ## 진행 상황
 
 - 총 78개 문서
-- 완료 : 16개
-- 대기 : 62개
+- 완료 : 18개
+- 대기 : 60개
 
