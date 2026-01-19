@@ -52,26 +52,23 @@ date: 2024-02-06
 
 ## Command Pattern의 구성 요소
 
-- Command Pattern은 **Invoker, Command, Receiver**로 구성됩니다.
-    - Invoker는 command를 실행하는 역할을 합니다.
-    - Command는 실행할 작업을 캡슐화합니다.
-    - Receiver는 실제 작업을 수행합니다.
+- Command Pattern은 **`Invoker`, `Command`, `Receiver`**로 구성됩니다.
+    - `Invoker`는 command를 실행하는 역할을 합니다.
+    - `Command`는 실행할 작업을 캡슐화합니다.
+    - `Receiver`는 실제 작업을 수행합니다.
 
 | 구성 요소 | 역할 |
 | --- | --- |
-| Client | ConcreteCommand를 생성하고 Receiver를 설정 |
-| Invoker | 명령을 실행하고자 하는 객체, command 객체를 받아 실행 method 호출 |
-| Command | 실행될 작업을 캡슐화하는 interface, receiver에 특정 작업 처리 지시 |
-| ConcreteCommand | `Command` interface 구현, `execute()` 내에서 `receiver.action()` 실행 |
-| Receiver | 요구 사항을 수행하기 위해 어떤 일을 처리해야 하는지 아는 객체 |
+| `Client` | `ConcreteCommand`를 생성하고 `Receiver`를 설정 |
+| `Invoker` | 명령을 실행하고자 하는 객체, command 객체를 받아 실행 method 호출 |
+| `Command` | 실행될 작업을 캡슐화하는 interface, receiver에 특정 작업 처리 지시 |
+| `ConcreteCommand` | `Command` interface 구현, `execute()` 내에서 `receiver.action()` 실행 |
+| `Receiver` | 요구 사항을 수행하기 위해 어떤 일을 처리해야 하는지 아는 객체 |
 
 
----
+### Class Diagram
 
-
-## Class Diagram
-
-- Command Pattern의 구조는 **Invoker, `Command` interface, ConcreteCommand, Receiver**로 구성됩니다.
+- Command Pattern의 구조는 **`Invoker`, `Command` interface, `ConcreteCommand`, `Receiver`**로 구성됩니다.
 
 ```mermaid
 classDiagram
@@ -105,7 +102,7 @@ ConcreteCommand --> Receiver
 
 ### 기본 구현 Code
 
-- Client, Invoker, Command, ConcreteCommand, Receiver의 기본 구현입니다.
+- `Client`, `Invoker`, `Command`, `ConcreteCommand`, `Receiver`의 기본 구현입니다.
 
 ```java
 public class Client {
@@ -181,7 +178,7 @@ public class Receiver {
 
 ### 1. Client에서 Invoker에 Command 설정하기
 
-- client는 command 객체를 생성합니다.
+1. client는 command 객체를 생성합니다.
     - command 객체는 receiver에 전달할 일련의 행동으로 구성됩니다.
     - `execute()`는 행동을 캡슐화하며, receiver에 있는 특정 행동을 처리하기 위한 method를 호출합니다.
 
@@ -192,21 +189,24 @@ public void execute {
 }
 ```
 
-- client는 invoker 객체에 command를 설정합니다.
+2. client는 invoker 객체에 command를 설정합니다.
     - invoker 객체의 `setCommand()`를 호출하면서 command 객체를 넘겨줍니다.
     - command 객체는 나중에 쓰이기 전까지 invoker 객체에 보관됩니다.
 
 
 ### 2. Client에서 Invoker에 설정된 Command 사용하기
 
-- client가 invoker에게 설정한 명령 실행을 요청합니다.
+1. client가 invoker에게 설정한 명령 실행을 요청합니다.
     - client에서 `Invoker.requestSomething();` 호출합니다.
-- invoker가 command에게 실행을 요청합니다.
+
+2. invoker가 command에게 실행을 요청합니다.
     - invoker에서 `Command.execute();` 호출합니다.
-- command 객체가 `execute()` 실행합니다.
+
+3. command 객체가 `execute()` 실행합니다.
     - `execute()` method는 receiver의 method를 사용하여 행동을 처리합니다.
     - command에서 `Receiver.action1();`, `Receiver.action2();` 호출합니다.
-- receiver의 method 실행으로 명령이 최종 처리됩니다.
+
+4. receiver의 method 실행으로 명령이 최종 처리됩니다.
 
 
 ---
@@ -238,8 +238,8 @@ public void execute {
 
 ### Class Diagram
 
-- `RemoteLoader`(Client)가 receiver와 command를 생성하고, `RemoteControl`(Invoker)에 command를 설정합니다.
-    - `Command` interface를 `LightOnCommand`, `LightOffCommand` 등의 ConcreteCommand가 구현합니다.
+- `RemoteLoader`(client)가 receiver와 command를 생성하고, `RemoteControl`(invoker)에 command를 설정합니다.
+    - `Command` interface를 `LightOnCommand`, `LightOffCommand` 등의 `ConcreteCommand`가 구현합니다.
     - `Light`, `TV`, `Stereo` 등의 receiver가 실제 작업을 수행합니다.
 
 ```mermaid
@@ -916,9 +916,9 @@ public class CeilingFan {
 
 ## Macro Command : 여러 Command 한 번에 실행
 
-- **MacroCommand**는 여러 command를 하나로 묶어서 실행합니다.
+- **`MacroCommand`**는 여러 command를 하나로 묶어서 실행합니다.
     - button 하나로 여러 기기를 동시에 제어할 수 있습니다.
-    - MacroCommand에서도 작업 취소 기능을 지원할 수 있습니다.
+    - `MacroCommand`에서도 작업 취소 기능을 지원할 수 있습니다.
 
 ```java
 public class RemoteLoader {

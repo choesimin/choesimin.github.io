@@ -170,12 +170,12 @@ Component <|-- Composite
     - 하지만 leaf(개별 객체)와 node(복합 객체)는 각각 역할이 다르기 때문에 모든 method에 대해서 각 역할에 알맞는 기본 method를 구현하는 것은 불가능합니다.
     - 그래서 자기 역할에 맞지 않는 상황을 기준으로 예외를 던지도록 합니다.
 
-- 복합 객체(Menu)의 `print()` method에서는 재귀적인 방법으로 줄줄이 정보를 출력하도록 합니다.
+- 복합 객체(`Menu`)의 `print()` method에서는 재귀적인 방법으로 줄줄이 정보를 출력하도록 합니다.
     - 각 구성 요소에서 자기 자신의 정보를 출력하는 방법을 알고 있기 때문에 쉽게 구현 가능합니다.
 
 - Composite Pattern 내에서 Iterator Pattern을 활용하여 채식주의자용 menu item만 출력하는 기능을 만듭니다.
-    - 이 기능은 Menu에만 필요하고 MenuItem에는 필요 없습니다.
-    - Menu의 `createIterator()`을 구현하는 방법은 두 가지입니다.
+    - 이 기능은 `Menu`에만 필요하고 `MenuItem`에는 필요 없습니다.
+    - `Menu`의 `createIterator()`을 구현하는 방법은 두 가지입니다.
         - `null`을 return합니다.
         - `hasNext()`가 호출되었을 때 무조건 `false`를 return하는 iterator를 return합니다.
 
