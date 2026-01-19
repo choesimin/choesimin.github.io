@@ -1,7 +1,7 @@
 ---
 layout: note
 permalink: /476
-title: DevOps
+title: DevOps - Development와 Operations의 통합
 description: DevOps는 개발과 운영의 벽을 허물고, 자동화와 협업을 통해 software delivery 속도와 안정성을 높이는 문화이자 방법론입니다.
 date: 2025-01-13
 ---

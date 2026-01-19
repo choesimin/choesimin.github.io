@@ -413,7 +413,7 @@ class Dog : Animal {
 | 생성자 + field + getter/setter | `val`/`var` parameter | property 자동 생성 |
 | 생성자 overloading | default parameter | 선택적 인자 |
 | 생성자 내 초기화 | init block | 초기화 logic 분리 |
-| factory method | companion object | 생성 로직 캡슐화 |
+| factory method | companion object | 생성 logic 캡슐화 |
 
 ```java
 // Java : 생성자 overloading
