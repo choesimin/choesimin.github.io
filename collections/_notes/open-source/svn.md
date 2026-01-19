@@ -155,6 +155,165 @@ svn_repository/
 ---
 
 
+## 실무 사용 예시
+
+- 실무에서는 매일 출근 후 최신 code를 받고, 퇴근 전 작업 내용을 commit하는 pattern이 일반적입니다.
+- release 시점에 tag를 생성하고, 긴급 수정이 필요하면 해당 tag에서 branch를 만들어 hotfix를 진행합니다.
+
+
+### Project 최초 Checkout
+
+- 신규 입사자나 새 PC 환경에서 처음 project를 받을 때 `svn checkout`을 사용합니다.
+- checkout 후에는 `svn update`만으로 최신 code를 받습니다.
+
+```bash
+# repository 주소 확인 후 checkout
+svn checkout https://svn.company.com/repos/payment-api/trunk payment-api
+# A    payment-api/src
+# A    payment-api/src/service
+# A    payment-api/src/service/PaymentService.java
+# ...
+# Checked out revision 1542.
+
+cd payment-api
+
+# 현재 상태 확인
+svn info
+# Path: .
+# Working Copy Root Path: /home/dev/payment-api
+# URL: https://svn.company.com/repos/payment-api/trunk
+# Revision: 1542
+```
+
+
+### 일일 작업 흐름
+
+- 개발자는 출근 후 `svn update`로 다른 팀원의 변경 사항을 받고, 작업 완료 후 `svn commit`으로 반영합니다.
+
+```bash
+# 출근 후 최신 code 받기
+svn update
+# Updating '.':
+# U    src/service/UserService.java
+# U    src/controller/OrderController.java
+# Updated to revision 1542.
+
+# 작업 수행 후 변경 사항 확인
+svn status
+# M       src/service/PaymentService.java
+# M       src/dao/PaymentDao.java
+
+# commit 전 변경 내용 검토
+svn diff
+
+# 퇴근 전 commit
+svn commit -m "결제 취소 API 추가"
+# Committed revision 1543.
+```
+
+
+### Release Tag 생성
+
+- 운영 배포 전 현재 trunk 상태를 tag로 저장하여 배포 시점의 snapshot을 보관합니다.
+
+```bash
+# release tag 생성
+svn copy https://svn.company.com/repos/payment-api/trunk \
+         https://svn.company.com/repos/payment-api/tags/release-2.1.0 \
+         -m "Release 2.1.0 배포"
+
+# 생성된 tag 확인
+svn list https://svn.company.com/repos/payment-api/tags/
+# release-2.0.0/
+# release-2.1.0/
+```
+
+
+### 운영 Hotfix 처리
+
+- 운영 환경에서 긴급 버그가 발견되면 release tag에서 hotfix branch를 생성하여 수정합니다.
+- trunk의 개발 중인 code와 분리하여 안전하게 hotfix를 진행합니다.
+
+```bash
+# release tag에서 hotfix branch 생성
+svn copy https://svn.company.com/repos/payment-api/tags/release-2.1.0 \
+         https://svn.company.com/repos/payment-api/branches/hotfix-2.1.1 \
+         -m "Hotfix branch for critical payment bug"
+
+# hotfix branch로 전환
+svn switch https://svn.company.com/repos/payment-api/branches/hotfix-2.1.1
+
+# bug 수정 후 commit
+svn commit -m "결제 금액 소수점 반올림 오류 수정"
+
+# hotfix 완료 후 tag 생성
+svn copy https://svn.company.com/repos/payment-api/branches/hotfix-2.1.1 \
+         https://svn.company.com/repos/payment-api/tags/release-2.1.1 \
+         -m "Hotfix release 2.1.1"
+
+# trunk에도 hotfix 반영
+svn switch https://svn.company.com/repos/payment-api/trunk
+svn merge https://svn.company.com/repos/payment-api/branches/hotfix-2.1.1
+svn commit -m "Merge hotfix-2.1.1 into trunk"
+```
+
+
+### 동시 작업으로 인한 Conflict 해결
+
+- 여러 개발자가 같은 file을 수정하면 `svn update` 시 conflict가 발생합니다.
+- conflict marker를 확인하고 수동으로 병합한 뒤 `svn resolved`로 해결 완료를 표시합니다.
+
+```bash
+# update 시 conflict 발생
+svn update
+# Conflict discovered in 'src/service/UserService.java'.
+# Select: (p) postpone, (df) diff-full, (e) edit, ...
+# p 입력하여 나중에 해결
+
+svn status
+# C       src/service/UserService.java
+# ?       src/service/UserService.java.mine
+# ?       src/service/UserService.java.r1540
+# ?       src/service/UserService.java.r1543
+
+# file을 열어 conflict marker 확인 및 수정
+# <<<<<<< .mine
+# private int maxRetryCount = 5;
+# =======
+# private int maxRetryCount = 3;
+# >>>>>>> .r1543
+
+# 적절한 값으로 수정 후 conflict 해결 완료 표시
+svn resolved src/service/UserService.java
+
+svn commit -m "Merge conflict 해결 : maxRetryCount 값 통합"
+```
+
+
+### 장애 발생 시 Rollback
+
+- 배포 후 장애가 발생하면 이전 revision으로 rollback하여 빠르게 복구합니다.
+
+```bash
+# 최근 commit 이력 확인
+svn log -l 5
+# r1543 | kim | 2024-01-15 14:30:00 | 결제 흐름 변경  <- 문제 발생
+# r1542 | lee | 2024-01-15 11:20:00 | 주문 조회 개선
+# r1541 | park | 2024-01-14 17:00:00 | 회원 API 수정
+
+# r1543 변경 사항 되돌리기
+svn merge -c -1543 .
+# Reverse-merging r1543 into '.':
+# U    src/service/PaymentService.java
+
+# rollback commit
+svn commit -m "Rollback r1543 : 결제 장애로 인한 긴급 복구"
+```
+
+
+---
+
+
 ## Reference
 
 - <https://subversion.apache.org/>
