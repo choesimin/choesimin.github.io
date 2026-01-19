@@ -213,8 +213,8 @@
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
 | /468 | software-design/anti-pattern.md | Anti Pattern |
-| /469 | software-design/design-pattern/command-pattern.md | Command Pattern |
-| /470 | software-design/design-pattern/composit-pattern.md | Composite Pattern |
+| /469 | software-design/design-pattern/command-pattern.md | Command Pattern | **완료** |
+| /470 | software-design/design-pattern/composit-pattern.md | Composite Pattern | **완료** |
 | /471 | software-design/design-pattern/iterator-pattern.md | Iterator Pattern | **완료** |
 | /472 | software-design/design-pattern/template-method-pattern.md | Template Method Pattern | **완료** |
 | /473 | software-design/saga-pattern.md | Saga Pattern |
@@ -239,6 +239,6 @@
 ## 진행 상황
 
 - 총 78개 문서
-- 완료 : 14개
-- 대기 : 64개
+- 완료 : 16개
+- 대기 : 62개
 
