@@ -62,7 +62,7 @@ date: 2024-02-06
 | Client | ConcreteCommand를 생성하고 Receiver를 설정 |
 | Invoker | 명령을 실행하고자 하는 객체, command 객체를 받아 실행 method 호출 |
 | Command | 실행될 작업을 캡슐화하는 interface, receiver에 특정 작업 처리 지시 |
-| ConcreteCommand | Command interface 구현, `execute()` 내에서 `receiver.action()` 실행 |
+| ConcreteCommand | `Command` interface 구현, `execute()` 내에서 `receiver.action()` 실행 |
 | Receiver | 요구 사항을 수행하기 위해 어떤 일을 처리해야 하는지 아는 객체 |
 
 
@@ -71,7 +71,7 @@ date: 2024-02-06
 
 ## Class Diagram
 
-- Command Pattern의 구조는 **Invoker, Command interface, ConcreteCommand, Receiver**로 구성됩니다.
+- Command Pattern의 구조는 **Invoker, `Command` interface, ConcreteCommand, Receiver**로 구성됩니다.
 
 ```mermaid
 classDiagram

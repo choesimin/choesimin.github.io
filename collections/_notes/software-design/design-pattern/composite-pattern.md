@@ -21,14 +21,14 @@ date: 2025-01-19
 ### 투명성(Transparency) 확보
 
 - Composite Pattern은 **단일 책임 원칙을 어기고 투명성을 확보**합니다.
-    - Component interface에 자식들을 관리하기 위한 기능과 개별 객체로써의 기능을 전부 집어넣습니다.
+    - `Component` interface에 자식들을 관리하기 위한 기능과 개별 객체로써의 기능을 전부 집어넣습니다.
     - client에서 복합 객체와 개별 객체를 똑같은 방식으로 처리할 수 있도록 합니다.
     - 어떤 원소가 복합 객체인지 개별 객체인지가 client 입장에서는 투명하게 느껴집니다.
 
 #### 투명성과 안전성의 Trade-off
 
 - 투명성을 확보하면 **안전성은 떨어집니다.**
-    - Component class에 두 종류의 기능이 모두 들어있기 때문입니다.
+    - `Component` class에 두 종류의 기능이 모두 들어있기 때문입니다.
     - interface를 통일시켰기 때문에 객체에 따라 아무 의미 없는 method가 생기게 됩니다.
     - client에서 어떤 원소에 대해 무의미하거나 부적절한 작업을 처리하려고 할 수도 있습니다.
 
@@ -41,10 +41,10 @@ date: 2025-01-19
 
 ### Composite Pattern의 구성
 
-- Composite Pattern은 **Component, Composite, Leaf**로 구성됩니다.
-    - Component는 Composite와 Leaf의 공통 interface입니다.
-    - Composite는 다른 Component를 포함하는 복합 객체입니다.
-    - Leaf는 다른 Component를 포함하지 않는 개별 객체입니다.
+- Composite Pattern은 **`Component`, `Composite`, `Leaf`**로 구성됩니다.
+    - `Component`는 `Composite`와 `Leaf`의 공통 interface입니다.
+    - `Composite`는 다른 `Component`를 포함하는 복합 객체입니다.
+    - `Leaf`는 다른 `Component`를 포함하지 않는 개별 객체입니다.
 
 
 ---
@@ -109,20 +109,20 @@ Branch2 -- Leaf5
 
 ## Class Diagram
 
-- client에서는 Component interface를 이용하여 복합 객체 내의 객체들을 조작할 수 있습니다.
+- client에서는 `Component` interface를 이용하여 복합 객체 내의 객체들을 조작할 수 있습니다.
 
-- Component에서는 복합 객체 내에 들어있는 모든 객체들에 대한 interface를 정의합니다.
+- `Component`에서는 복합 객체 내에 들어있는 모든 객체들에 대한 interface를 정의합니다.
     - 복합 node 뿐 아니라 개별 객체 node에 대한 method까지 정의합니다.
     - `add()`, `remove()`, `getChild()` 등의 몇가지 작업에 대한 기본 행동을 정의할 수도 있습니다.
 
-- Composite는 자식이 있는 구성 요소의 행동을 정의하고 자식 구성 요소를 저장하는 역할을 맡습니다.
-    - Composite에서 Leaf와 관련된 기능도 구현해야 합니다.
-    - Leaf와 관련된 기능들은 복합 객체에서 필요 없기 때문에 예외를 던지는 등의 방법을 사용하면 됩니다.
+- `Composite`는 자식이 있는 구성 요소의 행동을 정의하고 자식 구성 요소를 저장하는 역할을 맡습니다.
+    - `Composite`에서 `Leaf`와 관련된 기능도 구현해야 합니다.
+    - `Leaf`와 관련된 기능들은 복합 객체에서 필요 없기 때문에 예외를 던지는 등의 방법을 사용하면 됩니다.
 
-- Leaf에는 자식이 없습니다.
-    - Leaf에서는 그 안에 들어있는 원소에 대한 행동을 정의합니다.
-    - Composite에서 지원하는 기능을 구현하면 됩니다.
-    - Leaf에서는 `add()`, `remove()`, `getChild()` 같은 method가 필요 없음에도 불구하고 그 method들을 상속받아야 합니다.
+- `Leaf`에는 자식이 없습니다.
+    - `Leaf`에서는 그 안에 들어있는 원소에 대한 행동을 정의합니다.
+    - `Composite`에서 지원하는 기능을 구현하면 됩니다.
+    - `Leaf`에서는 `add()`, `remove()`, `getChild()` 같은 method가 필요 없음에도 불구하고 그 method들을 상속받아야 합니다.
 
 ```mermaid
 classDiagram
