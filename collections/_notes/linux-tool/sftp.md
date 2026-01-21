@@ -59,7 +59,7 @@ sftp -i ~/.ssh/my_key user@hostname
 
 ## 탐색 명령어
 
-- sftp session 내에서 **원격 server와 local system을 탐색**하는 명령어입니다.
+- `pwd`, `ls`, `cd`로 원격 server를, `lpwd`, `lls`, `lcd`로 local system을 탐색합니다.
 
 
 ### 원격 Server 탐색
@@ -91,7 +91,7 @@ sftp -i ~/.ssh/my_key user@hostname
 
 ## File 전송 명령어
 
-- sftp의 핵심 기능인 **file upload와 download** 명령어입니다.
+- `get`으로 download하고, `put`으로 upload하며, `mget`과 `mput`으로 여러 file을 한 번에 전송합니다.
 
 
 ### Download (원격 → Local)
@@ -146,7 +146,7 @@ mput report1.pdf report2.pdf
 
 ## File 관리 명령어
 
-- sftp session 내에서 **원격 server의 file과 directory를 관리**하는 명령어입니다.
+- `mkdir`, `rmdir`, `rm`, `rename`, `chmod` 등으로 원격 server의 file과 directory를 관리합니다.
 
 | 명령어 | 설명 |
 | --- | --- |
@@ -164,7 +164,7 @@ mput report1.pdf report2.pdf
 
 ## Session 제어
 
-- sftp session을 **관리하고 종료**하는 명령어입니다.
+- `bye`로 session을 종료하고, `!`로 local shell 명령어를 실행합니다.
 
 | 명령어 | 설명 |
 | --- | --- |
@@ -185,7 +185,7 @@ sftp> !whoami
 
 ## 자주 사용하는 예시
 
-- 실무에서 자주 사용하는 sftp 작업 예시입니다.
+- log file download, 설정 file backup 및 교체, directory 전체 복사 등의 작업을 수행할 수 있습니다.
 
 
 ### Log File Download
