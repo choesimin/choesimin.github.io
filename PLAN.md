@@ -53,7 +53,7 @@
 | /404 | database/mysql/gtid.md | MySQL GTID |
 | /405 | database/mysql/limit-offset.md | MySQL LIMIT와 OFFSET |
 | /406 | database/mongodb/index/compound-index/esr-rule.md | ESR Rule |
-| /478 | database/transaction/distributed-transaction.md | 분산 Transaction - 여러 Database 간 정합성 전략 |
+| /478 | database/transaction/distributed-transaction.md | 분산 Transaction - 여러 Database 간 정합성 전략 | **완료** |
 
 
 ### domain/email/ (5개)
@@ -97,7 +97,7 @@
 | /423 | framework/spring/bean-validation.md | Bean Validation |
 | /424 | framework/spring/excel-download.md | Excel Download |
 | /425 | framework/spring/pageable.md | Spring Pageable |
-| /479 | framework/spring/spel.md | SpEL - Spring Expression Language |
+| /479 | framework/spring/spel.md | SpEL - Spring Expression Language | **완료** |
 
 
 ### frontend/ (1개)
@@ -143,7 +143,7 @@
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
 | /446 | linux-tool/ss.md | ss 명령어 | **완료** |
-| /477 | linux-tool/sftp.md | sftp 명령어 |
+| /477 | linux-tool/sftp.md | sftp 명령어 | **완료** |
 
 
 ### open-source/debezium/ (7개)
@@ -219,7 +219,7 @@
 | /470 | software-design/design-pattern/composit-pattern.md | Composite Pattern | **완료** |
 | /471 | software-design/design-pattern/iterator-pattern.md | Iterator Pattern | **완료** |
 | /472 | software-design/design-pattern/template-method-pattern.md | Template Method Pattern | **완료** |
-| /473 | software-design/saga-pattern.md | Saga Pattern - 보상 Transaction을 통한 결과적 일관성 |
+| /473 | software-design/saga-pattern.md | Saga Pattern - 보상 Transaction을 통한 결과적 일관성 | **완료** |
 | /474 | software-design/system-design/cdc-pipeline.md | CDC Pipeline |
 
 
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 18개
-- 대기 : 62개
+- 완료 : 22개
+- 대기 : 58개
 
