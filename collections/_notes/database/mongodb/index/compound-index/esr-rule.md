@@ -1,10 +1,9 @@
 ---
 layout: note
-permalink: /262
+permalink: /406
 title: ESR Rule - Compound Index 설계의 핵심 원칙
 description: ESR Rule은 Equality, Sort, Range 순서로 compound index의 field를 배치하는 원칙으로, query 성능을 획기적으로 향상시킵니다.
-date: 2025-11-04
-published: false
+date: 2026-01-21
 ---
 
 
@@ -284,15 +283,17 @@ db.users.find({
 
 ### Working Set 최적화
 
-```js
-// ESR rule 적용으로 검사 document 수가 줄어듦
-// → 더 많은 index가 memory에 올라감
-// → cache hit rate 증가
-// → query 성능 극적 개선
-```
+- **working set**은 query 처리에 필요한 모든 data(index + document)입니다.
+- ESR rule 적용으로 검사 document 수가 줄어들면, 더 많은 index가 memory에 올라가고 cache hit rate가 증가하여 query 성능이 향상됩니다.
 
-- **working set** : query 처리에 필요한 모든 data(index + document).
-- ESR rule로 working set을 줄이면 memory에 더 많이 cache됩니다.
+```mermaid
+flowchart LR
+    A[ESR rule 적용] --> B[검사 document 수 감소]
+    B --> C[working set 축소]
+    C --> D[더 많은 index가 memory에 상주]
+    D --> E[cache hit rate 증가]
+    E --> F[query 성능 향상]
+```
 
 
 ---
@@ -383,16 +384,18 @@ db.products.createIndex({ category: 1, price: 1 });
 ### Index 설계 전
 
 - 자주 실행되는 query들을 파악했는가.
-- 각 query의 filtering 조건(Equality, Range)을 분류했는가.
-- 각 query의 정렬(Sort) 조건을 파악했는가.
+- 각 query의 filtering 조건(equality, range)을 분류했는가.
+- 각 query의 정렬(sort) 조건을 파악했는가.
 - 가장 중요한 query를 선정했는가.
+
 
 ### Index 설계 중
 
-- Equality field들을 앞에 배치했는가.
-- Sort field를 그 다음에 배치했는가.
-- Range field를 마지막에 배치했는가.
+- equality field들을 앞에 배치했는가.
+- sort field를 그 다음에 배치했는가.
+- range field를 마지막에 배치했는가.
 - 더 selective한 equality field가 앞에 있는가.
+
 
 ### Index 적용 후
 
