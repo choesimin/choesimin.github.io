@@ -206,7 +206,7 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /467 | paradigm/layered-architecture.md | Layered Architecture |
+| /467 | paradigm/layered-architecture.md | Layered Architecture - 계층으로 관심사를 분리하는 Architecture Pattern | **완료** |
 | /475 | paradigm/spec-driven-programming.md | Spec-Driven Programming |
 
 
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 24개
-- 대기 : 56개
+- 완료 : 25개
+- 대기 : 55개
 
