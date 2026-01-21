@@ -25,7 +25,7 @@
 ---
 
 
-## 작성 예정 문서 (총 78개)
+## 작성 예정 문서 (총 79개)
 
 
 ### ai/ (2개)
@@ -44,7 +44,7 @@
 | /270 | aws/bedrock/best-practices.md | Best Practices | **완료** |
 
 
-### database/ (5개)
+### database/ (6개)
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
@@ -53,6 +53,7 @@
 | /404 | database/mysql/gtid.md | MySQL GTID |
 | /405 | database/mysql/limit-offset.md | MySQL LIMIT와 OFFSET |
 | /406 | database/mongodb/index/compound-index/esr-rule.md | ESR Rule |
+| /478 | database/transaction/distributed-transaction.md | 분산 Transaction - 여러 Database 간 정합성 전략 |
 
 
 ### domain/email/ (5개)
@@ -217,7 +218,7 @@
 | /470 | software-design/design-pattern/composit-pattern.md | Composite Pattern | **완료** |
 | /471 | software-design/design-pattern/iterator-pattern.md | Iterator Pattern | **완료** |
 | /472 | software-design/design-pattern/template-method-pattern.md | Template Method Pattern | **완료** |
-| /473 | software-design/saga-pattern.md | Saga Pattern |
+| /473 | software-design/saga-pattern.md | Saga Pattern - 보상 Transaction을 통한 결과적 일관성 |
 | /474 | software-design/system-design/cdc-pipeline.md | CDC Pipeline |
 
 
@@ -238,7 +239,7 @@
 
 ## 진행 상황
 
-- 총 78개 문서
+- 총 79개 문서
 - 완료 : 18개
-- 대기 : 60개
+- 대기 : 61개
 
