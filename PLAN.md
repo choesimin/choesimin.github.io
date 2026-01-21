@@ -48,10 +48,10 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /402 | database/count-distinct.md | Count Distinct |
+| /402 | database/count-distinct.md | COUNT DISTINCT - 중복을 제거한 고유 값 개수 세기 | **완료** |
 | /403 | database/rocksdb.md | RocksDB |
 | /404 | database/mysql/gtid.md | MySQL GTID |
-| /405 | database/mysql/limit-offset.md | MySQL LIMIT와 OFFSET |
+| /405 | database/mysql/limit-offset.md | MySQL LIMIT와 OFFSET | **완료** |
 | /406 | database/mongodb/index/compound-index/esr-rule.md | ESR Rule |
 | /478 | database/transaction/distributed-transaction.md | 분산 Transaction - 여러 Database 간 정합성 전략 | **완료** |
 
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 22개
-- 대기 : 58개
+- 완료 : 24개
+- 대기 : 56개
 
