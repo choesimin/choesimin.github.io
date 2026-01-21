@@ -25,7 +25,7 @@
 ---
 
 
-## 작성 예정 문서 (총 79개)
+## 작성 예정 문서 (총 80개)
 
 
 ### ai/ (2개)
@@ -89,7 +89,7 @@
 | /421 | economics/asset/return-profile.md | 수익률 프로필 |
 
 
-### framework/ (4개)
+### framework/ (5개)
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
@@ -97,6 +97,7 @@
 | /423 | framework/spring/bean-validation.md | Bean Validation |
 | /424 | framework/spring/excel-download.md | Excel Download |
 | /425 | framework/spring/pageable.md | Spring Pageable |
+| /479 | framework/spring/spel.md | SpEL - Spring Expression Language |
 
 
 ### frontend/ (1개)
@@ -239,7 +240,7 @@
 
 ## 진행 상황
 
-- 총 79개 문서
+- 총 80개 문서
 - 완료 : 18개
-- 대기 : 61개
+- 대기 : 62개
 
