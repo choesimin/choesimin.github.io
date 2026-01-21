@@ -73,9 +73,9 @@ sum('x', 'y');    // 'xy' (의도하지 않은 함수 사용 방법)
 ```
 
 - 함수의 의도는 2개의 number type 인수를 전달받아 합계를 반환하는 것입니다.
-    - 하지만 JavaScript code에는 어떤 type의 인수를 전달해야 하는지, 어떤 type의 반환 값을 return해야 하는지 명확히 기술되어 있지 않습니다.
+    - 하지만 JavaScript code에는 어떤 type의 인수를 전달해야 하는지, 어떤 type의 반환값을 return해야 하는지 명확히 기술되어 있지 않습니다.
 - 함수의 인자로 string type을 넣어도 JavaScript 문법상 어떠한 문제도 없으므로, JavaScript Engine은 개발자가 의도하지 않은 동작을 그대로 실행합니다.
-- 이러한 상황이 발생한 이유는 변수나 반환 값의 type을 사전에 지정하지 않는 JavaScript의 동적 typing에 의한 것입니다.
+- 이러한 상황이 발생한 이유는 변수나 반환값의 type을 사전에 지정하지 않는 JavaScript의 동적 typing에 의한 것입니다.
 
 #### 정적 Typing : TypeScript
 
@@ -110,7 +110,7 @@ sum('x', 'y');    // error TS2345: Argument of type '"x"' is not assignable to p
 
 - TypeScript를 사용하면 IDE(통합 개발 환경)를 포함한 다양한 도구의 지원을 받을 수 있습니다.
 - IDE에 type 정보를 제공함으로써, 높은 수준의 IntelliSense, Code Assist, Type Check, Refactoring 등을 지원받을 수 있습니다.
-    - 동적 typing은 IDE가 변수나 매개 변수, 함수 반환 값의 type을 알 수 없어, 개발 편의 기능을 지원할 수 없게 합니다.
+    - 동적 typing은 IDE가 변수나 매개 변수, 함수 반환값의 type을 알 수 없어, 개발 편의 기능을 지원할 수 없게 합니다.
 - 도구의 지원은 대규모 project를 위한 필수 요소이기도 합니다.
 
 

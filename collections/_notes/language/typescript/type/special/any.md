@@ -87,7 +87,7 @@ myVar = 123;    // OK
 
 ### `any` Type 사용을 막는 Compiler Option : `noImplicitAny`
 
-- `noImplicitAny` option은 TypeScript의 type checker가 변수, 매개 변수, 반환 값 등의 type을 자동으로 `any`로 추론하지 못하게 막습니다.
+- `noImplicitAny` option은 TypeScript의 type checker가 변수, 매개 변수, 반환값 등의 type을 자동으로 `any`로 추론하지 못하게 막습니다.
     - 개발자가 명시적으로 type을 선언하지 않았을 때, compiler가 오류를 발생시킵니다.
 
 - `noImplicitAny` option을 통해 `any` type의 사용을 줄이고, TypeScript의 type 추론(type inferenece) 기능에 의존하지 않는 명확한 type 선언을 장려할 수 있습니다.

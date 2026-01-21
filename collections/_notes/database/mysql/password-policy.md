@@ -58,7 +58,7 @@ SET GLOBAL validate_password.special_char_count = 1;
 
 - `SET GLOBAL`로 추가한 설정은 전역 변수(global variable)로 적용되며, MySQL을 재시작할 때까지 유지됩니다.
 
-- 설정을 영구적으로 적용하려면 MySQL 설정 file(`my.cnf` 또는 `my.ini`)의 `[mysqld]` section 아래에 `validate_password.policy=MEDIUM`, `validate_password.length=8`과 같은 형식으로 여러 설정 값을 줄을 바꾸어 추가합니다.
+- 설정을 영구적으로 적용하려면 MySQL 설정 file(`my.cnf` 또는 `my.ini`)의 `[mysqld]` section 아래에 `validate_password.policy=MEDIUM`, `validate_password.length=8`과 같은 형식으로 여러 설정값을 줄을 바꾸어 추가합니다.
 	- `[mysqld]` section은 MySQL server의 전역 설정을 담당합니다.
 	- config file로 설정을 변경한 후에는 MySQL server를 재시작해야 변경 사항이 적용됩니다.
 
@@ -107,5 +107,5 @@ default_password_lifetime=90
 SHOW VARIABLES LIKE 'validate_password%';
 ```
 
-- 현재 적용된 정책과 설정 값을 확인하고, 필요시 추가적으로 조정합니다.
+- 현재 적용된 정책과 설정값을 확인하고, 필요시 추가적으로 조정합니다.
 

@@ -39,7 +39,7 @@ foo = 'hi';    // Error: Type '"hi"' is not assignable to type 'number'.
 
 ### 함수 Type 추론
 
-- 함수에서 반환 값에 대한 type을 명시하지 않으면 TypeScript는 반환되는 값들을 분석하여 반환 type을 추론합니다.
+- 함수에서 반환값에 대한 type을 명시하지 않으면 TypeScript는 반환되는 값들을 분석하여 반환 type을 추론합니다.
 
 ```typescript
 function add(x: number, y: number) {

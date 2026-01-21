@@ -53,7 +53,7 @@ docker logs -f my-container
 ```
 
 - 실행 중인 application의 동작을 실시간으로 monitoring합니다.
-    - `-f` option의 기본 값이 `all`이므로, 과거 log와 새로운 log를 모두 출력하게 됩니다.
+    - `-f` option의 기본값이 `all`이므로, 과거 log와 새로운 log를 모두 출력하게 됩니다.
 
 
 ### 실시간 log 확인 (과거 log는 출력하지 않음)

@@ -158,18 +158,18 @@ passowrd : 123456
 
 | Option  | 설명 |
 | --- | --- |
-| `--master-data=[value]` | dump 받은 file이 '어느 binary log의 위치까지 사용한 것인지'를 dump file 안에 `CHANGE MASTER` 구문의 형태로 작성합니다.<br>`value`에는 `1`(comment로 남지 않습니다.) 또는 `2`(comment로 남습니다.)를 지정할 수 있으며, 기본 값은 `1`입니다.<br>이 option은 `RELOAD` 권한을 가지고 있어야 하고, binary log는 enable되어 있어야 합니다.<br>만약 binary log를 enable하지 않고 사용하면 오류가 발생합니다.<br>자동으로 `--lock-tables` option을 disable합니다.<br>원래는 `--single-transaction` option을 사용하면 `--lock-all-tables` option이 disable되지만, 이 option을 사용했을 때에는 `--single-transaction` option을 사용하더라도 `--lock-all-tables`가 enable됩니다.<br>dump를 시작할 때, 아주 짧은 시간 동안 global read lock이 발생합니다. |
+| `--master-data=[value]` | dump 받은 file이 '어느 binary log의 위치까지 사용한 것인지'를 dump file 안에 `CHANGE MASTER` 구문의 형태로 작성합니다.<br>`value`에는 `1`(comment로 남지 않습니다.) 또는 `2`(comment로 남습니다.)를 지정할 수 있으며, 기본값은 `1`입니다.<br>이 option은 `RELOAD` 권한을 가지고 있어야 하고, binary log는 enable되어 있어야 합니다.<br>만약 binary log를 enable하지 않고 사용하면 오류가 발생합니다.<br>자동으로 `--lock-tables` option을 disable합니다.<br>원래는 `--single-transaction` option을 사용하면 `--lock-all-tables` option이 disable되지만, 이 option을 사용했을 때에는 `--single-transaction` option을 사용하더라도 `--lock-all-tables`가 enable됩니다.<br>dump를 시작할 때, 아주 짧은 시간 동안 global read lock이 발생합니다. |
 | `--delete-master-logs` | master server인 경우, dump 받은 후 binary log는 모두 삭제합니다.<br>자동으로 `--master-data` option을 enable합니다. |
 | `--dump-slave=[value]` | `--master-data` option과 비슷하지만, 다른 slave server를 만들기 위해 slave server를 dump한다는 점이 다릅니다.<br>`CHANGE MASTER TO` 구문을 dump file에 추가합니다. |
 | `--apply-slave-statements` | `--dump-slave` option으로 dump하는 경우에 `STOP SLAVE`, `CHANGE MASTER TO`, `START SLAVE` 구문을 같이 작성하게 합니다. |
-| `--set-qtid-purged=[value]` | GTID(Global Transaction ID) 정보를 dump file에 `SET @@global.gtid purged` 구문으로 작성합니다.<br>`value`에는 `OFF`, `ON`, `AUTO` 중 하나가 지정할 수 있으며, 기본 값은 `AUTO`입니다.<br>`OFF` : Add no SET statement to the output.<br>`ON` : Add a SET statement to the output. An error occurs if GTIDs are not enabled on the server.<br>`AUTO` : Add a SET statement to the output if GTIDs are enabled on the server. |
+| `--set-qtid-purged=[value]` | GTID(Global Transaction ID) 정보를 dump file에 `SET @@global.gtid purged` 구문으로 작성합니다.<br>`value`에는 `OFF`, `ON`, `AUTO` 중 하나가 지정할 수 있으며, 기본값은 `AUTO`입니다.<br>`OFF` : Add no SET statement to the output.<br>`ON` : Add a SET statement to the output. An error occurs if GTIDs are not enabled on the server.<br>`AUTO` : Add a SET statement to the output if GTIDs are enabled on the server. |
 
 
 ### Etc Option
 
 | Option | Short Option | 설명 |
 | --- | --- | --- |
-| `--default-character-set=[charset]` |  | 기본 charset을 설정합니다. 기본 값은 `utf8`입니다. |
+| `--default-character-set=[charset]` |  | 기본 charset을 설정합니다. 기본값은 `utf8`입니다. |
 | `--no-set-names` | `-N` | `--set-names` option을 disable합니다. |
 | `--set-charset` |  | `SET NAMES default_charset`을 기술합니다. |
 | `--help` | `-?` | 도움말을 출력합니다. |

@@ -38,7 +38,7 @@ let bar: number = true;    // error TS2322: Type 'true' is not assignable to typ
 
 ### 함수 Type 선언
 
-- 함수의 매개 변수와 반환 값에 대한 type을 선언할 수 있습니다.
+- 함수의 매개 변수와 반환값에 대한 type을 선언할 수 있습니다.
 - 일반 변수와 마찬가지로 선언된 type에 일치하지 않는 값이 주어지면 오류가 발생합니다.
 
 ```typescript

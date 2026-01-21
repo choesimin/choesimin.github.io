@@ -308,7 +308,7 @@ print_config() {
     done
 }
 
-# 설정 값 검증 함수
+# 설정값 검증 함수
 validate_config() {
     required_keys=("database_host" "database_port" "database_name")
     

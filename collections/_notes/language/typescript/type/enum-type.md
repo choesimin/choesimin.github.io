@@ -281,7 +281,7 @@ enum RandomValues {
 ### `enum`과 Bit Flag
 
 - `enum`을 사용하여 'bit flag' 또는 'bit field'를 구현할 수 있습니다.
-- bit 연산을 사용하여 여러 `enum` member를 조합하는 방식은, 설정 값이나 권한 관리와 같이 여러 option을 조합해야 하는 경우 유용합니다.
+- bit 연산을 사용하여 여러 `enum` member를 조합하는 방식은, 설정값이나 권한 관리와 같이 여러 option을 조합해야 하는 경우 유용합니다.
 
 ```typescript
 enum Permissions {

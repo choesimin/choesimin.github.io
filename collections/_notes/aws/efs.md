@@ -28,7 +28,7 @@ date: 2023-08-06
 1. Security Group의 이름, 설명, VPC를 설정합니다.
 2. Inbound 규칙에 `NFS` Type을 `Anywhere` Source로 추가합니다.
     - file storage를 위한 Security Group이기 때문에 `NFS`만 추가하면 됩니다.
-3. Outbound 규칙은 기본 값(`All traffic`)을 유지합니다.
+3. Outbound 규칙은 기본값(`All traffic`)을 유지합니다.
 
 
 ### 2. EFS File System 생성하기

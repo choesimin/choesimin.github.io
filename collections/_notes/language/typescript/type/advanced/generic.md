@@ -32,7 +32,7 @@ let output2 = identity<number>(100);    // output2의 type은 'number'
     - `T`는 type 변수로, 함수가 호출될 때 결정됩니다.
 
 - `identity` 함수 호출 시, `<string>`, `<number>`와 같이 type 인자를 제공하여 `T`의 구체적인 type을 지정합니다.
-    - 이를 통해 compiler는 반환 값의 type을 정확히 알 수 있습니다.
+    - 이를 통해 compiler는 반환값의 type을 정확히 알 수 있습니다.
 
 
 ### Interface의 Generic
@@ -129,20 +129,20 @@ function createItem<T extends Identifiable & Nameable>(item: T): T {
 ---
 
 
-## Generic Default Type Parameter : 기본 값
+## Generic Default Type Parameter : 기본값
 
-- **generic type 기본 값**(generic default type parameter)은 TypeScript에서 **generic을 사용할 때 제공되지 않은 type 인자에 대해, 기본 type을 설정할 수 있게 해주는 기능**입니다.
-    - generic type 기본 값을 통해 개발자는 generic 함수나 class를 더 유연하게 사용할 수 있으며, **type 인자를 생략했을 때의 동작을 명시적으로 정의**할 수 있습니다.
+- **generic type 기본값**(generic default type parameter)은 TypeScript에서 **generic을 사용할 때 제공되지 않은 type 인자에 대해, 기본 type을 설정할 수 있게 해주는 기능**입니다.
+    - generic type 기본값을 통해 개발자는 generic 함수나 class를 더 유연하게 사용할 수 있으며, **type 인자를 생략했을 때의 동작을 명시적으로 정의**할 수 있습니다.
 
-- generic type 기본 값을 사용하면 TypeScript의 type 추론(type inference) 기능이 동작합니다.
-    - type 인자를 명시적으로 제공하지 않아도, TypeScript compiler는 제공된 값의 type을 기반으로 적절한 type을 추론하거나, 기본 값을 사용하여 type을 결정합니다.
+- generic type 기본값을 사용하면 TypeScript의 type 추론(type inference) 기능이 동작합니다.
+    - type 인자를 명시적으로 제공하지 않아도, TypeScript compiler는 제공된 값의 type을 기반으로 적절한 type을 추론하거나, 기본값을 사용하여 type을 결정합니다.
 
-- generic type 기본 값은 code를 더욱 간결하고 유연하게 만듭니다.
+- generic type 기본값은 code를 더욱 간결하고 유연하게 만듭니다.
     - type 인자가 생략됐을 때 사용될 type을 명시적으로 지정함으로써, code의 가독성과 이해도를 높일 수 있습니다.
     - 함수나 class를 호출할 때마다 다른 type을 지정할 수 있는 option을 제공하면서도, 특정 상황에서는 기본 type을 자동으로 사용하게 함으로써 code의 유연성을 향상시킵니다.
-    - 기본 값을 통해 안전하게 type을 지정함으로써, 잘못된 type 사용으로 인한 오류를 줄일 수 있습니다.
+    - 기본값을 통해 안전하게 type을 지정함으로써, 잘못된 type 사용으로 인한 오류를 줄일 수 있습니다.
 
-- generic type 기본 값은 `T = DefaultType` 형식을 사용하여 정의됩니다.
+- generic type 기본값은 `T = DefaultType` 형식을 사용하여 정의됩니다.
     - `T`는 generic type 매개 변수이며, `DefaultType`은 해당 매개 변수가 생략됐을 때 사용될 기본 type입니다.
 
 ```typescript
@@ -153,14 +153,14 @@ function createContainer<T = string>(value: T): {value: T} {
 let container = createContainer('Hello');
 ```
 
-- `createContainer` 함수는 generic type 매개 변수 `T`에 대한 기본 값으로 `string`을 사용합니다.
+- `createContainer` 함수는 generic type 매개 변수 `T`에 대한 기본값으로 `string`을 사용합니다.
 - 이는 함수를 호출할 때 type 인자를 명시하지 않아도, 자동으로 `T`가 `string`으로 설정됨을 의미합니다.
 - 따라서, `container` 변수는 `{value: string}` type의 객체를 가지게 됩니다.
 
 
-### 기본 값이 있는 Generic 함수
+### 기본값이 있는 Generic 함수
 
-- 배열을 받아 그 배열의 첫 번째 요소를 반환하는, generic type 기본 값을 사용한 함수입니다.
+- 배열을 받아 그 배열의 첫 번째 요소를 반환하는, generic type 기본값을 사용한 함수입니다.
 - type 인자가 제공되지 않은 경우, 기본적으로 `number[]` type의 배열을 처리하도록 합니다.
 
 ```typescript
@@ -168,21 +168,21 @@ function getFirstElement<T = number>(arr: T[]): T | undefined {
     return arr[0];
 }
 
-const firstNumber = getFirstElement([10, 20, 30]);    // type 인자를 생략 (기본 값 number 사용)
+const firstNumber = getFirstElement([10, 20, 30]);    // type 인자를 생략 (기본값 number 사용)
 const firstString = getFirstElement<string>(['apple', 'banana', 'cherry']);    // type 인자로 string 명시
 
 console.log(firstNumber);    // 출력: 10
 console.log(firstString);    // 출력: apple
 ```
 
-- `getFirstElement` 함수는 generic type `T`에 대한 기본 값으로 `number`를 가집니다.
+- `getFirstElement` 함수는 generic type `T`에 대한 기본값으로 `number`를 가집니다.
 - 따라서 type 인자를 생략하고 숫자 배열을 인자로 전달하면, 함수는 숫자를 반환합니다.
 - 반면, type 인자로 `string`을 명시하면, 문자열 배열을 처리합니다.
 
 
-### 기본 값이 있는 Generic class
+### 기본값이 있는 Generic class
 
-- generic type 기본 값을 사용하는, data wrapper class입니다.
+- generic type 기본값을 사용하는, data wrapper class입니다.
     - data wrapper class는 data를 저장하고, 저장된 data를 반환하는 기능을 가집니다.
 
 - type 인자가 제공되지 않은 경우, 기본적으로 `string` type을 다룹니다.
@@ -200,13 +200,13 @@ class DataWrapper<T = string> {
     }
 }
 
-const stringWrapper = new DataWrapper('Hello, World!');    // type 인자를 생략 (기본 값 string 사용)
+const stringWrapper = new DataWrapper('Hello, World!');    // type 인자를 생략 (기본값 string 사용)
 const numberWrapper = new DataWrapper<number>(12345);    // type 인자로 number 명시
 
 console.log(stringWrapper.getData());    // 출력: Hello, World!
 console.log(numberWrapper.getData());    // 출력: 12345
 ```
 
-- `DataWrapper` class는 generic type `T`에 대한 기본 값으로 `string`을 가집니다.
+- `DataWrapper` class는 generic type `T`에 대한 기본값으로 `string`을 가집니다.
 - 생성자를 통해 data를 instance에 저장하고, `getData` method를 사용하여 저장된 data를 반환합니다.
 - type 인자를 생략하면 문자열을 다루는 것으로 간주되며, 명시적으로 다른 type을 지정하면 해당 type의 data를 다룹니다.

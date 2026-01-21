@@ -25,7 +25,7 @@ public void updateUser(User user) { ... }
     - compile 시점이 아닌 runtime에 평가되므로, 실행 환경에 따라 동적으로 값이 결정됩니다.
 
 - Spring의 다양한 annotation에서 SpEL을 지원합니다.
-    - `@Value`는 설정 값을 field에 주입할 때 사용합니다.
+    - `@Value`는 설정값을 field에 주입할 때 사용합니다.
     - `@Cacheable`, `@CacheEvict`는 cache key를 동적으로 생성할 때 사용합니다.
     - `@PreAuthorize`, `@PostAuthorize`는 method 수준의 보안 규칙을 정의할 때 사용합니다.
     - `@EventListener`는 조건부 event 처리를 정의할 때 사용합니다.
@@ -214,7 +214,7 @@ public Result calculate(List<User> users) { ... }
 @PreAuthorize("@securityService.hasAccess(#userId)")
 public User getUser(Long userId) { ... }
 
-// bean에서 설정 값을 가져와 주입
+// bean에서 설정값을 가져와 주입
 @Value("#{@environment.getProperty('app.timeout')}")
 private String timeout;
 

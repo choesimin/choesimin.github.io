@@ -16,7 +16,7 @@ date: 2023-05-17
     - 예를 들어, `block` 형태를 띄는 요소에게 `display: inline` 속성을 주면 `inline` 형태로 사용자에게 보여집니다.
     - 반대로, `inline` 형태를 띄는 요소에게 `display: block` 속성을 주면 `block` 형태로 사용자에게 보여집니다.
 
-- 대부분의 HTML 요소는 `display` 속성의 기본 값으로 `block`과 `inline` 중 하나의 값을 가집니다.
+- 대부분의 HTML 요소는 `display` 속성의 기본값으로 `block`과 `inline` 중 하나의 값을 가집니다.
     - `inline` : 필요한 폭만 차지하며, 요소의 좌우에 다른 요소가 올 수 있습니다.
     - `block` : 새 줄에서 시작하며 browser 창 전체 너비를 차지합니다.
 
@@ -36,7 +36,7 @@ date: 2023-05-17
 ### `block`
 
 - 기본적으로 가로 영역을 모두 채우며, `block` 요소 다음에 등장하는 요소는 줄바꿈이 된 것처럼 보입니다.
-    - `block` 요소의 `width` 속성 기본 값은 `100%`입니다.
+    - `block` 요소의 `width` 속성 기본값은 `100%`입니다.
 
 - `width`, `height`, `margin`, `padding` 속성값을 지정할 수 있습니다.
 - `block` 요소 뒤에 등장하는 요소가 그 이전 `block` 요소의 오른쪽에 배치될 수 있어도 항상 다음 줄에 위치합니다.
@@ -48,7 +48,7 @@ date: 2023-05-17
 
 - text에 효과를 주기 위해 존재하는 요소입니다.
     - 예를 들어, bold, italic, underline, color, link.
-    - `inline` 요소의 `width`와 `height` 속성 기본 값은 content 영역의 크기로 자동 설정됩니다.
+    - `inline` 요소의 `width`와 `height` 속성 기본값은 content 영역의 크기로 자동 설정됩니다.
 
 - `width`, `height` 속성값을 지정할 수 없습니다.
 - `margin`, `padding` 속성값은 부분적으로 적용됩니다.

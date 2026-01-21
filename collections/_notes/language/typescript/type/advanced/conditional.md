@@ -63,7 +63,7 @@ T extends U ? X : Y;
 
 ### 조건부 Type 적용 전
 
-- `createLabel` 함수는 입력 값의 type에 따라 반환 값의 type이 달라지기 때문에, 여러 개의 함수를 만들어 overloading합니다.
+- `createLabel` 함수는 입력 값의 type에 따라 반환값의 type이 달라지기 때문에, 여러 개의 함수를 만들어 overloading합니다.
 
 ```typescript
 interface IdLabel {
