@@ -107,7 +107,7 @@ Email = Header + Body + Attachment
 ### Attachment : File
 
 - attachment는 email과 함께 전송되는 **첨부 file**입니다.
-- 문서, 이미지, 비디오 등 다양한 형식의 file을 첨부할 수 있습니다.
+- 문서, image, video 등 다양한 형식의 file을 첨부할 수 있습니다.
 - file 크기 제한이 있으며, 대부분의 서비스에서 25MB 이하로 제한됩니다.
 - 수신자는 첨부된 file을 다운로드하여 확인할 수 있습니다.
 - 보안상의 이유로 일부 file 형식은 차단될 수 있습니다.
@@ -203,3 +203,4 @@ Email = Header + Body + Attachment
     - project 계획과 최종 결과는 email로, 진행 과정의 빠른 소통은 messenger로 처리합니다.
     - formal한 회의 안건은 email로 사전 공유하고, 실시간 질의 응답은 messenger로 진행합니다.
     - 중요한 decision은 email로 문서화하고, 일상적인 업무 조율은 messenger로 해결합니다.
+
