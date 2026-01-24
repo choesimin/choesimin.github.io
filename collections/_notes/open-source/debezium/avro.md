@@ -39,7 +39,7 @@ flowchart LR
     - forward compatibility : 기존 schema로 새 data를 읽습니다.
     - full compatibility : 양방향 호환성을 보장합니다.
 
-- **강타입 지원** : schema를 통해 data type을 명확하게 정의합니다.
+- **strong type 지원** : schema를 통해 data type을 명확하게 정의합니다.
     - producer와 consumer 간 data 계약을 보장합니다.
     - deserialization 시 type 검증이 자동으로 수행됩니다.
 
