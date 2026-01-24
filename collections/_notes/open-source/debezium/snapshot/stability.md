@@ -75,7 +75,7 @@ date: 2025-01-31
 
 - **Global Read Lock**은 모든 database의 read 작업을 block합니다.
     - schema 변경이나 DDL 작업을 차단하여 snapshot 중 구조 변경을 방지합니다.
-    - 단기간만 유지되어 서비스 영향도를 최소화합니다.
+    - 단기간만 유지되어 service 영향도를 최소화합니다.
 
 - `REPEATABLE READ`는 MySQL의 기본 isolation level입니다.
     - transaction이 시작된 시점의 일관된 data를 보장합니다.
@@ -91,7 +91,7 @@ date: 2025-01-31
     - LSN(Log Sequence Number)을 기준으로 일관된 복제가 가능합니다.
 
 - **별도의 lock 없이도 data 일관성 보장이 가능**합니다.
-    - snapshot 수행 중에도 write 작업이 가능하여 서비스 영향도가 없습니다.
+    - snapshot 수행 중에도 write 작업이 가능하여 service 영향도가 없습니다.
     - vacuum 작업을 통해 불필요한 version을 정리합니다.
 
 
