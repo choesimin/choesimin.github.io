@@ -53,9 +53,9 @@ date: 2025-01-31
     - 각 chunk는 독립적으로 처리되어 memory 부하를 분산시킵니다.
     - chunk 크기는 database의 성능과 가용 memory를 고려하여 설정합니다.
 
-- **batch 처리를 통해 대용량 data의 효율적인 처리**가 가능합니다.
+- **batch 처리를 통해 대용량 data를 효율적으로 처리**합니다.
     - 한 번에 처리할 record의 수를 제한하여 memory 사용량을 조절합니다.
-    - network 부하를 분산시켜 안정적인 data 전송이 가능합니다.
+    - network 부하를 분산시켜 안정적으로 data를 전송합니다.
 
 
 ---
@@ -79,7 +79,7 @@ date: 2025-01-31
 
 - `REPEATABLE READ`는 MySQL의 기본 isolation level입니다.
     - transaction이 시작된 시점의 일관된 data를 보장합니다.
-    - binlog position과 GTID의 신뢰성을 보장하여 정확한 복제가 가능합니다.
+    - binlog position과 GTID의 신뢰성을 보장하여 정확하게 복제합니다.
 
 
 ### PostgreSQL
@@ -88,9 +88,9 @@ date: 2025-01-31
 
 - **Transaction Snapshot**은 특정 시점의 database 상태를 보장합니다.
     - MVCC(Multi-Version Concurrency Control)를 통해 동시성을 보장합니다.
-    - LSN(Log Sequence Number)을 기준으로 일관된 복제가 가능합니다.
+    - LSN(Log Sequence Number)을 기준으로 일관되게 복제합니다.
 
-- **별도의 lock 없이도 data 일관성 보장이 가능**합니다.
+- **별도의 lock 없이도 data 일관성을 보장**합니다.
     - snapshot 수행 중에도 write 작업이 가능하여 service 영향도가 없습니다.
     - vacuum 작업을 통해 불필요한 version을 정리합니다.
 
@@ -118,7 +118,7 @@ date: 2025-01-31
 
 - **Local Read Preference**는 primary node에서만 read를 수행합니다.
     - replication lag으로 인한 data 불일치를 방지합니다.
-    - oplog의 순서를 보장하여 정확한 복제가 가능합니다.
+    - oplog의 순서를 보장하여 정확하게 복제합니다.
 
 
 ### SQL Server

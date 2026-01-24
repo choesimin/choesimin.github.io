@@ -2,7 +2,7 @@
 layout: note
 permalink: /450
 title: Debezium MySQL GTID Mode
-description: Debezium은 gtid.source.includes와 gtid.source.excludes 옵션을 통해 MySQL binlog의 특정 GTID 범위만 선택적으로 읽을 수 있으며, 이를 사용하려면 MySQL server가 GTID mode로 설정되어 있어야 합니다.
+description: Debezium은 gtid.source.includes와 gtid.source.excludes option을 통해 MySQL binlog의 특정 GTID 범위만 선택적으로 읽으며, MySQL server가 GTID mode로 설정되어 있어야 합니다.
 date: 2025-01-21
 ---
 

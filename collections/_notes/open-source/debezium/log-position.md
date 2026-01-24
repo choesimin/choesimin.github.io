@@ -41,7 +41,7 @@ date: 2025-01-21
 
 - Debezium은 offset을 통해 log position을 관리합니다.
     - offset 정보는 Kafka Connect의 offset topic에 저장됩니다.
-    - connector의 장애 상황에서도 안정적인 복구가 가능합니다.
+    - connector의 장애 상황에서도 안정적으로 복구합니다.
 
 
 ---
@@ -51,10 +51,10 @@ date: 2025-01-21
 
 - exactly-once delivery를 보장합니다.
     - 동일한 변경 사항이 중복으로 전달되는 것을 방지합니다.
-    - source에서 target으로 신뢰성 있는 data 전달이 가능합니다.
+    - source에서 target으로 신뢰성 있는 data를 전달합니다.
 
-- 실시간 변경 사항 추적이 가능합니다.
-    - millisecond 단위의 정밀한 tracking이 가능합니다.
+- 실시간 변경 사항을 추적합니다.
+    - millisecond 단위의 정밀한 tracking을 지원합니다.
     - source system의 부하를 최소화하면서 변경 사항을 포착합니다.
 
 
@@ -68,7 +68,7 @@ date: 2025-01-21
     - 마지막으로 처리된 log position 정보.
     - lag 모니터링 정보.
 
-- JMX를 통해 상세한 모니터링이 가능합니다.
+- JMX를 통해 상세한 모니터링을 수행합니다.
     - connector의 health check.
     - performance metric.
     - error 발생 현황.

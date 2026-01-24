@@ -49,6 +49,8 @@ flowchart LR
 
 ## JSON과 Avro 비교
 
+- JSON과 Avro는 format, schema 관리 방식, message 크기, 처리 속도에서 차이가 있습니다.
+
 | 항목 | JSON | Avro |
 | --- | --- | --- |
 | format | text | binary |
@@ -108,6 +110,8 @@ sequenceDiagram
 
 
 ### 주요 설정 항목
+
+- Avro converter의 주요 설정 항목입니다.
 
 | 설정 | 설명 |
 | --- | --- |

@@ -116,6 +116,8 @@ EXEC sys.sp_cdc_enable_table @source_schema = 'dbo', @source_name = 'my_table', 
 
 ### Event Value 구성 요소
 
+- event value는 operation type, 변경 전후 data, source 정보, timestamp로 구성됩니다.
+
 | field | 설명 |
 | --- | --- |
 | `op` | operation type (c : create, u : update, d : delete, r : read/snapshot) |
