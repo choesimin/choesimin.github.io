@@ -43,6 +43,24 @@ date: 2025-01-21
     - offset 정보는 Kafka Connect의 offset topic에 저장됩니다.
     - connector의 장애 상황에서도 안정적으로 복구합니다.
 
+```mermaid
+sequenceDiagram
+    participant DB as Source Database
+    participant DC as Debezium Connector
+    participant OT as Offset Topic
+    participant KT as Kafka Topic
+
+    DC->>DB: log position에서 변경 사항 읽기
+    DC->>KT: change event 전송
+    DC->>OT: 현재 log position 저장
+
+    Note over DC: Connector 재시작
+
+    DC->>OT: 마지막 log position 조회
+    OT-->>DC: 저장된 position 반환
+    DC->>DB: 저장된 position부터 읽기 재개
+```
+
 
 ---
 
@@ -61,14 +79,14 @@ date: 2025-01-21
 ---
 
 
-## Log Position 모니터링
+## Log Position Monitoring
 
 - connector의 metric을 통해 현재 log position을 확인합니다.
     - 처리된 event의 수량.
     - 마지막으로 처리된 log position 정보.
-    - lag 모니터링 정보.
+    - lag monitoring 정보.
 
-- JMX를 통해 상세한 모니터링을 수행합니다.
+- JMX를 통해 상세한 monitoring을 수행합니다.
     - connector의 health check.
     - performance metric.
     - error 발생 현황.
