@@ -1,8 +1,9 @@
 ---
 layout: note
+permalink: /452
 title: Debezium Snapshot의 동작 과정
+description: Debezium snapshot은 source database의 현재 상태를 capture하여 target system으로 전송하는 작업으로, transaction 준비, schema capture, data capture, snapshot 완료의 4단계로 진행됩니다.
 date: 2025-01-31
-published: false
 ---
 
 
@@ -39,6 +40,8 @@ flowchart TD
     release_lock --> stream_start[Streaming Process 시작]
     stream_start --> snapshot_end([Snapshot 종료])
 ```
+
+- snapshot 과정은 **Transaction 준비 → Schema Capture → Data Capture → Snapshot 완료**의 4단계로 진행됩니다.
 
 
 ### 1. Transaction 준비
@@ -77,3 +80,12 @@ flowchart TD
 
 - change log streaming process를 시작합니다.
     - binlog나 WAL을 통해 snapshot 이후의 변경 사항을 실시간으로 capture합니다.
+
+
+---
+
+
+## Reference
+
+- <https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-snapshots>
+- <https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-snapshots>

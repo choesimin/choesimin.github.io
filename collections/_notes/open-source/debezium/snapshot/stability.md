@@ -1,8 +1,9 @@
 ---
 layout: note
+permalink: /453
 title: Debezium Snapshot의 안정성 보장 전략
+description: Debezium은 Lock 관리, transaction isolation, chunk 단위 처리를 통해 snapshot의 data 일관성과 안정성을 보장하며, MySQL, PostgreSQL, Oracle, MongoDB, SQL Server 각각의 특성에 맞는 전략을 적용합니다.
 date: 2025-01-31
-published: false
 ---
 
 
@@ -131,3 +132,15 @@ published: false
 - `READ COMMITTED`는 SQL Server의 기본 isolation level입니다.
     - transaction의 완료 시점에 일관성을 보장합니다.
     - 변경 data의 추적과 동시성을 모두 고려한 설정입니다.
+
+
+---
+
+
+## Reference
+
+- <https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-snapshots>
+- <https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-snapshots>
+- <https://debezium.io/documentation/reference/stable/connectors/oracle.html#oracle-snapshots>
+- <https://debezium.io/documentation/reference/stable/connectors/mongodb.html#mongodb-snapshots>
+- <https://debezium.io/documentation/reference/stable/connectors/sqlserver.html#sqlserver-snapshots>

@@ -150,13 +150,13 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /447 | open-source/debezium/avro.md | Debezium Avro |
-| /448 | open-source/debezium/capture.md | Debezium Capture |
-| /449 | open-source/debezium/log-position.md | Debezium Log Position |
-| /450 | open-source/debezium/mysql-gtid-mode.md | MySQL GTID Mode |
-| /451 | open-source/debezium/snapshot/lock.md | Snapshot Lock |
-| /452 | open-source/debezium/snapshot/process.md | Snapshot Process |
-| /453 | open-source/debezium/snapshot/stability.md | Snapshot Stability |
+| /447 | open-source/debezium/avro.md | Debezium Avro | **완료** |
+| /448 | open-source/debezium/capture.md | Debezium Capture | **완료** |
+| /449 | open-source/debezium/log-position.md | Debezium Log Position | **완료** |
+| /450 | open-source/debezium/mysql-gtid-mode.md | MySQL GTID Mode | **완료** |
+| /451 | open-source/debezium/snapshot/lock.md | Snapshot Lock | **완료** |
+| /452 | open-source/debezium/snapshot/process.md | Snapshot Process | **완료** |
+| /453 | open-source/debezium/snapshot/stability.md | Snapshot Stability | **완료** |
 
 
 ### open-source/git/ (1개)
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 28개
-- 대기 : 52개
+- 완료 : 35개
+- 대기 : 45개
 
