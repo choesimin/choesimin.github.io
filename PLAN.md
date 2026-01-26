@@ -118,7 +118,7 @@
 | /431 | language/java/collection-empty.md | Collection Empty 검사 | **완료** |
 | /432 | language/java/enumeration.md | Enum | **완료** |
 | /433 | language/java/garbage-collection.md | Garbage Collection |
-| /434 | language/java/generic.md | Generic |
+| /434 | language/java/generic.md | Generic | **완료** |
 | /435 | language/java/history.md | Java 역사 |
 | /436 | language/java/identity-and-equality.md | Identity와 Equality | **완료** |
 | /437 | language/java/reflection.md | Reflection |
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 35개
-- 대기 : 45개
+- 완료 : 36개
+- 대기 : 44개
 
