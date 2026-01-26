@@ -110,3 +110,4 @@ flowchart LR
 
 - <https://tillog.netlify.app/posts/cdc>
 - <https://sihyung92.oopy.io/architecture/cdc>
+

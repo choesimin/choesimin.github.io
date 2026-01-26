@@ -91,6 +91,10 @@ date: YYYY-MM-DD
 
 - **Mermaid.js**: Use Mermaid.js syntax for diagrams instead of images.
 - **No `@` in Mermaid**: Avoid using `@` symbol in Mermaid diagrams as it causes parsing errors. Use the term without `@` (e.g., `Qualifier` instead of `@Qualifier`).
+- **No Style in Mermaid**: Do not apply color styles to Mermaid diagrams.
+- **Node ID in lower_snake_case**: Use lower_snake_case for Mermaid node IDs. Node ID is the identifier part in `node_id[Label]` format.
+  - Bad: `A[Class A]`, `G[God Object]`, `M[Manager]`
+  - Good: `class_a[Class A]`, `god_object[God Object]`, `manager[Manager]`
 - **Table Separators**: Use `| --- |` consistently.
 - **Table Content**: Use nominative form, no periods.
 

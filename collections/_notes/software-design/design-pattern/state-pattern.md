@@ -1327,3 +1327,4 @@ public class GumballMachine {
 
 - Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
 - <https://inpa.tistory.com/entry/GOF-💠-상태State-pattern-제대로-배워보자>
+

@@ -263,3 +263,4 @@ flowchart LR
 
 - <https://ko.wikipedia.org/wiki/%EB%B3%80%EA%B2%BD_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%BA%A1%EC%B2%98>
 - <https://sanggi-jayg.tistory.com/entry/CDC-Change-Data-Capture>
+

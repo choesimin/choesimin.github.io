@@ -100,3 +100,4 @@ date: 2025-02-09
 - **Event-Driven Architecture**는 event의 생성, 감지, 소비를 중심으로 구성하는 pattern입니다.
     - 비동기 처리와 확장성이 용이합니다.
     - service 간의 결합도를 낮출 수 있습니다.
+

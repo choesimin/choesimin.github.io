@@ -166,3 +166,4 @@ date: 2025-06-21
 - **관심사별로 계층을 분리**하여 각 계층의 응집도를 높이고 계층 간 결합도를 낮춥니다.
     - presentation layer, business logic layer, data access layer로 구분합니다.
     - 상위 계층이 하위 계층에만 의존하도록 dependency 방향을 통제합니다.
+

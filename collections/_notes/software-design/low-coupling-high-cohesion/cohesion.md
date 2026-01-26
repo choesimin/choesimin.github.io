@@ -303,3 +303,4 @@ public class MiscellaneousUtilities {
 - **Move Method refactoring**으로 method를 적절한 class로 이동시킵니다.
     - method가 사용하는 data가 위치한 class로 method를 이동합니다.
     - data와 behavior의 결합도를 높입니다.
+

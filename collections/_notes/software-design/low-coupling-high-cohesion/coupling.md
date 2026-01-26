@@ -460,3 +460,4 @@ public class NotificationManager {
 - **Move Method refactoring**으로 잘못 배치된 method를 적절한 class로 이동시킵니다.
 - **Replace Inheritance with Delegation**을 통해 강한 결합을 약한 결합으로 변경합니다.
 - **Introduce Parameter Object**로 여러 parameter를 하나의 객체로 묶어 interface를 단순화합니다.
+

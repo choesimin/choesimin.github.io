@@ -227,7 +227,7 @@ date: 2025-07-28
 - **효율적인 prompt 구조**를 설계합니다.
     - 핵심 지시 사항을 앞쪽에 배치합니다.
     - 예시는 필요 최소한으로 제한합니다.
-    - template화하여 재사용 가능한 형태로 만듭니다.
+    - template으로 만들어 재사용할 수 있도록 합니다.
 
 - **context length 관리**를 체계적으로 수행합니다.
     - 대화 history에서 오래된 내용을 정리합니다.
@@ -266,7 +266,7 @@ date: 2025-07-28
     - 너무 긴 token: 계산 복잡도 증가, memory 사용량 증가
     - 너무 짧은 token: sequence 길이 증가, context window 비효율
 
-- **batch processing에서의 고려 사항**입니다.
+- **batch processing**에서는 **token 길이 균일성**이 중요합니다.
     - token 수의 분산이 클수록 padding overhead가 증가합니다.
     - 비슷한 길이의 sequence를 함께 처리하는 것이 효율적입니다.
 

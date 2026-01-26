@@ -428,3 +428,4 @@ ORDER BY message_id ASC;
 
 - 가상 면접 사례로 배우는 대규모 시스템 설계 기초 (도서) - Alex Xu, 이병준
 - <https://jjingho.tistory.com/161>
+

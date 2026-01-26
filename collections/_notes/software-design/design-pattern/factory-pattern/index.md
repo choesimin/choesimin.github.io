@@ -272,3 +272,4 @@ public class PepperoniPizza extends Pizza {
 - Head First Design Patterns (도서) - Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
 - <https://refactoring.guru/ko/design-patterns/factory-comparison>
 - <https://tecoble.techcourse.co.kr/post/2020-05-26-static-factory-method/>
+

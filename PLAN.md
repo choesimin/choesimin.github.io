@@ -214,7 +214,7 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /468 | software-design/anti-pattern.md | Anti Pattern |
+| /468 | software-design/anti-pattern.md | Anti Pattern | **완료** |
 | /469 | software-design/design-pattern/command-pattern.md | Command Pattern | **완료** |
 | /470 | software-design/design-pattern/composit-pattern.md | Composite Pattern | **완료** |
 | /471 | software-design/design-pattern/iterator-pattern.md | Iterator Pattern | **완료** |
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 34개
-- 대기 : 46개
+- 완료 : 35개
+- 대기 : 45개
 
