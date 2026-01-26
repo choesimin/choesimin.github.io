@@ -128,3 +128,4 @@ date: 2025-04-13
 - `insert.mode` : 삽입 mode(insert, upsert 등)를 설정합니다.
 - `pk.mode` : primary key 처리 방식을 지정합니다.
 - `batch.size` : 일괄 처리할 record 수를 설정합니다.
+
