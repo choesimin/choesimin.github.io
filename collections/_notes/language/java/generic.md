@@ -436,9 +436,9 @@ addNumbers(objList);  // 가능
     - data를 읽기만 하면 `extends`, 쓰기만 하면 `super`를 사용합니다.
 
 
-### PECS 원칙의 이유
+### PECS 원칙의 존재 이유
 
-- PECS 원칙의 근본적인 이유는 **compiler가 정확한 type을 알 수 없을 때 어떤 연산이 안전한가**에 있습니다.
+- PECS 원칙의 근본적인 존재 이유는 **compiler가 정확한 type을 알 수 없을 때 어떤 연산이 안전한가**에 있습니다.
     - `extends` : 상한(upper bound)만 알고 하한을 모름 → 읽기만 안전.
     - `super` : 하한(lower bound)만 알고 상한을 모름 → 쓰기만 안전.
 
