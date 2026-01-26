@@ -60,11 +60,11 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /407 | domain/email/protocol.md | Email Protocol |
-| /408 | domain/email/mime.md | MIME |
-| /409 | domain/email/law.md | Email 관련 법률 |
-| /410 | domain/email/security.md | Email 보안 |
-| /411 | domain/email/server.md | Email Server |
+| /407 | domain/email/protocol.md | Email Protocol | **완료** |
+| /408 | domain/email/mime.md | MIME | **완료** |
+| /409 | domain/email/law.md | Email 관련 법률 | **완료** |
+| /410 | domain/email/security.md | Email 보안 | **완료** |
+| /411 | domain/email/server.md | Email Server | **완료** |
 
 
 ### domain/payment/ (6개)
@@ -183,7 +183,7 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /462 | open-source/kafka-connect/opensearch-sink-connector.md | OpenSearch Sink Connector |
+| /462 | open-source/kafka-connect/opensearch-sink-connector.md | OpenSearch Sink Connector | **완료** |
 
 
 ### open-source/ksqldb/ (3개)
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 28개
-- 대기 : 52개
+- 완료 : 34개
+- 대기 : 46개
 

@@ -1,238 +1,192 @@
 ---
-published: false
+layout: note
+permalink: /462
+title: OpenSearch Sink Connector - Kafka Data를 OpenSearch로 전송하기
+description: OpenSearch Sink Connector는 Kafka topic의 data를 OpenSearch index로 전송하는 Kafka Connect plugin입니다.
+date: 2025-04-13
 ---
 
 
-``connection.url``
-  List of OpenSearch HTTP connection URLs e.g. ``http://eshost1:9200,http://eshost2:9200``.
+## OpenSearch Sink Connector
 
-  * Type: list
-  * Valid Values: http://eshost1:9200, http://eshost2:9200
-  * Importance: high
+- OpenSearch Sink Connector는 **Kafka topic의 data를 OpenSearch index로 전송하는 Kafka Connect plugin**입니다.
+    - Kafka에 저장된 event나 log data를 OpenSearch에 indexing하여 검색 및 분석 기능을 제공합니다.
+    - Aiven에서 개발하고 관리하며, Apache 2.0 license로 제공됩니다.
 
-``batch.size``
-  The number of records to process as a batch when writing to OpenSearch.
+```mermaid
+flowchart LR
+    subgraph kafka[Kafka]
+        topic[Kafka Topic]
+    end
+    subgraph connect[Kafka Connect]
+        connector[OpenSearch Sink Connector]
+    end
+    subgraph opensearch[OpenSearch]
+        index[OpenSearch Index]
+    end
 
-  * Type: int
-  * Default: 2000
-  * Importance: medium
+    topic --> connector
+    connector --> index
+```
 
-``max.in.flight.requests``
-  The maximum number of indexing requests that can be in-flight to OpenSearch before blocking further requests.
 
-  * Type: int
-  * Default: 5
-  * Importance: medium
+### 주요 기능
 
-``max.buffered.records``
-  The maximum number of records each task will buffer before blocking acceptance of more records. This config can be used to limit the memory usage for each task.
+- **Bulk Indexing** : 여러 record를 batch로 묶어 OpenSearch에 전송합니다.
+    - `batch.size`와 `linger.ms` 설정으로 batch 크기와 대기 시간을 조절합니다.
 
-  * Type: int
-  * Default: 20000
-  * Importance: low
+- **Document ID 생성** : Kafka record key 또는 자동 생성 전략으로 document ID를 결정합니다.
+    - `key.ignore` 설정으로 key 무시 여부를 선택합니다.
+    - `topic.partition.offset` 전략으로 고유한 ID를 자동 생성합니다.
 
-``linger.ms``
-  Linger time in milliseconds for batching.
+- **Upsert 지원** : 동일 ID의 document를 insert하거나 update합니다.
+    - `index.write.method` 설정으로 insert 또는 upsert mode를 선택합니다.
 
-  Records that arrive in between request transmissions are batched into a single bulk indexing request, based on the ``batch.size`` configuration. Normally this only occurs under load when records arrive faster than they can be sent out. However it may be desirable to reduce the number of requests even under light load and benefit from bulk indexing. This setting helps accomplish that - when a pending batch is not full, rather than immediately sending it out the task will wait up to the given delay to allow other records to be added so that they can be batched into a single request.
+- **Data Stream 지원** : OpenSearch Data Stream으로 시계열 data를 효율적으로 저장합니다.
+    - `data.stream.enabled` 설정으로 Data Stream mode를 활성화합니다.
 
-  * Type: long
-  * Default: 1
-  * Importance: low
+- **Tombstone 처리** : null value record(Kafka tombstone)를 처리하는 방식을 설정합니다.
+    - `behavior.on.null.values` 설정으로 무시, 삭제, 실패 중 선택합니다.
 
-``flush.timeout.ms``
-  The timeout in milliseconds to use for periodic flushing, and when waiting for buffer space to be made available by completed requests as records are added. If this timeout is exceeded the task will fail.
 
-  * Type: long
-  * Default: 10000 (10 seconds)
-  * Importance: low
+### 사용 사례
 
-``max.retries``
-  The maximum number of retries that are allowed for failed indexing requests. If the retry attempts are exhausted the task will fail.
+- **Log 분석** : application log를 OpenSearch에 저장하여 검색 및 시각화합니다.
+- **실시간 검색** : Kafka의 event data를 OpenSearch에 indexing하여 실시간 검색 기능을 제공합니다.
+- **CDC Pipeline** : database 변경 사항을 Kafka를 거쳐 OpenSearch에 동기화합니다.
+- **Monitoring** : metric data를 OpenSearch에 저장하여 dashboard로 monitoring합니다.
 
-  * Type: int
-  * Default: 5
-  * Importance: low
 
-``retry.backoff.ms``
-  How long to wait in milliseconds before attempting the first retry of a failed indexing request. Upon a failure, this connector may wait up to twice as long as the previous wait, up to the maximum number of retries. This avoids retrying in a tight loop under failure scenarios.
+---
 
-  * Type: long
-  * Default: 100
-  * Importance: low
 
-``connection.timeout.ms``
-  How long to wait in milliseconds when establishing a connection to the OpenSearch server. The task fails if the client fails to connect to the server in this interval, and will need to be restarted.
+## Connector 설정
 
-  * Type: int
-  * Default: 1000 (1 second)
-  * Importance: low
+- OpenSearch Sink Connector는 connection, batching, data conversion, data stream, authentication 관련 설정을 제공합니다.
 
-``read.timeout.ms``
-  How long to wait in milliseconds for the OpenSearch server to send a response. The task fails if any read operation times out, and will need to be restarted to resume further operations.
 
-  * Type: int
-  * Default: 3000 (3 seconds)
-  * Importance: low
+### 기본 설정 예시
 
-Data Conversion
-^^^^^^^^^^^^^^^
+```json
+{
+    "name": "opensearch-sink-connector",
+    "config": {
+        "connector.class": "io.aiven.kafka.connect.opensearch.OpensearchSinkConnector",
+        "connection.url": "http://localhost:9200",
+        "connection.username": "admin",
+        "connection.password": "password",
+        "topics": "logs,events",
+        "key.ignore": "true",
+        "schema.ignore": "true",
+        "batch.size": 2000,
+        "tasks.max": "1"
+    }
+}
+```
 
-``index.write.method``
-  The method used to write data into OpenSearch index.The default value is ``insert`` which means that the record with the same document id will be replaced. The ``upsert`` will create a new document if one does not exist or will update the existing document.
 
-  * Type: string
-  * Default: insert
-  * Valid Values: ``insert``, ``upsert``
-  * Importance: low
+### Connection 설정
 
-``key.ignore``
-  Whether to ignore the record key for the purpose of forming the OpenSearch document ID. When this is set to ``true``, document IDs will be generated according to the ``key.ignore.id.strategy`` strategy.
+| 설정 | 설명 | 기본값 |
+| --- | --- | --- |
+| `connection.url` | OpenSearch HTTP 연결 URL 목록 | 필수 |
+| `connection.username` | 인증 username | `null` |
+| `connection.password` | 인증 password | `null` |
+| `connection.timeout.ms` | 연결 timeout | `1000` |
+| `read.timeout.ms` | 읽기 timeout | `3000` |
 
-  Note that this is a global config that applies to all topics, use ``topic.key.ignore`` to apply ``key.ignore.id.strategy`` strategy for specific topics only.
 
-  * Type: boolean
-  * Default: false
-  * Importance: high
+### Batching 설정
 
-``key.ignore.id.strategy``
-  Specifies the strategy to generate the Document ID. Only applicable when ``key.ignore`` is ``true`` or specific topics are configured using ``topic.key.ignore``. Available strategies {none : No Doc ID is added, record.key : Generated from the record's key, topic.partition.offset : Generated as record's ``topic+partition+offset``}. If not specified, the default generation strategy is ``topic.partition.offset``.
+| 설정 | 설명 | 기본값 |
+| --- | --- | --- |
+| `batch.size` | 한 번에 처리할 record 수 | `2000` |
+| `max.in.flight.requests` | 동시에 진행 가능한 indexing 요청 수 | `5` |
+| `max.buffered.records` | task당 buffer에 저장할 최대 record 수 | `20000` |
+| `linger.ms` | batch 전송 전 대기 시간 | `1` |
+| `flush.timeout.ms` | flush 작업 timeout | `10000` |
 
-  * Type: string
-  * Default: topic.partition.offset
-  * Valid Values: [none, record.key, topic.partition.offset]
-  * Importance: low
+- `linger.ms`를 늘리면 batch 효율이 높아지지만 지연 시간이 증가합니다.
+- `max.buffered.records`로 memory 사용량을 제한합니다.
 
-``schema.ignore``
-  Whether to ignore schemas during indexing. When this is set to ``true``, the record schema will be ignored for the purpose of registering an OpenSearch mapping. OpenSearch will infer the mapping from the data (dynamic mapping needs to be enabled by the user).
 
-   Note that this is a global config that applies to all topics, use ``topic.schema.ignore`` to override as ``true`` for specific topics.
+### Retry 설정
 
-  * Type: boolean
-  * Default: false
-  * Importance: low
+| 설정 | 설명 | 기본값 |
+| --- | --- | --- |
+| `max.retries` | 실패한 indexing 요청의 최대 재시도 횟수 | `5` |
+| `retry.backoff.ms` | 재시도 간 대기 시간 | `100` |
 
-``compact.map.entries``
-  Defines how map entries with string keys within record values should be written to JSON. When this is set to ``true``, these entries are written compactly as ``"entryKey": "entryValue"``. Otherwise, map entries with string keys are written as a nested document ``{"key": "entryKey", "value": "entryValue"}``. All map entries with non-string keys are always written as nested documents. Prior to 3.3.0, this connector always wrote map entries as nested documents, so set this to ``false`` to use that older behavior.
+- 재시도할 때마다 대기 시간이 최대 2배씩 증가합니다.
 
-  * Type: boolean
-  * Default: true
-  * Importance: low
 
-``topic.key.ignore``
-  List of topics for which ``key.ignore`` should be ``true``.
+### Data Conversion 설정
 
-  * Type: list
-  * Default: ""
-  * Importance: low
+| 설정 | 설명 | 기본값 |
+| --- | --- | --- |
+| `index.write.method` | 쓰기 방식 (`insert`, `upsert`) | `insert` |
+| `key.ignore` | record key를 document ID로 사용하지 않음 | `false` |
+| `key.ignore.id.strategy` | key 무시 시 ID 생성 전략 | `topic.partition.offset` |
+| `schema.ignore` | schema 무시 여부 | `false` |
+| `compact.map.entries` | map entry를 compact하게 저장 | `true` |
+| `drop.invalid.message` | 변환 실패 message 삭제 여부 | `false` |
 
-``topic.schema.ignore``
-  List of topics for which ``schema.ignore`` should be ``true``.
+- `key.ignore.id.strategy` 옵션은 `none`, `record.key`, `topic.partition.offset` 중 선택합니다.
+    - `topic.partition.offset` : `topic+partition+offset` 조합으로 고유 ID를 생성합니다.
 
-  * Type: list
-  * Default: ""
-  * Importance: low
 
-``drop.invalid.message``
-  Whether to drop kafka message when it cannot be converted to output message.
+### Error Handling 설정
 
-  * Type: boolean
-  * Default: false
-  * Importance: low
+| 설정 | 설명 | 기본값 |
+| --- | --- | --- |
+| `behavior.on.null.values` | null value record 처리 방식 | `ignore` |
+| `behavior.on.malformed.documents` | 잘못된 document 처리 방식 | `fail` |
+| `behavior.on.version.conflict` | version 충돌 처리 방식 | `fail` |
 
-``behavior.on.null.values``
-  How to handle records with a non-null key and a null value (i.e. Kafka tombstone records). Valid options are ``ignore``, ``delete``, and ``fail``.
+- 처리 방식 옵션은 `ignore`, `warn`, `report`, `fail` 중 선택합니다.
+    - `ignore` : 무시하고 계속 진행합니다.
+    - `warn` : 경고 log를 남기고 계속 진행합니다.
+    - `report` : errant record reporter에 보고합니다.
+    - `fail` : task를 실패 처리합니다.
 
-  * Type: string
-  * Default: ignore
-  * Valid Values: [ignore, delete, fail]
-  * Importance: low
 
-``behavior.on.malformed.documents``
-  How to handle records that OpenSearch rejects due to some malformation of the document itself, such as an index mapping conflict or a field name containing illegal characters. 
+### Data Stream 설정
 
-  Valid options are:
+| 설정 | 설명 | 기본값 |
+| --- | --- | --- |
+| `data.stream.enabled` | Data Stream 사용 여부 | `false` |
+| `data.stream.prefix` | Data Stream 이름 prefix | `null` |
+| `data.stream.timestamp.field` | timestamp field 이름 | `@timestamp` |
 
-  - ``ignore`` - do not index the record
+- Data Stream을 사용하면 `{data.stream.prefix}-{topic}` 형식으로 data stream 이름이 결정됩니다.
+- 시계열 data(log, metric 등)에 적합합니다.
 
-  - ``warn`` - log a warning message and do not index the record
 
-  - ``report`` - report to errant record reporter and do not index the record
+---
 
-  - ``fail`` - fail the task.
 
-  * Type: string
-  * Default: fail
-  * Valid Values: [ignore, warn, fail, report]
-  * Importance: low
+## 장점과 한계점
 
-``behavior.on.version.conflict``
-  How to handle records that OpenSearch rejects due to document's version conflicts.
+- OpenSearch Sink Connector는 설정만으로 pipeline을 구축할 수 있지만, 복잡한 변환에는 한계가 있습니다.
 
-  It may happen when offsets were not committed or/and records have to be reprocessed.
 
-  Valid options are:
+### 장점
 
-  - ``ignore`` - ignore and keep the existing record
+- code 작성 없이 configuration만으로 Kafka-OpenSearch pipeline을 구축합니다.
+- bulk indexing으로 높은 처리량을 제공합니다.
+- retry와 error handling 옵션으로 안정적인 data 전송이 가능합니다.
+- Data Stream 지원으로 시계열 data를 효율적으로 관리합니다.
 
-  - ``warn`` - log a warning message and keep the existing record
 
-  - ``report`` - report to errant record reporter and keep the existing record
+### 한계점
 
-  - ``fail`` - fail the task.
+- 복잡한 data 변환은 SMT만으로 한계가 있어 별도 처리가 필요합니다.
+    - SMT(Single Message Transform)는 Kafka Connect에서 각 record를 개별적으로 변환하는 기능입니다.
+- OpenSearch의 mapping 충돌 시 수동 개입이 필요할 수 있습니다.
+- 대량 data 처리 시 batch size와 memory 설정 최적화가 필요합니다.
 
-  * Type: string
-  * Default: fail
-  * Valid Values: [ignore, warn, fail, report]
-  * Importance: low
 
-Data Stream
-^^^^^^^^^^^
+## Reference
 
-``data.stream.enabled``
-  Enable use of data streams. If set to true the connector will write to data streams instead of regular indices. Default is false.
-
-  * Type: boolean
-  * Default: false
-  * Importance: medium
-
-``data.stream.prefix``
-  Generic data stream name to write into. If set, it will be used to construct the final data stream name in the form of {data.stream.prefix}-{topic}.
-
-  * Type: string
-  * Default: null
-  * Valid Values: non-empty string
-  * Importance: medium
-
-``data.stream.timestamp.field``
-  The Kafka record field to use as the timestamp for the @timestamp field in documents sent to a data stream. The default is @timestamp.
-
-  * Type: string
-  * Default: @timestamp
-  * Valid Values: non-empty string
-  * Importance: medium
-
-``data.streams.existing.index.template.name``
-  If data.streams.create.index.template is provided, data stream and index template will be created if it doesn't exist.
-
-  * Type: string
-  * Default: null
-  * Importance: medium
-
-Authentication
-^^^^^^^^^^^^^^
-
-``connection.username``
-  The username used to authenticate with OpenSearch. The default is the null, and authentication will only be performed if  both the username and password are non-null.
-
-  * Type: string
-  * Default: null
-  * Importance: medium
-
-``connection.password``
-  The password used to authenticate with OpenSearch. The default is the null, and authentication will only be performed if  both the username and password are non-null.
-
-  * Type: password
-  * Default: null
-  * Importance: medium
+- <https://github.com/Aiven-Open/opensearch-connector-for-apache-kafka>
 
