@@ -117,11 +117,11 @@
 | /430 | language/java/apache-poi/excel/large.md | 대용량 Excel 처리 |
 | /431 | language/java/collection-empty.md | Collection Empty 검사 | **완료** |
 | /432 | language/java/enumeration.md | Enum | **완료** |
-| /433 | language/java/garbage-collection.md | Garbage Collection |
+| /433 | language/java/garbage-collection.md | Garbage Collection | **완료** |
 | /434 | language/java/generic.md | Generic | **완료** |
 | /435 | language/java/history.md | Java 역사 |
 | /436 | language/java/identity-and-equality.md | Identity와 Equality | **완료** |
-| /437 | language/java/reflection.md | Reflection |
+| /437 | language/java/reflection.md | Reflection | **완료** |
 | /438 | language/java/resource-management.md | Resource 관리 |
 | /439 | language/java/servlet.md | Servlet |
 | /440 | language/java/stream.md | Stream |
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 36개
-- 대기 : 44개
+- 완료 : 38개
+- 대기 : 42개
 
