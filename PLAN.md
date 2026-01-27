@@ -111,7 +111,7 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /427 | language/java/ip-extractor.md | IP Extractor |
+| /427 | language/java/ip-extractor.md | IP Extractor | **완료** |
 | /428 | language/java/apache-poi/index.md | Apache POI |
 | /429 | language/java/apache-poi/excel/index.md | Apache POI Excel |
 | /430 | language/java/apache-poi/excel/large.md | 대용량 Excel 처리 |
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 38개
-- 대기 : 42개
+- 완료 : 39개
+- 대기 : 41개
 
