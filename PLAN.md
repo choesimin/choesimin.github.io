@@ -119,7 +119,7 @@
 | /432 | language/java/enumeration.md | Enum | **완료** |
 | /433 | language/java/garbage-collection.md | Garbage Collection | **완료** |
 | /434 | language/java/generic.md | Generic | **완료** |
-| /435 | language/java/history.md | Java 역사 |
+| /435 | language/java/history.md | Java 역사 | **완료** |
 | /436 | language/java/identity-and-equality.md | Identity와 Equality | **완료** |
 | /437 | language/java/reflection.md | Reflection | **완료** |
 | /438 | language/java/resource-management.md | Resource 관리 |
