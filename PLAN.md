@@ -207,7 +207,7 @@
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
 | /467 | paradigm/layered-architecture.md | Layered Architecture - 계층으로 관심사를 분리하는 Architecture Pattern | **완료** |
-| /475 | paradigm/spec-driven-programming.md | Spec-Driven Programming |
+| /475 | paradigm/spec-driven-programming.md | Spec-Driven Programming | **완료** |
 
 
 ### software-design/ (7개)
@@ -220,7 +220,7 @@
 | /471 | software-design/design-pattern/iterator-pattern.md | Iterator Pattern | **완료** |
 | /472 | software-design/design-pattern/template-method-pattern.md | Template Method Pattern | **완료** |
 | /473 | software-design/saga-pattern.md | Saga Pattern - 보상 Transaction을 통한 결과적 일관성 | **완료** |
-| /474 | software-design/system-design/cdc-pipeline.md | CDC Pipeline |
+| /474 | software-design/system-design/cdc-pipeline.md | CDC Pipeline | **완료** |
 
 
 ---
@@ -241,6 +241,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 39개
-- 대기 : 41개
+- 완료 : 41개
+- 대기 : 39개
 
