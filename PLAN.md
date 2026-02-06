@@ -83,10 +83,10 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /418 | economics/asset/safe-vs-risky.md | 안전 자산과 위험 자산 |
-| /419 | economics/asset/classes.md | 자산 클래스 |
-| /420 | economics/asset/liquidity.md | 유동성 |
-| /421 | economics/asset/return-profile.md | 수익률 프로필 |
+| /418 | economics/asset/safe-vs-risky.md | 안전 자산과 위험 자산 | **검토 중** |
+| /419 | economics/asset/classes.md | 자산 클래스 | **검토 중** |
+| /420 | economics/asset/liquidity.md | 유동성 | **검토 중** |
+| /421 | economics/asset/return-profile.md | 수익률 프로필 | **검토 중** |
 
 
 ### framework/ (5개)
@@ -242,5 +242,6 @@
 
 - 총 80개 문서
 - 완료 : 41개
-- 대기 : 39개
+- 검토 중 : 4개
+- 대기 : 35개
 
