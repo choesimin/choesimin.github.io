@@ -224,20 +224,67 @@ tmux kill-session -t my_session
 ---
 
 
-## 설치
+## Copy Mode
 
-- tmux는 대부분의 Linux 배포판과 macOS에서 package manager를 통해 설치합니다.
+- tmux 안에서는 terminal의 기본 scroll이 동작하지 않으므로, copy mode에 진입해야 이전 출력을 확인하거나 텍스트를 복사합니다.
+    - `<prefix>` + `[`로 copy mode에 진입하고, `q`로 빠져나옵니다.
+
+- copy mode에서는 방향키 또는 vi key binding(`h`, `j`, `k`, `l`)으로 이동하며, `Space`로 선택을 시작하고 `Enter`로 복사합니다.
+    - 복사한 텍스트는 `<prefix>` + `]`로 붙여넣습니다.
+
+| 단축키 | 설명 |
+| --- | --- |
+| `<prefix>` + `[` | copy mode 진입 |
+| `q` | copy mode 종료 |
+| `Space` | 선택 시작 |
+| `Enter` | 선택 영역 복사 |
+| `<prefix>` + `]` | 복사한 텍스트 붙여넣기 |
+
+
+---
+
+
+## `.tmux.conf` : 설정 File
+
+- `~/.tmux.conf` file에 설정을 작성하면, tmux 시작 시 자동으로 적용됩니다.
+    - 이미 실행 중인 session에서는 `<prefix>` + `:`를 누른 뒤 `source-file ~/.tmux.conf`를 입력하여 다시 불러옵니다.
 
 ```sh
-# Ubuntu / Debian
-sudo apt install tmux
+# prefix key를 Ctrl + a로 변경
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
 
-# CentOS / RHEL
-sudo yum install tmux
+# mouse 활성화 (scroll, pane 선택, 크기 조절)
+set -g mouse on
 
-# macOS (Homebrew)
-brew install tmux
+# pane 분할 key를 직관적으로 변경
+bind | split-window -h
+bind - split-window -v
+
+# window 번호를 1부터 시작
+set -g base-index 1
 ```
+
+- `set -g`는 global option 설정이고, `bind`는 key binding 설정입니다.
+
+
+---
+
+
+## `synchronize-panes` : 여러 Pane 동시 입력
+
+- 여러 server에 동일한 명령어를 동시에 실행해야 할 때, pane마다 SSH 접속한 뒤 `synchronize-panes`를 활성화하면 모든 pane에 같은 입력이 전달됩니다.
+
+```sh
+# tmux 명령어로 활성화/비활성화 전환
+<prefix> + : 입력 후
+set synchronize-panes on
+set synchronize-panes off
+```
+
+- 활성화 상태에서 keyboard 입력을 하면, 현재 window의 모든 pane에 동시에 전달됩니다.
+    - 비활성화하면 다시 개별 pane에만 입력됩니다.
 
 
 ---
