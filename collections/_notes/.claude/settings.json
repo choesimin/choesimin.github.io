@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/brahms/Documents/note/collections/_notes/.claude/hooks/check-words.js"
+          }
+        ]
+      }
+    ]
+  }
+}

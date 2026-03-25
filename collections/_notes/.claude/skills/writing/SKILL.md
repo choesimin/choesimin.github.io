@@ -9,7 +9,6 @@ description: Apply note document writing conventions
 - 영문 용어는 영어로 표기
 - 마침표 필수
 - emoji 금지
-- 예시 : `examples/note.md`
 
 ## Front Matter
 - 모든 문서는 front matter로 시작
