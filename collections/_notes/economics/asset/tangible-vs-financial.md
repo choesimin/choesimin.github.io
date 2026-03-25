@@ -68,7 +68,7 @@ date: 2025-11-17
     - 안전 자산으로 선호됩니다.
     - 경제 불안 시 가치가 상승합니다.
 
-- **상품(commodity)** : 원유, natural gas, 농산물, 산업 금속.
+- **상품** (commodity) : 원유, natural gas, 농산물, 산업 금속.
     - 수급에 따라 가격이 변합니다.
     - inflation hedge 수단입니다.
 

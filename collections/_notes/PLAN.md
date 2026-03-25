@@ -1,27 +1,6 @@
 # 미완성 문서 작성 계획
 
 
-## 작성 규칙 요약
-
-- 영어 용어는 영어로 표기 (type, parameter, code, null check, matching 등)
-- 모든 문장은 `-`로 시작하는 list 형식
-- 제목 아래에는 반드시 bullet point 설명
-- 금지 표현 : "다음과 같은", "이를 통해", "다룹니다", "소개합니다"
-- 콜론 앞뒤 공백 (` : `)
-- 이모지 사용 금지
-- Mermaid.js 적극 활용
-- Big O 표기법은 backtick으로 감싸기 (`O(1)`, `O(n)`, `O(log n)`)
-
-
----
-
-
-## 사용 가능한 Permalink 번호
-
-- 비어있는 번호 : 252, 269 (2개)
-- 새로운 번호 : 402~ (73개)
-
-
 ---
 
 
@@ -83,10 +62,10 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /418 | economics/asset/safe-vs-risky.md | 안전 자산과 위험 자산 | **검토 중** |
-| /419 | economics/asset/classes.md | 자산 클래스 | **검토 중** |
-| /420 | economics/asset/liquidity.md | 유동성 | **검토 중** |
-| /421 | economics/asset/return-profile.md | 수익률 프로필 | **검토 중** |
+| /418 | economics/asset/safe-vs-risky.md | 안전 자산과 위험 자산 | **완료** |
+| /419 | economics/asset/classes.md | 자산군 | **완료** |
+| /420 | economics/asset/liquidity.md | 유동성 | **완료** |
+| /421 | economics/asset/return-profile.md | 수익률 프로필 | **완료** |
 
 
 ### framework/ (5개)
@@ -241,7 +220,6 @@
 ## 진행 상황
 
 - 총 80개 문서
-- 완료 : 41개
-- 검토 중 : 4개
+- 완료 : 45개
 - 대기 : 35개
 
