@@ -68,10 +68,16 @@
 | /421 | economics/asset/return-profile.md | 수익률 프로필 | **완료** |
 
 
-### framework/ (5개)
+### framework/ (11개)
 
-| 번호 | 파일 | 제목 |
+| 번호 | file | 제목 |
 | --- | --- | --- |
+| /480 | framework/jpa/n-plus-one.md | JPA N+1 문제 - 연관 관계 조회 시 발생하는 query 폭발 |
+| /481 | framework/jpa/fetch-type.md | JPA FetchType - LAZY와 EAGER 로딩 전략 |
+| /482 | framework/jpa/entity-relationship.md | JPA 연관 관계 mapping |
+| /483 | framework/jpa/lazy-initialization-exception.md | LazyInitializationException - transaction 범위 밖 LAZY loading 접근 오류 |
+| /484 | framework/jpa/open-in-view.md | Open-In-View - transaction과 영속성 context의 생명 주기 |
+| /485 | framework/jpa/fetch-join.md | JPA Fetch Join - LAZY 연관 관계를 한 번의 query로 load하는 방법 |
 | /422 | framework/mybatis.md | MyBatis |
 | /423 | framework/spring/bean-validation.md | Bean Validation |
 | /424 | framework/spring/excel-download.md | Excel Download |
@@ -207,11 +213,12 @@
 
 ## 작성 우선순위
 
-1. **Kafka 관련** (455~461) - 연관성 높음, 함께 작성
-2. **Debezium 관련** (447~453) - Kafka와 연계
-3. **Java 기본** (427~443) - 기초 문서
-4. **Design Pattern** (469~472) - 기존 pattern과 연계
-5. **나머지** - 필요에 따라 순서 조정
+1. **JPA 관련** (480~482) - N+1, FetchType, 연관 관계 mapping
+2. **Kafka 관련** (455~461) - 연관성 높음, 함께 작성
+3. **Debezium 관련** (447~453) - Kafka와 연계
+4. **Java 기본** (427~443) - 기초 문서
+5. **Design Pattern** (469~472) - 기존 pattern과 연계
+6. **나머지** - 필요에 따라 순서 조정
 
 
 ---
@@ -219,7 +226,7 @@
 
 ## 진행 상황
 
-- 총 80개 문서
+- 총 86개 문서
 - 완료 : 45개
-- 대기 : 35개
+- 대기 : 41개
 
