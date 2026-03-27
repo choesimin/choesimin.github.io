@@ -11,9 +11,6 @@ description: Apply note document writing conventions
 - emoji 금지
 
 ## Front Matter
-- 모든 문서는 front matter로 시작
-- `permalink`는 숫자로 지정
-- `description`은 정확히 한 문장
 ```yaml
 ---
 layout: note
@@ -23,6 +20,9 @@ description: [설명]
 date: YYYY-MM-DD
 ---
 ```
+- 모든 문서는 front matter로 시작
+- `permalink`는 숫자로 지정
+- `description`은 정확히 한 문장
 
 ## 문장 구조화 규칙
 - 제목을 제외한 모든 문장은 `- `로 시작하여 목록화

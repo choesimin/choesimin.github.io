@@ -1,12 +1,12 @@
 ---
-name: agent
-description: Structure and delegate a task to external AI agent (Codex, Copilot)
-allowed-tools: Bash(codex *), Bash(copilot *)
+name: delegating
+description: Structure and delegate a task to external AI agent (Codex, Copilot, Gemini)
+allowed-tools: Bash(codex *), Bash(copilot *), Bash(gemini *)
 user-invocable: false
 ---
 
 # 외부 AI Agent에게 작업 위임
-- 외부 AI agent(Codex, Copilot)에 작업을 위임할 때 위임 내용을 구조화하고, CLI를 호출하여 실행
+- 외부 AI agent(Codex, Copilot, Gemini)에 작업을 위임할 때 위임 내용을 구조화하고, CLI를 호출하여 실행
 
 ## 위임 구조화 절차
 1. 작업 맥락 파악 : 현재 작업의 목적과 배경을 대화 흐름 또는 관련 문서에서 확인
@@ -36,3 +36,4 @@ user-invocable: false
 ## Agent별 CLI reference
 - Codex : [codex.md](codex.md)
 - Copilot : [copilot.md](copilot.md)
+- Gemini : [gemini.md](gemini.md)
