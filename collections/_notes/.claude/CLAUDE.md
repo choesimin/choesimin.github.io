@@ -1,7 +1,9 @@
-# Note
+# 기술 문서 저장소
 - 기술 문서를 작성하는 저장소
-- 문서 작성 시 writing skill을 사용
+- 주제별 directory로 계층적 분류 (추상 -> 구체)
+- 모든 문서는 Markdown으로 작성
 
-## 핵심 규칙
-- 문서 작성은 항상 writing skill의 규칙을 따름
-- 새 문서 작성 전에 `.claude/skills/writing/sample.md` file을 읽고 문체와 구조 파악
+## 문서 작성 과정
+1. 자료 수집 : `crawler` agent - web에서 관련 자료를 수집 (병렬 실행)
+2. 내용 검증 : orchestrator가 직접 수집된 자료의 정확성과 충분성을 확인
+3. 문서 작성 : `writer` agent - 수집한 자료를 바탕으로 기술 문서 작성
