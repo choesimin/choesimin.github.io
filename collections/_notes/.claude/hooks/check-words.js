@@ -126,7 +126,11 @@ const replacements = {
   '필터링': 'filtering',
   '콘텐츠': 'contents',
   '메커니즘': 'mechanism',
-  '개인정보': '개인 정보',
+  '크롤링': 'crawling',
+  '키워드': 'keyword',
+  '블로그': 'blog',
+  '포럼': 'forum',
+  '커뮤니티': 'community',
 };
 
 const violations = [];
