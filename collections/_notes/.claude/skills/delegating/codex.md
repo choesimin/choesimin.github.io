@@ -2,7 +2,7 @@
 - Codex CLI의 호출 규칙과 session resume 방법
 
 ## 호출 규칙
-- `codex exec -C <project_path> --full-auto -m gpt-5.4 "<prompt>"`로 실행함
+- `codex exec -C <project_path> --full-auto "<prompt>"`로 실행함
 - `-C <project_path>`는 반드시 작업 대상 project의 절대 경로를 지정함
     - 누락 시 Codex가 workdir를 잘못 추론하여 file 경로 오류와 재시도가 발생함
     - worknote 자체가 대상인 경우에만 생략 가능
