@@ -6,15 +6,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/simin/Documents/note/collections/_notes/.claude/hooks/check-words.js"
+            "command": "node $CLAUDE_PROJECT_DIR/.claude/hooks/check-words.js"
           },
           {
             "type": "command",
-            "command": "node /Users/simin/Documents/note/collections/_notes/.claude/hooks/check-chars.js"
+            "command": "node $CLAUDE_PROJECT_DIR/.claude/hooks/check-chars.js"
           },
           {
             "type": "command",
-            "command": "node /Users/simin/Documents/note/collections/_notes/.claude/hooks/check-structure.js"
+            "command": "node $CLAUDE_PROJECT_DIR/.claude/hooks/check-structure.js"
           }
         ]
       }
