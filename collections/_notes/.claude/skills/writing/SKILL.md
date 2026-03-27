@@ -1,6 +1,6 @@
 ---
 name: writing
-description: Apply note document writing conventions
+description: Note document writing conventions including structure, formatting, and style rules
 user-invocable: false
 ---
 
