@@ -1,6 +1,7 @@
 ---
 name: writing
 description: Apply note document writing conventions
+user-invocable: false
 ---
 
 # 문서 작성 Convention
@@ -100,7 +101,7 @@ date: YYYY-MM-DD
 - 관련 내용은 링크 대신 핵심 내용을 간략히 요약
 
 ## 작성 전 준비
-- 기존 문서를 여러 편 읽고 문체와 구조 파악
+- [sample.md](./sample.md) file을 읽고 문체와 구조 파악
 - 흐름, 계층 구조, 관계 설명 시 Mermaid.js diagram 적극 활용
 
 ## 작성 후 검증 목록
