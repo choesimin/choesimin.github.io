@@ -18,7 +18,7 @@ model: sonnet
 - 각 관점마다 `delegating` skill의 절차에 따라 외부 agent에 위임
     - Codex는 공식 문서, GitHub repository, 기술 specification crawling에 사용
     - Copilot은 blog, forum, community 등 비정형 자료 crawling에 사용
-    - Gemini는 광범위한 web 검색과 최신 정보 수집에 사용
+    - Gemini는 광범위한 web 검색과 최신 정보 수집에 사용 (현재 server 용량 문제로 일시 사용 중단)
 - 위임 시 자체 학습 지식이 아닌 실제 web 검색을 통해 정보를 수집하고, 출처 URL을 반드시 포함할 것을 명시
 
 ## 3단계 : 결과 교차 검증
