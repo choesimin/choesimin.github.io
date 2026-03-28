@@ -13,11 +13,22 @@ const violations = [];
 const lines = content.split('\n');
 
 let inCodeBlock = false;
+let inFrontMatter = false;
 let prevHeadingLine = -1;
 let prevHeadingLevel = -1;
 let prevWasHeading = false;
 
 lines.forEach((line, i) => {
+  // front matter 처리
+  if (i === 0 && line.trim() === '---') {
+    inFrontMatter = true;
+    return;
+  }
+  if (inFrontMatter) {
+    if (line.trim() === '---') inFrontMatter = false;
+    return;
+  }
+
   if (line.trim().startsWith('```')) {
     inCodeBlock = !inCodeBlock;
     prevWasHeading = false;
@@ -57,6 +68,34 @@ lines.forEach((line, i) => {
   // 4. trailing whitespace
   if (line !== line.trimEnd()) {
     violations.push(`line ${i + 1}: trailing whitespace`);
+  }
+
+  // 5. bullet point는 '.'으로 끝나야 함
+  if (/^\s*-\s+/.test(line)) {
+    const bulletContent = line.replace(/^\s*-\s+/, '').trim();
+    const isUrlOnly = /^<https?:\/\/[^>]+>$/.test(bulletContent);
+    if (bulletContent && !isUrlOnly && !line.trimEnd().endsWith('.')) {
+      violations.push(`line ${i + 1}: bullet point가 '.'으로 끝나지 않음`);
+    }
+  }
+
+  // 6. table row는 '|'로 끝나야 함
+  if (line.trim().startsWith('|')) {
+    if (!line.trimEnd().endsWith('|')) {
+      violations.push(`line ${i + 1}: table row가 '|'으로 끝나지 않음`);
+    }
+  }
+
+  // 7. 내용 줄은 '- '로 시작해야 함
+  const isEmptyLine = line.trim() === '';
+  const isHorizontalRule = /^-{3,}$/.test(line.trim());
+  const isHeadingLine = !!headingMatch;
+  const isTableRow = line.trim().startsWith('|');
+
+  if (!isEmptyLine && !isHorizontalRule && !isHeadingLine && !isTableRow) {
+    if (!/^\s*- /.test(line)) {
+      violations.push(`line ${i + 1}: 내용 줄이 '- '로 시작하지 않음`);
+    }
   }
 });
 
