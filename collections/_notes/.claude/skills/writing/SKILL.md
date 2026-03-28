@@ -23,7 +23,10 @@ date: YYYY-MM-DD
 ```
 - 모든 문서는 front matter로 시작
 - `permalink`는 숫자로 지정
-- `description`은 정확히 한 문장
+- `description`은 정확히 한 문장이며, 문서의 핵심 내용을 담은 합니다체 문장으로 작성
+    - "~설명합니다", "~다룹니다", "~소개합니다" 같은 meta 표현 금지
+    - 나쁜 예 : "LAZY와 EAGER loading 전략을 설명합니다."
+    - 좋은 예 : "LAZY는 실제 접근 시점에 query를 실행하고, EAGER는 즉시 loading하지만 N+1 위험이 있어 실무에서는 모든 연관 관계를 LAZY로 설정합니다."
 
 ## 문장 구조화 규칙
 - 제목을 제외한 모든 문장은 `- `로 시작하여 목록화
@@ -105,6 +108,7 @@ date: YYYY-MM-DD
 - 흐름, 계층 구조, 관계 설명 시 Mermaid.js diagram 적극 활용
 
 ## 작성 후 검증 목록
+- `description`이 핵심 내용 요약인가 ("~설명합니다" 같은 meta 표현을 쓰지 않았는가)
 - 각 heading 아래에 bulleted 설명이 하나 이상 있는가
 - heading 아래 요약이 구체적인가 (추상적 표현 없는가)
 - 금지 표현을 사용하지 않았는가

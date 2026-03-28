@@ -72,12 +72,12 @@
 
 | 번호 | file | 제목 |
 | --- | --- | --- |
-| /480 | framework/jpa/n-plus-one.md | JPA N+1 문제 - 연관 관계 조회 시 발생하는 query 폭발 |
-| /481 | framework/jpa/fetch-type.md | JPA FetchType - LAZY와 EAGER 로딩 전략 |
-| /482 | framework/jpa/entity-relationship.md | JPA 연관 관계 mapping |
-| /483 | framework/jpa/lazy-initialization-exception.md | LazyInitializationException - transaction 범위 밖 LAZY loading 접근 오류 |
-| /484 | framework/jpa/open-in-view.md | Open-In-View - transaction과 영속성 context의 생명 주기 |
-| /485 | framework/jpa/fetch-join.md | JPA Fetch Join - LAZY 연관 관계를 한 번의 query로 load하는 방법 |
+| /480 | framework/spring/spring-data-jpa/n-plus-one.md | JPA N+1 문제 - 연관 관계 조회 시 발생하는 query 폭발 | **완료** |
+| /481 | framework/spring/spring-data-jpa/fetch-type.md | JPA FetchType - LAZY와 EAGER 로딩 전략 | **완료** |
+| /482 | framework/spring/spring-data-jpa/entity-relationship.md | JPA 연관 관계 mapping |
+| /483 | framework/spring/spring-data-jpa/lazy-initialization-exception.md | LazyInitializationException - transaction 범위 밖 LAZY loading 접근 오류 |
+| /484 | framework/spring/spring-data-jpa/open-in-view.md | Open-In-View - transaction과 영속성 context의 생명 주기 |
+| /485 | framework/spring/spring-data-jpa/fetch-join.md | JPA Fetch Join - LAZY 연관 관계를 한 번의 query로 load하는 방법 |
 | /422 | framework/mybatis.md | MyBatis |
 | /423 | framework/spring/bean-validation.md | Bean Validation |
 | /424 | framework/spring/excel-download.md | Excel Download |

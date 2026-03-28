@@ -1658,3 +1658,4 @@ public class AccountQueryAdapter implements AccountBalanceQueryPort {
 - <https://www.happycoders.eu/software-craftsmanship/hexagonal-architecture-spring-boot/>
 - <https://github.com/thombergs/buckpal>
 - <https://alistair.cockburn.us/hexagonal-architecture/>
+
