@@ -76,7 +76,7 @@
 | /481 | framework/spring/spring-data-jpa/fetch-type.md | JPA FetchType - LAZY와 EAGER 로딩 전략 | **완료** |
 | /482 | framework/spring/spring-data-jpa/entity-relationship.md | JPA 연관 관계 mapping | **완료** |
 | /483 | framework/spring/spring-data-jpa/lazy-initialization-exception.md | LazyInitializationException - transaction 범위 밖 LAZY loading 접근 오류 | **완료** |
-| /484 | framework/spring/spring-data-jpa/open-in-view.md | Open-In-View - transaction과 영속성 context의 생명 주기 |
+| /484 | framework/spring/spring-data-jpa/open-in-view.md | Open-In-View - transaction과 영속성 context의 생명 주기 | **완료** |
 | /485 | framework/spring/spring-data-jpa/fetch-join.md | JPA Fetch Join - LAZY 연관 관계를 한 번의 query로 load하는 방법 |
 | /422 | framework/mybatis.md | MyBatis |
 | /423 | framework/spring/bean-validation.md | Bean Validation |
@@ -187,12 +187,13 @@
 | /466 | devops/ci-cd.md | CI/CD | **완료** |
 
 
-### paradigm/ (2개)
+### paradigm/ (3개)
 
-| 번호 | 파일 | 제목 |
+| 번호 | file | 제목 |
 | --- | --- | --- |
 | /467 | paradigm/layered-architecture.md | Layered Architecture - 계층으로 관심사를 분리하는 Architecture Pattern | **완료** |
 | /475 | paradigm/spec-driven-programming.md | Spec-Driven Programming | **완료** |
+| /486 | paradigm/orm/n-plus-one.md | N+1 문제 | **완료** |
 
 
 ### software-design/ (7개)
@@ -227,6 +228,6 @@
 ## 진행 상황
 
 - 총 86개 문서
-- 완료 : 47개
-- 대기 : 39개
+- 완료 : 49개.
+- 대기 : 38개.
 

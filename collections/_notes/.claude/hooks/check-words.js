@@ -127,6 +127,7 @@ const replacements = {
   '콘텐츠': 'contents',
   '메커니즘': 'mechanism',
   '크롤링': 'crawling',
+  '바인딩': 'binding',
   '키워드': 'keyword',
   '블로그': 'blog',
   '포럼': 'forum',
