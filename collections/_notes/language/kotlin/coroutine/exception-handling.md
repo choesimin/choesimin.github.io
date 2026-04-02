@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /251
+permalink: /489
 title: Kotlin Coroutine Exception 처리
 description: Coroutine의 exception은 structured concurrency에 따라 전파되며, CoroutineExceptionHandler와 SupervisorJob으로 제어합니다.
 date: 2025-01-05

@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /483
+permalink: /496
 title: Spec-Driven Development Triangle - Spec·Test·Code의 삼각 동기화
 description: spec-driven development triangle은 spec·test·code가 단방향이 아닌 삼각형 feedback loop로 서로를 개선하는 개발 model입니다.
 date: 2026-03-10

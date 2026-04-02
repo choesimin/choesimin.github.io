@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /250
+permalink: /488
 title: Kotlin Channel - Coroutine 간 Data 전송
 description: Channel은 coroutine 간 data를 전송하는 hot stream으로, producer와 consumer 사이의 통신을 가능하게 합니다.
 date: 2025-01-05

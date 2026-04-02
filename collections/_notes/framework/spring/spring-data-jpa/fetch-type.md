@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /481
+permalink: /494
 title: JPA FetchType
 description: LAZY는 연관 field에 접근하는 시점에 query를 실행하고, EAGER는 entity 조회 시점에 연관 entity를 즉시 함께 loading합니다.
 date: 2026-03-27

@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /480
+permalink: /493
 title: JPA N+1 문제
 description: JPA의 N+1 문제는 1번의 query로 N개의 data를 가져온 후 연관 entity를 조회하기 위해 N번의 추가 query가 발생하는 성능 저하 문제입니다.
 date: 2026-03-27

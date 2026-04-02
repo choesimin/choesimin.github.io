@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /252
+permalink: /490
 title: Machine Learning - 스스로 학습하는 기계
 description: machine learning은 data를 통해 pattern을 학습하고, 학습된 model로 예측이나 결정을 내리는 AI의 한 분야입니다.
 date: 2026-01-08
