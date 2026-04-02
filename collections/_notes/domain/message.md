@@ -28,3 +28,4 @@ date: 2025-05-21
 | **제한** | 영문 160자, 한글 70자 제한 | 영문 1,000자, 한글 500자 내외 | file 크기 제한 있음 (통상 300KB~1MB) | - |
 | **기술** | GSM, CDMA 등 기본 이동 통신 network | SMS 확장 형태, 같은 network 이용 | GPRS, 3G, 4G network 이용 | IP 기반 통신, LTE/5G network 활용 |
 | **용도** | 간단한 text 전송, 알림, 인증 code 등 | 긴 text message 필요 시 | 사진, 짧은 영상 공유 | group chatting, 읽음 확인, typing 표시, 고해상도 media 공유, 위치 공유 등 |
+

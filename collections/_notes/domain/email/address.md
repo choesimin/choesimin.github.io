@@ -76,3 +76,4 @@ nickname@company.com
 - verification email을 발송하여 사용자의 응답을 기다립니다.
 - click 또는 회신을 통해 실제 사용자임을 확인합니다.
 - spam이나 가짜 주소를 걸러내는 효과적인 방법입니다.
+

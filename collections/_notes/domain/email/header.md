@@ -225,3 +225,4 @@ Date: Mon, 22 May 2025 10:30:00 +0900
     - `text/html`은 HTML 형식으로 formatting과 multimedia 요소를 지원합니다.
     - `charset` parameter를 통해 문자 encoding 방식을 명시합니다.
     - multipart message에서는 각 부분의 content type을 개별적으로 지정할 수 있습니다.
+
