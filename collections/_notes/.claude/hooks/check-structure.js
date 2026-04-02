@@ -70,12 +70,12 @@ lines.forEach((line, i) => {
     violations.push(`line ${i + 1}: trailing whitespace`);
   }
 
-  // 5. bullet point는 '.'으로 끝나야 함
+  // 5. unordered list item은 '.'으로 끝나야 함
   if (/^\s*-\s+/.test(line)) {
     const bulletContent = line.replace(/^\s*-\s+/, '').trim();
     const isUrlOnly = /^<https?:\/\/[^>]+>$/.test(bulletContent);
     if (bulletContent && !isUrlOnly && !line.trimEnd().endsWith('.')) {
-      violations.push(`line ${i + 1}: bullet point가 '.'으로 끝나지 않음`);
+      violations.push(`line ${i + 1}: unordered list item이 '.'으로 끝나지 않음`);
     }
   }
 
@@ -86,15 +86,15 @@ lines.forEach((line, i) => {
     }
   }
 
-  // 7. 내용 줄은 '- '로 시작해야 함
+  // 7. 내용 줄은 unordered list item ('- ') 또는 ordered list item ('1. ', '2. ' 등)으로 시작해야 함
   const isEmptyLine = line.trim() === '';
   const isHorizontalRule = /^-{3,}$/.test(line.trim());
   const isHeadingLine = !!headingMatch;
   const isTableRow = line.trim().startsWith('|');
 
   if (!isEmptyLine && !isHorizontalRule && !isHeadingLine && !isTableRow) {
-    if (!/^\s*- /.test(line)) {
-      violations.push(`line ${i + 1}: 내용 줄이 '- '로 시작하지 않음`);
+    if (!/^\s*- /.test(line) && !/^\s*\d+\.\s+/.test(line)) {
+      violations.push(`line ${i + 1}: 내용 줄이 unordered list item 또는 ordered list item으로 시작하지 않음`);
     }
   }
 });
