@@ -3,8 +3,7 @@
 - 주제별 directory로 계층적 분류 (추상 -> 구체)
 - 모든 문서는 Markdown으로 작성
 
-## 문서 작성 과정
-1. 글감 구성 : orchestrator가 자신의 지식을 기반으로 주제의 핵심 내용과 구조를 직접 구성 (글의 본체)
-2. 자료 수집 : `crawler` agent - web에서 관련 자료를 수집 (병렬 실행, 보충 자료 목적)
-3. 내용 검증 : orchestrator가 직접 수집된 자료의 정확성과 충분성을 확인
-4. 문서 작성 : `writer` agent - orchestrator가 구성한 글감 + 수집한 보충 자료를 바탕으로 기술 문서 작성
+## 문서 작성 Flow
+1. `scrape` skill로 web page / YouTube 자료 수집
+2. 수집한 자료를 분석하여 문서 구조 설계
+3. `write` skill convention에 따라 문서 작성

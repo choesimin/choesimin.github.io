@@ -1,7 +1,6 @@
 ---
-name: writing
-description: Note document writing conventions including structure, formatting, and style rules
-user-invocable: false
+name: write
+description: Write note documents following structure, formatting, and style conventions
 ---
 
 # 문서 작성 Convention
