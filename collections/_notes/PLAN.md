@@ -77,7 +77,7 @@
 | /482 | framework/spring/spring-data-jpa/entity-relationship.md | JPA 연관 관계 mapping | **완료** |
 | /483 | framework/spring/spring-data-jpa/lazy-initialization-exception.md | LazyInitializationException - transaction 범위 밖 LAZY loading 접근 오류 | **완료** |
 | /484 | framework/spring/spring-data-jpa/open-in-view.md | Open-In-View - transaction과 영속성 context의 생명 주기 | **완료** |
-| /485 | framework/spring/spring-data-jpa/fetch-join.md | JPA Fetch Join - LAZY 연관 관계를 한 번의 query로 load하는 방법 |
+| /485 | framework/spring/spring-data-jpa/fetch-join.md | JPA Fetch Join - LAZY 연관 관계를 한 번의 query로 load하는 방법 | **완료** |
 | /422 | framework/mybatis.md | MyBatis |
 | /423 | framework/spring/bean-validation.md | Bean Validation |
 | /424 | framework/spring/excel-download.md | Excel Download |
@@ -228,6 +228,6 @@
 ## 진행 상황
 
 - 총 86개 문서
-- 완료 : 49개.
-- 대기 : 38개.
+- 완료 : 50개.
+- 대기 : 37개.
 
