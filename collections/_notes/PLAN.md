@@ -46,13 +46,14 @@
 | /411 | domain/email/server.md | Email Server | **완료** |
 
 
-### domain/payment/ (3개)
+### domain/payment/ (4개)
 
 | 번호 | file | 제목 |
 | --- | --- | --- |
-| /413 | domain/payment/cash-recript.md | 현금 영수증 |
-| /414 | domain/payment/cms-wbs.md | CMS와 WBS |
-| /415 | domain/payment/payment-process.md | 카드 결제 과정 |
+| /413 | domain/payment/cash-recript.md | 현금 영수증 | **완료** |
+| /414 | domain/payment/cms-wbs.md | CMS와 WBS | **완료** |
+| /415 | domain/payment/payment-process.md | 카드 결제 과정 | **완료** |
+| /417 | domain/payment/slip.md | 전표 | **완료** |
 
 
 ### economics/asset/ (4개)
