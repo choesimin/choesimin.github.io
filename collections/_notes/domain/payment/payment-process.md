@@ -35,3 +35,4 @@ published: false
 ## Reference
 
 - <https://docs.tosspayments.com/resources/glossary/card-payment>
+

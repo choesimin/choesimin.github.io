@@ -42,3 +42,4 @@ date: 2023-12-29
 - <https://blesswisdom.tistory.com/entry/신용카드의-매입사와-발급사>
 - <https://gofood.tistory.com/417>
 - <https://tosspayments-dev.oopy.io/d5db2cfe-5ce1-4f21-8654-f35e459ead6c>
+

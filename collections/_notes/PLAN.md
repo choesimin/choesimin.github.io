@@ -46,16 +46,13 @@
 | /411 | domain/email/server.md | Email Server | **완료** |
 
 
-### domain/payment/ (6개)
+### domain/payment/ (3개)
 
-| 번호 | 파일 | 제목 |
+| 번호 | file | 제목 |
 | --- | --- | --- |
-| /412 | domain/payment/banking.md | 은행 결제 |
 | /413 | domain/payment/cash-recript.md | 현금 영수증 |
 | /414 | domain/payment/cms-wbs.md | CMS와 WBS |
 | /415 | domain/payment/payment-process.md | 카드 결제 과정 |
-| /416 | domain/payment/settlement.md | 정산 |
-| /417 | domain/payment/slip.md | 전표 |
 
 
 ### economics/asset/ (4개)
@@ -227,7 +224,7 @@
 
 ## 진행 상황
 
-- 총 86개 문서
+- 총 83개 문서.
 - 완료 : 50개.
-- 대기 : 37개.
+- 대기 : 34개.
 
