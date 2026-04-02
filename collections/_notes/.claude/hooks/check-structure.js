@@ -58,6 +58,59 @@ lines.forEach((line, i) => {
       violations.push(`line ${i + 1}: heading depth jump - h${prevHeadingLevel} 다음 h${level} (h${prevHeadingLevel + 1} 누락)`);
     }
 
+    // 4. 단락 구분 규칙
+    // ## : 위에 빈 줄 2개 + --- + 빈 줄 2개 (첫 ## 제외)
+    // ### : 위에 빈 줄 2개
+    // #### : 위에 빈 줄 1개
+    if (level >= 2 && level <= 4 && prevHeadingLevel !== -1) {
+      // heading 위쪽의 빈 줄 수와 --- 유무를 검사
+      let emptyCount = 0;
+      let hasHr = false;
+      let emptyAboveHr = 0;
+      let j = i - 1;
+
+      // heading 바로 위의 빈 줄 수
+      while (j >= 0 && lines[j].trim() === '') {
+        emptyCount++;
+        j--;
+      }
+
+      // --- 확인
+      if (j >= 0 && /^-{3,}$/.test(lines[j].trim())) {
+        hasHr = true;
+        j--;
+        // --- 위의 빈 줄 수
+        while (j >= 0 && lines[j].trim() === '') {
+          emptyAboveHr++;
+          j--;
+        }
+      }
+
+      if (level === 2) {
+        // ## : --- 구분선 + 위아래 빈 줄 2개씩
+        if (!hasHr) {
+          violations.push(`line ${i + 1}: ## heading 위에 --- 구분선이 필요함`);
+        } else {
+          if (emptyCount !== 2) {
+            violations.push(`line ${i + 1}: ## heading과 --- 사이에 빈 줄이 ${emptyCount}개 (2개 필요)`);
+          }
+          if (emptyAboveHr !== 2) {
+            violations.push(`line ${i + 1}: --- 위에 빈 줄이 ${emptyAboveHr}개 (2개 필요)`);
+          }
+        }
+      } else if (level === 3) {
+        // ### : 위에 빈 줄 2개
+        if (emptyCount !== 2) {
+          violations.push(`line ${i + 1}: ### heading 위에 빈 줄이 ${emptyCount}개 (2개 필요)`);
+        }
+      } else if (level === 4) {
+        // #### : 위에 빈 줄 1개
+        if (emptyCount !== 1) {
+          violations.push(`line ${i + 1}: #### heading 위에 빈 줄이 ${emptyCount}개 (1개 필요)`);
+        }
+      }
+    }
+
     prevHeadingLine = i;
     prevHeadingLevel = level;
     prevWasHeading = true;
@@ -65,12 +118,12 @@ lines.forEach((line, i) => {
     prevWasHeading = false;
   }
 
-  // 4. trailing whitespace
+  // 5. trailing whitespace
   if (line !== line.trimEnd()) {
     violations.push(`line ${i + 1}: trailing whitespace`);
   }
 
-  // 5. unordered list item은 '.'으로 끝나야 함
+  // 6. unordered list item은 '.'으로 끝나야 함
   if (/^\s*-\s+/.test(line)) {
     const bulletContent = line.replace(/^\s*-\s+/, '').trim();
     const isUrlOnly = /^<https?:\/\/[^>]+>$/.test(bulletContent);
@@ -79,14 +132,14 @@ lines.forEach((line, i) => {
     }
   }
 
-  // 6. table row는 '|'로 끝나야 함
+  // 7. table row는 '|'로 끝나야 함
   if (line.trim().startsWith('|')) {
     if (!line.trimEnd().endsWith('|')) {
       violations.push(`line ${i + 1}: table row가 '|'으로 끝나지 않음`);
     }
   }
 
-  // 7. 내용 줄은 unordered list item ('- ') 또는 ordered list item ('1. ', '2. ' 등)으로 시작해야 함
+  // 8. 내용 줄은 unordered list item ('- ') 또는 ordered list item ('1. ', '2. ' 등)으로 시작해야 함
   const isEmptyLine = line.trim() === '';
   const isHorizontalRule = /^-{3,}$/.test(line.trim());
   const isHeadingLine = !!headingMatch;
@@ -99,7 +152,7 @@ lines.forEach((line, i) => {
   }
 });
 
-// 8. file 마지막에 빈 줄이 정확히 하나 있어야 함
+// 9. file 마지막에 빈 줄이 정확히 하나 있어야 함
 if (content.length > 0) {
   if (!content.endsWith('\n')) {
     violations.push('file 끝에 빈 줄이 없음');
