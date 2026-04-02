@@ -117,8 +117,8 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /444 | language/javascript/node-js.md | Node.js |
-| /445 | language/javascript/syntax.md | JavaScript 문법 |
+| /444 | language/javascript/node-js.md | Node.js | **완료** |
+| /445 | language/javascript/syntax.md | JavaScript 문법 | **완료** |
 
 
 ### linux-tool/ (2개)
@@ -226,6 +226,6 @@
 ## 진행 상황
 
 - 총 84개 문서.
-- 완료 : 54개.
-- 대기 : 30개.
+- 완료 : 56개.
+- 대기 : 28개.
 
