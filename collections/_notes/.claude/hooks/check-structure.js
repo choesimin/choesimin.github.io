@@ -99,6 +99,17 @@ lines.forEach((line, i) => {
   }
 });
 
+// 8. file 마지막에 빈 줄이 정확히 하나 있어야 함
+if (content.length > 0) {
+  if (!content.endsWith('\n')) {
+    violations.push('file 끝에 빈 줄이 없음');
+  } else if (content.endsWith('\n\n\n')) {
+    violations.push('file 끝에 빈 줄이 두 개 이상 있음');
+  } else if (!content.endsWith('\n\n')) {
+    violations.push('file 끝에 빈 줄이 없음 (마지막 줄 뒤에 빈 줄 하나 필요)');
+  }
+}
+
 if (violations.length > 0) {
   process.stderr.write(violations.join('\n') + '\n');
   process.exit(2);
