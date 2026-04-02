@@ -1,94 +1,132 @@
 ---
 layout: note
-published: false
+permalink: /439
+title: Java Servlet
+description: Servlet은 client의 HTTP 요청을 처리하고 동적 응답을 반환하는 Java web programming 기술로, Servlet Container(Tomcat 등)가 lifecycle, multi-thread, 보안을 관리하며, JSP는 HTML 안에 Java code를 넣어 presentation logic을 분리합니다.
+date: 2026-04-02
 ---
 
-# Servlet
 
-- client의 요청을 처리하고, 그 결과를 반환하는 servlet class의 구현 규칙을 지킨 java web programming 기술
-- java를 사용하여 web을 만들기위해 필요한 기술
+## Servlet
 
-## Servlet 특징
+- **Servlet**은 client의 요청을 처리하고 그 결과를 반환하는 Java web programming 기술입니다.
+    - servlet class의 구현 규칙을 지킨 Java code로 작성합니다.
+    - Java를 사용하여 web application을 만들기 위해 필요합니다.
 
-- client의 요청에 대해 동적으로 작동하는 web application component
-- html을 사용하여 요청에 응답
-- java thread를 이용하여 동작
-- MVC pattern에서 controller로 이용됨
-- http protocol service를 지원하는 javax.servlet.http.HttpServlet class를 상속받음
-- UDP보다 처리 속도가 늦음
-- html 변경 시, servlet을 다시 complie해야 하는 단점
+
+### Servlet 특징
+
+- servlet은 HTTP protocol 기반의 동적 web application component입니다.
+
+| 특징 | 설명 |
+| --- | --- |
+| **동적 응답** | client 요청에 대해 동적으로 HTML을 생성하여 응답 |
+| **Thread 기반** | Java thread를 이용하여 동작 |
+| **MVC Controller** | MVC pattern에서 controller 역할 수행 |
+| **HttpServlet 상속** | `javax.servlet.http.HttpServlet` class를 상속 |
+| **Recompile 필요** | HTML 변경 시 servlet을 다시 compile해야 하는 단점 |
+
+
+---
+
 
 ## Servlet 동작 방식
 
-1. client가 url을 입력하면 http request가 servlet container로 전송됨
-2. 요청을 받은 servlet container는 HttpServletRequest, HttpServletResponse 객체 생성
-3. web.xml을 기반으로 사용자가 요청한 url이 어느 servlet에 대한 요청인지 찾음
-4. 해당 servlet에서 service method를 호출한 후, client의 get, post 여부에 따라 doGet() or doPost()를 호출
-5. doGet() or doPost() method는 동적 page를 생성한 후, HttpServletResponse 객체에 응답을 보냄
-6. 응답이 끝나면 HttpServletRequest, HttpServletResponse 두 객체를 소멸시킴
+- client가 URL을 요청하면 servlet container가 해당 servlet을 찾아 실행하고, 동적 page를 생성하여 응답합니다.
+
+```mermaid
+sequenceDiagram
+    participant client as Client
+    participant container as Servlet Container
+    participant servlet as Servlet
+
+    client->>container: HTTP Request (URL)
+    container->>container: HttpServletRequest, HttpServletResponse 생성
+    container->>container: web.xml에서 URL mapping 조회
+    container->>servlet: service() 호출
+    servlet->>servlet: doGet() 또는 doPost() 실행
+    servlet-->>container: 동적 page 생성
+    container-->>client: HTTP Response
+    container->>container: Request, Response 객체 소멸
+```
+
+1. client가 URL을 입력하면 HTTP request가 servlet container로 전송됩니다.
+2. 요청을 받은 servlet container는 `HttpServletRequest`, `HttpServletResponse` 객체를 생성합니다.
+3. `web.xml`을 기반으로 사용자가 요청한 URL이 어느 servlet에 대한 요청인지 찾습니다.
+4. 해당 servlet에서 `service()` method를 호출한 후, client의 GET/POST 여부에 따라 `doGet()` 또는 `doPost()`를 호출합니다.
+5. `doGet()` 또는 `doPost()` method는 동적 page를 생성한 후 `HttpServletResponse` 객체에 응답을 보냅니다.
+6. 응답이 끝나면 `HttpServletRequest`, `HttpServletResponse` 두 객체를 소멸시킵니다.
+
+
+---
+
 
 ## Servlet Container
 
-- servlet을 관리해주는 container
-- server에 servlet을 만들었다해서 스스로 작동하는 것이 아니기 때문에, servlet을 관리해주는 역할을 함
-- servlet이 어떤 역할을 수행하는 정의서라고 보면, servlet container는 그 정의서를 보고 수행한다고 볼 수 있음
-- client의 요청을 받아주고 응답할 수 있게 web server와 socket으로 통신
-    - ex) tomcat (실제로 web server와 통신하여 jsp와 servlet이 작동하는 환경을 제공)
+- **Servlet Container**는 servlet을 관리하는 runtime 환경입니다.
+    - servlet 자체는 동작 방식을 정의한 class이고, servlet container가 이를 실행합니다.
+    - client의 요청을 받아주고 응답할 수 있게 web server와 socket으로 통신합니다.
+    - 대표적인 예로 Tomcat이 있으며, web server와 통신하여 JSP와 servlet이 작동하는 환경을 제공합니다.
 
-## Servlet Container의 역할
 
-- web server와의 통신 지원
-    - servlet과 손쉽게 통신할 수 있게 해줌
-    - 만약 없었다면 socket을 만들고 listen, accept 등을 해야함
-    - servlet container는 이런 기능을 API로 제공하여 복잡한 과정을 생략할 수 있도록 함
-- Servlet Lifecycle 관리
-    - servlet container는 servlet의 탄생과 죽음을 관리
-    - servlet class를 loading하여 instance화 하고, 초기화 method를 호출하고, 요청이 들어오면 적절한 servlet method를 호출
-    - servlet이 생명을 다 한 순간에는 적절하게 garbage collection을 진행하여 편의 제공
-- Multi Thread 지원 및 관리
-    - servlet container는 요청이 올 때마다 새로운 java thread를 하나 생성
-    - http service method를 실행하고나면, thread는 자동으로 죽게 됨
-    - 원래는 thread를 관리해야하지만, server가 다중 thread를 생성 및 운영해줌
-        - thread의 안정성에 대해 걱정하지 않아도 됨
-- 선언적인 보안 관리
-    - servlet container를 사용하면 개발자가 보안에 관련된 내용을 servlet 또는 java class에 구현해놓지 않아도 됨
-    - 일반적으로 보안 관리는 xml 배포 서술자에 기록하므로, 보안에 대해 수정할 일이 생겨도 java source code를 수정하여 다시 compile하지 않아도 보안 관리가 가능
+### Servlet Container의 역할
+
+- servlet container는 web server 통신, servlet lifecycle 관리, multi-thread 처리, 보안 관리를 담당하여 개발자가 business logic에만 집중하게 합니다.
+
+| 역할 | 설명 |
+| --- | --- |
+| **web server 통신 지원** | socket 생성, listen, accept 등의 과정을 API로 추상화하여 servlet과 web server 간 통신을 단순화 |
+| **lifecycle 관리** | servlet class를 loading, instance화, 초기화하고, 요청 시 적절한 method 호출, 종료 시 garbage collection 수행 |
+| **multi-thread 지원** | 요청마다 새로운 Java thread를 생성하여 HTTP service method를 실행하고, thread 관리를 자동으로 수행 |
+| **선언적 보안 관리** | 보안 설정을 XML 배포 서술자에 기록하여, Java source code 수정 없이 보안 관리가 가능 |
+
+
+---
+
 
 ## Servlet의 생명 주기
 
-1. client의 요청이 들어오면 container는 해당 servlet이 memory에 있는지 확인하고, 없을 경우 init() method를 호출하여 적재
-    - init() method는 처음 한 번만 실행되기 때문에, servlet의 thread에서 공통적으로 사용해야하는 것이 있다면, overriding하여 구현하면 됨
-    - 실행 중 servlet이 변경될 경우, 기존 servlet을 파괴하고 init() method를 통해 새로운 내용을 다시 memory에 적재
-2. init() method가 호출된 후, client의 요청에 따라서 service() method를 통해 요청에 대한 응답이 doGet()과 doPost()로 분기됨
-    - 이 때, servlet container가 client의 요청이 오면 가장 먼저 처리하는 과정으로 생성된 HttpServletRequest, HttpServletResponse에 의해 request와 response 객체가 제공됨
-3. container가 servlet에 종료 요청을 하면 destroy() method가 호출됨
-    - init() method와 마찬가지로 한 번만 실행됨
-    - 종료 시에 처리해야하는 작업들은 destroy() method를 overriding하여 구현
+- servlet의 lifecycle은 `init()`, `service()`, `destroy()` 세 단계로 구성됩니다.
+    - client의 요청이 들어오면 container는 해당 servlet이 memory에 있는지 확인하고, 없을 경우 `init()` method를 호출하여 적재합니다.
+    - `init()`은 **처음 한 번만 실행**되므로, servlet thread에서 공통적으로 사용하는 것이 있다면 overriding하여 구현합니다.
+    - 실행 중 servlet이 변경될 경우, 기존 servlet을 파괴하고 `init()`을 통해 새로운 내용을 다시 memory에 적재합니다.
+
+- `init()` 호출 후, client의 요청에 따라 `service()` method를 통해 `doGet()`과 `doPost()`로 분기됩니다.
+    - servlet container가 생성한 `HttpServletRequest`, `HttpServletResponse` 객체가 request와 response로 제공됩니다.
+
+- container가 servlet에 종료 요청을 하면 `destroy()` method가 호출됩니다.
+    - `init()`과 마찬가지로 **한 번만 실행**됩니다.
+    - 종료 시에 처리해야 하는 작업은 `destroy()` method를 overriding하여 구현합니다.
+
 
 ---
 
-# JSP (Java Server Page)
 
-- java code가 들어가있는 html code
-- servlet은 java source code 속에 html source code가 들어가는 형태
-- jsp는 servlet과 반대로 html source code 속에 java source code가 들어가는 구조
-- <% source code %>, <%= source code %> 형태로 들어감
-    - 이 부분은 web browser로 보내는 것이 아니라, web server에서 실행되는 부분
-- compile과 같은 과정을 할 필요 없이, jsp page를 작성하여 web server의 directory에 추가만하면 사용이 가능
-- 결과적으로 jsp는 WAS(Web Application Server)에 의해 servlet class로 변환되어 사용됨
+## JSP (Java Server Page)
 
-## JSP 동작 구조
+- **JSP**는 HTML code 속에 Java code가 들어가는 구조로, servlet과 반대 방향의 접근입니다.
+    - servlet은 Java source code 속에 HTML code가 들어가는 형태입니다.
+    - JSP는 `<% source code %>`, `<%= source code %>` 형태로 Java code를 삽입합니다.
+    - 이 부분은 web browser로 보내는 것이 아니라 web server에서 실행됩니다.
 
-1. web server가 사용자로부터 servlet에 대한 요청을 받으면, servlet container에 그 요청을 넘김
-2. 요청을 받은 container는 http request와 http response 객체를 만들어 이들을 통해 servlet의 doPost()나 doGet() method 중 하나를 호출
-    - 만약 servlet만 사용하여 요청한 web page를 보여주려면 out 객체의 println method를 사용하여 html문서를 작성해야 함
-    - 이는 추가/수정을 어렵게 하고, 가독성을 떨어뜨리기 때문에, jsp를 사용하여 business logic과 presentation logic을 분리
-3. servlet은 data의 입력, 수정 등에 대한 제어를 jsp에게 넘겨서 presentation logic을 수행한 후, container에게 response를 전달
-4. 이렇게 만들어진 결과물은 사용자가 해당 page를 요청하면 compile이 되어 java file을 통해 .class file이 만들어지고, 두 logic이 결합되어 class화 됨
-    - out 객체의 println method를 사용해서 구현해야하는 번거로움을 jsp가 대신 수행해주는 것
+- compile 과정 없이 JSP page를 작성하여 web server의 directory에 추가하면 바로 사용 가능합니다.
+    - 최종적으로 JSP는 WAS(Web Application Server)에 의해 servlet class로 변환되어 실행됩니다.
+
+
+### JSP 동작 구조
+
+- JSP는 servlet의 `out.println()` 방식의 번거로움을 해소하고, business logic과 presentation logic을 분리합니다.
+    - web server가 사용자로부터 servlet 요청을 받으면, servlet container에 요청을 넘깁니다.
+    - container는 `HttpServletRequest`, `HttpServletResponse` 객체를 만들어 servlet의 `doPost()`나 `doGet()`을 호출합니다.
+    - servlet만으로 web page를 보여주려면 `out.println()`으로 HTML을 직접 작성해야 하므로, 추가/수정이 어렵고 가독성이 떨어집니다.
+    - servlet은 data 처리에 대한 제어를 JSP에게 넘겨서 presentation logic을 수행한 후, container에게 response를 전달합니다.
+    - JSP page가 요청되면 compile되어 Java file에서 `.class` file로 변환되고, business logic과 presentation logic이 결합되어 실행됩니다.
+
 
 ---
+
 
 ## Reference
 
-- https://mangkyu.tistory.com/14
+- <https://mangkyu.tistory.com/14>
+

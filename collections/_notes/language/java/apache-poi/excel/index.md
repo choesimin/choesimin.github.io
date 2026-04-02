@@ -1,18 +1,16 @@
 ---
 layout: note
-permalink: /
-title: Apache POI - Java에서 Excel file download하기
-description: 
-date: 2025-06-16
-published: false
+permalink: /429
+title: Apache POI Excel
+description: Apache POI의 Excel 처리 기능은 Workbook, Sheet, Row, Cell 계층 구조를 기반으로 `.xlsx` file을 생성하고, header/data row 작성, column 너비 조정, cell formatting과 style 적용까지 수행합니다.
+date: 2026-04-02
 ---
 
 
-## Apache POI
+## Apache POI Excel
 
-- Apache POI는 Microsoft Office 문서를 Java program에서 읽고 쓸 수 있게 해주는 open source library입니다.
-- Excel file을 생성하고 download하는 기능을 web application에서 구현할 수 있습니다.
-- POI library는 `.xls` format과 `.xlsx` format을 모두 지원합니다.
+- Apache POI는 Excel file을 생성하고 download하는 기능을 web application에서 구현하는 데 적합합니다.
+    - POI library는 `.xls` format과 `.xlsx` format을 모두 지원합니다.
 
 | 주요 Class/Interface | 설명 |
 | --- | --- |
@@ -29,8 +27,8 @@ published: false
 
 ## 기본적인 사용 방법
 
-- Apache POI는 Maven이나 Gradle을 통해 dependency를 추가하여 사용할 수 있습니다.
-- 의존성을 추가한 후, `XSSFWorkbook`을 사용하여 Excel file을 생성하고, `Sheet`, `Row`, `Cell`을 사용하여 data를 삽입합니다.
+- Apache POI는 Maven이나 Gradle을 통해 dependency를 추가하여 사용합니다.
+    - 의존성을 추가한 후, `XSSFWorkbook`을 사용하여 Excel file을 생성하고, `Sheet`, `Row`, `Cell`을 사용하여 data를 삽입합니다.
 
 
 ### Dependency 추가
@@ -80,7 +78,7 @@ public class ExcelGenerator {
 ### Header Row 생성
 
 - 첫 번째 row에 column header를 생성합니다.
-- cell style을 적용하여 header를 시각적으로 구분할 수 있습니다.
+    - cell style을 적용하여 header를 시각적으로 구분합니다.
 
 ```java
 private void createHeaderRow(Sheet sheet, String[] headers) {
@@ -103,7 +101,7 @@ private void createHeaderRow(Sheet sheet, String[] headers) {
 ### Data Row 생성
 
 - header row 다음부터 실제 data를 삽입합니다.
-- 다양한 data type에 따라 적절한 method를 사용합니다.
+    - 다양한 data type에 따라 적절한 method를 사용합니다.
 
 ```java
 private void createDataRows(Sheet sheet, List<DataObject> dataList) {
@@ -119,7 +117,7 @@ private void createDataRows(Sheet sheet, List<DataObject> dataList) {
     }
 }
 
-class  DataObject {
+class DataObject {
     private String name;
     private int age;
     private String email;
@@ -132,7 +130,7 @@ class  DataObject {
 
 ### Column 너비 자동 조정
 
-- data 길이에 맞게 column 너비를 자동으로 조정합니다.
+- `autoSizeColumn()`으로 data 길이에 맞게 column 너비를 자동으로 조정합니다.
 
 ```java
 private void autoSizeColumns(Sheet sheet, int columnCount) {
@@ -148,7 +146,7 @@ private void autoSizeColumns(Sheet sheet, int columnCount) {
 
 ## Cell Formatting 및 Style 적용
 
--  Excel file에서 cell에 다양한 formatting과 style을 적용할 수 있습니다.
+- `CellStyle`과 `DataFormat`을 사용하여 숫자, 날짜 format과 color, border 등의 시각적 style을 cell 단위로 지정합니다.
 
 
 ### 숫자 Format 적용
@@ -211,12 +209,12 @@ private CellStyle createStyledCell(Workbook workbook) {
 
 ## Error 처리 및 최적화
 
-- Excel file을 생성하는 기능을 구현하는 것 외에도, 예외 처리 및 성능 최적화를 고려해야 합니다.
+- `Workbook`은 `Closeable`을 구현하므로 반드시 `close()`를 호출해야 하며, `CellStyle`은 매번 생성하지 않고 cache하여 재사용해야 성능이 유지됩니다.
 
 
 ### Exception 처리
 
-- Excel file 생성 과정에서 발생할 수 있는 exception을 적절히 처리합니다.
+- `IOException`, `InvalidFormatException` 등을 catch하고, `finally` block이나 try-with-resources로 `Workbook`을 반드시 닫습니다.
 
 ```java
 public ResponseEntity<byte[]> safeDownloadExcel() {
@@ -269,7 +267,7 @@ public void createExcelWithProperResourceManagement() {
 
 ### 성능 최적화
 
-- cell style 재사용을 통해 성능를 향상시킵니다.
+- `CellStyle`을 매번 생성하지 않고 cache하여 재사용하면 성능이 향상됩니다.
 
 ```java
 public class OptimizedExcelGenerator {
@@ -298,3 +296,12 @@ public class OptimizedExcelGenerator {
     }
 }
 ```
+
+
+---
+
+
+## Reference
+
+- <https://poi.apache.org/>
+

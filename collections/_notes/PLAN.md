@@ -95,9 +95,9 @@
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
 | /427 | language/java/ip-extractor.md | IP Extractor | **완료** |
-| /428 | language/java/apache-poi/index.md | Apache POI |
-| /429 | language/java/apache-poi/excel/index.md | Apache POI Excel |
-| /430 | language/java/apache-poi/excel/large.md | 대용량 Excel 처리 |
+| /428 | language/java/apache-poi/index.md | Apache POI | **완료** |
+| /429 | language/java/apache-poi/excel/index.md | Apache POI Excel | **완료** |
+| /430 | language/java/apache-poi/excel/large.md | 대용량 Excel 처리 | **완료** |
 | /431 | language/java/collection-empty.md | Collection Empty 검사 | **완료** |
 | /432 | language/java/enumeration.md | Enum | **완료** |
 | /433 | language/java/garbage-collection.md | Garbage Collection | **완료** |
@@ -105,12 +105,12 @@
 | /435 | language/java/history.md | Java 역사 | **완료** |
 | /436 | language/java/identity-and-equality.md | Identity와 Equality | **완료** |
 | /437 | language/java/reflection.md | Reflection | **완료** |
-| /438 | language/java/resource-management.md | Resource 관리 |
-| /439 | language/java/servlet.md | Servlet |
-| /440 | language/java/stream.md | Stream |
+| /438 | language/java/resource-management.md | Resource 관리 | **완료** |
+| /439 | language/java/servlet.md | Servlet | **완료** |
+| /440 | language/java/stream.md | Stream | **완료** |
 | /441 | language/java/switch-and-if.md | Switch와 If | **완료** |
 | /442 | language/java/exception-hierarchy.md | Exception Hierarchy | **완료** |
-| /443 | language/java/unchecked-warning.md | Unchecked Warning |
+| /443 | language/java/unchecked-warning.md | Unchecked Warning | **완료** |
 
 
 ### language/javascript/ (2개)
@@ -226,6 +226,6 @@
 ## 진행 상황
 
 - 총 84개 문서.
-- 완료 : 56개.
-- 대기 : 28개.
+- 완료 : 63개.
+- 대기 : 21개.
 

@@ -1,65 +1,93 @@
 ---
 layout: note
-permalink: /
-title: Apache POI - Microsoft 문서 관리를 위한 Java API
-description: Apache POI는 Apache Software 재단에서 만든 library로, Microsoft Office file format을 순수 Java 언어로서 읽고 쓰는 기능을 제공합니다.
-date: 2025-06-16
-published: false
+permalink: /428
+title: Apache POI
+description: Apache POI는 Apache Software Foundation이 개발한 Java library로, Microsoft Office file format(Excel, Word, PowerPoint)을 순수 Java로 읽고 쓸 수 있으며, HSSF/XSSF/SXSSF 등 format별 전용 component를 제공합니다.
+date: 2026-04-02
 ---
 
 
+## Apache POI
 
+- **Apache POI**는 Microsoft Office 문서를 Java program에서 읽고 쓸 수 있게 해주는 open source library입니다.
+    - Word, Excel, PowerPoint 등 다양한 Microsoft Office format을 지원합니다.
+    - 100% 순수 Java로 구현되어 있어 platform에 관계없이 사용합니다.
+    - Apache Software Foundation에서 개발하고 유지 관리합니다.
 
-
-# Apache POI 완전 가이드
-
-- Apache POI는 Microsoft Office 문서를 Java program에서 읽고 쓸 수 있게 해주는 open source library입니다.
-- Word, Excel, PowerPoint 등 다양한 Microsoft Office format을 지원합니다.
-- 100% 순수 Java로 구현되어 있어 platform에 관계없이 사용할 수 있습니다.
-- Apache Software Foundation에서 개발하고 유지 관리하는 신뢰할 수 있는 library입니다.
-
-## POI Project 개요
 
 ### 역사 및 배경
 
 - POI project는 1999년에 시작되어 20년 이상의 역사를 가지고 있습니다.
-- 초기에는 Excel file 처리만을 목표로 했지만, 현재는 Microsoft Office 전반을 지원합니다.
+    - 초기에는 Excel file 처리만을 목표로 했지만, 현재는 Microsoft Office 전반을 지원합니다.
 - **POI**라는 이름은 "Poor Obfuscation Implementation"의 줄임말로, Microsoft의 복잡한 file format을 해석한다는 의미입니다.
 
-### 지원하는 file format
 
-- **Excel** : `.xls` (Excel 97-2003), `.xlsx` (Excel 2007+)
-- **Word** : `.doc` (Word 97-2003), `.docx` (Word 2007+)
-- **PowerPoint** : `.ppt` (PowerPoint 97-2003), `.pptx` (PowerPoint 2007+)
-- **Visio** : `.vsd` (Visio 2003-2010)
-- **Publisher** : `.pub` (Publisher 98+)
-- **Outlook** : `.msg` (Outlook message file)
+### 지원하는 File Format
+
+- POI가 지원하는 Microsoft Office file format입니다.
+
+| Format | 확장자 |
+| --- | --- |
+| **Excel** | `.xls` (Excel 97-2003), `.xlsx` (Excel 2007+) |
+| **Word** | `.doc` (Word 97-2003), `.docx` (Word 2007+) |
+| **PowerPoint** | `.ppt` (PowerPoint 97-2003), `.pptx` (PowerPoint 2007+) |
+| **Visio** | `.vsd` (Visio 2003-2010) |
+| **Publisher** | `.pub` (Publisher 98+) |
+| **Outlook** | `.msg` (Outlook message file) |
+
+
+---
+
 
 ## POI 구성 요소
 
-### Core component
+- POI는 format별로 전용 component를 분리하여 구성합니다.
 
-- **POIFS (Poor Obfuscation Implementation File System)** : Microsoft의 OLE2 compound document format을 처리합니다.
-- **HSSF (Horrible Spreadsheet Format)** : Excel 97-2003 format인 `.xls` file을 처리합니다.
-- **XSSF (XML Spreadsheet Format)** : Excel 2007+ format인 `.xlsx` file을 처리합니다.
-- **SXSSF (Streaming XML Spreadsheet Format)** : 대용량 Excel file을 memory 효율적으로 처리합니다.
 
-### Document processing component
+### Core Component
 
-- **HWPF (Horrible Word Processor Format)** : Word 97-2003 format인 `.doc` file을 처리합니다.
-- **XWPF (XML Word Processor Format)** : Word 2007+ format인 `.docx` file을 처리합니다.
-- **HSLF (Horrible Slide Layout Format)** : PowerPoint 97-2003 format인 `.ppt` file을 처리합니다.
-- **XSLF (XML Slide Layout Format)** : PowerPoint 2007+ format인 `.pptx` file을 처리합니다.
+- Microsoft Office file을 처리하는 핵심 component입니다.
 
-### Utility component
+| Component | 설명 |
+| --- | --- |
+| **POIFS** (Poor Obfuscation Implementation File System) | Microsoft의 OLE2 compound document format 처리 |
+| **HSSF** (Horrible Spreadsheet Format) | Excel 97-2003 format인 `.xls` file 처리 |
+| **XSSF** (XML Spreadsheet Format) | Excel 2007+ format인 `.xlsx` file 처리 |
+| **SXSSF** (Streaming XML Spreadsheet Format) | 대용량 Excel file을 memory 효율적으로 처리 |
 
-- **SS (SpreadSheet)** : Excel format 간 공통 interface를 제공합니다.
-- **Common** : 모든 POI component에서 공통으로 사용하는 utility class들을 포함합니다.
-- **Scratchpad** : 아직 개발 중이거나 실험적인 기능들을 포함합니다.
 
-## 기본 설정 및 dependency
+### Document Processing Component
 
-### Maven dependency 설정
+- Word와 PowerPoint 문서를 처리하는 component입니다.
+
+| Component | 설명 |
+| --- | --- |
+| **HWPF** (Horrible Word Processor Format) | Word 97-2003 format인 `.doc` file 처리 |
+| **XWPF** (XML Word Processor Format) | Word 2007+ format인 `.docx` file 처리 |
+| **HSLF** (Horrible Slide Layout Format) | PowerPoint 97-2003 format인 `.ppt` file 처리 |
+| **XSLF** (XML Slide Layout Format) | PowerPoint 2007+ format인 `.pptx` file 처리 |
+
+
+### Utility Component
+
+- 공통 기능과 실험적 기능을 포함하는 component입니다.
+
+| Component | 설명 |
+| --- | --- |
+| **SS** (SpreadSheet) | Excel format 간 공통 interface |
+| **Common** | 모든 POI component에서 공통으로 사용하는 utility class |
+| **Scratchpad** | 개발 중이거나 실험적인 기능 |
+
+
+---
+
+
+## 기본 설정 및 Dependency
+
+- POI를 사용하려면 Maven이나 Gradle로 dependency를 추가합니다.
+
+
+### Maven Dependency 설정
 
 - 기본 POI core library와 필요한 추가 module을 선택적으로 추가합니다.
 
@@ -71,7 +99,10 @@ published: false
 </dependency>
 ```
 
-### Gradle dependency 설정
+
+### Gradle Dependency 설정
+
+- `build.gradle`에 dependency를 추가합니다.
 
 ```groovy
 implementation 'org.apache.poi:poi:5.2.4'
@@ -83,9 +114,12 @@ implementation 'org.apache.poi:poi:5.2.4'
 
 ## Excel 처리 기능
 
-### Excel file 생성 및 조작
+- POI는 `XSSFWorkbook`으로 `.xlsx` file을 생성하고, `WorkbookFactory`로 기존 file을 읽어 `Sheet`, `Row`, `Cell` 단위로 data를 처리합니다.
 
-- Excel workbook을 생성하고 data를 입력하는 기본적인 방법입니다.
+
+### Excel File 생성 및 조작
+
+- `XSSFWorkbook`으로 Excel workbook을 생성하고 data를 입력합니다.
 
 ```java
 import org.apache.poi.ss.usermodel.*;
@@ -95,7 +129,7 @@ public class ExcelProcessor {
     public void createExcelFile() throws IOException {
         // 새 workbook 생성
         Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("데이터 시트");
+        Sheet sheet = workbook.createSheet("Data Sheet");
         
         // Header row 생성
         Row headerRow = sheet.createRow(0);
@@ -118,9 +152,10 @@ public class ExcelProcessor {
 }
 ```
 
-### Excel file 읽기
 
-- 기존 Excel file을 읽어서 data를 추출하는 방법입니다.
+### Excel File 읽기
+
+- `WorkbookFactory.create()`로 기존 Excel file을 읽어서 data를 추출합니다.
 
 ```java
 public void readExcelFile(String filePath) throws IOException {
@@ -153,11 +188,18 @@ public void readExcelFile(String filePath) throws IOException {
 }
 ```
 
+
+---
+
+
 ## Word 문서 처리 기능
+
+- POI는 `XWPFDocument`를 통해 `.docx` 문서를 생성하고, 단락(`XWPFParagraph`)과 표(`XWPFTable`) 단위로 내용을 읽고 씁니다.
+
 
 ### Word 문서 생성
 
-- Word 문서를 생성하고 내용을 추가하는 방법입니다.
+- `XWPFDocument`로 Word 문서를 생성하고 내용을 추가합니다.
 
 ```java
 import org.apache.poi.xwpf.usermodel.*;
@@ -194,9 +236,10 @@ public class WordProcessor {
 }
 ```
 
+
 ### Word 문서 읽기
 
-- 기존 Word 문서의 내용을 읽어오는 방법입니다.
+- `XWPFDocument`로 기존 Word 문서의 단락과 표를 읽어옵니다.
 
 ```java
 public void readWordDocument(String filePath) throws IOException {
@@ -225,11 +268,18 @@ public void readWordDocument(String filePath) throws IOException {
 }
 ```
 
+
+---
+
+
 ## PowerPoint 처리 기능
+
+- POI는 `XMLSlideShow`를 통해 `.pptx` file을 생성하고, slide 단위로 text와 shape를 읽고 씁니다.
+
 
 ### PowerPoint 생성
 
-- PowerPoint presentation을 생성하고 slide를 추가하는 방법입니다.
+- `XMLSlideShow`로 PowerPoint presentation을 생성하고 slide를 추가합니다.
 
 ```java
 import org.apache.poi.xslf.usermodel.*;
@@ -267,9 +317,10 @@ public class PowerPointProcessor {
 }
 ```
 
+
 ### PowerPoint 읽기
 
-- 기존 PowerPoint file의 내용을 읽어오는 방법입니다.
+- `XMLSlideShow`로 기존 PowerPoint file의 slide와 text를 읽어옵니다.
 
 ```java
 public void readPresentation(String filePath) throws IOException {
@@ -296,12 +347,17 @@ public void readPresentation(String filePath) throws IOException {
 ```
 
 
+---
+
 
 ## Error 처리 및 Best Practice
 
-### Exception 처리 pattern
+- POI 사용 시 resource 관리와 exception 처리가 중요합니다.
 
-- POI 사용 시 발생할 수 있는 주요 exception들을 처리하는 방법입니다.
+
+### Exception 처리 Pattern
+
+- POI 사용 시 발생하는 주요 exception을 처리하고, `finally` block에서 resource를 정리합니다.
 
 ```java
 public class SafePoiProcessor {
@@ -325,7 +381,6 @@ public class SafePoiProcessor {
         } catch (Exception e) {
             logger.error("예상치 못한 오류 발생", e);
         } finally {
-            // Resource 정리
             closeQuietly(workbook);
             closeQuietly(fis);
         }
@@ -343,9 +398,10 @@ public class SafePoiProcessor {
 }
 ```
 
-### Performance 최적화 지침
 
-- POI 사용 시 성능을 최적화하는 주요 방법들입니다.
+### Performance 최적화
+
+- `CellStyle`을 매번 생성하지 않고 **cache하여 재사용**하면 성능이 크게 향상됩니다.
 
 ```java
 public class PerformanceOptimizedProcessor {
@@ -378,3 +434,13 @@ public class PerformanceOptimizedProcessor {
     }
 }
 ```
+
+
+---
+
+
+## Reference
+
+- <https://poi.apache.org/>
+- <https://poi.apache.org/components/index.html>
+
