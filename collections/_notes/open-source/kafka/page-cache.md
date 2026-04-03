@@ -1,9 +1,9 @@
 ---
 layout: note
-permalink: /251
+permalink: /458
 title: Kafka Page Cache - OS를 활용한 고성능 I/O
-description: Kafka는 OS의 page cache를 활용하고 sequential I/O, zero-copy 등의 최적화 기법을 사용하여 매우 빠른 message 처리 성능을 제공합니다.
-date: 2024-01-01
+description: Kafka는 OS의 page cache를 활용하고 sequential I/O, zero-copy 등의 최적화 기법을 사용하여 매우 빠른 message 처리 성능을 달성합니다.
+date: 2025-11-03
 published: false
 ---
 
@@ -11,7 +11,7 @@ published: false
 ## Kafka의 고성능 I/O 전략
 
 - Kafka는 높은 throughput과 낮은 latency를 달성하기 위해 OS level의 최적화를 적극 활용합니다.
-- page cache, sequential I/O, zero-copy, batch processing 등의 기법을 조합하여 탁월한 성능을 제공합니다.
+- page cache, sequential I/O, zero-copy, batch processing 등의 기법을 조합하여 탁월한 성능을 보여줍니다.
 - application level cache 대신 OS의 page cache를 활용하여 memory를 효율적으로 사용합니다.
 
 
@@ -20,7 +20,7 @@ published: false
 
 ## Page Cache 활용
 
-- **page cache**는 OS가 disk I/O 성능을 향상시키기 위해 제공하는 memory caching mechanism입니다.
+- **page cache**는 OS가 disk I/O 성능을 향상시키기 위해 관리하는 memory caching mechanism입니다.
     - OS는 최근에 읽거나 쓴 disk block을 memory에 caching합니다.
     - 동일한 data에 대한 반복 접근 시 disk I/O 없이 memory에서 직접 읽습니다.
 
@@ -29,10 +29,10 @@ published: false
     - OS가 적절한 시점에 page cache의 내용을 disk에 flush합니다.
     - consumer가 message를 읽을 때도 page cache에서 직접 읽는 경우가 많습니다.
 
-- page cache 활용은 여러 장점을 제공합니다.
-    - **memory 효율성**은 JVM heap 대신 OS page cache를 사용하여 garbage collection overhead를 피합니다.
-    - **warm cache 유지**는 process 재시작 후에도 OS page cache는 유지되어 성능 저하가 최소화됩니다.
-    - **자동 관리**는 OS가 자동으로 memory를 관리하므로 tuning이 간단합니다.
+- page cache 활용은 여러 장점이 있습니다.
+    - **memory 효율성** : JVM heap 대신 OS page cache를 사용하여 garbage collection overhead를 피합니다.
+    - **warm cache 유지** : process 재시작 후에도 OS page cache는 유지되어 성능 저하가 최소화됩니다.
+    - **자동 관리** : OS가 자동으로 memory를 관리하므로 tuning이 간단합니다.
 
 - producer와 consumer의 처리 속도가 비슷하면, message가 page cache에 머물러 disk I/O가 거의 발생하지 않습니다.
     - 이는 Kafka가 실시간 streaming에 최적화된 이유입니다.
@@ -48,13 +48,13 @@ published: false
     - consumer는 offset 순서대로 순차적으로 읽습니다.
 
 - sequential I/O는 random I/O에 비해 훨씬 빠릅니다.
-    - modern disk(HDD)는 sequential read/write 시 100MB/s 이상의 성능을 제공합니다.
+    - modern disk(HDD)는 sequential read/write 시 100MB/s 이상의 성능을 보입니다.
     - random I/O는 seek time으로 인해 수백 KB/s 수준으로 느려집니다.
     - SSD의 경우에도 sequential I/O가 더 빠르고 수명이 연장됩니다.
 
 - sequential I/O는 OS의 read-ahead와 write-behind 최적화를 극대화합니다.
-    - **read-ahead**는 OS가 sequential read pattern을 감지하고 미리 다음 block을 page cache에 load하는 기법입니다.
-    - **write-behind**는 OS가 여러 write를 batch로 묶어 한 번에 disk에 기록하는 기법입니다.
+    - **read-ahead** : OS가 sequential read pattern을 감지하고 미리 다음 block을 page cache에 load합니다.
+    - **write-behind** : OS가 여러 write를 batch로 묶어 한 번에 disk에 기록합니다.
 
 - Kafka의 log segment file 구조는 sequential I/O를 자연스럽게 지원합니다.
     - append-only log 구조로 항상 file의 끝에 쓰기가 발생합니다.
@@ -69,15 +69,15 @@ published: false
 - **zero-copy**는 data를 kernel space에서 user space로 복사하지 않고 직접 network로 전송하는 기법입니다.
 
 - 일반적인 data 전송 과정(zero-copy 미사용)은 4단계로 이루어집니다.
-    1. disk에서 OS buffer로 data 읽기 (kernel space)
-    2. OS buffer에서 application buffer로 복사 (kernel → user space)
-    3. application buffer에서 socket buffer로 복사 (user → kernel space)
-    4. socket buffer에서 network로 전송 (kernel space)
+    1. disk에서 OS buffer로 data 읽기 (kernel space).
+    2. OS buffer에서 application buffer로 복사 (kernel -> user space).
+    3. application buffer에서 socket buffer로 복사 (user -> kernel space).
+    4. socket buffer에서 network로 전송 (kernel space).
 
 - zero-copy를 사용하면 과정이 단순해집니다.
-    1. disk에서 OS buffer로 data 읽기 (kernel space)
-    2. OS buffer에서 socket buffer로 직접 전송 (kernel space 내에서만)
-    3. socket buffer에서 network로 전송
+    1. disk에서 OS buffer로 data 읽기 (kernel space).
+    2. OS buffer에서 socket buffer로 직접 전송 (kernel space 내에서만).
+    3. socket buffer에서 network로 전송.
 
 - Kafka는 `sendfile()` system call을 사용하여 zero-copy를 구현합니다.
     - Java NIO의 `FileChannel.transferTo()` method를 통해 사용합니다.
@@ -95,24 +95,21 @@ published: false
 
 - Kafka는 개별 message가 아닌 **batch 단위로 처리**하여 효율성을 높입니다.
 
-- **producer batching**은 여러 message를 하나의 batch로 묶어 전송하는 방식입니다.
-    - producer는 여러 message를 하나의 batch로 묶어 broker에게 전송합니다.
+- **producer batching** : 여러 message를 하나의 batch로 묶어 broker에게 전송합니다.
     - `batch.size`와 `linger.ms` 설정을 통해 batch 크기와 대기 시간을 조절합니다.
     - network round trip 횟수를 줄여 throughput을 향상시킵니다.
 
-- **broker batching**은 수신한 batch를 그대로 처리하는 방식입니다.
-    - broker는 수신한 batch를 그대로 disk에 기록합니다.
+- **broker batching** : broker는 수신한 batch를 그대로 disk에 기록합니다.
     - 개별 message를 parsing하지 않고 batch 전체를 처리하여 CPU overhead를 줄입니다.
 
-- **consumer batching**은 한 번의 요청으로 여러 message를 가져오는 방식입니다.
-    - consumer는 한 번의 fetch request로 여러 message를 가져옵니다.
+- **consumer batching** : consumer는 한 번의 fetch request로 여러 message를 가져옵니다.
     - `fetch.min.bytes`와 `fetch.max.wait.ms` 설정으로 fetch 동작을 조절합니다.
     - network overhead를 줄이고 처리 효율을 높입니다.
 
-- batch processing은 다양한 이점을 제공합니다.
-    - network overhead 감소 (packet 수 감소)
-    - disk I/O 효율 향상 (larger sequential write)
-    - compression 효율 증가 (larger batch일수록 압축률 향상)
+- batch processing의 이점은 다양합니다.
+    - network overhead 감소 (packet 수 감소).
+    - disk I/O 효율 향상 (larger sequential write).
+    - compression 효율 증가 (larger batch일수록 압축률 향상).
 
 
 ---
@@ -122,11 +119,11 @@ published: false
 
 - Kafka는 message compression을 지원하여 network와 storage 사용량을 줄입니다.
 
-- **다양한 compression algorithm을 지원합니다.**
-    - **gzip**은 높은 압축률을 제공하지만 CPU 사용량이 높습니다.
-    - **snappy**는 균형잡힌 압축률과 속도를 제공하여 기본 권장됩니다.
-    - **lz4**는 매우 빠른 압축/해제 속도와 낮은 CPU 사용량을 제공합니다.
-    - **zstd**는 높은 압축률과 빠른 속도의 균형을 제공합니다.
+- 다양한 compression algorithm을 지원합니다.
+    - **gzip** : 높은 압축률이지만 CPU 사용량이 높습니다.
+    - **snappy** : 균형잡힌 압축률과 속도로 기본 권장됩니다.
+    - **lz4** : 매우 빠른 압축/해제 속도와 낮은 CPU 사용량입니다.
+    - **zstd** : 높은 압축률과 빠른 속도의 균형이 좋습니다.
 
 - producer에서 `compression.type` 설정으로 compression을 활성화합니다.
     - batch 단위로 압축되므로 batch 크기가 클수록 압축 효율이 높습니다.
@@ -136,10 +133,10 @@ published: false
     - broker가 압축을 해제하지 않으므로 CPU overhead가 없습니다.
     - consumer가 최종적으로 압축을 해제하여 message를 처리합니다.
 
-- compression을 사용하면 다음의 이점이 있습니다.
-    - network bandwidth 절약 (특히 WAN 환경에서 유용)
-    - disk storage 절약
-    - 더 많은 message를 batch에 포함 가능
+- compression을 사용하면 여러 이점이 있습니다.
+    - network bandwidth 절약 (특히 WAN 환경에서 유용).
+    - disk storage 절약.
+    - 더 많은 message를 batch에 포함 가능.
 
 
 ---
@@ -157,7 +154,7 @@ published: false
     - consumer가 특정 offset의 message를 찾을 때 index file을 빠르게 검색합니다.
     - binary search를 통해 효율적으로 원하는 위치를 찾습니다.
 
-- mmap은 여러 장점을 제공합니다.
+- mmap은 여러 장점이 있습니다.
     - file I/O overhead가 감소합니다.
     - OS가 자동으로 page cache를 관리합니다.
     - file I/O API가 불필요하여 code가 간결해집니다.
@@ -169,24 +166,24 @@ published: false
 ## Kafka 성능 최적화 Best Practice
 
 - **batch size를 적절히 설정**해야 합니다.
-    - `batch.size=16384` (16KB, producer 기본값)
-    - `linger.ms=10-100` (throughput 우선 시)
+    - `batch.size=16384` (16KB, producer 기본값).
+    - `linger.ms=10-100` (throughput 우선 시).
 
-- **compression을 활성화하여 성능을 향상**시킬 수 있습니다.
-    - `compression.type=snappy` 또는 `lz4` (균형잡힌 선택)
-    - `compression.type=zstd` (높은 압축률 필요 시)
+- **compression을 활성화하여 성능을 향상**시킵니다.
+    - `compression.type=snappy` 또는 `lz4` (균형잡힌 선택).
+    - `compression.type=zstd` (높은 압축률 필요 시).
 
 - **충분한 OS page cache를 확보**해야 합니다.
-    - JVM heap은 작게 (6-8GB 권장)
-    - 나머지 memory는 OS page cache에 할당
+    - JVM heap은 작게 (6-8GB 권장).
+    - 나머지 memory는 OS page cache에 할당.
 
 - **partition 수를 적절히 설정**해야 합니다.
-    - consumer 병렬성을 고려하여 설정
-    - 너무 많은 partition은 metadata overhead 증가
+    - consumer 병렬성을 고려하여 설정.
+    - 너무 많은 partition은 metadata overhead 증가.
 
 - **retention 정책을 적절히 설정**해야 합니다.
-    - `log.retention.hours` 또는 `log.retention.bytes`
-    - 불필요한 data를 빠르게 삭제하여 disk 공간 확보
+    - `log.retention.hours` 또는 `log.retention.bytes`.
+    - 불필요한 data를 빠르게 삭제하여 disk 공간 확보.
 
 
 ---

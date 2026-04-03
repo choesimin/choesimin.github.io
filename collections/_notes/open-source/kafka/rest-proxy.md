@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /252
+permalink: /459
 title: Kafka REST Proxy - HTTP를 통한 Kafka 접근
 description: Kafka REST Proxy는 HTTP/REST API를 통해 Kafka cluster에 접근할 수 있게 하여, native client를 사용할 수 없는 환경에서도 Kafka를 활용할 수 있게 합니다.
 date: 2025-11-03
@@ -22,7 +22,7 @@ published: false
 
 - **다양한 언어에서 Kafka를 사용**할 수 있습니다.
     - native Kafka client가 없는 언어에서도 HTTP client만 있으면 Kafka를 사용할 수 있습니다.
-    - 모든 programming 언어가 HTTP library를 제공하므로 접근성이 높습니다.
+    - 모든 programming 언어가 HTTP library를 갖고 있으므로 접근성이 높습니다.
 
 - **application과 간단하게 통합**할 수 있습니다.
     - Kafka client library를 application에 포함시킬 필요가 없습니다.
@@ -42,25 +42,16 @@ published: false
 
 ## REST Proxy Architecture
 
-```mermaid
-flowchart LR
-    A[HTTP Client] -->|REST API| B[REST Proxy]
-    B -->|Native Protocol| C[Kafka Cluster]
-    B -->|Schema Registry| D[Schema Registry]
-
-    subgraph "REST Proxy Layer"
-        B
-    end
-
-    subgraph "Kafka Cluster"
-        C
-        D
-    end
-```
-
 - REST Proxy는 HTTP request를 받아 Kafka native protocol로 변환하는 gateway 역할을 합니다.
     - client의 HTTP request를 Kafka producer/consumer API 호출로 변환합니다.
     - Kafka response를 HTTP response로 변환하여 client에게 전달합니다.
+
+```mermaid
+flowchart LR
+    http_client[HTTP Client] -->|REST API| rest_proxy[REST Proxy]
+    rest_proxy -->|Native Protocol| kafka_cluster[Kafka Cluster]
+    rest_proxy -->|Schema Registry| schema_registry[Schema Registry]
+```
 
 - REST Proxy는 stateless service로 설계되어 수평적 확장이 가능합니다.
     - 여러 REST Proxy instance를 실행하고 load balancer로 분산할 수 있습니다.
@@ -73,13 +64,12 @@ flowchart LR
 
 ## 주요 기능
 
-- REST Proxy는 producer와 consumer 기능을 HTTP API로 제공합니다.
+- REST Proxy는 producer와 consumer 기능을 HTTP API로 노출합니다.
 
 
 ### Producer 기능
 
-- **HTTP POST request로 topic에 message를 전송**할 수 있습니다.
-    - HTTP POST request로 topic에 message를 전송합니다.
+- **HTTP POST request로 topic에 message를 전송**합니다.
     - 단일 message 또는 batch message 전송을 지원합니다.
 
 ```bash
@@ -88,8 +78,7 @@ curl -X POST -H "Content-Type: application/vnd.kafka.json.v2+json" \
   "http://localhost:8082/topics/my-topic"
 ```
 
-- **partition key를 지정하여 message를 routing**할 수 있습니다.
-    - partition key를 지정하여 message를 특정 partition으로 routing할 수 있습니다.
+- **partition key를 지정하여 message를 특정 partition으로 routing**합니다.
 
 ```bash
 curl -X POST -H "Content-Type: application/vnd.kafka.json.v2+json" \
@@ -100,8 +89,7 @@ curl -X POST -H "Content-Type: application/vnd.kafka.json.v2+json" \
 
 ### Consumer 기능
 
-- **consumer group을 생성하고 consumer instance를 등록**할 수 있습니다.
-    - consumer group을 생성하고 consumer instance를 등록합니다.
+- **consumer group을 생성하고 consumer instance를 등록**합니다.
 
 ```bash
 curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
@@ -109,8 +97,7 @@ curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
   "http://localhost:8082/consumers/my-consumer-group"
 ```
 
-- **생성한 consumer로 특정 topic을 구독**할 수 있습니다.
-    - 생성한 consumer로 특정 topic을 구독합니다.
+- **생성한 consumer로 특정 topic을 구독**합니다.
 
 ```bash
 curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
@@ -118,16 +105,14 @@ curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
   "http://localhost:8082/consumers/my-consumer-group/instances/my-consumer/subscription"
 ```
 
-- **HTTP GET request로 message를 조회**할 수 있습니다.
-    - HTTP GET request로 message를 가져옵니다.
+- **HTTP GET request로 message를 조회**합니다.
 
 ```bash
 curl -X GET -H "Accept: application/vnd.kafka.json.v2+json" \
   "http://localhost:8082/consumers/my-consumer-group/instances/my-consumer/records"
 ```
 
-- **처리한 message의 offset을 commit**할 수 있습니다.
-    - 처리한 message의 offset을 commit합니다.
+- **처리한 message의 offset을 commit**합니다.
 
 ```bash
 curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
@@ -137,15 +122,13 @@ curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
 
 ### Metadata 조회
 
-- **cluster의 모든 topic 목록을 조회**할 수 있습니다.
-    - cluster의 모든 topic을 조회합니다.
+- **cluster의 모든 topic 목록을 조회**합니다.
 
 ```bash
 curl -X GET "http://localhost:8082/topics"
 ```
 
-- **특정 topic의 partition 정보를 조회**할 수 있습니다.
-    - 특정 topic의 partition 정보를 조회합니다.
+- **특정 topic의 partition 정보를 조회**합니다.
 
 ```bash
 curl -X GET "http://localhost:8082/topics/my-topic/partitions"
@@ -160,9 +143,9 @@ curl -X GET "http://localhost:8082/topics/my-topic/partitions"
 - REST Proxy는 여러 data format을 지원합니다.
 
 
-### JSON Format : `Content-Type: application/vnd.kafka.json.v2+json`
+### JSON Format
 
-- 가장 간단하고 일반적으로 사용되는 format입니다.
+- 가장 간단하고 일반적으로 사용되는 format이며, `Content-Type: application/vnd.kafka.json.v2+json`으로 지정합니다.
 
 ```json
 {
@@ -174,9 +157,9 @@ curl -X GET "http://localhost:8082/topics/my-topic/partitions"
 ```
 
 
-### Avro Format : `Content-Type: application/vnd.kafka.avro.v2+json`
+### Avro Format
 
-- Schema Registry와 함께 사용하여 schema 관리가 가능합니다.
+- Schema Registry와 함께 사용하여 schema 관리가 가능하며, `Content-Type: application/vnd.kafka.avro.v2+json`으로 지정합니다.
 
 ```json
 {
@@ -188,9 +171,9 @@ curl -X GET "http://localhost:8082/topics/my-topic/partitions"
 ```
 
 
-### Binary Format : `Content-Type: application/vnd.kafka.binary.v2+json`
+### Binary Format
 
-- base64 encoding된 binary data를 전송합니다.
+- base64 encoding된 binary data를 전송하며, `Content-Type: application/vnd.kafka.binary.v2+json`으로 지정합니다.
 
 ```json
 {
@@ -211,6 +194,8 @@ curl -X GET "http://localhost:8082/topics/my-topic/partitions"
 
 ### 기본 설정
 
+- 주요 설정 항목은 listener, broker 주소, Schema Registry 주소입니다.
+
 ```properties
 # REST Proxy가 listen할 port
 listeners=http://0.0.0.0:8082
@@ -227,6 +212,8 @@ consumer.request.timeout.ms=30000
 
 
 ### 보안 설정
+
+- SSL과 SASL 인증을 설정하여 보안을 강화합니다.
 
 ```properties
 # SSL 활성화
@@ -296,17 +283,14 @@ curl -X DELETE \
 
 ## REST Proxy Alternatives
 
-- **Kafka Connect**는 data pipeline 구축에 더 적합합니다.
-    - data pipeline 구축에는 Kafka Connect가 더 적합합니다.
+- **Kafka Connect** : data pipeline 구축에는 Kafka Connect가 더 적합합니다.
     - 다양한 connector를 통해 외부 system과 통합할 수 있습니다.
 
-- **Native Client Libraries**는 고성능이 필요한 경우 사용됩니다.
-    - 고성능이 필요한 경우 Java, Python, Go 등의 native client를 사용합니다.
-    - 더 많은 기능과 더 나은 성능을 제공합니다.
+- **Native Client Libraries** : 고성능이 필요한 경우 Java, Python, Go 등의 native client를 사용합니다.
+    - 더 많은 기능과 더 나은 성능을 보입니다.
 
-- **ksqlDB**는 SQL 기반으로 Kafka를 다룰 수 있습니다.
-    - SQL 기반으로 Kafka를 다루고 싶다면 ksqlDB를 고려합니다.
-    - stream processing과 query 기능을 제공합니다.
+- **ksqlDB** : SQL 기반으로 Kafka를 다루고 싶다면 ksqlDB를 고려합니다.
+    - stream processing과 query 기능을 갖추고 있습니다.
 
 
 ---

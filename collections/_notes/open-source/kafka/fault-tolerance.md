@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /250
+permalink: /457
 title: Kafka Fault Tolerance - 장애 대응과 자동 복구
 description: Kafka는 replication, leader election, controller 등의 mechanism을 통해 broker 장애 시에도 자동으로 복구하여 service 가용성을 유지합니다.
 date: 2025-11-03
@@ -11,7 +11,7 @@ published: false
 ## Kafka Fault Tolerance
 
 - Kafka는 분산 system으로서 개별 component의 장애에도 전체 system이 지속 동작하도록 설계되었습니다.
-- replication, leader election, controller broker 등의 mechanism을 통해 자동화된 장애 대응 체계를 제공합니다.
+- replication, leader election, controller broker 등의 mechanism을 통해 자동화된 장애 대응 체계를 갖추고 있습니다.
 - 장애 감지부터 복구까지 자동으로 처리되어 최소한의 service 중단만 발생합니다.
 
 
@@ -24,17 +24,17 @@ published: false
 
 ```mermaid
 flowchart TD
-    A["정상 운영 상태"] --> B["Broker heartbeat 중단"]
-    B --> C["Zookeeper가 장애 감지"]
-    C --> D["Controller에게 알림"]
-    D --> E{"장애 Broker가<br/>Leader인가?"}
-    E -->|예| F["ISR에서 새 Leader 선출"]
-    E -->|아니오| G["ISR에서 Replica 제거"]
-    F --> H["Metadata 업데이트"]
-    G --> H
-    H --> I["Producer/Consumer에<br/>새 Leader 정보 전파"]
-    I --> J["Client 재연결"]
-    J --> K["정상 운영 재개"]
+    normal["정상 운영 상태"] --> heartbeat_stop["Broker heartbeat 중단"]
+    heartbeat_stop --> detect["Zookeeper가 장애 감지"]
+    detect --> notify["Controller에게 알림"]
+    notify --> is_leader{"장애 Broker가\nLeader인가?"}
+    is_leader -->|예| elect["ISR에서 새 Leader 선출"]
+    is_leader -->|아니오| remove["ISR에서 Replica 제거"]
+    elect --> metadata["Metadata update"]
+    remove --> metadata
+    metadata --> propagate["Producer/Consumer에\n새 Leader 정보 전파"]
+    propagate --> reconnect["Client 재연결"]
+    reconnect --> resume["정상 운영 재개"]
 ```
 
 
@@ -64,16 +64,16 @@ flowchart TD
 - 선출된 새 leader에게 승격을 통보하고, leader 역할을 시작하게 합니다.
 
 
-### 4. Metadata 업데이트
+### 4. Metadata Update
 
-- controller는 새로운 leader 정보를 cluster metadata에 업데이트합니다.
+- controller는 새로운 leader 정보를 cluster metadata에 update합니다.
     - zookeeper에 새로운 leader 정보를 기록합니다.
     - 모든 broker에게 metadata 변경을 전파합니다.
 
 
 ### 5. Client 재연결
 
-- producer와 consumer는 metadata 업데이트를 받아 새로운 leader로 재연결합니다.
+- producer와 consumer는 metadata update를 받아 새로운 leader로 재연결합니다.
     - client는 주기적으로 metadata를 refresh합니다.
     - 자동으로 새 leader와 연결을 재설정하여 message 전송/수신을 재개합니다.
 
@@ -109,32 +109,32 @@ flowchart TD
 
 ### Controller 선출 과정
 
-```mermaid
-sequenceDiagram
-    participant B1 as Broker 1
-    participant B2 as Broker 2
-    participant B3 as Broker 3
-    participant ZK as Zookeeper
-
-    note over B1,ZK: Cluster 시작 시점
-
-    B1->>ZK: Controller 등록 시도
-    activate B1
-    ZK-->>B1: 등록 성공 (Controller 선출)
-    deactivate B1
-
-    B2->>ZK: Controller 등록 시도
-    ZK-->>B2: 등록 실패 (이미 존재)
-
-    B3->>ZK: Controller 등록 시도
-    ZK-->>B3: 등록 실패 (이미 존재)
-
-    note over B1,ZK: Broker 1이 Controller로 선출됨
-```
-
 - cluster 시작 시, 가장 먼저 zookeeper에 controller 등록을 시도하는 broker가 controller가 됩니다.
     - zookeeper의 ephemeral node 기능을 활용하여 유일성을 보장합니다.
     - 다른 broker들은 등록 실패를 받고 일반 broker로 동작합니다.
+
+```mermaid
+sequenceDiagram
+    participant b1 as Broker 1
+    participant b2 as Broker 2
+    participant b3 as Broker 3
+    participant zk as Zookeeper
+
+    note over b1,zk: Cluster 시작 시점
+
+    b1->>zk: Controller 등록 시도
+    activate b1
+    zk-->>b1: 등록 성공 (Controller 선출)
+    deactivate b1
+
+    b2->>zk: Controller 등록 시도
+    zk-->>b2: 등록 실패 (이미 존재)
+
+    b3->>zk: Controller 등록 시도
+    zk-->>b3: 등록 실패 (이미 존재)
+
+    note over b1,zk: Broker 1이 Controller로 선출됨
+```
 
 - controller broker에 장애가 발생하면, 다른 broker 중 하나가 자동으로 새로운 controller가 됩니다.
     - zookeeper session 만료를 통해 장애를 감지합니다.
@@ -143,21 +143,17 @@ sequenceDiagram
 
 ### Controller의 주요 책임
 
-- **broker 상태 관리**는 cluster 내 모든 broker를 모니터링하는 역할입니다.
-    - cluster 내 모든 broker의 생존 여부를 모니터링합니다.
+- **broker 상태 관리** : cluster 내 모든 broker의 생존 여부를 monitoring합니다.
     - broker의 추가와 제거를 감지하고 필요한 조치를 수행합니다.
 
-- **partition 관리**는 topic의 partition 할당과 재분배를 조율하는 역할입니다.
-    - topic의 partition 할당과 재분배를 조율합니다.
+- **partition 관리** : topic의 partition 할당과 재분배를 조율합니다.
     - partition의 leader와 follower 관계를 설정하고 관리합니다.
 
-- **leader election 관리**는 partition leader 장애 시 새로운 leader를 선출하는 역할입니다.
-    - partition leader에 장애가 발생하면 새로운 leader를 선출합니다.
+- **leader election 관리** : partition leader에 장애가 발생하면 새로운 leader를 선출합니다.
     - ISR 목록을 참조하여 최적의 leader 후보를 선정합니다.
     - 선출된 새 leader 정보를 cluster 전체에 전파합니다.
 
-- **metadata 관리**는 cluster metadata를 caching하고 전파하는 역할입니다.
-    - cluster의 metadata를 local에 caching하여 성능을 최적화합니다.
+- **metadata 관리** : cluster의 metadata를 local에 caching하여 성능을 최적화합니다.
     - metadata 변경 사항을 모든 broker에게 전파합니다.
 
 
@@ -203,7 +199,7 @@ sequenceDiagram
     - Kafka 3.0부터 도입되어 점진적으로 zookeeper를 대체하고 있습니다.
     - Raft consensus algorithm을 사용하여 metadata를 관리합니다.
 
-- KRaft는 여러 장점을 제공합니다.
+- KRaft는 여러 장점을 갖고 있습니다.
     - zookeeper 의존성 제거로 운영 복잡도가 감소합니다.
     - metadata 관리 성능이 향상됩니다.
     - partition 수 제약이 완화되어 더 많은 partition을 지원합니다.

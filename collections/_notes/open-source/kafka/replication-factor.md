@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /249
+permalink: /456
 title: Kafka Replication Factor - 고가용성과 Data 복제
 description: Kafka의 replication factor는 partition을 여러 broker에 복제하여 장애 발생 시에도 data 손실 없이 service를 지속할 수 있게 합니다.
 date: 2025-11-03
@@ -142,10 +142,10 @@ published: false
     - partition의 replica를 추가하거나 제거합니다.
     - 변경 과정에서 data가 재배치되므로 시간이 걸릴 수 있습니다.
 
-- replication factor를 **증가**시키는 경우 : 새로운 replica가 leader로부터 data를 복제합니다.
+- replication factor를 **증가**시키는 경우, 새로운 replica가 leader로부터 data를 복제합니다.
     - 복제가 완료될 때까지 추가 network와 disk I/O가 발생합니다.
 
-- replication factor를 **감소**시키는 경우 : 일부 replica가 제거됩니다.
+- replication factor를 **감소**시키는 경우, 일부 replica가 제거됩니다.
     - 신중하게 진행해야 하며, data 손실 위험을 고려해야 합니다.
 
 
