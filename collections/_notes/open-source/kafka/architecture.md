@@ -215,3 +215,4 @@ date: 2025-03-10
 ## Reference
 
 - <https://curiousjinan.tistory.com/entry/understanding-kafka-all-structure>
+

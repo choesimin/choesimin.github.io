@@ -4,14 +4,13 @@ permalink: /460
 title: Kafka Log Compaction - Key 기반 상태 관리
 description: Kafka의 log compaction은 key별 최신 message만 유지하여 storage를 효율적으로 관리하면서도 각 key의 최종 상태를 영구 보존합니다.
 date: 2025-11-03
-published: false
 ---
 
 
 ## Kafka Log Compaction
 
 - Kafka log compaction은 topic의 저장 공간을 효율적으로 관리하면서도 **최신 상태 정보를 영구 보존**하는 핵심 mechanism입니다.
-- 전통적인 시간 기반 retention과 달리, **key별 최신 message만 유지**하여 무한정 증가하는 log 크기 문제를 해결합니다.
+- 전통적인 시간 기반 retention과 달리, **key별 최신 message만 유지**하므로 log 크기가 무한정 증가하지 않습니다.
 - database의 Change Data Capture(CDC), configuration 관리, event sourcing 등 **상태 기반 system**에서 필수적으로 활용됩니다.
 
 
@@ -51,7 +50,7 @@ published: false
 ---
 
 
-## Log Compaction 동작 mechanism
+## Log Compaction 동작 Mechanism
 
 - log compaction은 **background process**로 동작하며, 즉시 실행되지 않고 특정 조건을 만족할 때 실행됩니다.
 - compaction 과정에서 **기존 segment file들을 새로운 segment로 재작성**하여 중복된 key의 오래된 message들을 제거합니다.
@@ -60,11 +59,11 @@ published: false
 
 ### Compaction 실행 조건
 
-- **segment 크기 조건** : active segment를 제외한 closed segment들이 대상이 됩니다.
+- **Segment 크기 조건** : active segment를 제외한 closed segment들이 대상이 됩니다.
     - `segment.ms` 또는 `segment.bytes` 설정에 따라 segment가 닫힙니다.
     - active segment는 compaction 대상에서 제외되어 **최신 message 손실을 방지**합니다.
 
-- **dirty ratio 조건** : compaction 대상 data의 비율이 임계값을 초과해야 합니다.
+- **Dirty Ratio 조건** : compaction 대상 data의 비율이 임계값을 초과해야 합니다.
     - `min.cleanable.dirty.ratio` 설정값 (기본값 0.5)을 넘어야 compaction이 시작됩니다.
     - 너무 자주 compaction하면 I/O 부하가 증가하므로 적절한 임계값이 필요합니다.
 
@@ -74,15 +73,15 @@ published: false
 
 ### Compaction 처리 과정
 
-1. **segment 분석** : compaction 대상 segment들을 scan하여 key별 최신 offset을 파악합니다.
+1. **Segment 분석** : compaction 대상 segment들을 scan하여 key별 최신 offset을 파악합니다.
     - 각 key의 가장 높은 offset을 가진 message를 **보존 대상**으로 marking합니다.
     - 이 과정에서 memory에 key-offset mapping table을 구성합니다.
 
-2. **새로운 segment 생성** : 보존 대상 message들만 모아서 새로운 segment file을 생성합니다.
+2. **새로운 Segment 생성** : 보존 대상 message들만 모아서 새로운 segment file을 생성합니다.
     - message의 **순서와 offset은 그대로 유지**됩니다.
     - 압축률은 key 중복도에 따라 결정됩니다.
 
-3. **atomic 교체** : 기존 segment들을 새로운 segment로 원자적으로 교체합니다.
+3. **Atomic 교체** : 기존 segment들을 새로운 segment로 원자적으로 교체합니다.
     - consumer가 읽는 도중에도 **일관성이 보장**됩니다.
     - 교체 완료 후 기존 segment file들은 삭제됩니다.
 
@@ -112,7 +111,7 @@ published: false
     - database의 DELETE 연산을 CDC로 처리할 때 자주 사용됩니다.
     - configuration 삭제나 entity 제거 시에도 활용됩니다.
 
-- **compaction 중 처리** : tombstone은 해당 key의 **모든 이전 message들을 제거 대상**으로 marking합니다.
+- **Compaction 중 처리** : tombstone은 해당 key의 **모든 이전 message들을 제거 대상**으로 marking합니다.
     - 첫 번째 compaction에서는 tombstone만 남고 이전 message들이 삭제됩니다.
     - 이후 compaction에서는 tombstone 자체도 삭제 대상이 될 수 있습니다.
 
@@ -123,11 +122,11 @@ published: false
 
 ### Tombstone 활용 시 주의 사항
 
-- **consumer 처리** : consumer는 `value=null`인 message를 받았을 때 적절한 삭제 logic을 구현해야 합니다.
+- **Consumer 처리** : consumer는 `value=null`인 message를 받았을 때 적절한 삭제 logic을 구현해야 합니다.
     - 단순히 null check만 하는 것이 아니라 **삭제 의미**로 해석해야 합니다.
     - local cache나 database에서 해당 key를 제거하는 작업이 필요합니다.
 
-- **producer 설계** : tombstone 전송 전에 일반 삭제 event를 먼저 보내는 것이 좋습니다.
+- **Producer 설계** : tombstone 전송 전에 일반 삭제 event를 먼저 보내는 것이 좋습니다.
     - CDC 도구들이 이런 pattern을 사용하여 **삭제 정보와 삭제 marking을 분리**합니다.
     - consumer가 삭제 이유나 삭제된 data를 확인할 수 있게 합니다.
 
@@ -142,7 +141,7 @@ published: false
 - 각 설정값의 의미를 정확히 이해하고 **monitoring을 통해 지속적으로 조정**해야 합니다.
 
 
-### 핵심 설정 parameter
+### 핵심 설정 Parameter
 
 - **`cleanup.policy=compact`** : topic에서 log compaction을 활성화하는 필수 설정입니다.
     - `delete`와 함께 사용하여 `compact,delete`로 설정하면 **hybrid 방식**으로 동작합니다.
@@ -159,11 +158,11 @@ published: false
 
 ### 성능 최적화 전략
 
-- **memory 할당 최적화** : compaction 과정에서 key-offset mapping을 위한 **충분한 heap memory**가 필요합니다.
+- **Memory 할당 최적화** : compaction 과정에서 key-offset mapping을 위한 **충분한 heap memory**가 필요합니다.
     - `log.cleaner.dedupe.buffer.size` 설정으로 compaction 전용 memory를 조정합니다.
     - unique key 개수가 많은 topic일수록 더 많은 memory가 필요합니다.
 
-- **parallel processing** : `log.cleaner.threads` 설정으로 compaction **병렬 처리 수준**을 조정합니다.
+- **Parallel Processing** : `log.cleaner.threads` 설정으로 compaction **병렬 처리 수준**을 조정합니다.
     - thread 수를 늘리면 여러 topic의 compaction을 동시에 처리할 수 있습니다.
     - 과도한 병렬화는 **disk I/O 경합**을 유발할 수 있으므로 주의가 필요합니다.
 
@@ -174,11 +173,11 @@ published: false
 
 ### Monitoring 지표
 
-- **compaction rate** : `kafka.log:type=LogCleanerManager,name=cleaner-recopy-percent` metric으로 compaction 효율성을 측정합니다.
+- **Compaction rate** : `kafka.log:type=LogCleanerManager,name=cleaner-recopy-percent` metric으로 compaction 효율성을 측정합니다.
     - 높은 recopy rate는 **중복 data가 많음**을 의미합니다.
     - 낮은 rate는 이미 **잘 압축된 상태**임을 나타냅니다.
 
-- **lag monitoring** : compaction 대기 중인 **dirty data의 크기와 비율**을 지속적으로 확인합니다.
+- **Lag monitoring** : compaction 대기 중인 **dirty data의 크기와 비율**을 지속적으로 확인합니다.
     - `kafka.log:type=Log,name=size,topic=*,partition=*` metric으로 전체 log 크기를 추적합니다.
     - dirty ratio가 지속적으로 높다면 compaction 설정을 조정해야 합니다.
 
@@ -225,15 +224,15 @@ published: false
 
 ### Migration 고려 사항
 
-- **기존 consumer 호환성** : 기존에 time-based retention을 사용하던 consumer들이 **compaction 동작을 올바르게 처리**할 수 있는지 확인해야 합니다.
+- **기존 Consumer 호환성** : 기존에 time-based retention을 사용하던 consumer들이 **compaction 동작을 올바르게 처리**할 수 있는지 확인해야 합니다.
     - tombstone message 처리 logic이 구현되어 있는지 점검합니다.
     - consumer offset 관리 방식이 compaction과 충돌하지 않는지 검증합니다.
 
-- **storage 사용량 변화** : compaction 도입 후 **disk 사용 pattern이 크게 변경**될 수 있습니다.
+- **Storage 사용량 변화** : compaction 도입 후 **disk 사용 pattern이 크게 변경**될 수 있습니다.
     - key 중복도가 높은 topic은 storage 사용량이 크게 감소합니다.
     - 반대로 unique key가 많은 topic은 예상보다 공간 절약 효과가 적을 수 있습니다.
 
-- **performance 영향** : compaction **background 작업의 I/O 부하**가 기존 workload에 미치는 영향을 사전에 test해야 합니다.
+- **Performance 영향** : compaction **background 작업의 I/O 부하**가 기존 workload에 미치는 영향을 사전에 test해야 합니다.
     - peak time에 compaction이 실행되면 **producer/consumer 성능이 저하**될 수 있습니다.
     - compaction thread와 memory 할당을 적절히 조정하여 **resource contention을 최소화**해야 합니다.
 

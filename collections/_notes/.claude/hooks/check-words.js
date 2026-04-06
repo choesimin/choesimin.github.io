@@ -132,6 +132,7 @@ const replacements = {
   '블로그': 'blog',
   '포럼': 'forum',
   '커뮤니티': 'community',
+  '아이디어': 'idea',
 };
 
 const violations = [];

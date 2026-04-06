@@ -2,16 +2,15 @@
 layout: note
 permalink: /458
 title: Kafka Page Cache - OS를 활용한 고성능 I/O
-description: Kafka는 OS의 page cache를 활용하고 sequential I/O, zero-copy 등의 최적화 기법을 사용하여 매우 빠른 message 처리 성능을 달성합니다.
+description: Kafka는 OS의 page cache를 활용하고 sequential I/O, zero-copy 등의 최적화 기법으로 disk 기반임에도 높은 throughput을 유지합니다.
 date: 2025-11-03
-published: false
 ---
 
 
 ## Kafka의 고성능 I/O 전략
 
-- Kafka는 높은 throughput과 낮은 latency를 달성하기 위해 OS level의 최적화를 적극 활용합니다.
-- page cache, sequential I/O, zero-copy, batch processing 등의 기법을 조합하여 탁월한 성능을 보여줍니다.
+- Kafka는 disk 기반 저장소임에도 높은 throughput과 낮은 latency를 유지합니다.
+- page cache, sequential I/O, zero-copy, batch processing 등 OS level의 최적화를 적극 활용하기 때문입니다.
 - application level cache 대신 OS의 page cache를 활용하여 memory를 효율적으로 사용합니다.
 
 
@@ -29,13 +28,13 @@ published: false
     - OS가 적절한 시점에 page cache의 내용을 disk에 flush합니다.
     - consumer가 message를 읽을 때도 page cache에서 직접 읽는 경우가 많습니다.
 
-- page cache 활용은 여러 장점이 있습니다.
+- page cache를 활용하면 JVM의 memory 관리 부담을 OS에 위임할 수 있습니다.
     - **memory 효율성** : JVM heap 대신 OS page cache를 사용하여 garbage collection overhead를 피합니다.
     - **warm cache 유지** : process 재시작 후에도 OS page cache는 유지되어 성능 저하가 최소화됩니다.
     - **자동 관리** : OS가 자동으로 memory를 관리하므로 tuning이 간단합니다.
 
 - producer와 consumer의 처리 속도가 비슷하면, message가 page cache에 머물러 disk I/O가 거의 발생하지 않습니다.
-    - 이는 Kafka가 실시간 streaming에 최적화된 이유입니다.
+    - Kafka가 실시간 streaming에 최적화된 이유 중 하나입니다.
 
 
 ---
@@ -106,7 +105,7 @@ published: false
     - `fetch.min.bytes`와 `fetch.max.wait.ms` 설정으로 fetch 동작을 조절합니다.
     - network overhead를 줄이고 처리 효율을 높입니다.
 
-- batch processing의 이점은 다양합니다.
+- batch processing은 network, disk, compression 모든 계층에서 효율을 높입니다.
     - network overhead 감소 (packet 수 감소).
     - disk I/O 효율 향상 (larger sequential write).
     - compression 효율 증가 (larger batch일수록 압축률 향상).
@@ -133,7 +132,7 @@ published: false
     - broker가 압축을 해제하지 않으므로 CPU overhead가 없습니다.
     - consumer가 최종적으로 압축을 해제하여 message를 처리합니다.
 
-- compression을 사용하면 여러 이점이 있습니다.
+- compression은 network와 storage 양쪽의 사용량을 줄여줍니다.
     - network bandwidth 절약 (특히 WAN 환경에서 유용).
     - disk storage 절약.
     - 더 많은 message를 batch에 포함 가능.
@@ -154,7 +153,7 @@ published: false
     - consumer가 특정 offset의 message를 찾을 때 index file을 빠르게 검색합니다.
     - binary search를 통해 효율적으로 원하는 위치를 찾습니다.
 
-- mmap은 여러 장점이 있습니다.
+- mmap은 file을 memory처럼 접근하게 하여 I/O 처리를 단순화합니다.
     - file I/O overhead가 감소합니다.
     - OS가 자동으로 page cache를 관리합니다.
     - file I/O API가 불필요하여 code가 간결해집니다.

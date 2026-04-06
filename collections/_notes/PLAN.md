@@ -154,12 +154,12 @@
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
 | /455 | open-source/kafka/consumer-group.md | Kafka Consumer Group | **완료** |
-| /456 | open-source/kafka/replication-factor.md | Kafka Replication Factor | **검토 대기** |
-| /457 | open-source/kafka/fault-tolerance.md | Kafka Fault Tolerance | **검토 대기** |
-| /458 | open-source/kafka/page-cache.md | Kafka Page Cache | **검토 대기** |
-| /459 | open-source/kafka/rest-proxy.md | Kafka REST Proxy | **검토 대기** |
-| /460 | open-source/kafka/log-compaction/index.md | Kafka Log Compaction | **검토 대기** |
-| /461 | open-source/kafka/log-compaction/tompstone.md | Kafka Tombstone | **검토 대기** |
+| /456 | open-source/kafka/replication-factor.md | Kafka Replication Factor | **완료** |
+| /457 | open-source/kafka/fault-tolerance.md | Kafka Fault Tolerance | **완료** |
+| /458 | open-source/kafka/page-cache.md | Kafka Page Cache | **완료** |
+| /459 | open-source/kafka/rest-proxy.md | Kafka REST Proxy | **완료** |
+| /460 | open-source/kafka/log-compaction/index.md | Kafka Log Compaction | **완료** |
+| /461 | open-source/kafka/log-compaction/tompstone.md | Kafka Tombstone | **완료** |
 
 
 ### open-source/kafka-connect/ (1개)
@@ -226,7 +226,6 @@
 ## 진행 상황
 
 - 총 84개 문서.
-- 완료 : 63개.
+- 완료 : 69개.
 - 대기 : 15개.
-- 검토 대기 : 6개 (Kafka).
 

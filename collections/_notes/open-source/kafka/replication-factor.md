@@ -4,7 +4,6 @@ permalink: /456
 title: Kafka Replication Factor - 고가용성과 Data 복제
 description: Kafka의 replication factor는 partition을 여러 broker에 복제하여 장애 발생 시에도 data 손실 없이 service를 지속할 수 있게 합니다.
 date: 2025-11-03
-published: false
 ---
 
 
@@ -46,7 +45,7 @@ published: false
     - leader는 항상 ISR에 포함됩니다.
     - follower가 leader와의 동기화를 유지하면 ISR에 포함됩니다.
 
-- follower가 ISR에 포함되려면 다음 조건을 만족해야 합니다.
+- follower가 ISR에 포함되려면 leader와의 동기화 지연이 허용 범위 내에 있어야 합니다.
     - `replica.lag.time.max.ms` 시간 내에 leader로부터 message를 fetch해야 합니다.
     - follower가 leader의 최신 offset에 근접하게 따라가야 합니다.
 
@@ -111,7 +110,7 @@ published: false
     - production 환경에서 가장 일반적으로 사용되는 값입니다.
     - 1개의 broker 장애를 허용하면서도 과도한 storage overhead를 피할 수 있습니다.
 
-- replication factor를 결정할 때는 여러 요소를 고려해야 합니다.
+- replication factor를 높이면 장애 허용 능력이 올라가지만, storage와 network 비용도 함께 증가합니다.
     - **장애 허용 수준**은 replication factor N일 때 최대 N-1개의 broker 장애를 허용합니다.
     - **storage 비용**은 replication factor가 높을수록 더 많은 disk 공간이 필요합니다.
     - **network overhead**는 replica 간 data 전송으로 network 대역폭을 사용합니다.

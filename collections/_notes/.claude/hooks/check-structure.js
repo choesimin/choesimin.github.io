@@ -5,9 +5,13 @@ const filePath = input.tool_input.file_path || '';
 
 if (!filePath.endsWith('.md')) process.exit(0);
 
+const isEdit = input.tool_name === 'Edit';
 const content = input.tool_input.content || input.tool_input.new_string || '';
 
 if (!content) process.exit(0);
+
+// Edit은 부분 문자열만 전달되므로 구조 검사를 skip하고 words/chars 수준 검사만 수행
+if (isEdit) process.exit(0);
 
 const violations = [];
 const lines = content.split('\n');
@@ -152,8 +156,9 @@ lines.forEach((line, i) => {
   }
 });
 
-// 9. file 마지막에 빈 줄이 정확히 하나 있어야 함
-if (content.length > 0) {
+// 9. file 마지막에 빈 줄이 정확히 하나 있어야 함 (Write만 검사, Edit은 부분 문자열이므로 skip)
+const isWrite = input.tool_name === 'Write';
+if (isWrite && content.length > 0) {
   if (!content.endsWith('\n')) {
     violations.push('file 끝에 빈 줄이 없음');
   } else if (content.endsWith('\n\n\n')) {

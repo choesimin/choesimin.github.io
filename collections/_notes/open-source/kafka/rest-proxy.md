@@ -4,13 +4,12 @@ permalink: /459
 title: Kafka REST Proxy - HTTP를 통한 Kafka 접근
 description: Kafka REST Proxy는 HTTP/REST API를 통해 Kafka cluster에 접근할 수 있게 하여, native client를 사용할 수 없는 환경에서도 Kafka를 활용할 수 있게 합니다.
 date: 2025-11-03
-published: false
 ---
 
 
 ## Kafka REST Proxy
 
-- **Kafka REST Proxy**는 RESTful HTTP API를 통해 Kafka cluster와 상호작용할 수 있게 하는 component입니다.
+- **Kafka REST Proxy**는 RESTful HTTP API를 통해 Kafka cluster와 상호 작용할 수 있게 하는 component입니다.
 - native Kafka client를 사용할 수 없는 환경이나 언어에서도 HTTP 기반으로 Kafka를 사용할 수 있습니다.
 - Confluent에서 개발하고 유지 보수하는 open source project입니다.
 
@@ -29,7 +28,7 @@ published: false
     - dependency 관리와 version 호환성 문제를 줄일 수 있습니다.
 
 - **방화벽 환경에서 사용하기 용이**합니다.
-    - Kafka native protocol (9092 port)을 열지 않고 HTTP/HTTPS (80/443 port)만 열면 됩니다.
+    - Kafka native protocol(9092 port)을 열지 않고 HTTP/HTTPS(80/443 port)만 열면 됩니다.
     - 보안 정책상 제한된 port만 허용하는 환경에서 유용합니다.
 
 - **빠른 prototype 개발이 가능**합니다.
@@ -69,18 +68,16 @@ flowchart LR
 
 ### Producer 기능
 
-- **HTTP POST request로 topic에 message를 전송**합니다.
-    - 단일 message 또는 batch message 전송을 지원합니다.
+- HTTP POST request로 topic에 message를 전송하며, 단일 또는 batch 전송을 지원합니다.
+- partition key를 지정하여 message를 특정 partition으로 routing할 수 있습니다.
 
 ```bash
+# 단일 message 전송
 curl -X POST -H "Content-Type: application/vnd.kafka.json.v2+json" \
   --data '{"records":[{"value":{"name":"testUser"}}]}' \
   "http://localhost:8082/topics/my-topic"
-```
 
-- **partition key를 지정하여 message를 특정 partition으로 routing**합니다.
-
-```bash
+# partition key를 지정하여 전송
 curl -X POST -H "Content-Type: application/vnd.kafka.json.v2+json" \
   --data '{"records":[{"key":"user1","value":{"name":"testUser"}}]}' \
   "http://localhost:8082/topics/my-topic"
@@ -89,32 +86,24 @@ curl -X POST -H "Content-Type: application/vnd.kafka.json.v2+json" \
 
 ### Consumer 기능
 
-- **consumer group을 생성하고 consumer instance를 등록**합니다.
+- consumer group 생성, topic 구독, message 조회, offset commit의 순서로 사용합니다.
 
 ```bash
+# 1. consumer group 생성 및 consumer instance 등록
 curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
   --data '{"name":"my-consumer","format":"json","auto.offset.reset":"earliest"}' \
   "http://localhost:8082/consumers/my-consumer-group"
-```
 
-- **생성한 consumer로 특정 topic을 구독**합니다.
-
-```bash
+# 2. topic 구독
 curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
   --data '{"topics":["my-topic"]}' \
   "http://localhost:8082/consumers/my-consumer-group/instances/my-consumer/subscription"
-```
 
-- **HTTP GET request로 message를 조회**합니다.
-
-```bash
+# 3. message 조회
 curl -X GET -H "Accept: application/vnd.kafka.json.v2+json" \
   "http://localhost:8082/consumers/my-consumer-group/instances/my-consumer/records"
-```
 
-- **처리한 message의 offset을 commit**합니다.
-
-```bash
+# 4. offset commit
 curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
   "http://localhost:8082/consumers/my-consumer-group/instances/my-consumer/offsets"
 ```
@@ -122,15 +111,13 @@ curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
 
 ### Metadata 조회
 
-- **cluster의 모든 topic 목록을 조회**합니다.
+- topic 목록과 partition 정보를 HTTP GET으로 조회할 수 있습니다.
 
 ```bash
+# 모든 topic 목록 조회
 curl -X GET "http://localhost:8082/topics"
-```
 
-- **특정 topic의 partition 정보를 조회**합니다.
-
-```bash
+# 특정 topic의 partition 정보 조회
 curl -X GET "http://localhost:8082/topics/my-topic/partitions"
 ```
 
@@ -213,7 +200,7 @@ consumer.request.timeout.ms=30000
 
 ### 보안 설정
 
-- SSL과 SASL 인증을 설정하여 보안을 강화합니다.
+- SSL과 SASL 인증을 설정하여 보안을 강화할 수 있습니다.
 
 ```properties
 # SSL 활성화
@@ -265,11 +252,7 @@ client.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule 
 
 - **consumer를 정리**해야 합니다.
     - 사용 완료한 consumer는 반드시 삭제하여 server resource를 확보합니다.
-
-```bash
-curl -X DELETE \
-  "http://localhost:8082/consumers/my-consumer-group/instances/my-consumer"
-```
+    - 예 : `curl -X DELETE "http://localhost:8082/consumers/my-consumer-group/instances/my-consumer"`.
 
 - **batch 처리를 활용**해야 합니다.
     - 여러 message를 한 번에 전송하여 network overhead를 줄입니다.
