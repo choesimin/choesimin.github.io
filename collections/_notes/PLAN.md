@@ -76,10 +76,10 @@
 | /483 | framework/spring/spring-data-jpa/lazy-initialization-exception.md | LazyInitializationException - transaction 범위 밖 LAZY loading 접근 오류 | **완료** |
 | /484 | framework/spring/spring-data-jpa/open-in-view.md | Open-In-View - transaction과 영속성 context의 생명 주기 | **완료** |
 | /485 | framework/spring/spring-data-jpa/fetch-join.md | JPA Fetch Join - LAZY 연관 관계를 한 번의 query로 load하는 방법 | **완료** |
-| /422 | framework/mybatis.md | MyBatis |
-| /423 | framework/spring/bean-validation.md | Bean Validation |
-| /424 | framework/spring/excel-download.md | Excel Download |
-| /425 | framework/spring/pageable.md | Spring Pageable |
+| /422 | framework/mybatis.md | MyBatis | **완료** |
+| /423 | framework/spring/bean-validation.md | Bean Validation | **완료** |
+| /424 | framework/spring/excel-download.md | Excel Download | **완료** |
+| /425 | framework/spring/pageable.md | Spring Pageable | **완료** |
 | /479 | framework/spring/spel.md | SpEL - Spring Expression Language | **완료** |
 
 
@@ -173,9 +173,9 @@
 
 | 번호 | 파일 | 제목 |
 | --- | --- | --- |
-| /463 | open-source/ksqldb/collection.md | ksqlDB Collection |
-| /464 | open-source/ksqldb/rest-api.md | ksqlDB REST API |
-| /465 | open-source/ksqldb/window-limitation.md | ksqlDB Window 제한 |
+| /463 | open-source/ksqldb/collection.md | ksqlDB Collection | **완료** |
+| /464 | open-source/ksqldb/rest-api.md | ksqlDB REST API | **완료** |
+| /465 | open-source/ksqldb/window-limitation.md | ksqlDB Window 제한 | **완료** |
 
 
 ### devops/ (1개)
@@ -226,6 +226,6 @@
 ## 진행 상황
 
 - 총 84개 문서.
-- 완료 : 69개.
-- 대기 : 15개.
+- 완료 : 76개.
+- 대기 : 8개.
 
