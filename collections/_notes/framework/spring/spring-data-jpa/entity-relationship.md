@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /495
+permalink: /451
 title: JPA 연관 관계 mapping
 description: JPA 연관 관계 mapping은 객체의 참조와 DB foreign key를 연결하며, 방향성(단방향/양방향)과 연관 관계 주인(mappedBy)을 통해 foreign key 관리 주체를 결정합니다.
 date: 2026-03-28

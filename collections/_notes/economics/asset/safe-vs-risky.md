@@ -4,7 +4,6 @@ permalink: /418
 title: 안전 자산과 위험 자산 - 위험 수준에 따른 자산 분류
 description: 안전 자산은 원금 보장과 확정 수익을 제공하고, 위험 자산은 높은 수익 가능성과 함께 원금 손실 위험을 수반하며, 두 자산군의 적절한 배분이 portfolio 관리의 핵심입니다.
 date: 2025-11-12
-published: false
 ---
 
 
@@ -201,7 +200,7 @@ published: false
 
 - **상관 계수(correlation coefficient)**는 두 자산의 수익률이 함께 움직이는 정도를 나타내며, `-1`에서 `+1` 사이의 값을 가집니다.
     - `+1`이면 두 자산이 완전히 같은 방향으로 움직이고, `-1`이면 완전히 반대 방향으로 움직입니다.
-    - 상관 관계가 낮은 자산을 조합할수록 분산투자 효과가 커집니다.
+    - 상관 관계가 낮은 자산을 조합할수록 분산 투자 효과가 커집니다.
 
 | 자산 쌍 | 장기 평균 상관 계수 |
 | --- | --- |
@@ -211,7 +210,7 @@ published: false
 | 주식 - Bitcoin | +0.3 \~ +0.6 |
 | 주식 - 원자재 | +0.1 \~ +0.3 |
 
-- 위기 시에는 대부분의 위험 자산 간 상관 계수가 `+1`에 수렴하는 **상관 계수 위기 수렴(correlation convergence)** 현상이 발생하여, 분산투자 효과가 약해집니다.
+- 위기 시에는 대부분의 위험 자산 간 상관 계수가 `+1`에 수렴하는 **상관 계수 위기 수렴(correlation convergence)** 현상이 발생하여, 분산 투자 효과가 약해집니다.
 
 
 ---
@@ -304,3 +303,4 @@ published: false
 - <https://www.investopedia.com/terms/s/sharperatio.asp>
 - <https://www.investopedia.com/terms/c/correlationcoefficient.asp>
 - <https://www.bogleheads.org/wiki/Asset_allocation>
+

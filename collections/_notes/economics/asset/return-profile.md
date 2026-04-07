@@ -4,7 +4,6 @@ permalink: /421
 title: 수익률 Profile - 기대 수익성에 따른 자산 분류
 description: 자산은 기대 수익률에 따라 저수익, 중간 수익, 고수익 자산으로 구분되며, 수익률과 위험은 비례하고 투자자의 목표와 생애 주기에 맞는 수익률 Profile을 선택해야 합니다.
 date: 2025-11-12
-published: false
 ---
 
 
@@ -419,3 +418,4 @@ published: false
 - <https://www.investopedia.com/terms/c/cagr.asp>
 - <https://www.investopedia.com/terms/f/fattail.asp>
 - <https://www.bogleheads.org/wiki/Risk_and_return>
+

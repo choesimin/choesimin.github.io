@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /491
+permalink: /447
 title: Kotlin Generics - Type을 Parameter로 받기
 description: Generics는 type을 parameter로 받아 compile 시점에 type safety를 보장하면서 재사용 가능한 component를 작성합니다.
 date: 2025-01-06

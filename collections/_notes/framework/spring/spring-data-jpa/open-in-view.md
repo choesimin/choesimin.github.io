@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /497
+permalink: /453
 title: Open-In-View
 description: Open-In-View는 HTTP request 전체 수명 주기 동안 JPA session을 thread에 binding하여 LAZY loading을 가능하게 하지만, view 계층에서 DB query가 실행되는 anti-pattern입니다.
 date: 2026-03-28
