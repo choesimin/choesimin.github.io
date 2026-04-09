@@ -133,6 +133,7 @@ const replacements = {
   '포럼': 'forum',
   '커뮤니티': 'community',
   '아이디어': 'idea',
+  '타이밍': 'timing',
 };
 
 const violations = [];
