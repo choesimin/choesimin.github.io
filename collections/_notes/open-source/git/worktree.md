@@ -65,9 +65,13 @@ graph TB
 
 ### Worktree 추가하기
 
-- `git worktree add <path> [<branch>]` 명령으로 새 linked worktree를 생성합니다.
+- `git worktree add <path> [<branch>]` 명령은 `<path>` 경로에 directory를 직접 생성하고 그 안에 branch를 checkout합니다.
+    - 지정한 경로가 존재하지 않으면 Git이 directory를 새로 만들고, 이미 file이 들어 있는 directory가 있으면 명령이 실패합니다.
     - `<branch>`가 존재하면 해당 branch를 checkout하고, 존재하지 않으면 `<path>`의 basename을 새 branch 이름으로 사용합니다.
     - 이미 다른 worktree에서 checkout된 branch는 중복 checkout할 수 없습니다.
+
+- `<path>`는 repository 바깥(`../hotfix`)에도 안쪽(`./worktrees/hotfix`)에도 지정할 수 있습니다.
+    - 안쪽에 두면 main worktree의 working directory에 해당 경로가 untracked file로 잡히기 때문에, `.gitignore`에 추가하거나 repository 바깥에 두는 편이 깔끔합니다.
 
 ```sh
 # ../hotfix 경로에 main branch 기반으로 새 worktree와 branch 생성
@@ -135,6 +139,41 @@ git worktree prune
 - `git worktree lock <worktree>` 명령은 자동 prune과 삭제로부터 worktree를 보호합니다.
     - 외장 drive나 network share처럼 항상 mount되지 않는 경로에 worktree가 있을 때 유용합니다.
     - `--reason` option으로 잠금 사유를 기록할 수 있으며, `git worktree unlock` 명령으로 잠금을 해제합니다.
+
+
+---
+
+
+## Worktree 작업 결과 합치기
+
+- worktree 자체를 합치는 명령은 존재하지 않으며, linked worktree에서 생성한 commit을 main worktree의 branch로 merge하는 방식으로 작업 결과를 통합합니다.
+    - 모든 worktree는 같은 object database와 `refs/heads`를 공유하므로, linked worktree의 commit은 별도 push나 fetch 없이 다른 worktree에서 즉시 참조됩니다.
+
+- 일반적인 흐름은 linked worktree에서 작업을 commit한 뒤, main worktree로 돌아와 해당 branch를 merge하는 것입니다.
+
+```sh
+# linked worktree에서 작업하고 commit
+cd ../feature-auth
+git add .
+git commit -m "feat: authentication 추가"
+
+# main worktree로 복귀
+cd -
+
+# main branch에 linked worktree의 branch를 merge
+git merge feature-auth
+
+# 병합이 끝나면 linked worktree 제거
+git worktree remove ../feature-auth
+```
+
+- `git merge`는 source branch를 checkout하지 않고 commit만 읽기 때문에, 대상 branch가 linked worktree에서 checkout 중이어도 main worktree에서 merge가 가능합니다.
+    - 여러 worktree의 commit을 순차적인 history로 정리하려면 merge 대신 `git rebase`를 사용합니다.
+    - 일부 commit만 선별해 가져오려면 `git cherry-pick`을 사용합니다.
+
+- 여러 worktree에서 같은 file의 같은 영역을 수정했다면, merge 과정에서 일반 branch와 동일하게 conflict가 발생합니다.
+    - conflict marker가 삽입된 file을 수동으로 해결한 뒤 `git add`와 `git commit`으로 merge를 마무리합니다.
+    - 병렬 작업 단위를 잘게 나누고 file 범위가 겹치지 않도록 task를 분리하면 conflict 빈도를 줄일 수 있습니다.
 
 
 ---
