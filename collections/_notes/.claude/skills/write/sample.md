@@ -1,6 +1,6 @@
 ---
 layout: note
-permalink: /0
+permalink: /number
 title: 문서 작성 Sample
 description: 문서 작성 convention을 실제로 적용한 sample 문서입니다.
 date: 2026-03-27
