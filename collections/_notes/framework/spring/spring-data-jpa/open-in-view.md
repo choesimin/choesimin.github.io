@@ -181,7 +181,7 @@ Optional<Order> findById(Long id);
 
 | 구분 | open-in-view=true | open-in-view=false |
 | --- | --- | --- |
-| **session 생명주기** | HTTP request 시작 ~ 종료 | `@Transactional` 경계 내 |
+| **session 생명 주기** | HTTP request 시작 ~ 종료 | `@Transactional` 경계 내 |
 | **view 계층 LAZY loading** | 가능 (추가 SELECT 실행) | `LazyInitializationException` 발생 |
 | **DB connection 점유** | request 전체 동안 | transaction 종료 시 반환 |
 | **N+1 가시성** | 은폐됨 | 개발 단계에서 즉시 노출 |

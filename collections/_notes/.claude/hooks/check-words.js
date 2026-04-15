@@ -134,6 +134,9 @@ const replacements = {
   '커뮤니티': 'community',
   '아이디어': 'idea',
   '타이밍': 'timing',
+  '하네스': 'harness',
+  '엔지니어링': 'engineering',
+  '디자인': 'design',
 };
 
 const violations = [];
