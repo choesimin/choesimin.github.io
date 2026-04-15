@@ -9,9 +9,10 @@ date: 2026-04-15
 
 ## Plugin의 최소 구조
 
-- OpenCode plugin은 `Plugin` type을 만족하는 **async factory 함수**를 export하는 module입니다.
+- OpenCode plugin은 `Plugin` type(`(input) => Promise<Hooks>`)을 만족하는 **async factory 함수**를 export하는 module입니다.
     - factory 함수는 context를 받아 hook object를 반환합니다.
     - 가장 작은 plugin은 file 하나, 함수 하나로 끝납니다.
+    - 여러 plugin 함수를 한 module에서 export할 수 있고, runtime은 `{ server: Plugin }` 형태의 module object도 entrypoint로 인식합니다.
 
 ```ts
 import type { Plugin } from "@opencode-ai/plugin"
@@ -56,19 +57,17 @@ export const MyPlugin: Plugin = async (ctx) => {
 ```
 my-project/
 ├── .opencode/
-│   └── plugins/
-│       ├── my-plugin.ts          # plugin entry point
-│       └── package.json          # 외부 dependency가 있을 때만 필요
+│   ├── plugins/
+│   │   └── my-plugin.ts          # plugin entry point
+│   └── package.json              # 외부 dependency가 있을 때만 필요
 ├── opencode.json
 └── ...
 ```
 
 - `~/.config/opencode/plugins/`에 두면 모든 project에서 global하게 적용됩니다.
 
-- local plugin이 외부 npm package를 사용하려면 같은 directory에 `package.json`을 둡니다.
+- local plugin이 외부 npm package를 사용하려면 config directory(`.opencode/` 또는 `~/.config/opencode/`)에 `package.json`을 둡니다.
     - OpenCode가 startup 시 `bun install`을 실행해 의존성을 설치합니다.
-
-- `opencode plugin dev` command로 개발 중 자동 reload를 활성화합니다.
 
 
 ### npm Plugin 구조 : 단일 기능
@@ -88,13 +87,13 @@ opencode-my-plugin/
 └── README.md
 ```
 
-- `package.json`에서 `@opencode-ai/plugin`은 runtime이 이미 가지고 있으므로 `peerDependencies`로 선언합니다.
-    - `devDependencies`에도 넣어 개발 시 type check에 사용합니다.
+- `package.json`에서 `@opencode-ai/plugin`은 보통 `dependencies`에 둡니다.
+    - 공식 plugin template과 community package 대부분이 이 방식을 사용합니다.
 
 
 ### npm Plugin 구조 : 대규모
 
-- oh-my-openagent처럼 여러 기능을 묶는 대규모 plugin은 역할별로 directory를 분리합니다.
+- oh-my-opencode처럼 여러 기능을 묶는 대규모 plugin은 역할별로 directory를 분리합니다.
     - entry point에서 config, manager, tool, hook, interface를 순서대로 조립하는 pipeline 구조가 됩니다.
 
 ```
@@ -134,8 +133,27 @@ opencode-my-harness/
 
 ## Hook 구현
 
-- plugin이 걸 수 있는 hook은 크게 event, tool, shell, config, compaction, chat 계열로 나뉩니다.
+- plugin이 걸 수 있는 hook은 크게 event, tool, shell, config, auth/provider, chat, permission, command, compaction 계열로 나뉩니다.
     - 필요한 hook만 선택적으로 구현하면 됩니다.
+    - 전체 hook은 `@opencode-ai/plugin`의 `Hooks` type에서 확인합니다.
+
+| Hook | 용도 |
+| --- | --- |
+| `event` | 모든 runtime lifecycle event 수신 |
+| `config` | runtime config 동적 수정 (custom command 등록 등) |
+| `tool` | custom tool 등록 |
+| `tool.execute.before` / `tool.execute.after` | tool 실행 전후 개입 |
+| `tool.definition` | tool 정의 변형 |
+| `shell.env` | shell 실행 시 env 주입 |
+| `auth` / `provider` | 인증 / provider 등록 |
+| `chat.message` / `chat.params` / `chat.headers` | LLM 호출 직전 message·param·header 수정 |
+| `permission.ask` | 권한 요청 처리 |
+| `command.execute.before` | command 실행 전 개입 |
+| `experimental.chat.messages.transform` | message 변환 |
+| `experimental.chat.system.transform` | system prompt 변환 |
+| `experimental.session.compacting` | 압축 시 보존 컨텍스트 지정 |
+| `experimental.compaction.autocontinue` | 압축 후 자동 재개 제어 |
+| `experimental.text.complete` | text completion 개입 |
 
 
 ### Event Hook

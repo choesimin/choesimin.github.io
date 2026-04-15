@@ -9,7 +9,7 @@ date: 2026-04-15
 
 ## OpenCode : Open Source AI Coding Agent
 
-- OpenCode는 terminal에서 동작하는 **open source AI coding agent**로, anomalyco가 주도하여 개발하고 있습니다.
+- OpenCode는 terminal-based interface, desktop app, IDE extension으로 사용할 수 있는 **open source AI coding agent**로, anomalyco가 주도하여 개발하고 있습니다.
     - Claude Code와 유사한 capability를 제공하지만 source code 전체가 공개되어 있습니다.
     - neovim 사용자와 terminal.shop 제작자들이 만들어 TUI 경험에 특히 집중한 도구입니다.
 
@@ -18,13 +18,13 @@ date: 2026-04-15
     - Ollama 같은 local model도 동일한 방식으로 연결할 수 있습니다.
     - 추천 model을 묶은 OpenCode Zen service도 함께 운영됩니다.
 
-- terminal TUI와 desktop application 형태로 사용할 수 있습니다.
+- terminal TUI와 desktop application(beta) 형태로 사용할 수 있습니다.
     - terminal에서는 보통 WezTerm, Alacritty, Ghostty, Kitty 같은 modern terminal과 조합하여 사용합니다.
     - desktop application은 macOS, Windows, Linux를 모두 지원합니다.
 
 - 권한 기반 agent mode, LSP 내장, plugin과 custom tool 확장, multi-provider 설정을 핵심 기능으로 갖추고 있습니다.
     - LSP가 내장되어 있어 agent가 code 수정 직후 type error와 diagnostic을 확인합니다.
-    - plugin은 event hook, custom tool, config 변경, chat transform 등을 조합해 OpenCode의 거의 모든 동작을 확장하거나 교체할 수 있는 확장 system입니다.
+    - plugin은 event hook, custom tool, config 변경, chat transform 등 다양한 hook으로 OpenCode 동작을 확장하거나 교체할 수 있는 확장 system입니다.
     - agent별로 model과 prompt, permission을 개별 설정하여 작업 성격에 맞게 분업합니다.
 
 
@@ -33,7 +33,7 @@ date: 2026-04-15
 
 ## 설계 철학
 
-- OpenCode는 open source, provider 독립성, TUI 우선, client/server 분리라는 네 가지 원칙 위에 설계되어 있습니다.
+- OpenCode는 open source, provider 독립성, TUI 우선, client/server 분리를 핵심 방향성으로 설계되어 있습니다.
 
 
 ### 100% Open Source
@@ -50,7 +50,7 @@ date: 2026-04-15
 
 - OpenCode는 특정 LLM provider에 결합되어 있지 않습니다.
     - 단일 provider lock-in을 피하기 위한 의도적 선택입니다.
-    - model 성능 격차가 좁혀지고 pricing이 하락하는 추세에서 유연성을 확보합니다.
+    - model 시장이 빠르게 변하는 환경에서 provider 선택이 유연해야 한다는 생각에서 출발했습니다.
 
 - `opencode.json` 설정 file에서 provider와 model을 자유롭게 전환합니다.
     - API key만 교체하면 동일한 workflow를 다른 model로 실행합니다.
