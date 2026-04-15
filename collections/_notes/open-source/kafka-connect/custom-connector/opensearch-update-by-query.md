@@ -284,9 +284,9 @@ artifacts {
 ### [UpdateByQuerySinkConnector.java](#file-preparation)
 
 ```java
-package com.hiworks;
+package com.simin;
 
-import com.hiworks.util.VersionUtil;
+import com.simin.util.VersionUtil;
 import org.apache.kafka.common.config.ConfigDef;
 import org.apache.kafka.connect.connector.Task;
 import org.apache.kafka.connect.sink.SinkConnector;
@@ -341,11 +341,11 @@ public class UpdateByQuerySinkConnector extends SinkConnector {
 ### [UpdateByQuerySinkTask.java](#file-preparation)
 
 ```java
-package com.hiworks;
+package com.simin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hiworks.util.VersionUtil;
-import com.hiworks.vo.UpdateField;
+import com.simin.util.VersionUtil;
+import com.simin.vo.UpdateField;
 import org.apache.http.HttpHost;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.apache.kafka.connect.sink.SinkTask;
@@ -459,13 +459,13 @@ public class UpdateByQuerySinkTask extends SinkTask {
 ### [UpdateField.java](#file-preparation)
 
 ```java
-package com.hiworks.vo;
+package com.simin.vo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.connect.sink.SinkRecord;
-import com.hiworks.enums.UpdateFieldName;
+import com.simin.enums.UpdateFieldName;
 
 public record UpdateField(String indexName, String termKey, String termValue, String dataKey, String dataValue) {
 
@@ -494,7 +494,7 @@ public record UpdateField(String indexName, String termKey, String termValue, St
 ### [UpdateFieldName.java](#file-preparation)
 
 ```java
-package com.hiworks.enums;
+package com.simin.enums;
 
 public enum UpdateFieldName {
     INDEX_NAME("index_name"),
@@ -519,7 +519,7 @@ public enum UpdateFieldName {
 ### [VersionUtil.java](#file-preparation)
 
 ```java
-package com.hiworks.util;
+package com.simin.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -575,5 +575,5 @@ connector.version=0.0.1
 ### [org.apache.kafka.connect.sink.SinkConnector](#file-preparation)
 
 ```plaintext
-com.hiworks.UpdateByQuerySinkConnector
+com.simin.UpdateByQuerySinkConnector
 ```

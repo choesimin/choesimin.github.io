@@ -22,10 +22,10 @@ date: 2026-04-15
     - terminal에서는 보통 WezTerm, Alacritty, Ghostty, Kitty 같은 modern terminal과 조합하여 사용합니다.
     - desktop application은 macOS, Windows, Linux를 모두 지원합니다.
 
-- 권한 기반 agent mode, LSP 내장, hook 기반 plugin system, multi-provider 설정을 핵심 기능으로 갖추고 있습니다.
+- 권한 기반 agent mode, LSP 내장, plugin과 custom tool 확장, multi-provider 설정을 핵심 기능으로 갖추고 있습니다.
     - LSP가 내장되어 있어 agent가 code 수정 직후 type error와 diagnostic을 확인합니다.
-    - plugin은 `@opencode-ai/plugin`과 `@opencode-ai/sdk`로 작성하며, session, tool, chat 등 event에 hook을 걸고 custom tool을 등록합니다.
-    - agent별로 model과 prompt, 허용 tool을 개별 설정하여 작업 성격에 맞게 분업합니다.
+    - plugin은 event hook, custom tool, config 변경, chat transform 등을 조합해 OpenCode의 거의 모든 동작을 확장하거나 교체할 수 있는 확장 system입니다.
+    - agent별로 model과 prompt, permission을 개별 설정하여 작업 성격에 맞게 분업합니다.
 
 
 ---
@@ -76,7 +76,7 @@ date: 2026-04-15
 
 - 이 구조 덕분에 TUI는 여러 client 중 하나일 뿐입니다.
     - 예를 들어, desktop machine에서 server를 돌리고 mobile에서 원격으로 driving하는 구성이 가능합니다.
-    - future에 어떤 새로운 interface가 추가되더라도 server 쪽은 그대로 유지됩니다.
+    - 미래에 어떤 새로운 interface가 추가되더라도 server 쪽은 그대로 유지됩니다.
 
 
 ---
