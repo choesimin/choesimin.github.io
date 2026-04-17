@@ -128,7 +128,7 @@ graph LR
 
 - **Test** : 자동화된 test를 실행합니다.
     - unit test로 개별 component를 검증합니다.
-    - integration test로 component 간 상호작용을 검증합니다.
+    - integration test로 component 간 상호 작용을 검증합니다.
 
 - **Release** : 검증된 artifact를 registry에 저장합니다.
     - Docker image, JAR file 등이 artifact가 됩니다.

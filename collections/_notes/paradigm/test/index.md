@@ -31,7 +31,7 @@ date: 2025-03-06
 ### Integration Test : 통합 검증
 
 - integration test는 **여러 unit이 함께 올바르게 작동하는지 검증**합니다.
-    - component 간의 상호작용과 interface 연결이 제대로 동작하는지 test합니다.
+    - component 간의 상호 작용과 interface 연결이 제대로 동작하는지 test합니다.
     - database, file system, network 등 외부 resource와의 연동을 test합니다.
 
 - integration test는 **unit test보다 복잡**하고 실행 시간이 오래 걸립니다.

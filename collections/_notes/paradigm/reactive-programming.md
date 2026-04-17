@@ -27,7 +27,7 @@ date: 2024-07-29
 	- system의 자원을 동적으로 조절하여 확장성과 가용성을 제공합니다.
 
 - **Message 기반 (Messaging)** : reactive system은 **message 기반 architecture를 기반으로 동작**합니다.
-	- component 간에 비동기적으로 message를 교환하여 상호작용합니다.
+	- component 간에 비동기적으로 message를 교환하여 상호 작용합니다.
 
 
 ### Reactive Programming의 주요 개념

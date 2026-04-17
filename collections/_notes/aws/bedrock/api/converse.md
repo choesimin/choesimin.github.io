@@ -83,7 +83,7 @@ response = client.converse(
 print(response["message"]["content"][0]["text"])
 ```
 
-- **client.converse()** method를 사용하여 AI model과 상호작용합니다.
+- **client.converse()** method를 사용하여 AI model과 상호 작용합니다.
     - modelId로 사용할 model을 지정합니다.
     - messages array에 대화 내용을 구성합니다.
     - inferenceConfig로 생성 parameter를 설정합니다.

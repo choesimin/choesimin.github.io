@@ -2,12 +2,12 @@
 layout: note
 permalink: /367
 title: Prompt Architecture - AI에게 체계적으로 지시할 수 있는 10가지 방법
-description: AI와의 상호작용에서 명확하고 관련성 높은 응답을 얻기 위해서는 prompt를 목적에 맞춰 잘 구조화하는 것이 중요하며, 이를 위한 다양한 prompt architecture가 개발되고 있습니다.
+description: AI와의 상호 작용에서 명확하고 관련성 높은 응답을 얻기 위해서는 prompt를 목적에 맞춰 잘 구조화하는 것이 중요하며, 이를 위한 다양한 prompt architecture가 개발되고 있습니다.
 date: 2025-07-29
 ---
 
 
-## 구조화 전략으로 AI와 효과적으로 상호작용하기
+## 구조화 전략으로 AI와 효과적으로 상호 작용하기
 
 - Prompt Architecture는 **AI로부터 원하는 결과를 얻기 위해 역할, 맥락, 목표 등을 체계적으로 구조화하는 전략**입니다.
     - AI model에 대한 구조화된 접근 방식이 결과물의 품질을 크게 향상시킨다는 것이 확인되었습니다.

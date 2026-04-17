@@ -52,7 +52,7 @@ flowchart LR
 ## Hexagonal Architecture의 핵심 설계 원칙
 
 - Hexagonal Architecture는 business logic을 중심에 두고 외부 의존성을 최소화하는 것을 목표로 합니다.
-- 모든 외부 요소들은 port와 adapter를 통해서만 domain과 상호작용할 수 있습니다.
+- 모든 외부 요소들은 port와 adapter를 통해서만 domain과 상호 작용할 수 있습니다.
 
 
 ### Domain 중심 설계

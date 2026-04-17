@@ -137,6 +137,9 @@ const replacements = {
   '하네스': 'harness',
   '엔지니어링': 'engineering',
   '디자인': 'design',
+  '섹션': 'section',
+  '시뮬레이션': 'simulation',
+  '시나리오': 'scenario',
 };
 
 const violations = [];

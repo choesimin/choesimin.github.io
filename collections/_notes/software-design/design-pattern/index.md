@@ -124,7 +124,7 @@ A solution to a problem in a context.
 
 #### 행위(Behavioral) Pattern
 
-- 객체나 class 사이의 algorithm(상호작용)이나 책임 분배(역할 분담)에 관련된 pattern입니다.
+- 객체나 class 사이의 algorithm(상호 작용)이나 책임 분배(역할 분담)에 관련된 pattern입니다.
 - 한 객체가 혼자 수행할 수 없는 작업을 여러 개의 객체로 분배하고, 그렇게 하면서도 객체 사이의 결합도를 최소화하는 것에 중점을 둡니다.
 
 
@@ -292,7 +292,7 @@ A solution to a problem in a context.
 #### Observer Pattern
 
 - 한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 객체들에 연락이 가고 그 내용이 자동으로 갱신됩니다.
-    - 일대다의 의존 관계를 가지며, 상호작용하는 객체들은 느슨하게 결합됩니다.
+    - 일대다의 의존 관계를 가지며, 상호 작용하는 객체들은 느슨하게 결합됩니다.
 
 #### State Pattern
 

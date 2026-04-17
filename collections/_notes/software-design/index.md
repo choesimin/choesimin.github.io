@@ -80,9 +80,9 @@ date: 2025-02-09
     - Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy pattern이 있습니다.
     - system의 구조를 유연하게 확장할 수 있게 합니다.
 
-- **Behavioral Pattern**은 객체 간의 상호작용과 책임 분배를 다루는 pattern입니다.
+- **Behavioral Pattern**은 객체 간의 상호 작용과 책임 분배를 다루는 pattern입니다.
     - Observer, Strategy, Command, State, Template Method pattern이 있습니다.
-    - 객체 간의 결합도를 낮추고 유연한 상호작용을 가능하게 합니다.
+    - 객체 간의 결합도를 낮추고 유연한 상호 작용을 가능하게 합니다.
 
 
 ### 다양한 Architecture Pattern

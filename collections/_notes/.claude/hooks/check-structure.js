@@ -1,17 +1,20 @@
 #!/usr/bin/env node
 
-const input = JSON.parse(require('fs').readFileSync(0, 'utf-8'));
+const fs = require('fs');
+
+const input = JSON.parse(fs.readFileSync(0, 'utf-8'));
 const filePath = input.tool_input.file_path || '';
 
 if (!filePath.endsWith('.md')) process.exit(0);
 
-const isEdit = input.tool_name === 'Edit';
-const content = input.tool_input.content || input.tool_input.new_string || '';
+let content;
+try {
+  content = fs.readFileSync(filePath, 'utf-8');
+} catch (e) {
+  process.exit(0);
+}
 
 if (!content) process.exit(0);
-
-// Edit은 부분 문자열만 전달되므로 구조 검사를 skip하고 words/chars 수준 검사만 수행
-if (isEdit) process.exit(0);
 
 const violations = [];
 const lines = content.split('\n');
@@ -156,16 +159,13 @@ lines.forEach((line, i) => {
   }
 });
 
-// 9. file 마지막에 빈 줄이 정확히 하나 있어야 함 (Write만 검사, Edit은 부분 문자열이므로 skip)
-const isWrite = input.tool_name === 'Write';
-if (isWrite && content.length > 0) {
-  if (!content.endsWith('\n')) {
-    violations.push('file 끝에 빈 줄이 없음');
-  } else if (content.endsWith('\n\n\n')) {
-    violations.push('file 끝에 빈 줄이 두 개 이상 있음');
-  } else if (!content.endsWith('\n\n')) {
-    violations.push('file 끝에 빈 줄이 없음 (마지막 줄 뒤에 빈 줄 하나 필요)');
-  }
+// 9. file 마지막에 빈 줄이 정확히 하나 있어야 함
+if (!content.endsWith('\n')) {
+  violations.push('file 끝에 빈 줄이 없음');
+} else if (content.endsWith('\n\n\n')) {
+  violations.push('file 끝에 빈 줄이 두 개 이상 있음');
+} else if (!content.endsWith('\n\n')) {
+  violations.push('file 끝에 빈 줄이 없음 (마지막 줄 뒤에 빈 줄 하나 필요)');
 }
 
 if (violations.length > 0) {

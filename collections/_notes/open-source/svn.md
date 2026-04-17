@@ -51,7 +51,7 @@ svn_repository/
 ## 주요 Command
 
 - SVN은 command line interface를 통해 다양한 version 관리 작업을 수행할 수 있습니다.
-- 각 command는 특정 목적에 따라 repository와 working copy 간의 상호작용을 처리합니다.
+- 각 command는 특정 목적에 따라 repository와 working copy 간의 상호 작용을 처리합니다.
 
 
 ### 기본 작업 Command

@@ -250,7 +250,7 @@ date: 2025-07-28
     - Frequency/Presence Penalty : 0.5~1.0으로 설정하면 반복이 강하게 방지됩니다.
 
 
-### Parameter 간 상호작용
+### Parameter 간 상호 작용
 
 - **temperature와 top-p의 관계**를 이해해야 합니다.
     - temperature가 낮으면 top-p 효과가 줄어듭니다.

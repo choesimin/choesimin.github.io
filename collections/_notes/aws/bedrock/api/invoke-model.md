@@ -30,7 +30,7 @@ date: 2025-07-28
     - **bedrock-runtime** : 실제 AI model 추론 요청을 위한 API.
 
 - **일반적으로 bedrock-runtime endpoint를 주로 사용**합니다.
-    - AI model과의 상호작용은 대부분 runtime endpoint를 통해 이루어집니다.
+    - AI model과의 상호 작용은 대부분 runtime endpoint를 통해 이루어집니다.
     - model 추론, text 생성, image 생성 등의 작업이 여기에 해당합니다.
 
 

@@ -65,7 +65,7 @@ flowchart TB
 
 ### Persistence Layer
 
-- **database와의 상호작용**을 담당하는 계층입니다.
+- **database와의 상호 작용**을 담당하는 계층입니다.
     - data의 저장, 수정, 조회, 삭제 logic을 구현합니다.
     - repository, DAO가 위치합니다.
 
