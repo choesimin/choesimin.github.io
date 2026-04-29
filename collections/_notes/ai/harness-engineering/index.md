@@ -18,7 +18,7 @@ date: 2026-04-15
     - CPU가 아무리 빨라도 OS가 엉망이면 computer는 제대로 돌아가지 않습니다.
     - model이 아무리 뛰어나도 harness가 나쁘면 agent는 제대로 일하지 못합니다.
 
-- 이 개념에 처음 이름을 붙인 사람은 HashiCorp 공동 창립자 Mitchell Hashimoto입니다.
+- harness engineering이라는 이름을 처음 붙인 사람은 HashiCorp 공동 창립자 Mitchell Hashimoto입니다.
     - 2026년 2월 blog에서 harness engineering을 "agent가 실수할 때마다, 그 실수가 다시는 발생하지 않도록 engineering하는 것"으로 정의했습니다.
     - 단순히 prompt를 고치는 것이 아니라, 구조적으로 재발을 막는 system을 만드는 것입니다.
 
@@ -76,9 +76,8 @@ flowchart LR
     - "채팅"이라는 단순한 UX조차 이전 message를 추적하고 이어붙이는 while loop, 즉 가장 기본적인 harness의 산물입니다.
 
 - agent에게 복잡한 작업을 맡길수록 harness의 중요성은 기하급수적으로 커집니다.
-    - Anthropic 연구팀이 최전선 model에게 고수준 지시를 주고 여러 context window에 걸쳐 작업시켰을 때, 두 가지 실패 pattern이 반복되었습니다.
-    - 첫째, agent가 모든 것을 한 번에 해결하려 달려들다 context가 바닥나 절반만 구현된 code를 남겼습니다.
-    - 둘째, 어느 정도 진행된 후에는 스스로 "다 됐다"라며 조기 종료를 선언했습니다.
+    - Anthropic 연구팀이 최전선 model에게 고수준 지시를 주고 여러 context window에 걸쳐 작업시켰을 때, agent가 모든 것을 한 번에 해결하려 달려들다 context가 바닥나 절반만 구현된 code를 남기는 실패가 반복되었습니다.
+    - 어느 정도 진행된 후에는 agent가 스스로 "다 됐다"라며 조기 종료를 선언하는 실패도 반복되었습니다.
 
 - 교대 근무하는 engineer에 비유하면, **매번 새 engineer가 이전 근무자의 기억 없이 출근하는데 인수인계 문서도, 진행 상황 board도, test 환경도 없는 상태**와 같습니다.
     - 아무리 뛰어난 engineer라도 이런 환경에서는 제대로 일할 수 없습니다.
@@ -88,14 +87,78 @@ flowchart LR
 ---
 
 
+## Agent Loop : Harness의 골격
+
+- agent loop는 **LLM이 tool 호출과 결과 관찰을 반복하면서 하나의 작업을 완수하도록 만드는 while loop**입니다.
+    - 한 번의 LLM 호출로 끝나는 단발성 응답이 아니라, "생각 -> 도구 호출 -> 관찰 -> 다시 생각"이 자동으로 이어집니다.
+    - LLM은 매 turn 환경에서 ground truth를 받아 다음 행동을 정하므로, 처음부터 모든 정보를 알지 못해도 점진적으로 작업을 완성합니다.
+
+- agent loop는 모든 LLM agent의 가장 근본적인 골격이며, harness의 다른 모든 구성 요소는 이 loop를 감싸거나 보강합니다.
+    - LLM은 stateless 함수이므로 반복과 상태 유지는 LLM 바깥의 application code가 책임집니다.
+    - 이 바깥 code 전체가 harness이며, agent loop는 그중 가장 안쪽 골격에 해당합니다.
+
+- 가장 단순한 agent loop는 **stop_reason을 조건으로 하는 while loop**로 표현됩니다.
+    - LLM이 `stop_reason: "tool_use"`를 반환하면 application이 도구(tool)를 실행하고 결과를 다음 호출에 포함시킵니다.
+    - LLM이 `stop_reason: "end_turn"`을 반환하면 loop를 종료합니다.
+    - tool 실행은 항상 application이 담당하며, LLM은 호출 의도만 선언하고 절대 직접 실행하지 않습니다.
+
+```python
+while True:
+    response = client.messages.create(model=..., tools=tools, messages=messages)
+    messages.append({"role": "assistant", "content": response.content})
+
+    if response.stop_reason == "end_turn":
+        break
+
+    if response.stop_reason == "tool_use":
+        tool_results = execute_tools(response.content)
+        messages.append({"role": "user", "content": tool_results})
+```
+
+
+### Agent Loop의 본질적 한계
+
+- agent loop는 단순하지만, 단독으로는 본질적 한계를 갖습니다.
+    - **상태 휘발** : LLM은 stateless하므로 loop가 끝나면 작업 결과가 사라지며, session을 넘어 정보를 이어가려면 외부 저장소가 필요합니다.
+    - **code 실행 위험** : LLM이 생성한 명령을 application이 그대로 실행하면 file system, network, 인접 process까지 영향을 받을 수 있습니다.
+    - **context 부패** : loop가 길어지면 누적된 message로 인해 LLM의 추론 품질이 떨어집니다.
+    - **sub task 오염** : 조사, 탐색, 구현이 한 loop에 섞이면 중간 noise가 핵심 context를 흐려 본 작업의 정확도를 떨어뜨립니다.
+    - **자동 검증 부재** : LLM은 자기 결과물의 lint, type, test 통과 여부를 스스로 보장하지 못하며, 외부 검증이 없으면 오류를 그대로 끌고 갑니다.
+
+
+### Harness의 보완 방식
+
+- **file system**은 agent의 작업 결과를 disk에 저장하여 상태 휘발을 막습니다.
+    - 중간 결과물, progress file, Git history가 다음 session의 출발점이 되어 LLM의 stateless한 성격을 보완합니다.
+
+- **sandbox**는 격리된 환경에서 code를 실행하여 실행 위험을 차단합니다.
+    - 허용된 명령만 실행하고, network와 file system 접근을 제한하며, 작업이 끝나면 환경을 폐기하여 부수 효과가 host로 새지 않게 합니다.
+
+- **context 관리**는 누적된 message를 정돈하여 context 부패를 늦춥니다.
+    - compaction은 오래된 history를 요약으로 치환하고, tool call offloading은 큰 출력을 file로 빼서 요약만 남기며, skill은 필요한 시점에만 관련 지침을 context에 load합니다.
+
+- **sub-agent**는 별도 loop에서 sub task를 처리하여 context 오염을 막습니다.
+    - 조사, 탐색 같은 중간 단계의 noise를 sub-agent가 흡수하고 상위 agent에게는 정제된 결과만 전달하므로, 본 작업의 context가 깨끗하게 유지됩니다.
+
+- **hook과 back-pressure**는 외부 검증을 자동으로 끼워 넣어 검증 부재를 메웁니다.
+    - tool 호출 전후에 lint, type check, test가 자동 실행되며, 실패 시 결과를 LLM에 돌려보내 수정하게 하고 성공 시 조용히 통과시켜 LLM이 잘못된 결과를 그대로 끌고 가지 못하게 합니다.
+
+
+---
+
+
 ## Harness의 핵심 구성 요소
 
-- 효과적인 harness는 **file system, code 실행 환경, context 관리, sub-agent, hook과 back-pressure**라는 다섯 가지 축으로 구성됩니다.
-    - 이 구성 요소들은 Meta의 HyperAgents 연구에서도 확인되었는데, agent가 자기 개선을 반복했을 때 독립적으로 발명한 구조가 개발자가 수작업으로 만들던 harness의 핵심 요소와 정확히 일치합니다.
+- harness는 **file system으로 상태를 저장하고, sandbox로 code 실행을 격리하며, context 관리로 누적된 message를 정돈하고, sub-agent로 sub task를 분리하며, hook과 back-pressure로 결과물을 자동 검증**합니다.
+
+- harness 구성은 사람이 정한 임의의 분류가 아니라, **agent가 스스로 발명해도 같은 결과에 도달하는 구조**라는 점이 Meta의 HyperAgents 연구에서 확인되었습니다.
+    - HyperAgents는 agent가 자기 자신의 동작 방식을 개선하도록 반복 시켰을 때, 어떤 보조 구조가 자생적으로 등장하는지 관찰한 실험입니다.
+    - 실험 결과 agent가 만들어낸 보조 구조는 file 기반 작업 공간, 격리된 실행 환경, context 압축, 역할 분담 sub-agent, 검증 hook으로 수렴했으며, 개발자가 수작업으로 다듬어 온 harness의 핵심 요소와 그대로 일치했습니다.
+    - 즉 file system, sandbox, context 관리, sub-agent, hook은 LLM agent를 안정적으로 운영하려 할 때 필연적으로 도달하는 최소 조합에 가깝습니다.
 
 ```mermaid
 flowchart TB
-    harness_core[Harness] --> filesystem[File System과 지속 저장소]
+    harness_core[Harness] --> filesystem[File System]
     harness_core --> sandbox_exec[Code 실행과 Sandbox]
     harness_core --> context_mgmt[Context 관리]
     harness_core --> subagent_isolation[Sub-Agent와 Context 격리]
@@ -103,7 +166,7 @@ flowchart TB
 ```
 
 
-### File System과 지속 저장소
+### File System
 
 - file system은 **가장 근본적인 harness primitive**입니다.
     - agent에게 작업 공간을 주고, 중간 결과물을 저장하게 하고, session을 넘어 상태를 유지하게 합니다.
@@ -125,7 +188,7 @@ flowchart TB
 
 ### Context 관리
 
-- context 관리는 **harness engineering의 핵심 전장**입니다.
+- context 관리는 **harness engineering에서 가장 비중이 큰 영역**입니다.
     - model은 context 길이가 늘어날수록 추론 능력이 떨어지며, 이를 "context 부패(context rot)"라고 부릅니다.
     - context window가 채워질수록 agent가 점점 부정확해지는 현상이 발생합니다.
 

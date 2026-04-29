@@ -6,6 +6,7 @@ const input = JSON.parse(fs.readFileSync(0, 'utf-8'));
 const filePath = input.tool_input.file_path || '';
 
 if (!filePath.endsWith('.md')) process.exit(0);
+if (filePath.includes('/.claude/')) process.exit(0);
 
 let content;
 try {
