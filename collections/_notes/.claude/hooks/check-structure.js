@@ -20,7 +20,8 @@ if (!content) process.exit(0);
 const violations = [];
 const lines = content.split('\n');
 
-let inCodeBlock = false;
+let codeFenceLen = 0;
+let codeFenceChar = '';
 let inFrontMatter = false;
 let prevHeadingLine = -1;
 let prevHeadingLevel = -1;
@@ -37,13 +38,34 @@ lines.forEach((line, i) => {
     return;
   }
 
-  if (line.trim().startsWith('```')) {
-    inCodeBlock = !inCodeBlock;
-    prevWasHeading = false;
-    return;
+  const trimmed = line.trim();
+  const fenceMatch = trimmed.match(/^(`{3,}|~{3,})(.*)$/);
+  if (fenceMatch) {
+    const fence = fenceMatch[1];
+    const rest = fenceMatch[2];
+    const fenceCh = fence[0];
+    const fenceLen = fence.length;
+
+    if (codeFenceLen === 0) {
+      codeFenceLen = fenceLen;
+      codeFenceChar = fenceCh;
+      prevWasHeading = false;
+      return;
+    }
+
+    if (
+      fenceCh === codeFenceChar &&
+      fenceLen >= codeFenceLen &&
+      rest.trim() === ''
+    ) {
+      codeFenceLen = 0;
+      codeFenceChar = '';
+      prevWasHeading = false;
+      return;
+    }
   }
 
-  if (inCodeBlock) return;
+  if (codeFenceLen > 0) return;
 
   const headingMatch = line.match(/^(#{1,6})\s+(.*)/);
 
