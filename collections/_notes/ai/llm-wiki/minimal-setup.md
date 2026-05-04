@@ -71,6 +71,63 @@ my-wiki/
     - `index.md`는 page catalog로, LLM이 query에 답할 때 가장 먼저 읽습니다.
     - `log.md`는 ingest와 query, lint 활동의 시간순 기록입니다.
 
+- raw source가 ingest를 거쳐 wiki layer로 분해되고 human은 수집과 질문 양 끝에서만 개입하는 흐름입니다.
+    - LLM이 raw source를 wiki page로 압축하는 과정에서 key takeaway, 관련 concept, source 출처가 명확히 드러납니다.
+    - human은 wiki를 탐색하며 질문을 던지고, LLM이 답변을 생성하여 wiki에 filing하는 선순환이 반복됩니다.
+
+```mermaid
+graph TB
+    subgraph human_layer["Human"]
+        human_collect[source 수집]
+        human_query[질문·탐색]
+    end
+
+    subgraph raw_layer["raw/ — 불변 외부 source"]
+        raw_articles[articles/]
+        raw_papers[papers/]
+        raw_transcripts[transcripts/]
+        raw_assets[assets/]
+    end
+
+    subgraph wiki_layer["wiki/ — LLM이 유지 보수"]
+        wiki_sources["sources/<br>1대1 압축"]
+        wiki_entities["entities/<br>구체 대상<br>N대1 누적"]
+        wiki_concepts["concepts/<br>추상 개념<br>N대1 누적"]
+        wiki_comparisons["comparisons/<br>종합·비교"]
+        wiki_index[index.md]
+        wiki_log[log.md]
+    end
+
+    human_collect --> raw_articles
+    human_collect --> raw_papers
+    human_collect --> raw_transcripts
+    human_collect --> raw_assets
+
+    raw_articles -->|ingest| wiki_sources
+    raw_papers -->|ingest| wiki_sources
+    raw_transcripts -->|ingest| wiki_sources
+    raw_assets -.참조.-> wiki_sources
+
+    wiki_sources -->|고유명사 추출| wiki_entities
+    wiki_sources -->|개념 추출| wiki_concepts
+
+    wiki_entities -->|종합| wiki_comparisons
+    wiki_concepts -->|종합| wiki_comparisons
+
+    wiki_sources -.갱신.-> wiki_index
+    wiki_entities -.갱신.-> wiki_index
+    wiki_concepts -.갱신.-> wiki_index
+    wiki_comparisons -.갱신.-> wiki_index
+
+    wiki_sources -.append.-> wiki_log
+    wiki_entities -.append.-> wiki_log
+    wiki_concepts -.append.-> wiki_log
+    wiki_comparisons -.append.-> wiki_log
+
+    wiki_index --> human_query
+    human_query -.좋은 답변 filing.-> wiki_comparisons
+```
+
 - 초기 setup은 mkdir과 git init 한 번이면 충분합니다.
 
 ```bash
@@ -108,6 +165,27 @@ graph LR
 - page 본문은 key takeaway, methodology, 발견한 모순, 관련 concept page link로 구성됩니다.
     - 원본 file 경로를 frontmatter에 명시하여 출처를 항상 검증 가능하게 유지합니다.
 
+```mermaid
+graph LR
+    human[Human]
+    subgraph raw_dir["raw/"]
+        raw_paper[paper.pdf]
+        raw_article[article.md]
+        raw_transcript[transcript.md]
+    end
+    subgraph sources_subdir["wiki/sources/"]
+        src_paper[summary-paper.md]
+        src_article[summary-article.md]
+        src_transcript[summary-transcript.md]
+    end
+    human -->|1. source 추가| raw_paper
+    human -->|1. source 추가| raw_article
+    human -->|1. source 추가| raw_transcript
+    raw_paper -->|2. ingest 압축| src_paper
+    raw_article -->|2. ingest 압축| src_article
+    raw_transcript -->|2. ingest 압축| src_transcript
+```
+
 
 ### concepts : 추상 개념 Page
 
@@ -117,6 +195,34 @@ graph LR
 
 - N개의 source가 1개의 concept page에 수렴하는 N대1 누적 구조입니다.
     - source가 늘어날수록 concept page가 풍부해지고, 모순되는 주장이 발견되면 같은 page 안에 표시됩니다.
+
+```mermaid
+graph LR
+    human[Human]
+    subgraph raw_dir["raw/"]
+        raw_switch[switch-transformer.pdf]
+        raw_efficiency[moe-efficiency.md]
+        raw_routing[routing-survey.pdf]
+    end
+    subgraph sources_subdir["wiki/sources/"]
+        src_switch[summary-switch-transformer.md]
+        src_efficiency[summary-moe-efficiency.md]
+        src_routing[summary-routing-survey.md]
+    end
+    subgraph concepts_subdir["wiki/concepts/"]
+        concept_moe["mixture-of-experts.md<br><br>· definition<br>· routing strategies<br>· contradictions"]
+    end
+
+    human -->|1. source 추가| raw_switch
+    human -->|1. source 추가| raw_efficiency
+    human -->|1. source 추가| raw_routing
+    raw_switch -->|2. ingest| src_switch
+    raw_efficiency -->|2. ingest| src_efficiency
+    raw_routing -->|2. ingest| src_routing
+    src_switch -->|3. 누적| concept_moe
+    src_efficiency -->|3. 누적 + 모순 표시| concept_moe
+    src_routing -->|3. 누적| concept_moe
+```
 
 
 ### entities : 고유 대상 Page
@@ -129,6 +235,34 @@ graph LR
     - "attention mechanism"은 concept, "Anthropic"은 entity처럼 구분합니다.
     - 분류가 모호하면 schema에 판단 기준을 명시하여 LLM이 일관되게 결정하도록 유도합니다.
 
+```mermaid
+graph LR
+    human[Human]
+    subgraph raw_dir["raw/"]
+        raw_history[anthropic-history.md]
+        raw_launch[claude-3-launch.md]
+        raw_cai[constitutional-ai.pdf]
+    end
+    subgraph sources_subdir["wiki/sources/"]
+        src_history[summary-anthropic-history.md]
+        src_launch[summary-claude-3-launch.md]
+        src_cai[summary-constitutional-ai.md]
+    end
+    subgraph entities_subdir["wiki/entities/"]
+        entity_anthropic["anthropic.md<br><br>· overview<br>· products<br>· timeline"]
+    end
+
+    human -->|1. source 추가| raw_history
+    human -->|1. source 추가| raw_launch
+    human -->|1. source 추가| raw_cai
+    raw_history -->|2. ingest| src_history
+    raw_launch -->|2. ingest| src_launch
+    raw_cai -->|2. ingest| src_cai
+    src_history -->|3. 누적| entity_anthropic
+    src_launch -->|3. 누적| entity_anthropic
+    src_cai -->|3. 누적| entity_anthropic
+```
+
 
 ### comparisons : 종합·비교 Page
 
@@ -139,6 +273,32 @@ graph LR
 - "좋은 query 결과를 다시 wiki에 filing하라"는 LLM Wiki pattern의 핵심 실천이 일어나는 위치입니다.
     - 한 번 생성된 comparison page는 이후 새 source가 ingest될 때마다 영향 여부를 점검하여 갱신합니다.
     - synthesis, syntheses 같은 이름으로 부르는 구현체도 있으나 역할은 동일합니다.
+
+```mermaid
+graph LR
+    human_query["Human Query<br>RAG vs fine-tuning?"]
+    subgraph index_layer["wiki/"]
+        index_md[index.md]
+    end
+    subgraph concepts_subdir["wiki/concepts/"]
+        concept_rag[rag.md]
+        concept_ft[fine-tuning.md]
+    end
+    subgraph entities_subdir["wiki/entities/"]
+        entity_claude[claude.md]
+    end
+    subgraph comparisons_subdir["wiki/comparisons/"]
+        cmp[rag-vs-fine-tuning.md]
+    end
+
+    human_query -->|1. 탐색| index_md
+    index_md -->|2. 관련 page 식별| concept_rag
+    index_md -->|2. 관련 page 식별| concept_ft
+    index_md -->|2. 관련 page 식별| entity_claude
+    concept_rag -->|3. 종합| cmp
+    concept_ft -->|3. 종합| cmp
+    entity_claude -->|3. 종합| cmp
+```
 
 
 ---
@@ -366,7 +526,7 @@ confidence: high
 - missing concepts : 4
 ```
 
-- prefix를 `## [YYYY-MM-DD] <op> | <title>` 형식으로 통일하면 `grep "^## \[" log.md | tail -5`로 최근 entry를 즉시 확인합니다.
+- prefix를 `## [YYYY-MM-DD] <op> | <title>` 형식으로 통일하면 `grep "^## \[" log.md | tail -5`로 최근 entry를 즉시 확인할 수 있습니다.
 
 
 ---
