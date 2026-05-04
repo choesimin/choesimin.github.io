@@ -61,7 +61,7 @@ flowchart TB
     - LLM이 tool을 더 이상 호출하지 않을 때까지 반복하며, 종료 조건은 LLM의 응답 자체가 알려줍니다.
     - 한 turn 안에서 application은 message 배열을 LLM에 전달하고, LLM은 다음 행동(tool 호출 또는 최종 답변)을 결정하여 반환합니다.
 
-```text
+```plaintext
 messages = [user의 첫 message]
 
 loop:
@@ -140,7 +140,7 @@ sequenceDiagram
 - **timeout**은 tool 실행과 전체 loop에 시간 제한을 두어, 무응답 상황에서 빠져나옵니다.
     - tool이 외부 system을 부르다 hang되거나 LLM 호출이 지연될 때, 시간 제한이 없으면 agent가 영원히 멈춰 있을 수 있습니다.
 
-```text
+```plaintext
 MAX_ITERATIONS = 50
 
 for iteration in range(MAX_ITERATIONS):

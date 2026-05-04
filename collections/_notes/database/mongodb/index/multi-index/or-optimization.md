@@ -157,7 +157,7 @@ db.collection.find({
 - OR + SORT 대비 SORT_MERGE는 성능이 크게 향상될 수 있습니다.
     - memory 정렬을 피하고 streaming 방식으로 결과를 반환합니다.
 
-```text
+```plaintext
 OR + SORT : 12ms, 692 keys, 1,212 docs 검사
 SORT_MERGE : 3ms, 688 keys, 627 docs 검사
 

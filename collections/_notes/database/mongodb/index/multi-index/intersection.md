@@ -39,7 +39,7 @@ db.products.find({ status: "active", category: "electronics" });
 - 각 index scan은 RecordId 순으로 정렬된 결과를 반환합니다.
     - 두 정렬된 stream을 동시에 순회하면서 공통된 RecordId를 찾습니다.
 
-```text
+```plaintext
 Index A 결과 (RecordId 순) : [1, 3, 5, 7, 9]
 Index B 결과 (RecordId 순) : [2, 3, 6, 7, 10]
 

@@ -4,6 +4,7 @@ const input = JSON.parse(require('fs').readFileSync(0, 'utf-8'));
 const filePath = input.tool_input.file_path || '';
 
 if (!filePath.endsWith('.md')) process.exit(0);
+if (filePath.includes('/.claude/plans/')) process.exit(0);
 
 const content = input.tool_input.content || input.tool_input.new_string || '';
 

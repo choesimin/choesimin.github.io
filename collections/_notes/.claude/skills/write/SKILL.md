@@ -63,6 +63,11 @@ date: YYYY-MM-DD
 - 제목 내 영어 단어는 첫 글자 대문자
 - 첫 등장 시 괄호로 한글 병기 가능, 이후에는 영어만 사용
     - 예 : `default parameter(기본 매개 변수)는 parameter에 기본값을 지정하는 기능입니다.`
+- 영어 단어/inline code 뒤에 한글 조사가 올 때 공백 없이 붙여 쓰기
+    - 적용 대상 : 영어 단어, backtick으로 감싼 inline code, code path, file 이름 등
+    - 조사 예 : 은/는, 이/가, 을/를, 의, 에, 로, 와/과, 이며, 이고, 입니다, 이므로, 에서, 부터, 까지 등
+    - 나쁜 예 : `` `index.md` 는 ``, `operation 이며`, `referenced_by 와`, `payment.md 의`
+    - 좋은 예 : `` `index.md`는 ``, `operation이며`, `referenced_by와`, `payment.md의`
 
 ## 금지 표현
 - "다음과 같은", "위와 같은", "아래와 같은"
@@ -115,6 +120,14 @@ date: YYYY-MM-DD
     - 나쁜 예 : `A[Class A]`, `G[God Object]`
     - 좋은 예 : `class_a[Class A]`, `god_object[God Object]`
 
+## Code Block 규칙
+- fenced code block에는 항상 언어 식별자 명시
+- 일반 text, directory tree, ASCII 도식, 출력 dump는 `plaintext` 사용 (`text`는 일부 renderer에서 동작하지 않음)
+    - 나쁜 예 : ` ```text `
+    - 좋은 예 : ` ```plaintext `
+- shell command는 `bash`, 그 외 언어는 표준 식별자 사용 (`kotlin`, `python`, `yaml`, `markdown`, `mermaid` 등)
+- 식별자 없이 ` ``` `로만 시작하지 않음 (rendering이 일관되지 않음)
+
 ## Table 규칙
 - 구분자는 `| --- |`로 통일
 - 내용은 명사형으로 작성, 마침표 없음
@@ -142,6 +155,8 @@ date: YYYY-MM-DD
 - 번역체 종결이 반복되지 않는가
 - 한 bullet 안에 독립된 문장이 여러 개 들어 있지 않은가
 - 영어 표기 규칙이 일관되게 적용되었는가
+- 영어 단어와 inline code 뒤에 한글 조사를 공백 없이 붙여 썼는가
+- code block에 언어 식별자가 명시되어 있고 일반 text는 `plaintext`를 사용했는가
 - 모든 문장이 마침표로 끝나는가
 - colon 앞뒤에 공백이 있는가
 - emoji를 사용하지 않았는가

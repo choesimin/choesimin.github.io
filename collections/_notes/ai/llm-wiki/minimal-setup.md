@@ -45,7 +45,7 @@ graph TB
     wiki --> human[Human<br>읽기·탐색·질문]
 ```
 
-```text
+```plaintext
 my-wiki/
 ├── raw/
 │   ├── articles/

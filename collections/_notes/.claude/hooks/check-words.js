@@ -4,6 +4,7 @@ const input = JSON.parse(require('fs').readFileSync(0, 'utf-8'));
 const filePath = input.tool_input.file_path || '';
 
 if (!filePath.endsWith('.md')) process.exit(0);
+if (filePath.includes('/.claude/plans/')) process.exit(0);
 
 const content = input.tool_input.content || input.tool_input.new_string || '';
 
@@ -116,6 +117,7 @@ const replacements = {
   '유즈케이스': 'use case',
   '케이스': 'case',
   '패턴': 'pattern',
+  '패키징': 'packaging',
   '업데이트': 'update',
   '히스토리': 'history',
   '스토리': 'story',
