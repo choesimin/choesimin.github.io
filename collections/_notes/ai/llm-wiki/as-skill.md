@@ -1,8 +1,8 @@
 ---
 layout: note
 permalink: /502
-title: LLM Wiki Skill - Agent가 스스로 Domain을 다루게 하기
-description: agent가 domain 작업을 수행하는 데 필요한 지식을 구조화된 LLM Wiki로 누적하고 skill로 감싸서, agent가 그 지식을 스스로 갱신하고 호출 시점에 활용하도록 합니다.
+title: LLM Skill - Agent가 스스로 Domain을 다루게 하기
+description: agent가 domain 작업을 수행하는 데 필요한 지식을 구조화된 markdown 묶음으로 누적하고 skill로 packaging해서, agent가 그 지식을 스스로 갱신하고 호출 시점에 활용하도록 합니다.
 date: 2026-05-04
 ---
 
@@ -28,16 +28,16 @@ date: 2026-05-04
 
 ### Domain 지식의 누적
 
-- LLM Wiki는 domain 정책, source code 구조, API contract, DB schema를 **영구적으로 누적**하여 agent가 매번 작업할 때 참조합니다.
-    - RAG처럼 query마다 chunk를 재조합하지 않고, **미리 정리되고 cross-reference된 wiki**를 통째로 활용합니다.
-    - 같은 domain에서 여러 task를 반복 수행하는 agent에게는 RAG보다 wiki가 자연스러운데, **지식이 누적되고 일관성이 유지**되기 때문입니다.
+- LLM Skill은 domain 정책, source code 구조, API contract, DB schema를 wiki 형태로 **영구적으로 누적**하여 agent가 매번 작업할 때 참조합니다.
+    - RAG처럼 query마다 chunk를 재조합하지 않고, **미리 정리되고 cross-reference된 skill**을 통째로 활용합니다.
+    - 같은 domain에서 여러 task를 반복 수행하는 agent에게는 RAG보다 skill 형태가 자연스러운데, **지식이 누적되고 일관성이 유지**되기 때문입니다.
 
 ```mermaid
 graph LR
     user[사용자 Task<br>결제 환불 처리 추가]
     agent[LLM Agent]
     llm[LLM 본체<br>일반 지식]
-    skill["Skill Wiki<br>(domain 정책, code 구조,<br>API, DB schema)"]
+    skill["LLM Skill<br>(domain 정책, code 구조,<br>API, DB schema)"]
     output[작업 결과<br>code, PR, 분석]
 
     user --> agent
@@ -46,18 +46,18 @@ graph LR
     agent --> output
 ```
 
-- **유지 비용이 작다는 점**이 wiki 형태의 강점이며, 이 비용 구조가 자주 변경되는 source를 유연하게 다룰 수 있게 만듭니다.
+- **유지 비용이 작다는 점**이 skill 형태의 강점이며, 이 비용 구조가 자주 변경되는 source를 유연하게 다룰 수 있게 만듭니다.
     - source code와 DB schema처럼 자주 변하는 자료는 수동 유지로는 며칠 만에 stale해지지만, **LLM이 sync, lint, cross-reference 갱신을 전담**하면 이 부담이 사라집니다.
     - **양방향 reference**(referenced_by, source_refs)가 자동으로 영향 범위를 추적하므로, Human은 sync 명령만 주면 됩니다.
 
-- 자동화 구조가 없다면, wiki는 변경되는 source를 다루는 유지 비용을 감당하지 못해 금방 stale(낡은) 상태가 되며, **누적된 지식이라는 가치가 사라지게** 됩니다.
+- 자동화 구조가 없다면, skill은 변경되는 source를 다루는 유지 비용을 감당하지 못해 금방 stale(낡은) 상태가 되며, **누적된 지식이라는 가치가 사라지게** 됩니다.
 
 
 ### Skill 형태로의 활용
 
-- skill로 packaging한다는 것은 누적된 지식 wiki에 **이름표(`SKILL.md`)와 진입점**을 붙여 agent가 호출 시점에 쉽게 찾아 활용하도록 만드는 것입니다.
-    - `SKILL.md` frontmatter의 name과 description이 agent에게 이 wiki가 무엇이고 언제 호출해야 하는지를 알립니다.
-    - 진입점이 있어야 agent가 작업 시작 시점에 자기 task와 관련된 wiki를 식별하여 활용 가능합니다.
+- skill로 packaging한다는 것은 누적된 지식 묶음에 **이름표(`SKILL.md`)와 진입점**을 붙여 agent가 호출 시점에 쉽게 찾아 활용하도록 만드는 것입니다.
+    - `SKILL.md` frontmatter의 name과 description이 agent에게 이 skill이 무엇이고 언제 호출해야 하는지를 알립니다.
+    - 진입점이 있어야 agent가 작업 시작 시점에 자기 task와 관련된 skill을 식별하여 활용 가능합니다.
     - skill 형태는 **framework 중립적**이므로 Claude Code, OpenCode, Codex, 직접 만든 LLM application 모두에서 동일하게 사용됩니다.
 
 - 한 skill의 범위는 단일 domain의 지식, API spec, DB schema, source code repository 등 한 작업 영역에 묶이는 자료 전체입니다.
@@ -70,15 +70,15 @@ graph LR
 
 ## 기존 LLM Wiki와의 차이
 
-- 활용 목적이 다르며, 기존 LLM Wiki는 **Human의 학습과 탐색**을 위해 만들어진 반면 skill로 packaging한 wiki는 **LLM agent의 자율 작업 reference**로 만들어집니다.
+- 활용 목적이 다르며, 기존 LLM Wiki는 **Human의 학습과 탐색**을 위해 만들어진 반면 LLM Skill은 **LLM agent의 자율 작업 reference**로 만들어집니다.
     - 활용 목적이 다르면 어떤 자료를 source로 넣을지, page를 어떻게 구조화할지가 달라집니다.
-    - Human용 wiki는 **paper와 article 중심**이지만, agent용 wiki는 **system을 구성하는 모든 자료(code, schema, contract)**를 포함해야 자율 작업이 가능합니다.
+    - Human용 wiki는 **paper와 article 중심**이지만, agent용 skill은 **system을 구성하는 모든 자료(code, schema, contract)**를 포함해야 자율 작업이 가능합니다.
 
 - 외부 source의 성격도 달라지며, 기존 LLM Wiki는 article이나 paper처럼 **한 번 수집하면 변하지 않는 자료**를 가정합니다.
-    - agent용 wiki에서는 GitHub repository, Confluence page, DB schema처럼 **외부에서 계속 변하는 자료**가 주가 되므로 **변경 추적**이 필수입니다.
+    - agent용 skill에서는 GitHub repository, Confluence page, DB schema처럼 **외부에서 계속 변하는 자료**가 주가 되므로 **변경 추적**이 필수입니다.
     - 변경 추적은 source 종류별로 다르며 (commit hash, page version, content hash 등), 각 종류 folder의 `AGENTS.md`에 절차를 정의합니다.
 
-| 구분 | 기존 LLM Wiki | Skill로 Packaging한 LLM Wiki |
+| 구분 | 기존 LLM Wiki | LLM Skill |
 | --- | --- | --- |
 | **활용 목적** | Human의 학습·탐색 | LLM agent의 자율 작업 reference |
 | **소비자** | Human (직접 읽기) | LLM agent (작업 중 invoke) |
@@ -90,7 +90,7 @@ graph LR
 | **page 분류** | sources, concepts, entities, comparisons | domain, api, database (skill 단위) |
 
 - 분류 축도 다르며, 단일 domain을 다루는 skill에서는 추상/구체 구분(concept vs entity)이나 종합 비교(comparisons)의 의미가 약해집니다.
-    - domain 한정 wiki는 그 domain의 정책, workflow, 외부 contract만 다루면 충분하며, 추상 개념을 별도 page로 두는 빈도가 낮습니다.
+    - domain 한정 skill은 그 domain의 정책, workflow, 외부 contract만 다루면 충분하며, 추상 개념을 별도 page로 두는 빈도가 낮습니다.
     - comparisons는 여러 domain을 가로지르는 분석에 적합한 분류이므로, 단일 skill 안에서는 자연스럽지 않습니다.
 
 
@@ -101,17 +101,17 @@ graph LR
     - agent가 자율 작업을 하려면 그 작업을 수행할 system 자체를 알아야 하므로, 이 두 자료가 article과 paper에 더해 source 종류로 추가됩니다.
 
 - 결제 환불 작업을 하려면 결제 service의 controller 구조, 환불 처리 logic 위치, 거래 table 구조를 모두 알아야 합니다.
-    - 일반적인 LLM은 자사 system을 모르므로, 이 지식을 wiki로 정리해 agent에게 reference로 제공해야 합니다.
+    - 일반적인 LLM은 자사 system을 모르므로, 이 지식을 skill로 정리해 agent에게 reference로 제공해야 합니다.
 
 - 단순히 code를 읽으면 되지 않냐는 의문이 있을 수 있으나, 매 작업마다 전체 codebase를 탐색하는 것은 비효율적이고 작업 일관성도 떨어집니다.
     - codebase가 크면 탐색 비용이 매번 발생하며, agent가 매번 다른 부분을 보게 되어 작업 결과의 일관성이 흔들립니다.
-    - wiki에 한 번 정리하면 그 정리 결과가 영속되어 모든 후속 작업이 동일한 mental model을 공유합니다.
+    - skill에 한 번 정리하면 그 정리 결과가 영속되어 모든 후속 작업이 동일한 mental model을 공유합니다.
 
 - DB schema와 API spec은 **system의 contract**이므로, agent가 이 contract를 정확히 이해하지 못하면 작업 결과가 system과 충돌합니다.
     - DB의 nullable column, foreign key, unique constraint를 모르면 잘못된 SQL을 생성합니다.
     - API endpoint의 request/response 형식을 모르면 잘못된 client code를 작성합니다.
 
-- 외부 source는 대부분 외부에서 계속 변하는 자료이므로, 변경에 wiki가 따라가야 합니다.
+- 외부 source는 대부분 외부에서 계속 변하는 자료이므로, 변경에 skill이 따라가야 합니다.
     - source code는 매일 commit이 쌓이고, DB schema는 migration으로 진화하며, Confluence page는 정책 갱신과 함께 변경됩니다.
     - 이 mutability가 sources layer 설계의 핵심 제약이며, 다음 section에서 다루는 sync operation의 출발점이 됩니다.
 
@@ -121,8 +121,8 @@ graph LR
 
 ## Layer 구조
 
-- skill로 packaging한 wiki는 외부 source, sources layer, skills layer 세 영역으로 나뉘며, 각 영역은 위치와 책임이 다릅니다.
-    - 외부 source는 wiki repo 밖에 있고, sources는 그 외부 자료의 정리본이며, skills는 agent가 invoke하는 단위입니다.
+- LLM Skill은 외부 source, sources layer, skills layer 세 영역으로 나뉘며, 각 영역은 위치와 책임이 다릅니다.
+    - 외부 source는 skill repo 밖에 있고, sources는 그 외부 자료의 정리본이며, skills는 agent가 invoke하는 단위입니다.
     - sources는 source 종류별 folder로 분리되어 종류별 ingest와 변경 추적 절차를 `AGENTS.md`에 따로 정의합니다.
 
 ```mermaid
@@ -145,7 +145,6 @@ graph TB
 
     subgraph skills_layer["skills/"]
         skill_md[SKILL.md<br>진입점 + catalog]
-        skill_log[log.md<br>활동 기록]
         skill_domain["domain/<br>business 정책·workflow"]
         skill_api["api/<br>외부에 노출하는 API contract"]
         skill_db["database/<br>참조하는 DB 정보"]
@@ -169,18 +168,18 @@ graph TB
 
 | layer | 위치 | 책임 |
 | --- | --- | --- |
-| **외부 source** | wiki repo 밖 | 진짜 source (GitHub repo, Confluence page, PDF 등) |
-| `sources/<type>/` | wiki repo 안 | 종류별 외부 source의 file:line 또는 section:line 단위 참조 정리 |
+| **외부 source** | skill repo 밖 | 진짜 source (GitHub repo, Confluence page, PDF 등) |
+| `sources/<type>/` | skill repo 안 | 종류별 외부 source의 file:line 또는 section:line 단위 참조 정리 |
 | `sources/<type>/AGENTS.md` | source 종류 folder 안 | 해당 source 종류의 ingest와 변경 추적 절차 |
-| `skills/know-<domain>/` | wiki repo 안 | skill 단위 business 관점 page (sources를 link로 참조) |
+| `skills/know-<domain>/` | skill repo 안 | skill 단위 business 관점 page (sources를 link로 참조) |
 | `skills/know-<domain>/SKILL.md` | skill folder 안 | 진입점, page catalog, skill manifest |
 
 
 ### 외부 Source
 
-- 외부 source는 wiki repo에 byte 단위로 들어오지 않으며, 필요할 때만 temp folder에 clone하거나 fetch하여 LLM이 읽습니다.
-    - source 전체를 wiki에 두면 git history가 비대해지고, 외부 변경마다 wiki repo도 같이 dirty해지는 문제가 발생합니다.
-    - reference만 두는 전략으로 wiki repo를 가볍게 유지하고, 변경 추적은 source 종류별 식별자 비교로 처리합니다.
+- 외부 source는 skill repo에 byte 단위로 들어오지 않으며, 필요할 때만 temp folder에 clone하거나 fetch하여 LLM이 읽습니다.
+    - source 전체를 skill에 두면 git history가 비대해지고, 외부 변경마다 skill repo도 같이 dirty해지는 문제가 발생합니다.
+    - reference만 두는 전략으로 skill repo를 가볍게 유지하고, 변경 추적은 source 종류별 식별자 비교로 처리합니다.
 
 - 변경 추적 식별자는 source 종류에 따라 다릅니다.
     - github은 commit hash, confluence는 page version, markdown과 pdf와 image는 content hash로 비교합니다.
@@ -199,8 +198,8 @@ graph TB
 
 ### Skills Layer
 
-- skills는 한 개 이상의 skill folder를 담는 container이며, 같은 wiki 안의 skill들은 sources를 공유합니다.
-    - `skills/know-payment/`, `skills/know-order/` 처럼 domain별 skill을 같은 wiki 아래에 두면 외부 source 참조가 자연스럽게 재사용됩니다.
+- skills는 한 개 이상의 skill folder를 담는 container이며, 같은 repo 안의 skill들은 sources를 공유합니다.
+    - `skills/know-payment/`, `skills/know-order/` 처럼 domain별 skill을 같은 repo 아래에 두면 외부 source 참조가 자연스럽게 재사용됩니다.
     - skill 사이의 cross-reference는 `skills/<skill-A>/page.md`에서 `skills/<skill-B>/page.md`로의 link로 표현합니다.
 
 - skill 이름은 **`know-<domain>` 형태**로 그 skill이 어떤 domain을 아는가를 명시합니다.
@@ -213,7 +212,7 @@ graph TB
 
 ## Source 정리본의 구조
 
-- sources layer의 각 source 종류는 외부 source를 wiki에 그대로 가져오지 않고, 참조 meta 정보 + 묶음 단위 정리본으로 표현합니다.
+- sources layer의 각 source 종류는 외부 source를 skill repo에 그대로 가져오지 않고, 참조 meta 정보 + 묶음 단위 정리본으로 표현합니다.
     - meta 정보에는 url과 변경 추적용 식별자(commit, version, content hash 등)가 포함되어 변경 감지의 기준점이 됩니다.
     - 정리본에는 source 종류에 맞는 단위(file:line, section, page)의 촘촘한 참조가 들어가며, 이 정보를 기반으로 LLM이 변경분의 영향 범위를 분석합니다.
 
@@ -281,7 +280,7 @@ last_ingested_at: 2026-05-04
 ### 정리본 Page에서의 촘촘한 참조
 
 - 정리본 page는 한 묶음 안에서 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
-    - frontmatter의 referenced_files에 path, last_seen_lines, last_seen_commit(또는 version, hash)을 기록하며, 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
+    - frontmatter의 referenced_files에 path, symbols(class/method/function 이름), last_seen_commit(또는 version, hash)을 기록하며, 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다. 본문 인용은 `File.java:42` 형태로 두되 line 번호는 sync 시점에 grep으로 다시 확인합니다 (line은 무관한 commit에도 shift되므로 frontmatter에는 두지 않습니다).
     - referenced_by에는 이 정리본을 link로 참조하는 skill page 목록을 기록하여 양방향 연결을 만듭니다.
 
 ```markdown
@@ -290,10 +289,10 @@ type: github-topic
 repo: payment-service
 referenced_files:
   - path: src/main/java/com/payment/api/PaymentController.java
-    last_seen_lines: [42, 78]
+    symbols: [PaymentController.createPayment, PaymentController.refund]
     last_seen_commit: abc123def
   - path: src/main/java/com/payment/service/PaymentService.java
-    last_seen_lines: [15, 99, 134]
+    symbols: [PaymentService.process, PaymentService.checkIdempotency]
     last_seen_commit: abc123def
 referenced_by:
   - skills/know-payment/domain/payment.md
@@ -379,9 +378,23 @@ source_refs:
 ---
 
 
+## Ingest와 Sync의 경계
+
+- **묶음 단위(repo, page tree, document, 단일 file)가 기준**이며, 묶음 자체가 처음 들어오는지 / 묶음 안의 내용이 변하는지에 따라 operation이 갈립니다.
+    - 묶음 자체가 skill에 처음 등록됨 = **ingest** (`sources/<type>/<group>/index.md`를 신규 생성).
+    - 묶음 안의 모든 변경 (file 추가, 수정, 삭제, page revision 등) = **sync** (기존 정리본 갱신, 필요 시 신규 정리본 생성).
+
+- 기준이 묶음 단위이므로 "이미 ingest된 repo에 새 file이 추가됨" 같은 case는 sync에 흡수됩니다.
+    - sync 절차 안에 *변경 file이 어떤 정리본의 referenced_files에도 없으면 적합한 기존 정리본에 흡수하거나 새 정리본을 생성한다* 단계가 포함됩니다.
+    - 결과적으로 한 묶음의 lifecycle은 *ingest 한 번 + sync N번* 구조가 됩니다.
+
+
+---
+
+
 ## Sync Operation
 
-- ingest, query, lint 외에 **sync operation**이 추가되며, 외부 source의 변경을 wiki에 전파하는 책임을 갖습니다.
+- ingest, query, lint 외에 **sync operation**이 추가되며, 외부 source의 변경을 skill에 전파하는 책임을 갖습니다.
     - 자동화는 본 문서 범위 밖이며, 현재는 Human이 명시적으로 sync를 trigger합니다.
     - sync는 한 source 묶음 (예: `sources/github/payment-service`)을 path로 지정하여 수행합니다.
 
@@ -389,34 +402,10 @@ source_refs:
     - LLM은 path의 첫 segment (`github`, `confluence`, `pdf` 등)를 보고 해당 종류 folder의 `AGENTS.md`를 따라 sync 절차를 수행합니다.
     - 종류별 절차의 차이 (git diff, page version 비교, content hash 비교)는 **`AGENTS.md`에 캡슐화**됩니다.
 
-```mermaid
-graph TB
-    human[Human]
-    src_index["sources/<type>/<group>/<br>index.md"]
-    schema["sources/<type>/<br>AGENTS.md"]
-    temp_fetch["temp folder<br>(on-demand fetch)"]
-    diff[변경분 추출<br>(diff/version/hash)]
-    affected_pages_in_source[영향받는 정리본 식별]
-    affected_skill_pages[영향받는 skill page 식별]
-    update_pages[정리본·skill page 갱신]
-    update_meta[meta 식별자 갱신]
-    log_md[log.md<br>sync entry append]
-
-    human -->|"1. sync <path>"| src_index
-    src_index -->|"2. type 식별·meta 확인"| schema
-    schema -->|"3. fetch 절차 따름"| temp_fetch
-    temp_fetch -->|"4. 변경분 추출"| diff
-    diff -->|"5. referenced_files와 비교"| affected_pages_in_source
-    affected_pages_in_source -->|"6. referenced_by 따라가기"| affected_skill_pages
-    affected_skill_pages --> update_pages
-    update_pages --> update_meta
-    update_meta --> log_md
-```
-
 
 ### 7단계 절차
 
-- 변경 감지부터 wiki page 갱신, log 기록까지 한 sync는 다음 7단계를 순서대로 수행합니다.
+- 변경 감지부터 skill page 갱신까지 한 sync는 다음 단계를 순서대로 수행합니다.
 
 1. **trigger** : Human이 `sync <path>` 형태로 sync를 명령합니다 (예: `sync sources/github/payment-service`).
 
@@ -426,18 +415,11 @@ graph TB
 
 4. **변경분 추출** : meta 식별자를 기준으로 변경 영역을 추출합니다 (github은 git diff, confluence는 page revision diff, markdown/pdf는 content 비교).
 
-5. **영향 정리본 식별** : 변경된 file path 또는 section을 모든 정리본의 referenced_files와 비교하여 영향받는 정리본을 찾습니다.
+5. **영향 정리본 식별과 신규 file 분배** : 변경된 file path 또는 section을 모든 정리본의 referenced_files와 비교하여 영향받는 정리본을 찾습니다. 어떤 정리본에도 등록되지 않은 신규 file은 적합한 기존 정리본에 흡수하거나 새 정리본을 생성합니다.
 
 6. **영향 skill page 식별** : 영향받는 정리본의 referenced_by를 따라가 갱신이 필요한 skill page를 식별합니다.
 
-7. **갱신과 기록** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신하며, meta 식별자를 갱신한 뒤 `log.md`에 sync entry를 append합니다.
-
-
-### 비용과 주의 사항
-
-- sync는 비용이 높은 operation이며, 큰 PR이나 대규모 refactoring이 있으면 LLM 호출 비용이 빠르게 증가합니다.
-    - referenced_by 정확도가 곧 영향 분석의 정확도이므로, 평소 ingest와 lint를 통해 referenced_by가 누락되지 않도록 유지해야 합니다.
-    - 변경 빈도가 높은 source는 sync 주기를 길게 잡거나 핵심 file/section만 좁게 reference하는 전략을 고려합니다.
+7. **갱신과 commit** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신한 뒤 meta 식별자를 갱신하고, 한 sync 단위로 git commit합니다 (예: `sync(github:payment-service): abc123→def456 — payment-flow.md, domain/payment.md`).
 
 
 ---
@@ -445,7 +427,7 @@ graph TB
 
 ## Directory 구조
 
-- 한 wiki repo는 sources와 skills 두 top-level folder로 구성됩니다.
+- 한 skill repo는 sources와 skills 두 top-level folder로 구성됩니다.
     - sources에는 source 종류별 folder가 들어가고, 각 folder는 `AGENTS.md`와 묶음 단위 정리본을 갖습니다.
     - skills에는 know-<domain> 형태의 skill folder들이 들어갑니다.
 
@@ -455,7 +437,7 @@ graph TB
 - 두 개의 skill (know-payment, know-order)이 같은 sources를 공유하는 형태로 구성한 예시입니다.
 
 ```plaintext
-my-wiki-repo/
+llm-skill/
 ├── sources/
 │   ├── github/
 │   │   ├── AGENTS.md
@@ -487,7 +469,6 @@ my-wiki-repo/
 └── skills/
     ├── know-payment/
     │   ├── SKILL.md
-    │   ├── log.md
     │   ├── domain/
     │   │   ├── payment.md
     │   │   └── refund.md
@@ -497,13 +478,12 @@ my-wiki-repo/
     │       └── transaction.md
     └── know-order/
         ├── SKILL.md
-        ├── log.md
         ├── domain/
         ├── api/
         └── database/
 ```
 
-- 한 wiki repo 안에 여러 skill folder를 둘 수 있으며, 각 skill은 자기 `SKILL.md`를 진입점으로 갖습니다.
+- 한 skill repo 안에 여러 skill folder를 둘 수 있으며, 각 skill은 자기 `SKILL.md`를 진입점으로 갖습니다.
     - `skills/know-payment/`, `skills/know-order/` 처럼 domain별로 skill folder를 분리하면 각 skill이 독립적으로 invoke됩니다.
     - 여러 skill이 같은 source 정리본을 참조해도 무방하며, sources는 skill folder 사이에서 공유됩니다.
 
@@ -513,19 +493,18 @@ my-wiki-repo/
 
 ### 초기 Setup
 
-- directory 생성과 git init만으로 wiki repo 운영을 시작할 수 있습니다.
+- directory 생성과 git init만으로 skill repo 운영을 시작할 수 있습니다.
 
 ```bash
-mkdir -p my-wiki-repo/sources/{github,confluence,markdown,pdf,image}
-mkdir -p my-wiki-repo/skills/know-payment/{domain,api,database}
-touch my-wiki-repo/sources/github/AGENTS.md
-touch my-wiki-repo/sources/confluence/AGENTS.md
-touch my-wiki-repo/sources/markdown/AGENTS.md
-touch my-wiki-repo/sources/pdf/AGENTS.md
-touch my-wiki-repo/sources/image/AGENTS.md
-touch my-wiki-repo/skills/know-payment/SKILL.md
-touch my-wiki-repo/skills/know-payment/log.md
-cd my-wiki-repo && git init
+mkdir -p llm-skill/sources/{github,confluence,markdown,pdf,image}
+mkdir -p llm-skill/skills/know-payment/{domain,api,database}
+touch llm-skill/sources/github/AGENTS.md
+touch llm-skill/sources/confluence/AGENTS.md
+touch llm-skill/sources/markdown/AGENTS.md
+touch llm-skill/sources/pdf/AGENTS.md
+touch llm-skill/sources/image/AGENTS.md
+touch llm-skill/skills/know-payment/SKILL.md
+cd llm-skill && git init
 ```
 
 
@@ -534,7 +513,7 @@ cd my-wiki-repo && git init
 
 ## SKILL.md와 AGENTS.md 작성
 
-- 한 wiki repo에는 두 종류의 agent instruction 문서가 있으며, 역할이 다릅니다.
+- 한 skill repo에는 두 종류의 agent instruction 문서가 있으며, 역할이 다릅니다.
     - `SKILL.md`는 skill 단위의 진입점으로 page catalog와 skill 운영 절차를 담습니다.
     - `AGENTS.md`는 source 종류 단위의 절차 정의로 ingest와 변경 추적 방법을 담습니다.
 
@@ -572,20 +551,16 @@ description: Payment domain의 결제, 환불, 정산 정책과 payment-service 
 
 ## Ingest (on "ingest <path>")
 
-1. <path>의 외부 source를 식별하고 해당 source 종류 folder의 AGENTS.md 절차를 따릅니다.
+1. <path>의 외부 source를 식별하고 해당 source 종류 folder의 AGENTS.md ingest 절차를 따릅니다.
 2. sources/<type>/<group>/ 아래에 index.md와 정리본을 생성하고 referenced_files를 기록합니다.
 3. 영향받는 skill page를 갱신하고 양방향 reference (referenced_by, source_refs)를 일치시킵니다.
-4. SKILL.md의 page catalog와 log.md에 entry를 추가합니다.
+4. SKILL.md의 page catalog에 entry를 추가하고 한 ingest 단위로 git commit합니다.
 
 ## Sync (on "sync <path>")
 
-1. <path>의 첫 segment로 source 종류를 식별하고 sources/<type>/AGENTS.md를 읽습니다.
-2. AGENTS.md의 fetch 절차에 따라 외부 source를 가져옵니다.
-3. 묶음 index.md의 meta 식별자(commit, version, hash)를 기준으로 변경분을 추출합니다.
-4. 변경분을 정리본의 referenced_files와 비교하여 영향받는 정리본을 식별합니다.
-5. 영향받는 정리본의 referenced_by를 따라가 skill page를 갱신합니다.
-6. 정리본과 index.md의 meta 식별자를 갱신합니다.
-7. log.md에 sync entry를 append합니다.
+1. <path>의 첫 segment로 source 종류를 식별합니다.
+2. sources/<type>/AGENTS.md의 sync 절차를 수행합니다 (fetch, 변경분 추출, 정리본 갱신, meta 식별자 갱신).
+3. 영향받는 정리본의 referenced_by를 따라 skill page를 갱신하고, 한 sync 단위로 git commit합니다.
 
 ## Query (on a question)
 
@@ -636,7 +611,7 @@ type: github-topic
 repo: <repo-name>
 referenced_files:
   - path: <relative path>
-    last_seen_lines: [<line numbers>]
+    symbols: [<class.method or function names>]
     last_seen_commit: <hash>
 referenced_by:
   - <skill page path>
@@ -651,18 +626,120 @@ referenced_by:
 ## 변경분 추출
 
 - `git diff <last_ingested_commit>..HEAD --name-only`로 변경 file 목록을 가져옵니다.
-- 추가 정밀도가 필요하면 `git diff <last>..HEAD -- <file>`로 line 단위 변경을 봅니다.
+- 추가 정밀도가 필요하면 `git diff <last>..HEAD -- <file>`로 변경 내용을 봅니다.
 
 ## Ingest 절차
 
 1. repo를 fetch.
 2. 의미 있는 주제 (controller, service, integration 등)를 식별.
-3. 각 주제별로 topic page를 만들고 관련 file:line을 referenced_files에 기록.
+3. 각 주제별로 topic page를 만들고 관련 file과 symbol을 referenced_files에 기록.
 4. index.md에 topic 목록을 기록.
+
+## Sync 절차
+
+1. Fetch 절차로 repo를 최신 상태로 가져옵니다.
+2. 변경분 추출 절차로 변경 file 목록을 얻습니다.
+3. 변경 file path를 모든 topic page의 referenced_files와 비교하여 영향받는 topic을 식별합니다.
+4. 변경 file이 어떤 topic에도 등록되어 있지 않으면, 적합한 기존 topic에 흡수하거나 새 topic page를 생성합니다.
+5. LLM이 변경분을 읽고 topic page의 referenced_files (symbols, last_seen_commit)를 갱신합니다.
+6. index.md의 last_ingested_commit과 last_ingested_at을 갱신합니다.
 ````
 
 - 다른 source 종류의 `AGENTS.md`도 같은 구조를 따르되 식별자와 절차가 달라집니다.
     - confluence는 page version과 REST API export, markdown과 pdf는 content hash와 file 비교, image는 file hash와 description 작성 절차를 정의합니다.
+
+
+---
+
+
+## Skill Page 분류별 Template
+
+- `domain/`, `api/`, `database/` 각 분류는 다루는 정보의 성격이 달라 본문 section도 달라집니다.
+    - template은 *권장 골격*이며, domain에 따라 section을 추가하거나 생략해도 무방합니다.
+    - frontmatter는 분류 무관하게 `title`, `type`, `source_refs`를 공통으로 갖습니다.
+
+
+### Domain Page
+
+- business 정책, workflow, 의사결정 규칙처럼 system 동작의 *왜*를 설명하는 page입니다.
+
+````markdown
+---
+title: <Domain Name>
+type: domain
+source_refs:
+  - sources/.../<source-summary>.md
+---
+
+## 개요
+- 이 domain이 담당하는 책임과 경계.
+
+## 정책
+- domain 규칙, 제약, 예외 조건.
+
+## Workflow
+- 주요 흐름의 단계별 정리.
+- code 수준의 흐름은 source 정리본 link로만 가리킵니다.
+````
+
+
+### API Page
+
+- 외부에 노출하는 endpoint의 contract를 정리합니다. 실제 구현 위치는 source 정리본을 link로 가리킵니다.
+
+````markdown
+---
+title: <Endpoint Group>
+type: api
+source_refs:
+  - sources/github/.../<controller-summary>.md
+---
+
+## Endpoints
+- `METHOD /path` - 한 줄 설명
+
+## Request
+- path/query parameter, header, body schema, 예시 payload.
+
+## Response
+- status code별 schema, 예시 payload, error case.
+
+## 권한·정책
+- 인증·인가, idempotency 키, rate limit, 멱등성 보장 범위.
+````
+
+
+### Database Page
+
+- 한 table의 schema, column 의미, 관계, 제약, 어떤 domain data를 담는지를 정리합니다.
+
+````markdown
+---
+title: <Table Name>
+type: database
+source_refs:
+  - sources/.../<schema-summary>.md
+---
+
+## 개요
+- 이 table이 담는 domain data의 의미와 lifecycle.
+
+## Schema
+
+| column | type | nullable | 의미 | 예시 값 |
+| --- | --- | --- | --- | --- |
+| id | bigint | NO | PK | 1001 |
+| status | varchar(32) | NO | 거래 상태 (PENDING, APPROVED, REFUNDED) | APPROVED |
+
+## 관계
+- foreign key 와 연관 table.
+
+## 제약
+- unique, check, index, partition.
+
+## 운영 메모
+- 자주 쓰이는 query pattern, 대용량 처리 시 주의점.
+````
 
 
 ---
@@ -675,7 +752,7 @@ referenced_by:
 
 ### Source 정리본 - 결제 흐름
 
-- `sources/github/payment-service/payment-flow.md`는 file:line 단위의 code 흐름을 정리하며, 변경 감지의 단위가 됩니다.
+- `sources/github/payment-service/payment-flow.md`는 symbol 단위의 code 흐름을 정리하며, 변경 감지의 단위가 됩니다.
 
 ```markdown
 ---
@@ -683,10 +760,10 @@ type: github-topic
 repo: payment-service
 referenced_files:
   - path: src/main/java/com/payment/api/PaymentController.java
-    last_seen_lines: [42, 78]
+    symbols: [PaymentController.createPayment, PaymentController.refund]
     last_seen_commit: abc123def
   - path: src/main/java/com/payment/service/PaymentService.java
-    last_seen_lines: [15, 99, 134]
+    symbols: [PaymentService.process, PaymentService.checkIdempotency, PaymentService.persist]
     last_seen_commit: abc123def
 referenced_by:
   - skills/know-payment/domain/payment.md
@@ -767,10 +844,6 @@ src/main/java/com/payment/service/PaymentService.java
 
 ## 한계와 Trade-off
 
-- sync는 **LLM 호출 비용이 큰 operation**이며, 큰 변경분이 한 번에 들어오면 비용이 빠르게 증가합니다.
-    - 변경 file 수가 많으면 정리본 갱신 횟수도 많아지고, 각 갱신마다 변경분 분석을 위한 context 입력이 필요합니다.
-    - 변경 빈도가 높은 source는 sync 주기를 길게 잡거나, 핵심 file만 좁게 reference하는 전략이 유효합니다.
-
 - **referenced_by 정확도**가 영향 분석의 정확도를 결정하며, 누락이 있으면 stale page가 양산됩니다.
     - skill page를 새로 만들 때 정리본의 referenced_by에 자기 자신을 추가하지 않으면, 다음 sync 때 그 page는 갱신되지 않습니다.
     - lint operation으로 양방향 reference 일치성을 주기적으로 점검해야 합니다.
@@ -780,7 +853,7 @@ src/main/java/com/payment/service/PaymentService.java
     - 두 skill이 자주 같이 호출된다면 그 자체가 **skill 경계 재설정의 신호**입니다.
 
 - 자동화 수준은 **의도적으로 낮게 시작**합니다 (수동 trigger).
-    - git hook이나 CI로 자동 sync를 걸 수도 있지만, 자동 갱신이 잘못 일어나면 wiki 정합성이 깨지고 복구 비용이 큽니다.
+    - git hook이나 CI로 자동 sync를 걸 수도 있지만, 자동 갱신이 잘못 일어나면 skill 정합성이 깨지고 복구 비용이 큽니다.
     - 운영 경험이 쌓인 후에 자동화 단계를 **점진적으로 도입**하는 것이 안전합니다.
 
 
