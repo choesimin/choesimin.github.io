@@ -251,7 +251,7 @@ graph TB
 
 ```markdown
 ---
-type: github-repo
+type: github
 url: https://github.com/company/payment-service
 default_branch: main
 synced_commit: abc123def
@@ -285,7 +285,7 @@ referenced_by:
 
 ```markdown
 ---
-type: github-topic
+type: github
 repo: payment-service
 referenced_files:
   - path: src/main/java/com/payment/api/PaymentController.java
@@ -615,11 +615,16 @@ pages:
 
 ```yaml
 ---
-type: github-repo
+type: github
 url: https://github.com/<owner>/<repo>
 default_branch: main
 synced_commit: <hash>
 synced_at: <YYYY-MM-DD>
+topics:
+  - path: <topic file>
+    description: <한 줄 설명>
+referenced_by:
+  - <skill page path>
 ---
 ```
 
@@ -627,7 +632,7 @@ synced_at: <YYYY-MM-DD>
 
 ```yaml
 ---
-type: github-topic
+type: github
 repo: <repo-name>
 referenced_files:
   - path: <relative path>
@@ -653,7 +658,7 @@ referenced_by:
 1. repo를 fetch.
 2. 의미 있는 주제(controller, service, integration 등)를 식별.
 3. 각 주제별로 topic page를 만들고 관련 file과 symbol을 referenced_files에 기록.
-4. index.md에 topic 목록을 기록.
+4. index.md frontmatter의 `topics`에 각 topic의 path와 description을 entry로 기록.
 
 ## Sync 절차
 
@@ -662,7 +667,8 @@ referenced_by:
 3. 변경 file path를 모든 topic page의 referenced_files와 비교하여 영향받는 topic을 식별합니다.
 4. 변경 file이 어떤 topic에도 등록되어 있지 않으면, 적합한 기존 topic에 흡수하거나 새 topic page를 생성합니다.
 5. LLM이 변경분을 읽고 topic page의 referenced_files(symbols, last_seen_commit)를 갱신합니다.
-6. index.md의 synced_commit과 synced_at을 갱신합니다.
+6. step 4에서 새 topic page를 만들었다면 index.md frontmatter `topics`에 entry를 추가합니다.
+7. index.md의 synced_commit과 synced_at을 갱신합니다.
 ````
 
 - 다른 source 종류의 `AGENTS.md`도 같은 구조를 따르되 식별자와 절차가 달라집니다.
@@ -676,7 +682,7 @@ referenced_by:
 
 - `domain/`, `api/`, `database/` 각 분류는 다루는 정보의 성격이 달라 본문 section도 달라집니다.
     - template은 권장 골격이며, domain에 따라 section을 추가하거나 생략해도 무방합니다.
-    - frontmatter는 분류 무관하게 `title`, `type`, `source_refs`를 공통으로 갖습니다.
+    - frontmatter는 분류 무관하게 `title`, `type`, `source_refs`를 공통으로 갖고, 다른 skill page를 참조할 때는 `related_pages`를 추가합니다.
 
 
 ### Domain Page
@@ -689,6 +695,8 @@ title: <Domain Name>
 type: domain
 source_refs:
   - sources/.../<source-summary>.md
+related_pages:
+  - <skill page path>
 ---
 
 ## 개요
@@ -712,6 +720,8 @@ title: <Endpoint Group>
 type: api
 source_refs:
   - sources/github/.../<controller-summary>.md
+related_pages:
+  - <skill page path>
 ---
 
 ## Endpoints
@@ -738,6 +748,8 @@ title: <Table Name>
 type: database
 source_refs:
   - sources/.../<schema-summary>.md
+related_pages:
+  - <skill page path>
 ---
 
 ## 개요
@@ -775,7 +787,7 @@ source_refs:
 
 ```markdown
 ---
-type: github-topic
+type: github
 repo: payment-service
 referenced_files:
   - path: src/main/java/com/payment/api/PaymentController.java
