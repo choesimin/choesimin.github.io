@@ -144,7 +144,7 @@ graph TB
     end
 
     subgraph skills_layer["skills/"]
-        skill_md[SKILL.md<br>진입점 + catalog]
+        skill_md["SKILL.md<br>진입점 + frontmatter pages"]
         skill_domain["domain/<br>business 정책·workflow"]
         skill_api["api/<br>외부에 노출하는 API contract"]
         skill_db["database/<br>참조하는 DB 정보"]
@@ -161,9 +161,9 @@ graph TB
     src_github -->|reference| skill_api
     src_pdf -->|reference| skill_domain
 
-    skill_md -.catalog.-> skill_domain
-    skill_md -.catalog.-> skill_api
-    skill_md -.catalog.-> skill_db
+    skill_md -.pages.-> skill_domain
+    skill_md -.pages.-> skill_api
+    skill_md -.pages.-> skill_db
 ```
 
 | layer | 위치 | 책임 |
@@ -221,7 +221,7 @@ graph TB
     repo[GitHub repo<br>payment-service]
 
     subgraph src_dir["sources/github/payment-service/"]
-        index["index.md<br>repo meta + topic 목록"]
+        index["index.md<br>frontmatter (meta + topics)"]
         topic_flow[payment-flow.md]
         topic_refund[refund-process.md]
         topic_webhook[webhook-handler.md]
@@ -232,9 +232,9 @@ graph TB
     file_wh["src/.../<br>WebhookHandler.java"]
 
     repo -.fetch on-demand.-> src_dir
-    index -.목록.-> topic_flow
-    index -.목록.-> topic_refund
-    index -.목록.-> topic_webhook
+    index -.topics.-> topic_flow
+    index -.topics.-> topic_refund
+    index -.topics.-> topic_webhook
 
     file_ctrl -.referenced_files.-> topic_flow
     file_svc -.referenced_files.-> topic_flow
@@ -315,8 +315,9 @@ referenced_by:
 - 묶음 단위와 변경 추적 식별자가 source 종류에 따라 달라집니다.
     - github은 repo 단위로 묶고 commit hash로 변경 추적, 정리본은 topic 단위입니다.
     - confluence는 space나 page tree 단위로 묶고 page version으로 변경 추적, 정리본은 page 단위입니다.
-    - markdown과 pdf는 document 단위로 묶고 content hash로 변경 추적, 정리본은 section 단위입니다.
-    - image는 단일 file 단위이며, 정리본은 image와 설명을 함께 담습니다.
+    - markdown은 관련 문서 collection 단위로 묶고 file별 content hash로 변경 추적, 정리본은 한 문서 단위입니다.
+    - pdf는 한 document 단위로 묶고 content hash로 변경 추적, 정리본은 section 단위입니다.
+    - image는 관련 image collection 단위로 묶고 file별 content hash로 변경 추적, 정리본은 한 image와 그 설명입니다.
 
 - 각 source 종류 folder의 `AGENTS.md`에 그 종류 고유의 ingest 절차, sync 절차, frontmatter format을 정의합니다.
     - 여러 skill이 같은 source 종류를 공유할 때 `AGENTS.md`를 재사용하므로 절차가 한 곳에 모입니다.
@@ -416,7 +417,7 @@ source_refs:
     - github은 controller, service, integration 같은 주제를 식별해 topic 단위로, confluence는 page 단위, markdown과 pdf는 section 단위로 분리합니다.
     - 각 정리본의 frontmatter `referenced_files`에 path, symbols, last_seen 식별자를 기록합니다.
 
-4. **skill page 연결과 commit** : 정리본을 참조할 skill page를 식별해 `source_refs`에 새 정리본 path를 추가하고, 정리본의 `referenced_by`와 일치시킨 뒤 `SKILL.md` frontmatter `pages`에 entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
+4. **skill page 연결과 commit** : 정리본을 참조할 skill page를 식별해 `source_refs`에 새 정리본 path를 추가하고, 정리본의 `referenced_by`와 일치시킵니다. 그 skill page 목록의 union을 `index.md` frontmatter `referenced_by`에도 기록하고, `SKILL.md` frontmatter `pages`에 새 skill page entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
 
 
 ### Sync Operation
@@ -436,10 +437,11 @@ source_refs:
     - github은 git diff, confluence는 page revision diff, markdown과 pdf는 content 비교를 사용합니다.
 
 5. **영향 정리본 식별과 신규 file 분배** : 변경된 file path 또는 section을 모든 정리본의 referenced_files와 비교하여 영향받는 정리본을 찾고, 어떤 정리본에도 등록되지 않은 신규 file은 적합한 기존 정리본에 흡수하거나 새 정리본을 생성합니다.
+    - 새 정리본을 만들 때는 그 정리본을 참조할 skill page도 함께 식별해 정리본의 `referenced_by`와 skill page의 `source_refs`를 동시에 설정합니다.
 
 6. **영향 skill page 식별** : 영향받는 정리본의 referenced_by를 따라가 갱신이 필요한 skill page를 식별합니다.
 
-7. **갱신과 commit** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신한 뒤 meta 식별자를 갱신하고, 한 sync 단위로 `sync(github:payment-service): abc123→def456 — payment-flow.md, domain/payment.md` 형태의 commit message로 git commit합니다.
+7. **갱신과 commit** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신합니다. `index.md`의 meta 식별자(synced_commit, synced_at)를 갱신하고, step 5에서 새 skill page 연결이 생겼다면 `index.md` frontmatter `referenced_by`도 갱신합니다. 한 sync 단위로 `sync(github:payment-service): abc123→def456 - payment-flow.md, domain/payment.md` 형태의 commit message로 git commit합니다.
 
 
 ---
@@ -565,8 +567,8 @@ pages:
 
 ## Conventions
 
-- skill page 본문에는 다른 문서로 가는 link를 적지 않고, source 정리본 참조는 frontmatter `source_refs`에만 둡니다.
-- 모든 page는 frontmatter에 type, source_refs를 명시합니다.
+- skill page 본문에는 다른 문서로 가는 link를 적지 않습니다. source 정리본 참조는 frontmatter `source_refs`, 다른 skill page 참조는 frontmatter `related_pages`에 둡니다.
+- 모든 page는 frontmatter에 `title`, `type`, `source_refs`를 명시하고, 다른 skill page를 참조하면 `related_pages`도 추가합니다.
 
 ## Ingest (on "ingest <path>")
 
@@ -591,8 +593,10 @@ pages:
 ## Lint (on "lint")
 
 1. 정리본의 referenced_by와 skill page의 source_refs가 일치하는지 점검합니다.
-2. orphan 정리본(어떤 skill page에서도 참조하지 않는)과 dangling reference(없는 정리본을 가리키는 skill page)를 찾습니다.
-3. 외부 source의 변경을 sync하지 않은 stale 정리본을 식별합니다.
+2. index.md frontmatter `topics`와 실제 정리본 file 목록, `referenced_by`와 그 group 정리본들의 referenced_by union이 일치하는지 점검합니다.
+3. SKILL.md frontmatter `pages`와 실제 skill page file 목록이 일치하는지 점검하고, skill page 사이의 `related_pages`가 양방향으로 맞물려 있는지 확인합니다.
+4. orphan 정리본(어떤 skill page에서도 참조하지 않는)과 dangling reference(없는 정리본을 가리키는 skill page)를 찾습니다.
+5. 외부 source의 변경을 sync하지 않은 stale 정리본을 식별합니다.
 ````
 
 
@@ -659,6 +663,7 @@ referenced_by:
 2. 의미 있는 주제(controller, service, integration 등)를 식별.
 3. 각 주제별로 topic page를 만들고 관련 file과 symbol을 referenced_files에 기록.
 4. index.md frontmatter의 `topics`에 각 topic의 path와 description을 entry로 기록.
+5. 각 topic을 참조할 skill page를 식별해 topic page의 `referenced_by`를 채우고, 그 skill page들의 union을 index.md frontmatter `referenced_by`에 기록.
 
 ## Sync 절차
 
@@ -667,8 +672,9 @@ referenced_by:
 3. 변경 file path를 모든 topic page의 referenced_files와 비교하여 영향받는 topic을 식별합니다.
 4. 변경 file이 어떤 topic에도 등록되어 있지 않으면, 적합한 기존 topic에 흡수하거나 새 topic page를 생성합니다.
 5. LLM이 변경분을 읽고 topic page의 referenced_files(symbols, last_seen_commit)를 갱신합니다.
-6. step 4에서 새 topic page를 만들었다면 index.md frontmatter `topics`에 entry를 추가합니다.
-7. index.md의 synced_commit과 synced_at을 갱신합니다.
+6. step 4에서 새 topic page를 만들었다면, 그 topic을 참조할 skill page를 식별해 topic page의 `referenced_by`와 skill page의 `source_refs`를 함께 설정하고, index.md frontmatter `topics`에도 entry를 추가합니다.
+7. step 6으로 새 skill page 연결이 생겼다면 index.md frontmatter `referenced_by`에 반영합니다.
+8. index.md의 synced_commit과 synced_at을 갱신합니다.
 ````
 
 - 다른 source 종류의 `AGENTS.md`도 같은 구조를 따르되 식별자와 절차가 달라집니다.
@@ -781,6 +787,38 @@ related_pages:
 - know-payment skill은 payment-service repo와 결제 정책 Confluence page를 source로 묶고, 결제·환불·idempotency를 domain page로 정리합니다.
 
 
+### Source Group Index - payment-service
+
+- `sources/github/payment-service/index.md`는 repo 단위 source group의 진입점이며, frontmatter에 topic 목록과 이 group을 참조하는 skill page 목록이 모입니다.
+
+```markdown
+---
+type: github
+url: https://github.com/company/payment-service
+default_branch: main
+synced_commit: abc123def
+synced_at: 2026-05-04
+topics:
+  - path: payment-flow.md
+    description: 결제 승인 흐름 (controller -> service -> 외부 PG)
+  - path: refund-process.md
+    description: 환불 처리 절차 (정책 검증 -> 부분 환불 -> 정산 갱신)
+  - path: webhook-handler.md
+    description: 외부 PG webhook 수신과 idempotency 처리
+referenced_by:
+  - skills/know-payment/domain/payment.md
+  - skills/know-payment/domain/refund.md
+  - skills/know-payment/api/payment-endpoints.md
+---
+
+## Repository
+
+- Payment service backend
+- Spring Boot, Java 21
+- 결제 승인, 환불, webhook 처리 담당
+```
+
+
 ### Source 정리본 - 결제 흐름
 
 - `sources/github/payment-service/payment-flow.md`는 symbol 단위의 code 흐름을 정리하며, 변경 감지의 단위가 됩니다.
@@ -818,7 +856,7 @@ referenced_by:
 
 ### Skill Page - 결제 Domain
 
-- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 본문에 적고, source 정리본 link는 frontmatter `source_refs`에만 둡니다.
+- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 본문에 적고, source 정리본 link는 frontmatter `source_refs`에, 다른 skill page link는 `related_pages`에 둡니다.
 
 ```markdown
 ---
@@ -827,6 +865,8 @@ type: domain
 source_refs:
   - sources/github/payment-service/payment-flow.md
   - sources/confluence/payment-policy/refund-rules.md
+related_pages:
+  - skills/know-payment/domain/refund.md
 ---
 
 ## Domain 개요
