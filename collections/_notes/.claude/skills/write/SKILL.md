@@ -99,11 +99,20 @@ date: YYYY-MM-DD
     - 나쁜 예 : "`val`과 `const val`의 차이점 :"
     - 좋은 예 : "`val`과 `const val`은 값 결정 시점, 사용 가능 type, 선언 위치에서 차이가 있습니다."
 - 문장 끝에 괄호로 부연 설명하지 않음
+    - 짧은 부연이면 본문에 녹여 다시 쓰고, 긴 부연이면 하위 bullet으로 분해
     - 나쁜 예 : "`send`는 값을 channel에 보냅니다 (suspend 함수)."
-    - 좋은 예 : "`send`는 suspend 함수로, 값을 channel에 보냅니다."
+    - 좋은 예 (본문 결합) : "`send`는 suspend 함수로, 값을 channel에 보냅니다."
+    - 좋은 예 (하위 bullet 분해) : 상위 "외부 source를 가져옵니다.", 하위 "github은 git fetch, confluence는 API export 등을 사용합니다."
 
 ## 특수 문자 규칙
 - colon(`:`) 앞뒤에 공백 하나씩 추가
+- 괄호 spacing은 괄호를 제거했을 때 문장이 자연스러워야 한다는 기준으로 결정
+    - 마침표로 끝나는 문장 안의 괄호는 앞 단어에 공백 없이 붙임
+    - 마침표 없는 명사형(heading, table cell, code block 안 list item 등)의 끝 괄호는 한 칸 띄움
+    - 나쁜 예 (문장 안) : "다르며 (commit hash, page version 등), 각 folder의 절차를 정의합니다."
+    - 좋은 예 (문장 안) : "다르며(commit hash, page version 등), 각 folder의 절차를 정의합니다."
+    - 좋은 예 (table cell) : `Human (직접 읽기)`
+    - 좋은 예 (heading) : `## Ingest (on "ingest <path>")`
 - emoji(✓, ✗, ⚠️ 등) 사용 금지
 - code 요소(class, function, keyword, annotation)는 backtick으로 감쌈
     - 예 : `Channel`, `Flow`, `launch`, `suspend`

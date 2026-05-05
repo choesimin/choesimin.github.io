@@ -30,6 +30,22 @@ content.split('\n').forEach((line, i) => {
   if (/—/.test(stripped)) {
     violations.push(`line ${i + 1}: em dash(—) -> hyphen(-) 또는 하위 항목으로 이동`);
   }
+
+  // 괄호 spacing : table row와 heading은 명사형이라 끝 괄호의 공백이 정상
+  const trimmed = line.trim();
+  if (trimmed.startsWith('|')) return;
+  if (/^#{1,6}\s/.test(trimmed)) return;
+
+  const trimEnd = stripped.trimEnd();
+  if (!trimEnd.endsWith('.')) return;
+
+  if (/\S\s+\(/.test(stripped)) {
+    violations.push(`line ${i + 1}: 마침표 있는 문장 안의 괄호는 앞 단어에 공백 없이 붙여야 함`);
+  }
+
+  if (trimEnd.endsWith(').')) {
+    violations.push(`line ${i + 1}: 마침표 직전 괄호 - 본문에 녹이거나 하위 bullet으로 분해`);
+  }
 });
 
 if (violations.length > 0) {
