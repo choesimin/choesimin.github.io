@@ -171,7 +171,7 @@ graph TB
 | **외부 source** | skill repo 밖 | 진짜 source (GitHub repo, Confluence page, PDF 등) |
 | `sources/<type>/` | skill repo 안 | 종류별 외부 source의 file:line 또는 section:line 단위 참조 정리 |
 | `sources/<type>/AGENTS.md` | source 종류 folder 안 | 해당 source 종류의 ingest와 sync 절차 |
-| `skills/know-<domain>/` | skill repo 안 | skill 단위 business 관점 page (sources를 link로 참조) |
+| `skills/know-<domain>/` | skill repo 안 | skill 단위 business 관점 page (sources는 frontmatter `source_refs`로 참조) |
 | `skills/know-<domain>/SKILL.md` | skill folder 안 | 진입점, page catalog, skill manifest |
 
 
@@ -200,7 +200,7 @@ graph TB
 
 - skills는 한 개 이상의 skill folder를 담는 container이며, 같은 repo 안의 skill들은 sources를 공유합니다.
     - `skills/know-payment/`, `skills/know-order/` 처럼 domain별 skill을 같은 repo 아래에 두면 외부 source 참조가 자연스럽게 재사용됩니다.
-    - skill 사이의 cross-reference는 `skills/<skill-A>/page.md`에서 `skills/<skill-B>/page.md`로의 link로 표현합니다.
+    - skill 사이의 cross-reference도 본문이 아닌 frontmatter `related_pages`에 둬서, skill page 본문에는 다른 문서 link가 전혀 들어가지 않도록 통일합니다.
 
 - skill 이름은 **`know-<domain>` 형태**로 그 skill이 어떤 domain을 아는가를 명시합니다.
     - `know-payment`는 payment domain을 아는 skill, `know-order`는 order domain을 아는 skill처럼 의도가 이름에 드러납니다.
@@ -246,8 +246,8 @@ graph TB
 ### 묶음 단위 Index Page
 
 - 각 source 묶음(repo, page, document)마다 `index.md`를 두어 meta 정보와 정리본 목록을 담습니다.
-    - frontmatter에 url과 변경 추적용 식별자, 현재 synced 시점을 명시합니다.
-    - 본문에는 source 개요, 정리본 link 목록, 이 index를 참조하는 skill page 목록(referenced_by)이 들어갑니다.
+    - frontmatter에 url, 변경 추적용 식별자, 현재 synced 시점, topic 목록, 이 index를 참조하는 skill page 목록(referenced_by)을 명시합니다.
+    - 본문에는 source 개요만 둡니다. 다른 문서로 가는 link는 본문에 두지 않고 frontmatter에서만 관리하여 변경 영향 분석이 frontmatter scan 한 번으로 끝나게 합니다.
 
 ```markdown
 ---
@@ -256,6 +256,16 @@ url: https://github.com/company/payment-service
 default_branch: main
 synced_commit: abc123def
 synced_at: 2026-05-04
+topics:
+  - path: payment-flow.md
+    description: 결제 승인 흐름 (controller -> service -> 외부 PG)
+  - path: refund-process.md
+    description: 환불 처리 절차 (정책 검증 -> 부분 환불 -> 정산 갱신)
+  - path: webhook-handler.md
+    description: 외부 PG webhook 수신과 idempotency 처리
+referenced_by:
+  - skills/know-payment/domain/payment.md
+  - skills/know-payment/api/payment-endpoints.md
 ---
 
 ## Repository
@@ -263,17 +273,6 @@ synced_at: 2026-05-04
 - Payment service backend
 - Spring Boot, Java 21
 - 결제 승인, 환불, webhook 처리 담당
-
-## Topics
-
-- [payment-flow](payment-flow.md) - 결제 승인 흐름 (controller -> service -> 외부 PG)
-- [refund-process](refund-process.md) - 환불 처리 절차 (정책 검증 -> 부분 환불 -> 정산 갱신)
-- [webhook-handler](webhook-handler.md) - 외부 PG webhook 수신과 idempotency 처리
-
-## Referenced By
-
-- skills/know-payment/domain/payment.md
-- skills/know-payment/api/payment-endpoints.md
 ```
 
 
@@ -360,9 +359,9 @@ graph LR
 
 ### Skill Page의 참조 규칙
 
-- skill page에서 source 정리본으로 가는 link는 `source_refs` frontmatter로 관리합니다.
-    - skill page 본문에는 file:line 단위의 **직접 참조를 적지 않고**, 정리본 link만 둡니다.
-    - file:line 참조가 **분산되면** source 변경 시 모든 skill page를 다시 검사해야 하지만, **sources layer에 모아두면** 그 layer만 갱신해도 정합성이 유지됩니다.
+- skill page에서 source 정리본으로 가는 link는 **`source_refs` frontmatter에만** 둡니다.
+    - 본문에는 다른 문서로 가는 link(file:line 직접 참조, 정리본 link 모두)를 적지 않습니다. 본문은 domain 지식 자체를 서술하는 데만 씁니다.
+    - **link가 본문에 흩어지면** source 변경 시 모든 skill page 본문을 다시 검사해야 하지만, **frontmatter에 모아두면** frontmatter만 scan하여 영향 범위를 추적할 수 있습니다.
 
 ```yaml
 ---
@@ -379,9 +378,9 @@ source_refs:
 ---
 
 
-## Ingest와 Sync의 경계
+## Source 소비 - Ingest와 Sync
 
-- **묶음 단위(repo, page tree, document, 단일 file)가 기준**이며, 묶음 자체가 처음 들어왔는지 아니면 묶음 안의 내용이 변경되었는지에 따라 operation이 갈립니다.
+- 외부 source를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, 묶음 단위(repo, page tree, document, 단일 file)가 둘을 가르는 기준입니다.
     - 묶음이 skill에 처음 등록되는 경우가 **ingest**이며, `sources/<type>/<group>/index.md`를 신규 생성합니다.
     - 묶음 안에 변경(file 추가, 수정, 삭제, page revision 등)이 일어나는 경우가 **sync**이며, 기존 정리본을 갱신하고 필요하면 새 정리본을 생성합니다.
 
@@ -389,22 +388,42 @@ source_refs:
     - sync 절차에는 변경 file이 어떤 정리본의 referenced_files에도 없을 때 적합한 기존 정리본에 흡수하거나 새 정리본을 생성하는 단계가 포함됩니다.
     - 결과적으로 한 묶음의 lifecycle은 **ingest 한 번 + sync N번** 구조가 됩니다.
 
+- 두 operation 모두 묶음 path를 인자로 받으며, source 종류는 path의 첫 segment로 자동 식별합니다.
+    - LLM은 path의 첫 segment(`github`, `confluence`, `pdf` 등)를 보고 해당 종류 folder의 `AGENTS.md`를 따라 절차를 수행합니다.
+    - 종류별 절차의 차이(fetch 도구, 변경 식별자, 정리본 단위)는 **`AGENTS.md`에 캡슐화**되어 operation 본체는 동일하게 유지됩니다.
 
----
+| 구분 | Ingest | Sync |
+| --- | --- | --- |
+| **trigger 시점** | 묶음을 처음 등록할 때 | 등록된 묶음의 외부 source가 변경되었을 때 |
+| **명령 형태** | `ingest <묶음 path>` | `sync <묶음 path>` |
+| **수행 빈도** | 묶음당 1회 | 묶음당 N회 |
+| **`index.md` 처리** | 신규 생성 | meta 식별자 갱신 |
+| **정리본 처리** | 의미 단위로 분리하여 신규 생성 | 영향받는 정리본 갱신, 필요 시 신규 생성 |
+| **양방향 reference** | 신규 연결 생성 | 기존 연결 점검과 갱신 |
 
 
-## Sync Operation
+### Ingest Operation
 
-- **sync operation**은 외부 source의 변경을 skill에 전파하는 책임을 갖습니다.
+- **ingest operation**은 새 source 묶음을 처음 skill에 등록하는 책임을 갖습니다.
+    - 묶음 path가 가리키는 외부 source를 가져와 의미 있는 단위로 분리하고, 묶음 `index.md`를 신규 생성합니다.
+    - skill page와의 양방향 reference(referenced_by, source_refs)도 이 시점에 처음 만들어집니다.
+
+1. **trigger** : Human이 `ingest sources/github/payment-service`처럼 묶음 path를 인자로 주어 ingest를 명령합니다.
+
+2. **type 식별과 fetch** : LLM이 path의 첫 segment로 source 종류를 식별하고, 그 종류 folder의 `AGENTS.md`의 fetch 절차에 따라 temp folder에 외부 source를 가져옵니다.
+
+3. **정리본 분리와 index 생성** : `AGENTS.md`의 ingest 절차에 따라 묶음을 의미 있는 단위로 분리하여 정리본을 만들고, `index.md`에 meta 식별자(commit hash, version, content hash)와 정리본 목록을 기록합니다.
+    - github은 controller, service, integration 같은 주제를 식별해 topic 단위로, confluence는 page 단위, markdown과 pdf는 section 단위로 분리합니다.
+    - 각 정리본의 frontmatter `referenced_files`에 path, symbols, last_seen 식별자를 기록합니다.
+
+4. **skill page 연결과 commit** : 정리본을 참조할 skill page를 식별해 `source_refs`에 새 정리본 path를 추가하고, 정리본의 `referenced_by`와 일치시킨 뒤 `SKILL.md` frontmatter `pages`에 entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
+
+
+### Sync Operation
+
+- **sync operation**은 이미 ingest된 source의 변경을 skill에 전파하는 책임을 갖습니다.
     - 자동화는 본 문서 범위 밖이며, 현재는 Human이 명시적으로 sync를 trigger합니다.
-    - sync는 `sources/github/payment-service`처럼 한 source 묶음을 가리키는 path를 인자로 받아 수행합니다.
-
-- **단일 sync 명령에 path만 다르고**, source 종류는 path로 자동 식별합니다.
-    - LLM은 path의 첫 segment(`github`, `confluence`, `pdf` 등)를 보고 해당 종류 folder의 `AGENTS.md`를 따라 sync 절차를 수행합니다.
-    - 종류별 절차의 차이(git diff, page version 비교, content hash 비교)는 **`AGENTS.md`에 캡슐화**됩니다.
-
-
-### 7단계 절차
+    - 묶음 `index.md`의 meta 식별자가 이전 sync 시점의 snapshot 역할을 하며, 그 식별자와 현재 외부 source를 비교하여 변경 영역을 추출합니다.
 
 1. **trigger** : Human이 `sync sources/github/payment-service`와 같이 묶음 path를 인자로 주어 sync를 명령합니다.
 
@@ -519,33 +538,34 @@ cd llm-skill && git init
 
 ### SKILL.md Template
 
-- `SKILL.md`는 frontmatter, skill 개요, page catalog, operation 절차로 구성됩니다.
+- `SKILL.md`는 frontmatter, skill 개요, operation 절차로 구성됩니다.
     - frontmatter의 description은 LLM agent가 자동으로 invoke할지 판단하는 기준이므로, 이 skill이 다루는 domain과 활용 시점을 명확히 적습니다.
+    - page catalog는 frontmatter `pages`에 분류별로 두어, 다른 문서 link가 본문에 흩어지지 않게 합니다.
     - 절차 정의는 ingest, query, sync, lint 네 operation을 모두 포함합니다.
 
 ````markdown
 ---
 name: know-payment
 description: Payment domain의 결제, 환불, 정산 정책과 payment-service repo의 code 구조, payment-api endpoint, payment-db schema를 다루며, 결제 흐름, idempotency 처리, webhook 검증, 환불 정책 관련 작업에 호출합니다.
+pages:
+  domain:
+    - path: domain/payment.md
+      description: 결제 승인 흐름과 idempotency 정책
+    - path: domain/refund.md
+      description: 환불 정책과 정산 영향
+  api:
+    - path: api/payment-endpoints.md
+      description: 결제 관련 endpoint contract
+  database:
+    - path: database/transaction.md
+      description: 거래 table과 관련 schema
 ---
 
 # Know Payment
 
-## Page Catalog
-
-### Domain
-- [payment](domain/payment.md) - 결제 승인 흐름과 idempotency 정책
-- [refund](domain/refund.md) - 환불 정책과 정산 영향
-
-### API
-- [payment-endpoints](api/payment-endpoints.md) - 결제 관련 endpoint contract
-
-### Database
-- [transaction](database/transaction.md) - 거래 table과 관련 schema
-
 ## Conventions
 
-- skill page는 source 정리본을 link로만 참조하며, file:line 직접 참조는 sources layer에서만 작성합니다.
+- skill page 본문에는 다른 문서로 가는 link를 적지 않고, source 정리본 참조는 frontmatter `source_refs`에만 둡니다.
 - 모든 page는 frontmatter에 type, source_refs를 명시합니다.
 
 ## Ingest (on "ingest <path>")
@@ -553,7 +573,7 @@ description: Payment domain의 결제, 환불, 정산 정책과 payment-service 
 1. <path>의 외부 source를 식별하고 해당 source 종류 folder의 AGENTS.md ingest 절차를 따릅니다.
 2. sources/<type>/<group>/ 아래에 index.md와 정리본을 생성하고 referenced_files를 기록합니다.
 3. 영향받는 skill page를 갱신하고 양방향 reference(referenced_by, source_refs)를 일치시킵니다.
-4. SKILL.md의 page catalog에 entry를 추가하고 한 ingest 단위로 git commit합니다.
+4. SKILL.md frontmatter `pages`에 entry를 추가하고 한 ingest 단위로 git commit합니다.
 
 ## Sync (on "sync <path>")
 
@@ -564,7 +584,7 @@ description: Payment domain의 결제, 환불, 정산 정책과 payment-service 
 
 ## Query (on a question)
 
-1. SKILL.md의 page catalog를 먼저 읽어 관련 page를 찾습니다.
+1. SKILL.md frontmatter `pages`를 먼저 읽어 관련 page를 찾습니다.
 2. 관련 skill page와 그 page가 참조하는 source 정리본을 읽습니다.
 3. 답변을 생성하며, 필요 시 정리본의 file:line이나 section 정보를 인용합니다.
 
@@ -661,7 +681,7 @@ referenced_by:
 
 ### Domain Page
 
-- business 정책, workflow, 의사결정 규칙처럼 system 동작의 이유를 설명하는 page입니다.
+- business 정책, workflow, 의사 결정 규칙처럼 system 동작의 이유를 설명하는 page입니다.
 
 ````markdown
 ---
@@ -678,14 +698,13 @@ source_refs:
 - domain 규칙, 제약, 예외 조건.
 
 ## Workflow
-- 주요 흐름의 단계별 정리.
-- code 수준의 흐름은 source 정리본 link로만 가리킵니다.
+- 주요 흐름의 단계별 정리. 본문에는 link를 두지 않고, code 수준 흐름이 정리된 source 정리본은 frontmatter `source_refs`에 등록합니다.
 ````
 
 
 ### API Page
 
-- 외부에 노출하는 endpoint의 contract를 정리하며, 실제 구현 위치는 source 정리본을 link로 가리킵니다.
+- 외부에 노출하는 endpoint의 contract를 정리하며, 실제 구현 위치는 frontmatter `source_refs`에 등록합니다.
 
 ````markdown
 ---
@@ -787,7 +806,7 @@ referenced_by:
 
 ### Skill Page - 결제 Domain
 
-- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 적으며, code 흐름은 source 정리본 link로만 가리킵니다.
+- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 본문에 적고, source 정리본 link는 frontmatter `source_refs`에만 둡니다.
 
 ```markdown
 ---
@@ -805,15 +824,13 @@ source_refs:
 ## 정책
 
 - 모든 결제는 idempotency를 보장하며, 동일 idempotency key로 들어온 중복 요청은 기존 결과를 반환합니다.
-    - 구체적인 구현 흐름은 sources/github/payment-service/payment-flow.md를 참조합니다.
 
 - 환불은 원 거래의 정산 상태에 따라 즉시 환불과 지연 환불로 분기합니다.
-    - 환불 정책 상세는 sources/confluence/payment-policy/refund-rules.md를 참조합니다.
+    - 정산이 끝난 거래는 다음 정산 cycle에서 차감되고, 정산 전 거래는 즉시 취소됩니다.
 
 ## Workflow
 
 - 사용자 결제 요청 -> idempotency 검사 -> 외부 PG 호출 -> 결과 저장 -> webhook 대기 순서로 진행합니다.
-    - code 수준의 흐름은 sources/github/payment-service/payment-flow.md에 정리됩니다.
 ```
 
 
