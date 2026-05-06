@@ -96,24 +96,14 @@ graph LR
 
 ### 가장 좋은 Domain 자료 : Source Code와 DB Schema
 
-- 기존 LLM Wiki가 다루는 article과 paper가 domain을 **외부에서 설명한** 자료라면, source code와 DB schema는 **domain 그 자체**를 직접 드러내는 자료입니다.
-    - source code는 어떤 logic이 어떻게 돌아가는지 실제 동작을 담고 있고, DB schema는 data 구조와 제약을 통해 domain의 형태를 담고 있습니다.
-    - agent가 자율 작업을 하려면 그 작업을 수행할 system 자체를 알아야 하므로, 이 두 자료가 article과 paper에 더해 source 종류로 추가됩니다.
+- article과 paper는 domain을 **외부에서 설명**하지만, source code와 DB schema는 **domain 그 자체**를 드러냅니다.
+    - source code는 logic의 실제 동작을, DB schema와 API spec은 system의 contract를 담습니다.
+    - agent가 자율 작업을 하려면 그 작업을 수행할 system 자체를 알아야 하므로, 이 두 자료가 article·paper에 더해 source 종류로 추가됩니다.
 
-- 결제 환불 작업을 하려면 결제 service의 controller 구조, 환불 처리 logic 위치, 거래 table 구조를 모두 알아야 합니다.
-    - 일반적인 LLM은 자사 system을 모르므로, 이 지식을 skill로 정리해 agent에게 reference로 제공해야 합니다.
+- 매 작업마다 codebase를 탐색하면 비효율적이고 일관성도 흔들리므로, skill에 한 번 정리하여 후속 작업이 동일한 mental model을 공유하게 합니다.
 
-- 단순히 code를 읽으면 되지 않냐는 의문이 있을 수 있으나, 매 작업마다 전체 codebase를 탐색하는 것은 비효율적이고 작업 일관성도 떨어집니다.
-    - codebase가 크면 탐색 비용이 매번 발생하며, agent가 매번 다른 부분을 보게 되어 작업 결과의 일관성이 흔들립니다.
-    - skill에 한 번 정리하면 그 정리 결과가 영속되어 모든 후속 작업이 동일한 mental model을 공유합니다.
-
-- DB schema와 API spec은 **system의 contract**이므로, agent가 이 contract를 정확히 이해하지 못하면 작업 결과가 system과 충돌합니다.
-    - DB의 nullable column, foreign key, unique constraint를 모르면 잘못된 SQL을 생성합니다.
-    - API endpoint의 request/response 형식을 모르면 잘못된 client code를 작성합니다.
-
-- 외부 source는 대부분 외부에서 계속 변하는 자료이므로, 변경에 skill이 따라가야 합니다.
-    - source code는 매일 commit이 쌓이고, DB schema는 migration으로 진화하며, Confluence page는 정책 갱신과 함께 변경됩니다.
-    - 이 mutability가 sources layer 설계의 핵심 제약이며, sync operation의 출발점이 됩니다.
+- 외부 source는 대부분 계속 변하는 자료이므로, **변경 추적**이 sources layer 설계의 핵심 제약이며 sync operation의 출발점입니다.
+    - source code는 commit, DB schema는 migration, Confluence page는 정책 갱신으로 변합니다.
 
 
 ---
@@ -247,62 +237,16 @@ graph TB
 ### 묶음 단위 Index Page
 
 - 각 source 묶음(repo, page, document)마다 `index.md`를 두어 meta 정보와 정리본 목록을 담습니다.
-    - frontmatter에 url, 변경 추적용 식별자(last_commit 등), topic 목록, 이 index를 참조하는 skill page 목록(referenced_by)을 명시합니다.
-    - 기계적 영향 분석에 쓰이는 reference(topic 목록, referenced_by)는 frontmatter에 두어 frontmatter scan 한 번으로 영향 범위 추적이 끝나게 합니다. 본문은 source 개요와 가독성용 link로 자유롭게 씁니다.
-
-```markdown
----
-url: https://github.com/company/payment-service
-default_branch: main
-last_commit: abc123def
-topics:
-  - path: payment-flow.md
-    description: 결제 승인 흐름 (controller -> service -> 외부 PG)
-  - path: refund-process.md
-    description: 환불 처리 절차 (정책 검증 -> 부분 환불 -> 정산 갱신)
-  - path: webhook-handler.md
-    description: 외부 PG webhook 수신과 idempotency 처리
-referenced_by:
-  - skills/know-payment/domain/payment.md
-  - skills/know-payment/api/payment-endpoints.md
----
-
-## Repository
-
-- Payment service backend
-- Spring Boot, Java 21
-- 결제 승인, 환불, webhook 처리 담당
-```
+    - frontmatter에 url, 변경 추적용 식별자(last_commit 등), topic 목록을 명시합니다.
+    - 영향 분석은 정리본의 `referenced_by`만으로 충분하므로 group `index.md`에는 `referenced_by`를 두지 않습니다. 본문은 source 개요와 가독성용 link로 자유롭게 씁니다.
 
 
 ### 정리본 Page에서의 촘촘한 참조
 
 - 정리본 page는 한 묶음 안에서 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
-    - frontmatter의 referenced_files에 path와 symbols(class/method/function 이름)를 기록하며, 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
+    - frontmatter의 `referenced_files`에 path와 symbols(class/method/function 이름)를 기록하며, 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
     - 본문 인용은 `File.java:42` 형태로 두되, line 번호는 무관한 commit에도 shift되므로 frontmatter에는 두지 않고 sync 시점에 grep으로 다시 확인합니다.
-    - referenced_by에는 이 정리본을 link로 참조하는 skill page 목록을 기록하여 양방향 연결을 만듭니다.
-
-```markdown
----
-referenced_files:
-  - path: src/main/java/com/payment/api/PaymentController.java
-    symbols: [PaymentController.createPayment, PaymentController.refund]
-  - path: src/main/java/com/payment/service/PaymentService.java
-    symbols: [PaymentService.process, PaymentService.checkIdempotency]
-referenced_by:
-  - skills/know-payment/domain/payment.md
-  - skills/know-payment/api/payment-endpoints.md
----
-
-## 결제 승인 흐름
-
-- `POST /api/payments` 진입은 `PaymentController.java:42`의 `PaymentController.createPayment()`에서 처리합니다.
-    - request validation을 거쳐 `PaymentService.java:15`의 `PaymentService.process()`를 호출합니다.
-
-- `PaymentService.process()`는 외부 PG 호출 전에 idempotency key를 검사합니다.
-    - `PaymentService.java:99`에서 Redis에 key 존재 여부를 확인합니다.
-    - 중복 요청이면 기존 결과를 반환하고, 아니면 `ExternalPgClient.charge()`로 위임합니다.
-```
+    - `referenced_by`에는 이 정리본을 참조하는 skill page 목록을 기록하여 skill page와의 양방향 연결을 만듭니다.
 
 
 ### Source 종류별 차이
@@ -415,7 +359,7 @@ source_refs:
     - github은 controller, service, integration 같은 주제를 식별해 topic 단위로, confluence는 page 단위, markdown과 pdf는 section 단위로 분리합니다.
     - 각 정리본의 frontmatter `referenced_files`에 path, symbols, last_seen 식별자를 기록합니다.
 
-4. **skill page 연결과 commit** : 정리본을 참조할 skill page를 식별해 `source_refs`에 새 정리본 path를 추가하고, 정리본의 `referenced_by`와 일치시킵니다. 그 skill page 목록의 union을 `index.md` frontmatter `referenced_by`에도 기록하고, `SKILL.md` 본문 `## Pages`에 새 skill page entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
+4. **skill page 연결과 commit** : 정리본을 참조할 skill page를 식별해 `source_refs`에 새 정리본 path를 추가하고, 정리본의 `referenced_by`와 일치시킵니다. `SKILL.md` 본문 `## Pages`에 새 skill page entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
 
 
 ### Sync Operation
@@ -439,7 +383,7 @@ source_refs:
 
 6. **영향 skill page 식별** : 영향받는 정리본의 referenced_by를 따라가 갱신이 필요한 skill page를 식별합니다.
 
-7. **갱신과 commit** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신합니다. `index.md`의 `last_commit`을 갱신하고, step 5에서 새 skill page 연결이 생겼다면 `index.md` frontmatter `referenced_by`도 갱신합니다. 한 sync 단위로 `sync(github:payment-service): abc123→def456 - payment-flow.md, domain/payment.md` 형태의 commit message로 git commit합니다.
+7. **갱신과 commit** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신합니다. `index.md`의 `last_commit`을 갱신합니다. 한 sync 단위로 `sync(github:payment-service): abc123→def456 - payment-flow.md, domain/payment.md` 형태의 commit message로 git commit합니다.
 
 
 ---
@@ -611,7 +555,7 @@ description: Payment domain의 결제, 환불, 정산 정책과 payment-service 
 ## Lint (on "lint")
 
 1. 정리본의 referenced_by와 skill page의 source_refs가 일치하는지 점검합니다.
-2. index.md frontmatter `topics`와 실제 정리본 file 목록, `referenced_by`와 그 group 정리본들의 referenced_by union이 일치하는지 점검합니다.
+2. index.md frontmatter `topics`와 실제 정리본 file 목록이 일치하는지 점검합니다.
 3. SKILL.md 본문 `## Pages`와 실제 skill page file 목록이 일치하는지 점검하고, skill page 사이의 `related_pages`가 양방향으로 맞물려 있는지 확인합니다.
 4. orphan 정리본(어떤 skill page에서도 참조하지 않는)과 dangling reference(없는 정리본을 가리키는 skill page)를 찾습니다.
 5. sync에서 새로 생성된 topic 정리본의 분류 경계가 기존 topic과 자연스럽게 맞물리는지 점검하고, 어색하면 재배치를 제안합니다.
@@ -643,8 +587,6 @@ last_commit: <hash>
 topics:
   - path: <topic file>
     description: <한 줄 설명>
-referenced_by:
-  - <skill page path>
 ---
 ```
 
@@ -676,7 +618,7 @@ referenced_by:
 2. 의미 있는 주제(controller, service, integration 등)를 식별.
 3. 각 주제별로 topic page를 만들고 관련 file과 symbol을 referenced_files에 기록.
 4. index.md frontmatter의 `topics`에 각 topic의 path와 description을 entry로 기록.
-5. 각 topic을 참조할 skill page를 식별해 topic page의 `referenced_by`를 채우고, 그 skill page들의 union을 index.md frontmatter `referenced_by`에 기록.
+5. 각 topic을 참조할 skill page를 식별해 topic page의 `referenced_by`를 채우고, 같은 skill page의 `source_refs`에도 topic path를 추가합니다.
 
 ## Sync 절차
 
@@ -686,8 +628,7 @@ referenced_by:
 4. 변경 file이 어떤 topic에도 등록되어 있지 않으면, 적합한 기존 topic에 흡수하거나 새 topic page를 생성합니다.
 5. LLM이 변경분을 읽고 topic page의 referenced_files(symbols)를 갱신합니다.
 6. step 4에서 새 topic page를 만들었다면, 그 topic을 참조할 skill page를 식별해 topic page의 `referenced_by`와 skill page의 `source_refs`를 함께 설정하고, index.md frontmatter `topics`에도 entry를 추가합니다.
-7. step 6으로 새 skill page 연결이 생겼다면 index.md frontmatter `referenced_by`에 반영합니다.
-8. index.md의 last_commit을 갱신합니다.
+7. index.md의 last_commit을 갱신합니다.
 ````
 
 - 다른 source 종류의 `AGENTS.md`도 같은 구조를 따르되 식별자와 절차가 달라집니다.
@@ -799,7 +740,7 @@ related_pages:
 
 ### Source Group Index - payment-service
 
-- `sources/github/payment-service/index.md`는 repo 단위 source group의 진입점이며, frontmatter에 topic 목록과 이 group을 참조하는 skill page 목록이 모입니다.
+- `sources/github/payment-service/index.md`는 repo 단위 source group의 진입점이며, frontmatter에 group meta(url, last_commit)와 topic 목록이 모입니다.
 
 ```markdown
 ---
@@ -813,10 +754,6 @@ topics:
     description: 환불 처리 절차 (정책 검증 -> 부분 환불 -> 정산 갱신)
   - path: webhook-handler.md
     description: 외부 PG webhook 수신과 idempotency 처리
-referenced_by:
-  - skills/know-payment/domain/payment.md
-  - skills/know-payment/domain/refund.md
-  - skills/know-payment/api/payment-endpoints.md
 ---
 
 ## Repository
