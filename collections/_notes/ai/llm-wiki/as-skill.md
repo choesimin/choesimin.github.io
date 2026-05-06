@@ -144,7 +144,7 @@ graph TB
     end
 
     subgraph skills_layer["skills/"]
-        skill_md["SKILL.md<br>진입점 + frontmatter pages"]
+        skill_md["SKILL.md<br>진입점 + page catalog"]
         skill_domain["domain/<br>business 정책·workflow"]
         skill_api["api/<br>외부에 노출하는 API contract"]
         skill_db["database/<br>참조하는 DB 정보"]
@@ -170,9 +170,10 @@ graph TB
 | --- | --- | --- |
 | **외부 source** | skill repo 밖 | 진짜 source (GitHub repo, Confluence page, PDF 등) |
 | `sources/<type>/` | skill repo 안 | 종류별 외부 source의 file:line 또는 section:line 단위 참조 정리 |
-| `sources/<type>/AGENTS.md` | source 종류 folder 안 | 해당 source 종류의 ingest와 sync 절차 |
+| `sources/<type>/AGENTS.md` | source 종류 folder 안 | 해당 source 종류의 fetch, 변경분 추출, frontmatter format 등 종류 고유 절차 |
 | `skills/know-<domain>/` | skill repo 안 | skill 단위 business 관점 page (sources는 frontmatter `source_refs`로 참조) |
-| `skills/know-<domain>/SKILL.md` | skill folder 안 | 진입점, page catalog, skill manifest |
+| `skills/know-<domain>/SKILL.md` | skill folder 안 | 진입점 - skill manifest와 page catalog |
+| `skills/know-<domain>/AGENTS.md` | skill folder 안 | 이 skill의 ingest, sync, query, lint operation 절차 |
 
 
 ### 외부 Source
@@ -200,7 +201,7 @@ graph TB
 
 - skills는 한 개 이상의 skill folder를 담는 container이며, 같은 repo 안의 skill들은 sources를 공유합니다.
     - `skills/know-payment/`, `skills/know-order/` 처럼 domain별 skill을 같은 repo 아래에 두면 외부 source 참조가 자연스럽게 재사용됩니다.
-    - skill 사이의 cross-reference도 본문이 아닌 frontmatter `related_pages`에 둬서, skill page 본문에는 다른 문서 link가 전혀 들어가지 않도록 통일합니다.
+    - skill 사이의 기계적 추적용 cross-reference는 frontmatter `related_pages`에 두며, 본문 link는 가독성·흐름 안내용으로 자유롭게 사용해도 영향 분석에는 무관합니다.
 
 - skill 이름은 **`know-<domain>` 형태**로 그 skill이 어떤 domain을 아는가를 명시합니다.
     - `know-payment`는 payment domain을 아는 skill, `know-order`는 order domain을 아는 skill처럼 의도가 이름에 드러납니다.
@@ -246,16 +247,14 @@ graph TB
 ### 묶음 단위 Index Page
 
 - 각 source 묶음(repo, page, document)마다 `index.md`를 두어 meta 정보와 정리본 목록을 담습니다.
-    - frontmatter에 url, 변경 추적용 식별자, 현재 synced 시점, topic 목록, 이 index를 참조하는 skill page 목록(referenced_by)을 명시합니다.
-    - 본문에는 source 개요만 둡니다. 다른 문서로 가는 link는 본문에 두지 않고 frontmatter에서만 관리하여 변경 영향 분석이 frontmatter scan 한 번으로 끝나게 합니다.
+    - frontmatter에 url, 변경 추적용 식별자(last_commit 등), topic 목록, 이 index를 참조하는 skill page 목록(referenced_by)을 명시합니다.
+    - 기계적 영향 분석에 쓰이는 reference(topic 목록, referenced_by)는 frontmatter에 두어 frontmatter scan 한 번으로 영향 범위 추적이 끝나게 합니다. 본문은 source 개요와 가독성용 link로 자유롭게 씁니다.
 
 ```markdown
 ---
-type: github
 url: https://github.com/company/payment-service
 default_branch: main
-synced_commit: abc123def
-synced_at: 2026-05-04
+last_commit: abc123def
 topics:
   - path: payment-flow.md
     description: 결제 승인 흐름 (controller -> service -> 외부 PG)
@@ -279,21 +278,17 @@ referenced_by:
 ### 정리본 Page에서의 촘촘한 참조
 
 - 정리본 page는 한 묶음 안에서 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
-    - frontmatter의 referenced_files에 path, symbols(class/method/function 이름), last_seen_commit(또는 version, hash)을 기록하며, 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
+    - frontmatter의 referenced_files에 path와 symbols(class/method/function 이름)를 기록하며, 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
     - 본문 인용은 `File.java:42` 형태로 두되, line 번호는 무관한 commit에도 shift되므로 frontmatter에는 두지 않고 sync 시점에 grep으로 다시 확인합니다.
     - referenced_by에는 이 정리본을 link로 참조하는 skill page 목록을 기록하여 양방향 연결을 만듭니다.
 
 ```markdown
 ---
-type: github
-repo: payment-service
 referenced_files:
   - path: src/main/java/com/payment/api/PaymentController.java
     symbols: [PaymentController.createPayment, PaymentController.refund]
-    last_seen_commit: abc123def
   - path: src/main/java/com/payment/service/PaymentService.java
     symbols: [PaymentService.process, PaymentService.checkIdempotency]
-    last_seen_commit: abc123def
 referenced_by:
   - skills/know-payment/domain/payment.md
   - skills/know-payment/api/payment-endpoints.md
@@ -360,14 +355,17 @@ graph LR
 
 ### Skill Page의 참조 규칙
 
-- skill page에서 source 정리본으로 가는 link는 **`source_refs` frontmatter에만** 둡니다.
-    - 본문에는 다른 문서로 가는 link(file:line 직접 참조, 정리본 link 모두)를 적지 않습니다. 본문은 domain 지식 자체를 서술하는 데만 씁니다.
-    - **link가 본문에 흩어지면** source 변경 시 모든 skill page 본문을 다시 검사해야 하지만, **frontmatter에 모아두면** frontmatter만 scan하여 영향 범위를 추적할 수 있습니다.
+- skill page에서 **기계적 영향 분석에 쓰이는 reference**는 frontmatter에 둡니다.
+    - source 정리본 참조는 `source_refs`, 다른 skill page 참조는 `related_pages`에 둡니다.
+    - sync 시 영향받는 skill page를 식별하려면 frontmatter scan 한 번으로 끝나야 하므로, **양방향 추적이 필요한 link는 frontmatter에 모입니다**.
+
+- 본문 link는 **가독성과 흐름 안내용**이며 자유롭게 사용합니다.
+    - 본문의 file:line 참조나 정리본 link는 독자가 자연스럽게 따라갈 수 있도록 돕는 보조 장치이며, 영향 분석에는 관여하지 않습니다.
+    - 본문 link가 stale해져도 frontmatter reference가 정확하면 영향 분석은 정상 동작합니다.
 
 ```yaml
 ---
 title: Payment Domain
-type: domain
 source_refs:
   - sources/github/payment-service/payment-flow.md
   - sources/github/payment-service/refund-process.md
@@ -417,7 +415,7 @@ source_refs:
     - github은 controller, service, integration 같은 주제를 식별해 topic 단위로, confluence는 page 단위, markdown과 pdf는 section 단위로 분리합니다.
     - 각 정리본의 frontmatter `referenced_files`에 path, symbols, last_seen 식별자를 기록합니다.
 
-4. **skill page 연결과 commit** : 정리본을 참조할 skill page를 식별해 `source_refs`에 새 정리본 path를 추가하고, 정리본의 `referenced_by`와 일치시킵니다. 그 skill page 목록의 union을 `index.md` frontmatter `referenced_by`에도 기록하고, `SKILL.md` frontmatter `pages`에 새 skill page entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
+4. **skill page 연결과 commit** : 정리본을 참조할 skill page를 식별해 `source_refs`에 새 정리본 path를 추가하고, 정리본의 `referenced_by`와 일치시킵니다. 그 skill page 목록의 union을 `index.md` frontmatter `referenced_by`에도 기록하고, `SKILL.md` 본문 `## Pages`에 새 skill page entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
 
 
 ### Sync Operation
@@ -441,7 +439,7 @@ source_refs:
 
 6. **영향 skill page 식별** : 영향받는 정리본의 referenced_by를 따라가 갱신이 필요한 skill page를 식별합니다.
 
-7. **갱신과 commit** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신합니다. `index.md`의 meta 식별자(synced_commit, synced_at)를 갱신하고, step 5에서 새 skill page 연결이 생겼다면 `index.md` frontmatter `referenced_by`도 갱신합니다. 한 sync 단위로 `sync(github:payment-service): abc123→def456 - payment-flow.md, domain/payment.md` 형태의 commit message로 git commit합니다.
+7. **갱신과 commit** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신합니다. `index.md`의 `last_commit`을 갱신하고, step 5에서 새 skill page 연결이 생겼다면 `index.md` frontmatter `referenced_by`도 갱신합니다. 한 sync 단위로 `sync(github:payment-service): abc123→def456 - payment-flow.md, domain/payment.md` 형태의 commit message로 git commit합니다.
 
 
 ---
@@ -489,6 +487,7 @@ llm-skill/
 └── skills/
     ├── know-payment/
     │   ├── SKILL.md
+    │   ├── AGENTS.md
     │   ├── domain/
     │   │   ├── payment.md
     │   │   └── refund.md
@@ -498,6 +497,7 @@ llm-skill/
     │       └── transaction.md
     └── know-order/
         ├── SKILL.md
+        ├── AGENTS.md
         ├── domain/
         ├── api/
         └── database/
@@ -524,6 +524,7 @@ touch llm-skill/sources/markdown/AGENTS.md
 touch llm-skill/sources/pdf/AGENTS.md
 touch llm-skill/sources/image/AGENTS.md
 touch llm-skill/skills/know-payment/SKILL.md
+touch llm-skill/skills/know-payment/AGENTS.md
 cd llm-skill && git init
 ```
 
@@ -533,49 +534,66 @@ cd llm-skill && git init
 
 ## SKILL.md와 AGENTS.md 작성
 
-- 한 skill repo에는 두 종류의 agent instruction 문서가 있으며, 역할이 다릅니다.
-    - `SKILL.md`는 skill 단위의 진입점으로 page catalog와 skill 운영 절차를 담습니다.
-    - `AGENTS.md`는 source 종류 단위의 절차 정의로 ingest와 sync 방법을 담습니다.
+- 한 skill repo에는 세 종류의 agent instruction 문서가 있으며, 역할이 다릅니다.
+    - `SKILL.md`는 skill 단위의 진입점이며 manifest와 page catalog만 담습니다.
+    - skill 단위 `AGENTS.md`는 그 skill의 ingest, sync, query, lint operation 절차를 담습니다.
+    - source 종류 단위 `AGENTS.md`는 그 종류의 fetch, 변경분 추출, frontmatter format 같은 종류 고유 절차를 담습니다.
+
+- `SKILL.md`와 skill 단위 `AGENTS.md`를 분리하는 이유는 **진입점과 운영 절차의 변경 빈도가 다르기 때문**입니다.
+    - manifest와 page catalog는 page가 추가·삭제될 때마다 갱신되며, agent가 매 invoke마다 읽습니다.
+    - operation 절차는 한 번 정의하면 거의 바뀌지 않으며, agent가 해당 operation을 수행할 때만 읽습니다.
 
 
 ### SKILL.md Template
 
-- `SKILL.md`는 frontmatter, skill 개요, operation 절차로 구성됩니다.
-    - frontmatter의 description은 LLM agent가 자동으로 invoke할지 판단하는 기준이므로, 이 skill이 다루는 domain과 활용 시점을 명확히 적습니다.
-    - page catalog는 frontmatter `pages`에 분류별로 두어, 다른 문서 link가 본문에 흩어지지 않게 합니다.
-    - 절차 정의는 ingest, query, sync, lint 네 operation을 모두 포함합니다.
+- `SKILL.md`는 하위 모든 page들을 위한 **index** 역할만 합니다.
+    - frontmatter는 `name`과 `description`만 둡니다. description은 LLM agent가 자동으로 invoke할지 판단하는 기준이므로, 이 skill이 다루는 domain과 활용 시점을 명확히 적습니다.
+    - 본문은 `## Pages` section으로 page catalog를 분류별로 담습니다. 이 외 다른 내용은 두지 않습니다.
+    - skill 운영 규칙과 operation 절차는 같은 folder의 `AGENTS.md`에 둡니다.
 
 ````markdown
 ---
 name: know-payment
 description: Payment domain의 결제, 환불, 정산 정책과 payment-service repo의 code 구조, payment-api endpoint, payment-db schema를 다루며, 결제 흐름, idempotency 처리, webhook 검증, 환불 정책 관련 작업에 호출합니다.
-pages:
-  domain:
-    - path: domain/payment.md
-      description: 결제 승인 흐름과 idempotency 정책
-    - path: domain/refund.md
-      description: 환불 정책과 정산 영향
-  api:
-    - path: api/payment-endpoints.md
-      description: 결제 관련 endpoint contract
-  database:
-    - path: database/transaction.md
-      description: 거래 table과 관련 schema
 ---
 
 # Know Payment
 
+## Pages
+
+### domain
+- `domain/payment.md` - 결제 승인 흐름과 idempotency 정책
+- `domain/refund.md` - 환불 정책과 정산 영향
+
+### api
+- `api/payment-endpoints.md` - 결제 관련 endpoint contract
+
+### database
+- `database/transaction.md` - 거래 table과 관련 schema
+````
+
+
+### Skill 단위 AGENTS.md Template
+
+- skill 단위 `AGENTS.md`는 한 skill의 운영 규칙과 ingest, sync, query, lint operation 절차를 정의합니다.
+    - `skills/know-<domain>/AGENTS.md` 위치에 두어 그 skill folder를 다루는 agent가 자연스럽게 참조하게 합니다.
+    - source 종류 고유 절차(fetch, 변경분 추출 등)는 source 종류 단위 `AGENTS.md`에 위임합니다.
+
+````markdown
+# Know Payment Operations
+
 ## Conventions
 
-- skill page 본문에는 다른 문서로 가는 link를 적지 않습니다. source 정리본 참조는 frontmatter `source_refs`, 다른 skill page 참조는 frontmatter `related_pages`에 둡니다.
-- 모든 page는 frontmatter에 `title`, `type`, `source_refs`를 명시하고, 다른 skill page를 참조하면 `related_pages`도 추가합니다.
+- 기계적 영향 분석에 쓰이는 reference는 frontmatter에만 둡니다. source 정리본 참조는 `source_refs`, 다른 skill page 참조는 `related_pages`에 둡니다.
+- 본문 link는 가독성·흐름 안내용으로 자유롭게 사용합니다. 영향 분석은 frontmatter만 신뢰합니다.
+- 모든 page는 frontmatter에 `title`과 `source_refs`를 명시하고, 다른 skill page를 참조하면 `related_pages`도 추가합니다.
 
 ## Ingest (on "ingest <path>")
 
 1. <path>의 외부 source를 식별하고 해당 source 종류 folder의 AGENTS.md ingest 절차를 따릅니다.
 2. sources/<type>/<group>/ 아래에 index.md와 정리본을 생성하고 referenced_files를 기록합니다.
 3. 영향받는 skill page를 갱신하고 양방향 reference(referenced_by, source_refs)를 일치시킵니다.
-4. SKILL.md frontmatter `pages`에 entry를 추가하고 한 ingest 단위로 git commit합니다.
+4. SKILL.md 본문 `## Pages`에 entry를 추가하고 한 ingest 단위로 git commit합니다.
 
 ## Sync (on "sync <path>")
 
@@ -586,7 +604,7 @@ pages:
 
 ## Query (on a question)
 
-1. SKILL.md frontmatter `pages`를 먼저 읽어 관련 page를 찾습니다.
+1. SKILL.md 본문 `## Pages`를 먼저 읽어 관련 page를 찾습니다.
 2. 관련 skill page와 그 page가 참조하는 source 정리본을 읽습니다.
 3. 답변을 생성하며, 필요 시 정리본의 file:line이나 section 정보를 인용합니다.
 
@@ -594,17 +612,17 @@ pages:
 
 1. 정리본의 referenced_by와 skill page의 source_refs가 일치하는지 점검합니다.
 2. index.md frontmatter `topics`와 실제 정리본 file 목록, `referenced_by`와 그 group 정리본들의 referenced_by union이 일치하는지 점검합니다.
-3. SKILL.md frontmatter `pages`와 실제 skill page file 목록이 일치하는지 점검하고, skill page 사이의 `related_pages`가 양방향으로 맞물려 있는지 확인합니다.
+3. SKILL.md 본문 `## Pages`와 실제 skill page file 목록이 일치하는지 점검하고, skill page 사이의 `related_pages`가 양방향으로 맞물려 있는지 확인합니다.
 4. orphan 정리본(어떤 skill page에서도 참조하지 않는)과 dangling reference(없는 정리본을 가리키는 skill page)를 찾습니다.
-5. 외부 source의 변경을 sync하지 않은 stale 정리본을 식별합니다.
+5. sync에서 새로 생성된 topic 정리본의 분류 경계가 기존 topic과 자연스럽게 맞물리는지 점검하고, 어색하면 재배치를 제안합니다.
 ````
 
 
-### AGENTS.md Template
+### Source 종류 단위 AGENTS.md Template
 
-- `AGENTS.md`는 한 source 종류의 ingest와 sync 절차를 정의합니다.
+- source 종류 단위 `AGENTS.md`는 한 source 종류의 fetch, 변경분 추출, frontmatter format을 정의합니다.
     - source 종류마다 fetch 도구, 변경 식별자, 정리본 단위가 다르므로 각 종류 folder에 따로 둡니다.
-    - 여러 skill이 같은 source 종류를 공유할 때 `AGENTS.md`를 재사용합니다.
+    - 여러 skill이 같은 source 종류를 공유할 때 이 `AGENTS.md`를 재사용합니다.
 
 ````markdown
 # GitHub Source Schema
@@ -619,11 +637,9 @@ pages:
 
 ```yaml
 ---
-type: github
 url: https://github.com/<owner>/<repo>
 default_branch: main
-synced_commit: <hash>
-synced_at: <YYYY-MM-DD>
+last_commit: <hash>
 topics:
   - path: <topic file>
     description: <한 줄 설명>
@@ -636,12 +652,9 @@ referenced_by:
 
 ```yaml
 ---
-type: github
-repo: <repo-name>
 referenced_files:
   - path: <relative path>
     symbols: [<class.method or function names>]
-    last_seen_commit: <hash>
 referenced_by:
   - <skill page path>
 ---
@@ -654,7 +667,7 @@ referenced_by:
 
 ## 변경분 추출
 
-- `git diff <synced_commit>..HEAD --name-only`로 변경 file 목록을 가져옵니다.
+- `git diff <last_commit>..HEAD --name-only`로 변경 file 목록을 가져옵니다.
 - 추가 정밀도가 필요하면 `git diff <last>..HEAD -- <file>`로 변경 내용을 봅니다.
 
 ## Ingest 절차
@@ -671,10 +684,10 @@ referenced_by:
 2. 변경분 추출 절차로 변경 file 목록을 얻습니다.
 3. 변경 file path를 모든 topic page의 referenced_files와 비교하여 영향받는 topic을 식별합니다.
 4. 변경 file이 어떤 topic에도 등록되어 있지 않으면, 적합한 기존 topic에 흡수하거나 새 topic page를 생성합니다.
-5. LLM이 변경분을 읽고 topic page의 referenced_files(symbols, last_seen_commit)를 갱신합니다.
+5. LLM이 변경분을 읽고 topic page의 referenced_files(symbols)를 갱신합니다.
 6. step 4에서 새 topic page를 만들었다면, 그 topic을 참조할 skill page를 식별해 topic page의 `referenced_by`와 skill page의 `source_refs`를 함께 설정하고, index.md frontmatter `topics`에도 entry를 추가합니다.
 7. step 6으로 새 skill page 연결이 생겼다면 index.md frontmatter `referenced_by`에 반영합니다.
-8. index.md의 synced_commit과 synced_at을 갱신합니다.
+8. index.md의 last_commit을 갱신합니다.
 ````
 
 - 다른 source 종류의 `AGENTS.md`도 같은 구조를 따르되 식별자와 절차가 달라집니다.
@@ -688,7 +701,7 @@ referenced_by:
 
 - `domain/`, `api/`, `database/` 각 분류는 다루는 정보의 성격이 달라 본문 section도 달라집니다.
     - template은 권장 골격이며, domain에 따라 section을 추가하거나 생략해도 무방합니다.
-    - frontmatter는 분류 무관하게 `title`, `type`, `source_refs`를 공통으로 갖고, 다른 skill page를 참조할 때는 `related_pages`를 추가합니다.
+    - frontmatter는 분류 무관하게 `title`과 `source_refs`를 공통으로 갖고, 다른 skill page를 참조할 때는 `related_pages`를 추가합니다.
 
 
 ### Domain Page
@@ -698,7 +711,6 @@ referenced_by:
 ````markdown
 ---
 title: <Domain Name>
-type: domain
 source_refs:
   - sources/.../<source-summary>.md
 related_pages:
@@ -712,7 +724,7 @@ related_pages:
 - domain 규칙, 제약, 예외 조건.
 
 ## Workflow
-- 주요 흐름의 단계별 정리. 본문에는 link를 두지 않고, code 수준 흐름이 정리된 source 정리본은 frontmatter `source_refs`에 등록합니다.
+- 주요 흐름의 단계별 정리. code 수준 흐름이 정리된 source 정리본은 frontmatter `source_refs`에 등록하여 양방향 추적을 보장합니다.
 ````
 
 
@@ -723,7 +735,6 @@ related_pages:
 ````markdown
 ---
 title: <Endpoint Group>
-type: api
 source_refs:
   - sources/github/.../<controller-summary>.md
 related_pages:
@@ -751,7 +762,6 @@ related_pages:
 ````markdown
 ---
 title: <Table Name>
-type: database
 source_refs:
   - sources/.../<schema-summary>.md
 related_pages:
@@ -793,11 +803,9 @@ related_pages:
 
 ```markdown
 ---
-type: github
 url: https://github.com/company/payment-service
 default_branch: main
-synced_commit: abc123def
-synced_at: 2026-05-04
+last_commit: abc123def
 topics:
   - path: payment-flow.md
     description: 결제 승인 흐름 (controller -> service -> 외부 PG)
@@ -825,15 +833,11 @@ referenced_by:
 
 ```markdown
 ---
-type: github
-repo: payment-service
 referenced_files:
   - path: src/main/java/com/payment/api/PaymentController.java
     symbols: [PaymentController.createPayment, PaymentController.refund]
-    last_seen_commit: abc123def
   - path: src/main/java/com/payment/service/PaymentService.java
     symbols: [PaymentService.process, PaymentService.checkIdempotency, PaymentService.persist]
-    last_seen_commit: abc123def
 referenced_by:
   - skills/know-payment/domain/payment.md
   - skills/know-payment/api/payment-endpoints.md
@@ -856,12 +860,11 @@ referenced_by:
 
 ### Skill Page - 결제 Domain
 
-- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 본문에 적고, source 정리본 link는 frontmatter `source_refs`에, 다른 skill page link는 `related_pages`에 둡니다.
+- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 본문에 서술하고, 기계적 영향 분석용 reference로 source 정리본은 frontmatter `source_refs`에, 다른 skill page는 `related_pages`에 둡니다.
 
 ```markdown
 ---
 title: Payment Domain
-type: domain
 source_refs:
   - sources/github/payment-service/payment-flow.md
   - sources/confluence/payment-policy/refund-rules.md
@@ -895,8 +898,8 @@ related_pages:
 $ sync sources/github/payment-service
 
 # 2. AGENTS.md를 따라 last commit 확인
-$ cat sources/github/payment-service/index.md | grep synced_commit
-synced_commit: abc123def
+$ cat sources/github/payment-service/index.md | grep last_commit
+last_commit: abc123def
 
 # 3. fetch 후 diff
 $ cd /tmp/payment-service && git fetch && git diff abc123def..HEAD --name-only
