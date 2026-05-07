@@ -112,7 +112,7 @@ graph LR
 ## Layer 구조
 
 - LLM Skill은 외부 source, sources layer, skills layer 세 영역으로 나뉘며, 각 영역은 위치와 책임이 다릅니다.
-    - 외부 source는 skill repo 밖에 있고, sources는 그 외부 자료의 정리본이며, skills는 agent가 invoke하는 단위입니다.
+    - 외부 source는 skill repo 밖에 있고, sources는 그 외부 자료의 summary이며, skills는 agent가 invoke하는 단위입니다.
     - sources는 source 종류별 folder로 분리되어 종류별 ingest와 sync 절차를 `AGENTS.md`에 따로 정의합니다.
 
 ```mermaid
@@ -183,8 +183,8 @@ graph TB
     - github은 `sources/github/<repo>/index.md` + `<topic>.md` 구조로 repo 단위로 묶고 그 안에서 topic 단위로 정리합니다.
     - confluence와 pdf와 markdown도 동일한 pattern을 따르되, 묶음 단위(page, document)와 식별자(version, hash)가 다릅니다.
 
-- topic 또는 정리 단위의 분리가 **변경 동기화의 단위**가 되며, file이 바뀌면 그 file을 참조하는 정리본만 영향받습니다.
-    - 한 source 변경 -> 영향받는 정리본 식별 -> 정리본의 referenced_by를 따라 skill page 갱신의 흐름이 일관되게 동작합니다.
+- topic 또는 정리 단위의 분리가 **변경 동기화의 단위**가 되며, file이 바뀌면 그 file을 참조하는 summary만 영향받습니다.
+    - 한 source 변경 -> 영향받는 summary 식별 -> summary의 referenced_by를 따라 skill page 갱신의 흐름이 일관되게 동작합니다.
 
 
 ### Skills Layer
@@ -201,11 +201,11 @@ graph TB
 ---
 
 
-## Source 정리본의 구조
+## Source Summary의 구조
 
-- sources layer의 각 source 종류는 외부 source를 skill repo에 그대로 가져오지 않고, 참조 meta 정보 + 묶음 단위 정리본으로 표현합니다.
+- sources layer의 각 source 종류는 외부 source를 skill repo에 그대로 가져오지 않고, 참조 meta 정보 + 묶음 단위 source summary로 표현합니다.
     - meta 정보에는 url과 변경 추적용 식별자(commit, version, content hash 등)가 포함되어 변경 감지의 기준점이 됩니다.
-    - 정리본에는 source 종류에 맞는 단위(file:line, section, page)의 촘촘한 참조가 들어가며, 이 정보를 기반으로 LLM이 변경분의 영향 범위를 분석합니다.
+    - source summary에는 source 종류에 맞는 단위(file:line, section, page)의 촘촘한 참조가 들어가며, 이 정보를 기반으로 LLM이 변경분의 영향 범위를 분석합니다.
 
 ```mermaid
 graph TB
@@ -236,27 +236,27 @@ graph TB
 
 ### 묶음 단위 Index Page
 
-- 각 source 묶음(repo, page, document)마다 `index.md`를 두어 meta 정보와 정리본 목록을 담습니다.
+- 각 source 묶음(repo, page, document)마다 `index.md`를 두어 meta 정보와 summary 목록을 담습니다.
     - frontmatter에 url, 변경 추적용 식별자(last_commit 등), topic 목록을 명시합니다.
-    - 영향 분석은 정리본의 `referenced_by`만으로 충분하므로 group `index.md`에는 `referenced_by`를 두지 않습니다. 본문은 source 개요와 가독성용 link로 자유롭게 씁니다.
+    - 영향 분석은 summary의 `referenced_by`만으로 충분하므로 group `index.md`에는 `referenced_by`를 두지 않습니다. 본문은 source 개요와 가독성용 link로 자유롭게 씁니다.
 
 
-### 정리본 Page에서의 촘촘한 참조
+### Source Summary Page에서의 촘촘한 참조
 
-- 정리본 page는 한 묶음 안에서 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
+- source summary page는 한 묶음 안에서 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
     - frontmatter의 `referenced_files`에 path와 symbols(class/method/function 이름)를 기록하며, 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
     - 본문 인용은 `File.java:42` 형태로 두되, line 번호는 무관한 commit에도 shift되므로 frontmatter에는 두지 않고 sync 시점에 grep으로 다시 확인합니다.
-    - `referenced_by`에는 이 정리본을 참조하는 skill page 목록을 기록하여 skill page와의 양방향 연결을 만듭니다.
+    - `referenced_by`에는 이 source summary를 참조하는 skill page 목록을 기록하여 skill page와의 양방향 연결을 만듭니다.
 
 
 ### Source 종류별 차이
 
 - 묶음 단위와 변경 추적 식별자가 source 종류에 따라 달라집니다.
-    - github은 repo 단위로 묶고 commit hash로 변경 추적, 정리본은 topic 단위입니다.
-    - confluence는 space나 page tree 단위로 묶고 page version으로 변경 추적, 정리본은 page 단위입니다.
-    - markdown은 관련 문서 collection 단위로 묶고 file별 content hash로 변경 추적, 정리본은 한 문서 단위입니다.
-    - pdf는 한 document 단위로 묶고 content hash로 변경 추적, 정리본은 section 단위입니다.
-    - image는 관련 image collection 단위로 묶고 file별 content hash로 변경 추적, 정리본은 한 image와 그 설명입니다.
+    - github은 repo 단위로 묶고 commit hash로 변경 추적, summary는 topic 단위입니다.
+    - confluence는 space나 page tree 단위로 묶고 page version으로 변경 추적, summary는 page 단위입니다.
+    - markdown은 관련 문서 collection 단위로 묶고 file별 content hash로 변경 추적, summary는 한 문서 단위입니다.
+    - pdf는 한 document 단위로 묶고 content hash로 변경 추적, summary는 section 단위입니다.
+    - image는 관련 image collection 단위로 묶고 file별 content hash로 변경 추적, summary는 한 image와 그 설명입니다.
 
 - 각 source 종류 folder의 `AGENTS.md`에 그 종류 고유의 ingest 절차, sync 절차, frontmatter format을 정의합니다.
     - 여러 skill이 같은 source 종류를 공유할 때 `AGENTS.md`를 재사용하므로 절차가 한 곳에 모입니다.
@@ -268,14 +268,14 @@ graph TB
 
 ## 양방향 연결
 
-- source 정리본과 skill page는 frontmatter의 referenced_by와 source_refs로 **양방향 연결**됩니다.
+- source summary와 skill page는 frontmatter의 referenced_by와 source_refs로 **양방향 연결**됩니다.
     - 양방향 연결은 변경 감지 시 **영향 분석을 가능하게 하는 핵심 mechanism**이며, 한 방향만 있으면 영향 범위 추적이 불가능합니다.
-    - LLM은 한 file 변경을 감지하면 정리본의 referenced_files로 영향받는 정리본을 찾고, 그 정리본의 referenced_by로 영향받는 skill page를 찾습니다.
+    - LLM은 한 file 변경을 감지하면 summary의 referenced_files로 영향받는 summary를 찾고, 그 summary의 referenced_by로 영향받는 skill page를 찾습니다.
 
 
 ### 연결 Mechanism
 
-- 외부 file, source 정리본, skill page 세 layer가 frontmatter field로 서로를 가리키며 추적 chain을 이룹니다.
+- 외부 file, source summary, skill page 세 layer가 frontmatter field로 서로를 가리키며 추적 chain을 이룹니다.
 
 ```mermaid
 graph LR
@@ -300,11 +300,11 @@ graph LR
 ### Skill Page의 참조 규칙
 
 - skill page에서 **기계적 영향 분석에 쓰이는 reference**는 frontmatter에 둡니다.
-    - source 정리본 참조는 `source_refs`, 다른 skill page 참조는 `related_pages`에 둡니다.
+    - source summary 참조는 `source_refs`, 다른 skill page 참조는 `related_pages`에 둡니다.
     - sync 시 영향받는 skill page를 식별하려면 frontmatter scan 한 번으로 끝나야 하므로, **양방향 추적이 필요한 link는 frontmatter에 모입니다**.
 
 - 본문 link는 **가독성과 흐름 안내용**이며 자유롭게 사용합니다.
-    - 본문의 file:line 참조나 정리본 link는 독자가 자연스럽게 따라갈 수 있도록 돕는 보조 장치이며, 영향 분석에는 관여하지 않습니다.
+    - 본문의 file:line 참조나 summary link는 독자가 자연스럽게 따라갈 수 있도록 돕는 보조 장치이며, 영향 분석에는 관여하지 않습니다.
     - 본문 link가 stale해져도 frontmatter reference가 정확하면 영향 분석은 정상 동작합니다.
 
 ```yaml
@@ -325,15 +325,15 @@ source_refs:
 
 - 외부 source를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, 묶음 단위(repo, page tree, document, 단일 file)가 둘을 가르는 기준입니다.
     - 묶음이 skill에 처음 등록되는 경우가 **ingest**이며, `sources/<type>/<group>/index.md`를 신규 생성합니다.
-    - 묶음 안에 변경(file 추가, 수정, 삭제, page revision 등)이 일어나는 경우가 **sync**이며, 기존 정리본을 갱신하고 필요하면 새 정리본을 생성합니다.
+    - 묶음 안에 변경(file 추가, 수정, 삭제, page revision 등)이 일어나는 경우가 **sync**이며, 기존 summary를 갱신하고 필요하면 새 summary를 생성합니다.
 
 - 기준이 묶음 단위이므로 "이미 ingest된 repo에 새 file이 추가됨" 같은 case는 sync에 흡수됩니다.
-    - sync 절차에는 변경 file이 어떤 정리본의 referenced_files에도 없을 때 적합한 기존 정리본에 흡수하거나 새 정리본을 생성하는 단계가 포함됩니다.
+    - sync 절차에는 변경 file이 어떤 summary의 referenced_files에도 없을 때 적합한 기존 summary에 흡수하거나 새 summary를 생성하는 단계가 포함됩니다.
     - 결과적으로 한 묶음의 lifecycle은 **ingest 한 번 + sync N번** 구조가 됩니다.
 
 - 두 operation 모두 묶음 path를 인자로 받으며, source 종류는 path의 첫 segment로 자동 식별합니다.
     - LLM은 path의 첫 segment(`github`, `confluence`, `pdf` 등)를 보고 해당 종류 folder의 `AGENTS.md`를 따라 절차를 수행합니다.
-    - 종류별 절차의 차이(fetch 도구, 변경 식별자, 정리본 단위)는 **`AGENTS.md`에 캡슐화**되어 operation 본체는 동일하게 유지됩니다.
+    - 종류별 절차의 차이(fetch 도구, 변경 식별자, summary 단위)는 **`AGENTS.md`에 캡슐화**되어 operation 본체는 동일하게 유지됩니다.
 
 | 구분 | Ingest | Sync |
 | --- | --- | --- |
@@ -341,7 +341,7 @@ source_refs:
 | **명령 형태** | `ingest <묶음 path>` | `sync <묶음 path>` |
 | **수행 빈도** | 묶음당 1회 | 묶음당 N회 |
 | **`index.md` 처리** | 신규 생성 | meta 식별자 갱신 |
-| **정리본 처리** | 의미 단위로 분리하여 신규 생성 | 영향받는 정리본 갱신, 필요 시 신규 생성 |
+| **summary 처리** | 의미 단위로 분리하여 신규 생성 | 영향받는 summary 갱신, 필요 시 신규 생성 |
 | **양방향 reference** | 신규 연결 생성 | 기존 연결 점검과 갱신 |
 
 
@@ -355,11 +355,11 @@ source_refs:
 
 2. **type 식별과 fetch** : LLM이 path의 첫 segment로 source 종류를 식별하고, 그 종류 folder의 `AGENTS.md`의 fetch 절차에 따라 temp folder에 외부 source를 가져옵니다.
 
-3. **정리본 분리와 index 생성** : `AGENTS.md`의 ingest 절차에 따라 묶음을 의미 있는 단위로 분리하여 정리본을 만들고, `index.md`에 meta 식별자(commit hash, version, content hash)와 정리본 목록을 기록합니다.
+3. **source summary 분리와 index 생성** : `AGENTS.md`의 ingest 절차에 따라 묶음을 의미 있는 단위로 분리하여 source summary를 만들고, `index.md`에 meta 식별자(commit hash, version, content hash)와 summary 목록을 기록합니다.
     - github은 controller, service, integration 같은 주제를 식별해 topic 단위로, confluence는 page 단위, markdown과 pdf는 section 단위로 분리합니다.
-    - 각 정리본의 frontmatter `referenced_files`에 path, symbols, last_seen 식별자를 기록합니다.
+    - 각 summary의 frontmatter `referenced_files`에 path, symbols, last_seen 식별자를 기록합니다.
 
-4. **skill page 연결과 commit** : 정리본을 참조할 skill page를 식별해 `source_refs`에 새 정리본 path를 추가하고, 정리본의 `referenced_by`와 일치시킵니다. `SKILL.md` 본문 `## Pages`에 새 skill page entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
+4. **skill page 연결과 commit** : summary를 참조할 skill page를 식별해 `source_refs`에 새 summary path를 추가하고, summary의 `referenced_by`와 일치시킵니다. `SKILL.md` 본문 `## Pages`에 새 skill page entry를 추가합니다. 한 ingest 단위로 `ingest(github:payment-service): payment-flow.md, refund-process.md` 형태의 commit message로 git commit합니다.
 
 
 ### Sync Operation
@@ -378,12 +378,12 @@ source_refs:
 4. **변경분 추출** : meta 식별자를 기준으로 변경 영역을 추출합니다.
     - github은 git diff, confluence는 page revision diff, markdown과 pdf는 content 비교를 사용합니다.
 
-5. **영향 정리본 식별과 신규 file 분배** : 변경된 file path 또는 section을 모든 정리본의 referenced_files와 비교하여 영향받는 정리본을 찾고, 어떤 정리본에도 등록되지 않은 신규 file은 적합한 기존 정리본에 흡수하거나 새 정리본을 생성합니다.
-    - 새 정리본을 만들 때는 그 정리본을 참조할 skill page도 함께 식별해 정리본의 `referenced_by`와 skill page의 `source_refs`를 동시에 설정합니다.
+5. **영향 source summary 식별과 신규 file 분배** : 변경된 file path 또는 section을 모든 source summary의 referenced_files와 비교하여 영향받는 source summary를 찾고, 어떤 source summary에도 등록되지 않은 신규 file은 적합한 기존 source summary에 흡수하거나 새 source summary를 생성합니다.
+    - 새 summary를 만들 때는 그 summary를 참조할 skill page도 함께 식별해 summary의 `referenced_by`와 skill page의 `source_refs`를 동시에 설정합니다.
 
-6. **영향 skill page 식별** : 영향받는 정리본의 referenced_by를 따라가 갱신이 필요한 skill page를 식별합니다.
+6. **영향 skill page 식별** : 영향받는 source summary의 referenced_by를 따라가 갱신이 필요한 skill page를 식별합니다.
 
-7. **갱신과 commit** : LLM이 변경 내용을 읽고 정리본과 skill page를 갱신합니다. `index.md`의 `last_commit`을 갱신합니다. 한 sync 단위로 `sync(github:payment-service): abc123→def456 - payment-flow.md, domain/payment.md` 형태의 commit message로 git commit합니다.
+7. **갱신과 commit** : LLM이 변경 내용을 읽고 source summary와 skill page를 갱신합니다. `index.md`의 `last_commit`을 갱신합니다. 한 sync 단위로 `sync(github:payment-service): abc123→def456 - payment-flow.md, domain/payment.md` 형태의 commit message로 git commit합니다.
 
 
 ---
@@ -392,7 +392,7 @@ source_refs:
 ## Directory 구조
 
 - 한 skill repo는 sources와 skills 두 top-level folder로 구성됩니다.
-    - sources에는 source 종류별 folder가 들어가고, 각 folder는 `AGENTS.md`와 묶음 단위 정리본을 갖습니다.
+    - sources에는 source 종류별 folder가 들어가고, 각 folder는 `AGENTS.md`와 묶음 단위 summary를 갖습니다.
     - skills에는 know-<domain> 형태의 skill folder들이 들어갑니다.
 
 
@@ -449,7 +449,7 @@ llm-skill/
 
 - 한 skill repo 안에 여러 skill folder를 둘 수 있으며, 각 skill은 자기 `SKILL.md`를 진입점으로 갖습니다.
     - `skills/know-payment/`, `skills/know-order/` 처럼 domain별로 skill folder를 분리하면 각 skill이 독립적으로 invoke됩니다.
-    - 여러 skill이 같은 source 정리본을 참조해도 무방하며, sources는 skill folder 사이에서 공유됩니다.
+    - 여러 skill이 같은 source summary를 참조해도 무방하며, sources는 skill folder 사이에서 공유됩니다.
 
 - skill folder 안의 page 분류는 단수형으로 작성합니다.
     - `domain/`, `api/`, `database/` 처럼 단수형은 이 skill의 domain 정리, api 정리, database 정리라는 의미를 단순하게 전달합니다.
@@ -528,14 +528,14 @@ description: Payment domain의 결제, 환불, 정산 정책과 payment-service 
 
 ## Conventions
 
-- 기계적 영향 분석에 쓰이는 reference는 frontmatter에만 둡니다. source 정리본 참조는 `source_refs`, 다른 skill page 참조는 `related_pages`에 둡니다.
+- 기계적 영향 분석에 쓰이는 reference는 frontmatter에만 둡니다. source summary 참조는 `source_refs`, 다른 skill page 참조는 `related_pages`에 둡니다.
 - 본문 link는 가독성·흐름 안내용으로 자유롭게 사용합니다. 영향 분석은 frontmatter만 신뢰합니다.
 - 모든 page는 frontmatter에 `title`과 `source_refs`를 명시하고, 다른 skill page를 참조하면 `related_pages`도 추가합니다.
 
 ## Ingest (on "ingest <path>")
 
 1. <path>의 외부 source를 식별하고 해당 source 종류 folder의 AGENTS.md ingest 절차를 따릅니다.
-2. sources/<type>/<group>/ 아래에 index.md와 정리본을 생성하고 referenced_files를 기록합니다.
+2. sources/<type>/<group>/ 아래에 index.md와 source summary를 생성하고 referenced_files를 기록합니다.
 3. 영향받는 skill page를 갱신하고 양방향 reference(referenced_by, source_refs)를 일치시킵니다.
 4. SKILL.md 본문 `## Pages`에 entry를 추가하고 한 ingest 단위로 git commit합니다.
 
@@ -543,29 +543,29 @@ description: Payment domain의 결제, 환불, 정산 정책과 payment-service 
 
 1. <path>의 첫 segment로 source 종류를 식별합니다.
 2. sources/<type>/AGENTS.md의 sync 절차를 수행합니다.
-    - fetch, 변경분 추출, 정리본 갱신, meta 식별자 갱신 단계를 포함합니다.
-3. 영향받는 정리본의 referenced_by를 따라 skill page를 갱신하고, 한 sync 단위로 git commit합니다.
+    - fetch, 변경분 추출, source summary 갱신, meta 식별자 갱신 단계를 포함합니다.
+3. 영향받는 source summary의 referenced_by를 따라 skill page를 갱신하고, 한 sync 단위로 git commit합니다.
 
 ## Query (on a question)
 
 1. SKILL.md 본문 `## Pages`를 먼저 읽어 관련 page를 찾습니다.
-2. 관련 skill page와 그 page가 참조하는 source 정리본을 읽습니다.
-3. 답변을 생성하며, 필요 시 정리본의 file:line이나 section 정보를 인용합니다.
+2. 관련 skill page와 그 page가 참조하는 source summary를 읽습니다.
+3. 답변을 생성하며, 필요 시 source summary의 file:line이나 section 정보를 인용합니다.
 
 ## Lint (on "lint")
 
-1. 정리본의 referenced_by와 skill page의 source_refs가 일치하는지 점검합니다.
-2. index.md frontmatter `topics`와 실제 정리본 file 목록이 일치하는지 점검합니다.
+1. source summary의 referenced_by와 skill page의 source_refs가 일치하는지 점검합니다.
+2. index.md frontmatter `topics`와 실제 source summary file 목록이 일치하는지 점검합니다.
 3. SKILL.md 본문 `## Pages`와 실제 skill page file 목록이 일치하는지 점검하고, skill page 사이의 `related_pages`가 양방향으로 맞물려 있는지 확인합니다.
-4. orphan 정리본(어떤 skill page에서도 참조하지 않는)과 dangling reference(없는 정리본을 가리키는 skill page)를 찾습니다.
-5. sync에서 새로 생성된 topic 정리본의 분류 경계가 기존 topic과 자연스럽게 맞물리는지 점검하고, 어색하면 재배치를 제안합니다.
+4. orphan source summary(어떤 skill page에서도 참조하지 않는)와 dangling reference(없는 source summary를 가리키는 skill page)를 찾습니다.
+5. sync에서 새로 생성된 topic source summary의 분류 경계가 기존 topic과 자연스럽게 맞물리는지 점검하고, 어색하면 재배치를 제안합니다.
 ````
 
 
 ### Source 종류 단위 AGENTS.md Template
 
 - source 종류 단위 `AGENTS.md`는 한 source 종류의 fetch, 변경분 추출, frontmatter format을 정의합니다.
-    - source 종류마다 fetch 도구, 변경 식별자, 정리본 단위가 다르므로 각 종류 folder에 따로 둡니다.
+    - source 종류마다 fetch 도구, 변경 식별자, source summary 단위가 다르므로 각 종류 folder에 따로 둡니다.
     - 여러 skill이 같은 source 종류를 공유할 때 이 `AGENTS.md`를 재사용합니다.
 
 ````markdown
@@ -575,7 +575,7 @@ description: Payment domain의 결제, 환불, 정산 정책과 payment-service 
 
 - 묶음 단위 : repo
 - 변경 식별자 : commit hash
-- 정리본 단위 : topic (한 주제와 관련된 file 묶음)
+- source summary 단위 : topic (한 주제와 관련된 file 묶음)
 
 ## Index Page Frontmatter
 
@@ -665,7 +665,7 @@ related_pages:
 - domain 규칙, 제약, 예외 조건.
 
 ## Workflow
-- 주요 흐름의 단계별 정리. code 수준 흐름이 정리된 source 정리본은 frontmatter `source_refs`에 등록하여 양방향 추적을 보장합니다.
+- 주요 흐름의 단계별 정리. code 수준 흐름이 정리된 source summary는 frontmatter `source_refs`에 등록하여 양방향 추적을 보장합니다.
 ````
 
 
@@ -764,7 +764,7 @@ topics:
 ```
 
 
-### Source 정리본 - 결제 흐름
+### Source Summary - 결제 흐름
 
 - `sources/github/payment-service/payment-flow.md`는 symbol 단위의 code 흐름을 정리하며, 변경 감지의 단위가 됩니다.
 
@@ -797,7 +797,7 @@ referenced_by:
 
 ### Skill Page - 결제 Domain
 
-- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 본문에 서술하고, 기계적 영향 분석용 reference로 source 정리본은 frontmatter `source_refs`에, 다른 skill page는 `related_pages`에 둡니다.
+- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 본문에 서술하고, 기계적 영향 분석용 reference로 source summary는 frontmatter `source_refs`에, 다른 skill page는 `related_pages`에 둡니다.
 
 ```markdown
 ---
@@ -843,9 +843,9 @@ $ cd /tmp/payment-service && git fetch && git diff abc123def..HEAD --name-only
 src/main/java/com/payment/service/PaymentService.java
 ```
 
-- 변경 file path가 `payment-flow.md`의 referenced_files에 등록되어 있으므로, 해당 정리본이 영향 대상으로 식별됩니다.
-    - 정리본의 referenced_by에 등록된 `skills/know-payment/domain/payment.md`와 `skills/know-payment/api/payment-endpoints.md`가 다음 갱신 대상이 됩니다.
-    - LLM이 diff를 읽어 idempotency 검사 logic 변경 내용을 정리본에 반영하고, 정책 변경이 있으면 skill page도 갱신합니다.
+- 변경 file path가 `payment-flow.md`의 referenced_files에 등록되어 있으므로, 해당 summary가 영향 대상으로 식별됩니다.
+    - summary의 referenced_by에 등록된 `skills/know-payment/domain/payment.md`와 `skills/know-payment/api/payment-endpoints.md`가 다음 갱신 대상이 됩니다.
+    - LLM이 diff를 읽어 idempotency 검사 logic 변경 내용을 source summary에 반영하고, 정책 변경이 있으면 skill page도 갱신합니다.
 
 
 ---
