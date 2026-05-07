@@ -46,11 +46,11 @@ graph LR
     agent --> output
 ```
 
-- **유지 비용이 작다는 점**이 skill 형태의 강점이며, 이 비용 구조가 자주 변경되는 source를 유연하게 다룰 수 있게 만듭니다.
+- **유지 비용이 작다는 점**이 skill 형태의 강점이며, 이 비용 구조가 자주 변경되는 외부 자료를 유연하게 다룰 수 있게 만듭니다.
     - source code와 DB schema처럼 자주 변하는 자료는 수동 유지로는 며칠 만에 stale해지지만, **LLM이 sync, lint, cross-reference 갱신을 전담**하면 이 부담이 사라집니다.
     - **양방향 reference**(referenced_by, source_refs)가 자동으로 영향 범위를 추적하므로, Human은 sync 명령만 주면 됩니다.
 
-- 자동화 구조가 없다면, skill은 변경되는 source를 다루는 유지 비용을 감당하지 못해 금방 stale(낡은) 상태가 되며, **누적된 지식이라는 가치가 사라지게** 됩니다.
+- 자동화 구조가 없다면, skill은 변경되는 외부 자료를 다루는 유지 비용을 감당하지 못해 금방 stale(낡은) 상태가 되며, **누적된 지식이라는 가치가 사라지게** 됩니다.
 
 
 ### Skill 형태로의 활용
@@ -74,7 +74,7 @@ graph LR
     - 활용 목적이 다르면 어떤 자료를 source로 넣을지, page를 어떻게 구조화할지가 달라집니다.
     - Human용 wiki는 **paper와 article 중심**이지만, agent용 skill은 **system을 구성하는 모든 자료(code, schema, contract)**를 포함해야 자율 작업이 가능합니다.
 
-- 외부 source의 성격도 달라지며, 기존 LLM Wiki는 article이나 paper처럼 **한 번 수집하면 변하지 않는 자료**를 가정합니다.
+- 외부 자료의 성격도 달라지며, 기존 LLM Wiki는 article이나 paper처럼 **한 번 수집하면 변하지 않는 자료**를 가정합니다.
     - agent용 skill에서는 GitHub repository, Confluence page, DB schema처럼 **외부에서 계속 변하는 자료**가 주가 되므로 **변경 추적**이 필수입니다.
     - 변경 추적은 source 종류별로 다르며(commit hash, page version, content hash 등), 각 종류 folder의 `AGENTS.md`에 절차를 정의합니다.
 
@@ -102,7 +102,7 @@ graph LR
 
 - 매 작업마다 codebase를 탐색하면 비효율적이고 일관성도 흔들리므로, skill에 한 번 정리하여 후속 작업이 동일한 mental model을 공유하게 합니다.
 
-- 외부 source는 대부분 계속 변하는 자료이므로, **변경 추적**이 sources layer 설계의 핵심 제약이며 sync operation의 출발점입니다.
+- 외부 자료는 대부분 계속 변하므로, **변경 추적**이 sources layer 설계의 핵심 제약이며 sync operation의 출발점입니다.
     - source code는 commit, DB schema는 migration, Confluence page는 정책 갱신으로 변합니다.
 
 
@@ -111,13 +111,13 @@ graph LR
 
 ## Layer 구조
 
-- LLM Domain Skill은 외부 source, sources layer, skills layer 세 영역으로 나뉘며, 각 영역은 위치와 책임이 다릅니다.
-    - 외부 source는 skill repo 밖에 있고, sources는 그 외부 자료의 summary이며, skills는 agent가 invoke하는 단위입니다.
+- LLM Domain Skill은 외부 자료, sources layer, skills layer 세 영역으로 나뉘며, 각 영역은 위치와 책임이 다릅니다.
+    - 외부 자료는 skill repo 밖에 있고, sources는 그 외부 자료의 summary이며, skills는 agent가 invoke하는 단위입니다.
     - sources는 source 종류별 folder로 분리되어 종류별 ingest와 sync 절차를 `AGENTS.md`에 따로 정의합니다.
 
 ```mermaid
 graph TB
-    subgraph external["외부 source"]
+    subgraph external["외부 자료"]
         ext_repo[GitHub repo]
         ext_conf[Confluence page]
         ext_md[external markdown]
@@ -158,18 +158,18 @@ graph TB
 
 | layer | 위치 | 책임 |
 | --- | --- | --- |
-| **외부 source** | skill repo 밖 | 진짜 source (GitHub repo, Confluence page, PDF 등) |
-| `sources/<type>/` | skill repo 안 | 종류별 외부 source의 file:line 또는 section:line 단위 참조 정리 |
+| **외부 자료** | skill repo 밖 | 진짜 source (GitHub repo, Confluence page, PDF 등) |
+| `sources/<type>/` | skill repo 안 | 종류별 외부 자료의 file:line 또는 section:line 단위 참조 정리 |
 | `sources/<type>/AGENTS.md` | source 종류 folder 안 | 해당 source 종류의 fetch, 변경분 추출, frontmatter format 등 종류 고유 절차 |
 | `skills/know-<domain>/` | skill repo 안 | skill 단위 business 관점 page (sources는 frontmatter `source_refs`로 참조) |
 | `skills/know-<domain>/SKILL.md` | skill folder 안 | 진입점 - skill manifest와 page catalog |
 | `skills/know-<domain>/AGENTS.md` | skill folder 안 | 이 skill의 ingest, sync, query, lint operation 절차 |
 
 
-### 외부 Source
+### 외부 자료
 
-- 외부 source는 skill repo에 byte 단위로 들어오지 않으며, 필요할 때만 temp folder에 clone하거나 fetch하여 LLM이 읽습니다.
-    - source 전체를 skill에 두면 git history가 비대해지고, 외부 변경마다 skill repo도 같이 dirty해지는 문제가 발생합니다.
+- 외부 자료는 skill repo에 byte 단위로 들어오지 않으며, 필요할 때만 temp folder에 clone하거나 fetch하여 LLM이 읽습니다.
+    - 외부 자료 전체를 skill에 두면 git history가 비대해지고, 외부 변경마다 skill repo도 같이 dirty해지는 문제가 발생합니다.
     - reference만 두는 전략으로 skill repo를 가볍게 유지하고, sync는 source 종류별 식별자 비교로 처리합니다.
 
 - 변경 추적 식별자는 source 종류에 따라 다릅니다.
@@ -184,13 +184,13 @@ graph TB
     - confluence와 pdf와 markdown도 동일한 pattern을 따르되, 묶음 단위(page, document)와 식별자(version, hash)가 다릅니다.
 
 - topic 또는 정리 단위의 분리가 **변경 동기화의 단위**가 되며, file이 바뀌면 그 file을 참조하는 summary만 영향받습니다.
-    - 한 source 변경 -> 영향받는 summary 식별 -> summary의 referenced_by를 따라 skill page 갱신의 흐름이 일관되게 동작합니다.
+    - 한 외부 자료 변경 -> 영향받는 summary 식별 -> summary의 referenced_by를 따라 skill page 갱신의 흐름이 일관되게 동작합니다.
 
 
 ### Skills Layer
 
 - `skills/`는 한 개 이상의 domain skill folder를 담는 container이며, 같은 repo 안의 skill들은 sources를 공유합니다.
-    - `skills/know-payment/`, `skills/know-order/` 처럼 domain별 skill을 같은 repo 아래에 두면 외부 source 참조가 자연스럽게 재사용됩니다.
+    - `skills/know-payment/`, `skills/know-order/` 처럼 domain별 skill을 같은 repo 아래에 두면 외부 자료 참조가 자연스럽게 재사용됩니다.
     - skill 사이의 기계적 추적용 cross-reference는 frontmatter `related_pages`에 두며, 본문 link는 가독성·흐름 안내용으로 자유롭게 사용해도 영향 분석에는 무관합니다.
 
 - domain skill 이름은 **`know-<domain>` 형태**로 그 skill이 어떤 domain을 아는가를 명시합니다.
@@ -203,7 +203,7 @@ graph TB
 
 ## Source Summary의 구조
 
-- sources layer의 각 source 종류는 외부 source를 skill repo에 그대로 가져오지 않고, 참조 meta 정보 + 묶음 단위 source summary로 표현합니다.
+- sources layer의 각 source 종류는 외부 자료를 skill repo에 그대로 가져오지 않고, 참조 meta 정보 + 묶음 단위 source summary로 표현합니다.
     - meta 정보에는 url과 변경 추적용 식별자(commit, version, content hash 등)가 포함되어 변경 감지의 기준점이 됩니다.
     - source summary에는 source 종류에 맞는 단위(file:line, section, page)의 촘촘한 참조가 들어가며, 이 정보를 기반으로 LLM이 변경분의 영향 범위를 분석합니다.
 
@@ -268,14 +268,22 @@ graph TB
 
 ## 양방향 연결
 
-- source summary와 skill page는 frontmatter의 referenced_by와 source_refs로 **양방향 연결**됩니다.
-    - 양방향 연결은 변경 감지 시 **영향 분석을 가능하게 하는 핵심 mechanism**이며, 한 방향만 있으면 영향 범위 추적이 불가능합니다.
-    - LLM은 한 file 변경을 감지하면 summary의 referenced_files로 영향받는 summary를 찾고, 그 summary의 referenced_by로 영향받는 skill page를 찾습니다.
+- 영향 분석을 가능하게 하려면 **외부 자료 -> source summary -> skill page** chain을 양 방향 모두 추적할 수 있어야 합니다.
+    - **외부 자료와 source summary 사이의 link**는 진짜 양방향이 아닙니다. 외부 자료는 frontmatter를 가질 수 없으므로, summary가 `referenced_files`로 외부 자료를 가리키는 단방향 link만 둡니다.
+        - 역방향(외부 자료 -> summary)은 sync 시 source 종류별 식별자 비교로 보강하며, 식별자는 종류에 따라 commit hash, page version, content hash 등이 됩니다.
+    - **source summary와 skill page 사이의 link**는 진짜 양방향입니다. 둘 다 markdown file이라 frontmatter에 짝을 이루는 reference를 둘 수 있습니다.
+        - summary 쪽 frontmatter `referenced_by`가 skill page를 가리키고, skill page 쪽 frontmatter `source_refs`가 summary를 가리킵니다.
+
+- chain을 따라가는 흐름은 한 방향으로 완결됩니다.
+    - 외부 자료 변경 감지 -> 식별자 비교로 영향받는 summary 식별 -> summary의 `referenced_by`로 영향받는 skill page 식별 -> skill page 갱신.
 
 
 ### 연결 Mechanism
 
-- 외부 file, source summary, skill page 세 layer가 frontmatter field로 서로를 가리키며 추적 chain을 이룹니다.
+- 세 layer 사이 link는 위치별로 다른 mechanism을 사용하며, summary가 양쪽 link의 매개점 역할을 합니다.
+    - 외부 자료 -> summary 방향은 summary의 frontmatter `referenced_files`에 외부 자료의 식별자를 기록하여 link합니다. 식별자는 종류에 따라 file path, page id 등이 됩니다.
+    - 외부 자료 <- summary 역방향은 frontmatter에 둘 수 없으므로, sync 시 묶음 `index.md`에 저장된 종류별 식별자와 현재 외부 자료를 비교해 영향 영역을 찾습니다.
+    - summary와 skill page 사이 양방향은 두 file의 frontmatter에 짝을 이루는 reference를 두며, lint가 일치 여부를 점검합니다.
 
 ```mermaid
 graph LR
@@ -291,7 +299,7 @@ graph LR
         page_payment["domain/payment.md<br>source_refs: payment-flow.md"]
     end
 
-    ext_file -.cited.-> topic_flow
+    topic_flow -.referenced_files.-> ext_file
     topic_flow -.referenced_by.-> page_payment
     page_payment -.source_refs.-> topic_flow
 ```
@@ -323,7 +331,7 @@ source_refs:
 
 ## Source to Skill - Ingest와 Sync
 
-- 외부 source를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, 묶음 단위(repo, page tree, document, 단일 file)가 둘을 가르는 기준입니다.
+- 외부 자료를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, 묶음 단위(repo, page tree, document, 단일 file)가 둘을 가르는 기준입니다.
     - 묶음이 skill에 처음 등록되는 경우가 **ingest**이며, `sources/<type>/<group>/index.md`를 신규 생성합니다.
     - 묶음 안에 변경(file 추가, 수정, 삭제, page revision 등)이 일어나는 경우가 **sync**이며, 기존 summary를 갱신하고 필요하면 새 summary를 생성합니다.
 
@@ -337,7 +345,7 @@ source_refs:
 
 | 구분 | Ingest | Sync |
 | --- | --- | --- |
-| **trigger 시점** | 묶음을 처음 등록할 때 | 등록된 묶음의 외부 source가 변경되었을 때 |
+| **trigger 시점** | 묶음을 처음 등록할 때 | 등록된 묶음의 외부 자료가 변경되었을 때 |
 | **명령 형태** | `ingest <묶음 path>` | `sync <묶음 path>` |
 | **수행 빈도** | 묶음당 1회 | 묶음당 N회 |
 | **`index.md` 처리** | 신규 생성 | meta 식별자 갱신 |
@@ -348,12 +356,12 @@ source_refs:
 ### Ingest Operation
 
 - **ingest operation**은 새 source 묶음을 처음 skill에 등록하는 책임을 갖습니다.
-    - 묶음 path가 가리키는 외부 source를 가져와 의미 있는 단위로 분리하고, 묶음 `index.md`를 신규 생성합니다.
+    - 묶음 path가 가리키는 외부 자료를 가져와 의미 있는 단위로 분리하고, 묶음 `index.md`를 신규 생성합니다.
     - skill page와의 양방향 reference(referenced_by, source_refs)도 이 시점에 처음 만들어집니다.
 
 1. **trigger** : Human이 `ingest sources/github/payment-service`처럼 묶음 path를 인자로 주어 ingest를 명령합니다.
 
-2. **type 식별과 fetch** : LLM이 path의 첫 segment로 source 종류를 식별하고, 그 종류 folder의 `AGENTS.md`의 fetch 절차에 따라 temp folder에 외부 source를 가져옵니다.
+2. **type 식별과 fetch** : LLM이 path의 첫 segment로 source 종류를 식별하고, 그 종류 folder의 `AGENTS.md`의 fetch 절차에 따라 temp folder에 외부 자료를 가져옵니다.
 
 3. **source summary 분리와 index 생성** : `AGENTS.md`의 ingest 절차에 따라 묶음을 의미 있는 단위로 분리하여 source summary를 만들고, `index.md`에 meta 식별자(commit hash, version, content hash)와 summary 목록을 기록합니다.
     - github은 controller, service, integration 같은 주제를 식별해 topic 단위로, confluence는 page 단위, markdown과 pdf는 section 단위로 분리합니다.
@@ -364,15 +372,15 @@ source_refs:
 
 ### Sync Operation
 
-- **sync operation**은 이미 ingest된 source의 변경을 skill에 전파하는 책임을 갖습니다.
+- **sync operation**은 이미 ingest된 외부 자료의 변경을 skill에 전파하는 책임을 갖습니다.
     - 자동화는 본 문서 범위 밖이며, 현재는 Human이 명시적으로 sync를 trigger합니다.
-    - 묶음 `index.md`의 meta 식별자가 이전 sync 시점의 snapshot 역할을 하며, 그 식별자와 현재 외부 source를 비교하여 변경 영역을 추출합니다.
+    - 묶음 `index.md`의 meta 식별자가 이전 sync 시점의 snapshot 역할을 하며, 그 식별자와 현재 외부 자료를 비교하여 변경 영역을 추출합니다.
 
 1. **trigger** : Human이 `sync sources/github/payment-service`와 같이 묶음 path를 인자로 주어 sync를 명령합니다.
 
 2. **type 식별과 meta 확인** : LLM이 path의 첫 segment로 source 종류를 식별하고, 그 종류 folder의 `AGENTS.md`를 읽어 절차를 파악하며, 묶음 `index.md`의 meta 식별자(commit hash, version, content hash)를 비교 기준으로 잡습니다.
 
-3. **fetch** : `AGENTS.md`의 fetch 절차에 따라 temp folder에 외부 source를 가져옵니다.
+3. **fetch** : `AGENTS.md`의 fetch 절차에 따라 temp folder에 외부 자료를 가져옵니다.
     - github은 git fetch, confluence는 API export 등을 사용합니다.
 
 4. **변경분 추출** : meta 식별자를 기준으로 변경 영역을 추출합니다.
@@ -534,7 +542,7 @@ description: Payment domain의 결제, 환불, 정산 정책과 payment-service 
 
 ## Ingest (on "ingest <path>")
 
-1. <path>의 외부 source를 식별하고 해당 source 종류 folder의 AGENTS.md ingest 절차를 따릅니다.
+1. <path>의 외부 자료를 식별하고 해당 source 종류 folder의 AGENTS.md ingest 절차를 따릅니다.
 2. sources/<type>/<group>/ 아래에 index.md와 source summary를 생성하고 referenced_files를 기록합니다.
 3. 영향받는 skill page를 갱신하고 양방향 reference(referenced_by, source_refs)를 일치시킵니다.
 4. SKILL.md 본문 `## Pages`에 entry를 추가하고 한 ingest 단위로 git commit합니다.
