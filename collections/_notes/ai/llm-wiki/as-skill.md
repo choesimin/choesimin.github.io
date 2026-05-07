@@ -2,7 +2,7 @@
 layout: note
 permalink: /502
 title: LLM Domain Skill - Agent가 스스로 Domain을 다루게 하기
-description: agent가 domain 작업을 수행하는 데 필요한 지식을 구조화된 markdown 묶음으로 누적하고 domain skill로 packaging해서, agent가 그 지식을 스스로 갱신하고 호출 시점에 활용하도록 합니다.
+description: agent가 domain 작업을 수행하는 데 필요한 지식을 구조화된 markdown 모음으로 누적하고 domain skill로 packaging해서, agent가 그 지식을 스스로 갱신하고 호출 시점에 활용하도록 합니다.
 date: 2026-05-04
 ---
 
@@ -49,24 +49,20 @@ graph LR
 
 - LLM Domain Skill은 domain 정책, source code 구조, API contract, DB schema를 wiki 형태로 **영구적으로 누적**하여 agent가 매번 작업할 때 참조합니다.
     - RAG처럼 query마다 chunk를 재조합하지 않고, **미리 정리되고 cross-reference된 skill**을 통째로 활용합니다.
-    - 같은 domain에서 여러 task를 반복 수행하는 agent에게는 RAG보다 skill 형태가 자연스러운데, **지식이 누적되고 일관성이 유지**되기 때문입니다.
+    - 같은 domain에서 여러 task를 반복 수행하는 agent에게는 **지식이 누적되고 일관성이 유지**되는 skill 형태가 자연스럽습니다.
 
-- **유지 비용이 작다는 점**이 skill 형태의 강점이며, 이 비용 구조가 자주 변경되는 외부 자료를 유연하게 다룰 수 있게 만듭니다.
-    - source code와 DB schema처럼 자주 변하는 자료는 수동 유지로는 며칠 만에 stale해지지만, **LLM이 sync, lint, cross-reference 갱신을 전담**하면 이 부담이 사라집니다.
-    - **memories layer가 외부 자료와 wiki 사이의 연결 metadata를 단방향으로 추적**하므로, Human은 sync 명령만 주면 됩니다.
-
-- 자동화 구조가 없다면, skill은 변경되는 외부 자료를 다루는 유지 비용을 감당하지 못해 금방 stale(낡은) 상태가 되며, **누적된 지식이라는 가치가 사라지게** 됩니다.
+- 누적된 지식의 가치를 유지하려면 외부 자료의 변경을 따라가야 하며, 이는 **LLM이 sync와 cross-reference 갱신을 전담**해야 가능합니다.
+    - memories layer가 외부 자료와 wiki 사이의 연결 metadata를 단방향으로 추적하므로, Human은 sync 명령만 주면 됩니다.
+    - 자동화 없이 수동 유지하면 자료가 며칠 만에 stale해져 누적된 지식의 가치가 사라집니다.
 
 
 ### Skill 형태로의 활용
 
-- skill로 packaging한다는 것은 누적된 지식 묶음에 **이름표(`SKILL.md`)와 진입점**을 붙여 agent가 호출 시점에 쉽게 찾아 활용하도록 만드는 것입니다.
+- skill로 packaging한다는 것은 누적된 지식 모음에 **이름표(`SKILL.md`)와 진입점**을 붙여 agent가 호출 시점에 쉽게 찾아 활용하도록 만드는 것입니다.
     - `SKILL.md` frontmatter의 name과 description이 agent에게 이 skill이 무엇이고 언제 호출해야 하는지를 알립니다.
-    - 진입점이 있어야 agent가 작업 시작 시점에 자기 task와 관련된 skill을 식별하여 활용 가능합니다.
-    - skill 형태는 **framework 중립적**이므로 Claude Code, OpenCode, Codex, 직접 만든 LLM application 모두에서 동일하게 사용됩니다.
+    - skill 형태는 **framework 중립적**이라 여러 agent runtime에서 동일하게 invoke됩니다.
 
-- 한 domain skill의 범위는 단일 domain의 지식, API spec, DB schema, source code repository 등 한 작업 영역에 묶이는 자료 전체입니다.
-    - business domain(결제, 주문, 환불), 외부 service와의 통합 contract, 자사 service의 code 구조가 한 skill에 함께 들어갈 수 있습니다.
+- 한 domain skill의 범위는 단일 domain의 지식, API contract, DB schema, source code repository 등 한 작업 영역에 묶이는 자료 전체입니다.
     - 작업 영역이 **너무 넓으면** description이 모호해져 호출 정확도가 떨어지고, **너무 좁으면** cross-reference의 가치가 사라집니다.
 
 
@@ -81,34 +77,19 @@ graph LR
 
 - 외부 자료의 성격도 달라지며, 기존 LLM Wiki는 article이나 paper처럼 **한 번 수집하면 변하지 않는 자료**를 가정합니다.
     - agent용 skill에서는 GitHub repository, Confluence page, DB schema처럼 **외부에서 계속 변하는 자료**가 주가 되므로 **변경 추적**이 필수입니다.
-    - 변경 추적은 source 종류별로 다르며(commit hash, page version, content hash 등), 각 종류 folder의 `AGENTS.md`에 절차를 정의합니다.
+    - 변경 추적은 source 종류별로 다르며(commit hash, page version, content hash 등), `memories/<type>/AGENTS.md`에 절차를 정의합니다.
 
 | 구분 | 기존 LLM Wiki | LLM Domain Skill |
 | --- | --- | --- |
-| **활용 목적** | Human의 학습·탐색 | LLM agent의 자율 작업 reference |
 | **소비자** | Human (직접 읽기) | LLM agent (작업 중 invoke) |
 | **진입점** | `index.md` | `SKILL.md` (frontmatter 포함) |
 | **source 종류** | article, paper, transcript | github, confluence, markdown, pdf, image 등 |
 | **source 변경** | 거의 없음 | 자주 발생, 종류별 추적 mechanism |
-| **수집 방식** | Human이 markdown 변환 후 저장 | 외부 reference + on-demand fetch |
-| **변경 대응** | 새 source 추가 (ingest) | 기존 source 변경 (sync) |
-| **page 분류** | sources, concepts, entities, comparisons | domain, api, database (skill 단위) |
+| **page 분류** | sources, concepts, entities, comparisons | domain, api, database |
 
 - 분류 축도 다르며, 단일 domain을 다루는 skill에서는 추상과 구체의 구분(concept vs entity)이나 종합 비교(comparisons)의 의미가 약해집니다.
     - domain 한정 skill은 그 domain의 정책, workflow, 외부 contract만 다루면 충분하며, 추상 개념을 별도 page로 두는 빈도가 낮습니다.
     - comparisons는 여러 domain을 가로지르는 분석에 적합한 분류이므로, 단일 skill 안에서는 자연스럽지 않습니다.
-
-
-### 가장 좋은 Domain 자료 : Source Code와 DB Schema
-
-- article과 paper는 domain을 **외부에서 설명**하지만, source code와 DB schema는 **domain 그 자체**를 드러냅니다.
-    - source code는 logic의 실제 동작을, DB schema와 API spec은 system의 contract를 담습니다.
-    - agent가 자율 작업을 하려면 그 작업을 수행할 system 자체를 알아야 하므로, 이 두 자료가 article·paper에 더해 source 종류로 추가됩니다.
-
-- 매 작업마다 codebase를 탐색하면 비효율적이고 일관성도 흔들리므로, skill에 한 번 정리하여 후속 작업이 동일한 mental model을 공유하게 합니다.
-
-- 외부 자료는 대부분 계속 변하므로, **변경 추적**이 sources layer 설계의 핵심 제약이며 sync operation의 출발점입니다.
-    - source code는 commit, DB schema는 migration, Confluence page는 정책 갱신으로 변합니다.
 
 
 ---
@@ -128,12 +109,12 @@ graph LR
 
 ```mermaid
 graph TB
-    external["외부 자료<br>(참조 또는 byte)"]
+    external["외부 자료"]
     sources["sources/<br>외부 자료 보관"]
     memories["memories/<br>정리 + 연결 metadata"]
     skills["skills/<br>순수 wiki"]
 
-    external -.fetch on-demand.-> sources
+    external -.byte 또는 reference.-> sources
     memories -.referenced_files.-> sources
     memories -.used_by.-> skills
 ```
@@ -167,7 +148,7 @@ graph TB
 - 참조만 보관하는 종류는 **외부 system이 안정적이고 fetch 비용이 낮아** 항상 최신을 가져올 수 있습니다.
     - github은 git remote, confluence는 API export로 fetch on-demand 합니다.
 
-- 종류와 무관하게 변경 식별자는 `memories/<type>/<group>/index.md` 에 보관하며, sync는 식별자 비교로 변경 영역을 추출합니다.
+- 종류와 무관하게 변경 식별자는 `memories/<type>/<bundle>/index.md` 에 보관하며, sync는 식별자 비교로 변경 영역을 추출합니다.
 
 
 ### Sources Layer
@@ -183,7 +164,7 @@ graph TB
 
 - memories는 외부 자료의 정리(memory)와 wiki와의 연결 metadata를 모두 책임집니다.
     - 종류별 folder로 분리되며, 각 folder가 자기만의 ingest·sync 절차를 갖습니다.
-    - 묶음 단위와 memory 단위가 source 종류에 따라 다른데, 자세한 내용은 다음 section에서 다룹니다.
+    - bundle 단위와 memory 단위는 source 종류에 따라 다릅니다.
 
 - memory frontmatter의 두 field가 **양쪽 layer를 잇는 매개점**입니다.
     - `referenced_files` 가 sources 방향으로 외부 자료 식별자를 기록합니다.
@@ -201,10 +182,10 @@ graph TB
 
 ### Skills Layer
 
-- skills는 순수 wiki layer입니다.
-    - business 관점의 정책·workflow·schema를 정리한 page만 들어가고, **자료 연결 정보는 frontmatter에 두지 않습니다**.
+- skills는 순수 wiki를 담는 layer로, business 관점의 정책·workflow·schema를 정리한 page만 들어갑니다.
+    - **자료 연결 정보는 frontmatter에 두지 않습니다**.
     - skill page에서 외부 자료를 인용할 때는 본문에서 file:line 형태로 자유롭게 link합니다.
-    - 영향 분석은 memories layer가 단방향으로 책임지므로 skill page는 자기 출처를 frontmatter에 명시할 필요가 없습니다.
+    - 영향 분석은 memories layer가 단방향 link로 책임지므로 skill page는 자기 출처를 frontmatter에 명시할 필요가 없습니다.
 
 - `skills/`는 한 개 이상의 domain skill folder를 담는 container이며, 같은 repo 안의 skill들은 sources와 memories를 공유합니다.
     - skill page 사이의 기계적 추적용 cross-reference는 frontmatter `related_pages`에 둡니다.
@@ -218,23 +199,18 @@ graph TB
 
 ## Memory의 구조
 
-- 한 source 묶음은 **묶음 단위 `index.md` + 그 아래 topic 단위 memory**로 표현합니다.
-    - `index.md` 는 묶음 meta(url, 변경 추적 식별자, topic 목록)를 담아 묶음 단위의 진입점이 됩니다.
+- 한 source bundle은 **bundle 단위 `index.md` + 그 아래 topic 단위 memory**로 표현합니다.
+    - `index.md` 는 bundle meta(url, 변경 추적 식별자, topic 목록)를 담아 bundle 단위의 진입점이 됩니다.
     - 각 topic memory는 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
-
-- topic memory의 frontmatter에는 두 종류의 link가 들어갑니다.
-    - `referenced_files` 에는 외부 자료의 path와 symbol을 기록합니다.
-        - 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
-    - `used_by` 에는 이 memory를 활용하는 skill page 목록을 기록합니다.
 
 
 ### Source 종류별 차이
 
-- 묶음 단위, memory 단위, sub-file 추적 정밀도가 source 종류에 따라 다릅니다.
+- bundle 단위, memory 단위, sub-file 추적 정밀도가 source 종류에 따라 다릅니다.
 
-| 종류 | 묶음 단위 | memory 단위 | sub-file 추적 |
+| 종류 | bundle 단위 | memory 단위 | sub-file 추적 |
 | --- | --- | --- | --- |
-| **github** | repo | topic (file 묶음) | file:line + symbol |
+| **github** | repo | topic (관련 file 모음) | file:line + symbol |
 | **confluence** | space 또는 page tree | page | page 단위 |
 | **markdown** | 문서 collection | 한 문서 | file 단위 |
 | **pdf** | document | section | file 단위 (section 식별자 부재) |
@@ -243,8 +219,8 @@ graph TB
 - pdf와 image는 **sub-file 식별자가 없어 변경 영역 추출 시 LLM이 재해석해야** 합니다.
     - file 변경은 감지되지만, file 안의 어디가 바뀌었는지는 LLM이 vision이나 재파싱으로 알아냅니다.
 
-- 각 source 종류 folder의 `AGENTS.md`가 그 종류 고유의 ingest 절차, sync 절차, frontmatter format을 정의합니다.
-    - 여러 skill이 같은 source 종류를 공유할 때 `AGENTS.md`를 재사용하므로 절차가 한 곳에 모입니다.
+- `memories/<type>/AGENTS.md` 가 그 종류 고유의 ingest 절차, sync 절차, frontmatter format을 정의합니다.
+    - 여러 skill이 같은 source 종류를 공유할 때 이 `AGENTS.md`를 재사용하므로 절차가 한 곳에 모입니다.
 
 
 ---
@@ -252,28 +228,28 @@ graph TB
 
 ## Source to Skill - Ingest와 Sync
 
-- 외부 자료를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, 묶음 단위가 둘을 가르는 기준입니다.
-    - **ingest** 는 묶음을 skill에 처음 등록하는 작업입니다.
-        - `index.md` 를 신규 생성하고 묶음 안의 자료를 memory로 분리합니다.
-    - **sync** 는 등록된 묶음의 외부 변경을 skill에 전파하는 작업입니다.
+- 외부 자료를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, bundle 단위가 둘을 가르는 기준입니다.
+    - **ingest** 는 bundle를 skill에 처음 등록하는 작업입니다.
+        - `index.md` 를 신규 생성하고 bundle 안의 자료를 memory로 분리합니다.
+    - **sync** 는 등록된 bundle의 외부 변경을 skill에 전파하는 작업입니다.
         - 기존 memory를 갱신하고 필요하면 새 memory를 만듭니다.
-    - 한 묶음의 lifecycle은 **ingest 한 번 + sync N번** 구조입니다.
+    - 한 bundle의 lifecycle은 **ingest 한 번 + sync N번** 구조입니다.
 
-- 두 operation 모두 묶음 path를 인자로 받으며, path의 첫 segment(`github`, `confluence`, `pdf` 등)로 source 종류를 자동 식별합니다.
+- 두 operation 모두 bundle path를 인자로 받으며, path의 첫 segment(`github`, `confluence`, `pdf` 등)로 source 종류를 자동 식별합니다.
     - 종류별 절차의 차이는 `memories/<type>/AGENTS.md`에 캡슐화되어 operation 본체는 동일하게 유지됩니다.
 
 | 구분 | Ingest | Sync |
 | --- | --- | --- |
-| **trigger 시점** | 묶음을 처음 등록할 때 | 등록된 묶음의 외부 자료가 변경되었을 때 |
-| **명령 형태** | `ingest <묶음 path>` | `sync <묶음 path>` |
-| **수행 빈도** | 묶음당 1회 | 묶음당 N회 |
+| **trigger 시점** | bundle를 처음 등록할 때 | 등록된 bundle의 외부 자료가 변경되었을 때 |
+| **명령 형태** | `ingest <bundle path>` | `sync <bundle path>` |
+| **수행 빈도** | bundle당 1회 | bundle당 N회 |
 | **`index.md` 처리** | 신규 생성 | meta 식별자 갱신 |
 | **memory 처리** | 의미 단위로 분리하여 신규 생성 | 영향받는 memory 갱신, 필요 시 신규 생성 |
 
 - LLM이 따르는 instruction은 두 위치로 나뉩니다.
     - **root `AGENTS.md`** 가 전체 flow의 진입점이며, ingest/sync 명령 정의와 layer 사이 작업 흐름을 담습니다.
     - **`memories/<type>/AGENTS.md`** 가 종류별 구체 절차(fetch 도구, 변경 식별자, 변경분 추출 방식)를 담습니다.
-    - LLM은 명령을 받으면 root AGENTS.md를 읽어 흐름을 파악한 뒤, path의 첫 segment로 해당 종류의 AGENTS.md를 찾아 구체 절차를 수행합니다.
+    - LLM은 명령을 받으면 root `AGENTS.md`를 읽어 흐름을 파악한 뒤, path의 첫 segment로 해당 종류의 `AGENTS.md`를 찾아 구체 절차를 수행합니다.
 
 - skill folder는 instruction을 두지 않습니다.
     - 순수한 wiki 저장소로서 agent가 답변 생성 시 read-only로 참조합니다.
@@ -285,7 +261,6 @@ graph TB
 ## Example - Payment Domain Skill
 
 - `know-payment` skill이 `payment-service` github repo를 source로 묶어 결제 domain을 정리하는 예제입니다.
-    - 한 source 종류만 등장시켜 system을 구성하는 file들이 어떤 형태로 들어가는지 보여줍니다.
 
 
 ### Directory 구조
@@ -299,7 +274,7 @@ llm-skill/
 │   └── github/
 │       ├── AGENTS.md             # github 고유 절차
 │       └── payment-service/
-│           ├── index.md          # group meta + topic 목록
+│           ├── index.md          # bundle meta + topic 목록
 │           └── payment-flow.md   # topic memory
 └── skills/
     └── know-payment/
@@ -315,8 +290,7 @@ llm-skill/
 
 ### root `AGENTS.md`
 
-- LLM이 가장 먼저 읽는 진입점입니다.
-    - 명령을 받아 어느 layer로 가야 하는지 안내합니다.
+- LLM이 가장 먼저 읽는 진입점으로, 명령을 받아 어느 layer로 가야 하는지 안내합니다.
 
 ```markdown
 # LLM Domain Skill Operations
@@ -324,13 +298,12 @@ llm-skill/
 ## Flow
 
 - 외부 자료 -> sources -> memories -> skills 가공 흐름.
-- ingest는 묶음을 처음 등록, sync는 변경을 전파.
+- ingest는 bundle를 처음 등록, sync는 변경을 전파.
 
 ## Commands
 
-- `ingest <묶음 path>` - path 첫 segment로 source 종류 식별 후 `memories/<type>/AGENTS.md`의 ingest 절차 수행.
-- `sync <묶음 path>` - 동일하게 `memories/<type>/AGENTS.md`의 sync 절차 수행.
-- `lint` - memory와 skill page 사이 reference 일치 점검.
+- `ingest <bundle path>` - path 첫 segment로 source 종류 식별 후 `memories/<type>/AGENTS.md`의 ingest 절차 수행.
+- `sync <bundle path>` - 동일하게 `memories/<type>/AGENTS.md`의 sync 절차 수행.
 ```
 
 
@@ -343,9 +316,9 @@ llm-skill/
 
 ## Identifier
 
-- 묶음 단위: repo
+- bundle 단위: repo
 - 변경 식별자: commit hash
-- memory 단위: topic (한 주제와 관련된 file 묶음)
+- memory 단위: topic (한 주제와 관련된 file 모음)
 
 ## Fetch
 
@@ -369,7 +342,7 @@ llm-skill/
 
 ### `memories/github/payment-service/index.md`
 
-- 묶음 meta와 topic 목록을 담는 group 진입점입니다.
+- bundle 단위 진입점으로, bundle meta와 topic 목록을 담습니다.
 
 ```markdown
 ---
@@ -380,10 +353,6 @@ topics:
     description: 결제 승인 흐름
   - ...
 ---
-
-## Repository
-
-- ...
 ```
 
 
@@ -414,18 +383,13 @@ used_by:
 
 ### `skills/know-payment/SKILL.md`
 
-- skill의 진입점 + page catalog입니다.
-    - agent가 자동 invoke 판단에 frontmatter description을 사용합니다.
+- skill의 진입점 + page catalog로, agent가 자동 invoke 판단에 frontmatter description을 사용합니다.
 
 ```markdown
 ---
 name: know-payment
 description: Payment domain의 결제·환불·idempotency 정책과 payment-service repo의 code 구조를 다룹니다. 결제 흐름·webhook 검증·환불 정책 관련 작업에 호출합니다.
 ---
-
-# Know Payment
-
-## Pages
 
 - `domain/payment.md` - 결제 승인 흐름과 idempotency 정책
 - `api/payment-endpoints.md` - 결제 관련 endpoint contract
