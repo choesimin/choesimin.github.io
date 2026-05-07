@@ -1,8 +1,8 @@
 ---
 layout: note
 permalink: /502
-title: LLM Skill - Agent가 스스로 Domain을 다루게 하기
-description: agent가 domain 작업을 수행하는 데 필요한 지식을 구조화된 markdown 묶음으로 누적하고 skill로 packaging해서, agent가 그 지식을 스스로 갱신하고 호출 시점에 활용하도록 합니다.
+title: LLM Domain Skill - Agent가 스스로 Domain을 다루게 하기
+description: agent가 domain 작업을 수행하는 데 필요한 지식을 구조화된 markdown 묶음으로 누적하고 domain skill로 packaging해서, agent가 그 지식을 스스로 갱신하고 호출 시점에 활용하도록 합니다.
 date: 2026-05-04
 ---
 
@@ -10,7 +10,7 @@ date: 2026-05-04
 ## Agent가 Domain을 다룬다는 것
 
 - agent가 domain 작업을 반복 수행하려면 domain 지식이 **누적**되고, 그 지식을 호출 시점에 **활용** 가능해야 합니다.
-    - 누적과 활용이 한 곳에서 일어나도록 domain 지식을 LLM Wiki 형태로 정리하고, skill 단위로 packaging합니다.
+    - 누적과 활용이 한 곳에서 일어나도록 domain 지식을 LLM Wiki 형태로 정리하고, domain skill 단위로 packaging합니다.
     - skill로 packaging하면 agent가 작업 시점에 `SKILL.md` 진입점을 통해 필요한 지식을 스스로 찾아 호출합니다.
 
 
@@ -28,7 +28,7 @@ date: 2026-05-04
 
 ### Domain 지식의 누적
 
-- LLM Skill은 domain 정책, source code 구조, API contract, DB schema를 wiki 형태로 **영구적으로 누적**하여 agent가 매번 작업할 때 참조합니다.
+- LLM Domain Skill은 domain 정책, source code 구조, API contract, DB schema를 wiki 형태로 **영구적으로 누적**하여 agent가 매번 작업할 때 참조합니다.
     - RAG처럼 query마다 chunk를 재조합하지 않고, **미리 정리되고 cross-reference된 skill**을 통째로 활용합니다.
     - 같은 domain에서 여러 task를 반복 수행하는 agent에게는 RAG보다 skill 형태가 자연스러운데, **지식이 누적되고 일관성이 유지**되기 때문입니다.
 
@@ -37,7 +37,7 @@ graph LR
     user[사용자 Task<br>결제 환불 처리 추가]
     agent[LLM Agent]
     llm[LLM 본체<br>일반 지식]
-    skill["LLM Skill<br>(domain 정책, code 구조,<br>API, DB schema)"]
+    skill["LLM Domain Skill<br>(domain 정책, code 구조,<br>API, DB schema)"]
     output[작업 결과<br>code, PR, 분석]
 
     user --> agent
@@ -60,7 +60,7 @@ graph LR
     - 진입점이 있어야 agent가 작업 시작 시점에 자기 task와 관련된 skill을 식별하여 활용 가능합니다.
     - skill 형태는 **framework 중립적**이므로 Claude Code, OpenCode, Codex, 직접 만든 LLM application 모두에서 동일하게 사용됩니다.
 
-- 한 skill의 범위는 단일 domain의 지식, API spec, DB schema, source code repository 등 한 작업 영역에 묶이는 자료 전체입니다.
+- 한 domain skill의 범위는 단일 domain의 지식, API spec, DB schema, source code repository 등 한 작업 영역에 묶이는 자료 전체입니다.
     - business domain(결제, 주문, 환불), 외부 service와의 통합 contract, 자사 service의 code 구조가 한 skill에 함께 들어갈 수 있습니다.
     - 작업 영역이 **너무 넓으면** description이 모호해져 호출 정확도가 떨어지고, **너무 좁으면** cross-reference의 가치가 사라집니다.
 
@@ -70,7 +70,7 @@ graph LR
 
 ## 기존 LLM Wiki와의 차이
 
-- 활용 목적이 다르며, 기존 LLM Wiki는 **Human의 학습과 탐색**을 위해 만들어진 반면 LLM Skill은 **LLM agent의 자율 작업 reference**로 만들어집니다.
+- 활용 목적이 다르며, 기존 LLM Wiki는 **Human의 학습과 탐색**을 위해 만들어진 반면 LLM Domain Skill은 **LLM agent의 자율 작업 reference**로 만들어집니다.
     - 활용 목적이 다르면 어떤 자료를 source로 넣을지, page를 어떻게 구조화할지가 달라집니다.
     - Human용 wiki는 **paper와 article 중심**이지만, agent용 skill은 **system을 구성하는 모든 자료(code, schema, contract)**를 포함해야 자율 작업이 가능합니다.
 
@@ -78,7 +78,7 @@ graph LR
     - agent용 skill에서는 GitHub repository, Confluence page, DB schema처럼 **외부에서 계속 변하는 자료**가 주가 되므로 **변경 추적**이 필수입니다.
     - 변경 추적은 source 종류별로 다르며(commit hash, page version, content hash 등), 각 종류 folder의 `AGENTS.md`에 절차를 정의합니다.
 
-| 구분 | 기존 LLM Wiki | LLM Skill |
+| 구분 | 기존 LLM Wiki | LLM Domain Skill |
 | --- | --- | --- |
 | **활용 목적** | Human의 학습·탐색 | LLM agent의 자율 작업 reference |
 | **소비자** | Human (직접 읽기) | LLM agent (작업 중 invoke) |
@@ -111,7 +111,7 @@ graph LR
 
 ## Layer 구조
 
-- LLM Skill은 외부 source, sources layer, skills layer 세 영역으로 나뉘며, 각 영역은 위치와 책임이 다릅니다.
+- LLM Domain Skill은 외부 source, sources layer, skills layer 세 영역으로 나뉘며, 각 영역은 위치와 책임이 다릅니다.
     - 외부 source는 skill repo 밖에 있고, sources는 그 외부 자료의 summary이며, skills는 agent가 invoke하는 단위입니다.
     - sources는 source 종류별 folder로 분리되어 종류별 ingest와 sync 절차를 `AGENTS.md`에 따로 정의합니다.
 
@@ -189,13 +189,13 @@ graph TB
 
 ### Skills Layer
 
-- skills는 한 개 이상의 skill folder를 담는 container이며, 같은 repo 안의 skill들은 sources를 공유합니다.
+- `skills/`는 한 개 이상의 domain skill folder를 담는 container이며, 같은 repo 안의 skill들은 sources를 공유합니다.
     - `skills/know-payment/`, `skills/know-order/` 처럼 domain별 skill을 같은 repo 아래에 두면 외부 source 참조가 자연스럽게 재사용됩니다.
     - skill 사이의 기계적 추적용 cross-reference는 frontmatter `related_pages`에 두며, 본문 link는 가독성·흐름 안내용으로 자유롭게 사용해도 영향 분석에는 무관합니다.
 
-- skill 이름은 **`know-<domain>` 형태**로 그 skill이 어떤 domain을 아는가를 명시합니다.
+- domain skill 이름은 **`know-<domain>` 형태**로 그 skill이 어떤 domain을 아는가를 명시합니다.
     - `know-payment`는 payment domain을 아는 skill, `know-order`는 order domain을 아는 skill처럼 의도가 이름에 드러납니다.
-    - skills/ folder 안에 write skill이나 scrape skill 같은 행위 skill이 함께 있어도 명명만으로 구분됩니다.
+    - `skills/` folder 안에 write skill이나 scrape skill 같은 행위 skill이 함께 있어도 명명만으로 구분됩니다.
 
 
 ---
@@ -321,7 +321,7 @@ source_refs:
 ---
 
 
-## Source 소비 - Ingest와 Sync
+## Source to Skill - Ingest와 Sync
 
 - 외부 source를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, 묶음 단위(repo, page tree, document, 단일 file)가 둘을 가르는 기준입니다.
     - 묶음이 skill에 처음 등록되는 경우가 **ingest**이며, `sources/<type>/<group>/index.md`를 신규 생성합니다.
