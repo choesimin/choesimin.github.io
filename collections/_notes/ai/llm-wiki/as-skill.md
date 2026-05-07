@@ -13,6 +13,25 @@ date: 2026-05-04
     - 누적과 활용이 한 곳에서 일어나도록 domain 지식을 LLM Wiki 형태로 정리하고, domain skill 단위로 packaging합니다.
     - skill로 packaging하면 agent가 작업 시점에 `SKILL.md` 진입점을 통해 필요한 지식을 스스로 찾아 호출합니다.
 
+```mermaid
+graph LR
+    subgraph accumulate["누적"]
+        external[외부 자료<br>code, schema, doc]
+        skill[Domain Skill<br>정리된 지식]
+        external -.정리·갱신.-> skill
+    end
+
+    subgraph use["활용"]
+        user[사용자 Task]
+        agent[LLM Agent]
+        output[작업 결과]
+        user --> agent
+        agent --> output
+    end
+
+    skill -.invoke.-> agent
+```
+
 
 ### Domain 지식이 필요한 이유
 
@@ -31,20 +50,6 @@ date: 2026-05-04
 - LLM Domain Skill은 domain 정책, source code 구조, API contract, DB schema를 wiki 형태로 **영구적으로 누적**하여 agent가 매번 작업할 때 참조합니다.
     - RAG처럼 query마다 chunk를 재조합하지 않고, **미리 정리되고 cross-reference된 skill**을 통째로 활용합니다.
     - 같은 domain에서 여러 task를 반복 수행하는 agent에게는 RAG보다 skill 형태가 자연스러운데, **지식이 누적되고 일관성이 유지**되기 때문입니다.
-
-```mermaid
-graph LR
-    user[사용자 Task<br>결제 환불 처리 추가]
-    agent[LLM Agent]
-    llm[LLM 본체<br>일반 지식]
-    skill["LLM Domain Skill<br>(domain 정책, code 구조,<br>API, DB schema)"]
-    output[작업 결과<br>code, PR, 분석]
-
-    user --> agent
-    llm -.일반 지식 공급.-> agent
-    skill -.domain 지식 공급.-> agent
-    agent --> output
-```
 
 - **유지 비용이 작다는 점**이 skill 형태의 강점이며, 이 비용 구조가 자주 변경되는 외부 자료를 유연하게 다룰 수 있게 만듭니다.
     - source code와 DB schema처럼 자주 변하는 자료는 수동 유지로는 며칠 만에 stale해지지만, **LLM이 sync, lint, cross-reference 갱신을 전담**하면 이 부담이 사라집니다.
@@ -129,7 +134,7 @@ graph TB
     skills["skills/<br>순수 wiki"]
 
     external -.fetch on-demand.-> sources
-    sources -.referenced_files.-> memories
+    memories -.referenced_files.-> sources
     memories -.used_by.-> skills
 ```
 
@@ -185,8 +190,10 @@ graph TB
     - `used_by` 가 skills 방향으로 이 memory를 활용하는 skill page를 기록합니다.
 
 - 두 link 모두 **단방향**입니다.
-    - 외부 자료는 frontmatter를 가질 수 없으므로 역방향 link를 둘 수 없습니다. sync 시 식별자 비교로 보강합니다.
-    - skill page도 자료 연결 정보를 frontmatter에 두지 않습니다. 본문에서는 가독성용 link로 자유롭게 인용 가능합니다.
+    - 외부 자료는 frontmatter를 가질 수 없으므로 역방향 link를 둘 수 없습니다.
+        - sync 시 식별자 비교로 보강합니다.
+    - skill page도 자료 연결 정보를 frontmatter에 두지 않습니다.
+        - 본문에서는 가독성용 link로 자유롭게 인용 가능합니다.
 
 - 영향 분석 chain은 한 방향으로 완결됩니다.
     - 외부 자료 변경 감지 -> 식별자 비교로 영향받는 memory 식별 -> memory의 `used_by`로 영향받는 skill page 식별 -> skill page 갱신.
@@ -216,7 +223,8 @@ graph TB
     - 각 topic memory는 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
 
 - topic memory의 frontmatter에는 두 종류의 link가 들어갑니다.
-    - `referenced_files` 에는 외부 자료의 path와 symbol을 기록합니다. 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
+    - `referenced_files` 에는 외부 자료의 path와 symbol을 기록합니다.
+        - 이 정보가 sync 시 영향 분석의 핵심 자료가 됩니다.
     - `used_by` 에는 이 memory를 활용하는 skill page 목록을 기록합니다.
 
 
@@ -245,8 +253,10 @@ graph TB
 ## Source to Skill - Ingest와 Sync
 
 - 외부 자료를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, 묶음 단위가 둘을 가르는 기준입니다.
-    - **ingest** 는 묶음을 skill에 처음 등록하는 작업입니다. `index.md` 를 신규 생성하고 묶음 안의 자료를 memory로 분리합니다.
-    - **sync** 는 등록된 묶음의 외부 변경을 skill에 전파하는 작업입니다. 기존 memory를 갱신하고 필요하면 새 memory를 만듭니다.
+    - **ingest** 는 묶음을 skill에 처음 등록하는 작업입니다.
+        - `index.md` 를 신규 생성하고 묶음 안의 자료를 memory로 분리합니다.
+    - **sync** 는 등록된 묶음의 외부 변경을 skill에 전파하는 작업입니다.
+        - 기존 memory를 갱신하고 필요하면 새 memory를 만듭니다.
     - 한 묶음의 lifecycle은 **ingest 한 번 + sync N번** 구조입니다.
 
 - 두 operation 모두 묶음 path를 인자로 받으며, path의 첫 segment(`github`, `confluence`, `pdf` 등)로 source 종류를 자동 식별합니다.
@@ -265,7 +275,8 @@ graph TB
     - **`memories/<type>/AGENTS.md`** 가 종류별 구체 절차(fetch 도구, 변경 식별자, 변경분 추출 방식)를 담습니다.
     - LLM은 명령을 받으면 root AGENTS.md를 읽어 흐름을 파악한 뒤, path의 첫 segment로 해당 종류의 AGENTS.md를 찾아 구체 절차를 수행합니다.
 
-- skill folder는 instruction을 두지 않습니다. 순수한 wiki 저장소로서 agent가 답변 생성 시 read-only로 참조합니다.
+- skill folder는 instruction을 두지 않습니다.
+    - 순수한 wiki 저장소로서 agent가 답변 생성 시 read-only로 참조합니다.
 
 
 ---
@@ -273,95 +284,158 @@ graph TB
 
 ## Example - Payment Domain Skill
 
-- `know-payment` skill이 `payment-service` repo를 github source로 묶어 결제 domain을 정리하는 예제입니다.
-    - 한 source 종류만 등장시켜 sources, memories, skills layer 사이의 흐름을 한눈에 보여줍니다.
+- `know-payment` skill이 `payment-service` github repo를 source로 묶어 결제 domain을 정리하는 예제입니다.
+    - 한 source 종류만 등장시켜 system을 구성하는 file들이 어떤 형태로 들어가는지 보여줍니다.
 
 
 ### Directory 구조
 
-- 위 mental model이 실제 directory에서 어떻게 표현되는지 보여줍니다.
-
 ```plaintext
 llm-skill/
-├── AGENTS.md                     # 전체 flow + ingest/sync 명령 진입점
+├── AGENTS.md                     # 전체 flow 진입점
 ├── sources/
-│   └── (github은 외부 reference만 두므로 file 없음)
+│   └── (github은 참조만 하므로 file 없음)
 ├── memories/
 │   └── github/
 │       ├── AGENTS.md             # github 고유 절차
 │       └── payment-service/
-│           ├── index.md          # url + last_commit + topic 목록
-│           └── payment-flow.md   # 결제 승인 흐름 memory
+│           ├── index.md          # group meta + topic 목록
+│           └── payment-flow.md   # topic memory
 └── skills/
     └── know-payment/
-        ├── SKILL.md
-        └── domain/
-            └── payment.md
+        ├── SKILL.md              # skill 진입점
+        ├── domain/
+        │   └── payment.md        # business 정책 wiki
+        ├── api/
+        │   └── payment-endpoints.md   # API contract wiki
+        └── database/
+            └── transaction.md    # DB schema wiki
 ```
 
 
-### Memory Group Index
+### root `AGENTS.md`
 
-- `memories/github/payment-service/index.md`는 repo 단위 memory group의 진입점이며, frontmatter에 group meta와 topic 목록이 모입니다.
-    - github은 외부 자료 byte를 sources/에 두지 않으므로 url과 last_commit도 이 index가 보관합니다.
+- LLM이 가장 먼저 읽는 진입점입니다.
+    - 명령을 받아 어느 layer로 가야 하는지 안내합니다.
+
+```markdown
+# LLM Domain Skill Operations
+
+## Flow
+
+- 외부 자료 -> sources -> memories -> skills 가공 흐름.
+- ingest는 묶음을 처음 등록, sync는 변경을 전파.
+
+## Commands
+
+- `ingest <묶음 path>` - path 첫 segment로 source 종류 식별 후 `memories/<type>/AGENTS.md`의 ingest 절차 수행.
+- `sync <묶음 path>` - 동일하게 `memories/<type>/AGENTS.md`의 sync 절차 수행.
+- `lint` - memory와 skill page 사이 reference 일치 점검.
+```
+
+
+### `memories/github/AGENTS.md`
+
+- github source 종류의 ingest, sync, fetch 절차를 정의합니다.
+
+```markdown
+# GitHub Source Operations
+
+## Identifier
+
+- 묶음 단위: repo
+- 변경 식별자: commit hash
+- memory 단위: topic (한 주제와 관련된 file 묶음)
+
+## Fetch
+
+- temp folder에 `git clone`, 이미 있으면 `git fetch && git pull`.
+
+## Ingest
+
+1. repo fetch.
+2. 의미 있는 주제(controller, service, ...)별로 topic memory 생성.
+3. `referenced_files`에 path와 symbol 기록.
+4. `index.md`에 url, last_commit, topic 목록 기록.
+
+## Sync
+
+1. fetch 후 `git diff <last_commit>..HEAD --name-only`.
+2. 변경 file path를 모든 topic memory의 `referenced_files`와 비교 -> 영향 memory 식별.
+3. memory 갱신 + `used_by`로 skill page 식별 -> skill page 갱신.
+4. `index.md`의 last_commit 갱신.
+```
+
+
+### `memories/github/payment-service/index.md`
+
+- 묶음 meta와 topic 목록을 담는 group 진입점입니다.
 
 ```markdown
 ---
 url: https://github.com/company/payment-service
-default_branch: main
 last_commit: abc123def
 topics:
   - path: payment-flow.md
-    description: 결제 승인 흐름 (controller -> service -> 외부 PG)
-  - path: refund-process.md
-    description: 환불 처리 절차 (정책 검증 -> 부분 환불 -> 정산 갱신)
-  - path: webhook-handler.md
-    description: 외부 PG webhook 수신과 idempotency 처리
+    description: 결제 승인 흐름
+  - ...
 ---
 
 ## Repository
 
-- Payment service backend
-- Spring Boot, Java 21
-- 결제 승인, 환불, webhook 처리 담당
+- ...
 ```
 
 
-### Memory - 결제 흐름
+### `memories/github/payment-service/payment-flow.md`
 
-- `memories/github/payment-service/payment-flow.md` 는 symbol 단위의 code 흐름을 정리하며, 변경 감지의 단위가 됩니다.
+- 한 주제의 file:line 단위 참조와 wiki와의 연결을 담는 topic memory입니다.
 
 ```markdown
 ---
 referenced_files:
-  - path: src/main/java/com/payment/api/PaymentController.java
-    symbols: [PaymentController.createPayment, PaymentController.refund]
   - path: src/main/java/com/payment/service/PaymentService.java
-    symbols: [PaymentService.process, PaymentService.checkIdempotency, PaymentService.persist]
+    symbols: [PaymentService.process, PaymentService.checkIdempotency]
+  - ...
 used_by:
   - skills/know-payment/domain/payment.md
-  - skills/know-payment/api/payment-endpoints.md
 ---
 
 ## 진입점
 
-- `POST /api/payments`는 `PaymentController.java:42`의 `PaymentController.createPayment()`에서 처리합니다.
-
-## 비즈니스 흐름
-
-- `PaymentService.java:15`의 `PaymentService.process()`에서 idempotency 검사 -> 외부 PG 호출 -> 결과 저장 순서로 진행합니다.
+- `PaymentController.java:42`의 `createPayment()`에서 처리.
 
 ## Idempotency 처리
 
-- `PaymentService.java:99`에서 Redis idempotency key를 검사합니다.
-- 중복 요청은 기존 결과를 반환하고, 신규 요청만 `ExternalPgClient.charge()`로 위임합니다.
+- `PaymentService.java:99`에서 Redis key 검사.
+- ...
 ```
 
 
-### Skill Page - 결제 Domain
+### `skills/know-payment/SKILL.md`
 
-- `skills/know-payment/domain/payment.md`는 business 관점의 정책과 흐름을 본문에 서술합니다.
-    - 자료 연결 정보는 memories layer가 책임지므로 frontmatter에는 두지 않고, 다른 skill page 참조만 `related_pages`에 둡니다.
+- skill의 진입점 + page catalog입니다.
+    - agent가 자동 invoke 판단에 frontmatter description을 사용합니다.
+
+```markdown
+---
+name: know-payment
+description: Payment domain의 결제·환불·idempotency 정책과 payment-service repo의 code 구조를 다룹니다. 결제 흐름·webhook 검증·환불 정책 관련 작업에 호출합니다.
+---
+
+# Know Payment
+
+## Pages
+
+- `domain/payment.md` - 결제 승인 흐름과 idempotency 정책
+- `api/payment-endpoints.md` - 결제 관련 endpoint contract
+- `database/transaction.md` - 거래 table schema
+```
+
+
+### `skills/know-payment/domain/payment.md`
+
+- business 관점의 정책과 흐름을 서술하는 domain wiki page입니다.
 
 ```markdown
 ---
@@ -370,43 +444,70 @@ related_pages:
   - domain/refund.md
 ---
 
-## Domain 개요
-
-- Payment domain은 결제 승인, 환불, 정산을 담당합니다.
-
 ## 정책
 
-- 모든 결제는 idempotency를 보장하며, 동일 idempotency key로 들어온 중복 요청은 기존 결과를 반환합니다.
-
-- 환불은 원 거래의 정산 상태에 따라 즉시 환불과 지연 환불로 분기합니다.
-    - 정산이 끝난 거래는 다음 정산 cycle에서 차감되고, 정산 전 거래는 즉시 취소됩니다.
+- 모든 결제는 idempotency를 보장하며, 동일 key로 들어온 중복 요청은 기존 결과를 반환합니다.
+- ...
 
 ## Workflow
 
-- 사용자 결제 요청 -> idempotency 검사 -> 외부 PG 호출 -> 결과 저장 -> webhook 대기 순서로 진행합니다.
+- 사용자 결제 요청 -> idempotency 검사 -> 외부 PG 호출 -> 결과 저장.
 ```
 
 
-### Sync 시 동작 예시
+### `skills/know-payment/api/payment-endpoints.md`
 
-- `PaymentService.java`의 99번 line 근처에 idempotency 검사 logic 변경이 일어났다고 가정합니다.
+- 외부에 노출하는 endpoint의 contract를 정리하는 api wiki page입니다.
 
-```bash
-# 1. sync 명령
-$ sync memories/github/payment-service
+```markdown
+---
+title: Payment Endpoints
+---
 
-# 2. AGENTS.md를 따라 last commit 확인
-$ cat memories/github/payment-service/index.md | grep last_commit
-last_commit: abc123def
+## Endpoints
 
-# 3. fetch 후 diff
-$ cd /tmp/payment-service && git fetch && git diff abc123def..HEAD --name-only
-src/main/java/com/payment/service/PaymentService.java
+- `POST /api/payments` - 결제 요청 생성.
+- `POST /api/payments/{id}/refund` - 환불 요청.
+
+## Request
+
+- `Idempotency-Key` header 필수.
+- ...
+
+## Response
+
+- 200: `{ paymentId, status }`
+- 4xx: error code 표는 ...
 ```
 
-- 변경 file path가 `payment-flow.md`의 referenced_files에 등록되어 있으므로, 해당 memory가 영향 대상으로 식별됩니다.
-    - memory의 used_by에 등록된 `skills/know-payment/domain/payment.md`와 `skills/know-payment/api/payment-endpoints.md`가 다음 갱신 대상이 됩니다.
-    - LLM이 diff를 읽어 idempotency 검사 logic 변경 내용을 memory에 반영하고, 정책 변경이 있으면 skill page도 갱신합니다.
+
+### `skills/know-payment/database/transaction.md`
+
+- table 한 개의 schema, 관계, 제약을 정리하는 database wiki page입니다.
+
+```markdown
+---
+title: Transaction Table
+---
+
+## 개요
+
+- 결제 거래 한 건이 한 row.
+- lifecycle: PENDING -> APPROVED -> (REFUNDED).
+
+## Schema
+
+| column | type | 의미 |
+| --- | --- | --- |
+| id | bigint | PK |
+| status | varchar(32) | 거래 상태 |
+| ... | ... | ... |
+
+## 제약
+
+- `idempotency_key` UNIQUE.
+- ...
+```
 
 
 ---
