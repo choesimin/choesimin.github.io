@@ -193,7 +193,7 @@ graph TB
 
 - skills는 순수 wiki를 담는 layer로, business 관점의 정책, workflow, schema를 정리한 page만 들어갑니다.
     - **자료 연결 정보는 frontmatter에 두지 않습니다**.
-    - skill page에서 외부 자료를 인용할 때는 본문에서 file:line 형태로 자유롭게 link합니다.
+    - skill page에서 외부 자료를 인용할 때는 본문에서 `file:line` 형태로 자유롭게 link합니다.
     - 영향 분석은 memories layer가 단방향 link로 책임지므로 skill page는 자기 출처를 frontmatter에 명시할 필요가 없습니다.
 
 - `skills/`는 한 개 이상의 domain skill folder를 담는 container이며, 같은 repo 안의 skill들은 sources와 memories를 공유합니다.
@@ -208,9 +208,9 @@ graph TB
 
 ## Memory의 구조
 
-- 한 source bundle은 **bundle 단위 `index.md` + 그 아래 topic 단위 memory**로 표현합니다.
+- 한 source bundle은 **bundle 단위 `index.md`와 그 아래의 topic 단위 memory**로 표현합니다.
     - `index.md` 는 bundle meta(url, 변경 추적 식별자, topic 목록)를 담아 bundle 단위의 진입점이 됩니다.
-    - 각 topic memory는 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
+    - 각 topic memory는 한 주제와 관련된 `file:line` 또는 section 단위 참조를 모아 정리합니다.
 
 
 ### Source 종류별 단위
@@ -255,7 +255,7 @@ graph TB
         - `index.md` 를 신규 생성하고 bundle 안의 자료를 memory로 분리합니다.
     - **sync** 는 등록된 bundle의 외부 변경을 skill에 전파하는 작업입니다.
         - 기존 memory를 갱신하고 필요하면 새 memory를 만듭니다.
-    - 한 bundle의 lifecycle은 **ingest 한 번 + sync N번** 구조입니다.
+    - 한 bundle의 lifecycle은 **ingest 한 번에 sync 여러 번**의 구조입니다.
 
 - 두 operation 모두 bundle path를 인자로 받으며, path의 첫 segment(`github`, `confluence`, `pdf` 등)로 source 종류를 자동 식별합니다.
     - 종류별 절차의 차이는 `memories/<type>/AGENTS.md`에 캡슐화되어 operation 본체는 동일하게 유지됩니다.
@@ -380,7 +380,7 @@ topics:
 
 ### `memories/github/payment-service/payment-flow.md`
 
-- 한 주제의 file:line 단위 참조와 wiki와의 연결을 담는 topic memory입니다.
+- 한 주제의 `file:line` 단위 참조와 wiki와의 연결을 담는 topic memory입니다.
 
 ```markdown
 ---
@@ -405,7 +405,7 @@ used_by:
 
 ### `skills/know-payment/SKILL.md`
 
-- skill의 진입점 + page catalog로, agent가 자동 호출 판단에 frontmatter description을 사용합니다.
+- skill의 진입점이자 page 목록으로, agent는 자동 호출 판단에 frontmatter description을 사용합니다.
 
 ```markdown
 ---
