@@ -18,7 +18,7 @@ graph LR
     subgraph accumulate["누적"]
         external[외부 자료<br>code, schema, doc]
         skill[Domain Skill<br>정리된 지식]
-        external -.정리·갱신.-> skill
+        external -.정리와 갱신.-> skill
     end
 
     subgraph use["활용"]
@@ -36,7 +36,7 @@ graph LR
 ### Domain 지식이 필요한 이유
 
 - agent가 domain 작업을 수행하려면 일반 지식 외에 **그 domain의 정책과 system 구조**를 알아야 합니다.
-    - 예를 들어, 일반적인 LLM은 결제 정책의 idempotency 규칙, 자사 service의 endpoint 구조, DB의 table 관계를 알지 못합니다.
+    - 예를 들어, 일반적인 LLM은 결제 정책의 idempotency 규칙, 내부 service의 endpoint 구조, DB의 table 관계를 알지 못합니다.
         - idempotency는 같은 요청을 여러 번 보내도 한 번 처리한 것과 동일한 결과를 보장하는 성질입니다.
     - 이런 지식 없이 agent에게 "결제 환불 처리 추가" 같은 작업을 시키면 잘못된 가정으로 code를 작성하거나 system과 충돌하는 결과를 낳습니다.
 
@@ -105,28 +105,35 @@ graph LR
     - `skills/`는 순수 wiki입니다.
         - business 관점 page만 두며, 자료 연결 정보는 frontmatter에 두지 않습니다.
 
-- raw 외부 자료가 memory로 정제되고, 그 memory를 토대로 skills의 wiki가 만들어지는 가공 흐름입니다.
+- 외부 자료가 sources를 거쳐 memory로 정제되고, 그 memory를 토대로 skills의 wiki가 만들어지는 가공 흐름입니다.
+
+```mermaid
+graph LR
+    external["외부 자료"] --> sources["sources/<br>외부 자료 보관"]
+    sources --> memories["memories/<br>정리 + 연결 metadata"]
+    memories --> skills["skills/<br>순수 wiki"]
+```
+
+- memory는 양쪽 layer로 단방향 link를 두어 영향 분석의 출발점이 됩니다.
 
 ```mermaid
 graph TB
-    external["외부 자료"]
-    sources["sources/<br>외부 자료 보관"]
-    memories["memories/<br>정리 + 연결 metadata"]
-    skills["skills/<br>순수 wiki"]
+    sources["sources/"]
+    memories["memories/"]
+    skills["skills/"]
 
-    external -.byte 또는 reference.-> sources
     memories -.referenced_files.-> sources
     memories -.used_by.-> skills
 ```
 
-| layer | 위치 | 책임 | 비고 |
-| --- | --- | --- | --- |
-| `AGENTS.md` | skill repo root | 전체 flow의 진입점 | ingest/sync 명령 정의와 layer 사이 작업 흐름 |
-| `sources/<type>/` | skill repo 안 | 외부 자료 보관 | byte 저장 종류는 원본 file, 참조 종류는 URL과 변경 식별자만 |
-| `memories/<type>/` | skill repo 안 | 외부 자료의 memory + wiki와의 연결 metadata | 영향 분석의 출발점 |
-| `memories/<type>/AGENTS.md` | source 종류 folder 안 | 해당 source 종류의 고유 절차 | fetch, 변경분 추출, frontmatter format |
-| `skills/know-<domain>/` | skill repo 안 | 순수 wiki | 자료 연결 정보 frontmatter에 두지 않음 |
-| `skills/know-<domain>/SKILL.md` | skill folder 안 | 진입점 | skill manifest와 page catalog |
+| layer | 책임 | 비고 |
+| --- | --- | --- |
+| `AGENTS.md` | 전체 flow의 진입점 | ingest/sync 명령 정의와 layer 사이 작업 흐름 |
+| `sources/<type>/` | 외부 자료 보관 | byte 저장 종류는 원본 file, 참조 종류는 URL과 변경 식별자만 |
+| `memories/<type>/` | 외부 자료의 memory + wiki와의 연결 metadata | 영향 분석의 출발점 |
+| `memories/<type>/AGENTS.md` | 해당 source 종류의 고유 절차 | fetch, 변경분 추출, frontmatter format |
+| `skills/know-<domain>/` | 순수 wiki | 자료 연결 정보 frontmatter에 두지 않음 |
+| `skills/know-<domain>/SKILL.md` | 진입점 | skill manifest와 page catalog |
 
 
 ### 외부 자료의 종류와 저장 방식
@@ -134,15 +141,15 @@ graph TB
 - 외부 자료는 종류에 따라 **byte 저장**과 **참조만 보관**으로 나뉩니다.
     - link rot 위험과 repo 용량 부담의 trade-off를 종류별로 다르게 풉니다.
 
-| 종류 | 저장 방식 | 위치 | 변경 식별자 |
+| 종류 | 저장 방식 | 보관 정보 | 변경 식별자 |
 | --- | --- | --- | --- |
-| **github** | 참조만 | URL + last_commit | commit hash |
+| **github** | 참조만 | URL + last commit | commit hash |
 | **confluence** | 참조만 | URL + page version | page version |
 | **markdown** | byte 저장 | `sources/markdown/` | content hash |
 | **pdf** | byte 저장 | `sources/pdf/` | content hash |
 | **image** | byte 저장 | `sources/image/` | content hash |
 
-- byte 저장 종류는 **link rot 위험이 크거나 LLM이 직접 파싱·해석해야 하는 자료**입니다.
+- byte 저장 종류는 **link rot 위험이 크거나 LLM이 직접 parsing, 해석해야 하는 자료**입니다.
     - image는 vision 재해석에 byte가 필수이고, pdf는 외부에서 사라지면 복구 불가능합니다.
 
 - 참조만 보관하는 종류는 **외부 system이 안정적이고 fetch 비용이 낮아** 항상 최신을 가져올 수 있습니다.
@@ -157,13 +164,13 @@ graph TB
     - byte 저장 종류는 원본 file이 그대로 들어갑니다.
     - 참조 종류는 URL과 변경 식별자만 보관하며, 실제 byte는 fetch 시점에만 temp folder에 가져옵니다.
 
-- sources layer의 핵심 의도는 **외부 자료를 안정적인 위치에 두는 것**이며, 그 자료의 정제·연결은 memories layer가 책임집니다.
+- sources layer의 핵심 의도는 **외부 자료를 안정적인 위치에 두는 것**이며, 그 자료의 정제와 연결은 memories layer가 책임집니다.
 
 
 ### Memories Layer
 
 - memories는 외부 자료의 정리(memory)와 wiki와의 연결 metadata를 모두 책임집니다.
-    - 종류별 folder로 분리되며, 각 folder가 자기만의 ingest·sync 절차를 갖습니다.
+    - 종류별 folder로 분리되며, 각 folder가 자기만의 ingest와 sync 절차를 갖습니다.
     - bundle 단위와 memory 단위는 source 종류에 따라 다릅니다.
 
 - memory frontmatter의 두 field가 **양쪽 layer를 잇는 매개점**입니다.
@@ -182,7 +189,7 @@ graph TB
 
 ### Skills Layer
 
-- skills는 순수 wiki를 담는 layer로, business 관점의 정책·workflow·schema를 정리한 page만 들어갑니다.
+- skills는 순수 wiki를 담는 layer로, business 관점의 정책, workflow, schema를 정리한 page만 들어갑니다.
     - **자료 연결 정보는 frontmatter에 두지 않습니다**.
     - skill page에서 외부 자료를 인용할 때는 본문에서 file:line 형태로 자유롭게 link합니다.
     - 영향 분석은 memories layer가 단방향 link로 책임지므로 skill page는 자기 출처를 frontmatter에 명시할 필요가 없습니다.
@@ -217,7 +224,7 @@ graph TB
 | **image** | image collection | 한 image와 설명 | file 단위 (sub-image 식별자 부재) |
 
 - pdf와 image는 **sub-file 식별자가 없어 변경 영역 추출 시 LLM이 재해석해야** 합니다.
-    - file 변경은 감지되지만, file 안의 어디가 바뀌었는지는 LLM이 vision이나 재파싱으로 알아냅니다.
+    - file 변경은 감지되지만, file 안의 어디가 바뀌었는지는 LLM이 vision으로 보거나 다시 parsing해서 알아냅니다.
 
 - `memories/<type>/AGENTS.md` 가 그 종류 고유의 ingest 절차, sync 절차, frontmatter format을 정의합니다.
     - 여러 skill이 같은 source 종류를 공유할 때 이 `AGENTS.md`를 재사용하므로 절차가 한 곳에 모입니다.
@@ -298,7 +305,7 @@ llm-skill/
 ## Flow
 
 - 외부 자료 -> sources -> memories -> skills 가공 흐름.
-- ingest는 bundle를 처음 등록, sync는 변경을 전파.
+- ingest는 bundle을 처음 등록, sync는 변경을 전파.
 
 ## Commands
 
@@ -388,7 +395,7 @@ used_by:
 ```markdown
 ---
 name: know-payment
-description: Payment domain의 결제·환불·idempotency 정책과 payment-service repo의 code 구조를 다룹니다. 결제 흐름·webhook 검증·환불 정책 관련 작업에 호출합니다.
+description: Payment domain의 결제, 환불, idempotency 정책과 payment-service repo의 code 구조를 다룹니다. 결제 흐름, webhook 검증, 환불 정책 관련 작업에 호출합니다.
 ---
 
 - `domain/payment.md` - 결제 승인 흐름과 idempotency 정책
