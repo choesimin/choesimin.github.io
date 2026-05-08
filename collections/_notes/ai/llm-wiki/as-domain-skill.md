@@ -163,8 +163,10 @@ graph TB
 - sources는 외부 자료 자체를 종류별 folder로 분리해서 보관합니다.
     - byte 저장 종류는 원본 file이 그대로 들어갑니다.
     - 참조 종류는 URL과 변경 식별자만 보관하며, 실제 byte는 fetch 시점에만 temp folder에 가져옵니다.
+    - 종류별 folder axis는 memories의 axis와 같아서 `sources/<type>/`과 `memories/<type>/`이 1:1로 대응합니다.
 
 - sources layer의 핵심 의도는 **외부 자료를 안정적인 위치에 두는 것**이며, 그 자료의 정제와 연결은 memories layer가 책임집니다.
+    - sources의 file은 raw 형태이며 frontmatter나 metadata를 두지 않습니다.
 
 
 ### Memories Layer
@@ -177,13 +179,13 @@ graph TB
     - `referenced_files` 가 sources 방향으로 외부 자료 식별자를 기록합니다.
     - `used_by` 가 skills 방향으로 이 memory를 활용하는 skill page를 기록합니다.
 
-- 두 link 모두 **단방향**입니다.
+- 두 link 모두 memory에서 양쪽 layer로 나가는 **단방향**이며, 역방향 link는 두지 않습니다.
     - 외부 자료는 frontmatter를 가질 수 없으므로 역방향 link를 둘 수 없습니다.
         - sync 시 식별자 비교로 보강합니다.
     - skill page도 자료 연결 정보를 frontmatter에 두지 않습니다.
         - 본문에서는 가독성용 link로 자유롭게 인용 가능합니다.
 
-- 영향 분석 chain은 한 방향으로 완결됩니다.
+- 영향 분석은 외부 자료 변경에서 시작해 memory를 거쳐 skill page 갱신까지 한 방향으로 완결됩니다.
     - 외부 자료 변경 감지 -> 식별자 비교로 영향받는 memory 식별 -> memory의 `used_by`로 영향받는 skill page 식별 -> skill page 갱신.
 
 
@@ -211,19 +213,32 @@ graph TB
     - 각 topic memory는 한 주제와 관련된 file:line 또는 section 단위 참조를 모아 정리합니다.
 
 
-### Source 종류별 차이
+### Source 종류별 단위
 
-- bundle 단위, memory 단위, sub-file 추적 정밀도가 source 종류에 따라 다릅니다.
+- 외부 자료를 bundle, source, memory 세 단위로 다루며, source와 memory 사이의 cardinality는 종류마다 다릅니다.
 
-| 종류 | bundle 단위 | memory 단위 | sub-file 추적 |
+| 종류 | 1 bundle | 1 source | 1 memory | source : memory | 의미 |
+| --- | --- | --- | --- | --- | --- |
+| **github** | repo | 1 file (`.java` 등) | topic | N : 1 | N개 file을 1 topic으로 aggregation |
+| **confluence** | space 또는 page tree | 1 page | 1 page | 1 : 1 | page = memory |
+| **markdown** | 문서 collection | 1 file (`.md`) | 1 문서 | 1 : 1 | 문서 = memory |
+| **pdf** | 1 document | 1 file (`.pdf`) | 1 section | 1 : N | 1 file을 N section memory로 decomposition |
+| **image** | image collection | 1 image | 1 image | 1 : 1 | image = memory |
+
+
+### Source와 memory 연결
+
+- memory는 frontmatter `referenced_files`로 source 안의 위치를 단방향으로 가리키며, 가리키는 정밀도와 식별자 형태가 종류별로 다릅니다.
+
+| 종류 | 추적 단위 | 식별자 형태 | 한계 |
 | --- | --- | --- | --- |
-| **github** | repo | topic (관련 file 모음) | file:line + symbol |
-| **confluence** | space 또는 page tree | page | page 단위 |
-| **markdown** | 문서 collection | 한 문서 | file 단위 |
-| **pdf** | document | section | file 단위 (section 식별자 부재) |
-| **image** | image collection | 한 image와 설명 | file 단위 (sub-image 식별자 부재) |
+| **github** | file:line + symbol | path + symbol | - |
+| **confluence** | page | page url 또는 id | page 내부 위치 추적 불가 |
+| **markdown** | file | path | file 내부 위치 추적 불가 |
+| **pdf** | file | path | section 식별자 부재 |
+| **image** | file | path | image 내부 영역 식별자 부재 |
 
-- pdf와 image는 **sub-file 식별자가 없어 변경 영역 추출 시 LLM이 재해석해야** 합니다.
+- pdf와 image는 file 내부 식별자가 없어, 변경 영역 추출 시 LLM이 재해석해야 합니다.
     - file 변경은 감지되지만, file 안의 어디가 바뀌었는지는 LLM이 vision으로 보거나 다시 parsing해서 알아냅니다.
 
 - `memories/<type>/AGENTS.md` 가 그 종류 고유의 ingest 절차, sync 절차, frontmatter format을 정의합니다.
@@ -253,13 +268,13 @@ graph TB
 | **`index.md` 처리** | 신규 생성 | meta 식별자 갱신 |
 | **memory 처리** | 의미 단위로 분리하여 신규 생성 | 영향받는 memory 갱신, 필요 시 신규 생성 |
 
-- LLM이 따르는 instruction은 두 위치로 나뉩니다.
+- LLM이 따르는 instruction은 root `AGENTS.md`와 `memories/<type>/AGENTS.md` 두 위치로 나뉩니다.
     - **root `AGENTS.md`** 가 전체 flow의 진입점이며, ingest/sync 명령 정의와 layer 사이 작업 흐름을 담습니다.
     - **`memories/<type>/AGENTS.md`** 가 종류별 구체 절차(fetch 도구, 변경 식별자, 변경분 추출 방식)를 담습니다.
     - LLM은 명령을 받으면 root `AGENTS.md`를 읽어 흐름을 파악한 뒤, path의 첫 segment로 해당 종류의 `AGENTS.md`를 찾아 구체 절차를 수행합니다.
 
-- skill folder는 instruction을 두지 않습니다.
-    - 순수한 wiki 저장소로서 agent가 답변 생성 시 read-only로 참조합니다.
+- skill folder는 ingest, sync 같은 갱신 instruction을 두지 않습니다.
+    - agent가 답변 생성 시 read-only로 참조하는 순수 wiki 저장소이므로, 갱신 작업은 root와 memories layer가 담당합니다.
 
 
 ---
