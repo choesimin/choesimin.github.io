@@ -11,7 +11,7 @@ date: 2026-05-04
 
 - agent가 domain 작업을 반복 수행하려면 domain 지식이 **누적**되고, 그 지식을 호출 시점에 **활용** 가능해야 합니다.
     - 누적과 활용이 한 곳에서 일어나도록 domain 지식을 LLM Wiki 형태로 정리하고, domain skill 단위로 packaging합니다.
-    - skill로 packaging하면 agent가 작업 시점에 `SKILL.md` 진입점을 통해 필요한 지식을 스스로 찾아 호출합니다.
+    - skill로 packaging하면 agent가 작업 시점에 `SKILL.md` 진입점을 통해 필요한 지식을 스스로 찾아 활용합니다.
 
 ```mermaid
 graph LR
@@ -29,7 +29,7 @@ graph LR
         agent --> output
     end
 
-    skill -.invoke.-> agent
+    skill -.호출.-> agent
 ```
 
 
@@ -38,10 +38,10 @@ graph LR
 - agent가 domain 작업을 수행하려면 일반 지식 외에 **그 domain의 정책과 system 구조**를 알아야 합니다.
     - 예를 들어, 일반적인 LLM은 결제 정책의 idempotency 규칙, 자사 service의 endpoint 구조, DB의 table 관계를 알지 못합니다.
         - idempotency는 같은 요청을 여러 번 보내도 한 번 처리한 것과 동일한 결과를 보장하는 성질입니다.
-    - 이런 지식 없이 agent에게 "결제 환불 처리 추가" 같은 작업을 시키면 잘못된 가정으로 code를 작성하거나 system과 충돌하는 결과를 만듭니다.
+    - 이런 지식 없이 agent에게 "결제 환불 처리 추가" 같은 작업을 시키면 잘못된 가정으로 code를 작성하거나 system과 충돌하는 결과를 낳습니다.
 
-- 한 번의 작업마다 인간이 필요한 맥락을 prompt로 주입하는 방식은 **반복 작업이 누적될수록 비효율적**입니다.
-    - 인간이 매번 같은 정책을 설명하고 같은 file 위치를 알려주면 agent가 스스로 작업한다고 부를 수 없습니다.
+- 한 번의 작업마다 사람이 필요한 맥락을 prompt로 주입하는 방식은 **반복 작업이 누적될수록 비효율적**입니다.
+    - 사람이 매번 같은 정책을 설명하고 같은 file 위치를 알려주면 agent가 스스로 작업한다고 부를 수 없습니다.
     - **누적된 지식 저장소**가 있어야 agent가 호출 시점에 자기 task와 관련된 지식을 **스스로** 가져옵니다.
 
 
@@ -52,15 +52,15 @@ graph LR
     - 같은 domain에서 여러 task를 반복 수행하는 agent에게는 **지식이 누적되고 일관성이 유지**되는 skill 형태가 자연스럽습니다.
 
 - 누적된 지식의 가치를 유지하려면 외부 자료의 변경을 따라가야 하며, 이는 **LLM이 sync와 cross-reference 갱신을 전담**해야 가능합니다.
-    - memories layer가 외부 자료와 wiki 사이의 연결 metadata를 단방향으로 추적하므로, Human은 sync 명령만 주면 됩니다.
+    - memories layer가 외부 자료와 wiki 사이의 연결 metadata를 단방향으로 추적하므로, 사람은 sync 명령만 주면 됩니다.
     - 자동화 없이 수동 유지하면 자료가 며칠 만에 stale해져 누적된 지식의 가치가 사라집니다.
 
 
 ### Skill 형태로의 활용
 
-- skill로 packaging한다는 것은 누적된 지식 모음에 **이름표(`SKILL.md`)와 진입점**을 붙여 agent가 호출 시점에 쉽게 찾아 활용하도록 만드는 것입니다.
+- skill로 packaging한다는 것은 누적된 지식 모음에 **진입점(`SKILL.md`)을 두어** agent가 호출 시점에 쉽게 찾아 활용하도록 만드는 것입니다.
     - `SKILL.md` frontmatter의 name과 description이 agent에게 이 skill이 무엇이고 언제 호출해야 하는지를 알립니다.
-    - skill 형태는 **framework 중립적**이라 여러 agent runtime에서 동일하게 invoke됩니다.
+    - skill 형태는 **framework 중립적**이라 여러 agent runtime에서 동일하게 호출됩니다.
 
 - 한 domain skill의 범위는 단일 domain의 지식, API contract, DB schema, source code repository 등 한 작업 영역에 묶이는 자료 전체입니다.
     - 작업 영역이 **너무 넓으면** description이 모호해져 호출 정확도가 떨어지고, **너무 좁으면** cross-reference의 가치가 사라집니다.
@@ -71,9 +71,9 @@ graph LR
 
 ## 기존 LLM Wiki와의 차이
 
-- 활용 목적이 다르며, 기존 LLM Wiki는 **Human의 학습과 탐색**을 위해 만들어진 반면 LLM Domain Skill은 **LLM agent의 자율 작업 reference**로 만들어집니다.
+- 활용 목적이 다르며, 기존 LLM Wiki는 **사람의 학습과 탐색**을 위해 만들어진 반면 LLM Domain Skill은 **LLM agent의 자율 작업 reference**로 만들어집니다.
     - 활용 목적이 다르면 어떤 자료를 source로 넣을지, page를 어떻게 구조화할지가 달라집니다.
-    - Human용 wiki는 **paper와 article 중심**이지만, agent용 skill은 **system을 구성하는 모든 자료(code, schema, contract)**를 포함해야 자율 작업이 가능합니다.
+    - 사람용 wiki는 **paper와 article 중심**이지만, agent용 skill은 **system을 구성하는 모든 자료(code, schema, contract)**를 포함해야 자율 작업이 가능합니다.
 
 - 외부 자료의 성격도 달라지며, 기존 LLM Wiki는 article이나 paper처럼 **한 번 수집하면 변하지 않는 자료**를 가정합니다.
     - agent용 skill에서는 GitHub repository, Confluence page, DB schema처럼 **외부에서 계속 변하는 자료**가 주가 되므로 **변경 추적**이 필수입니다.
@@ -81,7 +81,7 @@ graph LR
 
 | 구분 | 기존 LLM Wiki | LLM Domain Skill |
 | --- | --- | --- |
-| **소비자** | Human (직접 읽기) | LLM agent (작업 중 invoke) |
+| **소비자** | 사람 (직접 읽기) | LLM agent (작업 중 호출) |
 | **진입점** | `index.md` | `SKILL.md` (frontmatter 포함) |
 | **source 종류** | article, paper, transcript | github, confluence, markdown, pdf, image 등 |
 | **source 변경** | 거의 없음 | 자주 발생, 종류별 추적 mechanism |
@@ -105,7 +105,7 @@ graph LR
     - `skills/`는 순수 wiki입니다.
         - business 관점 page만 두며, 자료 연결 정보는 frontmatter에 두지 않습니다.
 
-- raw 외부 자료가 memory로 정제되고, 그 memory를 토대로 skills의 wiki가 쌓이는 가공 흐름입니다.
+- raw 외부 자료가 memory로 정제되고, 그 memory를 토대로 skills의 wiki가 만들어지는 가공 흐름입니다.
 
 ```mermaid
 graph TB
@@ -142,7 +142,7 @@ graph TB
 | **pdf** | byte 저장 | `sources/pdf/` | content hash |
 | **image** | byte 저장 | `sources/image/` | content hash |
 
-- byte 저장 종류는 **link rot 위험이 크거나 LLM이 직접 파싱·해석해야** 합니다.
+- byte 저장 종류는 **link rot 위험이 크거나 LLM이 직접 파싱·해석해야 하는 자료**입니다.
     - image는 vision 재해석에 byte가 필수이고, pdf는 외부에서 사라지면 복구 불가능합니다.
 
 - 참조만 보관하는 종류는 **외부 system이 안정적이고 fetch 비용이 낮아** 항상 최신을 가져올 수 있습니다.
@@ -229,7 +229,7 @@ graph TB
 ## Source to Skill - Ingest와 Sync
 
 - 외부 자료를 skill에 반영하는 작업은 **ingest**와 **sync** 두 operation으로 나뉘며, bundle 단위가 둘을 가르는 기준입니다.
-    - **ingest** 는 bundle를 skill에 처음 등록하는 작업입니다.
+    - **ingest** 는 bundle을 skill에 처음 등록하는 작업입니다.
         - `index.md` 를 신규 생성하고 bundle 안의 자료를 memory로 분리합니다.
     - **sync** 는 등록된 bundle의 외부 변경을 skill에 전파하는 작업입니다.
         - 기존 memory를 갱신하고 필요하면 새 memory를 만듭니다.
@@ -240,7 +240,7 @@ graph TB
 
 | 구분 | Ingest | Sync |
 | --- | --- | --- |
-| **trigger 시점** | bundle를 처음 등록할 때 | 등록된 bundle의 외부 자료가 변경되었을 때 |
+| **trigger 시점** | bundle을 처음 등록할 때 | 등록된 bundle의 외부 자료가 변경되었을 때 |
 | **명령 형태** | `ingest <bundle path>` | `sync <bundle path>` |
 | **수행 빈도** | bundle당 1회 | bundle당 N회 |
 | **`index.md` 처리** | 신규 생성 | meta 식별자 갱신 |
@@ -383,7 +383,7 @@ used_by:
 
 ### `skills/know-payment/SKILL.md`
 
-- skill의 진입점 + page catalog로, agent가 자동 invoke 판단에 frontmatter description을 사용합니다.
+- skill의 진입점 + page catalog로, agent가 자동 호출 판단에 frontmatter description을 사용합니다.
 
 ```markdown
 ---
