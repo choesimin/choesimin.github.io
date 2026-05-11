@@ -2,7 +2,7 @@
 layout: note
 permalink: /500
 title: Agent Loop - LLM이 Tool을 반복 호출하며 작업을 완수하는 제어 구조
-description: agent loop는 stateless한 LLM이 tool 호출과 결과 관찰을 반복하며 작업을 진행하도록 만드는 while loop 기반 제어 구조이며, LLM의 종료 신호를 따라 자연 종료하는 동시에 max iteration으로 폭주를 막습니다.
+description: agent loop는 stateless한 LLM이 tool 호출과 결과 관찰을 반복하며 작업을 진행하도록 만드는 while loop 기반 제어 구조입니다.
 date: 2026-04-29
 ---
 
