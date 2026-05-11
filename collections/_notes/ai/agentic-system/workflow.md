@@ -11,7 +11,7 @@ date: 2026-05-11
 
 - workflow는 **LLM 호출 순서와 결과 전달 방식이 code에 사전 정의된 agentic system**입니다.
     - augmented LLM 호출을 어떻게 연결하느냐가 code에 적혀 있으며, 어떤 LLM을 언제 부르고 결과를 어디로 넘길지가 설계 시점에 결정됩니다.
-    - 동일 입력에 대해 동일한 경로로 작동하므로 latency, 비용, 결과의 일관성이 모두 예측 가능합니다.
+    - 동일 입력에 대해 동일한 경로로 작동하므로 latency와 비용이 예측 가능하고, 결과의 일관성도 높습니다.
 
 - workflow는 **task가 사전에 분해 가능할 때 효과적**입니다.
     - task의 단계와 분기 구조가 안정적일수록 효율이 높아지며, 흐름 자체는 code가 통제하므로 오류 누적 위험도 낮습니다.
@@ -29,11 +29,8 @@ flowchart TB
 
 ### Workflow의 한계
 
-- workflow는 **task의 구조가 사전에 분해 가능**하다는 전제 위에 만들어집니다.
-    - 단계와 분기를 미리 알 수 있을 때만 code에 흐름을 적을 수 있으며, 단계 수와 경로가 입력마다 달라지면 사전 정의가 불가능해집니다.
-
-- workflow는 task의 단계 수가 입력의 결과에 따라 달라질 때 한계에 부딪힙니다.
-    - 다음 행동이 직전 행동의 결과(특히 환경 feedback)에 따라 달라지므로 단계 수를 사전에 예측할 수 없습니다.
+- workflow는 task의 단계 수가 직전 단계의 결과에 따라 달라질 때 한계에 부딪힙니다.
+    - 환경 feedback이 매 단계 결과를 바꾸므로 다음 행동을 code에 미리 적을 수 없습니다.
     - 분기 조건이 너무 많아 routing classifier가 비대해집니다.
     - orchestrator-workers로도 한 번에 분해되지 않고, 분해 자체가 반복적으로 조정되어야 합니다.
 
@@ -68,7 +65,7 @@ flowchart TB
     - gate는 결과가 기준에 맞는지 검사하고, 실패하면 재시도하거나 전체 흐름을 중단합니다.
 
 ```mermaid
-flowchart TD
+flowchart TB
     input[Input] --> step1[LLM Call 1<br>generate]
     step1 --> gate{Gate}
     gate -->|pass| step2[LLM Call 2<br>transform]
@@ -86,6 +83,7 @@ flowchart TD
     - 추출 단계 뒤에 schema 검증 gate를 두어 형식이 맞지 않으면 추출을 재시도하게 만듭니다.
 
 - code 생성 후 test를 작성하고, test가 통과하는지 확인하는 흐름도 같은 pattern으로 처리됩니다.
+    - 첫 호출이 code를 생성하고, 다음 호출이 test를 작성하며, 마지막에 test 실행 결과를 gate로 검증합니다.
 
 #### 적합한 상황 : 순차 분해
 
@@ -150,6 +148,14 @@ flowchart TB
     fan_in --> output[Output]
 ```
 
+| 구분 | Sectioning | Voting |
+| --- | --- | --- |
+| **Worker가 하는 일** | 서로 다른 sub-task | 같은 task |
+| **목적** | 책임 분리와 latency 단축 | 신뢰도와 robustness 향상 |
+| **결과 합치는 방식** | 결과 통합(concat, merge) | 다수결, 합의 |
+| **적합한 상황** | 독립 sub-task로 분해 가능 | 단일 호출 신뢰도가 낮음 |
+| **예시** | 주제 추출 + 감성 분석 + 사실 검증 동시 실행 | content moderation, 다관점 reviewer |
+
 #### Sectioning
 
 - sectioning은 **task를 독립적인 sub-task로 쪼개 병렬 실행하는 변형**입니다.
@@ -157,7 +163,6 @@ flowchart TB
     - 한 prompt에 여러 책임을 넣지 않고 각 worker가 한 가지에 집중하므로 정확도가 올라갑니다.
 
 - 문서 분석에서 주제 추출, 감성 분석, 사실 검증은 서로 의존하지 않으므로 sectioning으로 병렬 실행하면 latency가 단일 호출 수준으로 떨어집니다.
-    - 한 prompt에 세 책임을 묶지 않고 각 worker가 한 가지에 집중하므로 정확도도 함께 올라갑니다.
 
 - code review에서 보안 취약점, 성능 문제, code style 위반을 각자 다른 worker가 검사하는 흐름도 sectioning입니다.
 
@@ -278,7 +283,7 @@ flowchart LR
 
 - pattern은 서로 배타적이지 않으며, **하나의 system 안에서 여러 pattern을 중첩하거나 이어붙여 사용**하는 경우가 흔합니다.
     - 실무에서 단일 pattern으로 풀 수 있는 task는 드물고, 한 단계 안에 다른 pattern을 끼워 넣는 식으로 자연스럽게 조합됩니다.
-    - 조합할 때도 각 단계가 어떤 pattern인지 명확히 구분되어 있어야 흐름을 통제할 수 있습니다.
+    - 조합할 때 각 단계가 어떤 pattern인지 명확히 구분되어 있어야 흐름을 통제할 수 있습니다.
 
 
 ### Nested 조합 : Pattern 안에 다른 Pattern 넣기
@@ -296,7 +301,7 @@ flowchart LR
 ### 단계적 조합 : Pattern을 순차적으로 이어붙이기
 
 - 한 pattern의 출력이 다음 pattern의 입력이 되는 방식입니다.
-    - 각 단계가 독립적이라 디버깅이 쉽고, 단계별로 다른 model이나 cost를 적용할 수 있습니다.
+    - 각 단계가 독립적이라 debugging이 쉽고, 단계별로 다른 model을 선택해 cost를 조절할 수 있습니다.
 
 - routing -> evaluator-optimizer 조합은 분류와 품질 검증을 함께 다룰 때 유용합니다.
     - 고객 message를 routing으로 분류한 뒤, 답변 생성을 evaluator-optimizer로 돌려 어조와 정책 준수를 반복 검증합니다.
