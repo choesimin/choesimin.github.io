@@ -140,6 +140,8 @@ const replacements = {
   '엔지니어링': 'engineering',
   '디자인': 'design',
   '디버깅': 'debugging',
+  '버그': 'bug',
+  '채팅': 'chatting',
   '섹션': 'section',
   '시뮬레이션': 'simulation',
   '시나리오': 'scenario',

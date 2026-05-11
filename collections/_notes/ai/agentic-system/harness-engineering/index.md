@@ -73,7 +73,7 @@ flowchart LR
 
 - LLM의 본질은 **text를 입력받아 text를 출력하는 stateless 함수**입니다.
     - session 간 상태 유지, code 실행, 실시간 정보 접근, 환경 구성과 package 설치 등은 LLM 자체로는 불가능합니다.
-    - "채팅"이라는 단순한 UX조차 이전 message를 추적하고 이어붙이는 while loop, 즉 가장 기본적인 harness의 산물입니다.
+    - "chatting"이라는 단순한 UX조차 이전 message를 추적하고 이어붙이는 while loop, 즉 가장 기본적인 harness의 산물입니다.
 
 - agent에게 복잡한 작업을 맡길수록 harness의 중요성은 기하급수적으로 커집니다.
     - Anthropic 연구팀이 최전선 model에게 고수준 지시를 주고 여러 context window에 걸쳐 작업시켰을 때, agent가 모든 것을 한 번에 해결하려 달려들다 context가 바닥나 절반만 구현된 code를 남기는 실패가 반복되었습니다.

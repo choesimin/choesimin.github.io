@@ -129,7 +129,7 @@ flowchart TB
     - 이 판단의 매 단계가 system prompt로 명시되어 있어 Sisyphus의 행동이 deterministic하게 제어됩니다.
 
 - Sisyphus가 허용되는 행위는 file read, command 실행, lsp diagnostics, grep/glob/ast-grep 같은 검증 행위입니다.
-    - code 작성, 수정, 버그 수정, test 생성, git commit은 전부 worker에게 위임해야 합니다.
+    - code 작성, 수정, bug 수정, test 생성, git commit은 전부 worker에게 위임해야 합니다.
     - 단 "전문가가 없는 일"에 한해 직접 수행하지만, 가능하면 delegate가 원칙입니다.
 
 - Atlas 모드는 `boulder.json`이라는 state file로 **session 중단 후에도 plan 실행을 이어서 수행**합니다.

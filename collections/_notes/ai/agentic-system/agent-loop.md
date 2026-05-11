@@ -14,7 +14,7 @@ date: 2026-04-29
     - 이 반복 구조 덕분에 LLM은 처음부터 모든 정보를 알지 못해도, 환경에서 ground truth를 가져오며 점진적으로 작업을 완성합니다.
 
 - agent loop는 모든 LLM agent의 가장 근본적인 골격입니다.
-    - "채팅"이라는 단순한 UX조차 이전 message를 추적하고 이어붙이는 while loop의 산물입니다.
+    - "chatting"이라는 단순한 UX조차 이전 message를 추적하고 이어붙이는 while loop의 산물입니다.
     - workflow pattern, sub-agent, state machine 같은 더 복잡한 구조도 결국 agent loop의 변형이거나 그것을 감싸는 layer입니다.
 
 - agent loop는 **harness engineering의 출발점**입니다.
@@ -191,7 +191,7 @@ flowchart TB
 ### Agent Loop와 Workflow의 차이
 
 - agent loop는 **반복 횟수와 경로가 LLM에 의해 결정**됩니다.
-    - 사용자가 "버그를 찾아 고쳐줘"라고 지시하면, 어떤 file을 몇 번 읽고 어떤 명령을 실행할지는 LLM이 매 turn 결정합니다.
+    - 사용자가 "bug를 찾아 고쳐줘"라고 지시하면, 어떤 file을 몇 번 읽고 어떤 명령을 실행할지는 LLM이 매 turn 결정합니다.
     - 결과적으로 동일 입력이 동일 경로로 처리되지 않으며, 자율성과 비용 및 오류 누적 위험이 함께 커집니다.
 
 - workflow는 **반복 횟수와 경로가 code에 의해 결정**됩니다.
