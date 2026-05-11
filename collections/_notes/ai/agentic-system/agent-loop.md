@@ -163,12 +163,13 @@ raise "agent가 max iteration에 도달했습니다."
 
 ## Agentic System에서 Agent Loop의 위치
 
-- Anthropic은 LLM과 tool로 구성된 system을 **workflow와 agent**로 구분합니다.
+- Anthropic은 LLM과 tool로 구성된 system 전체를 **agentic system**이라 부르며, 이를 다시 **workflow와 agent**로 구분합니다.
     - workflow는 사전 정의된 code 경로를 따라 LLM과 tool이 orchestration되는 system입니다.
     - agent는 LLM이 자신의 process와 tool 사용을 동적으로 결정하는 system이며, 그 핵심 mechanism이 바로 agent loop입니다.
 
-- workflow는 agent loop 없이도 작동할 수 있지만, agent는 agent loop가 곧 본체입니다.
-    - workflow는 prompt chaining, routing, parallelization처럼 단계와 분기가 사람에 의해 미리 정의됩니다.
+- agent loop는 **agent를 정의하는 핵심 mechanism**이며, workflow에서는 evaluator-optimizer 같은 일부 pattern에서만 제한적으로 등장합니다.
+    - workflow의 대부분은 정해진 단계와 분기를 따라 흐르므로 loop가 필요 없습니다.
+    - evaluator-optimizer처럼 평가-재생성을 반복하는 workflow는 loop를 갖지만, 종료 조건과 반복 경로가 code에 사전 정의되어 있다는 점에서 agent loop와 다릅니다.
     - agent는 어떤 tool을 몇 번 부를지 미리 정해지지 않으며, LLM이 매 turn 환경에서 ground truth를 받아 다음 행동을 정합니다.
 
 ```mermaid
@@ -178,9 +179,11 @@ flowchart TB
     workflow --> prompt_chain[Prompt Chaining]
     workflow --> routing[Routing]
     workflow --> parallel[Parallelization]
+    workflow --> orchestrator[Orchestrator-Workers]
+    workflow --> evaluator[Evaluator-Optimizer]
     agent --> agent_loop[Agent Loop]
     agent_loop --> tool_call[Tool Call]
-    agent_loop --> observe[Environmental Feedback]
+    tool_call --> observe[Environmental Feedback]
     observe --> agent_loop
 ```
 
@@ -193,6 +196,7 @@ flowchart TB
 
 - workflow는 **반복 횟수와 경로가 code에 의해 결정**됩니다.
     - "문서를 요약하고 번역해줘"라는 작업을 두 단계 LLM 호출로 미리 정의합니다.
+    - prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer 같은 정형화된 pattern으로 구성됩니다.
     - 자율성은 낮지만 latency와 비용이 예측 가능하며, 결과의 일관성이 높습니다.
 
 
