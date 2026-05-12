@@ -249,7 +249,7 @@ flowchart LR
     - 선언된 runtime이 해결하지 못하는 부분에만 호출됩니다.
     - LLM이 담당해야 할 잔여 판단의 크기와 종류가 state machine agent가 답하려는 질문입니다.
 
-- Manifesto 팀의 Battleship 실험은 선언된 runtime 위에서 LLM 호출이 실제로 얼마나 필요한지 실증 측정한 대표 사례입니다.
+- Manifesto team의 Battleship 실험은 선언된 runtime 위에서 LLM 호출이 실제로 얼마나 필요한지 실증 측정한 대표 사례입니다.
     - 54 game 실험에서 world-model planning 추가만으로 승률이 `+24.1pp` 상승했습니다.
     - LLM revision은 전체 turn 중 `4.3%`에서만 호출되었고, F1은 `+0.005`로 미미, 승률은 오히려 하락했습니다.
     - "LLM을 많이 쓸수록 좋다"는 가정이 적어도 Battleship setting에서는 성립하지 않았습니다.
@@ -276,7 +276,7 @@ flowchart LR
     - **runtime-owned write와 fresh snapshot feedback** : `dispatchAsync`와 snapshot 반환으로 구현됩니다.
     - **HITL 강제** : `withGovernance`와 proposal 생명 주기로 제공됩니다.
 
-- Manifesto 팀이 쓴 논문 "How Much LLM Does a Self-Revising Agent Actually Need?" 는 state machine agent 설계의 실증 근거입니다.
+- Manifesto team이 쓴 논문 "How Much LLM Does a Self-Revising Agent Actually Need?" 는 state machine agent 설계의 실증 근거입니다.
     - 논문은 reflective runtime protocol의 네 계층을 progressive하게 쌓으며 각 계층의 기여도를 측정합니다.
     - state machine agent가 단순한 engineering style이 아니라, 측정 가능한 agent 설계 방법론임을 보여줍니다.
 
